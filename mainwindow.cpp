@@ -379,58 +379,69 @@ MainWindow::~MainWindow()
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
+    bool valid = false;
     if(obj == ui->comboBox_stationSettingMember){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_stationSettingMember->currentText();
             displayStationSetupMember(name);
+            valid = true;
         }
     }else if(obj == ui->ComboBox_parameterStation){
         if(event->type() == QEvent::Enter){
             QString name = ui->ComboBox_parameterStation->currentText();
             displayStationSetupParameter(name);
+            valid = true;
         }
     }else if(obj == ui->comboBox_setupStation){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_setupStation->currentText();
             if(!name.isEmpty()){
                 displayStationSetupMember(name);
+                valid = true;
             }
         }
     }else if(obj == ui->comboBox_sourceSettingMember){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_sourceSettingMember->currentText();
             displaySourceSetupMember(name);
+            valid = true;
         }
     }else if(obj == ui->ComboBox_parameterSource){
         if(event->type() == QEvent::Enter){
             QString name = ui->ComboBox_parameterSource->currentText();
             displaySourceSetupParameter(name);
+            valid = true;
         }
     }else if(obj == ui->comboBox_setupSource){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_setupSource->currentText();
             if(!name.isEmpty()){
                 displaySourceSetupMember(name);
+                valid = true;
             }
         }
     }else if(obj == ui->comboBox_baselineSettingMember){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_baselineSettingMember->currentText();
             displayBaselineSetupMember(name);
+            valid = true;
         }
     }else if(obj == ui->ComboBox_parameterBaseline){
         if(event->type() == QEvent::Enter){
             QString name = ui->ComboBox_parameterBaseline->currentText();
             displayBaselineSetupParameter(name);
+            valid = true;
         }
     }else if(obj == ui->comboBox_setupBaseline){
         if(event->type() == QEvent::Enter){
             QString name = ui->comboBox_setupBaseline->currentText();
             if(!name.isEmpty()){
                 displayBaselineSetupMember(name);
+                valid = true;
             }
         }
     }
+    return valid;
 }
 
 // ########################################### DISPLAY LISTS ###########################################
@@ -8219,7 +8230,7 @@ void MainWindow::splitterMoved() {
   }else if(senderSplitter == ui->splitter_2){
       receiverSplitter1 = ui->splitter;
       receiverSplitter2 = ui->splitter_3;
-  }else if(senderSplitter == ui->splitter_3){
+  }else{
       receiverSplitter1 = ui->splitter;
       receiverSplitter2 = ui->splitter_2;
   }
