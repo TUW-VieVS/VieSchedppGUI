@@ -148,12 +148,14 @@ MainWindow::MainWindow(QWidget *parent) :
     allSourceModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
     allSourceModel->setHeaderData(1, Qt::Horizontal, QObject::tr("RA [deg]"));
     allSourceModel->setHeaderData(2, Qt::Horizontal, QObject::tr("DC [deg]"));
-    allStationProxyModel = new QSortFilterProxyModel(this);
+    allStationProxyModel = new MultiColumnSortFilterProxyModel(this);
     allStationProxyModel->setSourceModel(allStationModel);
     allStationProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    allSourceProxyModel = new QSortFilterProxyModel(this);
+    allStationProxyModel->setFilterKeyColumns({0,1});
+    allSourceProxyModel = new MultiColumnSortFilterProxyModel(this);
     allSourceProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     allSourceProxyModel->setSourceModel(allSourceModel);
+    allSourceProxyModel->setFilterKeyColumns({0});
 
 
     selectedStationModel = new QStandardItemModel(0,19,this);
@@ -4535,7 +4537,7 @@ void MainWindow::on_pushButton_clicked()
                 on_treeView_allSelectedStations_clicked(index);
             }
 
-            allStationProxyModel->setFilterRegExp("");
+            allStationProxyModel->addFilterFixedString("");
             for(int i=0; i<stas.size(); ++i){
                 QString sta = stas.at(i).toUpper();
                 bool found = false;
@@ -5567,7 +5569,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
 
 void MainWindow::on_lineEdit_allStationsFilter_textChanged(const QString &arg1)
 {
-    allStationProxyModel->setFilterRegExp(arg1);
+    allStationProxyModel->addFilterFixedString(arg1);
 }
 
 void MainWindow::on_treeView_allAvailabeStations_entered(const QModelIndex &index)
@@ -6707,7 +6709,7 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
 
 void MainWindow::on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1)
 {
-    allSourceProxyModel->setFilterRegExp(arg1);
+    allSourceProxyModel->setFilterFixedString(arg1);
 }
 
 void MainWindow::on_treeView_allAvailabeSources_entered(const QModelIndex &index)

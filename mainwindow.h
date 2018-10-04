@@ -71,6 +71,7 @@
 #include "../VieSchedpp/SkdParser.h"
 #include "qtutil.h"
 #include "skedcataloginfo.h"
+#include "multicolumnsortfilterproxymodel.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -541,8 +542,8 @@ private:
 
     QStandardItemModel *allStationModel;
     QStandardItemModel *allSourceModel;
-    QSortFilterProxyModel *allStationProxyModel;
-    QSortFilterProxyModel *allSourceProxyModel;
+    MultiColumnSortFilterProxyModel *allStationProxyModel;
+    MultiColumnSortFilterProxyModel *allSourceProxyModel;
 
     QStandardItemModel *selectedStationModel;
     QStandardItemModel *selectedSourceModel;

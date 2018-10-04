@@ -120,7 +120,8 @@ SOURCES += \
         textfileviewer.cpp \
         vieschedpp_analyser.cpp \
         qtutil.cpp \
-        skedcataloginfo.cpp
+        skedcataloginfo.cpp \
+    multicolumnsortfilterproxymodel.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -195,7 +196,8 @@ HEADERS += \
         textfileviewer.h \
         vieschedpp_analyser.h \
         qtutil.h \
-        skedcataloginfo.h
+        skedcataloginfo.h \
+    multicolumnsortfilterproxymodel.h
 
 FORMS += \
         mainwindow.ui \
