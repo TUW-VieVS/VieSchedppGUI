@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>5</number>
+       <number>19</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2610,6 +2610,9 @@ If you only want to run simulations you can deselect this to avoid error message
                   <property name="statusTip">
                    <string>use this if every scan should start at same time</string>
                   </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is the &lt;span style=&quot; font-weight:600;&quot;&gt;default option&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;should not be changed&lt;/span&gt;, unless you have good reasons. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, every station which is part of a scan &lt;span style=&quot; font-weight:600;&quot;&gt;starts its observation at the same time&lt;/span&gt;..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
                   <property name="text">
                    <string>scan start</string>
                   </property>
@@ -2643,7 +2646,7 @@ If you only want to run simulations you can deselect this to avoid error message
                    <string>use this if every scan is allowed to start/end at individual times</string>
                   </property>
                   <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;experimental&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; option where the software is not aligning the scans to have the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This means &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is experimental because this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, only with .vex.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might also not work with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;drudge&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; option where the software is &lt;span style=&quot; font-weight:600;&quot;&gt;not aligning&lt;/span&gt; the scans to have the &lt;span style=&quot; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This means &lt;span style=&quot; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;It is experimental because this is &lt;span style=&quot; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;, only with .vex.&lt;/p&gt;&lt;p&gt;It might also not work with &lt;span style=&quot; font-style:italic;&quot;&gt;drudge&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string>individual (experimental)</string>
@@ -2877,7 +2880,7 @@ If you only want to run simulations you can deselect this to avoid error message
                    <string>use fillin mode a posteriori</string>
                   </property>
                   <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Enables the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin mode a posteriori.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This schedules &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;additional scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in case of &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;long idle times&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. Those scans inserted after the normal schedule is finished. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you already use &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin modes during scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selection the a posteriori option &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;might not improve your schedule&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; any further. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The only &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;exception&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is when you have &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;tagalong stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In any case, this option does only cost a bit of time, the schedule will never get worse because of this. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Most of the time it is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not necessary&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to use this option but in case you are unsure simply use it.&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; It has no negative influence&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; (except for more collected data). &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the &lt;span style=&quot; font-weight:600;&quot;&gt;fillin mode a posteriori.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This schedules &lt;span style=&quot; font-weight:600;&quot;&gt;additional scans&lt;/span&gt; in case of &lt;span style=&quot; font-weight:600;&quot;&gt;long idle times&lt;/span&gt;. Those scans inserted &lt;span style=&quot; font-weight:600;&quot;&gt;after the normal schedule is finished&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;If you already use &lt;span style=&quot; font-weight:600;&quot;&gt;fillin modes during scan&lt;/span&gt; selection the a posteriori option &lt;span style=&quot; font-weight:600;&quot;&gt;might not improve your schedule&lt;/span&gt; any further. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception&lt;/span&gt; is when you have &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong stations&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In any case, this option does only cost a bit of time, the schedule will &lt;span style=&quot; font-weight:600;&quot;&gt;never get worse &lt;/span&gt;because of this. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Most of the time it is &lt;span style=&quot; font-weight:600;&quot;&gt;not necessary&lt;/span&gt; to use this option but in case you are unsure simply use it.&lt;span style=&quot; font-weight:600;&quot;&gt; It has no negative influence&lt;/span&gt; (except for more collected data). &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string>a posteriori</string>
@@ -2974,6 +2977,9 @@ If you only want to run simulations you can deselect this to avoid error message
                   <property name="statusTip">
                    <string>scan is allowed to drop single observation if considered advantageous</string>
                   </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It is possible to &lt;span style=&quot; font-weight:600;&quot;&gt;ignore single baselines&lt;/span&gt; during a scan. &lt;/p&gt;&lt;p&gt;This means that if a scan contains &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; stations the number of observations must not always be &lt;span style=&quot; font-style:italic;&quot;&gt;(n*(n-1))/2&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The scheduler is &lt;span style=&quot; font-weight:600;&quot;&gt;only removing&lt;/span&gt; single baselines from a scan if they &lt;span style=&quot; font-weight:600;&quot;&gt;do not meet the required parameters&lt;/span&gt;, for example if the required observing time would be too long. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Those removements &lt;span style=&quot; font-weight:600;&quot;&gt;are taken properly into account for the scan selection&lt;/span&gt;. The removed observations are also &lt;span style=&quot; font-weight:600;&quot;&gt;not listed&lt;/span&gt; in the &lt;span style=&quot; font-style:italic;&quot;&gt;ngs&lt;/span&gt; file. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
                   <property name="text">
                    <string>allow to drop single observations</string>
                   </property>
@@ -3004,7 +3010,7 @@ If you only want to run simulations you can deselect this to avoid error message
                 <bool>true</bool>
                </property>
                <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Set the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;debug level&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of your log files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have two sinks: The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;console&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;log file&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;log file&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the file created in the output folder and called something like &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;VieSchedpp_yyyy-MM-dd_hh-mm-ss.xxx.log&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;console&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the dock widget that opens when you hit start. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;increasing&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the debug level can drastically &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;increase the processing time &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and produce a lot of output. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the &lt;span style=&quot; font-weight:600;&quot;&gt;debug level&lt;/span&gt; of your log files. &lt;/p&gt;&lt;p&gt;You have two sinks: The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; and the &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt; is the file created in the output folder and called something like &lt;span style=&quot; font-style:italic;&quot;&gt;VieSchedpp_yyyy-MM-dd_hh-mm-ss.xxx.log&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; is the dock widget that opens when you hit start. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Keep in mind that &lt;span style=&quot; font-weight:600;&quot;&gt;increasing&lt;/span&gt; the debug level can drastically &lt;span style=&quot; font-weight:600;&quot;&gt;increase the processing time &lt;/span&gt;and produce a lot of output. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="title">
                 <string>debug level</string>
@@ -6402,21 +6408,45 @@ If you only want to run simulations you can deselect this to avoid error message
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_7">
                 <item>
-                 <widget class="QPushButton" name="pushButton_9">
-                  <property name="toolTip">
-                   <string>save as default weight factors</string>
+                 <layout class="QHBoxLayout" name="horizontalLayout_114">
+                  <property name="bottomMargin">
+                   <number>0</number>
                   </property>
-                  <property name="statusTip">
-                   <string>save as default weight factors</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="myresources.qrc">
-                    <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_9">
+                    <property name="toolTip">
+                     <string>save as default weight factors</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>save as default weight factors</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_weightFactorsHelp">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_18">
@@ -6464,7 +6494,7 @@ If you only want to run simulations you can deselect this to avoid error message
            </layout>
           </item>
           <item>
-           <widget class="QTextEdit" name="textEdit_3">
+           <widget class="QTextEdit" name="textEdit_weightFactorHelp">
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -6565,7 +6595,7 @@ p, li { white-space: pre-wrap; }
                 <string>create statistics file</string>
                </property>
                <property name="text">
-                <string>create session statistics file (skdsum)</string>
+                <string>create skdsum file</string>
                </property>
                <property name="checked">
                 <bool>false</bool>
@@ -6732,7 +6762,7 @@ p, li { white-space: pre-wrap; }
                 <string>path to output directory</string>
                </property>
                <property name="text">
-                <string>out/</string>
+                <string>../out/</string>
                </property>
               </widget>
              </item>
@@ -7150,8 +7180,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>639</width>
-             <height>576</height>
+             <width>943</width>
+             <height>697</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -10268,7 +10298,7 @@ p, li { white-space: pre-wrap; }
              <string>path to skd file</string>
             </property>
             <property name="text">
-             <string>out/</string>
+             <string>../out/</string>
             </property>
             <property name="placeholderText">
              <string>*.skd</string>
@@ -11681,8 +11711,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>81</y>
+     <x>42</x>
+     <y>105</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -11697,8 +11727,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>113</y>
+     <x>42</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -11713,12 +11743,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>143</y>
+     <x>53</x>
+     <y>169</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>146</y>
+     <x>385</x>
+     <y>172</y>
     </hint>
    </hints>
   </connection>
@@ -11729,12 +11759,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>195</y>
+     <x>53</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>198</y>
+     <x>385</x>
+     <y>236</y>
     </hint>
    </hints>
   </connection>
@@ -11745,12 +11775,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>169</y>
+     <x>53</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>172</y>
+     <x>385</x>
+     <y>204</y>
     </hint>
    </hints>
   </connection>
@@ -11761,12 +11791,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>256</y>
+     <x>53</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>259</y>
+     <x>385</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -11777,12 +11807,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>256</y>
+     <x>53</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>285</y>
+     <x>53</x>
+     <y>341</y>
     </hint>
    </hints>
   </connection>
@@ -11793,12 +11823,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>256</y>
+     <x>53</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>285</y>
+     <x>385</x>
+     <y>341</y>
     </hint>
    </hints>
   </connection>
@@ -11809,12 +11839,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>317</y>
+     <x>53</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>320</y>
+     <x>385</x>
+     <y>382</y>
     </hint>
    </hints>
   </connection>
@@ -11825,12 +11855,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>317</y>
+     <x>53</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>346</y>
+     <x>53</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -11841,12 +11871,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>317</y>
+     <x>53</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>372</y>
+     <x>53</x>
+     <y>446</y>
     </hint>
    </hints>
   </connection>
@@ -11857,12 +11887,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>317</y>
+     <x>53</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>346</y>
+     <x>385</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -11873,12 +11903,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>317</y>
+     <x>53</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>372</y>
+     <x>385</x>
+     <y>446</y>
     </hint>
    </hints>
   </connection>
@@ -11889,12 +11919,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>404</y>
+     <x>53</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>407</y>
+     <x>385</x>
+     <y>487</y>
     </hint>
    </hints>
   </connection>
@@ -11905,12 +11935,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>404</y>
+     <x>53</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>433</y>
+     <x>53</x>
+     <y>519</y>
     </hint>
    </hints>
   </connection>
@@ -11921,12 +11951,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>404</y>
+     <x>53</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>459</y>
+     <x>53</x>
+     <y>551</y>
     </hint>
    </hints>
   </connection>
@@ -11937,12 +11967,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>404</y>
+     <x>53</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>433</y>
+     <x>385</x>
+     <y>519</y>
     </hint>
    </hints>
   </connection>
@@ -11953,12 +11983,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>404</y>
+     <x>53</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>459</y>
+     <x>385</x>
+     <y>551</y>
     </hint>
    </hints>
   </connection>
@@ -11969,12 +11999,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>82</x>
-     <y>451</y>
+     <x>43</x>
+     <y>469</y>
     </hint>
     <hint type="destinationlabel">
-     <x>82</x>
-     <y>474</y>
+     <x>43</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>
@@ -11985,12 +12015,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>221</y>
+     <x>53</x>
+     <y>265</y>
     </hint>
     <hint type="destinationlabel">
-     <x>287</x>
-     <y>224</y>
+     <x>385</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -12001,12 +12031,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>47</x>
-     <y>77</y>
+     <x>85</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>81</x>
-     <y>77</y>
+     <x>910</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -12017,12 +12047,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setSelectedDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>210</y>
+     <x>122</x>
+     <y>217</y>
     </hint>
     <hint type="destinationlabel">
-     <x>957</x>
-     <y>371</y>
+     <x>517</x>
+     <y>215</y>
     </hint>
    </hints>
   </connection>
@@ -12033,12 +12063,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>957</x>
-     <y>371</y>
+     <x>517</x>
+     <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>195</x>
-     <y>210</y>
+     <x>122</x>
+     <y>217</y>
     </hint>
    </hints>
   </connection>
@@ -12049,12 +12079,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>49</x>
-     <y>317</y>
+     <x>32</x>
+     <y>347</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>320</y>
+     <x>335</x>
+     <y>347</y>
     </hint>
    </hints>
   </connection>
@@ -12066,11 +12096,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>93</x>
-     <y>350</y>
+     <y>374</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>356</y>
+     <x>173</x>
+     <y>367</y>
     </hint>
    </hints>
   </connection>
@@ -12082,11 +12112,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>93</x>
-     <y>350</y>
+     <y>374</y>
     </hint>
     <hint type="destinationlabel">
-     <x>945</x>
-     <y>358</y>
+     <x>924</x>
+     <y>391</y>
     </hint>
    </hints>
   </connection>
@@ -12098,11 +12128,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>93</x>
-     <y>382</y>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>388</y>
+     <x>173</x>
+     <y>400</y>
     </hint>
    </hints>
   </connection>
@@ -12114,11 +12144,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>93</x>
-     <y>382</y>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>945</x>
-     <y>390</y>
+     <x>924</x>
+     <y>424</y>
     </hint>
    </hints>
   </connection>
@@ -12129,12 +12159,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>610</x>
-     <y>172</y>
+     <x>608</x>
+     <y>208</y>
     </hint>
     <hint type="destinationlabel">
-     <x>936</x>
-     <y>175</y>
+     <x>623</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
@@ -12145,12 +12175,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>559</x>
-     <y>146</y>
+     <x>541</x>
+     <y>176</y>
     </hint>
     <hint type="destinationlabel">
-     <x>936</x>
-     <y>149</y>
+     <x>623</x>
+     <y>179</y>
     </hint>
    </hints>
   </connection>
@@ -12161,12 +12191,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>621</x>
-     <y>323</y>
+     <x>625</x>
+     <y>389</y>
     </hint>
     <hint type="destinationlabel">
-     <x>935</x>
-     <y>327</y>
+     <x>800</x>
+     <y>393</y>
     </hint>
    </hints>
   </connection>
@@ -12177,12 +12207,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>592</x>
-     <y>351</y>
+     <x>585</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
-     <x>936</x>
-     <y>526</y>
+     <x>801</x>
+     <y>470</y>
     </hint>
    </hints>
   </connection>
@@ -12193,8 +12223,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>160</x>
-     <y>211</y>
+     <x>192</x>
+     <y>253</y>
     </hint>
     <hint type="destinationlabel">
      <x>380</x>
@@ -12209,12 +12239,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>480</x>
-     <y>504</y>
+     <x>312</x>
+     <y>534</y>
     </hint>
     <hint type="destinationlabel">
-     <x>610</x>
-     <y>507</y>
+     <x>517</x>
+     <y>534</y>
     </hint>
    </hints>
   </connection>
@@ -12225,12 +12255,28 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>480</x>
-     <y>478</y>
+     <x>312</x>
+     <y>502</y>
     </hint>
     <hint type="destinationlabel">
-     <x>610</x>
-     <y>481</y>
+     <x>517</x>
+     <y>502</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_weightFactorsHelp</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textEdit_weightFactorHelp</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>442</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>98</y>
     </hint>
    </hints>
   </connection>

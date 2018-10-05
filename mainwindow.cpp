@@ -55,11 +55,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mainPath = QCoreApplication::applicationFilePath();
     QStringList mainPathSplit = mainPath.split("/");
-    mainPathSplit.removeLast();
+    ui->pathToGUILineEdit->setText(mainPath);
     mainPathSplit.removeLast();
     mainPath = mainPathSplit.join("/");
-    ui->pathToGUILineEdit->setText(mainPath);
-    ui->defaultSettingsFileLineEdit->setText(mainPath+"/settings.txt");
+    ui->defaultSettingsFileLineEdit->setText(mainPath+"/settings.xml");
     QLabel *il = new QLabel;
     QPixmap ic(":/icons/icons/emblem-important-4.png");
     ic = ic.scaled(16,16);
@@ -69,18 +68,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QFile file;
     file.setFileName("settings.xml");
     if(!file.exists()){
-        QMessageBox mb;
-        QString txt = "Before you start, please make sure to set the path to the VieVS Scheduling executable VieSchedpp."
-                      "Browse to the settings page <img src=\":/icons/icons/emblem-system-2.png\" height=\"30\" width=\"30\"/>, "
-                      "add the absolute path to the VieSchedpp executable and press save "
-                      "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>!";
-        mb.information(this,"Before you start!",txt);
         createDefaultParameterSettings();
     }
 
     std::ifstream iSettings("settings.xml");
     boost::property_tree::read_xml(iSettings,settings_,boost::property_tree::xml_parser::trim_whitespace);
     readSettings();
+    if(ui->pathToSchedulerLineEdit->text().isEmpty()){
+        QMessageBox mb;
+        QString txt = "Before you start, please make sure to set the path to the VieVS Scheduling executable VieSchedpp."
+                      "Browse to the settings page <img src=\":/icons/icons/emblem-system-2.png\" height=\"30\" width=\"30\"/>, "
+                      "add the absolute path to the VieSchedpp executable and press save "
+                      "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>!";
+        mb.information(this,"Before you start!",txt);
+
+    }
 
     plotSkyCoverageTemplate = false;
     setupChanged = false;
@@ -373,6 +375,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->DateTimeEdit_startParameterBaseline->setDisplayFormat("dd.MM.yyyy HH:mm");
     ui->DateTimeEdit_startParameterSource->setDisplayFormat("dd.MM.yyyy HH:mm");
     ui->DateTimeEdit_startParameterStation->setDisplayFormat("dd.MM.yyyy HH:mm");
+
+    ui->textEdit_weightFactorHelp->setVisible(false);
+    connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -2038,36 +2043,36 @@ void MainWindow::readSettings()
     std::string pathToScheduler = settings_.get<std::string>("settings.general.pathToScheduler","");
     ui->pathToSchedulerLineEdit->setText(QString::fromStdString(pathToScheduler));
 
-    std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","");
+    std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","../CATALOGS/antenna.cat");
     ui->lineEdit_pathAntenna->setText(QString::fromStdString(cAntenna));
-    std::string cEquip = settings_.get<std::string>("settings.catalog_path.equip","");
+    std::string cEquip = settings_.get<std::string>("settings.catalog_path.equip","../CATALOGS/equip.cat");
     ui->lineEdit_pathEquip->setText(QString::fromStdString(cEquip));
-    std::string cPosition = settings_.get<std::string>("settings.catalog_path.position","");
+    std::string cPosition = settings_.get<std::string>("settings.catalog_path.position","../CATALOGS/position.cat");
     ui->lineEdit_pathPosition->setText(QString::fromStdString(cPosition));
-    std::string cMask = settings_.get<std::string>("settings.catalog_path.mask","");
+    std::string cMask = settings_.get<std::string>("settings.catalog_path.mask","../CATALOGS/mask.cat");
     ui->lineEdit_pathMask->setText(QString::fromStdString(cMask));
-    std::string cSource = settings_.get<std::string>("settings.catalog_path.source","");
+    std::string cSource = settings_.get<std::string>("settings.catalog_path.source","../CATALOGS/source.cat.geodetic.good");
     ui->lineEdit_pathSource->setText(QString::fromStdString(cSource));
-    std::string cSource2 = settings_.get<std::string>("settings.catalog_path.source2","");
+    std::string cSource2 = settings_.get<std::string>("settings.catalog_path.source2","../CATALOGS/source.cat");
     ui->lineEdit_browseSource2->setText(QString::fromStdString(cSource2));
-    std::string cFlux = settings_.get<std::string>("settings.catalog_path.flux","");
+    std::string cFlux = settings_.get<std::string>("settings.catalog_path.flux","../CATALOGS/flux.cat");
     ui->lineEdit_pathFlux->setText(QString::fromStdString(cFlux));
-    std::string cModes = settings_.get<std::string>("settings.catalog_path.modes","");
+    std::string cModes = settings_.get<std::string>("settings.catalog_path.modes","../CATALOGS/modes.cat");
     ui->lineEdit_pathModes->setText(QString::fromStdString(cModes));
-    std::string cFreq = settings_.get<std::string>("settings.catalog_path.freq","");
+    std::string cFreq = settings_.get<std::string>("settings.catalog_path.freq","../CATALOGS/freq.cat");
     ui->lineEdit_pathFreq->setText(QString::fromStdString(cFreq));
-    std::string cTracks = settings_.get<std::string>("settings.catalog_path.tracks","");
+    std::string cTracks = settings_.get<std::string>("settings.catalog_path.tracks","../CATALOGS/tracks.cat");
     ui->lineEdit_pathTracks->setText(QString::fromStdString(cTracks));
-    std::string cLoif = settings_.get<std::string>("settings.catalog_path.loif","");
+    std::string cLoif = settings_.get<std::string>("settings.catalog_path.loif","../CATALOGS/loif.cat");
     ui->lineEdit_pathLoif->setText(QString::fromStdString(cLoif));
-    std::string cRec = settings_.get<std::string>("settings.catalog_path.rec","");
+    std::string cRec = settings_.get<std::string>("settings.catalog_path.rec","../CATALOGS/rec.cat");
     ui->lineEdit_pathRec->setText(QString::fromStdString(cRec));
-    std::string cRx = settings_.get<std::string>("settings.catalog_path.rx","");
+    std::string cRx = settings_.get<std::string>("settings.catalog_path.rx","../CATALOGS/rx.cat");
     ui->lineEdit_pathRx->setText(QString::fromStdString(cRx));
-    std::string cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","");
+    std::string cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","../CATALOGS/hdpos.cat");
     ui->lineEdit_pathHdpos->setText(QString::fromStdString(cHdpos));
 
-    std::string outputDirectory = settings_.get<std::string>("settings.output.directory","");
+    std::string outputDirectory = settings_.get<std::string>("settings.output.directory","../out/");
     ui->lineEdit_outputPath->setText(QString::fromStdString(outputDirectory));
     std::string outputScheduler = settings_.get<std::string>("settings.output.scheduler","");
     ui->schedulerLineEdit->setText(QString::fromStdString(outputScheduler));
@@ -3834,7 +3839,7 @@ void MainWindow::createDefaultParameterSettings()
     settings_.add("settings.station.cableWrapBuffers.axis2LowOffset", 0);
     settings_.add("settings.station.cableWrapBuffers.axis2UpOffset", 0);
 
-    settings_.add("settings.output.directory", "out/");
+    settings_.add("settings.output.directory", "../out/");
 
     std::ofstream os;
     os.open("settings.xml");
