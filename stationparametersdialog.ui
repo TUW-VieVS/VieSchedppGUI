@@ -43,12 +43,26 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="myresources.qrc">
+         <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_load">
        <property name="toolTip">
         <string>load predefined parameters</string>
        </property>
        <property name="statusTip">
         <string>load predefined parameters</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load previously saved paramters. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string> load</string>
@@ -66,6 +80,9 @@
        </property>
        <property name="statusTip">
         <string>save this parameter for further use</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save parameters to make them loadable in future. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string> save</string>
@@ -96,6 +113,9 @@
          </property>
          <property name="statusTip">
           <string>availability of this station for scans</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to set &lt;span style=&quot; font-weight:600;&quot;&gt;antenna down times&lt;/span&gt;. If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;the antenna &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; during this periode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="title">
           <string>available</string>
@@ -147,6 +167,9 @@
          <property name="statusTip">
           <string>availability of this station for fillinmode scans</string>
          </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to &lt;span style=&quot; font-weight:600;&quot;&gt;deselect antennas from fillin mode&lt;/span&gt; scans. Because fillin modes tend to have an smaller impact on the quality of a schedule you can deselect stations from fillin mode scans to &lt;span style=&quot; font-weight:600;&quot;&gt;reduce their number of scans&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;reduce the number of collected bits&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="title">
           <string>available for fillin mode</string>
          </property>
@@ -188,6 +211,9 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_tagalong">
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to put stations in &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong mode&lt;/span&gt;. Tagalong mode means this &lt;span style=&quot; font-weight:600;&quot;&gt;station is not considered for scan selection&lt;/span&gt;. The schedule is first created without the tagalong stations, afterwards tagalong stations are included. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If you are unsure if a station can participate in a session, or if you are unsure about the quality of the observations from this station it might be a good idea to put this station in tagalong mode. &lt;span style=&quot; font-weight:600;&quot;&gt;This makes sure that the schedule is still good if the station drops out. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="title">
           <string>tagalong</string>
          </property>
@@ -238,6 +264,9 @@
          <layout class="QFormLayout" name="formLayout_3">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBox_weight">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>weight</string>
             </property>
@@ -254,6 +283,9 @@
             <property name="statusTip">
              <string>weight of this station for selection of best scan</string>
             </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a station &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans where this station is participating&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="singleStep">
              <double>0.100000000000000</double>
             </property>
@@ -264,6 +296,9 @@
           </item>
           <item row="1" column="0">
            <widget class="QCheckBox" name="checkBox_maxSlewTime">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>max slew time</string>
             </property>
@@ -279,6 +314,9 @@
             </property>
             <property name="statusTip">
              <string>maximum allowed slew time to next source in seconds</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="suffix">
              <string> [s]</string>
@@ -296,6 +334,9 @@
           </item>
           <item row="4" column="0">
            <widget class="QCheckBox" name="checkBox_maxWaitTime">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>max wait time</string>
             </property>
@@ -311,6 +352,9 @@
             </property>
             <property name="statusTip">
              <string>maximum allowed wait time for slower stations in seconds</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed idle time in seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If a station is idleing for longer then this value, the latest arriving antenna is removed from this scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="suffix">
              <string> [s]</string>
@@ -328,6 +372,9 @@
           </item>
           <item row="5" column="0">
            <widget class="QCheckBox" name="checkBox_minElevation">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>min elevation</string>
             </property>
@@ -344,6 +391,9 @@
             <property name="statusTip">
              <string>minimum elevation for observations in degrees</string>
             </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required elevation in degrees.&lt;/p&gt;&lt;p&gt;This value is also set in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot;  height=30 width=30 /&gt;. The minimum of this value and the value from the source parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="suffix">
              <string> [deg]</string>
             </property>
@@ -354,6 +404,9 @@
           </item>
           <item row="2" column="0">
            <widget class="QCheckBox" name="checkBox_minSlewDistance">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>min slew distance</string>
             </property>
@@ -361,6 +414,9 @@
           </item>
           <item row="3" column="0">
            <widget class="QCheckBox" name="checkBox_maxSlewDistance">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>max slew distance</string>
             </property>
@@ -376,6 +432,9 @@
             </property>
             <property name="statusTip">
              <string>minimum required slew distance to next source in degrees</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew distance in degress. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The Antenna is forced to slew at least the selected angle between two scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="suffix">
              <string> [deg]</string>
@@ -399,6 +458,9 @@
             <property name="statusTip">
              <string>maximum allowed slew distance to next source in degrees</string>
             </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew distance in degrees. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="suffix">
              <string> [deg]</string>
             </property>
@@ -415,6 +477,9 @@
           </item>
           <item row="6" column="0">
            <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>max number of scans</string>
             </property>
@@ -430,6 +495,9 @@
             </property>
             <property name="statusTip">
              <string>maximum number of scans for this station</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this number is reached, the station is no longer available for additional scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="maximum">
              <number>9999</number>
@@ -488,6 +556,9 @@
               <property name="statusTip">
                <string>maximum allowed scan duration for this station in seconds</string>
               </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot;  height=30 width=30 /&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; height=30 width=30 /&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="suffix">
                <string> [s]</string>
               </property>
@@ -516,6 +587,9 @@
               </property>
               <property name="statusTip">
                <string>minimum required scan time for this station in seconds</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; height=30 widht=30 /&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; height=30 widht=30 /&gt;. The maximum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="suffix">
                <string> [s]</string>
@@ -546,6 +620,9 @@
             </property>
             <property name="statusTip">
              <string>minimum required signal to noise ratio</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum target signal to noise ratio. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;, baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and observing mode &lt;img src=&quot;:/icons/icons/drive-harddisk-3.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <attribute name="horizontalHeaderStretchLastSection">
              <bool>true</bool>
@@ -578,6 +655,9 @@
          <property name="statusTip">
           <string>ignore sources for this station</string>
          </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ignore scans to selected sources. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If you select a source here then this station will not participate in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="title">
           <string>ignore sources</string>
          </property>
@@ -609,6 +689,9 @@
                 </property>
                 <property name="statusTip">
                  <string>list of available sources</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="editTriggers">
                  <set>QAbstractItemView::NoEditTriggers</set>
@@ -663,6 +746,9 @@
                 </property>
                 <property name="statusTip">
                  <string>list of sources which will not be observed with this station</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="editTriggers">
                  <set>QAbstractItemView::NoEditTriggers</set>

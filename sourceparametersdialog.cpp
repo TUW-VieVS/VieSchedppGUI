@@ -43,6 +43,7 @@ sourceParametersDialog::sourceParametersDialog(boost::property_tree::ptree &sett
     ui->listView_ignoreStations->setModel(stations_proxyIgnore);
     ui->listView_requiredStations->setModel(stations_proxyRequired);
     ui->listView_ignoreBaselines->setModel(baseline_proxy);
+    new QShortcut(QKeySequence(Qt::Key_F1), this, SLOT(on_pushButton_3_clicked()));
 }
 
 sourceParametersDialog::~sourceParametersDialog()
@@ -622,4 +623,9 @@ void sourceParametersDialog::on_groupBox_fixedScanDuration_toggled(bool arg1)
     if(arg1){
         ui->groupBox_variableScanDuration->setChecked(!arg1);
     }
+}
+
+void sourceParametersDialog::on_pushButton_3_clicked()
+{
+    QWhatsThis::enterWhatsThisMode();
 }

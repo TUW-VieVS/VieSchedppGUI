@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
+    <width>483</width>
     <height>512</height>
    </rect>
   </property>
@@ -26,6 +26,17 @@
        </property>
        <property name="text">
         <string>select parameters you want to add:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="myresources.qrc">
+         <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
        </property>
       </widget>
      </item>
@@ -50,6 +61,9 @@
        <property name="statusTip">
         <string>load predefined parameter</string>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load previously saved paramters. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string> load</string>
        </property>
@@ -66,6 +80,9 @@
        </property>
        <property name="statusTip">
         <string>save this parameter for further use</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save parameters to make them loadable in future. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string> save</string>
@@ -92,6 +109,9 @@
      </property>
      <property name="statusTip">
       <string>ignore this baseline in calculation of required observing time</string>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ignore this baseline for calculation of required scan duration. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Ignored baselines will not be listed in number of observations and will not be listed in output files. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="title">
       <string>ignore</string>
@@ -140,6 +160,9 @@
         <property name="statusTip">
          <string>weight of this baseline for selection of best scan</string>
         </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a baseline &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans when there is an observation on this baseline&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="singleStep">
          <double>0.100000000000000</double>
         </property>
@@ -150,6 +173,9 @@
       </item>
       <item row="0" column="0">
        <widget class="QCheckBox" name="checkBox">
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>weight</string>
         </property>
@@ -187,6 +213,9 @@
           <property name="statusTip">
            <string>maximum allowed scan time in seconds</string>
           </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="suffix">
            <string> [s]</string>
           </property>
@@ -215,6 +244,9 @@
           </property>
           <property name="statusTip">
            <string>minimum allowed scan time in seconds</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; height=&quot;30&quot;/&gt; and station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; height=&quot;30&quot;/&gt;. The maximum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="suffix">
            <string> [s]</string>
@@ -245,6 +277,9 @@
         </property>
         <property name="statusTip">
          <string>minimum signal to noise ratio for each band</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum target signal to noise ratio. &lt;/p&gt;&lt;p&gt;This value is also set in source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;, station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and observing mode &lt;img src=&quot;:/icons/icons/drive-harddisk-3.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>true</bool>

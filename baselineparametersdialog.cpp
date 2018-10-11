@@ -167,6 +167,7 @@ baselineParametersDialog::baselineParametersDialog(boost::property_tree::ptree &
 
     QApplication::setWindowIcon(QIcon(":/icons/icons/VieSchedppGUI_logo.png"));
     this->setWindowTitle("VieSched++");
+    new QShortcut(QKeySequence(Qt::Key_F1), this, SLOT(on_pushButton_clicked()));
 
 }
 
@@ -235,4 +236,9 @@ void baselineParametersDialog::on_pushButton_save_clicked()
             os.close();
         }
     }
+}
+
+void baselineParametersDialog::on_pushButton_clicked()
+{
+    QWhatsThis::enterWhatsThisMode();
 }

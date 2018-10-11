@@ -23,6 +23,8 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
+#include <QShortcut>
+#include <QWhatsThis>
 #include <../VieSchedpp/ParameterSettings.h>
 #include <settingsloadwindow.h>
 
@@ -62,6 +64,8 @@ private slots:
     void on_pushButton_save_clicked();
 
     void on_pushButton_load_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::stationParametersDialog *ui;

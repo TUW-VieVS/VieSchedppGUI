@@ -23,6 +23,8 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
+#include <QWhatsThis>
+#include <QShortcut>
 #include <../VieSchedpp/ParameterSettings.h>
 #include <settingsloadwindow.h>
 
@@ -88,6 +90,8 @@ private slots:
     void on_groupBox_variableScanDuration_toggled(bool arg1);
 
     void on_groupBox_fixedScanDuration_toggled(bool arg1);
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::sourceParametersDialog *ui;

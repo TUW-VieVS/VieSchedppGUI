@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>19</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1077,7 +1077,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>929</width>
+             <width>264</width>
              <height>717</height>
             </rect>
            </property>
@@ -7180,8 +7180,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>943</width>
-             <height>697</height>
+             <width>639</width>
+             <height>576</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -11227,9 +11227,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <property name="text">
     <string>Mode</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+2</string>
-   </property>
   </action>
   <action name="actionGeneral">
    <property name="icon">
@@ -11238,9 +11235,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>General</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+3</string>
    </property>
   </action>
   <action name="actionStation">
@@ -11251,9 +11245,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <property name="text">
     <string>Station</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+4</string>
-   </property>
   </action>
   <action name="actionSource">
    <property name="icon">
@@ -11262,9 +11253,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>Source</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+5</string>
    </property>
   </action>
   <action name="actionBaseline">
@@ -11275,9 +11263,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <property name="text">
     <string>Baseline</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+6</string>
-   </property>
   </action>
   <action name="actionOutput">
    <property name="icon">
@@ -11286,9 +11271,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>Output</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+7</string>
    </property>
   </action>
   <action name="actionRules">
@@ -11382,9 +11364,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>Input</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+1</string>
    </property>
   </action>
   <action name="actionSky_Coverage">

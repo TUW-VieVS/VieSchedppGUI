@@ -22,6 +22,8 @@
 #include <QDialog>
 #include <../VieSchedpp/ParameterSettings.h>
 #include <QMessageBox>
+#include <QWhatsThis>
+#include <QShortcut>
 #include <settingsloadwindow.h>
 namespace Ui {
 class baselineParametersDialog;
@@ -54,6 +56,8 @@ private slots:
     void on_pushButton_load_clicked();
 
     void on_pushButton_save_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::baselineParametersDialog *ui;

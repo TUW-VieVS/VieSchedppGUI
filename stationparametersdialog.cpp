@@ -31,6 +31,7 @@ stationParametersDialog::stationParametersDialog(boost::property_tree::ptree &se
     sources_proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
     sources_proxy->setSourceModel(sources);
     ui->listView_ignoreSources->setModel(sources_proxy);
+    new QShortcut(QKeySequence(Qt::Key_F1), this, SLOT(on_pushButton_clicked()));
 }
 
 stationParametersDialog::~stationParametersDialog()
@@ -417,4 +418,9 @@ void stationParametersDialog::on_pushButton_load_clicked()
 
         ui->lineEdit->setText(itm);
     }
+}
+
+void stationParametersDialog::on_pushButton_clicked()
+{
+    QWhatsThis::enterWhatsThisMode();
 }
