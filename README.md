@@ -46,6 +46,8 @@ I have the VieSchedpp installed before installing the VieSchedppGUI. Please visi
 
 * QT and QT charts (tested with Qt5-default and QT GUI)
  * possible installation on Ubuntu: `sudo apt-get install qt5-default libqt5charts5 libqt5charts5-dev` or visit https://www.qt.io/download for GUI version (might take longer to download and install)
+* maybe OpenGL (depending on your linux version)
+ * possible installation on Ubuntu: `sudo apt-get install libgl1-mesa-dev`
 
 ## Build
 clone git repository into `VieSchedppSource` or copy source code into `VieSchedppSource/VieSchedppGUI`
