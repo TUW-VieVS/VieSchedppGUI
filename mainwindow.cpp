@@ -1114,6 +1114,34 @@ void MainWindow::on_actionOpen_triggered()
     }
 }
 
+void MainWindow::on_pushButton_2_clicked()
+{
+    QProcess *start = new QProcess(this);
+
+    QString pathToExe = ui->pathToSchedulerLineEdit->text();
+    QDir dirToExe(pathToExe);
+    QString absolutePathToExe = dirToExe.absolutePath();
+
+    #ifdef Q_OS_WIN
+    QString program = absolutePathToExe;
+    start->start("cmd.exe",
+                 QStringList() << "/c" << program);
+    #else
+    QString program = absolutePathToExe;
+    QStringList arguments;
+    start->start(program);
+    #endif
+
+    start->waitForFinished();
+    QString output(start->readAllStandardOutput());
+
+    QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    fixedFont.setPointSize(8);
+    QMessageBox *msg = new QMessageBox(QMessageBox::Information, "Test connection", output, QMessageBox::Ok, this);
+    msg->setFont(fixedFont);
+    msg->exec();
+}
+
 
 void MainWindow::on_actionRun_triggered()
 {
@@ -9260,6 +9288,7 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
         }
     }
 }
+
 
 
 

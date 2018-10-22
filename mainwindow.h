@@ -42,6 +42,7 @@
 //#include <QTextBrowser>
 #include <mytextbrowser.h>
 #include <QRegularExpression>
+#include <QFontDatabase>
 
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
@@ -532,6 +533,8 @@ private slots:
     void on_actionCurrent_Release_triggered();
 
     void on_actionAbout_triggered();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
