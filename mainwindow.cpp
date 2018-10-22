@@ -1155,12 +1155,15 @@ void MainWindow::on_actionRun_triggered()
         }
 
         QProcess *start = new QProcess(this);
+        QString pathToExe = ui->pathToSchedulerLineEdit->text();
+        QDir dirToExe(pathToExe);
+        QString absolutePathToExe = dirToExe.absolutePath();
         #ifdef Q_OS_WIN
-            QString program = ui->pathToSchedulerLineEdit->text();
+            QString program = absolutePathToExe;
             start->start("cmd.exe",
                          QStringList() << "/c" << program << fullPath);
         #else
-            QString program = ui->pathToSchedulerLineEdit->text();
+            QString program = absolutePathToExe;
             QStringList arguments;
             arguments << fullPath;
             start->start(program,arguments);
