@@ -1134,6 +1134,10 @@ void MainWindow::on_pushButton_2_clicked()
 
     start->waitForFinished();
     QString output(start->readAllStandardOutput());
+    if(output.isEmpty()){
+        output = "Connection was not successul. Check your path to executable.\n"
+                 "In case you have whitspaces in your path consider moving VieSched++ to a location without whitespaces in its path.";
+    }
 
     QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     fixedFont.setPointSize(8);
