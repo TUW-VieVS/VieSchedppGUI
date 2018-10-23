@@ -892,7 +892,7 @@ p, li { white-space: pre-wrap; }
                  <string/>
                 </property>
                 <property name="placeholderText">
-                 <string>absolute path needed</string>
+                 <string>path to VieSchedpp executable</string>
                 </property>
                </widget>
               </item>

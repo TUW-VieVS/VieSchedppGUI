@@ -672,6 +672,9 @@ void VieSchedpp_Analyser::updateSkyCoverageTimes(int idx)
     QChart *chart = chartView->chart();
 
     QList<QAbstractSeries *> series = chart->series();
+    if(series.empty()){
+        return;
+    }
     QScatterSeriesExtended * data;
     QScatterSeriesExtended * ccw;
     QScatterSeriesExtended * cw;
