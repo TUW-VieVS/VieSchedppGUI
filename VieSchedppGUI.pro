@@ -121,7 +121,8 @@ SOURCES += \
         vieschedpp_analyser.cpp \
         qtutil.cpp \
         skedcataloginfo.cpp \
-    multicolumnsortfilterproxymodel.cpp
+    multicolumnsortfilterproxymodel.cpp \
+    obsmodedialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -197,7 +198,8 @@ HEADERS += \
         vieschedpp_analyser.h \
         qtutil.h \
         skedcataloginfo.h \
-    multicolumnsortfilterproxymodel.h
+    multicolumnsortfilterproxymodel.h \
+    obsmodedialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -213,7 +215,8 @@ FORMS += \
         savetosettingsdialog.ui \
         textfileviewer.ui \
         vieschedpp_analyser.ui \
-        skedcataloginfo.ui
+        skedcataloginfo.ui \
+    obsmodedialog.ui
 
 RESOURCES += \
         myresources.qrc
