@@ -245,6 +245,7 @@ MainWindow::MainWindow(QWidget *parent) :
     hv5->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->comboBox_skedObsModes->setModel(allSkedModesModel);
+    ui->comboBox_skedObsModes_advanced->setModel(allSkedModesModel);
 
     ui->comboBox_stationSettingMember->setModel(allStationPlusGroupModel);
     ui->comboBox_stationSettingMember_axis->setModel(allStationPlusGroupModel);
@@ -3407,15 +3408,15 @@ void MainWindow::loadXML(QString path)
             addModesCustomTable("X",8.590,10);
             addModesCustomTable("S",2.260,6);
         }
-        if(xml.get_optional<double>("VieSchedpp.mode.sampleRate").is_initialized()){
-            ui->sampleRateDoubleSpinBox->setValue(xml.get<double>("VieSchedpp.mode.sampleRate"));
-            ui->sampleBitsSpinBox->setValue(xml.get<double>("VieSchedpp.mode.bits"));
+        if(xml.get_child_optional("VieSchedpp.mode.simple").is_initialized()){
+            ui->sampleRateDoubleSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.sampleRate"));
+            ui->sampleBitsSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.bits"));
             ui->groupBox_modeCustom->setChecked(true);
-            boost::property_tree::ptree & bands = xml.get_child("VieSchedpp.mode.bands");
+            boost::property_tree::ptree & bands = xml.get_child("VieSchedpp.mode.simple.bands");
             for(const auto &band:bands){
                 if(band.first == "band"){
                     double wavelength = band.second.get<double>("wavelength");
-                    int channels = band.second.get<int>("chanels");
+                    int channels = band.second.get<int>("channels");
                     QString name = QString::fromStdString(band.second.get<std::string>("<xmlattr>.name"));
 
                     double freq = 1/(wavelength*1e9/299792458.);
@@ -3680,6 +3681,16 @@ void MainWindow::loadXML(QString path)
         ui->plainTextEdit_notes->setPlainText(QString::fromStdString(xml.get("VieSchedpp.output.notes","")));
         ui->plainTextEdit_operationNotes->setPlainText(QString::fromStdString(xml.get("VieSchedpp.output.operationNotes","")));
 
+        if(xml.get("VieSchedpp.output.initializer_log",false)){
+            ui->checkBox_outputInitializer->setChecked(true);
+        }else{
+            ui->checkBox_outputInitializer->setChecked(false);
+        }
+        if(xml.get("VieSchedpp.output.iteration_log",false)){
+            ui->checkBox_outputIteration->setChecked(true);
+        }else{
+            ui->checkBox_outputIteration->setChecked(false);
+        }
         if(xml.get("VieSchedpp.output.createSummary",false)){
             ui->checkBox_outputStatisticsFile->setChecked(true);
         }else{
@@ -4061,6 +4072,17 @@ void MainWindow::on_pushButton_modeCustomAddBand_clicked()
     delete(dial);
 }
 
+void MainWindow::on_pushButton_startAdvancedMode_clicked()
+{
+    ObsModeDialog *obsMode = new ObsModeDialog(this);
+    int result = obsMode->exec();
+    if(result == QDialog::Accepted){
+
+    }
+
+    delete(obsMode);
+}
+
 void MainWindow::readAllSkedObsModes()
 {
     QString modesPath = ui->lineEdit_pathModes->text();
@@ -4088,13 +4110,28 @@ void MainWindow::readAllSkedObsModes()
 
 void MainWindow::on_groupBox_modeSked_toggled(bool arg1)
 {
-    ui->groupBox_modeCustom->setChecked(!arg1);
+    if(arg1){
+        ui->groupBox_modeCustom->setChecked(!arg1);
+        ui->groupBox_modeAdvanced->setChecked(!arg1);
+    }
 }
 
 void MainWindow::on_groupBox_modeCustom_toggled(bool arg1)
 {
-    ui->groupBox_modeSked->setChecked(!arg1);
+    if(arg1){
+        ui->groupBox_modeSked->setChecked(!arg1);
+        ui->groupBox_modeAdvanced->setChecked(!arg1);
+    }
 }
+
+void MainWindow::on_groupBox_modeAdvanced_toggled(bool arg1)
+{
+    if(arg1){
+        ui->groupBox_modeCustom->setChecked(!arg1);
+        ui->groupBox_modeSked->setChecked(!arg1);
+    }
+}
+
 
 void MainWindow::on_pushButton_saveMode_clicked()
 {
@@ -9294,6 +9331,8 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
         }
     }
 }
+
+
 
 
 

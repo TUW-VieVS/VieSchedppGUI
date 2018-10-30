@@ -2,6 +2,7 @@
 #define OBSMODEDIALOG_H
 
 #include <QDialog>
+#include "../VieSchedpp/ObservingMode.h"
 
 namespace Ui {
 class ObsModeDialog;

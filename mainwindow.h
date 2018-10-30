@@ -73,6 +73,7 @@
 #include "qtutil.h"
 #include "skedcataloginfo.h"
 #include "multicolumnsortfilterproxymodel.h"
+#include "obsmodedialog.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -535,6 +536,10 @@ private slots:
     void on_actionAbout_triggered();
 
     void on_pushButton_2_clicked();
+
+    void on_groupBox_modeAdvanced_toggled(bool arg1);
+
+    void on_pushButton_startAdvancedMode_clicked();
 
 private:
     Ui::MainWindow *ui;

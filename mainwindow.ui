@@ -14,11 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_27">
+   <layout class="QVBoxLayout" name="verticalLayout_94">
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1088,8 +1088,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>929</width>
-             <height>717</height>
+             <width>1101</width>
+             <height>827</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -1926,6 +1926,12 @@ If you only want to run simulations you can deselect this to avoid error message
            </item>
            <item>
             <widget class="QComboBox" name="comboBox_skedObsModes">
+             <property name="minimumSize">
+              <size>
+               <width>170</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="toolTip">
               <string>select observing mode</string>
              </property>
@@ -1968,172 +1974,276 @@ If you only want to run simulations you can deselect this to avoid error message
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_modeCustom">
-          <property name="toolTip">
-           <string>use custom observing mode</string>
-          </property>
-          <property name="statusTip">
-           <string>use custom observing mode</string>
-          </property>
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Set a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;custom observing mode&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is mainly used for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;simulations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;testing&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that you have to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;manually enter the observing mode&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in the .skd and .vex file when using this option! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="title">
-           <string>custom mode</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,3">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_13">
+         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1">
+          <item>
+           <widget class="QGroupBox" name="groupBox_modeCustom">
+            <property name="toolTip">
+             <string>use custom observing mode</string>
+            </property>
+            <property name="statusTip">
+             <string>use custom observing mode</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Set a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;custom observing mode&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is mainly used for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;simulations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;testing&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that you have to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;manually enter the observing mode&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in the .skd and .vex file when using this option! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="title">
+             <string>simple custom mode</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_12">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_28">
+              <layout class="QVBoxLayout" name="verticalLayout_13">
                <item>
-                <layout class="QFormLayout" name="formLayout_3">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="sampleRateLabel">
-                   <property name="text">
-                    <string>sample rate</string>
-                   </property>
-                  </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_28">
+                 <item>
+                  <layout class="QFormLayout" name="formLayout_3">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="sampleRateLabel">
+                     <property name="text">
+                      <string>sample rate</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QDoubleSpinBox" name="sampleRateDoubleSpinBox">
+                     <property name="toolTip">
+                      <string>select sample rate</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>select sample rate</string>
+                     </property>
+                     <property name="prefix">
+                      <string/>
+                     </property>
+                     <property name="suffix">
+                      <string> [MHz]</string>
+                     </property>
+                     <property name="maximum">
+                      <double>1000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>32.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="sampleBitsLabel">
+                     <property name="text">
+                      <string>sample bits</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="sampleBitsSpinBox">
+                     <property name="toolTip">
+                      <string>select number of bits</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>select number of bits</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>2</number>
+                     </property>
+                     <property name="value">
+                      <number>2</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="QDoubleSpinBox" name="sampleRateDoubleSpinBox">
+                 <item>
+                  <spacer name="horizontalSpacer_8">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_gbps">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tableWidget_modeCustonBand">
+                 <property name="toolTip">
+                  <string>list of observed bands</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>list of observed bands</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can manually select the bands you want to observe. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is a possibility to simply use a different setup, which is not part of the official SKED catalogs. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;mainly for simulations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and to make &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;tests&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you want to use the created schedule in reality, you need to insert a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$CODES&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; block in the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt; .skd&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; file and the observing mode specific blocks in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;.vex&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; file, like &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$FREQ&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$BBC&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$IF&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$TRACK&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;... ! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="columnCount">
+                  <number>3</number>
+                 </property>
+                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>frequency</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>channels</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>remove</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_48">
+                 <item>
+                  <spacer name="horizontalSpacer_15">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_modeCustomAddBAnd">
                    <property name="toolTip">
-                    <string>select sample rate</string>
+                    <string>add new band</string>
                    </property>
                    <property name="statusTip">
-                    <string>select sample rate</string>
+                    <string>add new band</string>
                    </property>
-                   <property name="prefix">
-                    <string/>
-                   </property>
-                   <property name="suffix">
-                    <string> [MHz]</string>
-                   </property>
-                   <property name="maximum">
-                    <double>1000.000000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>32.000000000000000</double>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="sampleBitsLabel">
                    <property name="text">
-                    <string>sample bits</string>
+                    <string>add band</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="sampleBitsSpinBox">
-                   <property name="toolTip">
-                    <string>select number of bits</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>select number of bits</string>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>2</number>
-                   </property>
-                   <property name="value">
-                    <number>2</number>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <spacer name="horizontalSpacer_8">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                <layout class="QHBoxLayout" name="horizontalLayout_27">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_loadMode">
+                   <property name="toolTip">
+                    <string>load custom observing mode</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>load custom observing mode</string>
+                   </property>
+                   <property name="text">
+                    <string> load</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_saveMode">
+                   <property name="toolTip">
+                    <string>save custom observing mode</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>save custom observing mode</string>
+                   </property>
+                   <property name="text">
+                    <string> save</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_modeAdvanced">
+            <property name="title">
+             <string>advanced custom mode</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_27">
              <item>
-              <widget class="QLabel" name="label_gbps">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="verticalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_27">
+              <layout class="QHBoxLayout" name="horizontalLayout_116">
                <item>
                 <widget class="QLabel" name="label_28">
                  <property name="text">
-                  <string>mode</string>
+                  <string>start with</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_loadMode">
-                 <property name="toolTip">
-                  <string>load custom observing mode</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>load custom observing mode</string>
-                 </property>
-                 <property name="text">
-                  <string> load</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                <widget class="QComboBox" name="comboBox_skedObsModes_advanced">
+                 <property name="minimumSize">
+                  <size>
+                   <width>170</width>
+                   <height>0</height>
+                  </size>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_saveMode">
-                 <property name="toolTip">
-                  <string>save custom observing mode</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>save custom observing mode</string>
-                 </property>
-                 <property name="text">
-                  <string> save</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_6">
+                <spacer name="horizontalSpacer_49">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2145,90 +2255,236 @@ If you only want to run simulations you can deselect this to avoid error message
                  </property>
                 </spacer>
                </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_startAdvancedMode">
+                 <property name="text">
+                  <string>start</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_12" stretch="0,0">
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
-             </property>
              <item>
-              <widget class="QTableWidget" name="tableWidget_modeCustonBand">
-               <property name="toolTip">
-                <string>list of observed bands</string>
+              <widget class="QTabWidget" name="tabWidget_2">
+               <property name="currentIndex">
+                <number>0</number>
                </property>
-               <property name="statusTip">
-                <string>list of observed bands</string>
-               </property>
-               <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can manually select the bands you want to observe. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is a possibility to simply use a different setup, which is not part of the official SKED catalogs. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;mainly for simulations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and to make &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;tests&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you want to use the created schedule in reality, you need to insert a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$CODES&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; block in the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt; .skd&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; file and the observing mode specific blocks in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;.vex&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; file, like &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$FREQ&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$BBC&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$IF&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;$TRACK&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;... ! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="columnCount">
-                <number>3</number>
-               </property>
-               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderVisible">
-                <bool>false</bool>
-               </attribute>
-               <column>
-                <property name="text">
-                 <string>frequency</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>channels</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>remove</string>
-                </property>
-               </column>
+               <widget class="QWidget" name="tab">
+                <attribute name="title">
+                 <string>mode</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_95">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_115">
+                   <item>
+                    <widget class="QComboBox" name="comboBox"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_52">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_2">
+                <attribute name="title">
+                 <string>freq</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_96">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_117">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_2"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_53">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_2"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_5">
+                <attribute name="title">
+                 <string>bbc</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_97">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_118">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_3"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_54">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_3"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_6">
+                <attribute name="title">
+                 <string>if</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_98">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_119">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_4"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_56">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_4"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_7">
+                <attribute name="title">
+                 <string>tracks</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_99">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_120">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_5"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_57">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_5"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_8">
+                <attribute name="title">
+                 <string>track frame format</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_100">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_121">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_6"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_58">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_6"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_9">
+                <attribute name="title">
+                 <string>phace cal</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_101">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_122">
+                   <item>
+                    <widget class="QComboBox" name="comboBox_7"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_59">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView_7"/>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_48">
-               <item>
-                <spacer name="horizontalSpacer_15">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_modeCustomAddBAnd">
-                 <property name="toolTip">
-                  <string>add new band</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>add new band</string>
-                 </property>
-                 <property name="text">
-                  <string>add band</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
             </layout>
-           </item>
-          </layout>
-         </widget>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_18">
@@ -11529,7 +11785,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>lineEdit_pathHdpos</tabstop>
   <tabstop>pushButton_browseHdpos</tabstop>
   <tabstop>pushButton_saveCatalogPathes</tabstop>
-  <tabstop>groupBox_modeSked</tabstop>
   <tabstop>comboBox_skedObsModes</tabstop>
   <tabstop>pushButton_7</tabstop>
   <tabstop>groupBox_modeCustom</tabstop>
@@ -11537,7 +11792,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>sampleBitsSpinBox</tabstop>
   <tabstop>pushButton_loadMode</tabstop>
   <tabstop>pushButton_saveMode</tabstop>
-  <tabstop>tableWidget_modeCustonBand</tabstop>
   <tabstop>pushButton_modeCustomAddBAnd</tabstop>
   <tabstop>tableWidget_ModesPolicy</tabstop>
   <tabstop>pushButton</tabstop>
@@ -12041,11 +12295,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>85</x>
+     <x>47</x>
      <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>910</x>
+     <x>81</x>
      <y>83</y>
     </hint>
    </hints>
@@ -12089,12 +12343,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>32</x>
-     <y>347</y>
+     <x>31</x>
+     <y>123</y>
     </hint>
     <hint type="destinationlabel">
-     <x>335</x>
-     <y>347</y>
+     <x>54</x>
+     <y>123</y>
     </hint>
    </hints>
   </connection>
@@ -12105,8 +12359,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>93</x>
-     <y>374</y>
+     <x>111</x>
+     <y>364</y>
     </hint>
     <hint type="destinationlabel">
      <x>173</x>
@@ -12121,12 +12375,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>93</x>
-     <y>374</y>
+     <x>111</x>
+     <y>364</y>
     </hint>
     <hint type="destinationlabel">
-     <x>924</x>
-     <y>391</y>
+     <x>259</x>
+     <y>367</y>
     </hint>
    </hints>
   </connection>
@@ -12137,8 +12391,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>93</x>
-     <y>406</y>
+     <x>111</x>
+     <y>397</y>
     </hint>
     <hint type="destinationlabel">
      <x>173</x>
@@ -12153,12 +12407,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>93</x>
-     <y>406</y>
+     <x>111</x>
+     <y>397</y>
     </hint>
     <hint type="destinationlabel">
-     <x>924</x>
-     <y>424</y>
+     <x>259</x>
+     <y>400</y>
     </hint>
    </hints>
   </connection>
@@ -12169,7 +12423,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>608</x>
+     <x>430</x>
      <y>208</y>
     </hint>
     <hint type="destinationlabel">
@@ -12185,7 +12439,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>541</x>
+     <x>363</x>
      <y>176</y>
     </hint>
     <hint type="destinationlabel">
@@ -12201,11 +12455,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>625</x>
+     <x>447</x>
      <y>389</y>
     </hint>
     <hint type="destinationlabel">
-     <x>800</x>
+     <x>622</x>
      <y>393</y>
     </hint>
    </hints>
@@ -12217,11 +12471,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>585</x>
+     <x>407</x>
      <y>423</y>
     </hint>
     <hint type="destinationlabel">
-     <x>801</x>
+     <x>623</x>
      <y>470</y>
     </hint>
    </hints>
@@ -12233,8 +12487,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>192</x>
-     <y>253</y>
+     <x>215</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
      <x>380</x>
@@ -12287,6 +12541,38 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>500</x>
      <y>98</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_skedObsModes</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>comboBox_skedObsModes_advanced</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>617</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_skedObsModes_advanced</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>comboBox_skedObsModes</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>291</x>
+     <y>123</y>
     </hint>
    </hints>
   </connection>
