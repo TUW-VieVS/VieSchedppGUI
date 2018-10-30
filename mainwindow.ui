@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>1</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1088,7 +1088,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>264</width>
+             <width>929</width>
              <height>717</height>
             </rect>
            </property>
@@ -6565,23 +6565,7 @@ p, li { white-space: pre-wrap; }
           <layout class="QVBoxLayout" name="verticalLayout_75">
            <item>
             <layout class="QGridLayout" name="gridLayout_6">
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="checkBox_outputNGSFile">
-               <property name="toolTip">
-                <string>create empty ngs file</string>
-               </property>
-               <property name="statusTip">
-                <string>create empty ngs file</string>
-               </property>
-               <property name="text">
-                <string>create ngs file</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QCheckBox" name="checkBox_outputOperationsNotes">
                <property name="toolTip">
                 <string>create operator notes with statistics</string>
@@ -6597,23 +6581,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QCheckBox" name="checkBox_outputStatisticsFile">
-               <property name="toolTip">
-                <string>create statistics file</string>
-               </property>
-               <property name="statusTip">
-                <string>create statistics file</string>
-               </property>
-               <property name="text">
-                <string>create skdsum file</string>
-               </property>
-               <property name="checked">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
+             <item row="4" column="0">
               <widget class="QCheckBox" name="checkBox_outputSkyCoverageFile">
                <property name="enabled">
                 <bool>false</bool>
@@ -6629,7 +6597,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
+             <item row="1" column="2">
               <spacer name="horizontalSpacer_51">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -6642,7 +6610,55 @@ p, li { white-space: pre-wrap; }
                </property>
               </spacer>
              </item>
-             <item row="0" column="1">
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="checkBox_outputSkdFile">
+               <property name="toolTip">
+                <string>create skd file</string>
+               </property>
+               <property name="statusTip">
+                <string>create skd file</string>
+               </property>
+               <property name="text">
+                <string>create skd file</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckBox" name="checkBox_outputStatisticsFile">
+               <property name="toolTip">
+                <string>create statistics file</string>
+               </property>
+               <property name="statusTip">
+                <string>create statistics file</string>
+               </property>
+               <property name="text">
+                <string>create skdsum file</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkBox_outputNGSFile">
+               <property name="toolTip">
+                <string>create empty ngs file</string>
+               </property>
+               <property name="statusTip">
+                <string>create empty ngs file</string>
+               </property>
+               <property name="text">
+                <string>create ngs file</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
               <widget class="QCheckBox" name="checkBox_outputVex">
                <property name="toolTip">
                 <string>create vex file</string>
@@ -6659,15 +6675,19 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item row="0" column="0">
-              <widget class="QCheckBox" name="checkBox_outputSkdFile">
-               <property name="toolTip">
-                <string>create skd file</string>
-               </property>
-               <property name="statusTip">
-                <string>create skd file</string>
-               </property>
+              <widget class="QCheckBox" name="checkBox_outputInitializer">
                <property name="text">
-                <string>create skd file</string>
+                <string>create initializer log file</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_outputIteration">
+               <property name="text">
+                <string>create iteration log file</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
