@@ -2240,6 +2240,8 @@ QString MainWindow::writeXML()
     std::string contactName = ui->lineEdit_contactName->text().toStdString();
     std::string contactEmail = ui->lineEdit_contactEmail->text().toStdString();
     std::string notes = ui->plainTextEdit_notes->toPlainText().replace("\n","\\n").toStdString();
+    bool initializer = ui->checkBox_outputInitializer->isChecked();
+    bool iteration = ui->checkBox_outputIteration->isChecked();
     bool statistics = ui->checkBox_outputStatisticsFile->isChecked();
     bool vex = ui->checkBox_outputVex->isChecked();
     bool ngs = ui->checkBox_outputNGSFile->isChecked();
@@ -2258,7 +2260,7 @@ QString MainWindow::writeXML()
         operationNotes = ui->plainTextEdit_operationNotes->toPlainText().replace("\n","\\n").toStdString();
     }
     para.output(experimentDescription, scheduler, correlator, piName, piEmail, contactName,
-                contactEmail, notes, statistics, ngs, skd, vex, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
+                contactEmail, notes, initializer, iteration, statistics, ngs, skd, vex, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();

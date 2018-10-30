@@ -92,7 +92,7 @@ SOURCES += \
         ../VieSchedpp/MultiScheduling.cpp \
         ../VieSchedpp/Network.cpp \
         ../VieSchedpp/Observation.cpp \
-        ../VieSchedpp/ObservationMode.cpp \
+        ../VieSchedpp/ObservingMode.cpp \
         ../VieSchedpp/Output.cpp \
         ../VieSchedpp/ParameterGroup.cpp \
         ../VieSchedpp/ParameterSettings.cpp \
@@ -117,6 +117,11 @@ SOURCES += \
         ../VieSchedpp/WeightFactors.cpp \
         ../VieSchedpp/util.cpp \
         ../VieSchedpp/Flags.cpp \
+        ../VieSchedpp/Bbc.cpp \
+        ../VieSchedpp/If.cpp \
+        ../VieSchedpp/Freq.cpp \
+        ../VieSchedpp/Mode.cpp \
+        ../VieSchedpp/Track.cpp \
         textfileviewer.cpp \
         vieschedpp_analyser.cpp \
         qtutil.cpp \
@@ -166,7 +171,7 @@ HEADERS += \
         ../VieSchedpp/MultiScheduling.h \
         ../VieSchedpp/Network.h \
         ../VieSchedpp/Observation.h \
-        ../VieSchedpp/ObservationMode.h \
+        ../VieSchedpp/ObservingMode.h \
         ../VieSchedpp/Output.h \
         ../VieSchedpp/ParameterGroup.h \
         ../VieSchedpp/ParameterSettings.h \
@@ -194,6 +199,11 @@ HEADERS += \
         ../VieSchedpp/sofam.h \
         ../VieSchedpp/util.h \
         ../VieSchedpp/Flags.h \
+        ../VieSchedpp/Bbc.h \
+        ../VieSchedpp/If.h \
+        ../VieSchedpp/Freq.h \
+        ../VieSchedpp/Mode.h \
+        ../VieSchedpp/Track.h \
         textfileviewer.h \
         vieschedpp_analyser.h \
         qtutil.h \
