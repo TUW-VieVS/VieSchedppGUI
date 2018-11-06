@@ -4074,13 +4074,49 @@ void MainWindow::on_pushButton_modeCustomAddBand_clicked()
 
 void MainWindow::on_pushButton_startAdvancedMode_clicked()
 {
-    ObsModeDialog *obsMode = new ObsModeDialog(this);
-    int result = obsMode->exec();
+
+    VieVS::SkdCatalogReader skd;
+    std::vector<std::string> station_names;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        station_names.push_back(selectedStationModel->item(i)->text().toStdString());
+    }
+
+    if(station_names.empty()){
+        QMessageBox::information(this,"select stations first","Please select your station network before your start creating an observing mode");
+        return;
+    }
+
+    skd.setStationNames(station_names);
+    skd.setCatalogFilePathes(ui->lineEdit_pathAntenna->text().toStdString(),
+                             ui->lineEdit_pathEquip->text().toStdString(),
+                             "",
+                             ui->lineEdit_pathFreq->text().toStdString(),
+                             "",
+                             ui->lineEdit_pathLoif->text().toStdString(),
+                             ui->lineEdit_pathMask->text().toStdString(),
+                             ui->lineEdit_pathModes->text().toStdString(),
+                             ui->lineEdit_pathPosition->text().toStdString(),
+                             ui->lineEdit_pathRec->text().toStdString(),
+                             ui->lineEdit_pathRx->text().toStdString(),
+                             "",
+                             ui->lineEdit_pathTracks->text().toStdString());
+
+    skd.initializeStationCatalogs();
+
+    std::string obsName = ui->comboBox_skedObsModes_advanced->currentText().toStdString();
+    skd.initializeModesCatalogs(obsName);
+
+    VieVS::ObservingMode obsModeStart;
+    obsModeStart.readFromSkedCatalogs(skd);
+
+
+    ObsModeDialog *obsModeDial = new ObsModeDialog(obsModeStart, this);
+    int result = obsModeDial->exec();
     if(result == QDialog::Accepted){
 
     }
 
-    delete(obsMode);
+    delete(obsModeDial);
 }
 
 void MainWindow::readAllSkedObsModes()

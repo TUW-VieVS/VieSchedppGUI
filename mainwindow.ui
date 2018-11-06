@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1088,8 +1088,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1101</width>
-             <height>827</height>
+             <width>929</width>
+             <height>717</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">

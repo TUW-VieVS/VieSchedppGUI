@@ -145,7 +145,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="tableView"/>
+        <widget class="QTableWidget" name="tableWidget_mode"/>
        </item>
       </layout>
      </widget>
@@ -250,7 +250,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget"/>
+        <widget class="QTableWidget" name="tableWidget_freq"/>
        </item>
       </layout>
      </widget>
@@ -355,7 +355,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_2"/>
+        <widget class="QTableWidget" name="tableWidget_bbc"/>
        </item>
       </layout>
      </widget>
@@ -460,7 +460,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_3"/>
+        <widget class="QTableWidget" name="tableWidget_if"/>
        </item>
       </layout>
      </widget>
@@ -582,7 +582,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_4"/>
+        <widget class="QTableWidget" name="tableWidget_tracks"/>
        </item>
       </layout>
      </widget>
@@ -601,7 +601,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_6"/>
+          <widget class="QComboBox" name="comboBox_selectTrackFrameFormat"/>
          </item>
          <item>
           <spacer name="horizontalSpacer_11">
@@ -677,7 +677,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_7"/>
+          <widget class="QComboBox" name="comboBox_selectPhaseCal"/>
          </item>
          <item>
           <spacer name="horizontalSpacer_13">
@@ -693,7 +693,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_13">
+          <widget class="QPushButton" name="pushButton_addPhaseCalBlcok">
            <property name="text">
             <string>add new phace cal block</string>
            </property>
@@ -704,7 +704,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_25">
+          <widget class="QPushButton" name="pushButton_removePhaseCalBlock">
            <property name="text">
             <string>remove selected phace cal block</string>
            </property>
@@ -739,7 +739,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_12">
+          <widget class="QPushButton" name="pushButton_addPhaceCalDetect">
            <property name="text">
             <string>add phace cal detect</string>
            </property>
@@ -750,7 +750,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_26">
+          <widget class="QPushButton" name="pushButton_removePhaceCalDetect">
            <property name="text">
             <string>remove selected phace cal detect</string>
            </property>
@@ -763,7 +763,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_6"/>
+        <widget class="QTableWidget" name="tableWidget_phaceCal"/>
        </item>
       </layout>
      </widget>
