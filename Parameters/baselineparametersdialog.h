@@ -24,7 +24,7 @@
 #include <QMessageBox>
 #include <QWhatsThis>
 #include <QShortcut>
-#include <settingsloadwindow.h>
+#include <Utility/settingsloadwindow.h>
 namespace Ui {
 class baselineParametersDialog;
 }

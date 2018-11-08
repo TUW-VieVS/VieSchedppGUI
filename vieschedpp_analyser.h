@@ -55,8 +55,8 @@
 #include <boost/accumulators/statistics/tail_quantile.hpp>
 
 #include "../VieSchedpp/Scheduler.h"
-#include "qtutil.h"
-#include "callout.h"
+#include "Utility/qtutil.h"
+#include "Utility/callout.h"
 
 QT_CHARTS_USE_NAMESPACE
 

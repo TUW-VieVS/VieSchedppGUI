@@ -4109,6 +4109,7 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
     VieVS::ObservingMode obsModeStart;
     obsModeStart.readFromSkedCatalogs(skd);
 
+    obsModeStart.setStationNames(station_names);
 
     ObsModeDialog *obsModeDial = new ObsModeDialog(obsModeStart, this);
     int result = obsModeDial->exec();

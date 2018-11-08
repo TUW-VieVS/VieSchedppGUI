@@ -51,21 +51,6 @@ INCLUDEPATH += C:/MinGW/include
 LIBS += ../IAU_SOFA/Release/libsofa_c.a
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-        chartview.cpp \
-        callout.cpp \
-        multischededitdialogint.cpp \
-        multischededitdialogdouble.cpp \
-        multischededitdialogdatetime.cpp \
-        addgroupdialog.cpp \
-        stationparametersdialog.cpp \
-        sourceparametersdialog.cpp \
-        baselineparametersdialog.cpp \
-        settingsloadwindow.cpp \
-        addbanddialog.cpp \
-        savetosettingsdialog.cpp \
-        mytextbrowser.cpp \
         ../VieSchedpp/AbstractAntenna.cpp \
         ../VieSchedpp/Antenna_AzEl.cpp \
         ../VieSchedpp/Antenna_HaDc.cpp \
@@ -122,28 +107,38 @@ SOURCES += \
         ../VieSchedpp/Freq.cpp \
         ../VieSchedpp/Mode.cpp \
         ../VieSchedpp/Track.cpp \
-        textfileviewer.cpp \
-        vieschedpp_analyser.cpp \
-        qtutil.cpp \
-        skedcataloginfo.cpp \
-    multicolumnsortfilterproxymodel.cpp \
-    obsmodedialog.cpp
+    Delegates/comboboxdelegate.cpp \
+    Delegates/doublespinboxdelegate.cpp \
+    Delegates/spinboxdelegate.cpp \
+    Models/model_bbc.cpp \
+    Models/model_freq.cpp \
+    Models/model_if.cpp \
+    Models/model_tracks.cpp \
+    MultiSchedulingDialogs/multischededitdialogdatetime.cpp \
+    MultiSchedulingDialogs/multischededitdialogdouble.cpp \
+    MultiSchedulingDialogs/multischededitdialogint.cpp \
+    Parameters/baselineparametersdialog.cpp \
+    Parameters/sourceparametersdialog.cpp \
+    Parameters/stationparametersdialog.cpp \
+    Utility/addgroupdialog.cpp \
+    Utility/callout.cpp \
+    Utility/chartview.cpp \
+    Utility/multicolumnsortfilterproxymodel.cpp \
+    Utility/mytextbrowser.cpp \
+    Utility/qtutil.cpp \
+    Utility/savetosettingsdialog.cpp \
+    Utility/settingsloadwindow.cpp \
+    Utility/skedcataloginfo.cpp \
+    addbanddialog.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    obsmodedialog.cpp \
+    textfileviewer.cpp \
+    vieschedpp_analyser.cpp \
+    Models/model_mode.cpp
+
 
 HEADERS += \
-        mainwindow.h \
-        chartview.h \
-        callout.h \
-        multischededitdialogint.h \
-        multischededitdialogdouble.h \
-        multischededitdialogdatetime.h \
-        addgroupdialog.h \
-        stationparametersdialog.h \
-        sourceparametersdialog.h \
-        baselineparametersdialog.h \
-        settingsloadwindow.h \
-        addbanddialog.h \
-        savetosettingsdialog.h \
-        mytextbrowser.h \
         ../VieSchedpp/AbstractAntenna.h \
         ../VieSchedpp/Antenna_AzEl.h \
         ../VieSchedpp/Antenna_HaDc.h \
@@ -204,12 +199,34 @@ HEADERS += \
         ../VieSchedpp/Freq.h \
         ../VieSchedpp/Mode.h \
         ../VieSchedpp/Track.h \
-        textfileviewer.h \
-        vieschedpp_analyser.h \
-        qtutil.h \
-        skedcataloginfo.h \
-    multicolumnsortfilterproxymodel.h \
-    obsmodedialog.h
+    Delegates/comboboxdelegate.h \
+    Delegates/doublespinboxdelegate.h \
+    Delegates/spinboxdelegate.h \
+    Models/model_bbc.h \
+    Models/model_freq.h \
+    Models/model_if.h \
+    Models/model_tracks.h \
+    MultiSchedulingDialogs/multischededitdialogdatetime.h \
+    MultiSchedulingDialogs/multischededitdialogdouble.h \
+    MultiSchedulingDialogs/multischededitdialogint.h \
+    Parameters/baselineparametersdialog.h \
+    Parameters/sourceparametersdialog.h \
+    Parameters/stationparametersdialog.h \
+    Utility/addgroupdialog.h \
+    Utility/callout.h \
+    Utility/chartview.h \
+    Utility/multicolumnsortfilterproxymodel.h \
+    Utility/mytextbrowser.h \
+    Utility/qtutil.h \
+    Utility/savetosettingsdialog.h \
+    Utility/settingsloadwindow.h \
+    Utility/skedcataloginfo.h \
+    addbanddialog.h \
+    mainwindow.h \
+    obsmodedialog.h \
+    textfileviewer.h \
+    vieschedpp_analyser.h \
+    Models/model_mode.h
 
 FORMS += \
         mainwindow.ui \
@@ -226,7 +243,7 @@ FORMS += \
         textfileviewer.ui \
         vieschedpp_analyser.ui \
         skedcataloginfo.ui \
-    obsmodedialog.ui
+        obsmodedialog.ui
 
 RESOURCES += \
         myresources.qrc

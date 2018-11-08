@@ -40,7 +40,7 @@
 #include <QDesktopServices>
 #include <QDockWidget>
 //#include <QTextBrowser>
-#include <mytextbrowser.h>
+#include <Utility/mytextbrowser.h>
 #include <QRegularExpression>
 #include <QFontDatabase>
 
@@ -55,24 +55,24 @@
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QAreaSeries>
 
-#include "chartview.h"
-#include "multischededitdialogint.h"
-#include "multischededitdialogdouble.h"
-#include "multischededitdialogdatetime.h"
-#include "callout.h"
-#include "addgroupdialog.h"
-#include "baselineparametersdialog.h"
-#include "stationparametersdialog.h"
-#include "sourceparametersdialog.h"
+#include "Utility/chartview.h"
+#include "MultiSchedulingDialogs/multischededitdialogint.h"
+#include "MultiSchedulingDialogs/multischededitdialogdouble.h"
+#include "MultiSchedulingDialogs/multischededitdialogdatetime.h"
+#include "Utility/callout.h"
+#include "Utility/addgroupdialog.h"
+#include "Parameters/baselineparametersdialog.h"
+#include "Parameters/stationparametersdialog.h"
+#include "Parameters/sourceparametersdialog.h"
 #include "addbanddialog.h"
-#include "savetosettingsdialog.h"
+#include "Utility/savetosettingsdialog.h"
 #include "../VieSchedpp/VieSchedpp.h"
 #include "textfileviewer.h"
 #include "vieschedpp_analyser.h"
 #include "../VieSchedpp/SkdParser.h"
-#include "qtutil.h"
-#include "skedcataloginfo.h"
-#include "multicolumnsortfilterproxymodel.h"
+#include "Utility/qtutil.h"
+#include "Utility/skedcataloginfo.h"
+#include "Utility/multicolumnsortfilterproxymodel.h"
 #include "obsmodedialog.h"
 
 QT_CHARTS_USE_NAMESPACE

@@ -101,6 +101,13 @@
           <widget class="QComboBox" name="comboBox_selectMode"/>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButton_renameModeBlock">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -145,7 +152,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_mode"/>
+        <widget class="QTableView" name="tableView_mode"/>
        </item>
       </layout>
      </widget>
@@ -165,6 +172,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectFreqBlock"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renameFreqBlock">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_2">
@@ -250,7 +264,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_freq"/>
+        <widget class="QTableView" name="tableView_freq"/>
        </item>
       </layout>
      </widget>
@@ -270,6 +284,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectBbcBlock"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renameBbcBlock">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_5">
@@ -355,7 +376,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_bbc"/>
+        <widget class="QTableView" name="tableView_bbc"/>
        </item>
       </layout>
      </widget>
@@ -375,6 +396,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectIfBlock"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renameIfBlock">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_7">
@@ -460,7 +488,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_if"/>
+        <widget class="QTableView" name="tableView_if"/>
        </item>
       </layout>
      </widget>
@@ -480,6 +508,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectTracksBlock"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renameTracksBock">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_9">
@@ -545,6 +580,37 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>fanout</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox">
+           <item>
+            <property name="text">
+             <string>1:1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1:2</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1:3</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1:4</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_8">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -582,7 +648,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_tracks"/>
+        <widget class="QTableView" name="tableView_tracks"/>
        </item>
       </layout>
      </widget>
@@ -602,6 +668,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectTrackFrameFormat"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renameTrackFrameFormat">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_11">
@@ -664,7 +737,7 @@
      </widget>
      <widget class="QWidget" name="phace_cal">
       <attribute name="title">
-       <string>phace cal</string>
+       <string>phase cal</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
@@ -678,6 +751,13 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectPhaseCal"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_renamePhaseCal">
+           <property name="text">
+            <string>rename</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_13">
@@ -695,7 +775,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_addPhaseCalBlcok">
            <property name="text">
-            <string>add new phace cal block</string>
+            <string>add new phase cal block</string>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -706,7 +786,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_removePhaseCalBlock">
            <property name="text">
-            <string>remove selected phace cal block</string>
+            <string>remove selected phase cal block</string>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -741,7 +821,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_addPhaceCalDetect">
            <property name="text">
-            <string>add phace cal detect</string>
+            <string>add phase cal detect</string>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -752,7 +832,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_removePhaceCalDetect">
            <property name="text">
-            <string>remove selected phace cal detect</string>
+            <string>remove selected phase cal detect</string>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -763,7 +843,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_phaceCal"/>
+        <widget class="QTableView" name="tableView_phaceCal"/>
        </item>
       </layout>
      </widget>

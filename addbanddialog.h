@@ -20,7 +20,7 @@
 #define ADDBANDDIALOG_H
 
 #include <QDialog>
-#include "settingsloadwindow.h"
+#include "Utility/settingsloadwindow.h"
 #include "boost/property_tree/ptree.hpp"
 namespace Ui {
 class addBandDialog;

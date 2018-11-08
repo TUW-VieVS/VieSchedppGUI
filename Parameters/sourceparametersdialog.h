@@ -26,7 +26,7 @@
 #include <QWhatsThis>
 #include <QShortcut>
 #include <../VieSchedpp/ParameterSettings.h>
-#include <settingsloadwindow.h>
+#include <Utility/settingsloadwindow.h>
 
 namespace Ui {
 class sourceParametersDialog;
