@@ -114,6 +114,11 @@ QVariant Model_Mode::data(const QModelIndex &index, int role) const
             return boldFont;
         }
     }
+    if(role == Qt::TextColorRole){
+        if(data(index).toString() == "undefined"){
+            return QVariant::fromValue(QColor(Qt::red));
+        }
+    }
     if(role == Qt::TextAlignmentRole){
         if (col > 0){
             return Qt::AlignRight + Qt::AlignVCenter;

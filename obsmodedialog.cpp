@@ -29,7 +29,8 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->comboBox_selectMode, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMode(int)));
     QStringList modes;
     for(const auto &any : obsMode.getModes()){
-        modes_.push_back(std::make_shared<VieVS::Mode>(*any));
+        modes_.push_back(std::make_shared<VieVS::Mode>(any->getName(), any->getNSta()));
+//        modes_.push_back(std::make_shared<VieVS::Mode>(*any));
         modes << QString::fromStdString(any->getName());
     }
     modesNames_->setStringList(modes);
@@ -38,7 +39,13 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->comboBox_selectIfBlock, SIGNAL(currentIndexChanged(int)), this, SLOT(updateIf(int)));
     QStringList ifs;
     for(const auto &any : obsMode.getIfs()){
-        ifs_.push_back(std::make_shared<VieVS::If>(*any));
+        std::shared_ptr<VieVS::If> newBlock = std::make_shared<VieVS::If>(*any);
+        ifs_.push_back(newBlock);
+        for(int i=0; i<modes_.size(); ++i){
+            std::shared_ptr<VieVS::Mode> newMode = modes_.at(i);
+            std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
+            newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
+        }
         ifs << QString::fromStdString(any->getName());
     }
     ifNames_->setStringList(ifs);
@@ -47,7 +54,13 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->comboBox_selectBbcBlock, SIGNAL(currentIndexChanged(int)), this, SLOT(updateBbc(int)));
     QStringList bbc;
     for(const auto &any : obsMode.getBbcs()){
-        bbcs_.push_back(std::make_shared<VieVS::Bbc>(*any));
+        std::shared_ptr<VieVS::Bbc> newBlock = std::make_shared<VieVS::Bbc>(*any);
+        bbcs_.push_back(newBlock);
+        for(int i=0; i<modes_.size(); ++i){
+            std::shared_ptr<VieVS::Mode> newMode = modes_.at(i);
+            std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
+            newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
+        }
         bbc << QString::fromStdString(any->getName());
     }
     bbcNames_->setStringList(bbc);
@@ -56,7 +69,13 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->comboBox_selectFreqBlock, SIGNAL(currentIndexChanged(int)), this, SLOT(updateFreq(int)));
     QStringList freq;
     for(const auto &any : obsMode.getFreqs()){
-        freqs_.push_back(std::make_shared<VieVS::Freq>(*any));
+        std::shared_ptr<VieVS::Freq> newBlock = std::make_shared<VieVS::Freq>(*any);
+        freqs_.push_back(newBlock);
+        for(int i=0; i<modes_.size(); ++i){
+            std::shared_ptr<VieVS::Mode> newMode = modes_.at(i);
+            std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
+            newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
+        }
         freq << QString::fromStdString(any->getName());
     }
     freqNames_->setStringList(freq);
@@ -65,7 +84,13 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->comboBox_selectTracksBlock, SIGNAL(currentIndexChanged(int)), this, SLOT(updateTracks(int)));
     QStringList tracks;
     for(const auto &any : obsMode.getTracks()){
-        tracks_.push_back(std::make_shared<VieVS::Track>(*any));
+        std::shared_ptr<VieVS::Track> newBlock = std::make_shared<VieVS::Track>(*any);
+        tracks_.push_back(newBlock);
+        for(int i=0; i<modes_.size(); ++i){
+            std::shared_ptr<VieVS::Mode> newMode = modes_.at(i);
+            std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
+            newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
+        }
         tracks << QString::fromStdString(any->getName());
     }
     tracksNames_->setStringList(tracks);
@@ -73,8 +98,14 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
 
     QStringList trackFrameFormat;
     for(const auto &any : obsMode.getTrackFrameFormats()){
-        trackFrameFormats_.push_back(std::make_shared<std::string>(*any));
-        trackFrameFormat << QString::fromStdString(*any.get());
+        std::shared_ptr<std::string> newBlock = std::make_shared<std::string>(*any);
+        trackFrameFormats_.push_back(newBlock);
+        for(int i=0; i<modes_.size(); ++i){
+            std::shared_ptr<VieVS::Mode> newMode = modes_.at(i);
+            std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
+            newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
+        }
+        trackFrameFormat << QString::fromStdString(*any);
     }
     trackFrameFormatNames_->setStringList(trackFrameFormat);
     ui->comboBox_selectTrackFrameFormat->setModel(trackFrameFormatNames_);
@@ -94,6 +125,30 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->pushButton_removeChannel, SIGNAL(clicked()), this, SLOT(insertAndErase()));
     connect(ui->pushButton_removeIf, SIGNAL(clicked()), this, SLOT(insertAndErase()));
     connect(ui->pushButton_removeBbc, SIGNAL(clicked()), this, SLOT(insertAndErase()));
+
+    connect(ui->pushButton_renameBbcBlock, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renameFreqBlock, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renameIfBlock, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renameModeBlock, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renamePhaseCal, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renameTrackFrameFormat, SIGNAL(clicked()), this, SLOT(rename()));
+    connect(ui->pushButton_renameTracksBock, SIGNAL(clicked()), this, SLOT(rename()));
+
+    connect(ui->pushButton_addMode, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addFreqBlock, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addBbcBlock, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addIfBlock, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addTracksBlock, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addTrackFrameFormat, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+    connect(ui->pushButton_addPhaseCalBlcok, SIGNAL(clicked()), this, SLOT(addNewBlock()));
+
+    connect(ui->pushButton_removeMode, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removeFreqBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removeBbcBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removeIfBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removeTracksBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removeTrackFrameFormatBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+    connect(ui->pushButton_removePhaseCalBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
 }
 
 ObsModeDialog::~ObsModeDialog()
@@ -103,28 +158,48 @@ ObsModeDialog::~ObsModeDialog()
 
 void ObsModeDialog::updateMode(int i)
 {
-    model_mode_->setMode(modes_.at(i));
+    if(i>=0 && i<modes_.size()){
+        model_mode_->setMode(modes_.at(i));
+    }else{
+        model_mode_->setMode(std::make_shared<VieVS::Mode>("empty",stations_.size()));
+    }
 }
 
 void ObsModeDialog::updateFreq(int i)
 {
-    model_freq_->setFreq(freqs_.at(i));
+    if(i>=0 && i<freqs_.size()){
+        model_freq_->setFreq(freqs_.at(i));
+    }else{
+        model_freq_->setFreq(std::make_shared<VieVS::Freq>("empty"));
+    }
 }
 
 void ObsModeDialog::updateIf(int i)
 {
-    model_if_->setIf(ifs_.at(i));
+    if(i>=0 && i<ifs_.size()){
+        model_if_->setIf(ifs_.at(i));
+    }else{
+        model_if_->setIf(std::make_shared<VieVS::If>("empty"));
+    }
 }
 
 void ObsModeDialog::updateBbc(int i)
 {
-    model_bbc_->setBbc(bbcs_.at(i));
+    if(i>=0 && i<bbcs_.size()){
+        model_bbc_->setBbc(bbcs_.at(i));
+    }else{
+        model_bbc_->setBbc(std::make_shared<VieVS::Bbc>("empty"));
+    }
 }
 
 void ObsModeDialog::updateTracks(int i)
 {
-    model_tracks_->setTracks(tracks_.at(i));
-    ui->comboBox->setCurrentIndex(model_tracks_->getFanout()-1);
+    if(i>=0 && i<tracks_.size()){
+        model_tracks_->setTracks(tracks_.at(i));
+        ui->comboBox->setCurrentIndex(model_tracks_->getFanout()-1);
+    }else{
+        model_tracks_->setTracks(std::make_shared<VieVS::Track>("empty"));
+    }
 }
 
 void ObsModeDialog::updatePhaceCal(int i)
@@ -278,3 +353,276 @@ void ObsModeDialog::on_comboBox_currentIndexChanged(int index)
     model_tracks_->setFanout(index+1);
     model_tracks_->layoutChanged();
 }
+
+void ObsModeDialog::rename()
+{
+    QObject *s = sender();
+    QString currentText;
+    if(s == ui->pushButton_renameModeBlock){
+        currentText = ui->comboBox_selectMode->currentText();
+    }else if(s == ui->pushButton_renameFreqBlock){
+        currentText = ui->comboBox_selectFreqBlock->currentText();
+    }else if(s == ui->pushButton_renameBbcBlock){
+        currentText = ui->comboBox_selectBbcBlock->currentText();
+    }else if(s == ui->pushButton_renameIfBlock){
+        currentText = ui->comboBox_selectIfBlock->currentText();
+    }else if(s == ui->pushButton_renameTracksBock){
+        currentText = ui->comboBox_selectTracksBlock->currentText();
+    }else if(s == ui->pushButton_renameTrackFrameFormat){
+        currentText = ui->comboBox_selectTrackFrameFormat->currentText();
+    }else if(s == ui->pushButton_renamePhaseCal){
+        currentText = ui->comboBox_selectPhaseCal->currentText();
+    }
+
+    bool ok;
+    QString name = QInputDialog::getText(this, tr("rename block"),
+                                         tr("new name:"), QLineEdit::Normal,
+                                         currentText, &ok);
+    if (ok && !name.isEmpty()){
+        if(s == ui->pushButton_renameModeBlock){
+            QComboBox *comboBox = ui->comboBox_selectMode;
+            int idx = comboBox->currentIndex();
+            modes_[idx]->changeName(name.toStdString());
+            QStringList tmp = modesNames_->stringList();
+            tmp[idx] = name;
+            modesNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renameFreqBlock){
+            QComboBox *comboBox = ui->comboBox_selectFreqBlock;
+            int idx = comboBox->currentIndex();
+            freqs_[idx]->changeName(name.toStdString());
+            QStringList tmp = freqNames_->stringList();
+            tmp[idx] = name;
+            freqNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renameBbcBlock){
+            QComboBox *comboBox = ui->comboBox_selectBbcBlock;
+            int idx = comboBox->currentIndex();
+            bbcs_[idx]->changeName(name.toStdString());
+            QStringList tmp = bbcNames_->stringList();
+            tmp[idx] = name;
+            bbcNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renameIfBlock){
+            QComboBox *comboBox = ui->comboBox_selectIfBlock;
+            int idx = comboBox->currentIndex();
+            ifs_[idx]->changeName(name.toStdString());
+            QStringList tmp = ifNames_->stringList();
+            tmp[idx] = name;
+            ifNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renameTracksBock){
+            QComboBox *comboBox = ui->comboBox_selectTracksBlock;
+            int idx = comboBox->currentIndex();
+            tracks_[idx]->changeName(name.toStdString());
+            QStringList tmp = tracksNames_->stringList();
+            tmp[idx] = name;
+            tracksNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renameTrackFrameFormat){
+            QComboBox *comboBox = ui->comboBox_selectTrackFrameFormat;
+            int idx = comboBox->currentIndex();
+            trackFrameFormats_[idx] = std::make_shared<std::string>(name.toStdString());
+            QStringList tmp = trackFrameFormatNames_->stringList();
+            tmp[idx] = name;
+            trackFrameFormatNames_->setStringList(tmp);
+            comboBox->setCurrentIndex(idx);
+        }else if(s == ui->pushButton_renamePhaseCal){
+            // *** todo ***
+        }
+    }
+}
+
+void ObsModeDialog::addNewBlock()
+{
+    QObject *s = sender();
+
+    if(s == ui->pushButton_addMode){
+        int n = modes_.size();
+        int nsta = stations_.size();
+        std::string name = std::string("MODE#").append(std::to_string(n));
+        auto itm = std::make_shared<VieVS::Mode>(name, nsta);
+        for(const auto &any : freqs_){
+            itm->addBlock(any,std::vector<unsigned long>());
+        }
+        for(const auto &any : bbcs_){
+            itm->addBlock(any,std::vector<unsigned long>());
+        }
+        for(const auto &any : ifs_){
+            itm->addBlock(any,std::vector<unsigned long>());
+        }
+        for(const auto &any : tracks_){
+            itm->addBlock(any,std::vector<unsigned long>());
+        }
+        for(const auto &any : trackFrameFormats_){
+            itm->addBlock(any,std::vector<unsigned long>());
+        }
+//        for(const auto &any : phaseCals_){
+//            itm->addBlock(any,std::vector<unsigned long>());
+//        }
+        modes_.push_back(itm);
+        QStringList tmp = modesNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        modesNames_->setStringList(tmp);
+        ui->comboBox_selectMode->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addFreqBlock){
+        int n = freqs_.size();
+        std::string name = std::string("FREQ#").append(std::to_string(n));
+        auto itm = std::make_shared<VieVS::Freq>(name);
+        freqs_.push_back(itm);
+        for(auto &any : modes_){
+            any->addBlock(itm,std::vector<unsigned long>());
+        }
+        QStringList tmp = freqNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        freqNames_->setStringList(tmp);
+        ui->comboBox_selectFreqBlock->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addBbcBlock){
+        int n = bbcs_.size();
+        std::string name = std::string("BBC#").append(std::to_string(n));
+        auto itm = std::make_shared<VieVS::Bbc>(name);
+        bbcs_.push_back(itm);
+        for(auto &any : modes_){
+            any->addBlock(itm,std::vector<unsigned long>());
+        }
+        QStringList tmp = bbcNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        bbcNames_->setStringList(tmp);
+        ui->comboBox_selectBbcBlock->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addIfBlock){
+        int n = ifs_.size();
+        std::string name = std::string("IF#").append(std::to_string(n));
+        auto itm = std::make_shared<VieVS::If>(name);
+        ifs_.push_back(itm);
+        for(auto &any : modes_){
+            any->addBlock(itm,std::vector<unsigned long>());
+        }
+        QStringList tmp = ifNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        ifNames_->setStringList(tmp);
+        ui->comboBox_selectIfBlock->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addTracksBlock){
+        int n = tracks_.size();
+        std::string name = std::string("TRACKS#").append(std::to_string(n));
+        auto itm = std::make_shared<VieVS::Track>(name);
+        tracks_.push_back(itm);
+        for(auto &any : modes_){
+            any->addBlock(itm,std::vector<unsigned long>());
+        }
+        QStringList tmp = tracksNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        tracksNames_->setStringList(tmp);
+        ui->comboBox_selectTracksBlock->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addTrackFrameFormat){
+        int n = trackFrameFormats_.size();
+        std::string name = std::string("trackFrameFormat#").append(std::to_string(n));
+        auto itm = std::make_shared<std::string>(name);
+        trackFrameFormats_.push_back(itm);
+        for(auto &any : modes_){
+            any->addBlock(itm,std::vector<unsigned long>());
+        }
+        QStringList tmp = trackFrameFormatNames_->stringList();
+        tmp.append(QString::fromStdString(name));
+        trackFrameFormatNames_->setStringList(tmp);
+        ui->comboBox_selectTrackFrameFormat->setCurrentIndex(n);
+
+    }else if( s == ui->pushButton_addPhaceCalDetect){
+        // *** todo ***
+    }
+}
+
+void ObsModeDialog::removeBlock()
+{
+    QObject *s = sender();
+    if(s == ui->pushButton_removeMode){
+        int idx = ui->comboBox_selectMode->currentIndex();
+        if(idx<0){
+            return;
+        }
+        modes_.erase(modes_.begin()+idx);
+        QStringList tmp = modesNames_->stringList();
+        tmp.removeAt(idx);
+        modesNames_->setStringList(tmp);
+        ui->comboBox_selectMode->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removeFreqBlock){
+        int idx = ui->comboBox_selectFreqBlock->currentIndex();
+        if(idx<0){
+            return;
+        }
+        for(auto &any : modes_){
+            any->removeFreq(idx);
+        }
+        freqs_.erase(freqs_.begin()+idx);
+        QStringList tmp = freqNames_->stringList();
+        tmp.removeAt(idx);
+        freqNames_->setStringList(tmp);
+        ui->comboBox_selectFreqBlock->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removeBbcBlock){
+        int idx = ui->comboBox_selectBbcBlock->currentIndex();
+        if(idx<0){
+            return;
+        }
+        for(auto &any : modes_){
+            any->removeBbc(idx);
+        }
+        bbcs_.erase(bbcs_.begin()+idx);
+        QStringList tmp = bbcNames_->stringList();
+        tmp.removeAt(idx);
+        bbcNames_->setStringList(tmp);
+        ui->comboBox_selectBbcBlock->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removeIfBlock){
+        int idx = ui->comboBox_selectIfBlock->currentIndex();
+        if(idx<0){
+            return;
+        }
+        for(auto &any : modes_){
+            any->removeIf(idx);
+        }
+        ifs_.erase(ifs_.begin()+idx);
+        QStringList tmp = ifNames_->stringList();
+        tmp.removeAt(idx);
+        ifNames_->setStringList(tmp);
+        ui->comboBox_selectIfBlock->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removeTracksBlock){
+        int idx = ui->comboBox_selectTracksBlock->currentIndex();
+        if(idx<0){
+            return;
+        }
+        for(auto &any : modes_){
+            any->removeTracks(idx);
+        }
+        tracks_.erase(tracks_.begin()+idx);
+        QStringList tmp = tracksNames_->stringList();
+        tmp.removeAt(idx);
+        tracksNames_->setStringList(tmp);
+        ui->comboBox_selectTracksBlock->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removeTrackFrameFormatBlock){
+        int idx = ui->comboBox_selectTrackFrameFormat->currentIndex();
+        if(idx<0){
+            return;
+        }
+        for(auto &any : modes_){
+            any->removeTrackFrameFormats(idx);
+        }
+        trackFrameFormats_.erase(trackFrameFormats_.begin()+idx);
+        QStringList tmp = trackFrameFormatNames_->stringList();
+        tmp.removeAt(idx);
+        trackFrameFormatNames_->setStringList(tmp);
+        ui->comboBox_selectTrackFrameFormat->setCurrentIndex(idx-1);
+
+    }else if( s == ui->pushButton_removePhaceCalDetect){
+        // *** todo ***
+    }
+
+}
+

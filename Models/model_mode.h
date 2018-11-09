@@ -3,6 +3,7 @@
 
 #include <QAbstractTableModel>
 #include <QFont>
+#include <QColor>
 #include "../VieSchedpp/Mode.h"
 
 class Model_Mode : public QAbstractTableModel

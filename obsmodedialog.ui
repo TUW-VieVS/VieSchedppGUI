@@ -98,12 +98,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectMode"/>
+          <widget class="QComboBox" name="comboBox_selectMode">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameModeBlock">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -171,12 +182,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectFreqBlock"/>
+          <widget class="QComboBox" name="comboBox_selectFreqBlock">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameFreqBlock">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -283,12 +305,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectBbcBlock"/>
+          <widget class="QComboBox" name="comboBox_selectBbcBlock">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameBbcBlock">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -395,12 +428,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectIfBlock"/>
+          <widget class="QComboBox" name="comboBox_selectIfBlock">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameIfBlock">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -507,12 +551,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectTracksBlock"/>
+          <widget class="QComboBox" name="comboBox_selectTracksBlock">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameTracksBock">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -667,12 +722,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectTrackFrameFormat"/>
+          <widget class="QComboBox" name="comboBox_selectTrackFrameFormat">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameTrackFrameFormat">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>
@@ -750,12 +816,23 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_selectPhaseCal"/>
+          <widget class="QComboBox" name="comboBox_selectPhaseCal">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renamePhaseCal">
            <property name="text">
             <string>rename</string>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
            </property>
           </widget>
          </item>

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QStringListModel>
 #include <QTableView>
+#include <QInputDialog>
 
 #include <Models/model_mode.h>
 #include <Models/model_if.h>
@@ -49,6 +50,12 @@ private slots:
     void insertAndErase();
 
     void on_comboBox_currentIndexChanged(int index);
+
+    void rename();
+
+    void addNewBlock();
+
+    void removeBlock();
 
 private:
     Ui::ObsModeDialog *ui;
