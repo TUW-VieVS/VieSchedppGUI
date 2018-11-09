@@ -161,6 +161,7 @@ bool Model_Bbc::insertRows(int row, int count, const QModelIndex &parent)
     }
     endInsertRows();
     updateNames();
+    emit idChanged();
     return true;
 }
 
@@ -176,6 +177,7 @@ bool Model_Bbc::removeRows(int row, int count, const QModelIndex &parent)
     endRemoveRows();
     updateNames();
     layoutChanged();
+    emit idChanged();
     return true;
 }
 

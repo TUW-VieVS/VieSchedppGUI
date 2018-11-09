@@ -57,6 +57,10 @@ private slots:
 
     void removeBlock();
 
+//    void updateNumber();
+
+    void updateIds();
+
 private:
     Ui::ObsModeDialog *ui;
 
@@ -82,6 +86,12 @@ private:
     QStringListModel *tracksNames_;
     QStringListModel *phaseCalNames_;
     QStringListModel *trackFrameFormatNames_;
+
+    QStringListModel *bandIds_;
+    QStringListModel *ifIds_;
+    QStringListModel *bbcIds_;
+    QStringListModel *channelIds_;
+//    QStringListModel *phaseCalIds_;
 
 };
 

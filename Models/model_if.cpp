@@ -143,6 +143,7 @@ bool Model_If::setData(const QModelIndex &index, const QVariant &value, int role
             }
             d.at(row).physical_name_ = value.toString().toStdString();
             d.at(row).changeName(std::string("&IF_")+d.at(row).physical_name_);
+            emit idChanged();
             break;
         }
         case 2:{
@@ -269,6 +270,8 @@ bool Model_If::removeRows(int row, int count, const QModelIndex &parent)
     endRemoveRows();
 //    updateNames();
     layoutChanged();
+
+    emit idChanged();
     return true;
 }
 

@@ -7,6 +7,11 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    bandIds_ = new QStringListModel(this);
+    ifIds_ = new QStringListModel(this);
+    bbcIds_ = new QStringListModel(this);
+    channelIds_ = new QStringListModel(this);
+
     modesNames_ = new QStringListModel(this);
     ifNames_ = new QStringListModel(this);
     bbcNames_ = new QStringListModel(this);
@@ -15,6 +20,13 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     phaseCalNames_ = new QStringListModel(this);
     trackFrameFormatNames_ = new QStringListModel(this);
 
+//    phaseCalIds_ = new QStringListModel(this);
+
+    QStringList bandIds;
+    for(const auto &any : obsMode.getAllBands()){
+        bandIds.append(QString::fromStdString(any));
+    }
+    bandIds_->setStringList(bandIds);
 
     for(const auto &any : obsMode.getStationNames()){
         stations_.append(QString::fromStdString(any));
@@ -61,6 +73,7 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
             std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
             newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
         }
+
         bbc << QString::fromStdString(any->getName());
     }
     bbcNames_->setStringList(bbc);
@@ -91,6 +104,7 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
             std::shared_ptr<const VieVS::Mode> oldMode = obsMode.getModes().at(i);
             newMode->addBlock(newBlock, *oldMode->getAllStationsWithBlock(any));
         }
+
         tracks << QString::fromStdString(any->getName());
     }
     tracksNames_->setStringList(tracks);
@@ -115,6 +129,8 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     phaseCalNames_->setStringList(phaceCalNames);
     ui->comboBox_selectPhaseCal->setModel(phaseCalNames_);
 
+
+    ui->comboBox_bands->setModel(bandIds_);
 
     connect(ui->pushButton_addFanout, SIGNAL(clicked()), this, SLOT(insertAndErase()));
     connect(ui->pushButton_defineChannel, SIGNAL(clicked()), this, SLOT(insertAndErase()));
@@ -149,6 +165,14 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     connect(ui->pushButton_removeTracksBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
     connect(ui->pushButton_removeTrackFrameFormatBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
     connect(ui->pushButton_removePhaseCalBlock, SIGNAL(clicked()), this, SLOT(removeBlock()));
+
+    connect(model_bbc_, SIGNAL(idChanged()), this, SLOT(updateIds()));
+    connect(model_tracks_, SIGNAL(idChanged()), this, SLOT(updateIds()));
+    connect(model_if_, SIGNAL(idChanged()), this, SLOT(updateIds()));
+
+    model_bbc_->idChanged();
+    model_tracks_->idChanged();
+    model_if_->idChanged();
 }
 
 ObsModeDialog::~ObsModeDialog()
@@ -287,15 +311,21 @@ void ObsModeDialog::setupViewTracks(QTableView *view)
 
 void ObsModeDialog::setupViewFreq(QTableView *view)
 {
-    model_freq_ = new Model_Freq(this);
+    model_freq_ = new Model_Freq(bandIds_, channelIds_, bbcIds_, this);
     view->setModel(model_freq_);
 
     DoubleSpinBoxDelegate *doubleSpinBoxDelegate_MHz = new DoubleSpinBoxDelegate(" [MHz]",this);
     ComboBoxDelegate *comboBoxDelegate_netSidebands = new ComboBoxDelegate(Model_Freq::getNetSidebands(), this);
+    ComboBoxDelegate *comboBoxDelegate_bbcs = new ComboBoxDelegate(bbcIds_, this);
+    ComboBoxDelegate *comboBoxDelegate_bands = new ComboBoxDelegate(bandIds_, this);
+    ComboBoxDelegate *comboBoxDelegate_channelIds_ = new ComboBoxDelegate(channelIds_, this);
 
+    view->setItemDelegateForColumn(0,comboBoxDelegate_bands);
     view->setItemDelegateForColumn(1,doubleSpinBoxDelegate_MHz);
     view->setItemDelegateForColumn(2,comboBoxDelegate_netSidebands);
     view->setItemDelegateForColumn(3,doubleSpinBoxDelegate_MHz);
+    view->setItemDelegateForColumn(4,comboBoxDelegate_channelIds_);
+    view->setItemDelegateForColumn(5,comboBoxDelegate_bbcs);
 
     view->setSelectionBehavior(QAbstractItemView::SelectRows);
     auto hv1 = view->horizontalHeader();
@@ -372,6 +402,10 @@ void ObsModeDialog::rename()
         currentText = ui->comboBox_selectTrackFrameFormat->currentText();
     }else if(s == ui->pushButton_renamePhaseCal){
         currentText = ui->comboBox_selectPhaseCal->currentText();
+    }
+
+    if(currentText.isEmpty()){
+        return;
     }
 
     bool ok;
@@ -577,7 +611,7 @@ void ObsModeDialog::removeBlock()
         tmp.removeAt(idx);
         bbcNames_->setStringList(tmp);
         ui->comboBox_selectBbcBlock->setCurrentIndex(idx-1);
-
+        model_bbc_->idChanged();
     }else if( s == ui->pushButton_removeIfBlock){
         int idx = ui->comboBox_selectIfBlock->currentIndex();
         if(idx<0){
@@ -591,6 +625,7 @@ void ObsModeDialog::removeBlock()
         tmp.removeAt(idx);
         ifNames_->setStringList(tmp);
         ui->comboBox_selectIfBlock->setCurrentIndex(idx-1);
+        model_if_->idChanged();
 
     }else if( s == ui->pushButton_removeTracksBlock){
         int idx = ui->comboBox_selectTracksBlock->currentIndex();
@@ -605,6 +640,7 @@ void ObsModeDialog::removeBlock()
         tmp.removeAt(idx);
         tracksNames_->setStringList(tmp);
         ui->comboBox_selectTracksBlock->setCurrentIndex(idx-1);
+        model_tracks_->idChanged();
 
     }else if( s == ui->pushButton_removeTrackFrameFormatBlock){
         int idx = ui->comboBox_selectTrackFrameFormat->currentIndex();
@@ -625,4 +661,56 @@ void ObsModeDialog::removeBlock()
     }
 
 }
+
+void ObsModeDialog::updateIds()
+{
+    QObject *s = sender();
+
+    if(s == model_if_){
+        QStringList ifIds = ifIds_->stringList();
+        for(const auto &any : ifs_){
+            for(const auto &any : any->getIf_defs()){
+                if(!ifIds.contains(QString::fromStdString(any.getName()))){
+                    ifIds.append(QString::fromStdString(any.getName()));
+                }
+            }
+        }
+        ifIds.sort();
+        ifIds_->setStringList(ifIds);
+
+    }else if(s == model_bbc_){
+        QStringList bbcIds = bbcIds_->stringList();
+        for(const auto &any : bbcs_){
+            for(const auto &any : any->getBbc_assigns()){
+                if(!bbcIds.contains(QString::fromStdString(any.getName()))){
+                    bbcIds.append(QString::fromStdString(any.getName()));
+                }
+            }
+        }
+        bbcIds.sort();
+        bbcIds_->setStringList(bbcIds);
+
+    }else if(s == model_tracks_){
+        QStringList channelIds = channelIds_->stringList();
+        for(const auto &any : tracks_){
+            for(const auto &any : any->getFanout_defs()){
+                if(!channelIds.contains(QString::fromStdString(any.trksid_))){
+                    channelIds.append(QString::fromStdString(any.trksid_));
+                }
+            }
+        }
+        channelIds.sort();
+        channelIds_->setStringList(channelIds);
+    }
+}
+
+//void ObsModeDialog::updateNumber()
+//{
+//    QObject *s = sender();
+//    if(s == model_freq_){
+//        QString txt = QString("%1 items").arg(model_freq_->getNrOfItems());
+//        ui->label_nffreq->setText(txt);
+//    }
+
+//}
 

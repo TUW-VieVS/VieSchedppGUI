@@ -14,6 +14,10 @@ public:
 
     void setBbc(const std::shared_ptr<VieVS::Bbc> &data);
 
+    int getNrOfItems(){
+        return data_->getBbc_assigns().size();
+    }
+
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
@@ -35,6 +39,9 @@ public:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
     void updateNames();
+
+signals:
+    void idChanged();
 
 private:
     std::shared_ptr<VieVS::Bbc> data_;

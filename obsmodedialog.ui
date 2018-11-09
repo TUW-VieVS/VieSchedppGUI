@@ -81,7 +81,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="mode">
       <attribute name="title">
@@ -109,12 +109,52 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameModeBlock">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addMode">
+           <property name="toolTip">
+            <string>add new mode</string>
+           </property>
+           <property name="statusTip">
+            <string>add new mode</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeMode">
+           <property name="toolTip">
+            <string>remove selected mode</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected mode</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -131,28 +171,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addMode">
-           <property name="text">
-            <string>add new mode</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeMode">
-           <property name="text">
-            <string>remove selected mode</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -164,6 +182,16 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_mode"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_nrmode">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -193,12 +221,55 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameFreqBlock">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addFreqBlock">
+           <property name="toolTip">
+            <string>add new frequency block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new frequency block</string>
+           </property>
+           <property name="whatsThis">
+            <string/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeFreqBlock">
+           <property name="toolTip">
+            <string>remove selected frequency block</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected frequency block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -216,9 +287,19 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_addFreqBlock">
+          <widget class="QLabel" name="label_11">
            <property name="text">
-            <string>add new frequency block</string>
+            <string>available bands:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_bands"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addNewBand">
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -227,9 +308,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_removeFreqBlock">
+          <widget class="QPushButton" name="pushButton_removeBand">
            <property name="text">
-            <string>remove selected frequency block</string>
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
@@ -287,6 +368,16 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_freq"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_nffreq">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -411,6 +502,16 @@
        <item>
         <widget class="QTableView" name="tableView_bbc"/>
        </item>
+       <item>
+        <widget class="QLabel" name="label_nrbbc">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="if_2">
@@ -533,6 +634,16 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_if"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_nrif">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -704,6 +815,16 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_tracks"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_nrtracks">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -921,6 +1042,16 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_phaceCal"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_nrphaseCal">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

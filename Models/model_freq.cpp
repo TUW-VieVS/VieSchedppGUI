@@ -6,8 +6,8 @@ QVector<QString> Model_Freq::netSidebans_ = {QString::fromStdString(VieVS::Freq:
                                              QString::fromStdString(VieVS::Freq::toString(VieVS::Freq::Net_sideband::LC))
                                              };
 
-Model_Freq::Model_Freq(QObject *parent)
-    : QAbstractTableModel(parent)
+Model_Freq::Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent)
+    : QAbstractTableModel(parent), band_{band}, channels_{channels}, bbcs_{bbcs}
 {
 }
 
@@ -69,18 +69,33 @@ QVariant Model_Freq::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole){
         switch (col) {
-        case 0:
+        case 0:{
+            QString name = QString::fromStdString(d.at(row).bandId_);
+            if(band_->stringList().indexOf(name) == -1){
+                return "undefined";
+            }
             return QString::fromStdString(d.at(row).bandId_);
+        }
         case 1:
             return QString("%1 [MHz]").arg(d.at(row).sky_freq_);
         case 2:
             return QString::fromStdString(VieVS::Freq::toString(d.at(row).net_sideband_));
         case 3:
             return QString("%1 [MHz]").arg(d.at(row).chan_bandwidth_);
-        case 4:
+        case 4:{
+            QString name = QString::fromStdString(d.at(row).chan_id_);
+            if(channels_->stringList().indexOf(name) == -1){
+                return "undefined";
+            }
             return QString::fromStdString(d.at(row).chan_id_);
-        case 5:
+        }
+        case 5:{
+            QString name = QString::fromStdString(d.at(row).bbc_id_);
+            if(bbcs_->stringList().indexOf(name) == -1){
+                return "undefined";
+            }
             return QString::fromStdString(d.at(row).bbc_id_);
+        }
         case 6:
             return QString::fromStdString(d.at(row).phase_cal_id_);
         }
@@ -109,7 +124,9 @@ bool Model_Freq::setData(const QModelIndex &index, const QVariant &value, int ro
     if (data(index, role) != value) {
         switch (col) {
         case 0:{
-            d.at(row).bandId_ = value.toString().toStdString();
+            int idx =value.toInt();
+            QString name = band_->stringList().at(idx);
+            d.at(row).bandId_ = name.toStdString();
             break;
         }
         case 1:{
@@ -143,11 +160,15 @@ bool Model_Freq::setData(const QModelIndex &index, const QVariant &value, int ro
             break;
         }
         case 4:{
-            d.at(row).chan_id_ = value.toString().toStdString();
+            int idx =value.toInt();
+            QString name = channels_->stringList().at(idx);
+            d.at(row).chan_id_ = name.toStdString();
             break;
         }
         case 5:{
-            d.at(row).bbc_id_ = value.toString().toStdString();
+            int idx =value.toInt();
+            QString name = bbcs_->stringList().at(idx);
+            d.at(row).bbc_id_ = name.toStdString();
             break;
         }
         case 6:{

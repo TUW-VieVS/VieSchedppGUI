@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QFont>
+#include <QStringListModel>
 #include "../VieSchedpp/Freq.h"
 
 class Model_Freq : public QAbstractTableModel
@@ -10,12 +11,16 @@ class Model_Freq : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit Model_Freq(QObject *parent = nullptr);
+    explicit Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
     void setFreq(const std::shared_ptr<VieVS::Freq> &data);
+
+    int getNrOfItems(){
+        return data_->getChan_defs().size();
+    }
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
@@ -43,6 +48,10 @@ private:
 
     std::shared_ptr<VieVS::Freq> data_;
     static QVector<QString> netSidebans_;
+
+    QStringListModel *band_;
+    QStringListModel *channels_;
+    QStringListModel *bbcs_;
 
 };
 

@@ -113,8 +113,14 @@ QVariant Model_Mode::data(const QModelIndex &index, int role) const
             boldFont.setBold(true);
             return boldFont;
         }
+        if(data(index).toString() == "undefined"){
+            QFont boldFont;
+            boldFont.setBold(true);
+            return boldFont;
+        }
+
     }
-    if(role == Qt::TextColorRole){
+    if(role == Qt::ForegroundRole){
         if(data(index).toString() == "undefined"){
             return QVariant::fromValue(QColor(Qt::red));
         }

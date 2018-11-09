@@ -14,6 +14,9 @@ public:
 
     void setIf(const std::shared_ptr<VieVS::If> &data);
 
+    int getNrOfItems(){
+        return data_->getIf_defs().size();
+    }
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -45,6 +48,9 @@ public:
     }
 
     void updateNames();
+
+signals:
+    void idChanged();
 
 private:
     std::shared_ptr<VieVS::If> data_;

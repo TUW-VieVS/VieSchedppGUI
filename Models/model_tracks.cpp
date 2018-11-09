@@ -150,6 +150,7 @@ bool Model_Tracks::setData(const QModelIndex &index, const QVariant &value, int 
                 break;
             }
             d.at(row).trksid_ = value.toString().toStdString();
+            emit idChanged();
             break;
         }
         case 2:{
@@ -233,5 +234,6 @@ bool Model_Tracks::removeRows(int row, int count, const QModelIndex &parent)
     d.erase(d.begin()+row);
     endRemoveRows();
     layoutChanged();
+    emit idChanged();
     return true;
 }

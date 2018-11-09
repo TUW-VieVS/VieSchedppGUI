@@ -15,6 +15,10 @@ public:
 
     void setTracks(const std::shared_ptr<VieVS::Track> &data);
 
+    int getNrOfItems(){
+        return data_->getFanout_defs().size();
+    }
+
     void setFanout(int i){
         fanout_ = i;
         layoutChanged();
@@ -49,6 +53,9 @@ public:
     static const QVector<QString> &getBitstreams(){
         return bitstream_;
     }
+
+signals:
+    void idChanged();
 
 private:
     std::shared_ptr<VieVS::Track> data_;
