@@ -49,6 +49,14 @@ public:
 
     void updateNames();
 
+    int nrItems(){
+        if(data_ == nullptr){
+            return 0;
+        }else{
+            return data_->getIf_defs().size();
+        }
+    }
+
 signals:
     void idChanged();
 

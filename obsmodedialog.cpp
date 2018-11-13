@@ -20,7 +20,9 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     phaseCalNames_ = new QStringListModel(this);
     trackFrameFormatNames_ = new QStringListModel(this);
 
-//    phaseCalIds_ = new QStringListModel(this);
+    QStringList pc;
+    pc << "&U_cal";
+    phaseCalIds_ = new QStringListModel(pc,this);
 
     QStringList bandIds;
     for(const auto &any : obsMode.getAllBands()){
@@ -196,6 +198,7 @@ void ObsModeDialog::updateFreq(int i)
     }else{
         model_freq_->setFreq(std::make_shared<VieVS::Freq>("empty"));
     }
+    ui->label_nrFreq->setText(QString("number of channels: %1").arg(model_freq_->nrItems()));
 }
 
 void ObsModeDialog::updateIf(int i)
@@ -205,6 +208,7 @@ void ObsModeDialog::updateIf(int i)
     }else{
         model_if_->setIf(std::make_shared<VieVS::If>("empty"));
     }
+    ui->label_nrIfs->setText(QString("number of IF definitions: %1").arg(model_if_->nrItems()));
 }
 
 void ObsModeDialog::updateBbc(int i)
@@ -214,6 +218,7 @@ void ObsModeDialog::updateBbc(int i)
     }else{
         model_bbc_->setBbc(std::make_shared<VieVS::Bbc>("empty"));
     }
+    ui->label_nrBbcs->setText(QString("number of assigned BBCs: %1").arg(model_bbc_->nrItems()));
 }
 
 void ObsModeDialog::updateTracks(int i)
@@ -224,6 +229,7 @@ void ObsModeDialog::updateTracks(int i)
     }else{
         model_tracks_->setTracks(std::make_shared<VieVS::Track>("empty"));
     }
+    ui->label_nrTracks->setText(QString("number of fanouts: %1").arg(model_tracks_->nrItems()));
 }
 
 void ObsModeDialog::updatePhaceCal(int i)
@@ -278,13 +284,15 @@ void ObsModeDialog::setupViewIf(QTableView *view)
 
 void ObsModeDialog::setupViewBbc(QTableView *view)
 {
-    model_bbc_ = new Model_Bbc(this);
+    model_bbc_ = new Model_Bbc(ifIds_, this);
     view->setModel(model_bbc_);
 
     SpinBoxDelegate *spinBoxDelegate = new SpinBoxDelegate("", this);
+    ComboBoxDelegate *comboBoxDelegate_ifs = new ComboBoxDelegate(ifIds_, this);
 
     view->setItemDelegateForColumn(1,spinBoxDelegate);
     view->setSelectionBehavior(QAbstractItemView::SelectRows);
+    view->setItemDelegateForColumn(2,comboBoxDelegate_ifs);
     auto hv1 = view->horizontalHeader();
     hv1->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
@@ -319,6 +327,7 @@ void ObsModeDialog::setupViewFreq(QTableView *view)
     ComboBoxDelegate *comboBoxDelegate_bbcs = new ComboBoxDelegate(bbcIds_, this);
     ComboBoxDelegate *comboBoxDelegate_bands = new ComboBoxDelegate(bandIds_, this);
     ComboBoxDelegate *comboBoxDelegate_channelIds_ = new ComboBoxDelegate(channelIds_, this);
+    ComboBoxDelegate *comboBoxDelegate_pcal = new ComboBoxDelegate(phaseCalIds_, this);
 
     view->setItemDelegateForColumn(0,comboBoxDelegate_bands);
     view->setItemDelegateForColumn(1,doubleSpinBoxDelegate_MHz);
@@ -326,6 +335,7 @@ void ObsModeDialog::setupViewFreq(QTableView *view)
     view->setItemDelegateForColumn(3,doubleSpinBoxDelegate_MHz);
     view->setItemDelegateForColumn(4,comboBoxDelegate_channelIds_);
     view->setItemDelegateForColumn(5,comboBoxDelegate_bbcs);
+    view->setItemDelegateForColumn(6,comboBoxDelegate_pcal);
 
     view->setSelectionBehavior(QAbstractItemView::SelectRows);
     auto hv1 = view->horizontalHeader();
@@ -345,13 +355,18 @@ void ObsModeDialog::insertModelEntries(QTableView *view)
 void ObsModeDialog::ereaseModelEntries(QTableView *view)
 {
     auto selected = view->selectionModel()->selectedRows();
-    for(int k = 0; k < (selected.size()/2); k++){
-        selected.swap(k,selected.size()-(1+k));
+    if(selected.isEmpty()){
+        QMessageBox::information(this,"no selection","Please select items which should be deleted in the list below first.");
+    }else{
+        for(int k = 0; k < (selected.size()/2); k++){
+            selected.swap(k,selected.size()-(1+k));
+        }
+
+        for(const auto &any : selected){
+            view->model()->removeRows(any.row(),1);
+        }
     }
 
-    for(const auto &any : selected){
-        view->model()->removeRows(any.row(),1);
-    }
 }
 
 void ObsModeDialog::insertAndErase()
@@ -360,20 +375,28 @@ void ObsModeDialog::insertAndErase()
 
     if(s == ui->pushButton_addFanout){            // insert
         insertModelEntries(ui->tableView_tracks);
+        ui->label_nrTracks->setText(QString("number of fanouts: %1").arg(model_tracks_->nrItems()));
     }else if(s == ui->pushButton_defineChannel){
         insertModelEntries(ui->tableView_freq);
+        ui->label_nrFreq->setText(QString("number of channels: %1").arg(model_freq_->nrItems()));
     }else if(s == ui->pushButton_defineIf){
         insertModelEntries(ui->tableView_if);
+        ui->label_nrIfs->setText(QString("number of IF definitions: %1").arg(model_if_->nrItems()));
     }else if(s == ui->pushButton_assignBbc){
         insertModelEntries(ui->tableView_bbc);
+        ui->label_nrBbcs->setText(QString("number of assigned BBCs: %1").arg(model_bbc_->nrItems()));
     }else if(s == ui->pushButton_removeFanout){   // remove
         ereaseModelEntries(ui->tableView_tracks);
+        ui->label_nrTracks->setText(QString("number of fanouts: %1").arg(model_tracks_->nrItems()));
     }else if(s == ui->pushButton_removeChannel){
         ereaseModelEntries(ui->tableView_freq);
+        ui->label_nrFreq->setText(QString("number of channels: %1").arg(model_freq_->nrItems()));
     }else if(s == ui->pushButton_removeIf){
         ereaseModelEntries(ui->tableView_if);
+        ui->label_nrIfs->setText(QString("number of IF definitions: %1").arg(model_if_->nrItems()));
     }else if(s == ui->pushButton_removeBbc){
         ereaseModelEntries(ui->tableView_bbc);
+        ui->label_nrBbcs->setText(QString("number of assigned BBCs: %1").arg(model_bbc_->nrItems()));
     }
 
 }
@@ -668,10 +691,11 @@ void ObsModeDialog::updateIds()
 
     if(s == model_if_){
         QStringList ifIds = ifIds_->stringList();
+        ifIds.clear();
         for(const auto &any : ifs_){
             for(const auto &any : any->getIf_defs()){
                 if(!ifIds.contains(QString::fromStdString(any.getName()))){
-                    ifIds.append(QString::fromStdString(any.getName()));
+                    ifIds << QString::fromStdString(any.getName());
                 }
             }
         }
@@ -680,6 +704,7 @@ void ObsModeDialog::updateIds()
 
     }else if(s == model_bbc_){
         QStringList bbcIds = bbcIds_->stringList();
+        bbcIds.clear();
         for(const auto &any : bbcs_){
             for(const auto &any : any->getBbc_assigns()){
                 if(!bbcIds.contains(QString::fromStdString(any.getName()))){
@@ -692,6 +717,7 @@ void ObsModeDialog::updateIds()
 
     }else if(s == model_tracks_){
         QStringList channelIds = channelIds_->stringList();
+        channelIds.clear();
         for(const auto &any : tracks_){
             for(const auto &any : any->getFanout_defs()){
                 if(!channelIds.contains(QString::fromStdString(any.trksid_))){
@@ -701,16 +727,59 @@ void ObsModeDialog::updateIds()
         }
         channelIds.sort();
         channelIds_->setStringList(channelIds);
+
     }
 }
 
-//void ObsModeDialog::updateNumber()
-//{
-//    QObject *s = sender();
-//    if(s == model_freq_){
-//        QString txt = QString("%1 items").arg(model_freq_->getNrOfItems());
-//        ui->label_nffreq->setText(txt);
-//    }
+void ObsModeDialog::on_pushButton_addNewBand_clicked()
+{
+    bool ok;
+    QString name = QInputDialog::getText(this, tr("rename block"),
+                                         tr("new name:"), QLineEdit::Normal,
+                                         "", &ok);
 
-//}
+    if(ok){
+        QStringList bands = bandIds_->stringList();
+        if(!bands.contains(name)){
+            bands << name;
+            bands.sort();
+        }
+        bandIds_->setStringList(bands);
+    }
+    ui->comboBox_bands->setCurrentText(name);
+}
 
+void ObsModeDialog::on_pushButton_removeBand_clicked()
+{
+    int idx = ui->comboBox_bands->currentIndex();
+    if(idx>=0){
+        QStringList bands = bandIds_->stringList();
+        bands.erase(bands.begin()+idx);
+        bandIds_->setStringList(bands);
+    }
+    model_freq_->layoutChanged();
+}
+
+std::shared_ptr<VieVS::ObservingMode> ObsModeDialog::getObservingMode()
+{
+    auto om = std::make_shared<VieVS::ObservingMode>();
+    for(const auto &any : modes_){
+        om->addMode(any);
+    }
+    for(const auto &any : freqs_){
+        om->addBlock(any);
+    }
+    for(const auto &any : bbcs_){
+        om->addBlock(any);
+    }
+    for(const auto &any : ifs_){
+        om->addBlock(any);
+    }
+    for(const auto &any : tracks_){
+        om->addBlock(any);
+    }
+    for(const auto &any : trackFrameFormats_){
+        om->addBlock(*any);
+    }
+    return om;
+}

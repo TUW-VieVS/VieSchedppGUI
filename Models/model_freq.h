@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QFont>
+#include <QColor>
 #include <QStringListModel>
 #include "../VieSchedpp/Freq.h"
 
@@ -11,7 +12,10 @@ class Model_Freq : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent = nullptr);
+    explicit Model_Freq(QObject *parent = nullptr);
+
+    Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent = nullptr);
+
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
@@ -42,6 +46,14 @@ public:
 
     static const QVector<QString> &getNetSidebands(){
         return netSidebans_;
+    }
+
+    int nrItems(){
+        if(data_ == nullptr){
+            return 0;
+        }else{
+            return data_->getChan_defs().size();
+        }
     }
 
 private:

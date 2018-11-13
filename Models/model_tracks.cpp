@@ -55,6 +55,16 @@ QVariant Model_Tracks::headerData(int section, Qt::Orientation orientation, int 
             }
         }
     }
+    if(role == Qt::FontRole){
+        if (orientation == Qt::Horizontal) {
+            if (section == 1){
+                QFont boldFont;
+                boldFont.setBold(true);
+                return boldFont;
+            }
+        }
+    }
+
     return QVariant();
 }
 
@@ -115,6 +125,13 @@ QVariant Model_Tracks::data(const QModelIndex &index, int role) const
             }else{
                 return d.at(row).fourth_multiplex_track_;
             }
+        }
+    }
+    if(role == Qt::FontRole){
+        if (col == 1){
+            QFont boldFont;
+            boldFont.setBold(true);
+            return boldFont;
         }
     }
     if(role == Qt::TextAlignmentRole){

@@ -14,8 +14,8 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_10">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_14">
+    <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
        <number>3</number>
@@ -1088,7 +1088,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>264</width>
+             <width>929</width>
              <height>717</height>
             </rect>
            </property>
@@ -1895,7 +1895,7 @@ If you only want to run simulations you can deselect this to avoid error message
        <property name="statusTip">
         <string>observing mode</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_14">
+       <layout class="QVBoxLayout" name="verticalLayout_18">
         <item>
          <widget class="QGroupBox" name="groupBox_modeSked">
           <property name="toolTip">
@@ -1974,9 +1974,21 @@ If you only want to run simulations you can deselect this to avoid error message
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1">
-          <item>
+         <widget class="QSplitter" name="splitter_8">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QSplitter" name="splitter_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
            <widget class="QGroupBox" name="groupBox_modeCustom">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>use custom observing mode</string>
             </property>
@@ -2210,8 +2222,6 @@ If you only want to run simulations you can deselect this to avoid error message
              </item>
             </layout>
            </widget>
-          </item>
-          <item>
            <widget class="QGroupBox" name="groupBox_modeAdvanced">
             <property name="title">
              <string>advanced custom mode</string>
@@ -2258,14 +2268,24 @@ If you only want to run simulations you can deselect this to avoid error message
                <item>
                 <widget class="QPushButton" name="pushButton_startAdvancedMode">
                  <property name="text">
-                  <string>start</string>
+                  <string> start</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
                  </property>
                 </widget>
                </item>
               </layout>
              </item>
              <item>
-              <widget class="QTabWidget" name="tabWidget_2">
+              <widget class="QTabWidget" name="tabWidget_customObservingMode">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="currentIndex">
                 <number>0</number>
                </property>
@@ -2277,7 +2297,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_115">
                    <item>
-                    <widget class="QComboBox" name="comboBox"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_mode">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_52">
@@ -2295,7 +2322,14 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView"/>
+                  <widget class="QTableView" name="tableView_observingMode_mode">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::NoSelection</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2307,7 +2341,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_117">
                    <item>
-                    <widget class="QComboBox" name="comboBox_2"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_freq">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_53">
@@ -2325,7 +2366,14 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_2"/>
+                  <widget class="QTableView" name="tableView_observingMode_freq">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::NoSelection</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2337,7 +2385,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_118">
                    <item>
-                    <widget class="QComboBox" name="comboBox_3"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_bbc">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_54">
@@ -2355,7 +2410,14 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_3"/>
+                  <widget class="QTableView" name="tableView_observingMode_bbc">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::NoSelection</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2367,7 +2429,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_119">
                    <item>
-                    <widget class="QComboBox" name="comboBox_4"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_if">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_56">
@@ -2385,7 +2454,14 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_4"/>
+                  <widget class="QTableView" name="tableView_observingMode_if">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::NoSelection</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2397,7 +2473,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_120">
                    <item>
-                    <widget class="QComboBox" name="comboBox_5"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_tracks">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_57">
@@ -2415,7 +2498,14 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_5"/>
+                  <widget class="QTableView" name="tableView_observingMode_tracks">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::NoSelection</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2427,7 +2517,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_121">
                    <item>
-                    <widget class="QComboBox" name="comboBox_6"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_trackFrameFormat">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_58">
@@ -2445,7 +2542,17 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_6"/>
+                  <spacer name="verticalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </widget>
@@ -2457,7 +2564,14 @@ If you only want to run simulations you can deselect this to avoid error message
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_122">
                    <item>
-                    <widget class="QComboBox" name="comboBox_7"/>
+                    <widget class="QComboBox" name="comboBox_observingMode_pcal">
+                     <property name="minimumSize">
+                      <size>
+                       <width>180</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_59">
@@ -2475,7 +2589,11 @@ If you only want to run simulations you can deselect this to avoid error message
                   </layout>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView_7"/>
+                  <widget class="QTableView" name="tableView_observingMode_pcal">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2483,79 +2601,77 @@ If you only want to run simulations you can deselect this to avoid error message
              </item>
             </layout>
            </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_18">
-          <property name="title">
-           <string>policy</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_18">
-           <item>
-            <widget class="QTableWidget" name="tableWidget_ModesPolicy">
-             <property name="toolTip">
-              <string>summary of observed bands</string>
-             </property>
-             <property name="statusTip">
-              <string>summary of observed bands</string>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set a general &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum SNR &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;for each observed band here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you use the sked catalogs the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;X-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; are listed here.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case you use a custom mode all selected bands are listed here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for stations&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for source&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; describe if it is necessary or optional that SEFD and/or flux information is written in the catalogs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case it is only optional some backup values are used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup station&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup source&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; describe how this backup value is calculated. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &amp;quot;backup value sources&amp;quot; list the backup values. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used as the SEFD information for this band, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value sources&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is used as the flux information for this band, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;min value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, then the software looks for the minimum value for all other bands found in the sked catalogs and multiplies this value with the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;max value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, then the software looks for the maximum value for all other bands found in the sked catalogs and multiplies this value with the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This a handy way to extend the sked catalogs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Let's assume you want to observe with the standard 256-16(R1-R4) mode in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;X-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and additionally in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Ka-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The catalogs usually only list values in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Let us assume you have select &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;optional&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;max value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; with a value of 1.2 and&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;min value times&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; with a value of 0.8.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The scheduler now reads all the information from the catalogs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Maybe it finds a SEFD of &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;1000 in X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;800 in S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for a station and no value for Ka-band. Then it will take the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum found value&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, multiplies it with 1.2 and use this value as the Ka-Band SEFD. This would result in a SEFD of &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;1200 for Ka-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it would find the flux information with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;800 mJy in X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;500 mJy in S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; but no value for Ka-band it would calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Ka-band value&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;400 mJy&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, which is the minimum found value times 0.8. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderCascadingSectionResizes">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderHighlightSections">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-              <bool>false</bool>
-             </attribute>
-             <column>
-              <property name="text">
-               <string>min SNR</string>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_18">
+           <property name="title">
+            <string>policy</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_94">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_ModesPolicy">
+              <property name="toolTip">
+               <string>summary of observed bands</string>
               </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>value for stations</string>
+              <property name="statusTip">
+               <string>summary of observed bands</string>
               </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>backup stations</string>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set a general &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum SNR &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;for each observed band here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you use the sked catalogs the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;X-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; are listed here.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case you use a custom mode all selected bands are listed here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for stations&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for source&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; describe if it is necessary or optional that SEFD and/or flux information is written in the catalogs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case it is only optional some backup values are used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup station&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup source&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; describe how this backup value is calculated. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &amp;quot;backup value sources&amp;quot; list the backup values. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used as the SEFD information for this band, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value sources&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is used as the flux information for this band, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;min value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, then the software looks for the minimum value for all other bands found in the sked catalogs and multiplies this value with the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you have selected &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;max value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, then the software looks for the maximum value for all other bands found in the sked catalogs and multiplies this value with the value from &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup value stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, in case the information is not in the sked catalog files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This a handy way to extend the sked catalogs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Let's assume you want to observe with the standard 256-16(R1-R4) mode in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;X-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and additionally in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Ka-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The catalogs usually only list values in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;S-&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Let us assume you have select &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;optional&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;value for stations/sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;max value times&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup stations&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; with a value of 1.2 and&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;min value times&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;backup sources&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; with a value of 0.8.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The scheduler now reads all the information from the catalogs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Maybe it finds a SEFD of &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;1000 in X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;800 in S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for a station and no value for Ka-band. Then it will take the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum found value&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, multiplies it with 1.2 and use this value as the Ka-Band SEFD. This would result in a SEFD of &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;1200 for Ka-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it would find the flux information with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;800 mJy in X-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;500 mJy in S-band&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; but no value for Ka-band it would calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Ka-band value&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; as &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;400 mJy&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, which is the minimum found value times 0.8. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>backup value stations</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>value for sources</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>backup sources</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>backup value sources</string>
-              </property>
-             </column>
-            </widget>
-           </item>
-          </layout>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderCascadingSectionResizes">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>min SNR</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>value for stations</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>backup stations</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>backup value stations</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>value for sources</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>backup sources</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>backup value sources</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -9489,7 +9605,7 @@ p, li { white-space: pre-wrap; }
                <item row="1" column="0">
                 <widget class="QLabel" name="label_49">
                  <property name="text">
-                  <string>min number of scans per soruce</string>
+                  <string>min number of scans per source</string>
                  </property>
                 </widget>
                </item>

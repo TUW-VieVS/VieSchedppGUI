@@ -15,6 +15,10 @@ public:
 
     void setMode(std::shared_ptr<VieVS::Mode> data);
 
+    void setStations(const QVector<QString> &stations){
+        stations_ = stations;
+    }
+
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 

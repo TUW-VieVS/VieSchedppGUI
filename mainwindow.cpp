@@ -379,6 +379,38 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->textEdit_weightFactorHelp->setVisible(false);
     connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
+
+    Model_Mode *modelModes = new Model_Mode(QVector<QString>(), this);
+    ui->tableView_observingMode_mode->setModel(modelModes);
+    auto mhv1 = ui->tableView_observingMode_mode->horizontalHeader();
+    mhv1->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    Model_Freq *modelFreq = new Model_Freq(this);
+    ui->tableView_observingMode_freq->setModel(modelFreq);
+    auto mhv2 = ui->tableView_observingMode_freq->horizontalHeader();
+    mhv2->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    Model_Bbc *modelBbc = new Model_Bbc(this);
+    ui->tableView_observingMode_bbc->setModel(modelBbc);
+    auto mhv3 = ui->tableView_observingMode_bbc->horizontalHeader();
+    mhv3->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    Model_If *modelIf = new Model_If(this);
+    ui->tableView_observingMode_if->setModel(modelIf);
+    auto mhv4 = ui->tableView_observingMode_if->horizontalHeader();
+    mhv4->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    Model_Tracks *modelTracks = new Model_Tracks(this);
+    ui->tableView_observingMode_tracks->setModel(modelTracks);
+    auto mhv5 = ui->tableView_observingMode_tracks->horizontalHeader();
+    mhv5->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->comboBox_observingMode_mode,   SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+    connect(ui->comboBox_observingMode_freq,   SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+    connect(ui->comboBox_observingMode_bbc,    SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+    connect(ui->comboBox_observingMode_if,     SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+    connect(ui->comboBox_observingMode_tracks, SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+
 }
 
 MainWindow::~MainWindow()
@@ -4077,8 +4109,10 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
 
     VieVS::SkdCatalogReader skd;
     std::vector<std::string> station_names;
+    QVector<QString> qstation_names;
     for(int i=0; i<selectedStationModel->rowCount(); ++i){
         station_names.push_back(selectedStationModel->item(i)->text().toStdString());
+        qstation_names.append(selectedStationModel->item(i)->text());
     }
 
     if(station_names.empty()){
@@ -4114,10 +4148,64 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
     ObsModeDialog *obsModeDial = new ObsModeDialog(obsModeStart, this);
     int result = obsModeDial->exec();
     if(result == QDialog::Accepted){
+        advancedObservingMode_ = obsModeDial->getObservingMode();
+
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setStations(qstation_names);
+        ui->comboBox_observingMode_mode->clear();
+        for(const auto & any : advancedObservingMode_->getModes()){
+            ui->comboBox_observingMode_mode->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(0)));
+
+        ui->comboBox_observingMode_freq->clear();
+        for(const auto & any : advancedObservingMode_->getFreqs()){
+            ui->comboBox_observingMode_freq->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(std::make_shared< VieVS::Freq >(*advancedObservingMode_->getFreqPerIndex(0)));
+
+        ui->comboBox_observingMode_bbc->clear();
+        for(const auto & any : advancedObservingMode_->getBbcs()){
+            ui->comboBox_observingMode_bbc->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(std::make_shared< VieVS::Bbc >(*advancedObservingMode_->getBbcPerIndex(0)));
+
+        ui->comboBox_observingMode_if->clear();
+        for(const auto & any : advancedObservingMode_->getIfs()){
+            ui->comboBox_observingMode_if->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(std::make_shared< VieVS::If >(*advancedObservingMode_->getIfPerIndex(0)));
+
+        ui->comboBox_observingMode_tracks->clear();
+        for(const auto & any : advancedObservingMode_->getTracks()){
+            ui->comboBox_observingMode_tracks->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(std::make_shared< VieVS::Track >(*advancedObservingMode_->getTracksPerIndex(0)));
+
+        ui->comboBox_observingMode_trackFrameFormat->clear();
+        for(const auto & any : advancedObservingMode_->getTrackFrameFormats()){
+            ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
+        }
 
     }
 
     delete(obsModeDial);
+}
+
+void MainWindow::changeObservingModeSelection(int idx){
+    auto s = sender();
+
+    if(s == ui->comboBox_observingMode_mode){
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(idx)));
+    }else if(s == ui->comboBox_observingMode_freq){
+        qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(std::make_shared< VieVS::Freq >(*advancedObservingMode_->getFreqPerIndex(idx)));
+    }else if(s == ui->comboBox_observingMode_bbc){
+        qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(std::make_shared< VieVS::Bbc >(*advancedObservingMode_->getBbcPerIndex(idx)));
+    }else if(s == ui->comboBox_observingMode_if){
+        qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(std::make_shared< VieVS::If >(*advancedObservingMode_->getIfPerIndex(idx)));
+    }else if(s == ui->comboBox_observingMode_tracks){
+        qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(std::make_shared< VieVS::Track >(*advancedObservingMode_->getTracksPerIndex(idx)));
+    }
+
 }
 
 void MainWindow::readAllSkedObsModes()

@@ -541,10 +541,14 @@ private slots:
 
     void on_pushButton_startAdvancedMode_clicked();
 
+    void changeObservingModeSelection(int idx);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
     boost::property_tree::ptree settings_;
+
+    std::shared_ptr<VieVS::ObservingMode> advancedObservingMode_;
 
     VieVS::ParameterSettings para;
 

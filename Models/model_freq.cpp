@@ -6,6 +6,12 @@ QVector<QString> Model_Freq::netSidebans_ = {QString::fromStdString(VieVS::Freq:
                                              QString::fromStdString(VieVS::Freq::toString(VieVS::Freq::Net_sideband::LC))
                                              };
 
+Model_Freq::Model_Freq(QObject *parent)
+    : QAbstractTableModel(parent), band_{nullptr}, channels_{nullptr}, bbcs_{nullptr}
+{
+
+}
+
 Model_Freq::Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent)
     : QAbstractTableModel(parent), band_{band}, channels_{channels}, bbcs_{bbcs}
 {
@@ -71,7 +77,7 @@ QVariant Model_Freq::data(const QModelIndex &index, int role) const
         switch (col) {
         case 0:{
             QString name = QString::fromStdString(d.at(row).bandId_);
-            if(band_->stringList().indexOf(name) == -1){
+            if(band_ != nullptr && band_->stringList().indexOf(name) == -1){
                 return "undefined";
             }
             return QString::fromStdString(d.at(row).bandId_);
@@ -84,14 +90,14 @@ QVariant Model_Freq::data(const QModelIndex &index, int role) const
             return QString("%1 [MHz]").arg(d.at(row).chan_bandwidth_);
         case 4:{
             QString name = QString::fromStdString(d.at(row).chan_id_);
-            if(channels_->stringList().indexOf(name) == -1){
+            if(channels_ != nullptr && channels_->stringList().indexOf(name) == -1){
                 return "undefined";
             }
             return QString::fromStdString(d.at(row).chan_id_);
         }
         case 5:{
             QString name = QString::fromStdString(d.at(row).bbc_id_);
-            if(bbcs_->stringList().indexOf(name) == -1){
+            if(bbcs_ != nullptr && bbcs_->stringList().indexOf(name) == -1){
                 return "undefined";
             }
             return QString::fromStdString(d.at(row).bbc_id_);
@@ -108,6 +114,19 @@ QVariant Model_Freq::data(const QModelIndex &index, int role) const
             return Qt::AlignCenter;
         }
     }
+    if(role == Qt::FontRole){
+        if(data(index).toString() == "undefined"){
+            QFont boldFont;
+            boldFont.setBold(true);
+            return boldFont;
+        }
+    }
+    if(role == Qt::ForegroundRole){
+        if(data(index).toString() == "undefined"){
+            return QVariant::fromValue(QColor(Qt::red));
+        }
+    }
+
 
     return QVariant();
 }
@@ -125,8 +144,10 @@ bool Model_Freq::setData(const QModelIndex &index, const QVariant &value, int ro
         switch (col) {
         case 0:{
             int idx =value.toInt();
-            QString name = band_->stringList().at(idx);
-            d.at(row).bandId_ = name.toStdString();
+            if(idx>=0){
+                QString name = band_->stringList().at(idx);
+                d.at(row).bandId_ = name.toStdString();
+            }
             break;
         }
         case 1:{
@@ -161,18 +182,26 @@ bool Model_Freq::setData(const QModelIndex &index, const QVariant &value, int ro
         }
         case 4:{
             int idx =value.toInt();
-            QString name = channels_->stringList().at(idx);
-            d.at(row).chan_id_ = name.toStdString();
+            if(idx>=0){
+                QString name = channels_->stringList().at(idx);
+                d.at(row).chan_id_ = name.toStdString();
+            }
             break;
         }
         case 5:{
             int idx =value.toInt();
-            QString name = bbcs_->stringList().at(idx);
-            d.at(row).bbc_id_ = name.toStdString();
+            if(idx>=0){
+                QString name = bbcs_->stringList().at(idx);
+                d.at(row).bbc_id_ = name.toStdString();
+            }
             break;
         }
         case 6:{
-            d.at(row).phase_cal_id_ = value.toString().toStdString();
+//            int idx =value.toInt();
+//            if(idx>=0){
+//                QString name = phaseCals_->stringList().at(idx);
+//                d.at(row).phase_cal_id_ = name.toStdString();
+//            }
             break;
         }
         }

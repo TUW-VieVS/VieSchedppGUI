@@ -5,6 +5,7 @@
 #include <QStringListModel>
 #include <QTableView>
 #include <QInputDialog>
+#include <QMessageBox>
 
 #include <Models/model_mode.h>
 #include <Models/model_if.h>
@@ -17,6 +18,7 @@
 #include <Delegates/spinboxdelegate.h>
 
 #include "../VieSchedpp/ObservingMode.h"
+//#include "utility"
 
 namespace Ui {
 class ObsModeDialog;
@@ -28,23 +30,36 @@ class ObsModeDialog : public QDialog
 
 public:
     explicit ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent = nullptr);
+
     ~ObsModeDialog();
+
+    std::shared_ptr<VieVS::ObservingMode> getObservingMode();
 
 private slots:
     void updateMode(int i);
+
     void updateFreq(int i);
+
     void updateIf(int i);
+
     void updateBbc(int i);
+
     void updateTracks(int i);
+
     void updatePhaceCal(int i);
 
     void setupViewMode(QTableView *view);
+
     void setupViewIf(QTableView *view);
+
     void setupViewBbc(QTableView *view);
+
     void setupViewTracks(QTableView *view);
+
     void setupViewFreq(QTableView *view);
 
     void insertModelEntries(QTableView *view);
+
     void ereaseModelEntries(QTableView *view);
 
     void insertAndErase();
@@ -57,9 +72,12 @@ private slots:
 
     void removeBlock();
 
-//    void updateNumber();
-
     void updateIds();
+
+    void on_pushButton_addNewBand_clicked();
+
+    void on_pushButton_removeBand_clicked();
+
 
 private:
     Ui::ObsModeDialog *ui;
@@ -91,8 +109,7 @@ private:
     QStringListModel *ifIds_;
     QStringListModel *bbcIds_;
     QStringListModel *channelIds_;
-//    QStringListModel *phaseCalIds_;
-
+    QStringListModel *phaseCalIds_;
 };
 
 #endif // OBSMODEDIALOG_H

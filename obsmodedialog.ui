@@ -50,7 +50,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_save">
        <property name="text">
-        <string>Save</string>
+        <string> save</string>
        </property>
        <property name="icon">
         <iconset resource="myresources.qrc">
@@ -61,7 +61,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_load">
        <property name="text">
-        <string>Load</string>
+        <string> load</string>
        </property>
        <property name="icon">
         <iconset resource="myresources.qrc">
@@ -81,7 +81,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="mode">
       <attribute name="title">
@@ -182,16 +182,6 @@
        </item>
        <item>
         <widget class="QTableView" name="tableView_mode"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_nrmode">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -330,6 +320,47 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
+          <widget class="QLabel" name="label_nrFreq">
+           <property name="text">
+            <string>number of channels: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_defineChannel">
+           <property name="toolTip">
+            <string>define new channel</string>
+           </property>
+           <property name="statusTip">
+            <string>define new channel</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeChannel">
+           <property name="toolTip">
+            <string>remove selected channel</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected channel</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -342,42 +373,10 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_defineChannel">
-           <property name="text">
-            <string>define new channel</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeChannel">
-           <property name="text">
-            <string>remove selected channel</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
         <widget class="QTableView" name="tableView_freq"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_nffreq">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -407,12 +406,52 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameBbcBlock">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addBbcBlock">
+           <property name="toolTip">
+            <string>add new BBC block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new BBC block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeBbcBlock">
+           <property name="toolTip">
+            <string>remove selected BBC block</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected BBC block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -429,28 +468,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addBbcBlock">
-           <property name="text">
-            <string>add new BBC block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeBbcBlock">
-           <property name="text">
-            <string>remove selected BBC block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -462,6 +479,47 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_nrBbcs">
+           <property name="text">
+            <string>number of assigned bbcs: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_assignBbc">
+           <property name="toolTip">
+            <string>assign new bbc</string>
+           </property>
+           <property name="statusTip">
+            <string>assign new bbc</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeBbc">
+           <property name="toolTip">
+            <string>remove selected bbc</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected bbc</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+           </property>
+          </widget>
+         </item>
          <item>
           <spacer name="horizontalSpacer_4">
            <property name="orientation">
@@ -475,42 +533,10 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_assignBbc">
-           <property name="text">
-            <string>assign new bbc</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeBbc">
-           <property name="text">
-            <string>remove selected bbc</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
         <widget class="QTableView" name="tableView_bbc"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_nrbbc">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -540,12 +566,52 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameIfBlock">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addIfBlock">
+           <property name="toolTip">
+            <string>add new IF block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new IF block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeIfBlock">
+           <property name="toolTip">
+            <string>remove selected IF block</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected IF block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -562,28 +628,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addIfBlock">
-           <property name="text">
-            <string>add new IF block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeIfBlock">
-           <property name="text">
-            <string>remove selected IF block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -595,6 +639,47 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_nrIfs">
+           <property name="text">
+            <string>number of if definitions: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_defineIf">
+           <property name="toolTip">
+            <string>define new IF</string>
+           </property>
+           <property name="statusTip">
+            <string>define new IF</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeIf">
+           <property name="toolTip">
+            <string>remove selected IF</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected IF</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+           </property>
+          </widget>
+         </item>
          <item>
           <spacer name="horizontalSpacer_6">
            <property name="orientation">
@@ -608,42 +693,10 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_defineIf">
-           <property name="text">
-            <string>define new IF</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeIf">
-           <property name="text">
-            <string>remove selected IF</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
         <widget class="QTableView" name="tableView_if"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_nrif">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -673,12 +726,52 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameTracksBock">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addTracksBlock">
+           <property name="toolTip">
+            <string>add new tracks block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new tracks block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeTracksBlock">
+           <property name="toolTip">
+            <string>remove selected tracks block</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected tracks block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -695,28 +788,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addTracksBlock">
-           <property name="text">
-            <string>add new tracks block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeTracksBlock">
-           <property name="text">
-            <string>remove selected tracks block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -728,6 +799,60 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_nrTracks">
+           <property name="text">
+            <string>number of fanouts: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addFanout">
+           <property name="toolTip">
+            <string>add new fanout</string>
+           </property>
+           <property name="statusTip">
+            <string>add new fanout</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeFanout">
+           <property name="toolTip">
+            <string>remove selected fanout</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected fanout</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item>
           <widget class="QLabel" name="label_8">
            <property name="text">
@@ -776,55 +901,10 @@
            </item>
           </widget>
          </item>
-         <item>
-          <spacer name="horizontalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addFanout">
-           <property name="text">
-            <string>add new fanout</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeFanout">
-           <property name="text">
-            <string>remove selected fanout</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
         <widget class="QTableView" name="tableView_tracks"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_nrtracks">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -854,12 +934,52 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renameTrackFrameFormat">
-           <property name="text">
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addTrackFrameFormat">
+           <property name="toolTip">
+            <string>add new track frame format block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new track frame format block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removeTrackFrameFormatBlock">
+           <property name="toolTip">
+            <string>remove selected track frame format</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected track frame format</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -875,28 +995,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addTrackFrameFormat">
-           <property name="text">
-            <string>add new track frame format block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removeTrackFrameFormatBlock">
-           <property name="text">
-            <string>remove selected track frame format</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
          </item>
         </layout>
        </item>
@@ -931,6 +1029,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout_13">
          <item>
           <widget class="QLabel" name="label_7">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>select</string>
            </property>
@@ -938,6 +1039,9 @@
          </item>
          <item>
           <widget class="QComboBox" name="comboBox_selectPhaseCal">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimumSize">
             <size>
              <width>150</width>
@@ -948,12 +1052,61 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_renamePhaseCal">
-           <property name="text">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
             <string>rename</string>
+           </property>
+           <property name="statusTip">
+            <string>rename</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="icon">
             <iconset resource="myresources.qrc">
              <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addPhaseCalBlcok">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>add new phase cal block</string>
+           </property>
+           <property name="statusTip">
+            <string>add new phase cal block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removePhaseCalBlock">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>remove selected phase cal block</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected phase cal block</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
          </item>
@@ -970,28 +1123,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addPhaseCalBlcok">
-           <property name="text">
-            <string>add new phase cal block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removePhaseCalBlock">
-           <property name="text">
-            <string>remove selected phase cal block</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -1003,6 +1134,56 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>number of phase cal detections: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addPhaceCalDetect">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>add phase cal detect</string>
+           </property>
+           <property name="statusTip">
+            <string>add phase cal detect</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_removePhaceCalDetect">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>remove selected phase cal detect</string>
+           </property>
+           <property name="statusTip">
+            <string>remove selected phase cal detect</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+           </property>
+          </widget>
+         </item>
          <item>
           <spacer name="horizontalSpacer_12">
            <property name="orientation">
@@ -1016,32 +1197,14 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_addPhaceCalDetect">
-           <property name="text">
-            <string>add phase cal detect</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_removePhaceCalDetect">
-           <property name="text">
-            <string>remove selected phase cal detect</string>
-           </property>
-           <property name="icon">
-            <iconset resource="myresources.qrc">
-             <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
-        <widget class="QTableView" name="tableView_phaceCal"/>
+        <widget class="QTableView" name="tableView_phaceCal">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_nrphaseCal">

@@ -54,6 +54,15 @@ public:
         return bitstream_;
     }
 
+    int nrItems(){
+        if(data_ == nullptr){
+            return 0;
+        }else{
+            return data_->getFanout_defs().size();
+        }
+    }
+
+
 signals:
     void idChanged();
 

@@ -3,6 +3,8 @@
 
 #include <QAbstractTableModel>
 #include <QFont>
+#include <QColor>
+#include <QStringListModel>
 #include "../VieSchedpp/Bbc.h"
 
 class Model_Bbc : public QAbstractTableModel
@@ -11,6 +13,8 @@ class Model_Bbc : public QAbstractTableModel
 
 public:
     explicit Model_Bbc(QObject *parent = nullptr);
+
+    Model_Bbc(QStringListModel *ifs, QObject *parent = nullptr);
 
     void setBbc(const std::shared_ptr<VieVS::Bbc> &data);
 
@@ -40,11 +44,22 @@ public:
 
     void updateNames();
 
+    int nrItems(){
+        if(data_ == nullptr){
+            return 0;
+        }else{
+            return data_->getBbc_assigns().size();
+        }
+    }
+
 signals:
     void idChanged();
 
 private:
     std::shared_ptr<VieVS::Bbc> data_;
+
+    QStringListModel *ifs_;
+
 };
 
 #endif // MODEL_BBC_H
