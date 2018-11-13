@@ -410,7 +410,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox_observingMode_bbc,    SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
     connect(ui->comboBox_observingMode_if,     SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
     connect(ui->comboBox_observingMode_tracks, SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
-
 }
 
 MainWindow::~MainWindow()

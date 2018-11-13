@@ -1088,7 +1088,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>929</width>
+             <width>264</width>
              <height>717</height>
             </rect>
            </property>
@@ -3887,7 +3887,7 @@ If you only want to run simulations you can deselect this to avoid error message
        <property name="statusTip">
         <string>source list</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_58" stretch="1,2">
+       <layout class="QVBoxLayout" name="verticalLayout_58" stretch="0,0">
         <item>
          <widget class="QSplitter" name="splitter_6">
           <property name="orientation">
@@ -7583,8 +7583,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>639</width>
-             <height>576</height>
+             <width>943</width>
+             <height>697</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">

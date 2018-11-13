@@ -6,6 +6,7 @@
 #include <QTableView>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QTableWidget>
 
 #include <Models/model_mode.h>
 #include <Models/model_if.h>
@@ -78,6 +79,9 @@ private slots:
 
     void on_pushButton_removeBand_clicked();
 
+    void dispSummary();
+
+    void changeBits(int idx);
 
 private:
     Ui::ObsModeDialog *ui;

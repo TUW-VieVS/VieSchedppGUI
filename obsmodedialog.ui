@@ -81,7 +81,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="mode">
       <attribute name="title">
@@ -170,6 +170,13 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_summary">
+           <property name="text">
+            <string>summary</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -861,7 +868,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinBox">
+          <widget class="QSpinBox" name="spinBox_bits">
            <property name="minimum">
             <number>1</number>
            </property>
@@ -1227,6 +1234,9 @@
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
      </property>
     </widget>
    </item>

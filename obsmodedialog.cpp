@@ -7,6 +7,8 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->tabWidget->setCurrentIndex(0);
+
     bandIds_ = new QStringListModel(this);
     ifIds_ = new QStringListModel(this);
     bbcIds_ = new QStringListModel(this);
@@ -175,6 +177,10 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     model_bbc_->idChanged();
     model_tracks_->idChanged();
     model_if_->idChanged();
+
+    connect(ui->spinBox_bits, SIGNAL(valueChanged(int)), this, SLOT(changeBits(int)));
+
+    connect(ui->pushButton_summary, SIGNAL(clicked()), this, SLOT(dispSummary()));
 }
 
 ObsModeDialog::~ObsModeDialog()
@@ -758,6 +764,57 @@ void ObsModeDialog::on_pushButton_removeBand_clicked()
         bandIds_->setStringList(bands);
     }
     model_freq_->layoutChanged();
+}
+
+void ObsModeDialog::dispSummary()
+{
+    int idx = ui->comboBox_selectMode->currentIndex();
+    const auto &mode = modes_.at(idx);
+    mode->calcRecordingRates();
+
+    auto bands = bandIds_->stringList();
+
+    int nsta = stations_.size();
+    QTableWidget *t = new QTableWidget(nsta*(nsta-1)/2, bandIds_->rowCount()+2, this);
+    int c = 0;
+    for(int i=0; i<nsta; ++i){
+        for(int j=i+1; j<nsta; ++j){
+            t->setItem(c, 0, new QTableWidgetItem(stations_.at(i)));
+            t->setItem(c, 1, new QTableWidgetItem(stations_.at(j)));
+
+            for(int b = 0; b<bands.size(); ++b){
+                double rec = mode->recordingRate(i,j,bands.at(b).toStdString());
+                t->setItem(c, b+2, new QTableWidgetItem(QString("%1").arg(rec*1e-6,0,'f',2)));
+            }
+            ++c;
+        }
+    }
+    auto hv = t->horizontalHeader();
+    hv->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    QStringList h;
+    h << "station 1" << "station2";
+    for(const auto & any : bands){
+        h << any+" [Mbps]";
+    }
+
+    t->setHorizontalHeaderLabels( h );
+    t->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    t->verticalHeader()->hide();
+    t->setSortingEnabled(true);
+
+    QDialog *dial = new QDialog(this);
+    QVBoxLayout *l = new QVBoxLayout(dial);
+    l->insertWidget(0,t,1);
+    dial->setLayout(l);
+    dial->resize(600,600);
+    dial->exec();
+}
+
+void ObsModeDialog::changeBits(int bits)
+{
+    int idx = ui->comboBox_selectTracksBlock->currentIndex();
+    tracks_[idx]->setBits(bits);
 }
 
 std::shared_ptr<VieVS::ObservingMode> ObsModeDialog::getObservingMode()
