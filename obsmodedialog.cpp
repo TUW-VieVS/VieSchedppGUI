@@ -504,25 +504,33 @@ void ObsModeDialog::addNewBlock()
         int n = modes_.size();
         int nsta = stations_.size();
         std::string name = std::string("MODE#").append(std::to_string(n));
-        auto itm = std::make_shared<VieVS::Mode>(name, nsta);
-        for(const auto &any : freqs_){
-            itm->addBlock(any,std::vector<unsigned long>());
+        int idx = ui->comboBox_selectTracksBlock->currentIndex();
+        std::shared_ptr<VieVS::Mode> itm = nullptr;
+        if(idx>=0){
+            itm = std::make_shared<VieVS::Mode>(*modes_[idx]);
+            itm->changeName(name);
+        }else{
+            itm = std::make_shared<VieVS::Mode>(name, nsta);
+            for(const auto &any : freqs_){
+                itm->addBlock(any,std::vector<unsigned long>());
+            }
+            for(const auto &any : bbcs_){
+                itm->addBlock(any,std::vector<unsigned long>());
+            }
+            for(const auto &any : ifs_){
+                itm->addBlock(any,std::vector<unsigned long>());
+            }
+            for(const auto &any : tracks_){
+                itm->addBlock(any,std::vector<unsigned long>());
+            }
+            for(const auto &any : trackFrameFormats_){
+                itm->addBlock(any,std::vector<unsigned long>());
+            }
+//            for(const auto &any : phaseCals_){
+//                itm->addBlock(any,std::vector<unsigned long>());
+//            }
+
         }
-        for(const auto &any : bbcs_){
-            itm->addBlock(any,std::vector<unsigned long>());
-        }
-        for(const auto &any : ifs_){
-            itm->addBlock(any,std::vector<unsigned long>());
-        }
-        for(const auto &any : tracks_){
-            itm->addBlock(any,std::vector<unsigned long>());
-        }
-        for(const auto &any : trackFrameFormats_){
-            itm->addBlock(any,std::vector<unsigned long>());
-        }
-//        for(const auto &any : phaseCals_){
-//            itm->addBlock(any,std::vector<unsigned long>());
-//        }
         modes_.push_back(itm);
         QStringList tmp = modesNames_->stringList();
         tmp.append(QString::fromStdString(name));
@@ -532,7 +540,14 @@ void ObsModeDialog::addNewBlock()
     }else if( s == ui->pushButton_addFreqBlock){
         int n = freqs_.size();
         std::string name = std::string("FREQ#").append(std::to_string(n));
-        auto itm = std::make_shared<VieVS::Freq>(name);
+        int idx = ui->comboBox_selectFreqBlock->currentIndex();
+        std::shared_ptr<VieVS::Freq> itm = nullptr;
+        if(idx>=0){
+            itm = std::make_shared<VieVS::Freq>(*freqs_[idx]);
+            itm->changeName(name);
+        }else{
+            itm = std::make_shared<VieVS::Freq>(name);
+        }
         freqs_.push_back(itm);
         for(auto &any : modes_){
             any->addBlock(itm,std::vector<unsigned long>());
@@ -545,7 +560,14 @@ void ObsModeDialog::addNewBlock()
     }else if( s == ui->pushButton_addBbcBlock){
         int n = bbcs_.size();
         std::string name = std::string("BBC#").append(std::to_string(n));
-        auto itm = std::make_shared<VieVS::Bbc>(name);
+        int idx = ui->comboBox_selectBbcBlock->currentIndex();
+        std::shared_ptr<VieVS::Bbc> itm = nullptr;
+        if(idx>=0){
+            itm = std::make_shared<VieVS::Bbc>(*bbcs_[idx]);
+            itm->changeName(name);
+        }else{
+            itm = std::make_shared<VieVS::Bbc>(name);
+        }
         bbcs_.push_back(itm);
         for(auto &any : modes_){
             any->addBlock(itm,std::vector<unsigned long>());
@@ -558,7 +580,14 @@ void ObsModeDialog::addNewBlock()
     }else if( s == ui->pushButton_addIfBlock){
         int n = ifs_.size();
         std::string name = std::string("IF#").append(std::to_string(n));
-        auto itm = std::make_shared<VieVS::If>(name);
+        int idx = ui->comboBox_selectIfBlock->currentIndex();
+        std::shared_ptr<VieVS::If> itm = nullptr;
+        if(idx>=0){
+            itm = std::make_shared<VieVS::If>(*ifs_[idx]);
+            itm->changeName(name);
+        }else{
+            itm = std::make_shared<VieVS::If>(name);
+        }
         ifs_.push_back(itm);
         for(auto &any : modes_){
             any->addBlock(itm,std::vector<unsigned long>());
@@ -571,7 +600,14 @@ void ObsModeDialog::addNewBlock()
     }else if( s == ui->pushButton_addTracksBlock){
         int n = tracks_.size();
         std::string name = std::string("TRACKS#").append(std::to_string(n));
-        auto itm = std::make_shared<VieVS::Track>(name);
+        int idx = ui->comboBox_selectTracksBlock->currentIndex();
+        std::shared_ptr<VieVS::Track> itm = nullptr;
+        if(idx>=0){
+            itm = std::make_shared<VieVS::Track>(*tracks_[idx]);
+            itm->changeName(name);
+        }else{
+            itm = std::make_shared<VieVS::Track>(name);
+        }
         tracks_.push_back(itm);
         for(auto &any : modes_){
             any->addBlock(itm,std::vector<unsigned long>());

@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>3</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1088,7 +1088,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>264</width>
+             <width>929</width>
              <height>717</height>
             </rect>
            </property>
@@ -1933,10 +1933,10 @@ If you only want to run simulations you can deselect this to avoid error message
               </size>
              </property>
              <property name="toolTip">
-              <string>select observing mode</string>
+              <string>select sked observing mode</string>
              </property>
              <property name="statusTip">
-              <string>select observing mode</string>
+              <string>select sked observing mode</string>
              </property>
             </widget>
            </item>
@@ -2223,6 +2223,9 @@ If you only want to run simulations you can deselect this to avoid error message
             </layout>
            </widget>
            <widget class="QGroupBox" name="groupBox_modeAdvanced">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Manually create observing mode&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Select one of the &lt;span style=&quot; font-weight:600;&quot;&gt;sked observing modes&lt;/span&gt; as a start point and press the &lt;img src=&quot;:/icons/icons/arrow-right-3.png&quot; height=&quot;30&quot;/&gt; button to &lt;span style=&quot; font-weight:600;&quot;&gt;start the manual observing mode GUI&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Adjust your observing mode there and press ok to finish the manual adaptation. &lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;save&lt;/span&gt; the created observing mode by pressing the &lt;img src=&quot;:/icons/icons/document-export.png&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;If you have previously saved observing modes you can &lt;span style=&quot; font-weight:600;&quot;&gt;load&lt;/span&gt; them by pressing the &lt;img src=&quot;:/icons/icons/document-open-8.png&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;In case you want to &lt;span style=&quot; font-weight:600;&quot;&gt;modify&lt;/span&gt; your observing mode again press the &lt;img src=&quot;:/icons/icons/edit-undo-7.png&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="title">
              <string>advanced custom mode</string>
             </property>
@@ -2250,6 +2253,26 @@ If you only want to run simulations you can deselect this to avoid error message
                    <height>0</height>
                   </size>
                  </property>
+                 <property name="toolTip">
+                  <string>choose skd observing mode as startpoint</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>choose skd observing mode as startpoint</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_startAdvancedMode">
+                 <property name="toolTip">
+                  <string>start manual adaptation</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>start manual adaptation</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -2266,13 +2289,50 @@ If you only want to run simulations you can deselect this to avoid error message
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_startAdvancedMode">
-                 <property name="text">
-                  <string> start</string>
+                <widget class="QPushButton" name="pushButton_loadAdvancedMode">
+                 <property name="toolTip">
+                  <string>load observing mode</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>load observing mode</string>
                  </property>
                  <property name="icon">
                   <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
+                   <normaloff>:/icons/icons/document-open-8.png</normaloff>:/icons/icons/document-open-8.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_saveAdvancedMode">
+                 <property name="toolTip">
+                  <string>save this observing mode</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>save this observing mode</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_changeCurrentAdvancedMode">
+                 <property name="toolTip">
+                  <string>change current observing mode</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>change current observing mode</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -2285,6 +2345,12 @@ If you only want to run simulations you can deselect this to avoid error message
                  <width>0</width>
                  <height>0</height>
                 </size>
+               </property>
+               <property name="toolTip">
+                <string>display observing mode</string>
+               </property>
+               <property name="statusTip">
+                <string>display observing mode</string>
                </property>
                <property name="currentIndex">
                 <number>0</number>
@@ -2303,6 +2369,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <width>180</width>
                        <height>0</height>
                       </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>display MODE block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display MODE block</string>
                      </property>
                     </widget>
                    </item>
@@ -2348,6 +2420,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <height>0</height>
                       </size>
                      </property>
+                     <property name="toolTip">
+                      <string>display FREQ block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display FREQ block</string>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -2391,6 +2469,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <width>180</width>
                        <height>0</height>
                       </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>display BBC block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display BBC block</string>
                      </property>
                     </widget>
                    </item>
@@ -2436,6 +2520,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <height>0</height>
                       </size>
                      </property>
+                     <property name="toolTip">
+                      <string>choose IF block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>choose IF block</string>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -2479,6 +2569,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <width>180</width>
                        <height>0</height>
                       </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>display TRACKS block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display TRACKS block</string>
                      </property>
                     </widget>
                    </item>
@@ -2524,6 +2620,12 @@ If you only want to run simulations you can deselect this to avoid error message
                        <height>0</height>
                       </size>
                      </property>
+                     <property name="toolTip">
+                      <string>display track frame format block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display track frame format block</string>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -2565,11 +2667,20 @@ If you only want to run simulations you can deselect this to avoid error message
                   <layout class="QHBoxLayout" name="horizontalLayout_122">
                    <item>
                     <widget class="QComboBox" name="comboBox_observingMode_pcal">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>180</width>
                        <height>0</height>
                       </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>display phase cal block</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>display phase cal block</string>
                      </property>
                     </widget>
                    </item>
@@ -2590,6 +2701,9 @@ If you only want to run simulations you can deselect this to avoid error message
                  </item>
                  <item>
                   <widget class="QTableView" name="tableView_observingMode_pcal">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="editTriggers">
                     <set>QAbstractItemView::NoEditTriggers</set>
                    </property>
@@ -6937,39 +7051,7 @@ p, li { white-space: pre-wrap; }
           <layout class="QVBoxLayout" name="verticalLayout_75">
            <item>
             <layout class="QGridLayout" name="gridLayout_6">
-             <item row="3" column="0">
-              <widget class="QCheckBox" name="checkBox_outputOperationsNotes">
-               <property name="toolTip">
-                <string>create operator notes with statistics</string>
-               </property>
-               <property name="statusTip">
-                <string>create operator notes with statistics</string>
-               </property>
-               <property name="text">
-                <string>create operations notes</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QCheckBox" name="checkBox_outputSkyCoverageFile">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="toolTip">
-                <string>create sky coverage file</string>
-               </property>
-               <property name="statusTip">
-                <string>create sky coverage file</string>
-               </property>
-               <property name="text">
-                <string>create sky coverage file</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
+             <item row="0" column="2">
               <spacer name="horizontalSpacer_51">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -6981,6 +7063,16 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
               </spacer>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_outputIteration">
+               <property name="text">
+                <string>create iteration log file</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
              </item>
              <item row="1" column="0">
               <widget class="QCheckBox" name="checkBox_outputSkdFile">
@@ -7011,6 +7103,22 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="checked">
                 <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="checkBox_outputOperationsNotes">
+               <property name="toolTip">
+                <string>create operator notes with statistics</string>
+               </property>
+               <property name="statusTip">
+                <string>create operator notes with statistics</string>
+               </property>
+               <property name="text">
+                <string>create operations notes</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -7056,13 +7164,36 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QCheckBox" name="checkBox_outputIteration">
-               <property name="text">
-                <string>create iteration log file</string>
+             <item row="4" column="0">
+              <widget class="QCheckBox" name="checkBox_outputSkyCoverageFile">
+               <property name="enabled">
+                <bool>false</bool>
                </property>
-               <property name="checked">
-                <bool>true</bool>
+               <property name="toolTip">
+                <string>create sky coverage file</string>
+               </property>
+               <property name="statusTip">
+                <string>create sky coverage file</string>
+               </property>
+               <property name="text">
+                <string>create sky coverage file</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QPushButton" name="pushButton_26">
+               <property name="toolTip">
+                <string>save output settings</string>
+               </property>
+               <property name="statusTip">
+                <string>save output settings</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="myresources.qrc">
+                 <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
                </property>
               </widget>
              </item>
@@ -7166,23 +7297,6 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="text">
                 <string>../out/</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_26">
-               <property name="toolTip">
-                <string>save as default path</string>
-               </property>
-               <property name="statusTip">
-                <string>save as default path</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="myresources.qrc">
-                 <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
                </property>
               </widget>
              </item>
@@ -11991,7 +12105,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>checkBox_outputNGSFile</tabstop>
   <tabstop>checkBox_outputStatisticsFile</tabstop>
   <tabstop>lineEdit_outputPath</tabstop>
-  <tabstop>pushButton_26</tabstop>
   <tabstop>checkBox_outputAddTimestamp</tabstop>
   <tabstop>schedulerLineEdit</tabstop>
   <tabstop>pushButton_23</tabstop>

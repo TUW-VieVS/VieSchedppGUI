@@ -319,7 +319,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->splitter_2, SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
     connect(ui->splitter_3, SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
 
-    ui->splitter->setStretchFactor(1,3);
+    ui->splitter->setSizes({2000,5000});
+    ui->splitter_2->setSizes({2000,5000});
+    ui->splitter_3->setSizes({2000,5000});
     ui->splitter_5->setStretchFactor(1,3);
     ui->splitter_4->setSizes(QList<int>({INT_MAX, INT_MAX}));
     ui->splitter_6->setSizes(QList<int>({INT_MAX, INT_MAX}));
@@ -2098,6 +2100,43 @@ void MainWindow::defaultParameters()
     boost::optional<double> lowElevationFullWeight = settings_.get_optional<double>("settings.weightFactor.lowElevationFullWeight");
     if(lowElevationFullWeight.is_initialized()){
         ui->doubleSpinBox_weightLowElEnd->setValue(*lowElevationFullWeight);
+    }
+
+    boost::optional<bool> initializer_log = settings_.get_optional<bool>("settings.output.initializer_log");
+    if(initializer_log.is_initialized()){
+        ui->checkBox_outputInitializer->setChecked(*initializer_log);
+    }
+    boost::optional<bool> iteration_log = settings_.get_optional<bool>("settings.output.iteration_log");
+    if(iteration_log.is_initialized()){
+        ui->checkBox_outputIteration->setChecked(*iteration_log);
+    }
+    boost::optional<bool> createSummary = settings_.get_optional<bool>("settings.output.createSummary");
+    if(createSummary.is_initialized()){
+        ui->checkBox_outputStatisticsFile->setChecked(*createSummary);
+    }
+    boost::optional<bool> createNGS = settings_.get_optional<bool>("settings.output.createNGS");
+    if(createNGS.is_initialized()){
+        ui->checkBox_outputNGSFile->setChecked(*createNGS);
+    }
+    boost::optional<bool> createSKD = settings_.get_optional<bool>("settings.output.createSKD");
+    if(createSKD.is_initialized()){
+        ui->checkBox_outputSkdFile->setChecked(*createSKD);
+    }
+    boost::optional<bool> createVEX = settings_.get_optional<bool>("settings.output.createVEX");
+    if(createVEX.is_initialized()){
+        ui->checkBox_outputVex->setChecked(*createVEX);
+    }
+    boost::optional<bool> createOperationsNotes = settings_.get_optional<bool>("settings.output.createOperationsNotes");
+    if(createOperationsNotes.is_initialized()){
+        ui->checkBox_outputOperationsNotes->setChecked(*createOperationsNotes);
+    }
+    boost::optional<bool> createSourceGroupStatistics = settings_.get_optional<bool>("settings.output.createSourceGroupStatistics");
+    if(createSourceGroupStatistics.is_initialized()){
+        ui->checkBox_outputSourceGroupStatFile->setChecked(*createSourceGroupStatistics);
+    }
+    boost::optional<bool> addTimestamps = settings_.get_optional<bool>("settings.output.addTimestamps");
+    if(addTimestamps.is_initialized()){
+        ui->checkBox_outputAddTimestamp->setChecked(*addTimestamps);
     }
 }
 
@@ -8118,9 +8157,31 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
 
 void MainWindow::on_pushButton_26_clicked()
 {
-    QStringList path {"settings.output.directory"};
-    QStringList value {ui->lineEdit_outputPath->text()};
-    QString name = "Default output path changed!";
+    QStringList path;
+    QStringList value;
+    QString name = "Default output selection changed!";
+
+    path << "settings.output.directory"
+         << "settings.output.initializer_log"
+         << "settings.output.iteration_log"
+         << "settings.output.createSummary"
+         << "settings.output.createNGS"
+         << "settings.output.createSKD"
+         << "settings.output.createVEX"
+         << "settings.output.createOperationsNotes"
+         << "settings.output.createSourceGroupStatistics"
+         << "settings.output.addTimestamps";
+    value << ui->lineEdit_outputPath->text();
+    ui->checkBox_outputInitializer->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputIteration->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputStatisticsFile->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputNGSFile->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputSkdFile->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputVex->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputOperationsNotes->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputSourceGroupStatFile->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputAddTimestamp->isChecked() ? value << "true" : value << "false";
+
     changeDefaultSettings(path,value,name);
 }
 
