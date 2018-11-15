@@ -2753,6 +2753,8 @@ QString MainWindow::writeXML()
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "idle time"){
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+                }else if(parameter == "idle time interval"){
+                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "low declination"){
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "low declination begin"){
