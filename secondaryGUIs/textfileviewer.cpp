@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "textfileviewer.h"
+#include "secondaryGUIs/textfileviewer.h"
 #include "ui_textfileviewer.h"
 
 

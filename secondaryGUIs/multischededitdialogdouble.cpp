@@ -16,12 +16,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "multischededitdialogint.h"
-#include "ui_multischededitdialogint.h"
+#include "secondaryGUIs/multischededitdialogdouble.h"
+#include "ui_multischededitdialogdouble.h"
 
-multiSchedEditDialogInt::multiSchedEditDialogInt(QWidget *parent) :
+multiSchedEditDialogDouble::multiSchedEditDialogDouble(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::multiSchedEditDialogInt)
+    ui(new Ui::multiSchedEditDialogDouble)
 {
     ui->setupUi(this);
 
@@ -40,78 +40,22 @@ multiSchedEditDialogInt::multiSchedEditDialogInt(QWidget *parent) :
     ui->tableWidget_values->horizontalHeader()->show();
 }
 
-multiSchedEditDialogInt::~multiSchedEditDialogInt()
+multiSchedEditDialogDouble::~multiSchedEditDialogDouble()
 {
     delete ui;
 }
 
-QVector<int> multiSchedEditDialogInt::getValues()
+QVector<double> multiSchedEditDialogDouble::getValues()
 {
-    QVector<int> values;
+    QVector<double> values;
     for(int i = 0; i<ui->tableWidget_values->rowCount(); ++i){
-        QSpinBox *box = qobject_cast<QSpinBox*>(ui->tableWidget_values->cellWidget(i,0));
+        QDoubleSpinBox *box = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_values->cellWidget(i,0));
         values << box->value();
     }
     return values;
 }
 
-void multiSchedEditDialogInt::on_pushButton_generate_clicked()
-{
-    ui->tableWidget_values->setRowCount(0);
-    QVector<int> values;
-    for(int i = ui->spinBox_start->value(); i<= ui->spinBox_stop->value(); i+=ui->spinBox_step->value()){
-        values << i;
-    }
-
-    int n = values.size();
-    for(int i = 0; i<n; ++i){
-        ui->tableWidget_values->insertRow(i);
-        QSpinBox *spinBox = new QSpinBox(this);
-        spinBox->setSingleStep(60);
-        spinBox->setMaximum(10000);
-        spinBox->setValue(values.at(i));
-        ui->tableWidget_values->setCellWidget(i,0, spinBox);
-    }
-
-}
-
-void multiSchedEditDialogInt::on_pushButton_insert_clicked()
-{
-    ui->tableWidget_values->insertRow(0);
-    QSpinBox *spinBox = new QSpinBox(this);
-    spinBox->setSingleStep(60);
-    spinBox->setMaximum(10000);
-    ui->tableWidget_values->setCellWidget(0,0, spinBox);
-    spinBox->setFocus();
-
-}
-
-void multiSchedEditDialogInt::on_pushButton_delete_clicked()
-{
-    auto sel = ui->tableWidget_values->selectionModel()->selectedRows(0);
-    for(int i = sel.size()-1; i>=0 ; --i){
-        int row = sel.at(0).row();
-        ui->tableWidget_values->removeRow(row);
-    }
-
-}
-
-void multiSchedEditDialogInt::on_spinBox_start_valueChanged(int arg1)
-{
-    if(arg1 > ui-> spinBox_stop->value()){
-        ui->spinBox_stop->setValue(arg1);
-    }
-}
-
-void multiSchedEditDialogInt::on_spinBox_stop_valueChanged(int arg1)
-{
-    if(arg1 < ui->spinBox_start->value()){
-        ui->spinBox_start->setValue(arg1);
-    }
-
-}
-
-void multiSchedEditDialogInt::addMember(QStandardItemModel *model)
+void multiSchedEditDialogDouble::addMember(QStandardItemModel *model)
 {
     ui->groupBox_member->show();
     for(int i = 0; i< model->rowCount(); ++i){
@@ -119,17 +63,67 @@ void multiSchedEditDialogInt::addMember(QStandardItemModel *model)
     }
 }
 
-QStandardItem *multiSchedEditDialogInt::getMember()
+QStandardItem *multiSchedEditDialogDouble::getMember()
 {
     return all->item(ui->listView_member->selectionModel()->selectedIndexes().at(0).row());
 }
 
-void multiSchedEditDialogInt::on_lineEdit_filter_textChanged(const QString &arg1)
+void multiSchedEditDialogDouble::on_doubleSpinBox_start_valueChanged(double arg1)
+{
+    if(arg1 > ui->doubleSpinBox_stop->value()){
+        ui->doubleSpinBox_stop->setValue(arg1);
+    }
+}
+
+void multiSchedEditDialogDouble::on_doubleSpinBox_stop_valueChanged(double arg1)
+{
+    if(arg1 < ui->doubleSpinBox_start->value()){
+        ui->doubleSpinBox_start->setValue(arg1);
+    }
+}
+
+void multiSchedEditDialogDouble::on_pushButton_generate_clicked()
+{
+    ui->tableWidget_values->setRowCount(0);
+    QVector<double> values;
+    for(double i = ui->doubleSpinBox_start->value(); i<= ui->doubleSpinBox_stop->value()+1e-5; i+=ui->doubleSpinBox_step->value()){
+        values << i;
+    }
+
+    int n = values.size();
+    for(int i = 0; i<n; ++i){
+        ui->tableWidget_values->insertRow(i);
+        QDoubleSpinBox *spinBox = new QDoubleSpinBox(this);
+        spinBox->setSingleStep(.1);
+        spinBox->setValue(values.at(i));
+        ui->tableWidget_values->setCellWidget(i,0, spinBox);
+    }
+}
+
+void multiSchedEditDialogDouble::on_pushButton_insert_clicked()
+{
+    ui->tableWidget_values->insertRow(0);
+    QDoubleSpinBox *spinBox = new QDoubleSpinBox(this);
+    spinBox->setSingleStep(.1);
+    ui->tableWidget_values->setCellWidget(0,0, spinBox);
+    spinBox->setFocus();
+}
+
+void multiSchedEditDialogDouble::on_pushButton_delete_clicked()
+{
+    auto sel = ui->tableWidget_values->selectionModel()->selectedRows(0);
+    for(int i = sel.size()-1; i>=0 ; --i){
+        int row = sel.at(0).row();
+        ui->tableWidget_values->removeRow(row);
+    }
+}
+
+void multiSchedEditDialogDouble::on_lineEdit_filter_textChanged(const QString &arg1)
 {
     proxy->setFilterRegExp(arg1);
 }
 
-void multiSchedEditDialogInt::on_buttonBox_accepted()
+void multiSchedEditDialogDouble::on_buttonBox_accepted()
 {
     if(ui->tableWidget_values->rowCount()>0){
         if(ui->groupBox_member->isHidden()){
@@ -145,5 +139,4 @@ void multiSchedEditDialogInt::on_buttonBox_accepted()
     }else{
         this->reject();
     }
-
 }

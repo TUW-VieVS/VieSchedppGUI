@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "vieschedpp_analyser.h"
+#include "secondaryGUIs/vieschedpp_analyser.h"
 #include "ui_vieschedpp_analyser.h"
 
 VieSchedpp_Analyser::VieSchedpp_Analyser(VieVS::Scheduler schedule, std::map<std::string, std::vector<double>> freqs, QDateTime start, QDateTime end, QWidget *parent) :

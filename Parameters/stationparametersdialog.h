@@ -25,8 +25,8 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QWhatsThis>
-#include <../VieSchedpp/ParameterSettings.h>
-#include <Utility/settingsloadwindow.h>
+#include <../VieSchedpp/XML/ParameterSettings.h>
+#include <secondaryGUIs/settingsloadwindow.h>
 
 namespace Ui {
 class stationParametersDialog;

@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "savetosettingsdialog.h"
+#include "secondaryGUIs/savetosettingsdialog.h"
 #include "ui_savetosettingsdialog.h"
 
 saveToSettingsDialog::saveToSettingsDialog(boost::property_tree::ptree &settings, QWidget *parent) :

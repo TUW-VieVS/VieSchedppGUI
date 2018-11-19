@@ -16,40 +16,29 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ADDBANDDIALOG_H
-#define ADDBANDDIALOG_H
+#include "secondaryGUIs/skedcataloginfo.h"
+#include "ui_skedcataloginfo.h"
 
-#include <QDialog>
-#include "Utility/settingsloadwindow.h"
-#include "boost/property_tree/ptree.hpp"
-namespace Ui {
-class addBandDialog;
+SkedCatalogInfo::SkedCatalogInfo(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::SkedCatalogInfo)
+{
+    ui->setupUi(this);
+    QApplication::setWindowIcon(QIcon(":/icons/icons/VieSchedppGUI_logo.png"));
+    this->setWindowTitle("VieSched++");
 }
 
-class addBandDialog : public QDialog
+void SkedCatalogInfo::setFonts()
 {
-    Q_OBJECT
+    const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    QString family = fixedFont.family();
 
-public:
-    explicit addBandDialog(boost::property_tree::ptree &settings_, QWidget *parent = 0);
-    ~addBandDialog();
+    ui->textEdit_2->setFont(fixedFont);
+    ui->textEdit_3->setFont(fixedFont);
+    ui->textEdit_4->setFont(fixedFont);
+}
 
-    QString getBandName();
-
-    double getFrequency();
-
-    int getChannels();
-
-private slots:
-    void on_pushButton_Load_clicked();
-
-    void on_pushButton_Save_clicked();
-
-    void on_buttonBox_accepted();
-
-private:
-    boost::property_tree::ptree &settings;
-    Ui::addBandDialog *ui;
-};
-
-#endif // ADDBANDDIALOG_H
+SkedCatalogInfo::~SkedCatalogInfo()
+{
+    delete ui;
+}

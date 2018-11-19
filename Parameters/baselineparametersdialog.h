@@ -20,11 +20,11 @@
 #define BASELINEPARAMETERSDIALOG_H
 
 #include <QDialog>
-#include <../VieSchedpp/ParameterSettings.h>
+#include <../VieSchedpp/XML/ParameterSettings.h>
 #include <QMessageBox>
 #include <QWhatsThis>
 #include <QShortcut>
-#include <Utility/settingsloadwindow.h>
+#include <secondaryGUIs/settingsloadwindow.h>
 namespace Ui {
 class baselineParametersDialog;
 }

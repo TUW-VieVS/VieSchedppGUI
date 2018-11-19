@@ -4,7 +4,7 @@
 #include <QAbstractTableModel>
 #include <QFont>
 #include <QColor>
-#include "../VieSchedpp/Mode.h"
+#include "../VieSchedpp/ObservingMode/Mode.h"
 
 class Model_Mode : public QAbstractTableModel
 {

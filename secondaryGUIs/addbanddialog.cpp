@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "addbanddialog.h"
+#include "secondaryGUIs/addbanddialog.h"
 #include "ui_addbanddialog.h"
 
 addBandDialog::addBandDialog(boost::property_tree::ptree &settings_, QWidget *parent) :

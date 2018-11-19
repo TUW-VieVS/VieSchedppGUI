@@ -3,7 +3,7 @@
 
 #include <QAbstractTableModel>
 #include <QFont>
-#include "../VieSchedpp/If.h"
+#include "../VieSchedpp/ObservingMode/If.h"
 
 class Model_If : public QAbstractTableModel
 {

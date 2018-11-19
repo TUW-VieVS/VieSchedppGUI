@@ -51,199 +51,200 @@ INCLUDEPATH += C:/MinGW/include
 LIBS += ../IAU_SOFA/Release/libsofa_c.a
 
 SOURCES += \
-        ../VieSchedpp/AbstractAntenna.cpp \
-        ../VieSchedpp/Antenna_AzEl.cpp \
-        ../VieSchedpp/Antenna_HaDc.cpp \
-        ../VieSchedpp/Antenna_XYew.cpp \
-        ../VieSchedpp/AstronomicalParameters.cpp \
-        ../VieSchedpp/Baseline.cpp \
-        ../VieSchedpp/AbstractCableWrap.cpp \
-        ../VieSchedpp/CableWrap_AzEl.cpp \
-        ../VieSchedpp/CableWrap_HaDc.cpp \
-        ../VieSchedpp/CableWrap_XYew.cpp \
-        ../VieSchedpp/CalibratorBlock.cpp \
-        ../VieSchedpp/Equipment.cpp \
-        ../VieSchedpp/Equipment_elDependent.cpp \
-        ../VieSchedpp/AbstractFlux.cpp \
-        ../VieSchedpp/Flux_B.cpp \
-        ../VieSchedpp/Flux_M.cpp \
-        ../VieSchedpp/HighImpactScanDescriptor.cpp \
-        ../VieSchedpp/AbstractHorizonMask.cpp \
-        ../VieSchedpp/HorizonMask_line.cpp \
-        ../VieSchedpp/HorizonMask_step.cpp \
-        ../VieSchedpp/Initializer.cpp \
-        ../VieSchedpp/LogParser.cpp \
-        ../VieSchedpp/LookupTable.cpp \
-        ../VieSchedpp/MultiScheduling.cpp \
-        ../VieSchedpp/Network.cpp \
-        ../VieSchedpp/Observation.cpp \
-        ../VieSchedpp/ObservingMode.cpp \
-        ../VieSchedpp/Output.cpp \
-        ../VieSchedpp/ParameterGroup.cpp \
-        ../VieSchedpp/ParameterSettings.cpp \
-        ../VieSchedpp/ParameterSetup.cpp \
-        ../VieSchedpp/PointingVector.cpp \
-        ../VieSchedpp/Position.cpp \
-        ../VieSchedpp/Scan.cpp \
-        ../VieSchedpp/ScanTimes.cpp \
-        ../VieSchedpp/Scheduler.cpp \
-        ../VieSchedpp/Skd.cpp \
-        ../VieSchedpp/SkdCatalogReader.cpp \
-        ../VieSchedpp/SkdParser.cpp \
-        ../VieSchedpp/SkyCoverage.cpp \
-        ../VieSchedpp/Source.cpp \
-        ../VieSchedpp/Station.cpp \
-        ../VieSchedpp/StationEndposition.cpp \
-        ../VieSchedpp/Subcon.cpp \
-        ../VieSchedpp/TimeSystem.cpp \
-        ../VieSchedpp/Vex.cpp \
-        ../VieSchedpp/VieVS_NamedObject.cpp \
-        ../VieSchedpp/VieVS_Object.cpp \
-        ../VieSchedpp/WeightFactors.cpp \
-        ../VieSchedpp/util.cpp \
-        ../VieSchedpp/Flags.cpp \
-        ../VieSchedpp/Bbc.cpp \
-        ../VieSchedpp/If.cpp \
-        ../VieSchedpp/Freq.cpp \
-        ../VieSchedpp/Mode.cpp \
-        ../VieSchedpp/Track.cpp \
+    ../VieSchedpp/Input/LogParser.cpp \
+    ../VieSchedpp/Input/SkdCatalogReader.cpp \
+    ../VieSchedpp/Input/SkdParser.cpp \
+    ../VieSchedpp/Misc/AstronomicalParameters.cpp \
+    ../VieSchedpp/Misc/CalibratorBlock.cpp \
+    ../VieSchedpp/Misc/Flags.cpp \
+    ../VieSchedpp/Misc/HighImpactScanDescriptor.cpp \
+    ../VieSchedpp/Misc/LookupTable.cpp \
+    ../VieSchedpp/Misc/MultiScheduling.cpp \
+    ../VieSchedpp/Misc/StationEndposition.cpp \
+    ../VieSchedpp/Misc/TimeSystem.cpp \
+    ../VieSchedpp/Misc/util.cpp \
+    ../VieSchedpp/Misc/VieVS_NamedObject.cpp \
+    ../VieSchedpp/Misc/VieVS_Object.cpp \
+    ../VieSchedpp/Misc/WeightFactors.cpp \
+    ../VieSchedpp/ObservingMode/Bbc.cpp \
+    ../VieSchedpp/ObservingMode/Freq.cpp \
+    ../VieSchedpp/ObservingMode/If.cpp \
+    ../VieSchedpp/ObservingMode/Mode.cpp \
+    ../VieSchedpp/ObservingMode/ObservingMode.cpp \
+    ../VieSchedpp/ObservingMode/Track.cpp \
+    ../VieSchedpp/Output/Output.cpp \
+    ../VieSchedpp/Output/Skd.cpp \
+    ../VieSchedpp/Output/Vex.cpp \
+    ../VieSchedpp/Scan/Observation.cpp \
+    ../VieSchedpp/Scan/PointingVector.cpp \
+    ../VieSchedpp/Scan/Scan.cpp \
+    ../VieSchedpp/Scan/ScanTimes.cpp \
+    ../VieSchedpp/Scan/Subcon.cpp \
+    ../VieSchedpp/Source/Flux/AbstractFlux.cpp \
+    ../VieSchedpp/Source/Flux/Flux_B.cpp \
+    ../VieSchedpp/Source/Flux/Flux_M.cpp \
+    ../VieSchedpp/Source/Source.cpp \
+    ../VieSchedpp/Station/Antenna/AbstractAntenna.cpp \
+    ../VieSchedpp/Station/Antenna/Antenna_AzEl.cpp \
+    ../VieSchedpp/Station/Antenna/Antenna_HaDc.cpp \
+    ../VieSchedpp/Station/Antenna/Antenna_XYew.cpp \
+    ../VieSchedpp/Station/CableWrap/AbstractCableWrap.cpp \
+    ../VieSchedpp/Station/CableWrap/CableWrap_AzEl.cpp \
+    ../VieSchedpp/Station/CableWrap/CableWrap_HaDc.cpp \
+    ../VieSchedpp/Station/CableWrap/CableWrap_XYew.cpp \
+    ../VieSchedpp/Station/Equip/Equipment.cpp \
+    ../VieSchedpp/Station/Equip/Equipment_elDependent.cpp \
+    ../VieSchedpp/Station/HorizonMask/AbstractHorizonMask.cpp \
+    ../VieSchedpp/Station/HorizonMask/HorizonMask_line.cpp \
+    ../VieSchedpp/Station/HorizonMask/HorizonMask_step.cpp \
+    ../VieSchedpp/Station/Baseline.cpp \
+    ../VieSchedpp/Station/Network.cpp \
+    ../VieSchedpp/Station/Position.cpp \
+    ../VieSchedpp/Station/SkyCoverage.cpp \
+    ../VieSchedpp/Station/Station.cpp \
+    ../VieSchedpp/XML/ParameterGroup.cpp \
+    ../VieSchedpp/XML/ParameterSettings.cpp \
+    ../VieSchedpp/XML/ParameterSetup.cpp \
+    ../VieSchedpp/Scheduler.cpp \
+    ../VieSchedpp/VieSchedpp.cpp \
+    ../VieSchedpp/Initializer.cpp \
+    main.cpp \
+    mainwindow.cpp \
     Delegates/comboboxdelegate.cpp \
     Delegates/doublespinboxdelegate.cpp \
     Delegates/spinboxdelegate.cpp \
     Models/model_bbc.cpp \
     Models/model_freq.cpp \
     Models/model_if.cpp \
+    Models/model_mode.cpp \
     Models/model_tracks.cpp \
-    MultiSchedulingDialogs/multischededitdialogdatetime.cpp \
-    MultiSchedulingDialogs/multischededitdialogdouble.cpp \
-    MultiSchedulingDialogs/multischededitdialogint.cpp \
     Parameters/baselineparametersdialog.cpp \
     Parameters/sourceparametersdialog.cpp \
     Parameters/stationparametersdialog.cpp \
-    Utility/addgroupdialog.cpp \
+    secondaryGUIs/addbanddialog.cpp \
+    secondaryGUIs/addgroupdialog.cpp \
+    secondaryGUIs/multischededitdialogdatetime.cpp \
+    secondaryGUIs/multischededitdialogdouble.cpp \
+    secondaryGUIs/multischededitdialogint.cpp \
+    secondaryGUIs/obsmodedialog.cpp \
+    secondaryGUIs/savetosettingsdialog.cpp \
+    secondaryGUIs/settingsloadwindow.cpp \
+    secondaryGUIs/skedcataloginfo.cpp \
+    secondaryGUIs/textfileviewer.cpp \
+    secondaryGUIs/vieschedpp_analyser.cpp \
     Utility/callout.cpp \
     Utility/chartview.cpp \
     Utility/multicolumnsortfilterproxymodel.cpp \
     Utility/mytextbrowser.cpp \
-    Utility/qtutil.cpp \
-    Utility/savetosettingsdialog.cpp \
-    Utility/settingsloadwindow.cpp \
-    Utility/skedcataloginfo.cpp \
-    addbanddialog.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    obsmodedialog.cpp \
-    textfileviewer.cpp \
-    vieschedpp_analyser.cpp \
-    Models/model_mode.cpp
-
+    Utility/qtutil.cpp
 
 HEADERS += \
-        ../VieSchedpp/AbstractAntenna.h \
-        ../VieSchedpp/Antenna_AzEl.h \
-        ../VieSchedpp/Antenna_HaDc.h \
-        ../VieSchedpp/Antenna_XYew.h \
-        ../VieSchedpp/AstronomicalParameters.h \
-        ../VieSchedpp/Baseline.h \
-        ../VieSchedpp/AbstractCableWrap.h \
-        ../VieSchedpp/CableWrap_AzEl.h \
-        ../VieSchedpp/CableWrap_HaDc.h \
-        ../VieSchedpp/CableWrap_XYew.h \
-        ../VieSchedpp/CalibratorBlock.h \
-        ../VieSchedpp/Constants.h \
-        ../VieSchedpp/Equipment.h \
-        ../VieSchedpp/Equipment_elDependent.h \
-        ../VieSchedpp/AbstractFlux.h \
-        ../VieSchedpp/Flux_B.h \
-        ../VieSchedpp/Flux_M.h \
-        ../VieSchedpp/HighImpactScanDescriptor.h \
-        ../VieSchedpp/AbstractHorizonMask.h \
-        ../VieSchedpp/HorizonMask_line.h \
-        ../VieSchedpp/HorizonMask_step.h \
-        ../VieSchedpp/Initializer.h \
-        ../VieSchedpp/LogParser.h \
-        ../VieSchedpp/LookupTable.h \
-        ../VieSchedpp/MultiScheduling.h \
-        ../VieSchedpp/Network.h \
-        ../VieSchedpp/Observation.h \
-        ../VieSchedpp/ObservingMode.h \
-        ../VieSchedpp/Output.h \
-        ../VieSchedpp/ParameterGroup.h \
-        ../VieSchedpp/ParameterSettings.h \
-        ../VieSchedpp/ParameterSetup.h \
-        ../VieSchedpp/PointingVector.h \
-        ../VieSchedpp/Position.h \
-        ../VieSchedpp/Scan.h \
-        ../VieSchedpp/ScanTimes.h \
-        ../VieSchedpp/Scheduler.h \
-        ../VieSchedpp/Skd.h \
-        ../VieSchedpp/SkdCatalogReader.h \
-        ../VieSchedpp/SkdParser.h \
-        ../VieSchedpp/SkyCoverage.h \
-        ../VieSchedpp/Source.h \
-        ../VieSchedpp/Station.h \
-        ../VieSchedpp/StationEndposition.h \
-        ../VieSchedpp/Subcon.h \
-        ../VieSchedpp/Subnetting.h \
-        ../VieSchedpp/TimeSystem.h \
-        ../VieSchedpp/Vex.h \
-        ../VieSchedpp/VieVS_NamedObject.h \
-        ../VieSchedpp/VieVS_Object.h \
-        ../VieSchedpp/WeightFactors.h \
-        ../VieSchedpp/sofa.h \
-        ../VieSchedpp/sofam.h \
-        ../VieSchedpp/util.h \
-        ../VieSchedpp/Flags.h \
-        ../VieSchedpp/Bbc.h \
-        ../VieSchedpp/If.h \
-        ../VieSchedpp/Freq.h \
-        ../VieSchedpp/Mode.h \
-        ../VieSchedpp/Track.h \
+    ../VieSchedpp/Input/LogParser.h \
+    ../VieSchedpp/Input/SkdCatalogReader.h \
+    ../VieSchedpp/Input/SkdParser.h \
+    ../VieSchedpp/Misc/AstronomicalParameters.h \
+    ../VieSchedpp/Misc/CalibratorBlock.h \
+    ../VieSchedpp/Misc/Constants.h \
+    ../VieSchedpp/Misc/Flags.h \
+    ../VieSchedpp/Misc/HighImpactScanDescriptor.h \
+    ../VieSchedpp/Misc/LookupTable.h \
+    ../VieSchedpp/Misc/MultiScheduling.h \
+    ../VieSchedpp/Misc/sofa.h \
+    ../VieSchedpp/Misc/sofam.h \
+    ../VieSchedpp/Misc/StationEndposition.h \
+    ../VieSchedpp/Misc/Subnetting.h \
+    ../VieSchedpp/Misc/TimeSystem.h \
+    ../VieSchedpp/Misc/util.h \
+    ../VieSchedpp/Misc/VieVS_NamedObject.h \
+    ../VieSchedpp/Misc/VieVS_Object.h \
+    ../VieSchedpp/Misc/WeightFactors.h \
+    ../VieSchedpp/ObservingMode/Bbc.h \
+    ../VieSchedpp/ObservingMode/Freq.h \
+    ../VieSchedpp/ObservingMode/If.h \
+    ../VieSchedpp/ObservingMode/Mode.h \
+    ../VieSchedpp/ObservingMode/ObservingMode.h \
+    ../VieSchedpp/ObservingMode/Track.h \
+    ../VieSchedpp/Output/Output.h \
+    ../VieSchedpp/Output/Skd.h \
+    ../VieSchedpp/Output/Vex.h \
+    ../VieSchedpp/Scan/Observation.h \
+    ../VieSchedpp/Scan/PointingVector.h \
+    ../VieSchedpp/Scan/Scan.h \
+    ../VieSchedpp/Scan/ScanTimes.h \
+    ../VieSchedpp/Scan/Subcon.h \
+    ../VieSchedpp/Source/Flux/AbstractFlux.h \
+    ../VieSchedpp/Source/Flux/Flux_B.h \
+    ../VieSchedpp/Source/Flux/Flux_M.h \
+    ../VieSchedpp/Source/Source.h \
+    ../VieSchedpp/Station/Antenna/AbstractAntenna.h \
+    ../VieSchedpp/Station/Antenna/Antenna_AzEl.h \
+    ../VieSchedpp/Station/Antenna/Antenna_HaDc.h \
+    ../VieSchedpp/Station/Antenna/Antenna_XYew.h \
+    ../VieSchedpp/Station/CableWrap/AbstractCableWrap.h \
+    ../VieSchedpp/Station/CableWrap/CableWrap_AzEl.h \
+    ../VieSchedpp/Station/CableWrap/CableWrap_HaDc.h \
+    ../VieSchedpp/Station/CableWrap/CableWrap_XYew.h \
+    ../VieSchedpp/Station/Equip/Equipment.h \
+    ../VieSchedpp/Station/Equip/Equipment_elDependent.h \
+    ../VieSchedpp/Station/HorizonMask/AbstractHorizonMask.h \
+    ../VieSchedpp/Station/HorizonMask/HorizonMask_line.h \
+    ../VieSchedpp/Station/HorizonMask/HorizonMask_step.h \
+    ../VieSchedpp/Station/Baseline.h \
+    ../VieSchedpp/Station/Network.h \
+    ../VieSchedpp/Station/Position.h \
+    ../VieSchedpp/Station/SkyCoverage.h \
+    ../VieSchedpp/Station/Station.h \
+    ../VieSchedpp/XML/ParameterGroup.h \
+    ../VieSchedpp/XML/ParameterSettings.h \
+    ../VieSchedpp/XML/ParameterSetup.h \
+    ../VieSchedpp/Scheduler.h \
+    ../VieSchedpp/VieSchedpp.h \
+    ../VieSchedpp/Initializer.h \
     Delegates/comboboxdelegate.h \
     Delegates/doublespinboxdelegate.h \
     Delegates/spinboxdelegate.h \
     Models/model_bbc.h \
     Models/model_freq.h \
     Models/model_if.h \
+    Models/model_mode.h \
     Models/model_tracks.h \
-    MultiSchedulingDialogs/multischededitdialogdatetime.h \
-    MultiSchedulingDialogs/multischededitdialogdouble.h \
-    MultiSchedulingDialogs/multischededitdialogint.h \
     Parameters/baselineparametersdialog.h \
     Parameters/sourceparametersdialog.h \
     Parameters/stationparametersdialog.h \
-    Utility/addgroupdialog.h \
+    secondaryGUIs/addbanddialog.h \
+    secondaryGUIs/addgroupdialog.h \
+    secondaryGUIs/multischededitdialogdatetime.h \
+    secondaryGUIs/multischededitdialogdouble.h \
+    secondaryGUIs/multischededitdialogint.h \
+    secondaryGUIs/obsmodedialog.h \
+    secondaryGUIs/savetosettingsdialog.h \
+    secondaryGUIs/settingsloadwindow.h \
+    secondaryGUIs/skedcataloginfo.h \
+    secondaryGUIs/textfileviewer.h \
+    secondaryGUIs/vieschedpp_analyser.h \
     Utility/callout.h \
     Utility/chartview.h \
     Utility/multicolumnsortfilterproxymodel.h \
     Utility/mytextbrowser.h \
     Utility/qtutil.h \
-    Utility/savetosettingsdialog.h \
-    Utility/settingsloadwindow.h \
-    Utility/skedcataloginfo.h \
-    addbanddialog.h \
-    mainwindow.h \
-    obsmodedialog.h \
-    textfileviewer.h \
-    vieschedpp_analyser.h \
-    Models/model_mode.h
+    mainwindow.h
 
 FORMS += \
-        mainwindow.ui \
-        multischededitdialogint.ui \
-        multischededitdialogdouble.ui \
-        multischededitdialogdatetime.ui \
-        addgroupdialog.ui \
-        stationparametersdialog.ui \
-        sourceparametersdialog.ui \
-        baselineparametersdialog.ui \
-        settingsloadwindow.ui \
-        addbanddialog.ui \
-        savetosettingsdialog.ui \
-        textfileviewer.ui \
-        vieschedpp_analyser.ui \
-        skedcataloginfo.ui \
-        obsmodedialog.ui
+    mainwindow.ui \
+    Parameters/baselineparametersdialog.ui \
+    Parameters/sourceparametersdialog.ui \
+    Parameters/stationparametersdialog.ui \
+    secondaryGUIs/addbanddialog.ui \
+    secondaryGUIs/addgroupdialog.ui \
+    secondaryGUIs/multischededitdialogdatetime.ui \
+    secondaryGUIs/multischededitdialogdouble.ui \
+    secondaryGUIs/multischededitdialogint.ui \
+    secondaryGUIs/obsmodedialog.ui \
+    secondaryGUIs/savetosettingsdialog.ui \
+    secondaryGUIs/settingsloadwindow.ui \
+    secondaryGUIs/skedcataloginfo.ui \
+    secondaryGUIs/textfileviewer.ui \
+    secondaryGUIs/vieschedpp_analyser.ui
 
 RESOURCES += \
         myresources.qrc

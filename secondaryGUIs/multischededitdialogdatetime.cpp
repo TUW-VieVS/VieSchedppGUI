@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "multischededitdialogdatetime.h"
+#include "secondaryGUIs/multischededitdialogdatetime.h"
 #include "ui_multischededitdialogdatetime.h"
 
 multiSchedEditDialogDateTime::multiSchedEditDialogDateTime(QWidget *parent) :

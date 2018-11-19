@@ -3,7 +3,7 @@
 
 #include <QAbstractTableModel>
 #include <QFont>
-#include "../VieSchedpp/Track.h"
+#include "../VieSchedpp/ObservingMode/Track.h"
 
 
 class Model_Tracks : public QAbstractTableModel

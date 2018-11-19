@@ -1,4 +1,4 @@
-#include "obsmodedialog.h"
+#include "secondaryGUIs/obsmodedialog.h"
 #include "ui_obsmodedialog.h"
 
 ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :

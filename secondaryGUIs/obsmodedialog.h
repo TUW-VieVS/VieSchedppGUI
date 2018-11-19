@@ -18,7 +18,7 @@
 #include <Delegates/comboboxdelegate.h>
 #include <Delegates/spinboxdelegate.h>
 
-#include "../VieSchedpp/ObservingMode.h"
+#include "../VieSchedpp/ObservingMode/ObservingMode.h"
 //#include "utility"
 
 namespace Ui {

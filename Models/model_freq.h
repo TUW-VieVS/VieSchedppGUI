@@ -5,7 +5,7 @@
 #include <QFont>
 #include <QColor>
 #include <QStringListModel>
-#include "../VieSchedpp/Freq.h"
+#include "../VieSchedpp/ObservingMode/Freq.h"
 
 class Model_Freq : public QAbstractTableModel
 {

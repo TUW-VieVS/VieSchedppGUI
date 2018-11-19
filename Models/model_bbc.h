@@ -5,7 +5,7 @@
 #include <QFont>
 #include <QColor>
 #include <QStringListModel>
-#include "../VieSchedpp/Bbc.h"
+#include "../VieSchedpp/ObservingMode/Bbc.h"
 
 class Model_Bbc : public QAbstractTableModel
 {

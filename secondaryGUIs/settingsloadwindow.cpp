@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "settingsloadwindow.h"
+#include "secondaryGUIs/settingsloadwindow.h"
 #include "ui_settingsloadwindow.h"
 
 settingsLoadWindow::settingsLoadWindow(QWidget *parent) :
