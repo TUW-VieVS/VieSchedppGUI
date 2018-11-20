@@ -178,8 +178,6 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     model_tracks_->idChanged();
     model_if_->idChanged();
 
-    connect(ui->spinBox_bits, SIGNAL(valueChanged(int)), this, SLOT(changeBits(int)));
-
     connect(ui->pushButton_summary, SIGNAL(clicked()), this, SLOT(dispSummary()));
 }
 
@@ -845,12 +843,6 @@ void ObsModeDialog::dispSummary()
     dial->setLayout(l);
     dial->resize(600,600);
     dial->exec();
-}
-
-void ObsModeDialog::changeBits(int bits)
-{
-    int idx = ui->comboBox_selectTracksBlock->currentIndex();
-    tracks_[idx]->setBits(bits);
 }
 
 std::shared_ptr<VieVS::ObservingMode> ObsModeDialog::getObservingMode()

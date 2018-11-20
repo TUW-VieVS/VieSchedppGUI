@@ -163,11 +163,11 @@ bool Model_Tracks::setData(const QModelIndex &index, const QVariant &value, int 
             break;
         }
         case 1:{
-            if(value.toString().isEmpty()){
-                break;
-            }
-            d.at(row).trksid_ = value.toString().toStdString();
-            emit idChanged();
+//            if(value.toString().isEmpty()){
+//                break;
+//            }
+//            d.at(row).trksid_ = value.toString().toStdString();
+//            emit idChanged();
             break;
         }
         case 2:{
@@ -181,6 +181,7 @@ bool Model_Tracks::setData(const QModelIndex &index, const QVariant &value, int 
                 d.at(row).bitstream_ = VieVS::Track::Bitstream::mag;
                 break;
             }
+            updateNames();
             break;
         }
         case 3:{
@@ -213,7 +214,12 @@ bool Model_Tracks::setData(const QModelIndex &index, const QVariant &value, int 
 
 Qt::ItemFlags Model_Tracks::flags(const QModelIndex &index) const
 {
-    return  Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled;
+    int col = index.column();
+    if(col == 1){
+        return  Qt::ItemIsSelectable | Qt::ItemIsEnabled;
+    }else{
+        return  Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled;
+    }
 }
 
 bool Model_Tracks::insertRows(int row, int count, const QModelIndex &parent)
@@ -237,6 +243,7 @@ bool Model_Tracks::insertRows(int row, int count, const QModelIndex &parent)
         d.insert(d.begin()+row+1, before);
     }
     endInsertRows();
+    updateNames();
     return true;
 }
 
@@ -251,6 +258,21 @@ bool Model_Tracks::removeRows(int row, int count, const QModelIndex &parent)
     d.erase(d.begin()+row);
     endRemoveRows();
     layoutChanged();
-    emit idChanged();
+    updateNames();
     return true;
+}
+
+
+void Model_Tracks::updateNames()
+{
+    auto &d = data_->refFanout_defs();
+    int c = 0;
+    for(int i = 0; i<d.size(); ++i){
+        if(d[i].bitstream_ == VieVS::Track::Bitstream::sign){
+            ++c;
+        }
+        std::string name = QString("&CH%1").arg(c,2,10,QChar('0')).toStdString();
+        d[i].trksid_ = name;
+    }
+    emit idChanged();
 }

@@ -81,8 +81,6 @@ private slots:
 
     void dispSummary();
 
-    void changeBits(int idx);
-
 private:
     Ui::ObsModeDialog *ui;
 

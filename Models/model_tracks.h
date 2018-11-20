@@ -62,6 +62,8 @@ public:
         }
     }
 
+    void updateNames();
+
 
 signals:
     void idChanged();
