@@ -4268,6 +4268,7 @@ void MainWindow::on_pushButton_saveAdvancedMode_clicked()
 {
     if(!advancedObservingMode_.is_initialized()){
         QMessageBox::warning(this,"No observing mode!","Please create or load observing mode first!");
+        return;
     }
 
     bool ok;
