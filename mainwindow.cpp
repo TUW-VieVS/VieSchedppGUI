@@ -2489,72 +2489,6 @@ QString MainWindow::writeXML()
         }
     }
 
-    if(ui->groupBox_modeSked->isChecked()){
-        std::string skdMode = ui->comboBox_skedObsModes->currentText().toStdString();
-        para.mode(skdMode);
-    }else if(ui->groupBox_modeCustom->isChecked()){
-        double sampleRate = ui->sampleRateDoubleSpinBox->value();
-        int bits = ui->sampleBitsSpinBox->value();
-        para.mode(sampleRate, bits);
-
-        for(int i = 0; i<ui->tableWidget_modeCustonBand->rowCount(); ++i){
-            std::string name = ui->tableWidget_modeCustonBand->verticalHeaderItem(i)->text().toStdString();
-            double wavelength = 1/(qobject_cast<QDoubleSpinBox*>(ui->tableWidget_modeCustonBand->cellWidget(i,0))->value()*1e9)*299792458.;
-            int chanels = qobject_cast<QSpinBox*>(ui->tableWidget_modeCustonBand->cellWidget(i,1))->value();
-            para.mode_band(name,wavelength,chanels);
-        }
-    }
-    for(int i = 0; i<ui->tableWidget_ModesPolicy->rowCount(); ++i){
-        std::string name = ui->tableWidget_ModesPolicy->verticalHeaderItem(i)->text().toStdString();
-
-        double minSNR = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,0))->value();
-
-        VieVS::ParameterSettings::ObservationModeProperty policySta;
-        QString polSta = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,1))->currentText();
-        if(polSta == "required"){
-            policySta = VieVS::ParameterSettings::ObservationModeProperty::required;
-        }else if(polSta == "optional"){
-            policySta = VieVS::ParameterSettings::ObservationModeProperty::optional;
-        }
-
-        VieVS::ParameterSettings::ObservationModeProperty policySrc;
-        QString polSrc = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,4))->currentText();
-        if(polSrc == "required"){
-            policySrc = VieVS::ParameterSettings::ObservationModeProperty::required;
-        }else if(polSrc == "optional"){
-            policySrc = VieVS::ParameterSettings::ObservationModeProperty::optional;
-        }
-
-        VieVS::ParameterSettings::ObservationModeBackup backupSta;
-        QString bacSta = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,2))->currentText();
-        if(bacSta == "none"){
-            backupSta = VieVS::ParameterSettings::ObservationModeBackup::none;
-        }else if(bacSta == "value"){
-            backupSta = VieVS::ParameterSettings::ObservationModeBackup::value;
-        }else if(bacSta == "min value Times"){
-            backupSta = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
-        }else if(bacSta == "max value Times"){
-            backupSta = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
-        }
-
-        VieVS::ParameterSettings::ObservationModeBackup backupSrc;
-        QString bacSrc = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,5))->currentText();
-        if(bacSrc == "none"){
-            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::none;
-        }else if(bacSrc == "value"){
-            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::value;
-        }else if(bacSrc == "min value Times"){
-            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
-        }else if(bacSrc == "max value Times"){
-            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
-        }
-
-        double valSta = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,3))->value();
-        double valSrc = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,6))->value();
-
-        para.mode_bandPolicy(name,minSNR,policySta,backupSta,valSta,policySrc,backupSrc,valSrc);
-    }
-
     if(ui->treeWidget_conditions->topLevelItemCount()>0){
         std::vector<std::string> members;
         std::vector<int> minScans;
@@ -2807,6 +2741,79 @@ QString MainWindow::writeXML()
         para.highImpactAzEl(members,azs,els,margins,interval,repeat);
 
     }
+
+    if(ui->groupBox_modeSked->isChecked()){
+        std::string skdMode = ui->comboBox_skedObsModes->currentText().toStdString();
+        para.mode(skdMode);
+    }else if(ui->groupBox_modeCustom->isChecked()){
+        double sampleRate = ui->sampleRateDoubleSpinBox->value();
+        int bits = ui->sampleBitsSpinBox->value();
+        para.mode(sampleRate, bits);
+
+        for(int i = 0; i<ui->tableWidget_modeCustonBand->rowCount(); ++i){
+            std::string name = ui->tableWidget_modeCustonBand->verticalHeaderItem(i)->text().toStdString();
+            double wavelength = 1/(qobject_cast<QDoubleSpinBox*>(ui->tableWidget_modeCustonBand->cellWidget(i,0))->value()*1e9)*299792458.;
+            int chanels = qobject_cast<QSpinBox*>(ui->tableWidget_modeCustonBand->cellWidget(i,1))->value();
+            para.mode_band(name,wavelength,chanels);
+        }
+    }else if(ui->groupBox_modeAdvanced->isChecked()){
+        if(advancedObservingMode_.is_initialized()){
+            para.mode(advancedObservingMode_->toPropertytree());
+        }else{
+            QMessageBox::warning(this,"No observing mode!","You did not create a custom observing mode!");
+        }
+    }
+    for(int i = 0; i<ui->tableWidget_ModesPolicy->rowCount(); ++i){
+        std::string name = ui->tableWidget_ModesPolicy->verticalHeaderItem(i)->text().toStdString();
+
+        double minSNR = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,0))->value();
+
+        VieVS::ParameterSettings::ObservationModeProperty policySta;
+        QString polSta = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,1))->currentText();
+        if(polSta == "required"){
+            policySta = VieVS::ParameterSettings::ObservationModeProperty::required;
+        }else if(polSta == "optional"){
+            policySta = VieVS::ParameterSettings::ObservationModeProperty::optional;
+        }
+
+        VieVS::ParameterSettings::ObservationModeProperty policySrc;
+        QString polSrc = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,4))->currentText();
+        if(polSrc == "required"){
+            policySrc = VieVS::ParameterSettings::ObservationModeProperty::required;
+        }else if(polSrc == "optional"){
+            policySrc = VieVS::ParameterSettings::ObservationModeProperty::optional;
+        }
+
+        VieVS::ParameterSettings::ObservationModeBackup backupSta;
+        QString bacSta = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,2))->currentText();
+        if(bacSta == "none"){
+            backupSta = VieVS::ParameterSettings::ObservationModeBackup::none;
+        }else if(bacSta == "value"){
+            backupSta = VieVS::ParameterSettings::ObservationModeBackup::value;
+        }else if(bacSta == "min value Times"){
+            backupSta = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
+        }else if(bacSta == "max value Times"){
+            backupSta = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
+        }
+
+        VieVS::ParameterSettings::ObservationModeBackup backupSrc;
+        QString bacSrc = qobject_cast<QComboBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,5))->currentText();
+        if(bacSrc == "none"){
+            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::none;
+        }else if(bacSrc == "value"){
+            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::value;
+        }else if(bacSrc == "min value Times"){
+            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
+        }else if(bacSrc == "max value Times"){
+            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
+        }
+
+        double valSta = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,3))->value();
+        double valSrc = qobject_cast<QDoubleSpinBox*>(ui->tableWidget_ModesPolicy->cellWidget(i,6))->value();
+
+        para.mode_bandPolicy(name,minSNR,policySta,backupSta,valSta,policySrc,backupSrc,valSrc);
+    }
+
 
     QString path = ui->lineEdit_outputPath->text();
     path = path.simplified();
@@ -4233,6 +4240,9 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
 
 void MainWindow::changeObservingModeSelection(int idx){
     auto s = sender();
+    if(idx == -1){
+        return;
+    }
 
     if(s == ui->comboBox_observingMode_mode){
         qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(idx)));
@@ -4247,6 +4257,95 @@ void MainWindow::changeObservingModeSelection(int idx){
     }
 
 }
+
+
+void MainWindow::on_pushButton_loadAdvancedMode_clicked()
+{
+
+}
+
+void MainWindow::on_pushButton_saveAdvancedMode_clicked()
+{
+    if(!advancedObservingMode_.is_initialized()){
+        QMessageBox::warning(this,"No observing mode!","Please create or load observing mode first!");
+    }
+
+    bool ok;
+    QString text = QInputDialog::getText(this, "observing mode name:", "name: ", QLineEdit::Normal, "", &ok);
+    if (ok && !text.isEmpty()){
+        boost::property_tree::ptree t = advancedObservingMode_->toPropertytree();
+        t.add("<xmlattr>.name",text.toStdString());
+
+        settings_.add_child("settings.mode.custom",t);
+
+        std::ofstream os;
+        os.open("settings.xml");
+        boost::property_tree::xml_parser::write_xml(os, settings_,
+                                                    boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
+        os.close();
+
+    }
+
+}
+
+void MainWindow::on_pushButton_changeCurrentAdvancedMode_clicked()
+{
+    if(!advancedObservingMode_.is_initialized()){
+        QMessageBox::warning(this,"No observing mode!","Please create or load observing mode first!");
+        return;
+    }
+
+    QVector<QString> qstation_names;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        qstation_names.append(selectedStationModel->item(i)->text());
+    }
+
+    ObsModeDialog *obsModeDial = new ObsModeDialog(*advancedObservingMode_, this);
+    int result = obsModeDial->exec();
+    if(result == QDialog::Accepted){
+        advancedObservingMode_ = obsModeDial->getObservingMode();
+
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setStations(qstation_names);
+        ui->comboBox_observingMode_mode->clear();
+        for(const auto & any : advancedObservingMode_->getModes()){
+            ui->comboBox_observingMode_mode->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(0)));
+
+        ui->comboBox_observingMode_freq->clear();
+        for(const auto & any : advancedObservingMode_->getFreqs()){
+            ui->comboBox_observingMode_freq->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(std::make_shared< VieVS::Freq >(*advancedObservingMode_->getFreqPerIndex(0)));
+
+        ui->comboBox_observingMode_bbc->clear();
+        for(const auto & any : advancedObservingMode_->getBbcs()){
+            ui->comboBox_observingMode_bbc->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(std::make_shared< VieVS::Bbc >(*advancedObservingMode_->getBbcPerIndex(0)));
+
+        ui->comboBox_observingMode_if->clear();
+        for(const auto & any : advancedObservingMode_->getIfs()){
+            ui->comboBox_observingMode_if->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(std::make_shared< VieVS::If >(*advancedObservingMode_->getIfPerIndex(0)));
+
+        ui->comboBox_observingMode_tracks->clear();
+        for(const auto & any : advancedObservingMode_->getTracks()){
+            ui->comboBox_observingMode_tracks->addItem(QString::fromStdString(any->getName()));
+        }
+        qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(std::make_shared< VieVS::Track >(*advancedObservingMode_->getTracksPerIndex(0)));
+
+        ui->comboBox_observingMode_trackFrameFormat->clear();
+        for(const auto & any : advancedObservingMode_->getTrackFrameFormats()){
+            ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
+        }
+
+    }
+
+    delete(obsModeDial);
+}
+
 
 void MainWindow::readAllSkedObsModes()
 {

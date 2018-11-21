@@ -845,26 +845,31 @@ void ObsModeDialog::dispSummary()
     dial->exec();
 }
 
-std::shared_ptr<VieVS::ObservingMode> ObsModeDialog::getObservingMode()
+VieVS::ObservingMode ObsModeDialog::getObservingMode()
 {
-    auto om = std::make_shared<VieVS::ObservingMode>();
+    VieVS::ObservingMode om;
     for(const auto &any : modes_){
-        om->addMode(any);
+        om.addMode(any);
     }
     for(const auto &any : freqs_){
-        om->addBlock(any);
+        om.addBlock(any);
     }
     for(const auto &any : bbcs_){
-        om->addBlock(any);
+        om.addBlock(any);
     }
     for(const auto &any : ifs_){
-        om->addBlock(any);
+        om.addBlock(any);
     }
     for(const auto &any : tracks_){
-        om->addBlock(any);
+        om.addBlock(any);
     }
     for(const auto &any : trackFrameFormats_){
-        om->addBlock(*any);
+        om.addBlock(*any);
     }
+    std::vector<std::string> staNames;
+    for(const auto &any : stations_){
+        staNames.emplace_back(any.toStdString());
+    }
+    om.setStationNames(staNames);
     return om;
 }

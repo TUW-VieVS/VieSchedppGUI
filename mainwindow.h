@@ -43,6 +43,7 @@
 #include <Utility/mytextbrowser.h>
 #include <QRegularExpression>
 #include <QFontDatabase>
+#include <QInputDialog>
 
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
@@ -543,12 +544,18 @@ private slots:
 
     void changeObservingModeSelection(int idx);
 
+    void on_pushButton_loadAdvancedMode_clicked();
+
+    void on_pushButton_saveAdvancedMode_clicked();
+
+    void on_pushButton_changeCurrentAdvancedMode_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
     boost::property_tree::ptree settings_;
 
-    std::shared_ptr<VieVS::ObservingMode> advancedObservingMode_;
+    boost::optional<VieVS::ObservingMode> advancedObservingMode_;
 
     VieVS::ParameterSettings para;
 

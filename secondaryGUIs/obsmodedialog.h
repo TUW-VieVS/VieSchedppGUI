@@ -34,7 +34,7 @@ public:
 
     ~ObsModeDialog();
 
-    std::shared_ptr<VieVS::ObservingMode> getObservingMode();
+    VieVS::ObservingMode getObservingMode();
 
 private slots:
     void updateMode(int i);
