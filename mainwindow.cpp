@@ -4196,47 +4196,75 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
     int result = obsModeDial->exec();
     if(result == QDialog::Accepted){
         advancedObservingMode_ = obsModeDial->getObservingMode();
-
-        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setStations(qstation_names);
-        ui->comboBox_observingMode_mode->clear();
-        for(const auto & any : advancedObservingMode_->getModes()){
-            ui->comboBox_observingMode_mode->addItem(QString::fromStdString(any->getName()));
-        }
-        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(0)));
-
-        ui->comboBox_observingMode_freq->clear();
-        for(const auto & any : advancedObservingMode_->getFreqs()){
-            ui->comboBox_observingMode_freq->addItem(QString::fromStdString(any->getName()));
-        }
-        qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(std::make_shared< VieVS::Freq >(*advancedObservingMode_->getFreqPerIndex(0)));
-
-        ui->comboBox_observingMode_bbc->clear();
-        for(const auto & any : advancedObservingMode_->getBbcs()){
-            ui->comboBox_observingMode_bbc->addItem(QString::fromStdString(any->getName()));
-        }
-        qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(std::make_shared< VieVS::Bbc >(*advancedObservingMode_->getBbcPerIndex(0)));
-
-        ui->comboBox_observingMode_if->clear();
-        for(const auto & any : advancedObservingMode_->getIfs()){
-            ui->comboBox_observingMode_if->addItem(QString::fromStdString(any->getName()));
-        }
-        qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(std::make_shared< VieVS::If >(*advancedObservingMode_->getIfPerIndex(0)));
-
-        ui->comboBox_observingMode_tracks->clear();
-        for(const auto & any : advancedObservingMode_->getTracks()){
-            ui->comboBox_observingMode_tracks->addItem(QString::fromStdString(any->getName()));
-        }
-        qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(std::make_shared< VieVS::Track >(*advancedObservingMode_->getTracksPerIndex(0)));
-
-        ui->comboBox_observingMode_trackFrameFormat->clear();
-        for(const auto & any : advancedObservingMode_->getTrackFrameFormats()){
-            ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
-        }
+        updateAdvancedObservingMode();
 
     }
 
     delete(obsModeDial);
 }
+
+void MainWindow::updateAdvancedObservingMode()
+{
+
+    if(!advancedObservingMode_.is_initialized()){
+
+        ui->comboBox_observingMode_mode->clear();
+        ui->comboBox_observingMode_freq->clear();
+        ui->comboBox_observingMode_bbc->clear();
+        ui->comboBox_observingMode_if->clear();
+        ui->comboBox_observingMode_tracks->clear();
+        ui->comboBox_observingMode_trackFrameFormat->clear();
+
+        qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(nullptr);
+        qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(nullptr);
+        qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(nullptr);
+        qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(nullptr);
+        qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(nullptr);
+        return;
+    }
+
+    QVector<QString> qstation_names;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        qstation_names.append(selectedStationModel->item(i)->text());
+    }
+
+    qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setStations(qstation_names);
+    ui->comboBox_observingMode_mode->clear();
+    for(const auto & any : advancedObservingMode_->getModes()){
+        ui->comboBox_observingMode_mode->addItem(QString::fromStdString(any->getName()));
+    }
+    qobject_cast<Model_Mode *>(ui->tableView_observingMode_mode->model())->setMode(std::make_shared< VieVS::Mode >(*advancedObservingMode_->getModePerIndex(0)));
+
+    ui->comboBox_observingMode_freq->clear();
+    for(const auto & any : advancedObservingMode_->getFreqs()){
+        ui->comboBox_observingMode_freq->addItem(QString::fromStdString(any->getName()));
+    }
+    qobject_cast<Model_Freq *>(ui->tableView_observingMode_freq->model())->setFreq(std::make_shared< VieVS::Freq >(*advancedObservingMode_->getFreqPerIndex(0)));
+
+    ui->comboBox_observingMode_bbc->clear();
+    for(const auto & any : advancedObservingMode_->getBbcs()){
+        ui->comboBox_observingMode_bbc->addItem(QString::fromStdString(any->getName()));
+    }
+    qobject_cast<Model_Bbc *>(ui->tableView_observingMode_bbc->model())->setBbc(std::make_shared< VieVS::Bbc >(*advancedObservingMode_->getBbcPerIndex(0)));
+
+    ui->comboBox_observingMode_if->clear();
+    for(const auto & any : advancedObservingMode_->getIfs()){
+        ui->comboBox_observingMode_if->addItem(QString::fromStdString(any->getName()));
+    }
+    qobject_cast<Model_If *>(ui->tableView_observingMode_if->model())->setIf(std::make_shared< VieVS::If >(*advancedObservingMode_->getIfPerIndex(0)));
+
+    ui->comboBox_observingMode_tracks->clear();
+    for(const auto & any : advancedObservingMode_->getTracks()){
+        ui->comboBox_observingMode_tracks->addItem(QString::fromStdString(any->getName()));
+    }
+    qobject_cast<Model_Tracks *>(ui->tableView_observingMode_tracks->model())->setTracks(std::make_shared< VieVS::Track >(*advancedObservingMode_->getTracksPerIndex(0)));
+
+    ui->comboBox_observingMode_trackFrameFormat->clear();
+    for(const auto & any : advancedObservingMode_->getTrackFrameFormats()){
+        ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
+    }
+}
+
 
 void MainWindow::changeObservingModeSelection(int idx){
     auto s = sender();
@@ -4258,10 +4286,102 @@ void MainWindow::changeObservingModeSelection(int idx){
 
 }
 
-
 void MainWindow::on_pushButton_loadAdvancedMode_clicked()
 {
+    auto tmodes= settings_.get_child_optional("settings.mode");
+    if(!tmodes.is_initialized()){
+        QMessageBox::warning(this,"No observing mode found!","There is no observing mode saved previously.");
+        return;
+    }
+    QVector<QString> names;
+    QVector<QVector<QString>> freqs;
+    QVector<QVector<QString>> bbcs;
+    QVector<QVector<QString>> ifs;
+    QVector<QVector<QString>> tracks;
+    QVector<QVector<QString>> trackFrameFormats;
+    QVector<QVector<QString>> modes;
 
+    for(const auto &mode : *tmodes){
+
+        if(mode.first == "custom"){
+            QVector<QString> tfreqs;
+            QVector<QString> tbbcs;
+            QVector<QString> tifs;
+            QVector<QString> ttracks;
+            QVector<QString> ttrackFrameFormats;
+            QVector<QString> tmodes;
+
+            names.append(QString::fromStdString(mode.second.get("<xmlattr>.name","unknown")));
+            for(const auto &any : mode.second){
+                if(any.first == "FREQ"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    tfreqs.append(name);
+                }
+                if(any.first == "BBC"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    tbbcs.append(name);
+                }
+                if(any.first == "IF"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    tifs.append(name);
+                }
+                if(any.first == "TRACKS"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    ttracks.append(name);
+                }
+                if(any.first == "track_frame_format"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    ttrackFrameFormats.append(name);
+                }
+                if(any.first == "MODE"){
+                    QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.name"));
+                    tmodes.append(name);
+                }
+            }
+
+            freqs.append(tfreqs);
+            bbcs.append(tbbcs);
+            ifs.append(tifs);
+            tracks.append(ttracks);
+            trackFrameFormats.append(ttrackFrameFormats);
+            modes.append(tmodes);
+        }
+    }
+
+    if(names.isEmpty()){
+        QMessageBox::warning(this,"No observing mode found!","There is no observing mode saved previously.");
+        return;
+    }
+
+    settingsLoadWindow *dial = new settingsLoadWindow(this);
+
+    dial->setModes(names,freqs,bbcs,ifs,tracks,trackFrameFormats,modes);
+
+    int result = dial->exec();
+    if(result == QDialog::Accepted){
+
+        QString itm = dial->selectedItem();
+        int idx = dial->selectedIdx();
+
+        int counter = 0;
+        for(const auto &mode : *tmodes){
+            if(mode.first == "custom"){
+                if(counter == idx){
+                    std::vector<std::string> station_names;
+                    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+                        station_names.push_back(selectedStationModel->item(i)->text().toStdString());
+                    }
+
+                    advancedObservingMode_ = VieVS::ObservingMode(mode.second, station_names);
+                    updateAdvancedObservingMode();
+
+                    break;
+                }else{
+                    counter++;
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::on_pushButton_saveAdvancedMode_clicked()
@@ -6802,6 +6922,12 @@ void MainWindow::networkSizeChanged()
 {
     int size = selectedStationModel->rowCount();
     ui->label_network_selected->setText(QString("selected: %1").arg(size));
+
+    if(advancedObservingMode_.is_initialized()){
+        QMessageBox::warning(this,"Custom observing mode deleted!","Your custom observing mode was deleted due to change in station network!");
+        advancedObservingMode_ = boost::none;
+        updateAdvancedObservingMode();
+    }
 }
 
 void MainWindow::baselineListChanged()
@@ -9138,6 +9264,7 @@ QBarSet *MainWindow::statisticsBarSet(int idx, QString name)
 
     return set;
 }
+
 
 void MainWindow::on_treeWidget_statisticGeneral_itemChanged(QTreeWidgetItem *item, int column)
 {

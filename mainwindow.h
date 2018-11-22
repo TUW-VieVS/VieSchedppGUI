@@ -660,7 +660,7 @@ private:
 
     QBarSet* statisticsBarSet(int idx, QString name="");
 
-
+    void updateAdvancedObservingMode();
 
 };
 

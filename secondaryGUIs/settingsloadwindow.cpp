@@ -138,6 +138,23 @@ void settingsLoadWindow::setModes(const QVector<QString> &names, const QVector<i
     this->freqs = freqs;
 }
 
+void settingsLoadWindow::setModes(const QVector<QString> &names, const QVector<QVector<QString>>& freqs, const QVector<QVector<QString>>& bbcs,
+              const QVector<QVector<QString>>& ifs, const QVector<QVector<QString>>& tracks, const QVector<QVector<QString>>& trackFrameFormats,
+                                  const QVector<QVector<QString>>& modes){
+    for(const auto&any:names){
+        ui->name->addItem(any);
+    }
+    type = Type::advancedModes;
+
+    afreqs = freqs;
+    abbcs = bbcs;
+    aifs = ifs;
+    atracks = tracks;
+    atrackFrameFormats = trackFrameFormats;
+    amodes = modes;
+}
+
+
 QString settingsLoadWindow::selectedItem()
 {
     auto list = ui->name->selectedItems();
@@ -585,6 +602,59 @@ void settingsLoadWindow::refreshList(QListWidgetItem *itm)
         }
         break;
     }
+    case Type::advancedModes:{
+        auto t = ui->para;
+        t->clear();
+        t->setColumnCount(1);
+        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QString("name: %1").arg(name)));
+        int c = 0;
+        for(const auto & any : amodes[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("MODE"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+        for(const auto & any : afreqs[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("FREQ"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+        for(const auto & any : abbcs[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("BBC"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+        for(const auto & any : aifs[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("IF"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+        for(const auto & any : atracks[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("TRACKS"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+        for(const auto & any : atrackFrameFormats[idx]){
+            t->setRowCount(c);
+            t->insertRow(c);
+            t->setVerticalHeaderItem(c,new QTableWidgetItem("TRACKS"));
+            t->setItem(c,0,new QTableWidgetItem(any));
+            ++c;
+        }
+
+        QHeaderView *hv = t->verticalHeader();
+        hv->setSectionResizeMode(QHeaderView::ResizeToContents);
+        break;
+        }
     default:{
         break;
     }

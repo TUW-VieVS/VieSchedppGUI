@@ -13,6 +13,9 @@ Model_Tracks::Model_Tracks(QObject *parent)
 void Model_Tracks::setTracks(const std::shared_ptr<VieVS::Track> &data)
 {
     data_ = data;
+    if(data_ == nullptr){
+        return;
+    }
     int max = 1;
     for(const auto &any : data_->getFanout_defs()){
         if(any.second_multiplex_track_>=0){

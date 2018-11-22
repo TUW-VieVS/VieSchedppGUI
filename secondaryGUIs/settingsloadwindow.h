@@ -42,7 +42,8 @@ public:
         bands,
         network,
         sourceList,
-        modes
+        modes,
+        advancedModes
     };
 
 
@@ -70,6 +71,10 @@ public:
     void setModes(const QVector<QString> &names, const QVector<int> &bits, const QVector<double> &srates,
                   const QVector<QVector<QString> > &bands, const QVector<QVector<int> > &channels,
                   const QVector<QVector<double> > &freqs);
+
+    void setModes(const QVector<QString> &names, const QVector<QVector<QString>>& freqs, const QVector<QVector<QString>>& bbcs,
+                  const QVector<QVector<QString>>& ifs, const QVector<QVector<QString>>& tracks, const QVector<QVector<QString>>& trackFrameFormats,
+                  const QVector<QVector<QString>>& modes);
 
     QString selectedItem();
 
@@ -104,7 +109,12 @@ private:
     QVector<QVector<int> > channels;
     QVector<QVector<double> > freqs;
 
-
+    QVector<QVector<QString>> afreqs;
+    QVector<QVector<QString>> abbcs;
+    QVector<QVector<QString>> aifs;
+    QVector<QVector<QString>> atracks;
+    QVector<QVector<QString>> atrackFrameFormats;
+    QVector<QVector<QString>> amodes;
 };
 
 #endif // SETTINGSLOADWINDOW_H
