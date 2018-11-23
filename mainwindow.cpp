@@ -1158,10 +1158,12 @@ void MainWindow::on_pushButton_2_clicked()
 
     #ifdef Q_OS_WIN
     QString program = absolutePathToExe;
+    program = "\""+program+"\"";
     start->start("cmd.exe",
                  QStringList() << "/c" << program);
     #else
     QString program = absolutePathToExe;
+    program = "\""+program+"\"";
     QStringList arguments;
     start->start(program);
     #endif
@@ -1226,10 +1228,12 @@ void MainWindow::on_actionRun_triggered()
         QString absolutePathToExe = dirToExe.absolutePath();
         #ifdef Q_OS_WIN
             QString program = absolutePathToExe;
+            program = "\""+program+"\"";
             start->start("cmd.exe",
                          QStringList() << "/c" << program << fullPath);
         #else
             QString program = absolutePathToExe;
+            program = "\""+program+"\"";
             QStringList arguments;
             arguments << fullPath;
             start->start(program,arguments);
