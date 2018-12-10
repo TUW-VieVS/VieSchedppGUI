@@ -1233,10 +1233,9 @@ void MainWindow::on_actionRun_triggered()
                          QStringList() << "/c" << program << fullPath);
         #else
             QString program = absolutePathToExe;
-            program = "\""+program+"\"";
             QStringList arguments;
             arguments << fullPath;
-            start->start(program,arguments);
+            start->start(program, arguments);
         #endif
 
 
