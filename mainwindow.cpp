@@ -3473,10 +3473,6 @@ void MainWindow::loadXML(QString path)
     {
         ui->groupBox_modeSked->setChecked(false);
         ui->groupBox_modeCustom->setChecked(false);
-        while(ui->tableWidget_modeCustonBand->rowCount() >0){
-            ui->tableWidget_modeCustonBand->removeRow(0);
-        }
-        ui->tableWidget_modeCustonBand->setRowCount(0);
 
         while(ui->tableWidget_ModesPolicy->rowCount() >0){
             ui->tableWidget_ModesPolicy->removeRow(0);
@@ -3491,6 +3487,10 @@ void MainWindow::loadXML(QString path)
             addModesCustomTable("S",2.260,6);
         }
         if(xml.get_child_optional("VieSchedpp.mode.simple").is_initialized()){
+            while(ui->tableWidget_modeCustonBand->rowCount() >0){
+                ui->tableWidget_modeCustonBand->removeRow(0);
+            }
+            ui->tableWidget_modeCustonBand->setRowCount(0);
             ui->sampleRateDoubleSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.sampleRate"));
             ui->sampleBitsSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.bits"));
             ui->groupBox_modeCustom->setChecked(true);
@@ -3506,6 +3506,18 @@ void MainWindow::loadXML(QString path)
                     addModesCustomTable(name,freq,channels);
                 }
             }
+        }
+        if(xml.get_child_optional("VieSchedpp.mode.custom").is_initialized()){
+            ui->groupBox_modeAdvanced->setChecked(true);
+
+            std::vector<std::string> station_names;
+            for(int i=0; i<selectedStationModel->rowCount(); ++i){
+                station_names.push_back(selectedStationModel->item(i)->text().toStdString());
+            }
+
+            advancedObservingMode_ = VieVS::ObservingMode(xml.get_child("VieSchedpp.mode.custom"), station_names);
+            updateAdvancedObservingMode();
+
         }
     }
 
@@ -4208,6 +4220,8 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
 
 void MainWindow::updateAdvancedObservingMode()
 {
+//    ui->tableWidget_ModesPolicy->clear();
+    ui->tableWidget_ModesPolicy->setRowCount(0);
 
     if(!advancedObservingMode_.is_initialized()){
 
@@ -4265,6 +4279,10 @@ void MainWindow::updateAdvancedObservingMode()
     ui->comboBox_observingMode_trackFrameFormat->clear();
     for(const auto & any : advancedObservingMode_->getTrackFrameFormats()){
         ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
+    }
+
+    for(const auto &band : advancedObservingMode_->getAllBands()){
+        addModesPolicyTable(QString::fromStdString(band));
     }
 }
 
@@ -4501,6 +4519,11 @@ void MainWindow::on_groupBox_modeSked_toggled(bool arg1)
     if(arg1){
         ui->groupBox_modeCustom->setChecked(!arg1);
         ui->groupBox_modeAdvanced->setChecked(!arg1);
+
+//        ui->tableWidget_ModesPolicy->clear();
+        ui->tableWidget_ModesPolicy->setRowCount(0);
+        addModesPolicyTable("X");
+        addModesPolicyTable("S");
     }
 }
 
@@ -4509,6 +4532,12 @@ void MainWindow::on_groupBox_modeCustom_toggled(bool arg1)
     if(arg1){
         ui->groupBox_modeSked->setChecked(!arg1);
         ui->groupBox_modeAdvanced->setChecked(!arg1);
+
+        ui->tableWidget_ModesPolicy->setRowCount(0);
+        for(int i=0; i<ui->tableWidget_modeCustonBand->rowCount(); ++i){
+            QString name = ui->tableWidget_modeCustonBand->verticalHeaderItem(i)->text();
+            addModesPolicyTable(name);
+        }
     }
 }
 
@@ -4517,6 +4546,8 @@ void MainWindow::on_groupBox_modeAdvanced_toggled(bool arg1)
     if(arg1){
         ui->groupBox_modeCustom->setChecked(!arg1);
         ui->groupBox_modeSked->setChecked(!arg1);
+
+        updateAdvancedObservingMode();
     }
 }
 

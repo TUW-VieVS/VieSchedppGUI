@@ -1024,7 +1024,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>709</width>
              <height>750</height>
             </rect>
            </property>
@@ -9257,7 +9257,7 @@ p, li { white-space: pre-wrap; }
                <item row="0" column="0">
                 <widget class="QLabel" name="label_12">
                  <property name="text">
-                  <string>distance type</string>
+                  <string>distance function</string>
                  </property>
                 </widget>
                </item>
@@ -9321,7 +9321,7 @@ p, li { white-space: pre-wrap; }
                <item row="2" column="0">
                 <widget class="QLabel" name="label_27">
                  <property name="text">
-                  <string>time type</string>
+                  <string>time function</string>
                  </property>
                 </widget>
                </item>
