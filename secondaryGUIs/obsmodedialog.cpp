@@ -733,9 +733,9 @@ void ObsModeDialog::updateIds()
         QStringList ifIds = ifIds_->stringList();
         ifIds.clear();
         for(const auto &any : ifs_){
-            for(const auto &any : any->getIf_defs()){
-                if(!ifIds.contains(QString::fromStdString(any.getName()))){
-                    ifIds << QString::fromStdString(any.getName());
+            for(const auto &any2 : any->getIf_defs()){
+                if(!ifIds.contains(QString::fromStdString(any2.getName()))){
+                    ifIds << QString::fromStdString(any2.getName());
                 }
             }
         }
@@ -746,9 +746,9 @@ void ObsModeDialog::updateIds()
         QStringList bbcIds = bbcIds_->stringList();
         bbcIds.clear();
         for(const auto &any : bbcs_){
-            for(const auto &any : any->getBbc_assigns()){
-                if(!bbcIds.contains(QString::fromStdString(any.getName()))){
-                    bbcIds.append(QString::fromStdString(any.getName()));
+            for(const auto &any2 : any->getBbc_assigns()){
+                if(!bbcIds.contains(QString::fromStdString(any2.getName()))){
+                    bbcIds.append(QString::fromStdString(any2.getName()));
                 }
             }
         }
@@ -759,9 +759,9 @@ void ObsModeDialog::updateIds()
         QStringList channelIds = channelIds_->stringList();
         channelIds.clear();
         for(const auto &any : tracks_){
-            for(const auto &any : any->getFanout_defs()){
-                if(!channelIds.contains(QString::fromStdString(any.trksid_))){
-                    channelIds.append(QString::fromStdString(any.trksid_));
+            for(const auto &any2 : any->getFanout_defs()){
+                if(!channelIds.contains(QString::fromStdString(any2.trksid_))){
+                    channelIds.append(QString::fromStdString(any2.trksid_));
                 }
             }
         }
