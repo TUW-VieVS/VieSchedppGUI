@@ -3898,7 +3898,7 @@ void MainWindow::addSetup(QTreeWidget *tree, const boost::property_tree::ptree &
     QDateTime end_time = start_time.addSecs(sec);
     QString parameter;
     QString member;
-    QString transition = "soft";
+    QString transition = "smooth";
     QTreeWidgetItem *selected = tree->selectedItems().at(0);
 
 
@@ -5317,8 +5317,8 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
         unsigned int startt = sessionStart.secsTo(paraStart->dateTime());
         unsigned int endt = sessionStart.secsTo(paraEnd->dateTime());
         VieVS::ParameterSetup::Transition trans;
-        if(transition->currentText() == "soft"){
-            trans = VieVS::ParameterSetup::Transition::soft;
+        if(transition->currentText() == "smooth"){
+            trans = VieVS::ParameterSetup::Transition::smooth;
         }else{
             trans = VieVS::ParameterSetup::Transition::hard;
         }
@@ -5376,8 +5376,8 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
             members2.push_back(memberName2);
         }
         VieVS::ParameterSetup::Transition trans2;
-        if(sel.at(0)->text(4) == "soft"){
-            trans2 = VieVS::ParameterSetup::Transition::soft;
+        if(sel.at(0)->text(4) == "smooth"){
+            trans2 = VieVS::ParameterSetup::Transition::smooth;
         }else{
             trans2 = VieVS::ParameterSetup::Transition::hard;
         }
@@ -5460,8 +5460,8 @@ void MainWindow::deleteSetupSelection(VieVS::ParameterSetup &setup, QChartView *
                 members2.push_back(memberName2);
             }
             VieVS::ParameterSetup::Transition trans2;
-            if(sel.at(0)->text(4) == "soft"){
-                trans2 = VieVS::ParameterSetup::Transition::soft;
+            if(sel.at(0)->text(4) == "smooth"){
+                trans2 = VieVS::ParameterSetup::Transition::smooth;
             }else{
                 trans2 = VieVS::ParameterSetup::Transition::hard;
             }
