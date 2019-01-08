@@ -1752,7 +1752,7 @@ void MainWindow::defaultParameters()
     sta.available = true;
     sta.availableForFillinmode = true;
     sta.maxScan = 600;
-    sta.minScan = 20;
+    sta.minScan = 30;
     sta.maxSlewtime = 600;
     sta.maxSlewDistance = 175;
     sta.minSlewDistance = 0;
@@ -1804,8 +1804,8 @@ void MainWindow::defaultParameters()
     src.available = true;
     src.availableForFillinmode = true;
     src.minRepeat = 1800;
-    src.minScan = 20;
-    src.maxScan = 600;
+    src.minScan = 0;
+    src.maxScan = 9999;
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
@@ -1853,8 +1853,8 @@ void MainWindow::defaultParameters()
     }
     VieVS::ParameterSettings::ParametersBaselines bl;
     bl.ignore = false;
-    bl.maxScan = 600;
-    bl.minScan = 20;
+    bl.maxScan = 9999;
+    bl.minScan = 0;
     bl.weight = 1;
     auto baselineTree = settings_.get_child_optional("settings.baseline.parameters");
     if(baselineTree.is_initialized()){
@@ -3955,8 +3955,8 @@ void MainWindow::createDefaultParameterSettings()
 
     VieVS::ParameterSettings::ParametersSources src;
     src.minRepeat = 1800;
-    src.minScan = 20;
-    src.maxScan = 600;
+    src.minScan = 0;
+    src.maxScan = 9999;
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
@@ -3966,8 +3966,8 @@ void MainWindow::createDefaultParameterSettings()
     settings_.add_child("settings.source.parameters.parameter",VieVS::ParameterSettings::parameterSource2ptree("default",src).get_child("parameters"));
 
     VieVS::ParameterSettings::ParametersBaselines bl;
-    bl.maxScan = 600;
-    bl.minScan = 30;
+    bl.maxScan = 9999;
+    bl.minScan = 0;
     bl.weight = 1;
     settings_.add_child("settings.baseline.parameters.parameter",VieVS::ParameterSettings::parameterBaseline2ptree("default",bl).get_child("parameters"));
     settings_.add("settings.station.waitTimes.setup",0);
