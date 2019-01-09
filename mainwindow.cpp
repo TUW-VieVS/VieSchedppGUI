@@ -379,7 +379,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->DateTimeEdit_startParameterSource->setDisplayFormat("dd.MM.yyyy HH:mm");
     ui->DateTimeEdit_startParameterStation->setDisplayFormat("dd.MM.yyyy HH:mm");
 
-    ui->textEdit_weightFactorHelp->setVisible(false);
     connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
 
     Model_Mode *modelModes = new Model_Mode(QVector<QString>(), this);
@@ -7830,6 +7829,7 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                                        "min number of stations",
                                        "min repeat time",
                                        "idle time interval",
+                                       "influence time",
                                        "max number of scans"};
 
             QStringList row2doubleDialog {"subnetting min source angle",
@@ -7848,7 +7848,6 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                                           "low elevation begin",
                                           "low elevation full",
                                           "influence distance",
-                                          "influence time",
                                           "weight",
                                           "min slew distance",
                                           "max slew distance",
