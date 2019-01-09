@@ -46,13 +46,13 @@
 #include <QInputDialog>
 
 #include <QtCharts/QChart>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QDateTimeAxis>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QAreaSeries>
 
@@ -75,6 +75,7 @@
 #include "secondaryGUIs/skedcataloginfo.h"
 #include "Utility/multicolumnsortfilterproxymodel.h"
 #include "secondaryGUIs/obsmodedialog.h"
+#include "Utility/statistics.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -385,24 +386,6 @@ private slots:
 
     void on_actionsummary_triggered();
 
-    void setupStatisticView();
-
-    void on_pushButton_addStatistic_clicked();
-
-    void on_pushButton_removeStatistic_clicked();
-
-    void on_treeWidget_statisticGeneral_itemChanged(QTreeWidgetItem *item, int column);
-
-    void on_treeWidget_statisticStation_itemChanged(QTreeWidgetItem *item, int column);
-
-    void on_horizontalScrollBar_statistics_valueChanged(int value);
-
-    void on_spinBox_statistics_show_valueChanged(int arg1);
-
-    void plotStatistics(bool animation = false);
-
-    void statisticsHovered(bool status, int index, QBarSet* barset);
-
     void setupSkyCoverageTemplatePlot();
 
     void skyCoverageTemplate();
@@ -582,7 +565,6 @@ private:
     QChartView *setupStation;
     QChartView *setupSource;
     QChartView *setupBaseline;
-    QChartView *statisticsView;
     QChartView *skyCoverageTemplateView;
     bool plotSkyCoverageTemplate;
 
@@ -619,8 +601,7 @@ private:
     std::map<std::string, VieVS::ParameterSettings::ParametersSources> paraSrc;
     std::map<std::string, VieVS::ParameterSettings::ParametersBaselines> paraBl;
 
-    QStringList statisticsName;
-    QMap<QString, QMap<int, QVector< int >>> statistics;
+    Statistics *statistics;
 
     void readSkedCatalogs();
 
@@ -654,11 +635,7 @@ private:
 
     int plotParameter(QChart* targetChart, QTreeWidgetItem *item, int level, int plot, QString target, const std::map<std::string, std::vector<std::string> > &map);
 
-    void addEmptyStatistic(int idx);
-
     double interpolate( QVector<double> &xData, QVector<double> &yData, double x, bool extrapolate=false );
-
-    QBarSet* statisticsBarSet(int idx, QString name="");
 
     void updateAdvancedObservingMode();
 

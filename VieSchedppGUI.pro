@@ -136,7 +136,8 @@ SOURCES += \
     Utility/chartview.cpp \
     Utility/multicolumnsortfilterproxymodel.cpp \
     Utility/mytextbrowser.cpp \
-    Utility/qtutil.cpp
+    Utility/qtutil.cpp \
+    Utility/statistics.cpp
 
 HEADERS += \
     ../VieSchedpp/Input/LogParser.h \
@@ -227,7 +228,8 @@ HEADERS += \
     Utility/multicolumnsortfilterproxymodel.h \
     Utility/mytextbrowser.h \
     Utility/qtutil.h \
-    mainwindow.h
+    mainwindow.h \
+    Utility/statistics.h
 
 FORMS += \
     mainwindow.ui \
