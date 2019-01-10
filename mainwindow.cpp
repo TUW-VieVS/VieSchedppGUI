@@ -325,6 +325,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter_5->setStretchFactor(1,3);
     ui->splitter_4->setSizes(QList<int>({INT_MAX, INT_MAX}));
     ui->splitter_6->setSizes(QList<int>({INT_MAX, INT_MAX}));
+    ui->splitter_statistics->setSizes({1000,5000});
 
     ui->spinBox_fontSize->setValue(QApplication::font().pointSize());
     ui->iconSizeSpinBox->setValue(ui->fileToolBar->iconSize().width());
@@ -9241,11 +9242,3 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
         }
     }
 }
-
-
-
-
-
-
-
-

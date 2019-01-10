@@ -90,6 +90,7 @@ void Statistics::reload()
     stations.clear();
     baselines.clear();
     sources.clear();
+    multiScheduling.clear();
     for(int i=0; i<statisticsCSV->count(); ++i){
         QString path = statisticsCSV->item(i)->text();
         QStringList tmp = path.split("/");
@@ -103,24 +104,27 @@ void Statistics::reload()
         QTextStream in(&file);
         QString line = in.readLine();
         QStringList names = line.split(",",QString::SplitBehavior::SkipEmptyParts);
-
+        bool dummy = false;
         for(const auto &name : names){
             if( name.left(10) == "n_sta_obs_" ){
                 QString thisName = name.mid(10);
                 if(stations.indexOf(thisName) == -1){
                     stations.append(thisName);
                 }
-            }
-            if( name.left(9) == "n_bl_obs_" ){
+            }else if( name.left(9) == "n_bl_obs_" ){
                 QString thisName = name.mid(9);
                 if(baselines.indexOf(thisName) == -1){
                     baselines.append(thisName);
                 }
-            }
-            if( name.left(10) == "n_src_obs_" ){
+            }else if( name.left(10) == "n_src_obs_" ){
                 QString thisName = name.mid(10);
                 if(sources.indexOf(thisName) == -1){
                     sources.append(thisName);
+                }
+                dummy = true;
+            }else if(dummy){
+                if(multiScheduling.indexOf(name) == -1){
+                    multiScheduling.append(name);
                 }
             }
         }
@@ -147,9 +151,13 @@ void Statistics::reload()
     for(const auto &any:sources){
         lookupTable << QString("n_src_obs_").append(any);
     }
+    for(const auto &any:multiScheduling){
+        lookupTable << any;
+    }
 
     // ################# read data #################
     statistics.clear();
+    QVector<int> counter(lookupTable.size(),0);
     for(int i=0; i<statisticsCSV->count(); ++i){
         QString path = statisticsCSV->item(i)->text();
         QStringList tmp = path.split("/");
@@ -176,10 +184,46 @@ void Statistics::reload()
                 const QString &name = header.at(i);
                 double value = split.at(i).toDouble();
                 int idx = lookupTable.indexOf(name);
+
                 if(idx == -1){
                     continue;
                 }
+                if(value != 0){
+                    ++counter[idx];
+                }
                 statistics[folder][version][idx] = value;
+            }
+        }
+    }
+    int offset = general.size() + 2*stations.size() + baselines.size();
+    QList<char> remove;
+    for (int i=offset; i<offset+sources.size(); ++i) {
+        if(counter[i] > 0){
+            remove.append(false);
+        }else{
+            remove.append(true);
+        }
+    }
+    QList<int> removeIdx;
+    int nSrc = sources.size();
+    for(int i=remove.size()-1; i>=0; --i){
+        if(remove[i]){
+            sources.removeAt(i);
+            lookupTable.removeAt(i+nSrc+offset);
+            removeIdx.append(i+nSrc+offset);
+        }
+    }
+    for(int i=remove.size()-1; i>=0; --i){
+        if(remove[i]){
+            lookupTable.removeAt(i+offset);
+            removeIdx.append(i+offset);
+        }
+    }
+
+    for(auto & any: statistics){
+        for(auto & any2: any){
+            for(int i : removeIdx){
+                any2.removeAt(i);
             }
         }
     }
@@ -205,6 +249,7 @@ void Statistics::reload()
         itemlist->setItemWidget(gen->child(gen->childCount()-1),2,db);
         connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
     }
+    gen->setExpanded(true);
 
     itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "station"));
     const auto &sta = itemlist->topLevelItem(1);
@@ -278,7 +323,20 @@ void Statistics::reload()
         itemlist->setItemWidget(srcObs->child(srcObs->childCount()-1),2,db2);
         connect(db2,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
     }
-    gen->setExpanded(true);
+
+    itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "multi scheduling"));
+    const auto &ms = itemlist->topLevelItem(4);
+    ms->setCheckState(0,Qt::Unchecked);
+    for(QString any : multiScheduling){
+
+        ms->addChild(new QTreeWidgetItem(QStringList() << any.replace("_"," ")));
+        ms->child(ms->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+        auto db = new QDoubleSpinBox(itemlist);
+        db->setMinimum(-99);
+        itemlist->setItemWidget(ms->child(ms->childCount()-1),2,db);
+        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+    }
 
     // ################# create plot #################
 
@@ -355,6 +413,7 @@ void Statistics::plotStatistics(bool animation)
     const auto &blObs = itemlist->topLevelItem(2)->child(0);
     const auto &srcScans = itemlist->topLevelItem(3)->child(0);
     const auto &srcObs = itemlist->topLevelItem(3)->child(1);
+    const auto &ms = itemlist->topLevelItem(4);
 
     for(int i=0; i<gen->childCount(); ++i){
         const auto &child = gen->child(i);
@@ -444,6 +503,20 @@ void Statistics::plotStatistics(bool animation)
         }
     }
 
+    for(int i=0; i<ms->childCount(); ++i){
+        const auto &child = ms->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = child->text(0);
+            barSets.push_back(statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i, name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+    }
 
 
     // ################# create categories #################
@@ -517,6 +590,17 @@ void Statistics::plotStatistics(bool animation)
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
             auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + srcObs->childCount() + i);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+    }
+
+    for(int i=0; i<ms->childCount(); ++i){
+        const auto &child = ms->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -619,6 +703,7 @@ void Statistics::statisticsHovered(bool status, int index, QBarSet *barset)
         label = label.replace("bl_obs_","observations ");
         label = label.replace("src_scans_","scans ");
         label = label.replace("src_obs_","observations ");
+        label = label.replace("_"," ");
         value = statistics[name][version][idx];
 
         hoveredTitle->setText(label);
@@ -671,8 +756,18 @@ void Statistics::on_treeWidget_statisticGeneral_itemChanged(QTreeWidgetItem *ite
     if(item->checkState(0) == Qt::PartiallyChecked){
         return;
     }
+    if(item->checkState(0) != Qt::Unchecked){
+        item->setExpanded(true);
+    }else{
+        item->setExpanded(false);
+    }
     for(int i=0; i<item->childCount(); ++i){
         item->child(i)->setCheckState(0,item->checkState(0));
+        if(item->checkState(0) != Qt::Unchecked){
+            item->child(i)->setExpanded(true);
+        }else{
+            item->child(i)->setExpanded(false);
+        }
         for(int j=0; j<item->child(i)->childCount(); ++j){
             item->child(i)->child(j)->setCheckState(0,item->checkState(0));
         }
@@ -735,44 +830,6 @@ void Statistics::on_treeWidget_statisticGeneral_itemChanged(QTreeWidgetItem *ite
     plotStatistics(false);
 }
 
-/**
-void Statistics::on_treeWidget_statisticStation_itemChanged(QTreeWidgetItem *item, int column)
-{
-    itemlist->blockSignals(true);
-
-    if(item->checkState(0) == Qt::PartiallyChecked){
-        return;
-    }
-    for(int i=0; i<item->childCount(); ++i){
-        item->child(i)->setCheckState(0,item->checkState(0));
-    }
-
-    auto parent = item->parent();
-    bool checked = false;
-    bool unchecked = false;
-    if(parent){
-        for(int i=0; i<parent->childCount();++i){
-            if(parent->child(i)->checkState(0) == Qt::Checked){
-                checked = true;
-            }else{
-                unchecked = true;
-            }
-        }
-
-        if(checked && unchecked){
-            parent->setCheckState(0,Qt::PartiallyChecked);
-        }else if(checked){
-            parent->setCheckState(0,Qt::Checked);
-        }else if(unchecked){
-            parent->setCheckState(0,Qt::Unchecked);
-        }
-    }
-
-    itemlist->blockSignals(false);
-
-    plotStatistics(false);
-}
-**/
 
 void Statistics::on_horizontalScrollBar_statistics_valueChanged(int value)
 {
