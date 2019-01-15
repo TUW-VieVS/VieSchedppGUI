@@ -10410,7 +10410,7 @@ p, li { white-space: pre-wrap; }
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="2,2,1">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_51">
@@ -10554,7 +10554,7 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_statisticPlot">
             <item>
              <widget class="QScrollBar" name="horizontalScrollBar_statistics">

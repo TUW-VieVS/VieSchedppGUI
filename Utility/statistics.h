@@ -72,6 +72,7 @@ private:
     QStringList stations;
     QStringList baselines;
     QStringList sources;
+    QStringList times;
     QStringList multiScheduling;
     QStringList lookupTable;
     QMap<QString, QMap<int, QVector< double >>> statistics;
