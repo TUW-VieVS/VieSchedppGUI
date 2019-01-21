@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>17</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2807,8 +2807,8 @@ If you only want to run simulations you can deselect this to avoid error message
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>912</width>
+             <y>-89</y>
+             <width>932</width>
              <height>668</height>
             </rect>
            </property>
@@ -3419,29 +3419,58 @@ If you only want to run simulations you can deselect this to avoid error message
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QGroupBox" name="groupBox_9">
+                  <widget class="QGroupBox" name="groupBox_idleToObservingTime">
+                   <property name="statusTip">
+                    <string>convert idle time to observing time</string>
+                   </property>
                    <property name="whatsThis">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This option should be used to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;increase the observing time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if possible.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Generally speaking, the observing time is calculated to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;reach a certain SNR&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, not longer. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Using this option &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;idle time &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is converted to extra &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;observing time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if possible. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This step is done at the end of the schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It does &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not affect the source selection&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, you will get &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;exactly the same schedule&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; but with longer observing times and less idle time. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;recommended&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to use this option if you do not have any good reasons against it (like limited disk space at the stations)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option should be used to &lt;span style=&quot; font-weight:600;&quot;&gt;increase the observing time&lt;/span&gt; if possible.&lt;/p&gt;&lt;p&gt;Generally speaking, the observing time is calculated to &lt;span style=&quot; font-weight:600;&quot;&gt;reach a certain SNR&lt;/span&gt;, not longer. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;Using this option &lt;span style=&quot; font-weight:600;&quot;&gt;idle time &lt;/span&gt;is converted to extra &lt;span style=&quot; font-weight:600;&quot;&gt;observing time&lt;/span&gt; if possible. &lt;/p&gt;&lt;p&gt;This step is done at the end of the schedule. &lt;/p&gt;&lt;p&gt;It does &lt;span style=&quot; font-weight:600;&quot;&gt;not affect the source selection&lt;/span&gt;, you will get &lt;span style=&quot; font-weight:600;&quot;&gt;exactly the same schedule&lt;/span&gt; but with longer observing times and less idle time. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;It is &lt;span style=&quot; font-weight:600;&quot;&gt;recommended&lt;/span&gt; to use this option if you do not have any good reasons against it (like limited disk space at the stations)&lt;/p&gt;&lt;p&gt;You can set a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum allowed observing&lt;/span&gt; time for this option. &lt;/p&gt;&lt;p&gt;This value only effects this algroithm. &lt;/p&gt;&lt;p&gt;In case you want to restrict the observing time for source selection, use the station, source and baseline based parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=30/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=30/&gt; or &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=30 /&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="accessibleName">
+                    <string>convert idle time to observing time</string>
                    </property>
                    <property name="title">
                     <string>idle to observing time</string>
                    </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_71">
                     <item>
-                     <widget class="QCheckBox" name="checkBox_idleToObservingTime">
-                      <property name="toolTip">
-                       <string>increase observing time if there is idle time which can be used</string>
+                     <layout class="QHBoxLayout" name="horizontalLayout_92">
+                      <property name="spacing">
+                       <number>6</number>
                       </property>
-                      <property name="statusTip">
-                       <string>increase observing time if there is idle time which can be used</string>
+                      <property name="bottomMargin">
+                       <number>0</number>
                       </property>
-                      <property name="text">
-                       <string>convert idle to observing time</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
+                      <item>
+                       <widget class="QLabel" name="label_88">
+                        <property name="text">
+                         <string>max extended time</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSpinBox" name="spinBox_idleToObs_maxTime">
+                        <property name="suffix">
+                         <string> [s]</string>
+                        </property>
+                        <property name="prefix">
+                         <string/>
+                        </property>
+                        <property name="minimum">
+                         <number>1</number>
+                        </property>
+                        <property name="maximum">
+                         <number>9999</number>
+                        </property>
+                        <property name="value">
+                         <number>9999</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                     <item>
                      <spacer name="verticalSpacer_11">
@@ -12062,12 +12091,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>388</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>173</x>
-     <y>367</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
    </hints>
   </connection>
@@ -12078,12 +12107,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>615</x>
-     <y>201</y>
+     <x>178</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>291</x>
-     <y>123</y>
+     <x>178</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -12094,12 +12123,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>407</x>
+     <x>586</x>
      <y>423</y>
     </hint>
     <hint type="destinationlabel">
-     <x>623</x>
-     <y>470</y>
+     <x>930</x>
+     <y>473</y>
     </hint>
    </hints>
   </connection>
@@ -12110,12 +12139,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>421</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>173</x>
-     <y>400</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
    </hints>
   </connection>
@@ -12126,12 +12155,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setSelectedDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>252</y>
+     <x>257</x>
+     <y>163</y>
     </hint>
     <hint type="destinationlabel">
      <x>929</x>
-     <y>326</y>
+     <y>306</y>
     </hint>
    </hints>
   </connection>
@@ -12142,12 +12171,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>511</x>
-     <y>566</y>
+     <x>504</x>
+     <y>477</y>
     </hint>
     <hint type="destinationlabel">
-     <x>634</x>
-     <y>569</y>
+     <x>627</x>
+     <y>480</y>
     </hint>
    </hints>
   </connection>
@@ -12158,11 +12187,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>447</x>
+     <x>626</x>
      <y>389</y>
     </hint>
     <hint type="destinationlabel">
-     <x>622</x>
+     <x>929</x>
      <y>393</y>
     </hint>
    </hints>
@@ -12191,11 +12220,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>929</x>
-     <y>326</y>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>252</y>
+     <x>257</x>
+     <y>163</y>
     </hint>
    </hints>
   </connection>
@@ -12206,12 +12235,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
-     <y>501</y>
+     <x>129</x>
+     <y>412</y>
     </hint>
     <hint type="destinationlabel">
-     <x>86</x>
-     <y>530</y>
+     <x>129</x>
+     <y>441</y>
     </hint>
    </hints>
   </connection>
@@ -12222,12 +12251,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>270</x>
-     <y>118</y>
+     <x>178</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>617</x>
-     <y>200</y>
+     <x>178</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -12238,12 +12267,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>388</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>927</x>
-     <y>391</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
    </hints>
   </connection>
@@ -12254,7 +12283,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>363</x>
+     <x>542</x>
      <y>176</y>
     </hint>
     <hint type="destinationlabel">
@@ -12270,12 +12299,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>421</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>927</x>
-     <y>424</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
    </hints>
   </connection>
@@ -12302,7 +12331,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>430</x>
+     <x>609</x>
      <y>208</y>
     </hint>
     <hint type="destinationlabel">
@@ -12318,12 +12347,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>123</y>
+     <x>63</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>54</x>
-     <y>123</y>
+     <x>373</x>
+     <y>372</y>
     </hint>
    </hints>
   </connection>
@@ -12334,12 +12363,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>511</x>
-     <y>534</y>
+     <x>504</x>
+     <y>445</y>
     </hint>
     <hint type="destinationlabel">
-     <x>634</x>
-     <y>537</y>
+     <x>627</x>
+     <y>448</y>
     </hint>
    </hints>
   </connection>
@@ -12350,12 +12379,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>484</y>
+     <x>73</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>519</y>
+     <x>383</x>
+     <y>517</y>
     </hint>
    </hints>
   </connection>
@@ -12366,12 +12395,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>379</y>
+     <x>73</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>446</y>
+     <x>383</x>
+     <y>444</y>
     </hint>
    </hints>
   </connection>
@@ -12382,12 +12411,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>265</y>
+     <x>73</x>
+     <y>263</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>268</y>
+     <x>383</x>
+     <y>266</y>
     </hint>
    </hints>
   </connection>
@@ -12398,12 +12427,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>169</y>
+     <x>73</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>172</y>
+     <x>383</x>
+     <y>170</y>
     </hint>
    </hints>
   </connection>
@@ -12414,12 +12443,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>484</y>
+     <x>73</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
-     <x>53</x>
-     <y>551</y>
+     <x>73</x>
+     <y>549</y>
     </hint>
    </hints>
   </connection>
@@ -12430,12 +12459,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>233</y>
+     <x>73</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>236</y>
+     <x>383</x>
+     <y>234</y>
     </hint>
    </hints>
   </connection>
@@ -12446,12 +12475,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>306</y>
+     <x>73</x>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>341</y>
+     <x>383</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -12462,12 +12491,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>379</y>
+     <x>73</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>382</y>
+     <x>383</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>
@@ -12478,12 +12507,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>484</y>
+     <x>73</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
-     <x>53</x>
-     <y>519</y>
+     <x>73</x>
+     <y>517</y>
     </hint>
    </hints>
   </connection>
@@ -12494,8 +12523,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>105</y>
+     <x>62</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -12510,12 +12539,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>484</y>
+     <x>73</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>487</y>
+     <x>383</x>
+     <y>485</y>
     </hint>
    </hints>
   </connection>
@@ -12526,12 +12555,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>201</y>
+     <x>73</x>
+     <y>199</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>204</y>
+     <x>383</x>
+     <y>202</y>
     </hint>
    </hints>
   </connection>
@@ -12542,12 +12571,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>306</y>
+     <x>73</x>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>309</y>
+     <x>383</x>
+     <y>307</y>
     </hint>
    </hints>
   </connection>
@@ -12558,12 +12587,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>379</y>
+     <x>73</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>414</y>
+     <x>383</x>
+     <y>412</y>
     </hint>
    </hints>
   </connection>
@@ -12574,8 +12603,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>137</y>
+     <x>62</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -12590,12 +12619,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>379</y>
+     <x>73</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>53</x>
-     <y>414</y>
+     <x>73</x>
+     <y>412</y>
     </hint>
    </hints>
   </connection>
@@ -12606,12 +12635,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>306</y>
+     <x>73</x>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
-     <x>53</x>
-     <y>341</y>
+     <x>72</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -12622,12 +12651,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>379</y>
+     <x>73</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>53</x>
-     <y>446</y>
+     <x>73</x>
+     <y>444</y>
     </hint>
    </hints>
   </connection>
@@ -12638,12 +12667,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>484</y>
+     <x>73</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
-     <x>385</x>
-     <y>551</y>
+     <x>383</x>
+     <y>549</y>
     </hint>
    </hints>
   </connection>
