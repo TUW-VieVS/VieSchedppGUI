@@ -744,7 +744,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_avg->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -754,7 +754,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_obs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -764,7 +764,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_preob->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + stations.size() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -774,7 +774,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_slew->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 2*stations.size() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -784,7 +784,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_idle->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 3*stations.size() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -794,7 +794,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = time_field->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 4*stations.size() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -805,7 +805,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = staScans->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -815,7 +815,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = staObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + staScans->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + staScans->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -826,7 +826,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = blObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -837,7 +837,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = srcScans->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -847,7 +847,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = srcObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + srcObs->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + srcObs->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
@@ -858,7 +858,7 @@ void Statistics::plotStatistics(bool animation)
         const auto &child = ms->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i);
+            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
