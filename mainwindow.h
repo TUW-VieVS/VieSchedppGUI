@@ -533,6 +533,8 @@ private slots:
 
     void on_pushButton_changeCurrentAdvancedMode_clicked();
 
+    void on_pushButton_20_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

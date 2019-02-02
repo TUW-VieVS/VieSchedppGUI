@@ -65,6 +65,19 @@ MainWindow::MainWindow(QWidget *parent) :
     il->setPixmap(ic);
     ui->horizontalLayout->insertWidget(0,il);
 
+    worldmap = new ChartView(this);
+    qtUtil::worldMap(worldmap);
+    worldMapCallout = new Callout(worldmap->chart());
+    worldMapCallout->hide();
+    ui->horizontalLayout_worldmap->insertWidget(0,worldmap,10);
+
+
+    skymap = new ChartView();
+    qtUtil::skyMap(skymap);
+    skyMapCallout = new Callout(skymap->chart());
+    skyMapCallout->hide();
+    ui->horizontalLayout_skymap->insertWidget(0,skymap,10);
+
     QFile file;
     file.setFileName("settings.xml");
     if(!file.exists()){
@@ -274,20 +287,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     readSkedCatalogs();
 
-    worldmap = new ChartView(this);
-    qtUtil::worldMap(worldmap);
-    worldMapCallout = new Callout(worldmap->chart());
-    worldMapCallout->hide();
     readStations();
-    ui->horizontalLayout_worldmap->insertWidget(0,worldmap,10);
-
-
-    skymap = new ChartView();
-    qtUtil::skyMap(skymap);
-    skyMapCallout = new Callout(skymap->chart());
-    skyMapCallout->hide();
     readSources();
-    ui->horizontalLayout_skymap->insertWidget(0,skymap,10);
 
 
     createMultiSchedTable();
@@ -1176,12 +1177,12 @@ void MainWindow::on_pushButton_2_clicked()
 
     #ifdef Q_OS_WIN
     QString program = absolutePathToExe;
-    program = "\""+program+"\"";
+    //program = "\""+program+"\"";
     start->start("cmd.exe",
                  QStringList() << "/c" << program);
     #else
     QString program = absolutePathToExe;
-    program = "\""+program+"\"";
+    //program = "\""+program+"\"";
     QStringList arguments;
     start->start(program);
     #endif
@@ -1246,7 +1247,7 @@ void MainWindow::on_actionRun_triggered()
         QString absolutePathToExe = dirToExe.absolutePath();
         #ifdef Q_OS_WIN
             QString program = absolutePathToExe;
-            program = "\""+program+"\"";
+            //program = "\""+program+"\"";
             start->start("cmd.exe",
                          QStringList() << "/c" << program << fullPath);
         #else
@@ -1388,6 +1389,7 @@ void MainWindow::on_iconSizeSpinBox_valueChanged(int arg1)
     ui->basicToolBar->setIconSize(QSize(arg1,arg1));
     ui->advancedToolBar->setIconSize(QSize(arg1,arg1));
     ui->helpToolBar->setIconSize(QSize(arg1,arg1));
+    ui->analysisToolBar->setIconSize(QSize(arg1,arg1));
 }
 
 void MainWindow::on_treeWidget_2_itemChanged(QTreeWidgetItem *item, int column)
@@ -2177,6 +2179,26 @@ void MainWindow::readSettings()
     ui->emailLineEdit->setText(QString::fromStdString(email));
     std::string pathToScheduler = settings_.get<std::string>("settings.general.pathToScheduler","");
     ui->pathToSchedulerLineEdit->setText(QString::fromStdString(pathToScheduler));
+
+
+    int fontSize = settings_.get<int>("settings.font.size",0);
+    if(fontSize != 0){
+        ui->spinBox_fontSize->setValue(fontSize);
+    }
+    std::string fontFamily = settings_.get<std::string>("settings.font.family","");
+    if(!fontFamily.empty()){
+        int idx = ui->fontComboBox_font->findText(QString::fromStdString(fontFamily));
+        if(idx != -1){
+            ui->fontComboBox_font->setCurrentIndex(idx);
+        }
+    }
+
+    int iconSize = settings_.get<int>("settings.icon.size",0);
+    if(iconSize != 0){
+        ui->iconSizeSpinBox->setValue(iconSize);
+    }
+
+
 
     std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","../CATALOGS/antenna.cat");
     ui->lineEdit_pathAntenna->setText(QString::fromStdString(cAntenna));
@@ -8404,6 +8426,24 @@ void MainWindow::on_pushButton_5_clicked()
     QString name = "Default user name changed!";
     changeDefaultSettings(path,value,name);
 }
+
+
+void MainWindow::on_pushButton_20_clicked()
+{
+    QStringList path;
+    QStringList value;
+    QString name = "Default settings changed!";
+
+    path << "settings.font.size"
+         << "settings.font.family"
+         << "settings.icon.size";
+    value << QString::number(ui->spinBox_fontSize->value())
+          << ui->fontComboBox_font->currentText()
+          << QString::number(ui->iconSizeSpinBox->value());
+
+    changeDefaultSettings(path,value,name);
+}
+
 
 void MainWindow::on_pushButton_6_clicked()
 {    
