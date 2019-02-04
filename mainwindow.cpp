@@ -2149,6 +2149,14 @@ void MainWindow::defaultParameters()
     if(createNGS.is_initialized()){
         ui->checkBox_outputNGSFile->setChecked(*createNGS);
     }
+    boost::optional<bool> redirectNGS = settings_.get_optional<bool>("settings.output.redirectNGS");
+    if(redirectNGS.is_initialized()){
+        ui->checkBox_redirectNGS->setChecked(*redirectNGS);
+    }
+    boost::optional<std::string> outputNGS = settings_.get_optional<std::string>("settings.output.NGS_directory");
+    if(outputNGS.is_initialized()){
+        ui->lineEdit_outputNGS->setText(QString::fromStdString(*outputNGS));
+    }
     boost::optional<bool> createSKD = settings_.get_optional<bool>("settings.output.createSKD");
     if(createSKD.is_initialized()){
         ui->checkBox_outputSkdFile->setChecked(*createSKD);
@@ -2373,6 +2381,13 @@ QString MainWindow::writeXML()
     bool vex = ui->checkBox_outputVex->isChecked();
     bool snrTabel = ui->checkBox_outputSnrTable->isChecked();
     bool ngs = ui->checkBox_outputNGSFile->isChecked();
+    std::string NGS_directory = "";
+    if(ui->checkBox_redirectNGS->isChecked()){
+        if(ui->lineEdit_outputNGS->text() != ui->lineEdit_outputPath->text()){
+            NGS_directory = ui->lineEdit_outputNGS->text().simplified().toStdString();
+        }
+    }
+
     bool skd = ui->checkBox_outputSkdFile->isChecked();
     bool srcGrp = ui->checkBox_outputSourceGroupStatFile->isChecked();
     bool skyCov = ui->checkBox_outputSkyCoverageFile->isChecked();
@@ -2388,7 +2403,7 @@ QString MainWindow::writeXML()
         operationNotes = ui->plainTextEdit_operationNotes->toPlainText().replace("\n","\\n").toStdString();
     }
     para.output(experimentDescription, scheduler, correlator, piName, piEmail, contactName,
-                contactEmail, notes, initializer, iteration, statistics, ngs, skd, vex, snrTabel, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
+                contactEmail, notes, initializer, iteration, statistics, ngs, NGS_directory, skd, vex, snrTabel, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -2879,10 +2894,30 @@ QString MainWindow::writeXML()
     if(!path.isEmpty() && path.right(1) != "/"){
         path.append("/");
     }
+    QString NGSpath;
+    bool NGS = false;
+    if(ui->checkBox_redirectNGS->isChecked()){
+        NGSpath = ui->lineEdit_outputNGS->text().simplified();
+        NGSpath.replace("\\\\","/");
+        NGSpath.replace("\\","/");
+        if(!NGSpath.isEmpty() && NGSpath.right(1) != "/"){
+            NGSpath.append("/");
+        }
+        if(NGSpath != path){
+            NGS = true;
+        }
+    }
+
 
     QDir mainDir(path);
     if(!path.isEmpty() && !mainDir.exists() ){
         QDir().mkpath(path);
+    }
+    if(NGS){
+        QDir mainDirNGS(NGSpath);
+        if( !mainDirNGS.exists() ){
+            QDir().mkpath(NGSpath);
+        }
     }
 
     QString ename = QString::fromStdString(experimentName).trimmed();
@@ -2891,13 +2926,26 @@ QString MainWindow::writeXML()
     if(ui->checkBox_outputAddTimestamp->isChecked()){
         QString dateTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
         path.append(dateTime).append("_").append(ename).append("/");
+        if(NGS){
+            NGSpath.append(dateTime).append("_").append(ename).append("/");
+        }
     }else{
         path.append(ename).append("/");
+        if(NGS){
+            NGSpath.append(ename).append("/");
+        }
     }
     QDir mydir(path);
     if(! mydir.exists() ){
         QDir().mkpath(path);
     }
+    if(NGS){
+        QDir mydir(NGSpath);
+        if(! mydir.exists() ){
+            QDir().mkpath(NGSpath);
+        }
+    }
+
     path.append("VieSchedpp.xml");
     para.write(path.toStdString());
     QMessageBox mb;
@@ -3851,15 +3899,23 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_outputNGSFile->setChecked(false);
         }
+
+        if(xml.get("VieSchedpp.output.redirectNGS",false)){
+            ui->checkBox_redirectNGS->setChecked(true);
+        }else{
+            ui->checkBox_redirectNGS->setChecked(false);
+        }
+        std::string ngs_direcotry = xml.get("VieSchedpp.output.NGS_directory","");
+        if(ngs_direcotry.empty()){
+            ui->lineEdit_outputNGS->setText("");
+        }else{
+            ui->lineEdit_outputNGS->setText(QString::fromStdString(ngs_direcotry));
+        }
+
         if(xml.get("VieSchedpp.output.createSKD",false)){
             ui->checkBox_outputSkdFile->setChecked(true);
         }else{
             ui->checkBox_outputSkdFile->setChecked(false);
-        }
-        if(xml.get("VieSchedpp.output.createVEX",false)){
-            ui->checkBox_outputVex->setChecked(true);
-        }else{
-            ui->checkBox_outputVex->setChecked(false);
         }
         if(xml.get("VieSchedpp.output.createVEX",false)){
             ui->checkBox_outputVex->setChecked(true);
@@ -4043,6 +4099,7 @@ void MainWindow::createDefaultParameterSettings()
     settings_.add("settings.station.cableWrapBuffers.axis2UpOffset", 0);
 
     settings_.add("settings.output.directory", "../out/");
+    settings_.add("settings.output.NGS_directory", "../out/");
 
     std::ofstream os;
     os.open("settings.xml");
@@ -8507,17 +8564,22 @@ void MainWindow::on_pushButton_26_clicked()
          << "settings.output.iteration_log"
          << "settings.output.createSummary"
          << "settings.output.createNGS"
+         << "settings.output.redirectNGS"
+         << "settings.output.NGS_directory"
          << "settings.output.createSKD"
          << "settings.output.createVEX"
          << "settings.output.createSnrTable"
          << "settings.output.createOperationsNotes"
          << "settings.output.createSourceGroupStatistics"
          << "settings.output.addTimestamps";
+
     value << ui->lineEdit_outputPath->text();
     ui->checkBox_outputInitializer->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputIteration->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputStatisticsFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputNGSFile->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_redirectNGS->isChecked() ? value << "true" : value << "false";
+    value << ui->lineEdit_outputNGS->text();
     ui->checkBox_outputSkdFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputVex->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputSnrTable->isChecked() ? value << "true" : value << "false";
@@ -8902,6 +8964,18 @@ void MainWindow::on_pushButton_faqSearch_clicked()
 
 }
 
+void MainWindow::on_checkBox_outputNGSFile_stateChanged(int arg1)
+{
+    if(arg1 == 0){
+        ui->checkBox_redirectNGS->setEnabled(false);
+        ui->lineEdit_outputNGS->setEnabled(false);
+    }else{
+        ui->checkBox_redirectNGS->setEnabled(true);
+        if(ui->checkBox_redirectNGS->isChecked()){
+            ui->lineEdit_outputNGS->setEnabled(true);
+        }
+    }
+}
 
 // ########################################### SKY COVERAGE ###########################################
 
@@ -9314,3 +9388,4 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
         }
     }
 }
+
