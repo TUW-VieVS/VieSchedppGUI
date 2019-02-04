@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>4</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1024,7 +1024,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
+             <width>932</width>
              <height>750</height>
             </rect>
            </property>
@@ -2807,7 +2807,7 @@ If you only want to run simulations you can deselect this to avoid error message
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-89</y>
+             <y>0</y>
              <width>932</width>
              <height>668</height>
             </rect>
@@ -7177,7 +7177,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
+             <item row="3" column="3">
               <widget class="QCheckBox" name="checkBox_outputSkyCoverageFile">
                <property name="enabled">
                 <bool>false</bool>
@@ -7190,6 +7190,13 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="text">
                 <string>create sky coverage file</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QCheckBox" name="checkBox_outputSnrTable">
+               <property name="text">
+                <string>create SNR table</string>
                </property>
               </widget>
              </item>
@@ -7706,8 +7713,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>639</width>
-             <height>576</height>
+             <width>946</width>
+             <height>579</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">

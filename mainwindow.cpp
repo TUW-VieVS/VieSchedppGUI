@@ -2155,6 +2155,10 @@ void MainWindow::defaultParameters()
     if(createVEX.is_initialized()){
         ui->checkBox_outputVex->setChecked(*createVEX);
     }
+    boost::optional<bool> createSnrTable = settings_.get_optional<bool>("settings.output.createSnrTable");
+    if(createSnrTable.is_initialized()){
+        ui->checkBox_outputSnrTable->setChecked(*createSnrTable);
+    }
     boost::optional<bool> createOperationsNotes = settings_.get_optional<bool>("settings.output.createOperationsNotes");
     if(createOperationsNotes.is_initialized()){
         ui->checkBox_outputOperationsNotes->setChecked(*createOperationsNotes);
@@ -2345,6 +2349,7 @@ QString MainWindow::writeXML()
     bool iteration = ui->checkBox_outputIteration->isChecked();
     bool statistics = ui->checkBox_outputStatisticsFile->isChecked();
     bool vex = ui->checkBox_outputVex->isChecked();
+    bool snrTabel = ui->checkBox_outputSnrTable->isChecked();
     bool ngs = ui->checkBox_outputNGSFile->isChecked();
     bool skd = ui->checkBox_outputSkdFile->isChecked();
     bool srcGrp = ui->checkBox_outputSourceGroupStatFile->isChecked();
@@ -2361,7 +2366,7 @@ QString MainWindow::writeXML()
         operationNotes = ui->plainTextEdit_operationNotes->toPlainText().replace("\n","\\n").toStdString();
     }
     para.output(experimentDescription, scheduler, correlator, piName, piEmail, contactName,
-                contactEmail, notes, initializer, iteration, statistics, ngs, skd, vex, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
+                contactEmail, notes, initializer, iteration, statistics, ngs, skd, vex, snrTabel, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -3834,10 +3839,15 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_outputVex->setChecked(false);
         }
-        if(xml.get("VieSchedpp.output.createOperationsNotes",false)){
-            ui->checkBox_outputOperationsNotes->setChecked(true);
+        if(xml.get("VieSchedpp.output.createVEX",false)){
+            ui->checkBox_outputVex->setChecked(true);
         }else{
-            ui->checkBox_outputOperationsNotes->setChecked(false);
+            ui->checkBox_outputVex->setChecked(false);
+        }
+        if(xml.get("VieSchedpp.output.createSnrTable",false)){
+            ui->checkBox_outputSnrTable->setChecked(true);
+        }else{
+            ui->checkBox_outputSnrTable->setChecked(false);
         }
         if(xml.get("VieSchedpp.output.createSourceGroupStatistics",false)){
             ui->checkBox_outputSourceGroupStatFile->setChecked(true);
@@ -8459,6 +8469,7 @@ void MainWindow::on_pushButton_26_clicked()
          << "settings.output.createNGS"
          << "settings.output.createSKD"
          << "settings.output.createVEX"
+         << "settings.output.createSnrTable"
          << "settings.output.createOperationsNotes"
          << "settings.output.createSourceGroupStatistics"
          << "settings.output.addTimestamps";
@@ -8469,6 +8480,7 @@ void MainWindow::on_pushButton_26_clicked()
     ui->checkBox_outputNGSFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputSkdFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputVex->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputSnrTable->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputOperationsNotes->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputSourceGroupStatFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputAddTimestamp->isChecked() ? value << "true" : value << "false";
