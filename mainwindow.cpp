@@ -9333,6 +9333,7 @@ void MainWindow::on_pushButton_readLogFile_read_clicked()
     myViewer->show();
 }
 
+
 void MainWindow::on_pushButton_readSkdFile_read_clicked()
 {
     QString path = ui->lineEdit_skdFilePath->text().trimmed();
@@ -9355,11 +9356,11 @@ void MainWindow::on_pushButton_sessionBrowse_clicked()
     if( !path.isEmpty() ){
         ui->lineEdit_sessionPath->setText(path);
         ui->lineEdit_sessionPath->setFocus();
-        ui->pushButton_sessionAnalyser->click();
+        ui->pushButton_parse->click();
     }
 }
 
-void MainWindow::on_pushButton_sessionAnalyser_clicked()
+void MainWindow::on_pushButton_parse_clicked()
 {
     QString path = ui->lineEdit_sessionPath->text();
     if(path.length()>4){
@@ -9367,15 +9368,23 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
             try{
                 VieVS::SkdParser mySkdParser(path.toStdString());
                 mySkdParser.read();
-                VieVS::Scheduler sched = mySkdParser.createScheduler();
-                auto freqs = mySkdParser.getFrequencies();
+                parsedSchedule = mySkdParser.createScheduler();
+                parsedFreq = mySkdParser.getFrequencies();
                 std::string start = VieVS::TimeSystem::ptime2string(VieVS::TimeSystem::startTime);
                 std::string end = VieVS::TimeSystem::ptime2string(VieVS::TimeSystem::endTime);
                 QDateTime qstart = QDateTime::fromString(QString::fromStdString(start),"yyyy.MM.dd HH:mm:ss");
                 QDateTime qend   = QDateTime::fromString(QString::fromStdString(end),"yyyy.MM.dd HH:mm:ss");
 
-                VieSchedpp_Analyser *analyser = new VieSchedpp_Analyser(sched,freqs,qstart,qend, this);
-                analyser->show();
+                ui->lineEdit_parseExpName->setText(QString::fromStdString(parsedSchedule->getName()));
+                ui->dateTimeEdit_parseSessionStart->setDateTime(qstart);
+                ui->dateTimeEdit_parseSessionEnd->setDateTime(qend);
+                ui->spinBox_parseStations->setValue(parsedSchedule->getNetwork().getStations().size());
+                ui->spinBox_parseSources->setValue(parsedSchedule->getSources().size());
+                ui->spinBox_parseScans->setValue(parsedSchedule->getScans().size());
+                ui->spinBox_parseObs->setValue(parsedSchedule->getNumberOfObservations());
+
+
+                ui->groupBox_parsedSchedule->setEnabled(true);
 
             }catch(...){
                 QString message = QString("Error reading session:\n").append(path);
@@ -9389,3 +9398,93 @@ void MainWindow::on_pushButton_sessionAnalyser_clicked()
     }
 }
 
+
+void MainWindow::on_pushButton_sessionAnalyser_clicked()
+{
+    try {
+        if(parsedSchedule.is_initialized()){
+
+            QDateTime qstart = ui->dateTimeEdit_parseSessionStart->dateTime();
+            QDateTime qend   = ui->dateTimeEdit_parseSessionEnd->dateTime();
+            VieSchedpp_Analyser *analyser = new VieSchedpp_Analyser(*parsedSchedule,parsedFreq,qstart,qend, this);
+            analyser->show();
+        }
+    } catch (...){
+        QString message = QString("Error starting session analyzer\nCheck parsed schedule!");
+        QMessageBox::critical(this, "error opening session analyzer", message);
+
+    }
+
+}
+
+
+
+void MainWindow::on_pushButton_outputNgsFild_clicked()
+{
+    if(parsedSchedule.is_initialized()){
+        QString startPath = ui->lineEdit_sessionPath->text();
+        QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
+        if( !path.isEmpty() ){
+            if(path.back() != '/'){
+                path += '/';
+            }
+
+            VieVS::Scheduler copy = *parsedSchedule;
+            VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
+            out.writeNGS();
+            QString message = QString("NGS file has been written to:\n").append(path);
+            QMessageBox::information(this, "NGS output", message);
+        }
+
+    }else{
+        QString message = QString("Error writing NGS file\nCheck parsed schedule!");
+        QMessageBox::critical(this, "Error writing NGS file", message);
+    }
+}
+
+void MainWindow::on_pushButton_outputSnrTable_2_clicked()
+{
+    if(parsedSchedule.is_initialized()){
+        QString startPath = ui->lineEdit_sessionPath->text();
+        QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
+        if( !path.isEmpty() ){
+            if(path.back() != '/'){
+                path += '/';
+            }
+
+            VieVS::Scheduler copy = *parsedSchedule;
+            VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
+            out.writeOperationsNotes();
+            QString message = QString("Operation notes file has been written to:\n").append(path);
+            QMessageBox::information(this, "Operation notes output", message);
+        }
+
+    }else{
+        QString message = QString("Error writing NGS file\nCheck parsed schedule!");
+        QMessageBox::critical(this, "Error writing NGS file", message);
+    }
+
+}
+
+void MainWindow::on_pushButton_outputSnrTable_clicked()
+{
+    if(parsedSchedule.is_initialized()){
+        QString startPath = ui->lineEdit_sessionPath->text();
+        QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
+        if( !path.isEmpty() ){
+            if(path.back() != '/'){
+                path += '/';
+            }
+
+            VieVS::Scheduler copy = *parsedSchedule;
+            VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
+            out.writeSnrTable();
+            QString message = QString("SNR table has been written to:\n").append(path);
+            QMessageBox::information(this, "SNR table output", message);
+        }
+
+    }else{
+        QString message = QString("Error writing NGS file\nCheck parsed schedule!");
+        QMessageBox::critical(this, "Error writing NGS file", message);
+    }
+}

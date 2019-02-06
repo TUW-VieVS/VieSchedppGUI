@@ -537,6 +537,14 @@ private slots:
 
     void on_checkBox_outputNGSFile_stateChanged(int arg1);
 
+    void on_pushButton_parse_clicked();
+
+    void on_pushButton_outputNgsFild_clicked();
+
+    void on_pushButton_outputSnrTable_2_clicked();
+
+    void on_pushButton_outputSnrTable_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -606,6 +614,8 @@ private:
     std::map<std::string, VieVS::ParameterSettings::ParametersBaselines> paraBl;
 
     Statistics *statistics;
+    boost::optional<VieVS::Scheduler> parsedSchedule;
+    std::map<std::string, std::vector<double>> parsedFreq;
 
     void readSkedCatalogs();
 

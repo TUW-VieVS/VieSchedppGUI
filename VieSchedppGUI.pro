@@ -76,6 +76,7 @@ SOURCES += \
     ../VieSchedpp/Output/Skd.cpp \
     ../VieSchedpp/Output/Vex.cpp \
     ../VieSchedpp/Output/SNR_table.cpp \
+    ../VieSchedpp/Output/OperationNotes.cpp \
     ../VieSchedpp/Scan/Observation.cpp \
     ../VieSchedpp/Scan/PointingVector.cpp \
     ../VieSchedpp/Scan/Scan.cpp \
@@ -170,6 +171,7 @@ HEADERS += \
     ../VieSchedpp/Output/Skd.h \
     ../VieSchedpp/Output/Vex.h \
     ../VieSchedpp/Output/SNR_table.h \
+    ../VieSchedpp/Output/OperationNotes.h \
     ../VieSchedpp/Scan/Observation.h \
     ../VieSchedpp/Scan/PointingVector.h \
     ../VieSchedpp/Scan/Scan.h \
