@@ -7751,8 +7751,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>591</height>
+             <width>639</width>
+             <height>576</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -10825,12 +10825,9 @@ p, li { white-space: pre-wrap; }
           <property name="title">
            <string>parsed schedule</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_104">
+          <layout class="QHBoxLayout" name="horizontalLayout_123" stretch="0,1,0">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_123" stretch="0,0,1">
-             <property name="spacing">
-              <number>12</number>
-             </property>
+            <layout class="QVBoxLayout" name="verticalLayout_104">
              <item>
               <layout class="QFormLayout" name="formLayout_24">
                <item row="0" column="0">
@@ -10881,14 +10878,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="0">
                 <widget class="QLabel" name="label_94">
                  <property name="text">
                   <string>#stations</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QSpinBox" name="spinBox_parseStations">
                  <property name="readOnly">
                   <bool>true</bool>
@@ -10901,14 +10898,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0">
+               <item row="5" column="0">
                 <widget class="QLabel" name="label_95">
                  <property name="text">
                   <string>#sources</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="1">
+               <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBox_parseSources">
                  <property name="readOnly">
                   <bool>true</bool>
@@ -10921,14 +10918,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0">
+               <item row="6" column="0">
                 <widget class="QLabel" name="label_92">
                  <property name="text">
                   <string>#scans</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="6" column="1">
                 <widget class="QSpinBox" name="spinBox_parseScans">
                  <property name="readOnly">
                   <bool>true</bool>
@@ -10941,14 +10938,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0">
+               <item row="7" column="0">
                 <widget class="QLabel" name="label_93">
                  <property name="text">
                   <string>#obs</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
+               <item row="7" column="1">
                 <widget class="QSpinBox" name="spinBox_parseObs">
                  <property name="readOnly">
                   <bool>true</bool>
@@ -10961,14 +10958,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="7" column="0">
+               <item row="9" column="0">
                 <widget class="QLabel" name="label_96">
                  <property name="text">
-                  <string>rec. rate*</string>
+                  <string>recording rate*</string>
                  </property>
                 </widget>
                </item>
-               <item row="7" column="1">
+               <item row="9" column="1">
                 <widget class="QDoubleSpinBox" name="doubleSpinBox_parseRecRate">
                  <property name="readOnly">
                   <bool>true</bool>
@@ -10984,118 +10981,61 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_103">
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_16">
-                 <item>
-                  <widget class="QPushButton" name="pushButton_sessionAnalyser">
-                   <property name="toolTip">
-                    <string>analyse session</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>analyse session</string>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">Text-align:left</string>
-                   </property>
-                   <property name="text">
-                    <string>run session analyzer</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/sky_coverage_analyser.png</normaloff>:/icons/icons/sky_coverage_analyser.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_outputNgsFild">
-                   <property name="toolTip">
-                    <string>create empty NGS file for simulations</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>create empty NGS file for simulations</string>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">Text-align:left</string>
-                   </property>
-                   <property name="text">
-                    <string>output NGS file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_outputSnrTable">
-                   <property name="toolTip">
-                    <string>create SNR table</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>create SNR table</string>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">Text-align:left</string>
-                   </property>
-                   <property name="text">
-                    <string>output SNR table*</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_outputSnrTable_2">
-                   <property name="toolTip">
-                    <string>create operation notes</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>create operation notes</string>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">Text-align:left</string>
-                   </property>
-                   <property name="text">
-                    <string>output operation notes</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+               <item row="10" column="0">
+                <widget class="QLabel" name="label_98">
+                 <property name="text">
+                  <string>efficency rate</string>
+                 </property>
+                </widget>
                </item>
-               <item>
-                <spacer name="verticalSpacer_17">
+               <item row="10" column="1">
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_parseEff">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                 <property name="decimals">
+                  <number>4</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0" colspan="2">
+                <widget class="Line" name="line_2">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="Line" name="line_12">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                </spacer>
+                </widget>
                </item>
               </layout>
              </item>
              <item>
-              <spacer name="horizontalSpacer_61">
+              <widget class="QLabel" name="label_97">
+               <property name="text">
+                <string>* skd parser does not fully parse observing mode. Check if recording rate is parsed correctly. Assumptions used: 10 X-bands and 6 S-bands, all stations use same mode.</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_6">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Vertical</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>40</width>
-                 <height>20</height>
+                 <width>20</width>
+                 <height>40</height>
                 </size>
                </property>
               </spacer>
@@ -11103,27 +11043,112 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
-            <widget class="QLabel" name="label_97">
-             <property name="text">
-              <string>* skd parser does not fully parse observing mode Check if recording rate is parsed correctly</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
+            <widget class="QPlainTextEdit" name="plainTextEdit_parseOutput">
+             <property name="lineWrapMode">
+              <enum>QPlainTextEdit::NoWrap</enum>
              </property>
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>663</height>
-              </size>
-             </property>
-            </spacer>
+            <layout class="QVBoxLayout" name="verticalLayout_103">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item>
+                <widget class="QPushButton" name="pushButton_sessionAnalyser">
+                 <property name="toolTip">
+                  <string>analyse session</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>analyse session</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">Text-align:left</string>
+                 </property>
+                 <property name="text">
+                  <string>run session analyzer</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/sky_coverage_analyser.png</normaloff>:/icons/icons/sky_coverage_analyser.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_outputNgsFild">
+                 <property name="toolTip">
+                  <string>create empty NGS file for simulations</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>create empty NGS file for simulations</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">Text-align:left</string>
+                 </property>
+                 <property name="text">
+                  <string>output NGS file</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_outputSnrTable">
+                 <property name="toolTip">
+                  <string>create SNR table</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>create SNR table</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">Text-align:left</string>
+                 </property>
+                 <property name="text">
+                  <string>output SNR table</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_outputSnrTable_2">
+                 <property name="toolTip">
+                  <string>create operation notes</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>create operation notes</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">Text-align:left</string>
+                 </property>
+                 <property name="text">
+                  <string>output operation notes</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/document-export-4.png</normaloff>:/icons/icons/document-export-4.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_17">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -12443,6 +12468,22 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>920</x>
      <y>93</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_skedObsModes</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>comboBox_skedObsModes_advanced</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>329</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>563</x>
+     <y>199</y>
     </hint>
    </hints>
   </connection>

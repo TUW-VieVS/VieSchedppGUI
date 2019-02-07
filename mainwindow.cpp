@@ -9370,8 +9370,8 @@ void MainWindow::on_pushButton_parse_clicked()
                 mySkdParser.read();
                 parsedSchedule = mySkdParser.createScheduler();
                 parsedFreq = mySkdParser.getFrequencies();
-                std::string start = VieVS::TimeSystem::ptime2string(VieVS::TimeSystem::startTime);
-                std::string end = VieVS::TimeSystem::ptime2string(VieVS::TimeSystem::endTime);
+                std::string start = VieVS::TimeSystem::time2string(VieVS::TimeSystem::startTime);
+                std::string end = VieVS::TimeSystem::time2string(VieVS::TimeSystem::endTime);
                 QDateTime qstart = QDateTime::fromString(QString::fromStdString(start),"yyyy.MM.dd HH:mm:ss");
                 QDateTime qend   = QDateTime::fromString(QString::fromStdString(end),"yyyy.MM.dd HH:mm:ss");
 
@@ -9383,6 +9383,33 @@ void MainWindow::on_pushButton_parse_clicked()
                 ui->spinBox_parseScans->setValue(parsedSchedule->getScans().size());
                 ui->spinBox_parseObs->setValue(parsedSchedule->getNumberOfObservations());
 
+                const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+                const auto &sources = parsedSchedule->getSources();
+                const auto &network = parsedSchedule->getNetwork();
+                QString txt = " Source      Start      DURATIONS           \n";
+                txt .append(" name     yyddd-hhmmss   ") ;
+                for (const auto &any : network.getStations()){
+                    txt.append(QString::fromStdString(any.getAlternativeName())).append("  ");
+                }
+                txt.append("\n");
+
+                for(const auto &any : parsedSchedule->getScans()){
+                    txt.append(QString::fromStdString(any.toSkedOutputTimes(sources[any.getSourceId()], network.getNSta())));
+                }
+                ui->plainTextEdit_parseOutput->setFont(fixedFont);
+                ui->plainTextEdit_parseOutput->setPlainText(txt);
+
+                const auto &obsMode = parsedSchedule->getObservingMode();
+                const auto &mode = obsMode->getMode(0);
+                const auto &bands = mode->getAllBands();
+                double recRate = 0;
+                double effRate = 0;
+                for(const auto &band : bands){
+                    recRate += mode->recordingRate(0,1,band);
+                    effRate = mode->efficiency(0,1);
+                }
+                ui->doubleSpinBox_parseRecRate->setValue(recRate/1e6);
+                ui->doubleSpinBox_parseEff->setValue(effRate);
 
                 ui->groupBox_parsedSchedule->setEnabled(true);
 
@@ -9433,7 +9460,11 @@ void MainWindow::on_pushButton_outputNgsFild_clicked()
             VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
             out.writeNGS();
             QString message = QString("NGS file has been written to:\n").append(path);
-            QMessageBox::information(this, "NGS output", message);
+            QMessageBox mb;
+            QMessageBox::StandardButton reply = mb.information(this, "NGS output", message, QMessageBox::Open,QMessageBox::Ok);
+            if(reply == QMessageBox::Open){
+                QDesktopServices::openUrl(path);
+            }
         }
 
     }else{
@@ -9456,7 +9487,11 @@ void MainWindow::on_pushButton_outputSnrTable_2_clicked()
             VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
             out.writeOperationsNotes();
             QString message = QString("Operation notes file has been written to:\n").append(path);
-            QMessageBox::information(this, "Operation notes output", message);
+            QMessageBox mb;
+            QMessageBox::StandardButton reply = mb.information(this, "Operation notes output", message, QMessageBox::Open,QMessageBox::Ok);
+            if(reply == QMessageBox::Open){
+                QDesktopServices::openUrl(path);
+            }
         }
 
     }else{
@@ -9480,7 +9515,12 @@ void MainWindow::on_pushButton_outputSnrTable_clicked()
             VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
             out.writeSnrTable();
             QString message = QString("SNR table has been written to:\n").append(path);
-            QMessageBox::information(this, "SNR table output", message);
+
+            QMessageBox mb;
+            QMessageBox::StandardButton reply = mb.information(this, "SNR table output", message, QMessageBox::Open,QMessageBox::Ok);
+            if(reply == QMessageBox::Open){
+                QDesktopServices::openUrl(path);
+            }
         }
 
     }else{
