@@ -23,10 +23,30 @@ contact: matthias.schartner@geo.tuwien.ac.at
 
 # Installation
 
+The software consists of two parts:
+* VieSched++: the scheduler, hostet on https://github.com/TUW-VieVS/VieSchedpp
+* VieSched++ GUI: the graphical user interface (this repository)
+
+__It is necessary to install the scheduler independently!__
+
+Have a look at https://github.com/TUW-VieVS/VieSchedpp/blob/master/README.md for installing the scheduler.
+
+
+## Installation of VieSched++ GUI
+
 This section descripes how to install __VieSched++ GUI__ on LINUX. 
 
 While an installation is possible on Windows (tested with Windows 10) it is no
 further discussed due to the many possibilieties of different compilers and options.
+
+Pre-build binaries are available for github releases. Visit https://github.com/TUW-VieVS/VieSchedppGUI/releases.
+
+If you run into any problems compiling VieSched++ GUI, contact me under matthias.schartner@geo.tuwien.ac.at and I can send you some pre-build binaries.
+
+The source code is hosted at two git repositories:
+
+https://github.com/TUW-VieVS/VieSchedppGUI.git (public)
+https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git (inside TU Vienna GEO Domain)
 
 
 ## Recommended software folder structure for VieSched++
@@ -46,8 +66,12 @@ I have the VieSchedpp installed before installing the VieSchedppGUI. Please visi
 
 * QT and QT charts (tested with Qt5-default and QT GUI)
  * possible installation on Ubuntu: `sudo apt-get install qt5-default libqt5charts5 libqt5charts5-dev` or visit https://www.qt.io/download for GUI version (might take longer to download and install)
+* SOFA libraries
+  * check out git project `https://git.geo.tuwien.ac.at/vievs/VieSchedpp/IAU_SOFA.git` or visit http://www.iausofa.org/
 * maybe OpenGL (depending on your linux version)
  * possible installation on Ubuntu: `sudo apt-get install libgl1-mesa-dev`
+* VieSched++ source files
+ * available via the VieSched++ git repository at https://github.com/TUW-VieVS/VieSchedpp
 
 ## Build
 clone git repository into `VieSchedppSource` or copy source code into `VieSchedppSource/VieSchedppGUI`
