@@ -88,12 +88,24 @@ MainWindow::MainWindow(QWidget *parent) :
     boost::property_tree::read_xml(iSettings,settings_,boost::property_tree::xml_parser::trim_whitespace);
     readSettings();
     if(ui->pathToSchedulerLineEdit->text().isEmpty()){
-        QMessageBox mb;
-        QString txt = "Before you start, please make sure to set the path to the VieVS Scheduling executable VieSchedpp."
-                      "Browse to the settings page <img src=\":/icons/icons/emblem-system-2.png\" height=\"30\" width=\"30\"/>, "
-                      "add the absolute path to the VieSchedpp executable and press save "
-                      "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>!";
-        mb.information(this,"Before you start!",txt);
+
+        QFileInfo check_file1("../VieSchedpp/Release/VieSchedpp");
+        QFileInfo check_file2("./VieSchedpp");
+        if(check_file1.exists() && check_file1.isFile() && check_file1.isExecutable()){
+            ui->pathToSchedulerLineEdit->setText("../VieSchedpp/Release/VieSchedpp");
+            ui->pushButton_17->click();
+        }else if(check_file2.exists() && check_file2.isFile() && check_file2.isExecutable()){
+            ui->pathToSchedulerLineEdit->setText("../VieSchedpp");
+            ui->pushButton_17->click();
+        }else{
+            QMessageBox mb;
+            QString txt = "Please make sure to set the path to the VieSchedpp executable.\n"
+                          "After clicking \"ok\" the GUI schould open. Browse to the settings page <img src=\":/icons/icons/emblem-system-2.png\" height=\"30\" width=\"30\"/>, "
+                          "add the path to the VieSchedpp executable and press save "
+                          "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>.\n"
+                          "You can test your connection by clicking the <img src=\":/icons/icons/help.png\" height=\"30\" width=\"30\"/> button right next to it.";
+            mb.information(this,"First start!",txt);
+        }
 
     }
 
