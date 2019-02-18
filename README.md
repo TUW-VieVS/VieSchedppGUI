@@ -53,12 +53,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git (inside TU Vienn
 
 The full __VieSched++__ software contains 4 different packages which are all available in git under `git.geo.tuwien.ac.at/vievs/VieSchedpp/`
 
-It is recommended to copy the source code into one common directory here called `VieSchedppSource`
+It is recommended to copy the source code into one common directory here called `VieVS`
 
-    VieSchedppSource/VieSchedpp
-    VieSchedppSource/VieSchedppGUI
-    VieSchedppSource/IAU_SOFA (only for installation)
-    VieSchedppSource/CATALOGS (only for usage)
+    VieVS/VieSchedpp
+    VieVS/VieSchedppGUI
+    VieVS/IAU_SOFA (only for installation)
+    VieVS/CATALOGS (only for usage)
 
 ## Dependencies
 
@@ -75,9 +75,9 @@ I have the VieSchedpp installed before installing the VieSchedppGUI. Please visi
  * available via the VieSched++ git repository at https://github.com/TUW-VieVS/VieSchedpp
 
 ## Build
-clone git repository into `VieSchedppSource` or copy source code into `VieSchedppSource/VieSchedppGUI`
+clone git repository into `VieVS` or copy source code into `VieVS/VieSchedppGUI`
 
-    cd VieSchedppSource
+    cd VieVS
     git clone https://github.com/TUW-VieVS/VieSchedppGUI.git
 
 Browse to newly created folder `VieSchedppGUI`
