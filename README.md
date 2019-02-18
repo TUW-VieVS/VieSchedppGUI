@@ -64,10 +64,11 @@ It is recommended to copy the source code into one common directory here called 
 
 I have the VieSchedpp installed before installing the VieSchedppGUI. Please visit https://github.com/TUW-VieVS/VieSchedpp for the software.
 
-* QT and QT charts (tested with Qt5-default and QT GUI)
+* QT and QT charts (tested with 5.11.2)
  * possible installation on Ubuntu: `sudo apt-get install qt5-default libqt5charts5 libqt5charts5-dev` or visit https://www.qt.io/download for GUI version (might take longer to download and install)
 * SOFA libraries
-  * check out git project `https://git.geo.tuwien.ac.at/vievs/VieSchedpp/IAU_SOFA.git` or visit http://www.iausofa.org/
+  * check out git project `https://git.geo.tuwien.ac.at/vievs/VieSchedpp/IAU_SOFA.git` (Inside TU-Wien GEO domain) or visit http://www.iausofa.org/. 
+  * The SOFA library has to be locate in `../IAU_SOFA/Release`, otherwise change search path in `VieSchedppGUI.pro` file manually
 * maybe OpenGL (depending on your linux version)
  * possible installation on Ubuntu: `sudo apt-get install libgl1-mesa-dev`
 * VieSched++ source files
