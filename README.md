@@ -86,7 +86,7 @@ Browse to newly created folder `VieSchedppGUI`
  ## Option 1: Command-line
 Run qmake
 
-    qmake VieSchedppGUI.pro
+    qmake -config release VieSchedppGUI.pro
 
 Run make (this process might take a few moments)
 
