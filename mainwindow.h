@@ -202,8 +202,6 @@ private slots:
 
     void skymap_hovered(QPointF point, bool state);
 
-    void on_pushButton_modeCustomAddBand_clicked();
-
     void on_treeView_allSelectedStations_entered(const QModelIndex &index);
 
     void on_actionSky_Coverage_triggered();
@@ -366,7 +364,7 @@ private slots:
 
     void splitterMoved();
 
-    void on_pushButton_faqSearch_clicked();
+    void faqSearch();
 
     void on_actionFAQ_triggered();
 

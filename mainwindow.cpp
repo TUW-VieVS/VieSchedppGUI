@@ -346,7 +346,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_addGroupsourceSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupSource()));
     connect(ui->pushButton_addGroupBaselineSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupBaseline()));
 
-    connect(ui->lineEdit_faqSearch,SIGNAL(textChanged(QString)),this,SLOT(on_pushButton_faqSearch_clicked()));
+    connect(ui->lineEdit_faqSearch,SIGNAL(textChanged(QString)),this,SLOT(faqSearch()));
 
     ui->spinBox_scanSequenceCadence->setValue(1);
     ui->spinBox_scanSequenceCadence->setMinimum(1);
@@ -4268,21 +4268,6 @@ void MainWindow::on_pushButton_modeCustomAddBAnd_clicked()
     delete(dial);
 }
 
-
-void MainWindow::on_pushButton_modeCustomAddBand_clicked()
-{
-    addBandDialog *dial = new addBandDialog(settings_,this);
-    int result = dial->exec();
-
-    if(result == QDialog::Accepted){
-        QString name = dial->getBandName();
-        double freq = dial->getFrequency();
-        int channels = dial->getChannels();
-        addModesCustomTable(name,freq,channels);
-    }
-
-    delete(dial);
-}
 
 void MainWindow::on_pushButton_startAdvancedMode_clicked()
 {
@@ -8923,7 +8908,7 @@ void MainWindow::splitterMoved() {
   receiverSplitter2->blockSignals(false);
 }
 
-void MainWindow::on_pushButton_faqSearch_clicked()
+void MainWindow::faqSearch()
 {
     QString searchString = ui->lineEdit_faqSearch->text();
     QTextDocument *document = ui->textEdit_faq->document();
@@ -8958,7 +8943,7 @@ void MainWindow::on_pushButton_faqSearch_clicked()
 
         if (found == false) {
             QMessageBox::information(this, tr("Not Found"),
-                                     tr("Sorry, the text cannot be found."));
+                                     tr("Search text is not found on FAQ page.\nTry another keyword or write an email to matthias.schartner@geo.tuwien.ac.at"));
         }
     }
 
