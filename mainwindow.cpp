@@ -90,19 +90,23 @@ MainWindow::MainWindow(QWidget *parent) :
     if(ui->pathToSchedulerLineEdit->text().isEmpty()){
 
         QFileInfo check_file1("../VieSchedpp/Release/VieSchedpp");
-        QFileInfo check_file2("./VieSchedpp");
+        QFileInfo check_file2("../VieSchedpp/cmake-build-release/VieSchedpp");
+        QFileInfo check_file3("./VieSchedpp");
         if(check_file1.exists() && check_file1.isFile() && check_file1.isExecutable()){
             ui->pathToSchedulerLineEdit->setText("../VieSchedpp/Release/VieSchedpp");
             ui->pushButton_17->click();
         }else if(check_file2.exists() && check_file2.isFile() && check_file2.isExecutable()){
+            ui->pathToSchedulerLineEdit->setText("../VieSchedpp/cmake-build-release/VieSchedpp");
+            ui->pushButton_17->click();
+        }else if(check_file3.exists() && check_file3.isFile() && check_file3.isExecutable()){
             ui->pathToSchedulerLineEdit->setText("../VieSchedpp");
             ui->pushButton_17->click();
         }else{
             QMessageBox mb;
-            QString txt = "Please make sure to set the path to the VieSchedpp executable.\n"
+            QString txt = "Please make sure to set the path to the VieSchedpp executable.<br>"
                           "After clicking \"ok\" the GUI schould open. Browse to the settings page <img src=\":/icons/icons/emblem-system-2.png\" height=\"30\" width=\"30\"/>, "
                           "add the path to the VieSchedpp executable and press save "
-                          "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>.\n"
+                          "<img src=\":/icons/icons/document-export.png\" height=\"30\" width=\"30\"/>.<br>"
                           "You can test your connection by clicking the <img src=\":/icons/icons/help.png\" height=\"30\" width=\"30\"/> button right next to it.";
             mb.information(this,"First start!",txt);
         }
@@ -4769,10 +4773,77 @@ void MainWindow::readSkedCatalogs()
                                           ui->lineEdit_pathRx->text().toStdString(), ui->lineEdit_pathSource->text().toStdString(),
                                           ui->lineEdit_pathTracks->text().toStdString());
 
-    skdCatalogReader.initializeStationCatalogs();
-    skdCatalogReader.initializeSourceCatalogs();
+    QFileInfo bant(ui->lineEdit_pathAntenna->text());
+    QFileInfo bequ(ui->lineEdit_pathEquip->text());
+    QFileInfo bflu(ui->lineEdit_pathFlux->text());
+    QFileInfo bfre(ui->lineEdit_pathFreq->text());
+    QFileInfo bhdp(ui->lineEdit_pathHdpos->text());
+    QFileInfo bloi(ui->lineEdit_pathLoif->text());
+    QFileInfo bmas(ui->lineEdit_pathMask->text());
+    QFileInfo bmod(ui->lineEdit_pathModes->text());
+    QFileInfo bpos(ui->lineEdit_pathPosition->text());
+    QFileInfo brec(ui->lineEdit_pathRec->text());
+    QFileInfo brx(ui->lineEdit_pathRx->text());
+    QFileInfo bsrc(ui->lineEdit_pathSource->text());
+    QFileInfo btra(ui->lineEdit_pathTracks->text());
 
-    skdCatalogReader.initializeModesCatalogs(ui->comboBox_skedObsModes->currentText().toStdString());
+    if(bant.exists() && bequ.exists() && bflu.exists() && bfre.exists() && bhdp.exists() && bloi.exists() & bmas.exists() && bmod.exists() && bpos.exists() && brec.exists() && brx.exists() && bsrc.exists() && btra.exists()){
+        skdCatalogReader.initializeStationCatalogs();
+        skdCatalogReader.initializeSourceCatalogs();
+
+        skdCatalogReader.initializeModesCatalogs(ui->comboBox_skedObsModes->currentText().toStdString());
+    }else{
+        QString txt = "One or multiple catalog files not found:<br><ul>";
+
+        if(!bant.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathAntenna->text()).append(" not found!</li>");
+        }
+        if(!bequ.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathEquip->text()).append(" not found!</li>");
+        }
+        if(!bflu.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathFlux->text()).append(" not found!</li>");
+        }
+        if(!bfre.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathFreq->text()).append(" not found!</li>");
+        }
+        if(!bhdp.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathHdpos->text()).append(" not found!</li>");
+        }
+        if(!bloi.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathLoif->text()).append(" not found!</li>");
+        }
+        if(!bmas.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathMask->text()).append(" not found!</li>");
+        }
+        if(!bmod.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathModes->text()).append(" not found!</li>");
+        }
+        if(!bpos.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathPosition->text()).append(" not found!</li>");
+        }
+        if(!brec.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathRec->text()).append(" not found!</li>");
+        }
+        if(!brx.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathRx->text()).append(" not found!</li>");
+        }
+        if(!bsrc.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathSource->text()).append(" not found!</li>");
+        }
+        if(!btra.exists()){
+            txt.append("<li>").append(ui->lineEdit_pathTracks->text()).append(" not found!</li>");
+        }
+
+        txt.append("</ul>Copy the catalogs to the required position or change the path in the <img src=\":/icons/icons/document-import-2.png\" height=\"30\" width=\"30\"/> menu!");
+
+        QMessageBox::information(this, "CATALOG files", txt);
+
+    }
+
+
+
+
 }
 
 void MainWindow::on_pushButton_browseAntenna_clicked()
