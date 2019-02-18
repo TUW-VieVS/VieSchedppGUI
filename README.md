@@ -51,32 +51,33 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git (inside TU Vienn
 
 ## Recommended software folder structure for VieSched++
 
-The full __VieSched++__ software contains 4 different packages which are all available in git under `git.geo.tuwien.ac.at/vievs/VieSchedpp/`
+The full software contains 4 different packages which are all available in git under `git.geo.tuwien.ac.at/vievs/VieSchedpp/` (Inside the TU-Wien GEO domain). Two of the packages are also available on github `https://github.com/TUW-VieVS/`. 
 
-It is recommended to copy the source code into one common directory here called `VieSchedppSource`
+It is recommended to copy the source code into one common directory here called `VieVS`
 
-    VieSchedppSource/VieSchedpp
-    VieSchedppSource/VieSchedppGUI
-    VieSchedppSource/IAU_SOFA (only for installation)
-    VieSchedppSource/CATALOGS (only for usage)
+    VieVS/VieSchedpp
+    VieVS/VieSchedppGUI
+    VieVS/IAU_SOFA (only for installation)
+    VieVS/CATALOGS (only for usage)
 
 ## Dependencies
 
 I have the VieSchedpp installed before installing the VieSchedppGUI. Please visit https://github.com/TUW-VieVS/VieSchedpp for the software.
 
-* QT and QT charts (tested with Qt5-default and QT GUI)
+* QT and QT charts (tested with 5.11.2)
  * possible installation on Ubuntu: `sudo apt-get install qt5-default libqt5charts5 libqt5charts5-dev` or visit https://www.qt.io/download for GUI version (might take longer to download and install)
 * SOFA libraries
-  * check out git project `https://git.geo.tuwien.ac.at/vievs/VieSchedpp/IAU_SOFA.git` or visit http://www.iausofa.org/
+  * check out git project `https://git.geo.tuwien.ac.at/vievs/VieSchedpp/IAU_SOFA.git` (Inside TU-Wien GEO domain) or visit http://www.iausofa.org/. 
+  * The SOFA library has to be locate in `../IAU_SOFA/Release`, otherwise change search path in `VieSchedppGUI.pro` file manually
 * maybe OpenGL (depending on your linux version)
  * possible installation on Ubuntu: `sudo apt-get install libgl1-mesa-dev`
 * VieSched++ source files
  * available via the VieSched++ git repository at https://github.com/TUW-VieVS/VieSchedpp
 
 ## Build
-clone git repository into `VieSchedppSource` or copy source code into `VieSchedppSource/VieSchedppGUI`
+clone git repository into `VieVS` or copy source code into `VieVS/VieSchedppGUI`
 
-    cd VieSchedppSource
+    cd VieVS
     git clone https://github.com/TUW-VieVS/VieSchedppGUI.git
 
 Browse to newly created folder `VieSchedppGUI`
@@ -86,7 +87,7 @@ Browse to newly created folder `VieSchedppGUI`
  ## Option 1: Command-line
 Run qmake
 
-    qmake VieSchedppGUI.pro
+    qmake -config release VieSchedppGUI.pro
 
 Run make (this process might take a few moments)
 
