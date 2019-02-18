@@ -99,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->pathToSchedulerLineEdit->setText("../VieSchedpp/cmake-build-release/VieSchedpp");
             ui->pushButton_17->click();
         }else if(check_file3.exists() && check_file3.isFile() && check_file3.isExecutable()){
-            ui->pathToSchedulerLineEdit->setText("../VieSchedpp");
+            ui->pathToSchedulerLineEdit->setText("./VieSchedpp");
             ui->pushButton_17->click();
         }else{
             QMessageBox mb;
