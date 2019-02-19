@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2846,7 +2846,7 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>908</width>
+             <width>932</width>
              <height>668</height>
             </rect>
            </property>
@@ -7789,8 +7789,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>639</width>
-             <height>576</height>
+             <width>946</width>
+             <height>591</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">

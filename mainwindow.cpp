@@ -6208,6 +6208,9 @@ void MainWindow::on_treeView_allSelectedStations_clicked(const QModelIndex &inde
     ui->treeWidget_multiSchedSelected->clear();
     for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
         ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
+        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
+            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
+        }
     }
 }
 
@@ -7344,6 +7347,9 @@ void MainWindow::on_treeView_allSelectedSources_clicked(const QModelIndex &index
     ui->treeWidget_multiSchedSelected->clear();
     for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
         ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
+        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
+            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
+        }
     }
 
 }
@@ -7758,6 +7764,9 @@ void MainWindow::on_pushButton_15_clicked()
     ui->treeWidget_multiSchedSelected->clear();
     for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
         ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
+        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
+            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
+        }
     }
     ui->label_sourceList_selected->setText("selected: ");
 }
