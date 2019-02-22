@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>13</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1062,7 +1062,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>709</width>
              <height>750</height>
             </rect>
            </property>
@@ -12500,12 +12500,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>727</x>
-     <y>87</y>
+     <x>108</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>920</x>
-     <y>93</y>
+     <x>108</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -12932,12 +12932,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>80</x>
-     <y>377</y>
+     <x>89</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>225</x>
-     <y>377</y>
+     <x>118</x>
+     <y>353</y>
     </hint>
    </hints>
   </connection>
@@ -12948,12 +12948,60 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>413</y>
+     <x>114</x>
+     <y>353</y>
     </hint>
     <hint type="destinationlabel">
-     <x>195</x>
-     <y>411</y>
+     <x>118</x>
+     <y>353</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>calendarWidget</sender>
+   <signal>clicked(QDate)</signal>
+   <receiver>dateTimeEdit_sessionStart</receiver>
+   <slot>setDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>520</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>200</x>
+     <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_subnetting_allBut</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_subnetting_min_sta</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>462</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>561</x>
+     <y>559</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_subnetting_percent</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_subnettingMinStations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>523</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>567</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
