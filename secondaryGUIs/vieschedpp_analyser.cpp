@@ -600,7 +600,7 @@ void VieSchedpp_Analyser::updateSkyCoverage(int idx, QString name)
     QScatterSeriesExtended *data = new QScatterSeriesExtended();
     for(const auto &any : list){
         double unaz = any.az;
-        double az = VieVS::util::wrapToPi(unaz)*rad2deg;
+        double az = VieVS::util::wrap2twoPi(unaz)*rad2deg;
         if(az<0){
             az+=360;
         }
