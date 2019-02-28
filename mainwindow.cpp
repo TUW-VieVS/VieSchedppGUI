@@ -2009,11 +2009,11 @@ void MainWindow::defaultParameters()
     }
     boost::optional<bool> idleToObserving = settings_.get_optional<bool>("settings.general.idleToObservingTime");
     if(idleToObserving.is_initialized()){
-        ui->groupBox_idleToObservingTime->setChecked(*idleToObserving);
-    }
-    boost::optional<int> maxIdleToObserving = settings_.get_optional<int>("settings.general.maxExtendedObservingTime");
-    if(maxIdleToObserving.is_initialized()){
-        ui->spinBox_idleToObs_maxTime->setValue(*maxIdleToObserving);
+        if(*idleToObserving){
+            ui->radioButton_idleToObservingTime_yes->setChecked(true);
+        }else{
+            ui->radioButton_idleToObservingTime_no->setChecked(true);
+        }
     }
 
     boost::optional<std::string> alignObservingTime = settings_.get_optional<std::string>("settings.general.alignObservingTime");
@@ -2345,8 +2345,7 @@ QString MainWindow::writeXML()
     bool fillinModeAPosteriori = ui->checkBox_fillinmode_aposteriori->isChecked();
     bool fillinModeDuringScan = ui->checkBox_fillinmode_duringscan->isChecked();
     bool fillinModeInfluence = ui->checkBox_fillinModeInfluence->isChecked();
-    bool idleToObservingTime = ui->groupBox_idleToObservingTime->isChecked();
-    int maxIdleToObserving = ui->spinBox_idleToObs_maxTime->value();
+    bool idleToObservingTime = ui->radioButton_idleToObservingTime_yes->isChecked();
     bool subnetting = ui->groupBox_subnetting->isChecked();
     double subnettingAngle = ui->doubleSpinBox_subnettingDistance->value();
 
@@ -2373,12 +2372,12 @@ QString MainWindow::writeXML()
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
-                     idleToObservingTime, maxIdleToObserving, station_names, useSourcesFromParameter_otherwiseIgnore,
+                     idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
                      srcNames, scanAlignment, logConsole, logFile);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
-                     idleToObservingTime, maxIdleToObserving, station_names, useSourcesFromParameter_otherwiseIgnore,
+                     idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
                      ignoreSrcNames, scanAlignment, logConsole, logFile);
     }
 
@@ -3082,9 +3081,12 @@ void MainWindow::loadXML(QString path)
         ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeInfluenceOnSchedule);
 
         bool idleToObservingTime = xml.get("VieSchedpp.general.idleToObservingTime",false);
-        ui->groupBox_idleToObservingTime->setChecked(idleToObservingTime);
-        int maxIdleToObserving = xml.get("VieSchedpp.general.maxExtendedObservingTime",9999);
-        ui->spinBox_idleToObs_maxTime->setValue(maxIdleToObserving);
+        if(idleToObservingTime){
+            ui->radioButton_idleToObservingTime_yes->setChecked(true);
+        }else{
+            ui->radioButton_idleToObservingTime_no->setChecked(true);
+        }
+
 
         std::vector<std::string> sel_stations;
         const auto &stations = xml.get_child_optional("VieSchedpp.general.stations");
@@ -8740,13 +8742,11 @@ void MainWindow::on_pushButton_8_clicked()
     }
 
     path << "settings.general.idleToObservingTime";
-    if(ui->groupBox_idleToObservingTime->isChecked()){
+    if(ui->radioButton_idleToObservingTime_yes->isChecked()){
         value << "true";
     }else{
         value << "false";
     }
-    path << "settings.general.maxExtendedObservingTime";
-    value << QString::number(ui->spinBox_idleToObs_maxTime->value());
 
     path << "settings.general.alignObservingTime";
     if(ui->radioButton_alignStart->isChecked()){

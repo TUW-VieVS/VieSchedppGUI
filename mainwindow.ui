@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>712</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2846,8 +2846,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
-             <height>668</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -3471,44 +3471,28 @@ If you only want to run simulations you can deselect this to avoid error message
                     <string>idle to observing time</string>
                    </property>
                    <property name="checkable">
-                    <bool>true</bool>
+                    <bool>false</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_71">
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_92">
-                      <property name="spacing">
-                       <number>6</number>
+                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_yes">
+                      <property name="text">
+                       <string>yes</string>
                       </property>
-                      <property name="bottomMargin">
-                       <number>0</number>
+                      <property name="checked">
+                       <bool>true</bool>
                       </property>
-                      <item>
-                       <widget class="QLabel" name="label_88">
-                        <property name="text">
-                         <string>max extended time</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QSpinBox" name="spinBox_idleToObs_maxTime">
-                        <property name="suffix">
-                         <string> [s]</string>
-                        </property>
-                        <property name="prefix">
-                         <string/>
-                        </property>
-                        <property name="minimum">
-                         <number>1</number>
-                        </property>
-                        <property name="maximum">
-                         <number>9999</number>
-                        </property>
-                        <property name="value">
-                         <number>9999</number>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_no">
+                      <property name="text">
+                       <string>no</string>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <spacer name="verticalSpacer_11">
@@ -7789,8 +7773,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>591</height>
+             <width>639</width>
+             <height>576</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
