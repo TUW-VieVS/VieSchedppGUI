@@ -2566,7 +2566,10 @@ QString MainWindow::writeXML()
         double highEnd = ui->doubleSpinBox_calibratorHighElEnd->value();
         std::vector<std::pair<double, double> > elevationAngles {{lowStart,lowEnd},{highStart,highEnd}};
         int nmaxScans = ui->spinBox_calibrator_maxScanSequence->value();
-        int scanTime = ui->spinBox_calibratorFixedScanLength->value();
+        int scanTime = -1;
+        if(ui->radioButton->isChecked()){
+            scanTime = ui->spinBox_calibratorFixedScanLength->value();
+        }
         if(ui->radioButton_calibratorTime->isChecked()){
             int cadence = ui->spinBox_calibratorTime->value();
             para.ruleCalibratorBlockTime(cadence,member,elevationAngles,nmaxScans,scanTime);

@@ -2173,6 +2173,10 @@ void VieSchedpp_Analyser::updateStatisticsSource()
             double el = pv.getEl()*rad2deg;
             serie->append(t.toMSecsSinceEpoch(),el);
         }
+
+        serie->attachAxis(chart->axisX());
+        serie->attachAxis(chart->axisY());
+
     }
 
     for(const auto &any:series){
