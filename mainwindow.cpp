@@ -2277,9 +2277,6 @@ void MainWindow::readSettings()
     if(!notes.empty()){
         ui->plainTextEdit_notes->setPlainText(QString::fromStdString(notes).replace("\\n","\n"));
     }
-    std::string operationNotes = settings_.get<std::string>("settings.output.operationNotes","");
-    ui->plainTextEdit_operationNotes->setPlainText(QString::fromStdString(operationNotes).replace("\\n","\n"));
-
 
     std::string threads = settings_.get<std::string>("settings.multiCore.threads","auto");
     ui->comboBox_nThreads->setCurrentText(QString::fromStdString(threads));
@@ -2413,12 +2410,9 @@ QString MainWindow::writeXML()
             srcGroupsForStatistic.push_back(ui->treeWidget_srcGroupForStatistics->topLevelItem(i)->text(0).toStdString());
         }
     }
-    std::string operationNotes;
-    if(operNotes){
-        operationNotes = ui->plainTextEdit_operationNotes->toPlainText().replace("\n","\\n").toStdString();
-    }
     para.output(experimentDescription, scheduler, correlator, piName, piEmail, contactName,
-                contactEmail, notes, initializer, iteration, statistics, ngs, NGS_directory, skd, vex, snrTabel, operNotes, operationNotes, srcGrp, srcGroupsForStatistic, skyCov);
+                contactEmail, notes, initializer, iteration, statistics, ngs, NGS_directory,
+                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -3898,7 +3892,6 @@ void MainWindow::loadXML(QString path)
         ui->lineEdit_contactName->setText(QString::fromStdString(xml.get("VieSchedpp.output.contactName","")));
         ui->lineEdit_contactEmail->setText(QString::fromStdString(xml.get("VieSchedpp.output.contactEmail","")));
         ui->plainTextEdit_notes->setPlainText(QString::fromStdString(xml.get("VieSchedpp.output.notes","")));
-        ui->plainTextEdit_operationNotes->setPlainText(QString::fromStdString(xml.get("VieSchedpp.output.operationNotes","")));
 
         if(xml.get("VieSchedpp.output.initializer_log",false)){
             ui->checkBox_outputInitializer->setChecked(true);
@@ -8955,13 +8948,6 @@ void MainWindow::on_pushButton_41_clicked()
     changeDefaultSettings(path,value,name);
 }
 
-void MainWindow::on_pushButton_40_clicked()
-{
-    QStringList path {"settings.output.operationNotes"};
-    QStringList value {ui->plainTextEdit_operationNotes->toPlainText().replace("\n","\\n")};
-    QString name = "Default operation notes changed!";
-    changeDefaultSettings(path,value,name);
-}
 
 void MainWindow::on_pushButton_save_multiCore_clicked()
 {

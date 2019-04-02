@@ -458,8 +458,6 @@ private slots:
 
     void on_pushButton_41_clicked();
 
-    void on_pushButton_40_clicked();
-
     void on_pushButton_addHighImpactAzEl_clicked();
 
     void on_pushButton_removeHighImpactAzEl_clicked();
