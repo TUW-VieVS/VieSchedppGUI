@@ -25,6 +25,8 @@ VieSchedpp_Analyser::VieSchedpp_Analyser(VieVS::Scheduler schedule, std::map<std
 {
     ui->setupUi(this);
 
+    ui->stackedWidget->setCurrentIndex(0);
+
     QApplication::setWindowIcon(QIcon(":/icons/icons/VieSchedppGUI_logo.png"));
     this->setWindowTitle("VieSched++ Analyzer");
 
@@ -292,9 +294,8 @@ void VieSchedpp_Analyser::setup()
     }
 
     int srcs = srcModel->rowCount();
-    setUVCoverageLayout(1,1);
-//    if(srcs == 2){
-//        setUVCoverageLayout(1,2);
+    if(srcs >= 2){
+        setUVCoverageLayout(1,2);
 //    }else if(srcs == 3){
 //        setUVCoverageLayout(1,3);
 //    }else if(srcs == 4){
@@ -305,13 +306,13 @@ void VieSchedpp_Analyser::setup()
 //        setUVCoverageLayout(2,3);
 //    }else if(srcs == 7){
 //        setUVCoverageLayout(2,4);
-//    }else if(srcs == 8){
+//    }else if(srcs >= 8){
 //        setUVCoverageLayout(2,4);
-//    }else if(srcs == 9){
+//    }else if(srcs >= 9){
 //        setUVCoverageLayout(2,5);
 //    }else if(srcs >= 10){
 //        setUVCoverageLayout(2,5);
-//    }
+    }
 
 //    ui->splitter_skyCoverage->setSizes(QList<int>({std::numeric_limits<int>::max(), std::numeric_limits<int>::max()/4}));
 //    ui->splitter_worldmap->setSizes(QList<int>({std::numeric_limits<int>::max(), std::numeric_limits<int>::max()/4}));
@@ -549,6 +550,157 @@ void VieSchedpp_Analyser::updateSkyCoverage(QString name)
         }
     }
     updateSkyCoverage(idx, name);
+}
+
+void VieSchedpp_Analyser::on_pushButton_skyCov_screenshot_clicked()
+{
+    QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_skyCoverage->itemAt(0)->widget());
+    QChartView *chartView = qobject_cast<QChartView*>(box->layout()->itemAt(1)->widget());
+
+
+    const auto dpr = chartView->devicePixelRatioF();
+    chartView->setMinimumSize(768,768);
+    chartView->setMaximumSize(768,768);
+
+    QImage image(768,768,QImage::Format_ARGB32_Premultiplied);
+    image.setDevicePixelRatio(dpr);
+    QPainter painter(&image);
+    painter.setRenderHint(QPainter::Antialiasing);
+    chartView->render(&painter);
+    image.save("test.png");
+
+    chartView->setMinimumSize(0,0);
+    chartView->setMaximumSize(16777215,16777215);
+}
+
+
+void VieSchedpp_Analyser::increment(QGridLayout *layout, int n)
+{
+    for(int r=0; r<layout->rowCount(); ++r){
+        for(int c=0; c<layout->columnCount(); ++c){
+
+            if(layout->rowStretch(r) != 0 && layout->columnStretch(c) != 0){
+                QGroupBox *box = qobject_cast<QGroupBox*>(layout->itemAtPosition(r,c)->widget());
+                QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+
+                int idx = comboBox->currentIndex();
+                if(idx == -1){
+                    continue;
+                }
+                idx += n;
+                idx = idx % comboBox->count();
+                if(idx < 0){
+                    idx += comboBox->count();
+                }
+
+                comboBox->setCurrentIndex(idx);
+            }
+        }
+    }
+}
+
+
+
+void VieSchedpp_Analyser::on_pushButton_skyCov_right_clicked()
+{
+    increment(ui->gridLayout_skyCoverage, 1);
+}
+
+void VieSchedpp_Analyser::on_pushButton_skyCov_right2_clicked()
+{
+    int n = 0;
+    for(int r=0; r<ui->gridLayout_skyCoverage->rowCount(); ++r){
+        for(int c=0; c<ui->gridLayout_skyCoverage->columnCount(); ++c){
+
+            if(ui->gridLayout_skyCoverage->rowStretch(r) != 0 && ui->gridLayout_skyCoverage->columnStretch(c) != 0){
+                QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_skyCoverage->itemAtPosition(r,c)->widget());
+                QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+
+                int idx = comboBox->currentIndex();
+                if(idx != -1){
+                    ++n;
+                }
+            }
+        }
+    }
+    increment(ui->gridLayout_skyCoverage, n);
+}
+
+void VieSchedpp_Analyser::on_pushButton_skyCov_left_clicked()
+{
+    increment(ui->gridLayout_skyCoverage, -1);
+}
+
+void VieSchedpp_Analyser::on_pushButton_skyCov_left2_clicked()
+{
+    int n = 0;
+    for(int r=0; r<ui->gridLayout_skyCoverage->rowCount(); ++r){
+        for(int c=0; c<ui->gridLayout_skyCoverage->columnCount(); ++c){
+
+            if(ui->gridLayout_skyCoverage->rowStretch(r) != 0 && ui->gridLayout_skyCoverage->columnStretch(c) != 0){
+                QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_skyCoverage->itemAtPosition(r,c)->widget());
+                QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+
+                int idx = comboBox->currentIndex();
+                if(idx != -1){
+                    ++n;
+                }
+            }
+        }
+    }
+    increment(ui->gridLayout_skyCoverage, -n);
+}
+
+void VieSchedpp_Analyser::on_pushButton_uv_right_clicked()
+{
+    increment(ui->gridLayout_uv_coverage, 1);
+}
+
+void VieSchedpp_Analyser::on_pushButton_uv_right2_clicked()
+{
+    int n = 0;
+    for(int r=0; r<ui->gridLayout_uv_coverage->rowCount(); ++r){
+        for(int c=0; c<ui->gridLayout_uv_coverage->columnCount(); ++c){
+
+            if(ui->gridLayout_uv_coverage->rowStretch(r) != 0 && ui->gridLayout_uv_coverage->columnStretch(c) != 0){
+                QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_uv_coverage->itemAtPosition(r,c)->widget());
+                QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+//                QComboBox *comboBox = qobject_cast<QComboBox*>(box->layout()->itemAt(0)->widget());
+
+                int idx = comboBox->currentIndex();
+                if(idx != -1){
+                    ++n;
+                }
+            }
+        }
+    }
+    increment(ui->gridLayout_uv_coverage, -n);
+}
+
+void VieSchedpp_Analyser::on_pushButton_uv_left_clicked()
+{
+    increment(ui->gridLayout_uv_coverage, -1);
+
+}
+
+void VieSchedpp_Analyser::on_pushButton_uv_left2_clicked()
+{
+    int n = 0;
+    for(int r=0; r<ui->gridLayout_uv_coverage->rowCount(); ++r){
+        for(int c=0; c<ui->gridLayout_uv_coverage->columnCount(); ++c){
+
+            if(ui->gridLayout_uv_coverage->rowStretch(r) != 0 && ui->gridLayout_uv_coverage->columnStretch(c) != 0){
+                QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_uv_coverage->itemAtPosition(r,c)->widget());
+                QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+
+                int idx = comboBox->currentIndex();
+                if(idx != -1){
+                    ++n;
+                }
+            }
+        }
+    }
+    increment(ui->gridLayout_uv_coverage, -n);
 }
 
 void VieSchedpp_Analyser::updateSkyCoverage(int idx, QString name)
@@ -3131,3 +3283,4 @@ void VieSchedpp_Analyser::on_pushButton_full_clicked()
     ui->horizontalSlider_start->setValue(0);
     ui->horizontalSlider_end->setValue(ui->horizontalSlider_end->maximum());
 }
+

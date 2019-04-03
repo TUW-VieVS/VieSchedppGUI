@@ -140,7 +140,8 @@ SOURCES += \
     Utility/multicolumnsortfilterproxymodel.cpp \
     Utility/mytextbrowser.cpp \
     Utility/qtutil.cpp \
-    Utility/statistics.cpp
+    Utility/statistics.cpp \
+    secondaryGUIs/rendersetup.cpp
 
 HEADERS += \
     ../VieSchedpp/Input/LogParser.h \
@@ -235,7 +236,8 @@ HEADERS += \
     Utility/mytextbrowser.h \
     Utility/qtutil.h \
     mainwindow.h \
-    Utility/statistics.h
+    Utility/statistics.h \
+    secondaryGUIs/rendersetup.h
 
 FORMS += \
     mainwindow.ui \
@@ -252,7 +254,8 @@ FORMS += \
     secondaryGUIs/settingsloadwindow.ui \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
-    secondaryGUIs/vieschedpp_analyser.ui
+    secondaryGUIs/vieschedpp_analyser.ui \
+    secondaryGUIs/rendersetup.ui
 
 RESOURCES += \
         myresources.qrc

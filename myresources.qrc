@@ -69,6 +69,12 @@
         <file>icons/about.png</file>
         <file>icons/uv.png</file>
         <file>icons/VieSchedppGUI_logo.png</file>
+        <file>icons/arrow-right-double.png</file>
+        <file>icons/arrow-right.png</file>
+        <file>icons/arrow-left-double.png</file>
+        <file>icons/arrow-left.png</file>
+        <file>icons/insert-image-2.png</file>
+        <file>icons/camera.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>
