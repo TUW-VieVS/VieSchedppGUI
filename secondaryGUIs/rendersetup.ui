@@ -26,7 +26,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="listView"/>
+        <widget class="QListView" name="listView">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -51,6 +61,9 @@
              <widget class="QSpinBox" name="spinBox_height">
               <property name="maximum">
                <number>9999</number>
+              </property>
+              <property name="singleStep">
+               <number>64</number>
               </property>
               <property name="value">
                <number>768</number>
@@ -85,6 +98,9 @@
              <widget class="QSpinBox" name="spinBox_width">
               <property name="maximum">
                <number>9999</number>
+              </property>
+              <property name="singleStep">
+               <number>64</number>
               </property>
               <property name="value">
                <number>768</number>
@@ -151,8 +167,11 @@
               <property name="maximum">
                <number>86400</number>
               </property>
+              <property name="singleStep">
+               <number>600</number>
+              </property>
               <property name="value">
-               <number>1800</number>
+               <number>3600</number>
               </property>
              </widget>
             </item>
@@ -190,6 +209,9 @@
               </property>
               <property name="maximum">
                <number>86400</number>
+              </property>
+              <property name="singleStep">
+               <number>600</number>
               </property>
               <property name="value">
                <number>3600</number>
@@ -250,6 +272,9 @@
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
               </property>
+              <property name="maximum">
+               <number>9999</number>
+              </property>
              </widget>
             </item>
            </layout>
@@ -267,7 +292,7 @@
              <widget class="QLineEdit" name="lineEdit_output"/>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="pushButton_browse">
               <property name="text">
                <string/>
               </property>
@@ -309,8 +334,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>227</x>
+     <y>431</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -325,8 +350,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>295</x>
+     <y>437</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

@@ -46,6 +46,11 @@
 #include <QtCharts/QLegendMarker>
 #include <QGridLayout>
 #include <QPainter>
+#include <QMessageBox>
+#include <QProgressBar>
+#include <QDesktopServices>
+
+#include <secondaryGUIs/rendersetup.h>
 
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
@@ -240,6 +245,10 @@ private slots:
     void on_pushButton_uv_right2_clicked();
 
     void on_pushButton_skyCov_screenshot_clicked();
+
+    void on_pushButton_uv_screenshot_clicked();
+
+    void on_pushButton_el_screenshot_clicked();
 
 private:
     Ui::VieSchedpp_Analyser *ui;

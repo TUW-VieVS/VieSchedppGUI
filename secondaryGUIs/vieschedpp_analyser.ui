@@ -25,7 +25,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="skyCoverage">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -331,6 +331,17 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_screenshot">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_uv_left2">
@@ -1066,17 +1077,64 @@
           <widget class="QWidget" name="verticalLayoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label_14">
-              <property name="styleSheet">
-               <string notr="true">font: bold</string>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <property name="topMargin">
+               <number>0</number>
               </property>
-              <property name="text">
-               <string>select source</string>
+              <property name="rightMargin">
+               <number>0</number>
               </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="styleSheet">
+                 <string notr="true">font: bold</string>
+                </property>
+                <property name="text">
+                 <string>select source</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_el_screenshot">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QTreeView" name="treeView_statistics_source">

@@ -554,24 +554,348 @@ void VieSchedpp_Analyser::updateSkyCoverage(QString name)
 
 void VieSchedpp_Analyser::on_pushButton_skyCov_screenshot_clicked()
 {
-    QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_skyCoverage->itemAt(0)->widget());
-    QChartView *chartView = qobject_cast<QChartView*>(box->layout()->itemAt(1)->widget());
+
+    RenderSetup render(this);
+    render.addList(staModel);
+    int duration = sessionStart_.secsTo(sessionEnd_);
+    render.addTimes(duration);
+
+    QString txt = ui->label_fileName->text();
+    int idx = txt.lastIndexOf("/");
+    if(idx == -1){
+        idx = txt.lastIndexOf("\\");
+    }
+    txt = txt.left(idx);
+    QDateTime now = QDateTime::currentDateTime();
+    txt.append("/VieSchedpp_Analyzer_");
+    txt.append(now.toString("yyyyMMddhhmmss"));
+    render.setOutDir(txt);
+
+    int result = render.exec();
+    QVector<int> selected = render.selected();
+    if(selected.isEmpty()){
+        QMessageBox::warning(this,"No selection!","No items selected");
+    }
+    if(result == QDialog::Accepted && !selected.isEmpty()){
+
+        QVector<QPair<int, int>> times = render.times();
+        QString outDir = render.outDir();
+        QPair<int, int> res = render.resolution();
+        if(outDir.back() != '/'){
+            outDir.append('/');
+        }
+
+        QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_skyCoverage->itemAt(0)->widget());
+        QChartView *chartView = qobject_cast<QChartView*>(box->layout()->itemAt(1)->widget());
+        QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+        int backupIdx = comboBox->currentIndex();
+        int backupStart = ui->horizontalSlider_start->value();
+        int backupEnd  = ui->horizontalSlider_end->value();
+
+        const auto dpr = chartView->devicePixelRatioF();
+        chartView->setMinimumSize(res.first, res.second);
+        chartView->setMaximumSize(res.first, res.second);
+
+        QDir out(outDir);
+        if(!out.exists()){
+            QDir().mkpath(outDir);
+        }
 
 
-    const auto dpr = chartView->devicePixelRatioF();
-    chartView->setMinimumSize(768,768);
-    chartView->setMaximumSize(768,768);
+//        QLabel *label = new QLabel(this);
+//        label->setText("Renderig: ");
+//        QProgressBar *bar = new QProgressBar(this);
 
-    QImage image(768,768,QImage::Format_ARGB32_Premultiplied);
-    image.setDevicePixelRatio(dpr);
-    QPainter painter(&image);
-    painter.setRenderHint(QPainter::Antialiasing);
-    chartView->render(&painter);
-    image.save("test.png");
+//        int max = selected.size()*times.size();
+//        bar->setMaximum(max);
 
-    chartView->setMinimumSize(0,0);
-    chartView->setMaximumSize(16777215,16777215);
+//        ui->statusbar->addWidget(label);
+//        ui->statusbar->addWidget(bar);
+
+        int c = 0;
+        for(auto idx : selected){
+            comboBox->setCurrentIndex(idx);
+
+            QString name = comboBox->currentText();
+
+            for(auto time : times){
+                int start = time.first;
+                int end = time.second;
+
+                ui->horizontalSlider_start->setValue(start);
+                ui->horizontalSlider_end->setValue(end);
+
+                QString finalName;
+                if(start != 0 || end != duration){
+                    finalName = QString("%1skyCov_%2_%3_%4.png").arg(outDir).arg(name).arg(start,5,10,QLatin1Char('0')).arg(end,5,10,QLatin1Char('0'));
+                }else{
+                    finalName = QString("%1skyCov_%2.png").arg(outDir).arg(name);
+                }
+                finalName.replace('+','p');
+
+
+                QString date1 = ui->dateTimeEdit_start->dateTime().time().toString("HH:mm");
+                QString date2 = ui->dateTimeEdit_end->dateTime().time().toString("HH:mm");
+                if(date1 == date2){
+                    chartView->chart()->setTitle(name);
+                }else{
+                    chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
+                }
+
+                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
+                image.setDevicePixelRatio(dpr);
+                QPainter painter(&image);
+                painter.setRenderHint(QPainter::Antialiasing);
+                chartView->render(&painter);
+
+                image.save(finalName);
+                ++c;
+            }
+        }
+
+//        ui->statusbar->removeWidget(label);
+//        ui->statusbar->removeWidget(bar);
+
+//        chartView->chart()->setTitle("");
+        chartView->setMinimumSize(0,0);
+        chartView->setMaximumSize(16777215,16777215);
+
+        comboBox->setCurrentIndex(backupIdx);
+        ui->horizontalSlider_start->setValue(backupStart);
+        ui->horizontalSlider_end->setValue(backupEnd);
+
+        QDir mydir(outDir);
+        QMessageBox mb;
+        QMessageBox::StandardButton reply = mb.information(this,"rendering",QString("plots successfully saved at\n").append(outDir),QMessageBox::Open,QMessageBox::Ok);
+        if(reply == QMessageBox::Open){
+            QDesktopServices::openUrl(QUrl(mydir.absolutePath()));
+        }
+
+
+    }
+
 }
+
+
+void VieSchedpp_Analyser::on_pushButton_uv_screenshot_clicked()
+{
+    RenderSetup render(this);
+    render.addList(srcModel);
+    int duration = sessionStart_.secsTo(sessionEnd_);
+    render.addTimes(duration);
+
+    QString txt = ui->label_fileName->text();
+    int idx = txt.lastIndexOf("/");
+    if(idx == -1){
+        idx = txt.lastIndexOf("\\");
+    }
+    txt = txt.left(idx);
+    QDateTime now = QDateTime::currentDateTime();
+    txt.append("/VieSchedpp_Analyzer_");
+    txt.append(now.toString("yyyyMMddhhmmss"));
+    render.setOutDir(txt);
+
+    int result = render.exec();
+    QVector<int> selected = render.selected();
+    if(selected.isEmpty()){
+        QMessageBox::warning(this,"No selection!","No items selected");
+    }
+    if(result == QDialog::Accepted && !selected.isEmpty()){
+
+        QVector<QPair<int, int>> times = render.times();
+        QString outDir = render.outDir();
+        QPair<int, int> res = render.resolution();
+        if(outDir.back() != '/'){
+            outDir.append('/');
+        }
+
+        QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_uv_coverage->itemAt(0)->widget());
+        QChartView *chartView = qobject_cast<QChartView*>(box->layout()->itemAt(1)->widget());
+        QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+        int backupIdx = comboBox->currentIndex();
+        int backupStart = ui->horizontalSlider_start->value();
+        int backupEnd  = ui->horizontalSlider_end->value();
+
+        const auto dpr = chartView->devicePixelRatioF();
+        chartView->setMinimumSize(res.first, res.second);
+        chartView->setMaximumSize(res.first, res.second);
+
+        QDir out(outDir);
+        if(!out.exists()){
+            QDir().mkpath(outDir);
+        }
+
+
+//        QLabel *label = new QLabel(this);
+//        label->setText("Renderig: ");
+//        QProgressBar *bar = new QProgressBar(this);
+
+//        int max = selected.size()*times.size();
+//        bar->setMaximum(max);
+
+//        ui->statusbar->addWidget(label);
+//        ui->statusbar->addWidget(bar);
+
+        int c = 0;
+        for(auto idx : selected){
+            comboBox->setCurrentIndex(idx);
+
+            QString name = comboBox->currentText();
+
+            for(auto time : times){
+                int start = time.first;
+                int end = time.second;
+
+                ui->horizontalSlider_start->setValue(start);
+                ui->horizontalSlider_end->setValue(end);
+
+                QString finalName;
+                if(start != 0 || end != duration){
+                    finalName = QString("%1uv_%2_%3_%4.png").arg(outDir).arg(name).arg(start,5,10,QLatin1Char('0')).arg(end,5,10,QLatin1Char('0'));
+                }else{
+                    finalName = QString("%1uv_%2.png").arg(outDir).arg(name);
+                }
+                finalName.replace('+','p');
+
+
+//                QString date1 = ui->dateTimeEdit_start->dateTime().time().toString("HH:mm");
+//                QString date2 = ui->dateTimeEdit_end->dateTime().time().toString("HH:mm");
+//                chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
+
+                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
+                image.setDevicePixelRatio(dpr);
+                QPainter painter(&image);
+                painter.setRenderHint(QPainter::Antialiasing);
+                chartView->render(&painter);
+
+                image.save(finalName);
+                ++c;
+            }
+        }
+
+//        ui->statusbar->removeWidget(label);
+//        ui->statusbar->removeWidget(bar);
+
+        chartView->setMinimumSize(0,0);
+        chartView->setMaximumSize(16777215,16777215);
+
+        comboBox->setCurrentIndex(backupIdx);
+        ui->horizontalSlider_start->setValue(backupStart);
+        ui->horizontalSlider_end->setValue(backupEnd);
+
+        QDir mydir(outDir);
+        QMessageBox mb;
+        QMessageBox::StandardButton reply = mb.information(this,"rendering",QString("plots successfully saved at\n").append(outDir),QMessageBox::Open,QMessageBox::Ok);
+        if(reply == QMessageBox::Open){
+            QDesktopServices::openUrl(QUrl(mydir.absolutePath()));
+        }
+
+    }
+}
+
+
+void VieSchedpp_Analyser::on_pushButton_el_screenshot_clicked()
+{
+    RenderSetup render(this);
+    render.addList(srcModel);
+    int duration = sessionStart_.secsTo(sessionEnd_);
+    render.addTimes(duration);
+
+    QString txt = ui->label_fileName->text();
+    int idx = txt.lastIndexOf("/");
+    if(idx == -1){
+        idx = txt.lastIndexOf("\\");
+    }
+    txt = txt.left(idx);
+    QDateTime now = QDateTime::currentDateTime();
+    txt.append("/VieSchedpp_Analyzer_");
+    txt.append(now.toString("yyyyMMddhhmmss"));
+    render.setOutDir(txt);
+
+    render.setDefaultFormat(1024,768);
+
+    int result = render.exec();
+    QVector<int> selected = render.selected();
+    if(selected.isEmpty()){
+        QMessageBox::warning(this,"No selection!","No items selected");
+    }
+    if(result == QDialog::Accepted && !selected.isEmpty()){
+
+        QVector<QPair<int, int>> times = render.times();
+        QString outDir = render.outDir();
+        QPair<int, int> res = render.resolution();
+        if(outDir.back() != '/'){
+            outDir.append('/');
+        }
+
+        QChartView *chartView = qobject_cast<QChartView *>(ui->horizontalLayout_statistics_source->itemAt(0)->widget());
+
+        const auto dpr = chartView->devicePixelRatioF();
+        chartView->setMinimumSize(res.first, res.second);
+        chartView->setMaximumSize(res.first, res.second);
+
+        QDir out(outDir);
+        if(!out.exists()){
+            QDir().mkpath(outDir);
+        }
+        ui->lineEdit_statistics_source_filter->setText("");
+        auto backupIdx = ui->treeView_statistics_source->currentIndex();
+        int c = 0;
+        for(auto idx : selected){
+
+            QString name = srcModel->item(idx,0)->text();
+
+            int idxModel = 0;
+            for (int i=0; i<ui->treeView_statistics_source->model()->rowCount(); ++i){
+                if(ui->treeView_statistics_source->model()->index(i,0).data().toString() == name){
+                    idxModel = i;
+                    break;
+                }
+            }
+
+            ui->treeView_statistics_source->setCurrentIndex(ui->treeView_statistics_source->model()->index(idxModel,0));
+
+
+            for(auto time : times){
+                int start = time.first;
+                int end = time.second;
+
+                ui->horizontalSlider_start->setValue(start);
+                ui->horizontalSlider_end->setValue(end);
+
+                QString finalName;
+                if(start != 0 || end != duration){
+                    finalName = QString("%1el_%2_%3_%4.png").arg(outDir).arg(name).arg(start,5,10,QLatin1Char('0')).arg(end,5,10,QLatin1Char('0'));
+                }else{
+                    finalName = QString("%1el_%2.png").arg(outDir).arg(name);
+                }
+                finalName.replace('+','p');
+
+                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
+                image.setDevicePixelRatio(dpr);
+                QPainter painter(&image);
+                painter.setRenderHint(QPainter::Antialiasing);
+                chartView->render(&painter);
+
+                image.save(finalName);
+                ++c;
+            }
+        }
+
+        ui->treeView_statistics_source->setCurrentIndex(backupIdx);
+        chartView->setMinimumSize(0,0);
+        chartView->setMaximumSize(16777215,16777215);
+
+        QDir mydir(outDir);
+        QMessageBox mb;
+        QMessageBox::StandardButton reply = mb.information(this,"rendering",QString("plots successfully saved at\n").append(outDir),QMessageBox::Open,QMessageBox::Ok);
+        if(reply == QMessageBox::Open){
+            QDesktopServices::openUrl(QUrl(mydir.absolutePath()));
+        }
+
+    }
+}
+
 
 
 void VieSchedpp_Analyser::increment(QGridLayout *layout, int n)
@@ -674,7 +998,7 @@ void VieSchedpp_Analyser::on_pushButton_uv_right2_clicked()
             }
         }
     }
-    increment(ui->gridLayout_uv_coverage, -n);
+    increment(ui->gridLayout_uv_coverage, n);
 }
 
 void VieSchedpp_Analyser::on_pushButton_uv_left_clicked()
@@ -3283,4 +3607,6 @@ void VieSchedpp_Analyser::on_pushButton_full_clicked()
     ui->horizontalSlider_start->setValue(0);
     ui->horizontalSlider_end->setValue(ui->horizontalSlider_end->maximum());
 }
+
+
 
