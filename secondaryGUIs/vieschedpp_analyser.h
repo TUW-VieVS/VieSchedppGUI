@@ -44,6 +44,13 @@
 #include <QSortFilterProxyModel>
 #include <QtMath>
 #include <QtCharts/QLegendMarker>
+#include <QGridLayout>
+#include <QPainter>
+#include <QMessageBox>
+#include <QProgressBar>
+#include <QDesktopServices>
+
+#include <secondaryGUIs/rendersetup.h>
 
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
@@ -113,6 +120,8 @@ private slots:
     void updateSkyCoverage(QString name);
 
     void updateSkyCoverage(int idx, QString name);
+
+    void increment(QGridLayout *layout, int n);
 
     void updateSkyCoverageTimes();
 
@@ -218,6 +227,28 @@ private slots:
     void on_pushButton_60min_clicked();
 
     void on_pushButton_full_clicked();
+
+    void on_pushButton_skyCov_right_clicked();
+
+    void on_pushButton_skyCov_left_clicked();
+
+    void on_pushButton_skyCov_left2_clicked();
+
+    void on_pushButton_skyCov_right2_clicked();
+
+    void on_pushButton_uv_left2_clicked();
+
+    void on_pushButton_uv_left_clicked();
+
+    void on_pushButton_uv_right_clicked();
+
+    void on_pushButton_uv_right2_clicked();
+
+    void on_pushButton_skyCov_screenshot_clicked();
+
+    void on_pushButton_uv_screenshot_clicked();
+
+    void on_pushButton_el_screenshot_clicked();
 
 private:
     Ui::VieSchedpp_Analyser *ui;

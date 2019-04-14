@@ -25,7 +25,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="skyCoverage">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -41,6 +41,17 @@
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="pushButton_skyCov_screenshot">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                </property>
+               </widget>
+              </item>
               <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
@@ -64,6 +75,86 @@
                 </property>
                 <property name="checked">
                  <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_skyCov_left2">
+                <property name="toolTip">
+                 <string>previous stations</string>
+                </property>
+                <property name="statusTip">
+                 <string>previous stations</string>
+                </property>
+                <property name="whatsThis">
+                 <string>previous stations</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/arrow-left-double.png</normaloff>:/icons/icons/arrow-left-double.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_skyCov_left">
+                <property name="toolTip">
+                 <string>decrement all views</string>
+                </property>
+                <property name="statusTip">
+                 <string>decrement all views</string>
+                </property>
+                <property name="whatsThis">
+                 <string>decrement all views</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/arrow-left.png</normaloff>:/icons/icons/arrow-left.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_skyCov_right">
+                <property name="toolTip">
+                 <string>increment all views</string>
+                </property>
+                <property name="statusTip">
+                 <string>increment all views</string>
+                </property>
+                <property name="whatsThis">
+                 <string>increment all views</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/arrow-right.png</normaloff>:/icons/icons/arrow-right.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_skyCov_right2">
+                <property name="toolTip">
+                 <string>next stations</string>
+                </property>
+                <property name="statusTip">
+                 <string>next stations</string>
+                </property>
+                <property name="whatsThis">
+                 <string>next stations</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/arrow-right-double.png</normaloff>:/icons/icons/arrow-right-double.png</iconset>
                 </property>
                </widget>
               </item>
@@ -240,6 +331,94 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_screenshot">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_left2">
+            <property name="toolTip">
+             <string>previous source</string>
+            </property>
+            <property name="statusTip">
+             <string>previous source</string>
+            </property>
+            <property name="whatsThis">
+             <string>previous source</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/arrow-left-double.png</normaloff>:/icons/icons/arrow-left-double.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_left">
+            <property name="toolTip">
+             <string>decrement all views</string>
+            </property>
+            <property name="statusTip">
+             <string>decrement all views</string>
+            </property>
+            <property name="whatsThis">
+             <string>decrement all views</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/arrow-left.png</normaloff>:/icons/icons/arrow-left.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_right">
+            <property name="toolTip">
+             <string>increment all views</string>
+            </property>
+            <property name="statusTip">
+             <string>increment all views</string>
+            </property>
+            <property name="whatsThis">
+             <string>increment all views</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/arrow-right.png</normaloff>:/icons/icons/arrow-right.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_uv_right2">
+            <property name="toolTip">
+             <string>next sources</string>
+            </property>
+            <property name="statusTip">
+             <string>next sources</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/arrow-right-double.png</normaloff>:/icons/icons/arrow-right-double.png</iconset>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_uvCoverageLayout">
@@ -898,17 +1077,64 @@
           <widget class="QWidget" name="verticalLayoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label_14">
-              <property name="styleSheet">
-               <string notr="true">font: bold</string>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <property name="topMargin">
+               <number>0</number>
               </property>
-              <property name="text">
-               <string>select source</string>
+              <property name="rightMargin">
+               <number>0</number>
               </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="styleSheet">
+                 <string notr="true">font: bold</string>
+                </property>
+                <property name="text">
+                 <string>select source</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_el_screenshot">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QTreeView" name="treeView_statistics_source">
@@ -1317,7 +1543,7 @@
   </widget>
   <action name="actionsky_coverage">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/sky_coverage_analyser.png</normaloff>:/icons/icons/sky_coverage_analyser.png</iconset>
    </property>
    <property name="text">
@@ -1326,7 +1552,7 @@
   </action>
   <action name="actionuv_coverage">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/uv.png</normaloff>:/icons/icons/uv.png</iconset>
    </property>
    <property name="text">
@@ -1335,7 +1561,7 @@
   </action>
   <action name="actiongeneral">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/office-chart-bar.png</normaloff>:/icons/icons/office-chart-bar.png</iconset>
    </property>
    <property name="text">
@@ -1344,7 +1570,7 @@
   </action>
   <action name="actionper_station">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/station.png</normaloff>:/icons/icons/station.png</iconset>
    </property>
    <property name="text">
@@ -1353,7 +1579,7 @@
   </action>
   <action name="actionper_source">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/source.png</normaloff>:/icons/icons/source.png</iconset>
    </property>
    <property name="text">
@@ -1362,7 +1588,7 @@
   </action>
   <action name="actionper_baseline">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/baseline.png</normaloff>:/icons/icons/baseline.png</iconset>
    </property>
    <property name="text">
@@ -1371,7 +1597,7 @@
   </action>
   <action name="actionworld_map">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
    </property>
    <property name="text">
@@ -1380,7 +1606,7 @@
   </action>
   <action name="actionsky_map">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/source_list.png</normaloff>:/icons/icons/source_list.png</iconset>
    </property>
    <property name="text">
@@ -1389,7 +1615,7 @@
   </action>
   <action name="actiontimes">
    <property name="icon">
-    <iconset resource="myresources.qrc">
+    <iconset resource="../myresources.qrc">
      <normaloff>:/icons/icons/view-pim-calendar.png</normaloff>:/icons/icons/view-pim-calendar.png</iconset>
    </property>
    <property name="text">
@@ -1398,7 +1624,7 @@
   </action>
  </widget>
  <resources>
-  <include location="myresources.qrc"/>
+  <include location="../myresources.qrc"/>
  </resources>
  <connections>
   <connection>
