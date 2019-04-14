@@ -138,6 +138,9 @@ void Statistics::reload()
     lookupTable.clear();
     lookupTable << "n_scans" << "n_single_source_scans" << "n_subnetting_scans" << "n_fillinmode_scans" << "n_calibrator_scans" << "n_observations" << "n_stations" << "n_sources";
     lookupTable << "time_average_observation" << "time_average_preob" << "time_average_slew"<<"time_average_idle"<<"time_average_field_system";
+    lookupTable << "sky_coverage_average_13_areas_30_min" << "sky_coverage_average_25_areas_30_min" << "sky_coverage_average_37_areas_30_min" <<
+                   "sky_coverage_average_13_areas_60_min" << "sky_coverage_average_25_areas_60_min" << "sky_coverage_average_37_areas_60_min";
+
     for(const auto &any:stations){
         lookupTable << QString("time_").append(any).append("_observation");
     }
@@ -153,6 +156,26 @@ void Statistics::reload()
     for(const auto &any:stations){
         lookupTable << QString("time_").append(any).append("_field_system");
     }
+
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_13_areas_30_min");
+    }
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_25_areas_30_min");
+    }
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_37_areas_30_min");
+    }
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_13_areas_60_min");
+    }
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_25_areas_60_min");
+    }
+    for(const auto &any:stations){
+        lookupTable << QString("sky_coverage_").append(any).append("_37_areas_60_min");
+    }
+
     for(const auto &any:stations){
         lookupTable << QString("n_sta_scans_").append(any);
     }
@@ -212,7 +235,7 @@ void Statistics::reload()
             }
         }
     }
-    int offset = general.size() + 5+5*stations.size() + 2*stations.size() + baselines.size();
+    int offset = general.size() + 5+5*stations.size() +6+6*stations.size() + 2*stations.size() + baselines.size();
     QList<char> remove;
     for (int i=offset; i<offset+sources.size(); ++i) {
         if(counter[i] > 0){
@@ -355,90 +378,188 @@ void Statistics::reload()
         connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
     }
 
+    // time spend
+    {
+        QStringList list;
+        list << "average [%]" << "observation [%]" << "preob [%]" << "slew [%]" << "idle [%]" << "field system [%]";
 
-    QStringList list;
-    list << "average [%]" << "observation [%]" << "preob [%]" << "slew [%]" << "idle [%]" << "field system [%]";
+        itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "time spend"));
+        const auto &t = itemlist->topLevelItem(5);
+        t->setCheckState(0,Qt::Unchecked);
+        for(const auto &any : list){
+            t->addChild(new QTreeWidgetItem(QStringList() << any));
+            t->child(t->childCount()-1)->setCheckState(0,Qt::Unchecked);
+        }
 
-    itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "time spend"));
-    const auto &t = itemlist->topLevelItem(5);
-    t->setCheckState(0,Qt::Unchecked);
-    for(const auto &any : list){
-        t->addChild(new QTreeWidgetItem(QStringList() << any));
-        t->child(t->childCount()-1)->setCheckState(0,Qt::Unchecked);
+        QStringList llist;
+        llist << "observation" << "preob" << "slew" << "idle" << "field system";
+        const auto &tavg = t->child(0);
+        for(const auto &any : llist){
+            tavg->addChild(new QTreeWidgetItem(QStringList() << any));
+            tavg->child(tavg->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tavg->child(tavg->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+
+
+        const auto &tobs = t->child(1);
+        for(const auto &any : stations){
+
+            tobs->addChild(new QTreeWidgetItem(QStringList() << any));
+            tobs->child(tobs->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tobs->child(tobs->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+
+        const auto &tpre = t->child(2);
+        for(const auto &any : stations){
+
+            tpre->addChild(new QTreeWidgetItem(QStringList() << any));
+            tpre->child(tpre->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tpre->child(tpre->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+
+        const auto &tslew = t->child(3);
+        for(const auto &any : stations){
+
+            tslew->addChild(new QTreeWidgetItem(QStringList() << any));
+            tslew->child(tslew->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tslew->child(tslew->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+
+        const auto &tidle = t->child(4);
+        for(const auto &any : stations){
+
+            tidle->addChild(new QTreeWidgetItem(QStringList() << any));
+            tidle->child(tidle->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tidle->child(tidle->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+
+        const auto &tfield = t->child(5);
+        for(const auto &any : stations){
+
+            tfield->addChild(new QTreeWidgetItem(QStringList() << any));
+            tfield->child(tfield->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(tfield->child(tfield->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
     }
 
-    QStringList llist;
-    llist << "observation" << "preob" << "slew" << "idle" << "field system";
-    const auto &tavg = t->child(0);
-    for(const auto &any : llist){
-        tavg->addChild(new QTreeWidgetItem(QStringList() << any));
-        tavg->child(tavg->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tavg->child(tavg->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
-    }
+    // sky Coverage
+    {
+        QStringList skyList;
+        skyList << "average" << "13 areas 30 min" << "25 areas 30 min" << "37 areas 30 min" << "13 areas 60 min" << "25 areas 60 min" << "37 areas 60 min";
+
+        itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "sky coverage score"));
+        const auto &st = itemlist->topLevelItem(6);
+        st->setCheckState(0,Qt::Unchecked);
+        for(const auto &any : skyList){
+            st->addChild(new QTreeWidgetItem(QStringList() << any));
+            st->child(st->childCount()-1)->setCheckState(0,Qt::Unchecked);
+        }
+
+        QStringList skyLlist;
+        skyLlist << "13 areas 30 min" << "25 areas 30 min" << "37 areas 30 min" << "13 areas 60 min" << "25 areas 60 min" << "37 areas 60 min";
+        const auto &stavg = st->child(0);
+        for(const auto &any : skyLlist){
+            stavg->addChild(new QTreeWidgetItem(QStringList() << any));
+            stavg->child(stavg->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(stavg->child(stavg->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
 
 
-    const auto &tobs = t->child(1);
-    for(const auto &any : stations){
+        const auto &ta13m30 = st->child(1);
+        for(const auto &any : stations){
 
-        tobs->addChild(new QTreeWidgetItem(QStringList() << any));
-        tobs->child(tobs->childCount()-1)->setCheckState(0,Qt::Unchecked);
+            ta13m30->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta13m30->child(ta13m30->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tobs->child(tobs->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
-    }
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta13m30->child(ta13m30->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+        const auto &ta25m30 = st->child(2);
+        for(const auto &any : stations){
 
-    const auto &tpre = t->child(2);
-    for(const auto &any : stations){
+            ta25m30->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta25m30->child(ta25m30->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-        tpre->addChild(new QTreeWidgetItem(QStringList() << any));
-        tpre->child(tpre->childCount()-1)->setCheckState(0,Qt::Unchecked);
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta25m30->child(ta25m30->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+        const auto &ta37m30 = st->child(3);
+        for(const auto &any : stations){
 
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tpre->child(tpre->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
-    }
+            ta37m30->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta37m30->child(ta37m30->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-    const auto &tslew = t->child(3);
-    for(const auto &any : stations){
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta37m30->child(ta37m30->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+        const auto &ta13m60 = st->child(4);
+        for(const auto &any : stations){
 
-        tslew->addChild(new QTreeWidgetItem(QStringList() << any));
-        tslew->child(tslew->childCount()-1)->setCheckState(0,Qt::Unchecked);
+            ta13m60->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta13m60->child(ta13m60->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tslew->child(tslew->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
-    }
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta13m60->child(ta13m60->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+        const auto &ta25m60 = st->child(5);
+        for(const auto &any : stations){
 
-    const auto &tidle = t->child(4);
-    for(const auto &any : stations){
+            ta25m60->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta25m60->child(ta25m60->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-        tidle->addChild(new QTreeWidgetItem(QStringList() << any));
-        tidle->child(tidle->childCount()-1)->setCheckState(0,Qt::Unchecked);
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta25m60->child(ta25m60->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
+        const auto &ta37m60 = st->child(6);
+        for(const auto &any : stations){
 
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tidle->child(tidle->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
-    }
+            ta37m60->addChild(new QTreeWidgetItem(QStringList() << any));
+            ta37m60->child(ta37m60->childCount()-1)->setCheckState(0,Qt::Unchecked);
 
-    const auto &tfield = t->child(5);
-    for(const auto &any : stations){
-
-        tfield->addChild(new QTreeWidgetItem(QStringList() << any));
-        tfield->child(tfield->childCount()-1)->setCheckState(0,Qt::Unchecked);
-
-        auto db = new QDoubleSpinBox(itemlist);
-        db->setMinimum(-99);
-        itemlist->setItemWidget(tfield->child(tfield->childCount()-1),2,db);
-        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(ta37m60->child(ta37m60->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+        }
     }
 
     // ################# create plot #################
@@ -518,19 +639,27 @@ void Statistics::plotStatistics(bool animation)
     const auto &time_idle = itemlist->topLevelItem(5)->child(4);
     const auto &time_field = itemlist->topLevelItem(5)->child(5);
 
+    const auto &skyCov_avg = itemlist->topLevelItem(6)->child(0);
+    const auto &skyCov_a13m30 = itemlist->topLevelItem(6)->child(1);
+    const auto &skyCov_a25m30 = itemlist->topLevelItem(6)->child(2);
+    const auto &skyCov_a37m30 = itemlist->topLevelItem(6)->child(3);
+    const auto &skyCov_a13m60 = itemlist->topLevelItem(6)->child(4);
+    const auto &skyCov_a25m60 = itemlist->topLevelItem(6)->child(5);
+    const auto &skyCov_a37m60 = itemlist->topLevelItem(6)->child(6);
+
     const auto &staScans = itemlist->topLevelItem(1)->child(0);
     const auto &staObs = itemlist->topLevelItem(1)->child(1);
-    const auto &blScans = itemlist->topLevelItem(2)->child(0);
     const auto &blObs = itemlist->topLevelItem(2)->child(0);
     const auto &srcScans = itemlist->topLevelItem(3)->child(0);
     const auto &srcObs = itemlist->topLevelItem(3)->child(1);
     const auto &ms = itemlist->topLevelItem(4);
 
+    int offset = 0;
     for(int i=0; i<gen->childCount(); ++i){
         const auto &child = gen->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_").append(child->text(0).mid(1).replace(" ","_"));
-            barSets.push_back(statisticsBarSet(i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -539,13 +668,15 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
 
+    // time average
     for(int i=0; i<time_avg->childCount(); ++i){
         const auto &child = time_avg->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_average_").append(child->text(0).replace(" ","_"));
-            barSets.push_back(statisticsBarSet(gen->childCount() + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -554,12 +685,31 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
+    // sky coverage average
+    for(int i=0; i<skyCov_avg->childCount(); ++i){
+        const auto &child = skyCov_avg->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_average_").append(child->text(0).replace(" ","_"));
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+
+    // time per station
     for(int i=0; i<time_obs->childCount(); ++i){
         const auto &child = time_obs->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_").append(child->text(0)).append("_observation");
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -568,12 +718,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<time_preob->childCount(); ++i){
         const auto &child = time_preob->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_").append(child->text(0)).append("_preob");
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + stations.size() + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -582,12 +733,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<time_slew->childCount(); ++i){
         const auto &child = time_slew->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_").append(child->text(0)).append("_slew");
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 2*stations.size() + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -596,12 +748,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<time_idle->childCount(); ++i){
         const auto &child = time_idle->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_").append(child->text(0)).append("_idle");
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 3*stations.size() + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -610,12 +763,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<time_field->childCount(); ++i){
         const auto &child = time_field->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("time_").append(child->text(0)).append("_field_system");
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 4*stations.size() + i,name));
+            barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -624,13 +778,107 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
+
+    // sky coverage per station
+    for(int i=0; i<skyCov_a13m30->childCount(); ++i){
+        const auto &child = skyCov_a13m30->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_13_areas_30_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a25m30->childCount(); ++i){
+        const auto &child = skyCov_a25m30->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_25_areas_30_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a37m30->childCount(); ++i){
+        const auto &child = skyCov_a37m30->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_37_areas_30_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a13m60->childCount(); ++i){
+        const auto &child = skyCov_a13m60->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_13_areas_60_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a25m60->childCount(); ++i){
+        const auto &child = skyCov_a25m60->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_25_areas_60_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a37m60->childCount(); ++i){
+        const auto &child = skyCov_a37m60->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("sky_coverage_").append(child->text(0)).append("_37_areas_60_min");
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+
 
     for(int i=0; i<staScans->childCount(); ++i){
         const auto &child = staScans->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_sta_scans_").append(child->text(0));
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + i, name));
+            barSets.push_back(statisticsBarSet(offset, name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -639,12 +887,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<staObs->childCount(); ++i){
         const auto &child = staObs->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_sta_obs_").append(child->text(0));
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + staScans->childCount() + i, name));
+            barSets.push_back(statisticsBarSet(offset, name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -653,13 +902,14 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
 
     for(int i=0; i<blObs->childCount(); ++i){
         const auto &child = blObs->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_bl_obs_").append(child->text(0));
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + i, name));
+            barSets.push_back(statisticsBarSet(offset, name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -668,13 +918,14 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
 
     for(int i=0; i<srcScans->childCount(); ++i){
         const auto &child = srcScans->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_src_scans_").append(child->text(0));
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + i, name));
+            barSets.push_back(statisticsBarSet(offset, name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -683,12 +934,13 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
     for(int i=0; i<srcObs->childCount(); ++i){
         const auto &child = srcObs->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = QString("n_src_obs_").append(child->text(0));
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + srcObs->childCount() + i, name));
+            barSets.push_back(statisticsBarSet(offset, name));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -697,13 +949,14 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
 
     for(int i=0; i<ms->childCount(); ++i){
         const auto &child = ms->child(i);
         if(child->checkState(0) == Qt::Checked){
             QString name = child->text(0);
-            barSets.push_back(statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i, name.replace(" ","_")));
+            barSets.push_back(statisticsBarSet(offset, name.replace(" ","_")));
             child->setBackground(1,brushes.at(counter));
 
             barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
@@ -712,6 +965,7 @@ void Statistics::plotStatistics(bool animation)
         }else{
             child->setBackground(1,Qt::white);
         }
+        ++offset;
     }
 
 
@@ -730,139 +984,232 @@ void Statistics::plotStatistics(bool animation)
 
     QVector<double>score(categories.size(),0);
 
+    offset = 0;
     for(int i=0; i<gen->childCount(); ++i){
         const auto &child = gen->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_avg->childCount(); ++i){
         const auto &child = time_avg->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_obs->childCount(); ++i){
         const auto &child = time_obs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_preob->childCount(); ++i){
         const auto &child = time_preob->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + stations.size() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_slew->childCount(); ++i){
         const auto &child = time_slew->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 2*stations.size() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_idle->childCount(); ++i){
         const auto &child = time_idle->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 3*stations.size() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<time_field->childCount(); ++i){
         const auto &child = time_field->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 4*stations.size() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
+    }
+
+    // sky coverage
+    for(int i=0; i<skyCov_avg->childCount(); ++i){
+        const auto &child = skyCov_avg->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a13m30->childCount(); ++i){
+        const auto &child = skyCov_a13m30->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a25m30->childCount(); ++i){
+        const auto &child = skyCov_a25m30->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a37m30->childCount(); ++i){
+        const auto &child = skyCov_a37m30->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a13m60->childCount(); ++i){
+        const auto &child = skyCov_a13m60->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a25m60->childCount(); ++i){
+        const auto &child = skyCov_a25m60->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<skyCov_a37m60->childCount(); ++i){
+        const auto &child = skyCov_a37m60->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
     }
 
     for(int i=0; i<staScans->childCount(); ++i){
         const auto &child = staScans->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<staObs->childCount(); ++i){
         const auto &child = staObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + staScans->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
 
     for(int i=0; i<blObs->childCount(); ++i){
         const auto &child = blObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
 
     for(int i=0; i<srcScans->childCount(); ++i){
         const auto &child = srcScans->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
     for(int i=0; i<srcObs->childCount(); ++i){
         const auto &child = srcObs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + srcObs->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
 
     for(int i=0; i<ms->childCount(); ++i){
         const auto &child = ms->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
         if(val!=0){
-            auto data = statisticsBarSet(gen->childCount() + 5 + 5*stations.size() + 2*staScans->childCount() + blScans->childCount() + 2*srcObs->childCount() + i);
+            auto data = statisticsBarSet(offset);
             for(int id = 0; id<data->count(); ++id){
                 score[id] += data->at(id)*val;
             }
         }
+        ++offset;
     }
 
     // ################# sort bars #################
@@ -881,7 +1228,8 @@ void Statistics::plotStatistics(bool animation)
         QBarSet *sortedBarSet = new QBarSet(thisBarSet->label());
         sortedBarSet->setBrush(thisBarSet->brush());
         for(int j = 0; j<thisBarSet->count(); ++j){
-            *sortedBarSet << thisBarSet->at(idx.at(j));
+            auto thisValue = thisBarSet->at(idx.at(j));
+            *sortedBarSet << thisValue;
         }
         sortedSeries->append(sortedBarSet);
         delete(thisBarSet);
@@ -906,6 +1254,7 @@ void Statistics::plotStatistics(bool animation)
     axis->append(sortedCategories);
     chart->createDefaultAxes();
     chart->setAxisX(axis, sortedSeries);
+    sortedSeries->attachAxis(chart->axisY());
 
     int showN = show->value();
 

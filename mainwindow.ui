@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -27,7 +27,7 @@
        <property name="statusTip">
         <string>welcome page</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="1,5,0">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,5,0">
         <property name="spacing">
          <number>10</number>
         </property>
@@ -163,7 +163,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="textEdit">
+         <widget class="QTextBrowser" name="textBrowser">
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Congratulation!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have successfully used the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;what is this?&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mode!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can access this mode by pressing the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/help.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; button or hitting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; key. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Some items of the GUI have additional information when clicking on them during &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;what is this?&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mode. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case one GUI element which is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;unclear&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; has no information or is still unclear &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;contact me&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and I'll add more information. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -241,6 +241,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Known Issues:&lt;/span&gt;&lt;/p&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:400;&quot;&gt;sometimes you get an error warning for very slow antennas like FORTLEZA which reports late on source for a couple of seconds (maybe 2-3). This error is &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;not critical&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:400;&quot;&gt;! (Source can usually be reached within time). &lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;sometimes you get the error warning &amp;quot;source X might not be visible&amp;quot;. This error is &lt;/span&gt;not critical&lt;span style=&quot; font-weight:400;&quot;&gt;! It happens while you extend slew time over idle time. The minimum SNR can always be reached. &lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1062,7 +1065,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>638</width>
+             <width>932</width>
              <height>723</height>
             </rect>
            </property>
@@ -2846,8 +2849,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>827</width>
-             <height>613</height>
+             <width>946</width>
+             <height>682</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -11672,7 +11675,10 @@ p, li { white-space: pre-wrap; }
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="textEdit_4">
+         <widget class="QTextBrowser" name="textBrowser_4">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -11730,6 +11736,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt;&quot;&gt;You should have received a copy of the GNU General Public License along with this program.  If not, see &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextBrowserInteraction</set>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -12193,7 +12205,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>textEdit</tabstop>
+  <tabstop>textBrowser</tabstop>
   <tabstop>spinBox_fontSize</tabstop>
   <tabstop>fontComboBox_font</tabstop>
   <tabstop>iconSizeSpinBox</tabstop>
