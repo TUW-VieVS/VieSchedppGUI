@@ -591,26 +591,13 @@ void VieSchedpp_Analyser::on_pushButton_skyCov_screenshot_clicked()
         int backupIdx = comboBox->currentIndex();
         int backupStart = ui->horizontalSlider_start->value();
         int backupEnd  = ui->horizontalSlider_end->value();
-
-        const auto dpr = chartView->devicePixelRatioF();
-        chartView->setMinimumSize(res.first, res.second);
-        chartView->setMaximumSize(res.first, res.second);
+        auto size = chartView->size();
+        chartView->resize(res.first,res.second);
 
         QDir out(outDir);
         if(!out.exists()){
             QDir().mkpath(outDir);
         }
-
-
-//        QLabel *label = new QLabel(this);
-//        label->setText("Renderig: ");
-//        QProgressBar *bar = new QProgressBar(this);
-
-//        int max = selected.size()*times.size();
-//        bar->setMaximum(max);
-
-//        ui->statusbar->addWidget(label);
-//        ui->statusbar->addWidget(bar);
 
         int c = 0;
         for(auto idx : selected){
@@ -641,24 +628,16 @@ void VieSchedpp_Analyser::on_pushButton_skyCov_screenshot_clicked()
                 }else{
                     chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
                 }
+                qApp->processEvents(QEventLoop::AllEvents);
+                chartView->grab().toImage().save(finalName);
 
-                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
-                image.setDevicePixelRatio(dpr);
-                QPainter painter(&image);
-                painter.setRenderHint(QPainter::Antialiasing);
-                chartView->render(&painter);
-
-                image.save(finalName);
                 ++c;
             }
+
         }
 
-//        ui->statusbar->removeWidget(label);
-//        ui->statusbar->removeWidget(bar);
-
-//        chartView->chart()->setTitle("");
-        chartView->setMinimumSize(0,0);
-        chartView->setMaximumSize(16777215,16777215);
+        chartView->chart()->setTitle("");
+        chartView->resize(size);
 
         comboBox->setCurrentIndex(backupIdx);
         ui->horizontalSlider_start->setValue(backupStart);
@@ -712,13 +691,12 @@ void VieSchedpp_Analyser::on_pushButton_uv_screenshot_clicked()
         QGroupBox *box = qobject_cast<QGroupBox*>(ui->gridLayout_uv_coverage->itemAt(0)->widget());
         QChartView *chartView = qobject_cast<QChartView*>(box->layout()->itemAt(1)->widget());
         QComboBox *comboBox = qobject_cast<QComboBox*>(box->children().at(2));
+        QComboBox *comboBox2 = qobject_cast<QComboBox*>(box->children().at(3));
         int backupIdx = comboBox->currentIndex();
         int backupStart = ui->horizontalSlider_start->value();
         int backupEnd  = ui->horizontalSlider_end->value();
-
-        const auto dpr = chartView->devicePixelRatioF();
-        chartView->setMinimumSize(res.first, res.second);
-        chartView->setMaximumSize(res.first, res.second);
+        auto size = chartView->size();
+        chartView->resize(res.first,res.second);
 
         QDir out(outDir);
         if(!out.exists()){
@@ -726,21 +704,15 @@ void VieSchedpp_Analyser::on_pushButton_uv_screenshot_clicked()
         }
 
 
-//        QLabel *label = new QLabel(this);
-//        label->setText("Renderig: ");
-//        QProgressBar *bar = new QProgressBar(this);
-
-//        int max = selected.size()*times.size();
-//        bar->setMaximum(max);
-
-//        ui->statusbar->addWidget(label);
-//        ui->statusbar->addWidget(bar);
-
         int c = 0;
         for(auto idx : selected){
             comboBox->setCurrentIndex(idx);
 
             QString name = comboBox->currentText();
+            QString name2 = comboBox2->currentText();
+            if(name2 != "-"){
+                name.append(" ").append(name2).append("-Band");
+            }
 
             for(auto time : times){
                 int start = time.first;
@@ -756,28 +728,26 @@ void VieSchedpp_Analyser::on_pushButton_uv_screenshot_clicked()
                     finalName = QString("%1uv_%2.png").arg(outDir).arg(name);
                 }
                 finalName.replace('+','p');
+                finalName.replace(' ','_');
 
+                QString date1 = ui->dateTimeEdit_start->dateTime().time().toString("HH:mm");
+                QString date2 = ui->dateTimeEdit_end->dateTime().time().toString("HH:mm");
+                if(date1 == date2){
+                    chartView->chart()->setTitle(name);
+                }else{
+                    chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
+                }
 
-//                QString date1 = ui->dateTimeEdit_start->dateTime().time().toString("HH:mm");
-//                QString date2 = ui->dateTimeEdit_end->dateTime().time().toString("HH:mm");
-//                chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
+                qApp->processEvents(QEventLoop::AllEvents);
+                chartView->grab().toImage().save(finalName);
 
-                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
-                image.setDevicePixelRatio(dpr);
-                QPainter painter(&image);
-                painter.setRenderHint(QPainter::Antialiasing);
-                chartView->render(&painter);
-
-                image.save(finalName);
                 ++c;
             }
         }
 
-//        ui->statusbar->removeWidget(label);
-//        ui->statusbar->removeWidget(bar);
 
-        chartView->setMinimumSize(0,0);
-        chartView->setMaximumSize(16777215,16777215);
+        chartView->chart()->setTitle("");
+        chartView->resize(size);
 
         comboBox->setCurrentIndex(backupIdx);
         ui->horizontalSlider_start->setValue(backupStart);
@@ -829,10 +799,8 @@ void VieSchedpp_Analyser::on_pushButton_el_screenshot_clicked()
         }
 
         QChartView *chartView = qobject_cast<QChartView *>(ui->horizontalLayout_statistics_source->itemAt(0)->widget());
-
-        const auto dpr = chartView->devicePixelRatioF();
-        chartView->setMinimumSize(res.first, res.second);
-        chartView->setMaximumSize(res.first, res.second);
+        auto size = chartView->size();
+        chartView->resize(res.first,res.second);
 
         QDir out(outDir);
         if(!out.exists()){
@@ -871,20 +839,26 @@ void VieSchedpp_Analyser::on_pushButton_el_screenshot_clicked()
                 }
                 finalName.replace('+','p');
 
-                QImage image(res.first, res.second,QImage::Format_ARGB32_Premultiplied);
-                image.setDevicePixelRatio(dpr);
-                QPainter painter(&image);
-                painter.setRenderHint(QPainter::Antialiasing);
-                chartView->render(&painter);
+                QString date1 = ui->dateTimeEdit_start->dateTime().time().toString("HH:mm");
+                QString date2 = ui->dateTimeEdit_end->dateTime().time().toString("HH:mm");
+                if(date1 == date2){
+                    chartView->chart()->setTitle(name);
+                }else{
+                    chartView->chart()->setTitle(QString("%1 %2-%3").arg(name).arg(date1).arg(date2));
+                }
 
-                image.save(finalName);
+
+                qApp->processEvents(QEventLoop::AllEvents);
+                chartView->grab().toImage().save(finalName);
+
                 ++c;
             }
         }
 
+        chartView->chart()->setTitle("");
+        chartView->resize(size);
+
         ui->treeView_statistics_source->setCurrentIndex(backupIdx);
-        chartView->setMinimumSize(0,0);
-        chartView->setMaximumSize(16777215,16777215);
 
         QDir mydir(outDir);
         QMessageBox mb;
@@ -2618,7 +2592,7 @@ void VieSchedpp_Analyser::updateStatisticsSource()
     QString name = ui->treeView_statistics_source->model()->index(idx,0).data().toString();
 
     const VieVS::Source &src = schedule_.getSources().at(idx);
-    chart->setTitle(QString::fromStdString(src.getName()));
+//    chart->setTitle(QString::fromStdString(src.getName()));
     std::vector<VieVS::Station> stations = schedule_.getNetwork().getStations();
 
     int istart = ui->horizontalSlider_start->value();
@@ -2663,7 +2637,7 @@ void VieSchedpp_Analyser::updateStatisticsSource()
     }
 
 
-    chart->legend()->setMarkerShape(QLegend::MarkerShapeRectangle);
+//    chart->legend()->setMarkerShape(QLegend::MarkerShapeRectangle);
     for(const VieVS::Scan &scan : schedule_.getScans()){
         if(scan.getSourceId() == idx){
 
