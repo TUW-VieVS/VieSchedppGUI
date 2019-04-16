@@ -84,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
         createDefaultParameterSettings();
     }
 
+    connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
     std::ifstream iSettings("settings.xml");
     boost::property_tree::read_xml(iSettings,settings_,boost::property_tree::xml_parser::trim_whitespace);
     readSettings();
@@ -401,7 +402,6 @@ MainWindow::MainWindow(QWidget *parent) :
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     ui->plainTextEdit_notes->setFont(fixedFont);
 
-    connect(ui->lineEdit_outputPath,SIGNAL(textChanged(QString)),ui->lineEdit_sessionPath,SLOT(setText(QString)));
 
     connect(ui->sampleBitsSpinBox,SIGNAL(valueChanged(int)),this,SLOT(gbps()));
     connect(ui->sampleRateDoubleSpinBox,SIGNAL(valueChanged(double)),this,SLOT(gbps()));
@@ -415,7 +415,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->DateTimeEdit_startParameterSource->setDisplayFormat("dd.MM.yyyy HH:mm");
     ui->DateTimeEdit_startParameterStation->setDisplayFormat("dd.MM.yyyy HH:mm");
 
-    connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
 
     Model_Mode *modelModes = new Model_Mode(QVector<QString>(), this);
     ui->tableView_observingMode_mode->setModel(modelModes);
@@ -9065,7 +9064,7 @@ void MainWindow::setupSkyCoverageTemplatePlot()
 
     QValueAxis *radialAxis = new QValueAxis();
     radialAxis->setTickCount(10);
-    radialAxis->setLabelFormat("");
+    radialAxis->setLabelFormat(" ");
     chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
     radialAxis->setRange(0, 90);
 
