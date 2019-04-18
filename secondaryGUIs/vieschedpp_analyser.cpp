@@ -1324,9 +1324,9 @@ void VieSchedpp_Analyser::setupWorldmap()
     QScatterSeries *observingStations = new QScatterSeries(worldChart);
     observingStations->setName("observing stations");
     QImage img(":/icons/icons/station_white.png");
-    img = img.scaled(27,27);
+    img = img.scaled(40,40);
     observingStations->setBrush(QBrush(img));
-    observingStations->setMarkerSize(27);
+    observingStations->setMarkerSize(40);
     observingStations->setPen(QColor(Qt::transparent));
 
 

@@ -222,7 +222,7 @@ MainWindow::MainWindow(QWidget *parent) :
     allSourcePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__all__"));
 
     allStationPlusGroupModel = new QStandardItemModel();
-    allStationPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/station_group_2.png"),"__all__"));
+    allStationPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/station_group.png"),"__all__"));
 
     allBaselinePlusGroupModel = new QStandardItemModel();
     allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
@@ -531,14 +531,14 @@ void MainWindow::displayStationSetupMember(QString name)
     t->setColumnCount(1);
     t->verticalHeader()->show();
     if (name == "__all__"){
-        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group_2.png"),QString("Group: %1").arg(name)));
+        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString("Group: %1").arg(name)));
         t->setRowCount(selectedStationModel->rowCount());
         for(int i=0; i<selectedStationModel->rowCount(); ++i){
             QString txt = selectedStationModel->index(i,0).data().toString();
             t->setItem(i,0,new QTableWidgetItem(QIcon(":/icons/icons/station.png"),txt));
         }
     }else if(groupSta.find(name.toStdString()) != groupSta.end()){
-        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group_2.png"),QString("Group: %1").arg(name)));
+        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString("Group: %1").arg(name)));
         auto members = groupSta.at(name.toStdString());
         t->setRowCount(members.size());
         for(int i=0; i<members.size(); ++i){
@@ -927,7 +927,7 @@ void MainWindow::displaySourceSetupParameter(QString name){
               t->insertRow(r);
               if(groupSta.find(any) != groupSta.end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("ignore station group"));
-                  t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group_2.png"),QString::fromStdString(any)));
+                  t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(any)));
               }else{
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("ignore station"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station.png"),QString::fromStdString(any)));
@@ -940,7 +940,7 @@ void MainWindow::displaySourceSetupParameter(QString name){
               t->insertRow(r);
               if(groupSta.find(any) != groupSta.end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("required station group"));
-                  t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group_2.png"),QString::fromStdString(any)));
+                  t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(any)));
               }else{
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("required stations"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station.png"),QString::fromStdString(any)));
@@ -2611,7 +2611,7 @@ QString MainWindow::writeXML()
         QIcon icSta = QIcon(":/icons/icons/station.png");
         QIcon icSrc = QIcon(":/icons/icons/source.png");
         QIcon icBl = QIcon(":/icons/icons/baseline.png");
-        QIcon icStaGrp = QIcon(":/icons/icons/station_group_2.png");
+        QIcon icStaGrp = QIcon(":/icons/icons/station_group.png");
         QIcon icSrcGrp = QIcon(":/icons/icons/source_group.png");
         QIcon icBlGrp = QIcon(":/icons/icons/baseline_group.png");
 
@@ -3218,7 +3218,7 @@ void MainWindow::loadXML(QString path)
                     }
 
                     groupSta[groupName] = members;
-                    allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group_2.png"),
+                    allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group.png"),
                                                                             QString::fromStdString(groupName) ));
                 }
             }
@@ -3831,7 +3831,7 @@ void MainWindow::loadXML(QString path)
                 }else if(parameterName == "Station"){
                     ic1 = QIcon(":/icons/icons/station.png");
                     if(member == "__all__" || groupSta.find(member.toStdString()) != groupSta.end()){
-                        ic2 = QIcon(":/icons/icons/station_group_2.png");
+                        ic2 = QIcon(":/icons/icons/station_group.png");
                     }else{
                         ic2 = QIcon(":/icons/icons/station.png");
                     }
@@ -4966,7 +4966,7 @@ void MainWindow::on_pushButton_stations_clicked()
     selectedBaselineModel->removeRows(0,selectedBaselineModel->rowCount());
 
     allStationPlusGroupModel->removeRows(0,allStationPlusGroupModel->rowCount());
-    allStationPlusGroupModel->insertRow(0,new QStandardItem(QIcon(":/icons/icons/station_group_2.png"),"__all__"));
+    allStationPlusGroupModel->insertRow(0,new QStandardItem(QIcon(":/icons/icons/station_group.png"),"__all__"));
 
     allBaselinePlusGroupModel->removeRows(0,allStationPlusGroupModel->rowCount());
     allBaselinePlusGroupModel->insertRow(0,new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
@@ -5008,7 +5008,7 @@ void MainWindow::on_pushButton_stations_clicked()
 
     QIcon icSta = QIcon(":/icons/icons/station.png");
     QIcon icBl = QIcon(":/icons/icons/baseline.png");
-    QIcon icStaGrp = QIcon(":/icons/icons/station_group_2.png");
+    QIcon icStaGrp = QIcon(":/icons/icons/station_group.png");
     QIcon icBlGrp = QIcon(":/icons/icons/baseline_group.png");
     bool mssta = false;
     bool msbl = false;
@@ -5588,7 +5588,7 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
             QIcon ic;
             if(isGroup || member->currentText() == "__all__"){
                 if(targetTreeWidget == ui->treeWidget_setupStation){
-                    ic = QIcon(":/icons/icons/station_group_2.png");
+                    ic = QIcon(":/icons/icons/station_group.png");
                 }else if(targetTreeWidget == ui->treeWidget_setupSource){
                     ic = QIcon(":/icons/icons/source_group.png");
                 }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
@@ -5881,7 +5881,7 @@ void MainWindow::clearSetup(bool sta, bool src, bool bl)
         wsta->setText(2,ui->dateTimeEdit_sessionStart->dateTime().toString("dd.MM.yyyy hh:mm"));
         wsta->setText(3,e.toString("dd.MM.yyyy hh:mm"));
         wsta->setText(4,"hard");
-        wsta->setIcon(0,QIcon(":/icons/icons/station_group_2.png"));
+        wsta->setIcon(0,QIcon(":/icons/icons/station_group.png"));
 
         QTreeWidgetItem *ms = new QTreeWidgetItem();
         ms->setText(0,"__all__");
@@ -5889,7 +5889,7 @@ void MainWindow::clearSetup(bool sta, bool src, bool bl)
         ms->setText(2,ui->dateTimeEdit_sessionStart->dateTime().toString("dd.MM.yyyy hh:mm"));
         ms->setText(3,e.toString("dd.MM.yyyy hh:mm"));
         ms->setText(4,"hard");
-        ms->setIcon(0,QIcon(":/icons/icons/station_group_2.png"));
+        ms->setIcon(0,QIcon(":/icons/icons/station_group.png"));
         wsta->addChild(ms);
 
         ui->treeWidget_setupStation->clear();
@@ -6417,7 +6417,7 @@ void MainWindow::addGroupStation()
         }
         groupSta[stdname] = stdlist;
 
-        allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group_2.png"),QString::fromStdString(stdname) ));
+        allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(stdname) ));
         if(sender() == ui->pushButton_addGroupStationSetup){
             ui->comboBox_stationSettingMember->setCurrentIndex(r);
         }
@@ -6891,7 +6891,7 @@ void MainWindow::setupStationWaitAddRow()
     QIcon ic;
     bool inGroup = groupSta.find(name.toStdString()) != groupSta.end();
     if( inGroup || name == "__all__"){
-        ic = QIcon(":/icons/icons/station_group_2.png");
+        ic = QIcon(":/icons/icons/station_group.png");
     }else{
         ic = QIcon(":/icons/icons/station.png");
     }
@@ -6971,7 +6971,7 @@ void MainWindow::setupStationAxisBufferAddRow()
     QIcon ic;
     bool inGroup = groupSta.find(name.toStdString()) != groupSta.end();
     if( inGroup || name == "__all__"){
-        ic = QIcon(":/icons/icons/station_group_2.png");
+        ic = QIcon(":/icons/icons/station_group.png");
     }else{
         ic = QIcon(":/icons/icons/station.png");
     }
@@ -9364,7 +9364,7 @@ void MainWindow::on_pushButton_addHighImpactAzEl_clicked()
     QIcon ic;
     QTreeWidgetItem *c = new QTreeWidgetItem();
     if(isGroup || members == '__all__'){
-        ic = QIcon(":/icons/icons/station_group_2.png");
+        ic = QIcon(":/icons/icons/station_group.png");
     }else{
         ic = QIcon(":/icons/icons/station.png");
     }

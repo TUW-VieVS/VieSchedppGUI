@@ -485,7 +485,7 @@ void settingsLoadWindow::refreshList(QListWidgetItem *itm)
         auto t = ui->para;
         t->clear();
         t->setColumnCount(1);
-        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group_2.png"),QString("Group: %1").arg(name)));
+        t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString("Group: %1").arg(name)));
         auto members = groupSta.at(idx);
         t->setRowCount(members.size());
         for(int i=0; i<members.size(); ++i){
