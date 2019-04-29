@@ -2589,7 +2589,8 @@ QString MainWindow::writeXML()
         int minNumberOfReducedSources = ui->spinBox_minNumberOfReducedSources->value();
         int maxNumberOfIterations = ui->spinBox_maxNumberOfIterations->value();
         int numberOfGentleSourceReductions = ui->spinBox_gentleSourceReduction->value();
-        para.conditions(members, minScans, minBaselines, andForCombination, maxNumberOfIterations, numberOfGentleSourceReductions, minNumberOfReducedSources);
+        double percentage = ui->doubleSpinBox_gentleSourceReductionPercentage->value();
+        para.conditions(members, minScans, minBaselines, andForCombination, maxNumberOfIterations, numberOfGentleSourceReductions, minNumberOfReducedSources, percentage);
     }
 
     if (ui->groupBox_multiScheduling->isChecked() && ui->treeWidget_multiSchedSelected->topLevelItemCount()>0){
@@ -3573,6 +3574,8 @@ void MainWindow::loadXML(QString path)
                 ui->checkBox_gentleSourceReduction->setChecked(true);
             }else if(any.first == "minNumberOfSourcesToReduce"){
                 ui->spinBox_minNumberOfReducedSources->setValue(any.second.get_value<unsigned int>());
+            }else if(any.first == "percentageGentleSourceReduction"){
+                ui->spinBox_gentleSourceReduction->setValue(any.second.get_value<double>());
             }else if(any.first == "condition"){
                 std::string member = any.second.get<std::string>("members");
                 auto scans = any.second.get<unsigned int>("minScans");
