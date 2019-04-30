@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>5</number>
+       <number>15</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -4610,12 +4610,12 @@ If you only want to run simulations you can deselect this to avoid error message
                     </property>
                     <item>
                      <property name="text">
-                      <string>smooth</string>
+                      <string>hard</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>hard</string>
+                      <string>smooth</string>
                      </property>
                     </item>
                    </widget>
@@ -5713,12 +5713,12 @@ If you only want to run simulations you can deselect this to avoid error message
                    </property>
                    <item>
                     <property name="text">
-                     <string>smooth</string>
+                     <string>hard</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>hard</string>
+                     <string>smooth</string>
                     </property>
                    </item>
                   </widget>
@@ -6142,12 +6142,12 @@ If you only want to run simulations you can deselect this to avoid error message
                    </property>
                    <item>
                     <property name="text">
-                     <string>smooth</string>
+                     <string>hard</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>hard</string>
+                     <string>smooth</string>
                     </property>
                    </item>
                   </widget>
@@ -9900,7 +9900,7 @@ p, li { white-space: pre-wrap; }
                   <string>use gentle source reduction</string>
                  </property>
                  <property name="whatsThis">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Gentle source reduction&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means that you will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not reduce all sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that do not fulfill the conditions but &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;only half of those sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This might help to increase the quality of your schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Consider you have some high demands on your schedule and you want at least 10 scans to each source. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you use a big source list with hundreds of sources it is unlikely that many will fulfill these conditios at the first couple of iterations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Instead of reducing all sources after the first iterations you can use this option to limit the number of reduced sources. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Gentle source reduction&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means that you will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not reduce all sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that do not fulfill the conditions but &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;only a certain percentage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This might help to increase the quality of your schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Consider you have some high demands on your schedule and you want at least 10 scans to each source. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you use a big source list with hundreds of sources it is unlikely that many will fulfill these conditios at the first couple of iterations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Instead of reducing all sources after the first iterations you can use this option to limit the number of reduced sources. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
                   <string>gentle source reduction</string>
@@ -9917,6 +9917,9 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <property name="statusTip">
                   <string>number of iterations for gentle source reduction</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Gentle source reduction&lt;/span&gt; means that you will &lt;span style=&quot; font-weight:600;&quot;&gt;not reduce all sources&lt;/span&gt; that do not fulfill the conditions but &lt;span style=&quot; font-weight:600;&quot;&gt;only a certain percentage&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This might help to increase the quality of your schedule. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Consider you have some high demands on your schedule and you want at least 10 scans to each source. &lt;/p&gt;&lt;p&gt;If you use a big source list with hundreds of sources it is unlikely that many will fulfill these conditios at the first couple of iterations. &lt;/p&gt;&lt;p&gt;Instead of reducing all sources after the first iterations you can use this option to limit the number of reduced sources. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="suffix">
                   <string> iterations</string>
@@ -9952,6 +9955,32 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <property name="value">
                   <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="label_88">
+                 <property name="text">
+                  <string>percentage of source to reduce per iteration</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_gentleSourceReductionPercentage">
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The percentage of sources which will be removed during each iteration of &lt;span style=&quot; font-weight:600;&quot;&gt;gentle source reduction&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;The sources with the fewest number of scans get removed. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string> [%]</string>
+                 </property>
+                 <property name="maximum">
+                  <double>100.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>10.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>50.000000000000000</double>
                  </property>
                 </widget>
                </item>
@@ -12432,12 +12461,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>99</y>
+     <x>47</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>99</y>
+     <x>81</x>
+     <y>80</y>
     </hint>
    </hints>
   </connection>
@@ -12448,12 +12477,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>329</x>
-     <y>130</y>
+     <x>219</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>563</x>
-     <y>199</y>
+     <x>247</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -12864,12 +12893,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>353</y>
+     <x>111</x>
+     <y>388</y>
     </hint>
     <hint type="destinationlabel">
-     <x>118</x>
-     <y>353</y>
+     <x>227</x>
+     <y>391</y>
     </hint>
    </hints>
   </connection>
@@ -12880,12 +12909,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>114</x>
-     <y>353</y>
+     <x>111</x>
+     <y>421</y>
     </hint>
     <hint type="destinationlabel">
-     <x>118</x>
-     <y>353</y>
+     <x>227</x>
+     <y>424</y>
     </hint>
    </hints>
   </connection>
@@ -12950,6 +12979,54 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>538</x>
      <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_gentleSourceReduction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_gentleSourceReduction</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>363</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_gentleSourceReduction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_88</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>163</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>162</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_gentleSourceReduction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_gentleSourceReductionPercentage</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>202</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>393</y>
     </hint>
    </hints>
   </connection>
