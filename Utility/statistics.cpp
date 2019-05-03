@@ -55,6 +55,20 @@ void Statistics::setupStatisticView()
     hoveredTitle->setStyleSheet("font-weight: bold");
 
     general << "#scans" << "#single source scans" << "#subnetting scans" << "#fillinmode scans" << "#calibrator_scans" << "#observations" << "#stations" << "#sources";
+    weightFactors << "weight_factor_sky_coverage"
+                  << "weight_factor_number_of_observations"
+                  << "weight_factor_duration"
+                  << "weight_factor_average_sources"
+                  << "weight_factor_average_stations"
+                  << "weight_factor_average_baselines"
+                  << "weight_factor_idle_time"
+                  << "weight_factor_idle_time_interval"
+                  << "weight_factor_low_declination"
+                  << "weight_factor_low_declination_start_weight"
+                  << "weight_factor_low_declination_full_weight"
+                  << "weight_factor_low_elevation"
+                  << "weight_factor_low_elevation_start_weight"
+                  << "weight_factor_low_elevation_full_weight";
 }
 
 void Statistics::on_pushButton_addStatistic_clicked()
@@ -140,6 +154,21 @@ void Statistics::reload()
     lookupTable << "time_average_observation" << "time_average_preob" << "time_average_slew"<<"time_average_idle"<<"time_average_field_system";
     lookupTable << "sky_coverage_average_13_areas_30_min" << "sky_coverage_average_25_areas_30_min" << "sky_coverage_average_37_areas_30_min" <<
                    "sky_coverage_average_13_areas_60_min" << "sky_coverage_average_25_areas_60_min" << "sky_coverage_average_37_areas_60_min";
+
+    lookupTable << "weight_factor_sky_coverage"
+                << "weight_factor_number_of_observations"
+                << "weight_factor_duration"
+                << "weight_factor_average_sources"
+                << "weight_factor_average_stations"
+                << "weight_factor_average_baselines"
+                << "weight_factor_idle_time"
+                << "weight_factor_idle_time_interval"
+                << "weight_factor_low_declination"
+                << "weight_factor_low_declination_start_weight"
+                << "weight_factor_low_declination_full_weight"
+                << "weight_factor_low_elevation"
+                << "weight_factor_low_elevation_start_weight"
+                << "weight_factor_low_elevation_full_weight";
 
     for(const auto &any:stations){
         lookupTable << QString("time_").append(any).append("_observation");
@@ -364,8 +393,23 @@ void Statistics::reload()
         connect(db2,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
     }
 
+    itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "weight factors"));
+    const auto &wf = itemlist->topLevelItem(4);
+    wf->setCheckState(0,Qt::Unchecked);
+    for(const auto &any : weightFactors){
+
+        wf->addChild(new QTreeWidgetItem(QStringList() << any.mid(14).replace("_"," ")));
+        wf->child(wf->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+        auto db = new QDoubleSpinBox(itemlist);
+        db->setMinimum(-99);
+        itemlist->setItemWidget(wf->child(wf->childCount()-1),2,db);
+        connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+    }
+
+
     itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "multi scheduling"));
-    const auto &ms = itemlist->topLevelItem(4);
+    const auto &ms = itemlist->topLevelItem(5);
     ms->setCheckState(0,Qt::Unchecked);
     for(QString any : multiScheduling){
 
@@ -384,7 +428,7 @@ void Statistics::reload()
         list << "average [%]" << "observation [%]" << "preob [%]" << "slew [%]" << "idle [%]" << "field system [%]";
 
         itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "time spend"));
-        const auto &t = itemlist->topLevelItem(5);
+        const auto &t = itemlist->topLevelItem(6);
         t->setCheckState(0,Qt::Unchecked);
         for(const auto &any : list){
             t->addChild(new QTreeWidgetItem(QStringList() << any));
@@ -473,7 +517,7 @@ void Statistics::reload()
         skyList << "average" << "13 areas 30 min" << "25 areas 30 min" << "37 areas 30 min" << "13 areas 60 min" << "25 areas 60 min" << "37 areas 60 min";
 
         itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "sky coverage score"));
-        const auto &st = itemlist->topLevelItem(6);
+        const auto &st = itemlist->topLevelItem(7);
         st->setCheckState(0,Qt::Unchecked);
         for(const auto &any : skyList){
             st->addChild(new QTreeWidgetItem(QStringList() << any));
@@ -631,28 +675,29 @@ void Statistics::plotStatistics(bool animation)
 
 
     const auto &gen = itemlist->topLevelItem(0);
+    const auto &wf = itemlist->topLevelItem(4);
 
-    const auto &time_avg = itemlist->topLevelItem(5)->child(0);
-    const auto &time_obs = itemlist->topLevelItem(5)->child(1);
-    const auto &time_preob = itemlist->topLevelItem(5)->child(2);
-    const auto &time_slew = itemlist->topLevelItem(5)->child(3);
-    const auto &time_idle = itemlist->topLevelItem(5)->child(4);
-    const auto &time_field = itemlist->topLevelItem(5)->child(5);
+    const auto &time_avg = itemlist->topLevelItem(6)->child(0);
+    const auto &time_obs = itemlist->topLevelItem(6)->child(1);
+    const auto &time_preob = itemlist->topLevelItem(6)->child(2);
+    const auto &time_slew = itemlist->topLevelItem(6)->child(3);
+    const auto &time_idle = itemlist->topLevelItem(6)->child(4);
+    const auto &time_field = itemlist->topLevelItem(6)->child(5);
 
-    const auto &skyCov_avg = itemlist->topLevelItem(6)->child(0);
-    const auto &skyCov_a13m30 = itemlist->topLevelItem(6)->child(1);
-    const auto &skyCov_a25m30 = itemlist->topLevelItem(6)->child(2);
-    const auto &skyCov_a37m30 = itemlist->topLevelItem(6)->child(3);
-    const auto &skyCov_a13m60 = itemlist->topLevelItem(6)->child(4);
-    const auto &skyCov_a25m60 = itemlist->topLevelItem(6)->child(5);
-    const auto &skyCov_a37m60 = itemlist->topLevelItem(6)->child(6);
+    const auto &skyCov_avg = itemlist->topLevelItem(7)->child(0);
+    const auto &skyCov_a13m30 = itemlist->topLevelItem(7)->child(1);
+    const auto &skyCov_a25m30 = itemlist->topLevelItem(7)->child(2);
+    const auto &skyCov_a37m30 = itemlist->topLevelItem(7)->child(3);
+    const auto &skyCov_a13m60 = itemlist->topLevelItem(7)->child(4);
+    const auto &skyCov_a25m60 = itemlist->topLevelItem(7)->child(5);
+    const auto &skyCov_a37m60 = itemlist->topLevelItem(7)->child(6);
 
     const auto &staScans = itemlist->topLevelItem(1)->child(0);
     const auto &staObs = itemlist->topLevelItem(1)->child(1);
     const auto &blObs = itemlist->topLevelItem(2)->child(0);
     const auto &srcScans = itemlist->topLevelItem(3)->child(0);
     const auto &srcObs = itemlist->topLevelItem(3)->child(1);
-    const auto &ms = itemlist->topLevelItem(4);
+    const auto &ms = itemlist->topLevelItem(5);
 
     int offset = 0;
     for(int i=0; i<gen->childCount(); ++i){
@@ -703,6 +748,24 @@ void Statistics::plotStatistics(bool animation)
         }
         ++offset;
     }
+
+    // weight factors
+    for(int i=0; i<wf->childCount(); ++i){
+        const auto &child = wf->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("weight_factor_").append(child->text(0).replace(" ","_"));
+            barSets.push_back(statisticsBarSet(offset,name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+
 
     // time per station
     for(int i=0; i<time_obs->childCount(); ++i){
@@ -1007,6 +1070,29 @@ void Statistics::plotStatistics(bool animation)
         }
         ++offset;
     }
+    for(int i=0; i<skyCov_avg->childCount(); ++i){
+        const auto &child = skyCov_avg->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+
+    for(int i=0; i<wf->childCount(); ++i){
+        const auto &child = wf->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
     for(int i=0; i<time_obs->childCount(); ++i){
         const auto &child = time_obs->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
@@ -1064,17 +1150,6 @@ void Statistics::plotStatistics(bool animation)
     }
 
     // sky coverage
-    for(int i=0; i<skyCov_avg->childCount(); ++i){
-        const auto &child = skyCov_avg->child(i);
-        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
-        if(val!=0){
-            auto data = statisticsBarSet(offset);
-            for(int id = 0; id<data->count(); ++id){
-                score[id] += data->at(id)*val;
-            }
-        }
-        ++offset;
-    }
     for(int i=0; i<skyCov_a13m30->childCount(); ++i){
         const auto &child = skyCov_a13m30->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
@@ -1304,7 +1379,10 @@ void Statistics::statisticsHovered(bool status, int index, QBarSet *barset)
 
         QString fullLabel = barset->label();
         int idx = lookupTable.indexOf(fullLabel);
-        QString label = fullLabel.replace("n_","#");
+        QString label = fullLabel;
+        if(fullLabel.left(2) == "n_"){
+            label = QString("#").append(fullLabel.mid(2));
+        }
         label = label.replace("sta_scans_","scans ");
         label = label.replace("sta_obs_","observations ");
         label = label.replace("bl_obs_","observations ");
