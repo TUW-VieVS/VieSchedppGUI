@@ -106,6 +106,8 @@ void Statistics::reload()
     sources.clear();
     times.clear();
     multiScheduling.clear();
+    lookupTable.clear();
+
     for(int i=0; i<statisticsCSV->count(); ++i){
         QString path = statisticsCSV->item(i)->text();
         QStringList tmp = path.split("/");
@@ -119,8 +121,10 @@ void Statistics::reload()
         QTextStream in(&file);
         QString line = in.readLine();
         QStringList names = line.split(",",QString::SplitBehavior::SkipEmptyParts);
-        bool dummy = false;
+        bool lookForMultiSchedulingParameteres = false;
         for(const auto &name : names){
+            lookupTable.append(name);
+
             if( name.left(10) == "n_sta_obs_" ){
                 QString thisName = name.mid(10);
                 if(stations.indexOf(thisName) == -1){
@@ -136,8 +140,10 @@ void Statistics::reload()
                 if(sources.indexOf(thisName) == -1){
                     sources.append(thisName);
                 }
-                dummy = true;
-            }else if(dummy){
+                lookForMultiSchedulingParameteres = true;
+            }else if( name.left(10) == "vievs_sim_") {
+                continue;
+            }else if(lookForMultiSchedulingParameteres){
                 if(multiScheduling.indexOf(name) == -1){
                     multiScheduling.append(name);
                 }
@@ -146,83 +152,7 @@ void Statistics::reload()
     }
     stations.sort();
     baselines.sort();
-    sources.sort();
-
-    // ################# build lookup table #################
-    lookupTable.clear();
-    lookupTable << "n_scans" << "n_single_source_scans" << "n_subnetting_scans" << "n_fillinmode_scans" << "n_calibrator_scans" << "n_observations" << "n_stations" << "n_sources";
-    lookupTable << "time_average_observation" << "time_average_preob" << "time_average_slew"<<"time_average_idle"<<"time_average_field_system";
-    lookupTable << "sky_coverage_average_13_areas_30_min" << "sky_coverage_average_25_areas_30_min" << "sky_coverage_average_37_areas_30_min" <<
-                   "sky_coverage_average_13_areas_60_min" << "sky_coverage_average_25_areas_60_min" << "sky_coverage_average_37_areas_60_min";
-
-    lookupTable << "weight_factor_sky_coverage"
-                << "weight_factor_number_of_observations"
-                << "weight_factor_duration"
-                << "weight_factor_average_sources"
-                << "weight_factor_average_stations"
-                << "weight_factor_average_baselines"
-                << "weight_factor_idle_time"
-                << "weight_factor_idle_time_interval"
-                << "weight_factor_low_declination"
-                << "weight_factor_low_declination_start_weight"
-                << "weight_factor_low_declination_full_weight"
-                << "weight_factor_low_elevation"
-                << "weight_factor_low_elevation_start_weight"
-                << "weight_factor_low_elevation_full_weight";
-
-    for(const auto &any:stations){
-        lookupTable << QString("time_").append(any).append("_observation");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("time_").append(any).append("_preob");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("time_").append(any).append("_slew");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("time_").append(any).append("_idle");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("time_").append(any).append("_field_system");
-    }
-
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_13_areas_30_min");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_25_areas_30_min");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_37_areas_30_min");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_13_areas_60_min");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_25_areas_60_min");
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("sky_coverage_").append(any).append("_37_areas_60_min");
-    }
-
-    for(const auto &any:stations){
-        lookupTable << QString("n_sta_scans_").append(any);
-    }
-    for(const auto &any:stations){
-        lookupTable << QString("n_sta_obs_").append(any);
-    }
-    for(const auto &any:baselines){
-        lookupTable << QString("n_bl_obs_").append(any);
-    }
-    for(const auto &any:sources){
-        lookupTable << QString("n_src_scans_").append(any);
-    }
-    for(const auto &any:sources){
-        lookupTable << QString("n_src_obs_").append(any);
-    }
-    for(const auto &any:multiScheduling){
-        lookupTable << any;
-    }
+    sources.sort();    
 
     // ################# read data #################
     statistics.clear();
@@ -264,7 +194,7 @@ void Statistics::reload()
             }
         }
     }
-    int offset = general.size() + 5+5*stations.size() +6+6*stations.size() + 2*stations.size() + baselines.size();
+    int offset = general.size() + 5+5*stations.size() +6+6*stations.size() + 2*stations.size() + baselines.size() + 14;
     QList<char> remove;
     for (int i=offset; i<offset+sources.size(); ++i) {
         if(counter[i] > 0){
@@ -606,6 +536,61 @@ void Statistics::reload()
         }
     }
 
+    // simulations
+    {
+        itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "simulations"));
+        const auto &sim = itemlist->topLevelItem(8);
+        sim->setCheckState(0,Qt::Unchecked);
+
+
+        QStringList simList;
+        simList << "mean formal error" << "repeatability";
+        for(const auto &any : simList){
+            sim->addChild(new QTreeWidgetItem(QStringList() << any));
+            sim->child(sim->childCount()-1)->setCheckState(0,Qt::Unchecked);
+        }
+
+        QStringList simPara;
+        simPara << "#sim" << "dUT1 [mus]" << "x pol [muas]" << "y pol_[muas]" << "x nut [muas]" << "y nut [muas]";
+
+        for(int i=0; i<2; ++i){
+            const auto &itm = sim->child(i);
+
+            for(const auto &any : simPara){
+                itm->addChild(new QTreeWidgetItem(QStringList() << any));
+                itm->child(itm->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+                auto db = new QDoubleSpinBox(itemlist);
+                db->setMinimum(-99);
+                itemlist->setItemWidget(itm->child(itm->childCount()-1),2,db);
+                connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+            }
+            itm->addChild(new QTreeWidgetItem(QStringList() << "average 3d coordinates [mm]"));
+            itm->child(itm->childCount()-1)->setCheckState(0,Qt::Unchecked);
+            auto db = new QDoubleSpinBox(itemlist);
+            db->setMinimum(-99);
+            itemlist->setItemWidget(itm->child(itm->childCount()-1),2,db);
+            connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+
+
+            itm->addChild(new QTreeWidgetItem(QStringList() << "3d coordinates [mm]"));
+            itm->child(itm->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+            const auto &iitm = itm->child(itm->childCount()-1);
+            for(const auto &sta : stations){
+                iitm->addChild(new QTreeWidgetItem(QStringList() << sta));
+                iitm->child(iitm->childCount()-1)->setCheckState(0,Qt::Unchecked);
+
+                auto db = new QDoubleSpinBox(itemlist);
+                db->setMinimum(-99);
+                itemlist->setItemWidget(iitm->child(iitm->childCount()-1),2,db);
+                connect(db,SIGNAL(valueChanged(double)),this,SLOT(plotStatistics()));
+
+            }
+        }
+    }
+
+
     // ################# create plot #################
 
     plotStatistics(true);
@@ -675,7 +660,18 @@ void Statistics::plotStatistics(bool animation)
 
 
     const auto &gen = itemlist->topLevelItem(0);
+
+    const auto &staScans = itemlist->topLevelItem(1)->child(0);
+    const auto &staObs = itemlist->topLevelItem(1)->child(1);
+
+    const auto &blObs = itemlist->topLevelItem(2)->child(0);
+
+    const auto &srcScans = itemlist->topLevelItem(3)->child(0);
+    const auto &srcObs = itemlist->topLevelItem(3)->child(1);
+
     const auto &wf = itemlist->topLevelItem(4);
+
+    const auto &ms = itemlist->topLevelItem(5);
 
     const auto &time_avg = itemlist->topLevelItem(6)->child(0);
     const auto &time_obs = itemlist->topLevelItem(6)->child(1);
@@ -692,14 +688,12 @@ void Statistics::plotStatistics(bool animation)
     const auto &skyCov_a25m60 = itemlist->topLevelItem(7)->child(5);
     const auto &skyCov_a37m60 = itemlist->topLevelItem(7)->child(6);
 
-    const auto &staScans = itemlist->topLevelItem(1)->child(0);
-    const auto &staObs = itemlist->topLevelItem(1)->child(1);
-    const auto &blObs = itemlist->topLevelItem(2)->child(0);
-    const auto &srcScans = itemlist->topLevelItem(3)->child(0);
-    const auto &srcObs = itemlist->topLevelItem(3)->child(1);
-    const auto &ms = itemlist->topLevelItem(5);
+    const auto &simMeanFormalError = itemlist->topLevelItem(8)->child(0);
+    const auto &simMeanFormalError_station = simMeanFormalError->child(7);
+    const auto &simRepeatability = itemlist->topLevelItem(8)->child(1);
+    const auto &simRepeatability_station = simRepeatability->child(7);
 
-    int offset = 0;
+    int offset = 1;
     for(int i=0; i<gen->childCount(); ++i){
         const auto &child = gen->child(i);
         if(child->checkState(0) == Qt::Checked){
@@ -1032,6 +1026,73 @@ void Statistics::plotStatistics(bool animation)
     }
 
 
+    for(int i=0; i<simMeanFormalError->childCount()-1; ++i){
+        const auto &child = simMeanFormalError->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("vievs_sim_mean_formal_error_").append(child->text(0));
+            name = name.replace("#","n_");
+            name = name.replace(" ","_");
+            barSets.push_back(statisticsBarSet(offset, name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<simMeanFormalError_station->childCount(); ++i){
+        const auto &child = simMeanFormalError_station->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("vievs_sim_mean_formal_error_").append(child->text(0));
+            barSets.push_back(statisticsBarSet(offset, name.replace(" ","_")));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+
+
+    for(int i=0; i<simRepeatability->childCount()-1; ++i){
+        const auto &child = simRepeatability->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("vievs_sim_repeatability_").append(child->text(0));
+            name = name.replace("#","n_");
+            name = name.replace(" ","_");
+            barSets.push_back(statisticsBarSet(offset, name));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+    for(int i=0; i<simRepeatability_station->childCount(); ++i){
+        const auto &child = simRepeatability_station->child(i);
+        if(child->checkState(0) == Qt::Checked){
+            QString name = QString("vievs_sim_repeatability_").append(child->text(0));
+            barSets.push_back(statisticsBarSet(offset, name.replace(" ","_")));
+            child->setBackground(1,brushes.at(counter));
+
+            barSets.at(barSets.count()-1)->setBrush(brushes.at(counter));
+            ++counter;
+            counter = counter%brushes.count();
+        }else{
+            child->setBackground(1,Qt::white);
+        }
+        ++offset;
+    }
+
 
 
     // ################# create categories #################
@@ -1047,7 +1108,7 @@ void Statistics::plotStatistics(bool animation)
 
     QVector<double>score(categories.size(),0);
 
-    offset = 0;
+    offset = 1;
     for(int i=0; i<gen->childCount(); ++i){
         const auto &child = gen->child(i);
         double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
@@ -1287,6 +1348,52 @@ void Statistics::plotStatistics(bool animation)
         ++offset;
     }
 
+    for(int i=0; i<simMeanFormalError->childCount()-1; ++i){
+        const auto &child = simMeanFormalError->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<simMeanFormalError_station->childCount(); ++i){
+        const auto &child = simMeanFormalError_station->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+
+    for(int i=0; i<simRepeatability->childCount()-1; ++i){
+        const auto &child = simRepeatability->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+    for(int i=0; i<simRepeatability_station->childCount(); ++i){
+        const auto &child = simRepeatability_station->child(i);
+        double val = qobject_cast<QDoubleSpinBox*>(itemlist->itemWidget(child,2))->value();
+        if(val!=0){
+            auto data = statisticsBarSet(offset);
+            for(int id = 0; id<data->count(); ++id){
+                score[id] += data->at(id)*val;
+            }
+        }
+        ++offset;
+    }
+
     // ################# sort bars #################
 
     QVector<int> idx(score.size());
@@ -1407,10 +1514,15 @@ void Statistics::statisticsHovered(bool status, int index, QBarSet *barset)
 
 QBarSet *Statistics::statisticsBarSet(int idx, QString name)
 {
+
     QVector<double> v;
     for(const auto &key1: statistics.keys()){
         for(const auto &key2: statistics[key1].keys()){
-            v << statistics[key1][key2][idx];
+            if(idx >= statistics[key1][key2].count()){
+                v << 0;
+            }else{
+                v << statistics[key1][key2][idx];
+            }
         }
     }
 
