@@ -9552,7 +9552,10 @@ void MainWindow::on_pushButton_outputSnrTable_2_clicked()
             }
 
             VieVS::Scheduler copy = *parsedSchedule;
-            VieVS::Output out(copy, path.toStdString(), parsedSchedule->getName(), 0);
+            std::string name = parsedSchedule->getName();
+            name = name.substr(0,name.length()-4);
+            name = name.substr(name.find_last_of('/')+1);
+            VieVS::Output out(copy, path.toStdString(), name, 0);
             out.writeOperationsNotes();
             QString message = QString("Operation notes file has been written to:\n").append(path);
             QMessageBox mb;
