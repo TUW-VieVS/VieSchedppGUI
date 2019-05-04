@@ -1209,12 +1209,13 @@ void VieSchedpp_Analyser::skyCoverageHovered(QPointF point, bool flag)
                 QString startTimeStr = qStartTime.toString("hh:mm:ss");
                 QString endTimeStr   = qEndTime.toString("hh:mm:ss");
                 QString timeStr = startTimeStr.append("-").append(endTimeStr).append("\n");
+                QString duration = QString().sprintf("duration: %d [sec]\n", endTime-startTime);
                 QString az = QString().sprintf("az: %.2f\n", point.x());
                 QString el = QString().sprintf("el: %.2f\n", 90-point.y());
                 QString nsta = QString().sprintf("#sta: %d", series->getNSta(idx));
 
                 QString txt = source;
-                txt.append(timeStr).append(az).append(el).append(nsta);
+                txt.append(timeStr).append(duration).append(az).append(el).append(nsta);
 
                 c->setText(txt);
                 c->setZValue(11);
