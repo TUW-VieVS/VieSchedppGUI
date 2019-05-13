@@ -541,6 +541,30 @@ private slots:
 
     void on_pushButton_outputSnrTable_clicked();
 
+    void on_pushButton_32_clicked();
+
+    void on_pushButton_33_clicked();
+
+    void on_pushButton_34_clicked();
+
+    void on_pushButton_35_clicked();
+
+    void on_pushButton_37_clicked();
+
+    void on_pushButton_36_clicked();
+
+    void on_pushButton_38_clicked();
+
+    void on_pushButton_39_clicked();
+
+    void on_pushButton_42_clicked();
+
+    void on_pushButton_40_clicked();
+
+    void on_pushButton_43_clicked();
+
+    void on_pushButton_44_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
