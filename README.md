@@ -3,6 +3,13 @@
 written by Matthias Schartner
 contact: matthias.schartner@geo.tuwien.ac.at
 
+# Getting started
+
+Have a look at our YouTube channel 
+https://www.youtube.com/channel/UCl2VPe7OrnznNtrh0_lwrqQ where we provide video tutorials. 
+Additionally, the graphical user interface of VieSched++ contains a build in help. 
+Read the text on the welcome page for more information. 
+
 # License
 > VieSched++ Very Long Baseline Interferometry (VLBI) Scheduling Software
 >
@@ -23,6 +30,12 @@ contact: matthias.schartner@geo.tuwien.ac.at
 
 # Installation
 
+__Installers for Windows 10 and Ubuntu 18.04 are provided through the release page on GitHub!__
+
+Visit https://github.com/TUW-VieVS/VieSchedpp/releases.
+
+## Manual installation
+
 The software consists of two parts:
 * VieSched++: the scheduler, hostet on https://github.com/TUW-VieVS/VieSchedpp
 * VieSched++ GUI: the graphical user interface (this repository)
@@ -32,14 +45,12 @@ __It is necessary to install the scheduler independently!__
 Have a look at https://github.com/TUW-VieVS/VieSchedpp/blob/master/README.md for installing the scheduler.
 
 
-## Installation of VieSched++ GUI
+### Installation of VieSched++ GUI
 
 This section descripes how to install __VieSched++ GUI__ on LINUX. 
 
 While an installation is possible on Windows (tested with Windows 10) it is no
 further discussed due to the many possibilieties of different compilers and options.
-
-Pre-build binaries are available for github releases. Visit https://github.com/TUW-VieVS/VieSchedppGUI/releases.
 
 If you run into any problems compiling VieSched++ GUI, contact me under matthias.schartner@geo.tuwien.ac.at and I can send you some pre-build binaries.
 
@@ -49,7 +60,7 @@ https://github.com/TUW-VieVS/VieSchedppGUI.git (public)
 https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git (inside TU Vienna GEO Domain)
 
 
-## Recommended software folder structure for VieSched++
+### Recommended software folder structure for VieSched++
 
 The full software contains 4 different packages which are all available in git under `git.geo.tuwien.ac.at/vievs/VieSchedpp/` (Inside the TU-Wien GEO domain). Two of the packages are also available on github `https://github.com/TUW-VieVS/`. 
 
@@ -60,7 +71,7 @@ It is recommended to copy the source code into one common directory here called 
     VieVS/IAU_SOFA (only for installation)
     VieVS/CATALOGS (only for usage)
 
-## Dependencies
+### Dependencies
 
 I have the VieSchedpp installed before installing the VieSchedppGUI. Please visit https://github.com/TUW-VieVS/VieSchedpp for the software.
 
@@ -74,7 +85,7 @@ I have the VieSchedpp installed before installing the VieSchedppGUI. Please visi
 * VieSched++ source files
  * available via the VieSched++ git repository at https://github.com/TUW-VieVS/VieSchedpp
 
-## Build
+### Build
 clone git repository into `VieVS` or copy source code into `VieVS/VieSchedppGUI`
 
     cd VieVS
@@ -84,7 +95,7 @@ Browse to newly created folder `VieSchedppGUI`
 
     cd VieSchedppGUI
     
- ## Option 1: Command-line
+ #### Option 1: Command-line
 Run qmake
 
     qmake -config release VieSchedppGUI.pro
@@ -97,7 +108,7 @@ You should now see the 'VieSchedppGUI' file in the directory. Run the GUI using 
 
     VieSchedppGUI
 
- ## Option 2: Qt5 GUI
+ #### Option 2: Qt5 GUI
 * After QT have been installed. Open QT interface
 
 * File > Open File or Project > "your VieSchedppGUI.pro file"
