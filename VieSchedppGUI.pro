@@ -142,7 +142,8 @@ SOURCES += \
     Utility/mytextbrowser.cpp \
     Utility/qtutil.cpp \
     Utility/statistics.cpp \
-    secondaryGUIs/rendersetup.cpp
+    secondaryGUIs/rendersetup.cpp \
+    mainwindows_save_and_load.cpp
 
 HEADERS += \
     ../VieSchedpp/Input/LogParser.h \
