@@ -4520,7 +4520,7 @@ void MainWindow::worldmap_hovered(QPointF point, bool state)
 void MainWindow::addGroupStation()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::station,this);
-    dial->addModel(selectedStationModel);
+    dial->addModel(selectedStationModel, groupSta);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
@@ -4556,7 +4556,7 @@ void MainWindow::addGroupStation()
 void MainWindow::addGroupBaseline()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::baseline,this);
-    dial->addModel(selectedBaselineModel);
+    dial->addModel(selectedBaselineModel, groupBl);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
@@ -5674,7 +5674,7 @@ void MainWindow::skymap_hovered(QPointF point, bool state){
 void MainWindow::addGroupSource()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::source,this);
-    dial->addModel(selectedSourceModel);
+    dial->addModel(selectedSourceModel, groupSrc);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();

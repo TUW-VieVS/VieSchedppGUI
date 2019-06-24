@@ -29,11 +29,27 @@ AddGroupDialog::AddGroupDialog(boost::property_tree::ptree &settings_, Type type
     this->setWindowTitle("VieSched++");
 
     all = new QStandardItemModel(0,1,this);
+    groups = new QStandardItemModel(0,1,this);
+
     proxy = new QSortFilterProxyModel();
     proxy->setSourceModel(all);
+    proxy_group = new QSortFilterProxyModel();
+    proxy_group->setSourceModel(groups);
 
     ui->listView_all->setModel(proxy);
+    ui->listView_groups->setModel(proxy_group);
+
     proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxy_group->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    QItemSelectionModel *selection_all = ui->listView_all->selectionModel();
+    connect(selection_all,SIGNAL(selectionChanged(QItemSelection ,QItemSelection )), this,SLOT(addItems(QItemSelection ,QItemSelection )));
+
+    connect(ui->listWidget_selected->model(), SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(updateList()));
+    connect(ui->listWidget_selected->model(), SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateList()));
+
+//    QItemSelectionModel *selection_selected = ui->listWidget_selected->selectionModel();
+//    connect(selection_selected,SIGNAL(selectionChanged(QItemSelection ,QItemSelection )), this,SLOT(removeItems(QItemSelection ,QItemSelection )));
 }
 
 AddGroupDialog::~AddGroupDialog()
@@ -41,10 +57,22 @@ AddGroupDialog::~AddGroupDialog()
     delete ui;
 }
 
-void AddGroupDialog::addModel(QStandardItemModel *model)
+void AddGroupDialog::addModel(QStandardItemModel *model, std::map<std::string, std::vector<std::string>> allGroups)
 {
     for(int i = 0; i< model->rowCount(); ++i){
         all->setItem(i,model->item(i)->clone());
+    }
+
+    groupList = allGroups;
+    for(const auto &any : allGroups){
+        QString name = QString::fromStdString(any.first);
+        QIcon icn;
+        switch (type) {
+        case Type::source: icn = QIcon(":/icons/icons/source_group.png"); break;
+        case Type::station: icn = QIcon(":/icons/icons/station_group.png"); break;
+        case Type::baseline: icn = QIcon(":/icons/icons/baseline_group.png"); break;
+        }
+        groups->appendRow(new QStandardItem(icn, name));
     }
 }
 
@@ -72,21 +100,61 @@ void AddGroupDialog::on_lineEdit_allStationsFilter_textChanged(const QString &ar
     proxy->setFilterRegExp(arg1);
 }
 
-
-void AddGroupDialog::on_listView_all_clicked(const QModelIndex &index)
+void AddGroupDialog::on_lineEdit_allStationsFilter_group_textChanged(const QString &arg1)
 {
-    QString itm = index.data().toString();
-
-    if( ui->listWidget_selected->findItems(itm,Qt::MatchExactly).isEmpty() ){
-        ui->listWidget_selected->addItem(itm);
-    }
+    proxy_group->setFilterRegExp(arg1);
 }
+
+
+//void AddGroupDialog::on_listView_all_clicked(const QModelIndex &index)
+//{
+//    QString itm = index.data().toString();
+
+//    if( ui->listWidget_selected->findItems(itm,Qt::MatchExactly).isEmpty() ){
+//        ui->listWidget_selected->addItem(itm);
+//    }
+//}
 
 void AddGroupDialog::on_listWidget_selected_clicked(const QModelIndex &index)
 {
     auto itm = ui->listWidget_selected->takeItem(index.row());
     delete(itm);
 }
+
+void AddGroupDialog::addItems(QItemSelection selected, QItemSelection  deselected)
+{
+    QItemSelectionModel *selection = ui->listView_all->selectionModel();
+
+    for(const auto &any : selection->selectedIndexes()){
+        QString itm = any.data().toString();
+
+        if( ui->listWidget_selected->findItems(itm,Qt::MatchExactly).isEmpty() ){
+            ui->listWidget_selected->addItem(itm);
+        }
+    }
+
+
+}
+
+//void AddGroupDialog::removeItems(QItemSelection selected, QItemSelection  deselected)
+//{
+//    QItemSelectionModel *selection = ui->listWidget_selected->selectionModel();
+
+//    QVector<int> rows;
+//    for(const auto &any : selection->selectedIndexes()){
+//        rows << any.row();
+//    }
+
+//    if(!rows.isEmpty()){
+//        std::sort(rows.begin(), rows.end(), [](const int a, const int b) {return a > b; });
+
+//        for(const auto &row : rows){
+//            auto itm = ui->listWidget_selected->takeItem(row);
+//            delete(itm);
+//        }
+//    }
+//}
+
 
 void AddGroupDialog::on_buttonBox_accepted()
 {
@@ -208,3 +276,127 @@ void AddGroupDialog::on_pushButton_Load_clicked()
 
     }
 }
+
+void AddGroupDialog::on_pushButton_parse_clicked()
+{
+    ui->lineEdit_allStationsFilter->setText("");
+
+    QString text = ui->plainTextEdit_list->toPlainText();
+    QStringList list = text.split(QRegExp("[\\r\\n,;\\s]"),QString::SkipEmptyParts);
+
+    QStringList notFound;
+    QStringList alreadySelected;
+    for( auto itm : list){
+        if( !all->findItems(itm,Qt::MatchExactly).isEmpty() ){
+            if(ui->listWidget_selected->findItems(itm,Qt::MatchExactly).isEmpty()){
+                ui->listWidget_selected->addItem(itm);
+            }else{
+                alreadySelected << itm;
+            }
+        }else{
+            notFound << itm;
+        }
+    }
+
+
+    bool message = false;
+    QString notFoundString;
+    QString alreadySelectedString;
+    if(!notFound.isEmpty()){
+        message = true;
+        notFoundString = notFound.join(", ");
+        notFoundString = "The following targets were not found:\n"+notFoundString+"\n";
+    }
+    if(!alreadySelected.isEmpty()){
+        message = true;
+        alreadySelectedString = alreadySelected.join(", ");
+        alreadySelectedString = "The following targets were already selected:\n"+alreadySelectedString+"\n";
+    }
+    if(message){
+        QMessageBox::information(this, "targets not found/already selected", notFoundString+alreadySelectedString);
+    }
+
+}
+
+
+void AddGroupDialog::on_pushButton_invert_clicked()
+{
+    ui->lineEdit_allStationsFilter->setText("");
+    QStringList selected;
+    for(int i = 0; i < ui->listWidget_selected->count(); i++){
+        selected << ui->listWidget_selected->item(i)->text();
+    }
+
+    ui->listWidget_selected->clear();
+
+    for(int i = 0; i < all->rowCount(); i++){
+        QString txt = all->item(i)->text();
+
+        if(selected.indexOf(txt) == -1){
+            ui->listWidget_selected->addItem(txt);
+        }
+    }
+}
+
+void AddGroupDialog::on_listView_groups_clicked(const QModelIndex &index)
+{
+    ui->lineEdit_allStationsFilter->setText("");
+
+    std::string itm = index.data().toString().toStdString();
+    std::vector<std::string> items;
+
+    for(const auto &any: groupList){
+        if(any.first == itm){
+            items = any.second;
+        }
+    }
+
+    QStringList notFound;
+    QStringList alreadySelected;
+    for(const auto &any : items){
+        QString itm = QString::fromStdString(any);
+        if( !all->findItems(itm,Qt::MatchExactly).isEmpty() ){
+            if(ui->listWidget_selected->findItems(itm,Qt::MatchExactly).isEmpty()){
+                ui->listWidget_selected->addItem(itm);
+            }else{
+                alreadySelected << itm;
+            }
+        }else{
+            notFound << itm;
+        }
+    }
+
+    bool message = false;
+    QString notFoundString;
+    QString alreadySelectedString;
+    if(!notFound.isEmpty()){
+        message = true;
+        notFoundString = notFound.join(", ");
+        notFoundString = "The following targets were not found:\n"+notFoundString+"\n";
+    }
+    if(!alreadySelected.isEmpty()){
+        message = true;
+        alreadySelectedString = alreadySelected.join(", ");
+        alreadySelectedString = "The following targets were already selected:\n"+alreadySelectedString+"\n";
+    }
+    if(message){
+        QMessageBox::information(this, "targets not found/already selected", notFoundString+alreadySelectedString);
+    }
+
+}
+
+void AddGroupDialog::updateList()
+{
+    int n = ui->listWidget_selected->count();
+    ui->groupBox_3->setTitle(QString().sprintf("selected (%d)",n));
+}
+
+
+
+
+
+
+
+
+
+

@@ -47,7 +47,7 @@ public:
 
     ~AddGroupDialog();
 
-    void addModel(QStandardItemModel *model);
+    void addModel(QStandardItemModel *model, std::map<std::string, std::vector<std::string>> groups);
 
     std::vector<std::string> getSelection();
 
@@ -56,9 +56,13 @@ public:
 private slots:
     void on_lineEdit_allStationsFilter_textChanged(const QString &arg1);
 
-    void on_listView_all_clicked(const QModelIndex &index);
+//    void on_listView_all_clicked(const QModelIndex &index);
 
     void on_listWidget_selected_clicked(const QModelIndex &index);
+
+    void addItems(QItemSelection ,QItemSelection );
+
+//    void removeItems(QItemSelection ,QItemSelection );
 
     void on_buttonBox_accepted();
 
@@ -66,9 +70,22 @@ private slots:
 
     void on_pushButton_Load_clicked();
 
+    void on_pushButton_parse_clicked();
+
+    void on_pushButton_invert_clicked();
+
+    void on_lineEdit_allStationsFilter_group_textChanged(const QString &arg1);
+
+    void on_listView_groups_clicked(const QModelIndex &index);
+
+    void updateList();
+
 private:
     QStandardItemModel *all;
+    std::map<std::string, std::vector<std::string>> groupList;
+    QStandardItemModel *groups;
     QSortFilterProxyModel *proxy;
+    QSortFilterProxyModel *proxy_group;
     boost::property_tree::ptree &settings;
 
     Type type;

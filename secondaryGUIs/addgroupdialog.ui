@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>765</width>
     <height>400</height>
    </rect>
   </property>
@@ -44,7 +44,7 @@
         <string> load</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
        </property>
       </widget>
@@ -61,7 +61,7 @@
         <string> save</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
        </property>
       </widget>
@@ -78,73 +78,190 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>all available</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Filter:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_allStationsFilter">
-           <property name="toolTip">
-            <string>filter by name</string>
-           </property>
-           <property name="statusTip">
-            <string>filter by name</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QListView" name="listView_all">
-         <property name="toolTip">
-          <string>list of available items</string>
-         </property>
-         <property name="statusTip">
-          <string>list of available items</string>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>add manually</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QListView" name="listView_all">
+          <property name="toolTip">
+           <string>list of available items</string>
+          </property>
+          <property name="statusTip">
+           <string>list of available items</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Filter:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_allStationsFilter">
+            <property name="toolTip">
+             <string>filter by name</string>
+            </property>
+            <property name="statusTip">
+             <string>filter by name</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>selected</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListWidget" name="listWidget_selected">
-         <property name="toolTip">
-          <string>list of selected items</string>
-         </property>
-         <property name="statusTip">
-          <string>list of selected items</string>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="title">
+        <string>add existing group</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QListView" name="listView_groups"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Filter:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_allStationsFilter_group">
+            <property name="toolTip">
+             <string>filter by name</string>
+            </property>
+            <property name="statusTip">
+             <string>filter by name</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>add from list</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QPlainTextEdit" name="plainTextEdit_list">
+          <property name="placeholderText">
+           <string>enter list here</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_parse">
+            <property name="text">
+             <string>parse</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="title">
+        <string>selected</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QListWidget" name="listWidget_selected">
+          <property name="toolTip">
+           <string>list of selected items</string>
+          </property>
+          <property name="statusTip">
+           <string>list of selected items</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_invert">
+            <property name="text">
+             <string>invert</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </item>
@@ -186,7 +303,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="myresources.qrc"/>
+  <include location="../myresources.qrc"/>
  </resources>
  <connections>
   <connection>
