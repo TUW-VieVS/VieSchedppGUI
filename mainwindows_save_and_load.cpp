@@ -114,29 +114,20 @@ QString MainWindow::writeXML()
     std::string scheduler = ui->schedulerLineEdit->text().toStdString();
     std::string correlator = ui->correlatorLineEdit->text().toStdString();
 
-    VieVS::ParameterSettings::Contact pi;
-    pi.name = ui->lineEdit_PIName->text().toStdString();
-    pi.email = ui->lineEdit_PIEmail->text().toStdString();
-    pi.phone = ui->lineEdit_pi_phone->text().toStdString();
-    pi.affiliation = ui->lineEdit_pi_affiliation->text().toStdString();
+    std::vector<VieVS::ParameterSettings::Contact> contacts;
+    QTableWidget *tableWidgetContacts = ui->tableWidget_contact;
+    for (int i=0; i<tableWidgetContacts->rowCount(); ++i){
+        VieVS::ParameterSettings::Contact c;
 
-    VieVS::ParameterSettings::Contact contact1;
-    contact1.name = ui->lineEdit_contactName->text().toStdString();
-    contact1.email = ui->lineEdit_contactEmail->text().toStdString();
-    contact1.phone = ui->lineEdit_contact_phone->text().toStdString();
-    contact1.affiliation = ui->lineEdit_contact_affiliation->text().toStdString();
+        c.function = tableWidgetContacts->item(i,0)->text().toStdString();
+        c.name = tableWidgetContacts->item(i,1)->text().toStdString();
+        c.email = tableWidgetContacts->item(i,2)->text().toStdString();
+        c.phone = tableWidgetContacts->item(i,3)->text().toStdString();
+        c.affiliation = tableWidgetContacts->item(i,4)->text().toStdString();
 
-    VieVS::ParameterSettings::Contact contact2;
-    contact2.name = ui->lineEdit_contactName_2->text().toStdString();
-    contact2.email = ui->lineEdit_contactEmail_2->text().toStdString();
-    contact2.phone = ui->lineEdit_contact_phone_2->text().toStdString();
-    contact2.affiliation = ui->lineEdit_contact_affiliation_2->text().toStdString();
+        contacts.push_back(c);
+    }
 
-    VieVS::ParameterSettings::Contact contact3;
-    contact3.name = ui->lineEdit_contactName_3->text().toStdString();
-    contact3.email = ui->lineEdit_contactEmail_3->text().toStdString();
-    contact3.phone = ui->lineEdit_contact_phone_3->text().toStdString();
-    contact3.affiliation = ui->lineEdit_contact_affiliation_3->text().toStdString();
 
     std::string notes = ui->plainTextEdit_notes->toPlainText().replace("\n","\\n").toStdString();
     bool initializer = ui->checkBox_outputInitializer->isChecked();
@@ -163,7 +154,7 @@ QString MainWindow::writeXML()
         }
     }
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
-                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov, pi, contact1, contact2, contact3);
+                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov, contacts);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -1647,20 +1638,25 @@ void MainWindow::loadXML(QString path)
         ui->lineEdit_pi_affiliation->setText(QString::fromStdString(xml.get("VieSchedpp.output.pi.affiliation","")));
 
 
-        ui->lineEdit_contactName->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact1.name","")));
-        ui->lineEdit_contactEmail->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact1.email","")));
-        ui->lineEdit_contact_phone->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact1.phone","")));
-        ui->lineEdit_contact_affiliation->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact1.affiliation","")));
+        QTableWidget *tw = ui->tableWidget_contact;
 
-        ui->lineEdit_contactName_2->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact2.name","")));
-        ui->lineEdit_contactEmail_2->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact2.email","")));
-        ui->lineEdit_contact_phone_2->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact2.phone","")));
-        ui->lineEdit_contact_affiliation_2->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact2.affiliation","")));
+        const auto &t = xml.get_child_optional("VieSchedpp.output.contacts");
+        if(t.is_initialized()){
+            for (const auto &any : *t){
+                std::string function = any.second.get("function","");
+                std::string name = any.second.get("name","");
+                std::string email = any.second.get("email","");
+                std::string phone = any.second.get("phone","");
+                std::string affiliation = any.second.get("affiliation","");
 
-        ui->lineEdit_contactName_3->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact3.name","")));
-        ui->lineEdit_contactEmail_3->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact3.email","")));
-        ui->lineEdit_contact_phone_3->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact3.phone","")));
-        ui->lineEdit_contact_affiliation_3->setText(QString::fromStdString(xml.get("VieSchedpp.output.contact3.affiliation","")));
+                tw->insertRow (tw->rowCount());
+                tw->setItem   (tw->rowCount()-1, 0, new QTableWidgetItem(QString::fromStdString(function)));
+                tw->setItem   (tw->rowCount()-1, 1, new QTableWidgetItem(QString::fromStdString(name)));
+                tw->setItem   (tw->rowCount()-1, 2, new QTableWidgetItem(QString::fromStdString(email)));
+                tw->setItem   (tw->rowCount()-1, 3, new QTableWidgetItem(QString::fromStdString(phone)));
+                tw->setItem   (tw->rowCount()-1, 4, new QTableWidgetItem(QString::fromStdString(affiliation)));
+            }
+        }
 
         ui->plainTextEdit_notes->setPlainText(QString::fromStdString(xml.get("VieSchedpp.output.notes","")));
 
@@ -1862,20 +1858,20 @@ void MainWindow::readSettings()
     ui->lineEdit_pi_phone->setText(QString::fromStdString(settings_.get("settings.output.pi.phone","")));
     ui->lineEdit_pi_affiliation->setText(QString::fromStdString(settings_.get("settings.output.pi.affiliation","")));
 
-    ui->lineEdit_contactName->setText(QString::fromStdString(settings_.get("settings.output.contact1.name","")));
-    ui->lineEdit_contactEmail->setText(QString::fromStdString(settings_.get("settings.output.contact1.email","")));
-    ui->lineEdit_contact_phone->setText(QString::fromStdString(settings_.get("settings.output.contact1.phone","")));
-    ui->lineEdit_contact_affiliation->setText(QString::fromStdString(settings_.get("settings.output.contact1.affiliation","")));
+//    ui->lineEdit_contactName->setText(QString::fromStdString(settings_.get("settings.output.contact1.name","")));
+//    ui->lineEdit_contactEmail->setText(QString::fromStdString(settings_.get("settings.output.contact1.email","")));
+//    ui->lineEdit_contact_phone->setText(QString::fromStdString(settings_.get("settings.output.contact1.phone","")));
+//    ui->lineEdit_contact_affiliation->setText(QString::fromStdString(settings_.get("settings.output.contact1.affiliation","")));
 
-    ui->lineEdit_contactName_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.name","")));
-    ui->lineEdit_contactEmail_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.email","")));
-    ui->lineEdit_contact_phone_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.phone","")));
-    ui->lineEdit_contact_affiliation_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.affiliation","")));
+//    ui->lineEdit_contactName_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.name","")));
+//    ui->lineEdit_contactEmail_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.email","")));
+//    ui->lineEdit_contact_phone_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.phone","")));
+//    ui->lineEdit_contact_affiliation_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.affiliation","")));
 
-    ui->lineEdit_contactName_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.name","")));
-    ui->lineEdit_contactEmail_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.email","")));
-    ui->lineEdit_contact_phone_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.phone","")));
-    ui->lineEdit_contact_affiliation_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.affiliation","")));
+//    ui->lineEdit_contactName_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.name","")));
+//    ui->lineEdit_contactEmail_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.email","")));
+//    ui->lineEdit_contact_phone_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.phone","")));
+//    ui->lineEdit_contact_affiliation_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.affiliation","")));
 
     std::string notes = settings_.get<std::string>("settings.output.notes","");
     if(!notes.empty()){
@@ -2308,135 +2304,6 @@ void MainWindow::on_pushButton_12_clicked()
     changeDefaultSettings(path,value,name);
 }
 
-void MainWindow::on_pushButton_31_clicked()
-{
-    QStringList path {"settings.output.pi.name"};
-    QStringList value {ui->lineEdit_PIName->text()};
-    QString name = "Default pi name changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_29_clicked()
-{
-    QStringList path {"settings.output.pi.email"};
-    QStringList value {ui->lineEdit_PIEmail->text()};
-    QString name = "Default pi email changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_32_clicked()
-{
-    QStringList path {"settings.output.pi.phone"};
-    QStringList value {ui->lineEdit_pi_phone->text()};
-    QString name = "Default pi phone changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_33_clicked()
-{
-    QStringList path {"settings.output.pi.affiliation"};
-    QStringList value {ui->lineEdit_pi_affiliation->text()};
-    QString name = "Default pi affiliation changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-
-void MainWindow::on_pushButton_28_clicked()
-{
-    QStringList path {"settings.output.contact1.name"};
-    QStringList value {ui->lineEdit_contactName->text()};
-    QString name = "Default contact name changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_30_clicked()
-{
-    QStringList path {"settings.output.contact1.email"};
-    QStringList value {ui->lineEdit_contactEmail->text()};
-    QString name = "Default contact email changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_34_clicked()
-{
-    QStringList path {"settings.output.contact1.phone"};
-    QStringList value {ui->lineEdit_contact_phone->text()};
-    QString name = "Default contact phone changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_35_clicked()
-{
-    QStringList path {"settings.output.contact1.affiliation"};
-    QStringList value {ui->lineEdit_contact_affiliation->text()};
-    QString name = "Default contact affiliation changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-
-void MainWindow::on_pushButton_37_clicked()
-{
-    QStringList path {"settings.output.contact2.name"};
-    QStringList value {ui->lineEdit_contactName_2->text()};
-    QString name = "Default contact name changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_36_clicked()
-{
-    QStringList path {"settings.output.contact2.email"};
-    QStringList value {ui->lineEdit_contactEmail_2->text()};
-    QString name = "Default contact email changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_38_clicked()
-{
-    QStringList path {"settings.output.contact2.phone"};
-    QStringList value {ui->lineEdit_contact_phone_2->text()};
-    QString name = "Default contact phone changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_39_clicked()
-{
-    QStringList path {"settings.output.contact2.affiliation"};
-    QStringList value {ui->lineEdit_contact_affiliation_2->text()};
-    QString name = "Default contact affiliation changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_42_clicked()
-{
-    QStringList path {"settings.output.contact3.name"};
-    QStringList value {ui->lineEdit_contactName_3->text()};
-    QString name = "Default contact name changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_40_clicked()
-{
-    QStringList path {"settings.output.contact3.email"};
-    QStringList value {ui->lineEdit_contactEmail_3->text()};
-    QString name = "Default contact email changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_43_clicked()
-{
-    QStringList path {"settings.output.contact3.phone"};
-    QStringList value {ui->lineEdit_contact_phone_3->text()};
-    QString name = "Default contact phone changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-void MainWindow::on_pushButton_44_clicked()
-{
-    QStringList path {"settings.output.contact3.affiliation"};
-    QStringList value {ui->lineEdit_contact_affiliation_3->text()};
-    QString name = "Default contact affiliation changed!";
-    changeDefaultSettings(path,value,name);
-}
 
 void MainWindow::on_pushButton_41_clicked()
 {
@@ -2460,3 +2327,78 @@ void MainWindow::on_pushButton_save_multiCore_clicked()
     changeDefaultSettings(path,value,name);
 
 }
+
+
+void MainWindow::on_pushButton_contact_save_clicked()
+{
+    QString function = ui->lineEdit_PITask->text();
+    QString name = ui->lineEdit_PIName->text();
+    QString email = ui->lineEdit_PIEmail->text();
+    QString phone = ui->lineEdit_pi_phone->text();
+    QString affiliation = ui->lineEdit_pi_affiliation ->text();
+
+    boost::property_tree::ptree c;
+    c.add("contact.function", function.toStdString());
+    c.add("contact.name", name.toStdString());
+    c.add("contact.email", email.toStdString());
+    c.add("contact.phone", phone.toStdString());
+    c.add("contact.affiliation", affiliation.toStdString());
+
+    settings_.add_child( "settings.contacts.contact", c.get_child( "contact" ) );
+
+    std::ofstream os;
+    os.open("settings.xml");
+    boost::property_tree::xml_parser::write_xml(os, settings_, boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
+    os.close();
+    QMessageBox::information(this,"Default parameters changed","New contact added!");
+
+}
+
+
+void MainWindow::on_pushButton_contactlist_save_clicked()
+{
+    QTableWidget *tableWidget = ui->tableWidget_contact;
+    std::vector<VieVS::ParameterSettings::Contact> contacts;
+
+
+    for (int i=0; i<tableWidget->rowCount(); ++i){
+        VieVS::ParameterSettings::Contact c;
+
+        c.function = tableWidget->item(i,0)->text().toStdString();
+        c.name = tableWidget->item(i,1)->text().toStdString();
+        c.email = tableWidget->item(i,2)->text().toStdString();
+        c.phone = tableWidget->item(i,3)->text().toStdString();
+        c.affiliation = tableWidget->item(i,4)->text().toStdString();
+
+        contacts.push_back(c);
+    }
+
+    if (settings_.get_child_optional("settings.output.contacts").is_initialized()){
+        settings_.get_child("settings.output").erase("contacts");
+    }
+
+    for(const auto &any : contacts){
+        boost::property_tree::ptree c;
+        c.add("contact.function", any.function);
+        c.add("contact.name", any.name);
+        c.add("contact.email", any.email);
+        c.add("contact.phone", any.phone);
+        c.add("contact.affiliation", any.affiliation);
+
+        settings_.add_child( "settings.output.contacts.contact", c.get_child( "contact" ) );
+    }
+
+    std::ofstream os;
+    os.open("settings.xml");
+    boost::property_tree::xml_parser::write_xml(os, settings_, boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
+    os.close();
+    QMessageBox::information(this,"Default contacts change","Default contacts changed!");
+
+
+
+}
+
+
+
+
+

@@ -446,6 +446,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox_observingMode_bbc,    SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
     connect(ui->comboBox_observingMode_if,     SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
     connect(ui->comboBox_observingMode_tracks, SIGNAL(currentIndexChanged(int)), this, SLOT(changeObservingModeSelection(int)));
+
+    ui->tableWidget_contact->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
 }
 
 MainWindow::~MainWindow()
@@ -7324,4 +7327,105 @@ void MainWindow::on_pushButton_outputSnrTable_clicked()
         QString message = QString("Error writing NGS file\nCheck parsed schedule!");
         QMessageBox::critical(this, "Error writing NGS file", message);
     }
+}
+
+void MainWindow::on_pushButton_contact_add_clicked()
+{
+    QString function = ui->lineEdit_PITask->text();
+    QString name = ui->lineEdit_PIName->text();
+    QString email = ui->lineEdit_PIEmail->text();
+    QString phone = ui->lineEdit_pi_phone->text();
+    QString affiliation = ui->lineEdit_pi_affiliation ->text();
+
+    if(function.isEmpty() && name.isEmpty() && email.isEmpty() && phone.isEmpty() && affiliation.isEmpty()){
+        return;
+    }
+
+    QTableWidget *tableWidget = ui->tableWidget_contact;
+    tableWidget->insertRow (tableWidget->rowCount());
+    tableWidget->setItem   (tableWidget->rowCount()-1, 0, new QTableWidgetItem(function));
+    tableWidget->setItem   (tableWidget->rowCount()-1, 1, new QTableWidgetItem(name));
+    tableWidget->setItem   (tableWidget->rowCount()-1, 2, new QTableWidgetItem(email));
+    tableWidget->setItem   (tableWidget->rowCount()-1, 3, new QTableWidgetItem(phone));
+    tableWidget->setItem   (tableWidget->rowCount()-1, 4, new QTableWidgetItem(affiliation));
+}
+
+void MainWindow::on_pushButton_21_clicked()
+{
+    QTableWidget *tableWidget = ui->tableWidget_contact;
+    for (const auto &any : tableWidget->selectionModel()->selectedRows()){
+        tableWidget->removeRow(any.row());
+    }
+}
+
+
+
+
+void MainWindow::on_pushButton_contact_load_clicked()
+{
+    QDialog *dial = new QDialog(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+
+    QTableWidget *tw = new QTableWidget();
+    tw->setColumnCount(5);
+    tw->setHorizontalHeaderItem(0, new QTableWidgetItem("function"));
+    tw->setHorizontalHeaderItem(1, new QTableWidgetItem("name"));
+    tw->setHorizontalHeaderItem(2, new QTableWidgetItem("email"));
+    tw->setHorizontalHeaderItem(3, new QTableWidgetItem("phone"));
+    tw->setHorizontalHeaderItem(4, new QTableWidgetItem("affiliation"));
+
+    tw->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tw->setSelectionMode(QAbstractItemView::SingleSelection);
+    tw->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+
+    const auto &t = settings_.get_child_optional("settings.contacts");
+    if(t.is_initialized()){
+        for (const auto &any : *t){
+            std::string function = any.second.get("function","");
+            std::string name = any.second.get("name","");
+            std::string email = any.second.get("email","");
+            std::string phone = any.second.get("phone","");
+            std::string affiliation = any.second.get("affiliation","");
+
+            tw->insertRow (tw->rowCount());
+            tw->setItem   (tw->rowCount()-1, 0, new QTableWidgetItem(QString::fromStdString(function)));
+            tw->setItem   (tw->rowCount()-1, 1, new QTableWidgetItem(QString::fromStdString(name)));
+            tw->setItem   (tw->rowCount()-1, 2, new QTableWidgetItem(QString::fromStdString(email)));
+            tw->setItem   (tw->rowCount()-1, 3, new QTableWidgetItem(QString::fromStdString(phone)));
+            tw->setItem   (tw->rowCount()-1, 4, new QTableWidgetItem(QString::fromStdString(affiliation)));
+        }
+    }
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+
+    connect(buttonBox, &QDialogButtonBox::accepted, dial, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, dial, &QDialog::reject);
+
+    mainLayout->addWidget(tw);
+    mainLayout->addWidget(buttonBox);
+
+    dial->setLayout(mainLayout);
+
+    int result = dial->exec();
+
+    if(result == QDialog::Accepted){
+        for (const auto &any : tw->selectionModel()->selectedRows()){
+            int i = any.row();
+            QString function = tw->item(i,0)->text();;
+            QString name = tw->item(i,1)->text();
+            QString email = tw->item(i,2)->text();
+            QString phone = tw->item(i,3)->text();
+            QString affiliation = tw->item(i,4)->text();
+
+            ui->lineEdit_PITask->setText(function);
+            ui->lineEdit_PIName->setText(name);
+            ui->lineEdit_PIEmail->setText(email);
+            ui->lineEdit_pi_phone->setText(phone);
+            ui->lineEdit_pi_affiliation ->setText(affiliation);
+
+        }
+    }
+
+
 }

@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7591,7 +7591,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QTabWidget" name="tabWidget_2">
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="tab_10">
               <attribute name="title">
@@ -7649,62 +7649,141 @@ p, li { white-space: pre-wrap; }
              </widget>
              <widget class="QWidget" name="tab_11">
               <attribute name="title">
-               <string>PI</string>
+               <string>contact</string>
               </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_115">
+              <layout class="QVBoxLayout" name="verticalLayout_116">
                <item>
-                <layout class="QGridLayout" name="gridLayout_5">
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_PIEmail">
+                <layout class="QHBoxLayout" name="horizontalLayout_126">
+                 <item>
+                  <widget class="QTableWidget" name="tableWidget_contact">
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <attribute name="horizontalHeaderCascadingSectionResizes">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                    <bool>false</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>function</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>name</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>email</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>phone</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>affiliation</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_115">
+                   <item>
+                    <widget class="QPushButton" name="pushButton_contactlist_save">
+                     <property name="toolTip">
+                      <string>save contacts</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>save contacts</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_21">
+                     <property name="toolTip">
+                      <string>remove selected</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>remove selected</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_32">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_125">
+                 <item>
+                  <widget class="QLabel" name="label_39">
+                   <property name="text">
+                    <string>function</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_PITask">
                    <property name="toolTip">
-                    <string>project principal investigator email</string>
+                    <string>e.g.: PI, scheduler, correlator, operator...</string>
                    </property>
                    <property name="statusTip">
-                    <string>project principal investigator email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
+                    <string>e.g.: PI, scheduler, correlator, operator...</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="schedulerLabel_2">
+                 <item>
+                  <widget class="QLabel" name="experimentNameLabel_2">
                    <property name="text">
-                    <string>email</string>
+                    <string>name</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_10">
-                   <property name="text">
-                    <string>phone</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_32">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
+                 <item>
                   <widget class="QLineEdit" name="lineEdit_PIName">
                    <property name="toolTip">
-                    <string>project principal investigator name</string>
+                    <string/>
                    </property>
                    <property name="statusTip">
-                    <string>project principal investigator name</string>
+                    <string/>
                    </property>
                    <property name="inputMask">
                     <string/>
@@ -7714,67 +7793,70 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="experimentNameLabel_2">
+                 <item>
+                  <widget class="QLabel" name="schedulerLabel_2">
                    <property name="text">
-                    <string>name</string>
+                    <string>email</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_31">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_PIEmail">
                    <property name="toolTip">
-                    <string>save as default name</string>
+                    <string/>
                    </property>
                    <property name="statusTip">
-                    <string>save as default name</string>
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
                    </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
                   </widget>
                  </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_29">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
+                 <item>
+                  <widget class="QLabel" name="label_10">
                    <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                    <string>phone</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="1">
+                 <item>
                   <widget class="QLineEdit" name="lineEdit_pi_phone"/>
                  </item>
-                 <item row="3" column="0">
+                 <item>
                   <widget class="QLabel" name="label_83">
                    <property name="text">
                     <string>affiliation</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
+                 <item>
                   <widget class="QLineEdit" name="lineEdit_pi_affiliation"/>
                  </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_33">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_contact_add">
                    <property name="toolTip">
-                    <string>save as default email addres</string>
+                    <string>add new contact</string>
                    </property>
                    <property name="statusTip">
-                    <string>save as default email addres</string>
+                    <string>add new contact</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_contact_save">
+                   <property name="toolTip">
+                    <string>save new contact</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>save new contact</string>
                    </property>
                    <property name="text">
                     <string/>
@@ -7782,539 +7864,27 @@ p, li { white-space: pre-wrap; }
                    <property name="icon">
                     <iconset resource="myresources.qrc">
                      <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_contact_load">
+                   <property name="toolTip">
+                    <string>load contact</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>load contact</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
                    </property>
                   </widget>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_35">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_12">
-              <attribute name="title">
-               <string>contact 1</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_116">
-               <item>
-                <layout class="QGridLayout" name="gridLayout_10">
-                 <item row="0" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactName">
-                   <property name="toolTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_39">
-                   <property name="text">
-                    <string>email</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="correlatorLabel_2">
-                   <property name="text">
-                    <string>name</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_30">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactEmail">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_28">
-                   <property name="toolTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_85">
-                   <property name="text">
-                    <string>phone</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_100">
-                   <property name="text">
-                    <string>affiliation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_phone">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_affiliation">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_34">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_35">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_32">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_15">
-              <attribute name="title">
-               <string>contact 2</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_117">
-               <item>
-                <layout class="QGridLayout" name="gridLayout_11">
-                 <item row="0" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactName_2">
-                   <property name="toolTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_101">
-                   <property name="text">
-                    <string>email</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="correlatorLabel_3">
-                   <property name="text">
-                    <string>name</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_36">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactEmail_2">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_37">
-                   <property name="toolTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_102">
-                   <property name="text">
-                    <string>phone</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_103">
-                   <property name="text">
-                    <string>affiliation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_phone_2">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_affiliation_2">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_38">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_39">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_36">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>83</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_16">
-              <attribute name="title">
-               <string>contact 3</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_118">
-               <item>
-                <layout class="QGridLayout" name="gridLayout_12">
-                 <item row="0" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactName_3">
-                   <property name="toolTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_104">
-                   <property name="text">
-                    <string>email</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="correlatorLabel_4">
-                   <property name="text">
-                    <string>name</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_40">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contactEmail_3">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_42">
-                   <property name="toolTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default name</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_105">
-                   <property name="text">
-                    <string>phone</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_106">
-                   <property name="text">
-                    <string>affiliation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_phone_3">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_contact_affiliation_3">
-                   <property name="toolTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>contact person email</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_43">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_44">
-                   <property name="toolTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>save as default email addres</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_37">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>83</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </widget>
@@ -8343,8 +7913,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>639</width>
+             <height>576</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
