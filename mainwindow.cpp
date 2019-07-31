@@ -4177,7 +4177,7 @@ void MainWindow::readStations()
             }
             QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
             QString positionName = split[0];
-            positionName = positionName.toUpper();
+            positionName = positionName;
             positionMap.insert(positionName,split);
         }
         positionFile.close();
@@ -4208,7 +4208,7 @@ void MainWindow::readStations()
                 eqKey = antList.at(14) + "|" +antName;
                 eqKey = eqKey.toUpper();
                 posKey = antList.at(13);
-                posKey = posKey.toUpper();
+//                posKey = posKey.toUpper();
             }else{
                 continue;
             }
