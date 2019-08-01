@@ -160,10 +160,16 @@ void AddGroupDialog::on_buttonBox_accepted()
 {
     if(ui->lineEdit_groupName->text().isEmpty()){
         QMessageBox mb;
-        mb.warning(this,"missing group name","Please add a group name");
-    }else{
-        this->accept();
+        mb.warning(this,"Missing group name","Please add a group name");
+        return;
     }
+    if(ui->listWidget_selected->count() == 0){
+        QMessageBox mb;
+        mb.warning(this,"WARNING:","Nothing selected!");
+        return;
+    }
+
+    this->accept();
 }
 
 void AddGroupDialog::on_pushButton_Save_clicked()
