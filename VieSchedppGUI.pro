@@ -112,6 +112,18 @@ SOURCES += \
     ../VieSchedpp/Scheduler.cpp \
     ../VieSchedpp/VieSchedpp.cpp \
     ../VieSchedpp/Initializer.cpp \
+    ../VieSchedpp/Satellite/libsgp4/CoordGeodetic.cc \
+    ../VieSchedpp/Satellite/libsgp4/Tle.cc \
+    ../VieSchedpp/Satellite/libsgp4/TleException.cc \
+    ../VieSchedpp/Satellite/libsgp4/DateTime.cc \
+    ../VieSchedpp/Satellite/libsgp4/SGP4.cc \
+    ../VieSchedpp/Satellite/libsgp4/OrbitalElements.cc \
+    ../VieSchedpp/Satellite/libsgp4/Observer.cc \
+    ../VieSchedpp/Satellite/libsgp4/Eci.cc \
+    ../VieSchedpp/Satellite/SatelliteMain.cpp \
+    ../VieSchedpp/Satellite/Satellite.cpp \
+    ../VieSchedpp/Satellite/SatelliteObs.cpp \
+    ../VieSchedpp/Satellite/SatelliteOutput.cpp \
     main.cpp \
     mainwindow.cpp \
     Delegates/comboboxdelegate.cpp \
@@ -143,7 +155,8 @@ SOURCES += \
     Utility/qtutil.cpp \
     Utility/statistics.cpp \
     secondaryGUIs/rendersetup.cpp \
-    mainwindows_save_and_load.cpp
+    mainwindows_save_and_load.cpp \
+    Satellite/satellitescheduling.cpp
 
 HEADERS += \
     ../VieSchedpp/Input/LogParser.h \
@@ -211,6 +224,18 @@ HEADERS += \
     ../VieSchedpp/Scheduler.h \
     ../VieSchedpp/VieSchedpp.h \
     ../VieSchedpp/Initializer.h \
+    ../VieSchedpp/Satellite/SatelliteObs.h \
+    ../VieSchedpp/Satellite/Satellite.h \
+    ../VieSchedpp/Satellite/SatelliteMain.h \
+    ../VieSchedpp/Satellite/libsgp4/Eci.h  \
+    ../VieSchedpp/Satellite/libsgp4/Observer.h  \
+    ../VieSchedpp/Satellite/libsgp4/OrbitalElements.h \
+    ../VieSchedpp/Satellite/libsgp4/SGP4.h \
+    ../VieSchedpp/Satellite/libsgp4/DateTime.h \
+    ../VieSchedpp/Satellite/libsgp4/TleException.h \
+    ../VieSchedpp/Satellite/libsgp4/Tle.h \
+    ../VieSchedpp/Satellite/libsgp4/CoordGeodetic.h \
+    ../VieSchedpp/Satellite/SatelliteOutput.h \
     Delegates/comboboxdelegate.h \
     Delegates/doublespinboxdelegate.h \
     Delegates/spinboxdelegate.h \
@@ -240,7 +265,8 @@ HEADERS += \
     Utility/qtutil.h \
     mainwindow.h \
     Utility/statistics.h \
-    secondaryGUIs/rendersetup.h
+    secondaryGUIs/rendersetup.h \
+    Satellite/satellitescheduling.h
 
 FORMS += \
     mainwindow.ui \
@@ -258,7 +284,8 @@ FORMS += \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
     secondaryGUIs/vieschedpp_analyser.ui \
-    secondaryGUIs/rendersetup.ui
+    secondaryGUIs/rendersetup.ui \
+    Satellite/satellitescheduling.ui
 
 RESOURCES += \
         myresources.qrc

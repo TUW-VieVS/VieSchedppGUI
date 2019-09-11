@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1054,7 +1054,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>709</width>
              <height>750</height>
             </rect>
            </property>
@@ -2838,8 +2838,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>891</width>
+             <height>668</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -7913,8 +7913,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>639</width>
-             <height>576</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -10297,153 +10297,44 @@ p, li { white-space: pre-wrap; }
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_84">
         <item>
-         <widget class="QGroupBox" name="groupBox_highImpactAzEl">
-          <property name="toolTip">
-           <string>fix high impact scans</string>
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="statusTip">
-           <string>fix high impact scans</string>
-          </property>
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;This is more or less experimental. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;unclear&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if it has a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;positive effect &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;on the schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This option will be improved in future releases. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The idea is that you start with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fixing the most important scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, no matter when they are. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Afterward, you are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;filling the gaps between those &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;scans. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="title">
-           <string>fix high impact scans</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_83">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_111" stretch="1,3">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_81">
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>Satellites</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_117">
+            <item>
+             <widget class="QGroupBox" name="groupBox_34">
+              <property name="title">
+               <string>fix satellite scans</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_119">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_109">
+                <layout class="QHBoxLayout" name="horizontalLayout_127">
                  <item>
-                  <widget class="QComboBox" name="comboBox_highImpactStation">
-                   <property name="toolTip">
-                    <string>select stations</string>
+                  <widget class="QSpinBox" name="spinBox_satelliteScansFixed">
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
-                   <property name="statusTip">
-                    <string>select stations</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_addGroupStationHighImpactAzEl">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>add new station group</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>add new station group</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QFormLayout" name="formLayout_20">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_76">
-                   <property name="text">
-                    <string>azimuth</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactAzimuth">
-                   <property name="toolTip">
-                    <string>target azimuth in degrees</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>target azimuth in degrees</string>
+                   <property name="buttonSymbols">
+                    <enum>QAbstractSpinBox::NoButtons</enum>
                    </property>
                    <property name="suffix">
-                    <string> [deg]</string>
-                   </property>
-                   <property name="maximum">
-                    <double>360.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>5.000000000000000</double>
+                    <string> satellite scans fixed</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_77">
-                   <property name="text">
-                    <string>elevation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactElevation">
-                   <property name="toolTip">
-                    <string>target elevation in degrees</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>target elevation in degrees</string>
-                   </property>
-                   <property name="suffix">
-                    <string> [deg]</string>
-                   </property>
-                   <property name="minimum">
-                    <double>0.000000000000000</double>
-                   </property>
-                   <property name="maximum">
-                    <double>90.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>5.000000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>0.000000000000000</double>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_81">
-                   <property name="text">
-                    <string>margin</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactMargin">
-                   <property name="toolTip">
-                    <string>target azimuth elevation margin for high impact scan</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>target azimuth elevation margin for high impact scan</string>
-                   </property>
-                   <property name="suffix">
-                    <string> [deg]</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_107">
                  <item>
-                  <spacer name="horizontalSpacer_3">
+                  <spacer name="horizontalSpacer_61">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -10456,75 +10347,376 @@ p, li { white-space: pre-wrap; }
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_addHighImpactAzEl">
-                   <property name="toolTip">
-                    <string>add new high impact condition</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>add new high impact condition</string>
-                   </property>
+                  <widget class="QPushButton" name="pushButton_runSatelliteScheduler">
                    <property name="text">
-                    <string>add</string>
+                    <string> run manual satellite scheduler</string>
                    </property>
                    <property name="icon">
                     <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                     <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <spacer name="verticalSpacer_27">
+                <spacer name="verticalSpacer_35">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
                    <width>20</width>
-                   <height>40</height>
+                   <height>586</height>
                   </size>
                  </property>
                 </spacer>
                </item>
               </layout>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_82">
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_15">
+           <attribute name="title">
+            <string>High Impact</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_118">
+            <item>
+             <widget class="QGroupBox" name="groupBox_highImpactAzEl">
+              <property name="toolTip">
+               <string>fix high impact scans</string>
+              </property>
+              <property name="statusTip">
+               <string>fix high impact scans</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;This is more or less experimental. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;unclear&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if it has a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;positive effect &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;on the schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This option will be improved in future releases. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The idea is that you start with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fixing the most important scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, no matter when they are. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Afterward, you are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;filling the gaps between those &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;scans. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="title">
+               <string>fix high impact scans</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_83">
                <item>
-                <widget class="QTreeWidget" name="treeWidget_highImpactAzEl">
-                 <property name="toolTip">
-                  <string>list of all high impact conditions</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>list of all high impact conditions</string>
-                 </property>
-                 <column>
-                  <property name="text">
-                   <string>member</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>azimuth [deg]</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>elevation [deg]</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>margin [deg]</string>
-                  </property>
-                 </column>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_111" stretch="1,3">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_81">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_109">
+                     <item>
+                      <widget class="QComboBox" name="comboBox_highImpactStation">
+                       <property name="toolTip">
+                        <string>select stations</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>select stations</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_addGroupStationHighImpactAzEl">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>add new station group</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>add new station group</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_20">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_76">
+                       <property name="text">
+                        <string>azimuth</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactAzimuth">
+                       <property name="toolTip">
+                        <string>target azimuth in degrees</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>target azimuth in degrees</string>
+                       </property>
+                       <property name="suffix">
+                        <string> [deg]</string>
+                       </property>
+                       <property name="maximum">
+                        <double>360.000000000000000</double>
+                       </property>
+                       <property name="singleStep">
+                        <double>5.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_77">
+                       <property name="text">
+                        <string>elevation</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactElevation">
+                       <property name="toolTip">
+                        <string>target elevation in degrees</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>target elevation in degrees</string>
+                       </property>
+                       <property name="suffix">
+                        <string> [deg]</string>
+                       </property>
+                       <property name="minimum">
+                        <double>0.000000000000000</double>
+                       </property>
+                       <property name="maximum">
+                        <double>90.000000000000000</double>
+                       </property>
+                       <property name="singleStep">
+                        <double>5.000000000000000</double>
+                       </property>
+                       <property name="value">
+                        <double>0.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_81">
+                       <property name="text">
+                        <string>margin</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QDoubleSpinBox" name="doubleSpinBox_highImpactMargin">
+                       <property name="toolTip">
+                        <string>target azimuth elevation margin for high impact scan</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>target azimuth elevation margin for high impact scan</string>
+                       </property>
+                       <property name="suffix">
+                        <string> [deg]</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_107">
+                     <item>
+                      <spacer name="horizontalSpacer_3">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_addHighImpactAzEl">
+                       <property name="toolTip">
+                        <string>add new high impact condition</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>add new high impact condition</string>
+                       </property>
+                       <property name="text">
+                        <string>add</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_27">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_82">
+                   <item>
+                    <widget class="QTreeWidget" name="treeWidget_highImpactAzEl">
+                     <property name="toolTip">
+                      <string>list of all high impact conditions</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>list of all high impact conditions</string>
+                     </property>
+                     <column>
+                      <property name="text">
+                       <string>member</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>azimuth [deg]</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>elevation [deg]</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>margin [deg]</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_108">
+                     <item>
+                      <spacer name="horizontalSpacer_41">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_removeHighImpactAzEl">
+                       <property name="toolTip">
+                        <string>remove selected high impact condition</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>remove selected high impact condition</string>
+                       </property>
+                       <property name="text">
+                        <string>remove selected</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_108">
+                <layout class="QHBoxLayout" name="horizontalLayout_110">
                  <item>
-                  <spacer name="horizontalSpacer_41">
+                  <layout class="QFormLayout" name="formLayout_21">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_78">
+                     <property name="text">
+                      <string>checking interval</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QSpinBox" name="spinBox_highImpactInterval">
+                     <property name="toolTip">
+                      <string>check interval for high impact scans</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>check interval for high impact scans</string>
+                     </property>
+                     <property name="suffix">
+                      <string> [s]</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>86400</number>
+                     </property>
+                     <property name="singleStep">
+                      <number>60</number>
+                     </property>
+                     <property name="value">
+                      <number>60</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_79">
+                     <property name="text">
+                      <string>min time between high priority scans</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="spinBox_highImpactMinRepeat">
+                     <property name="toolTip">
+                      <string>minimum time between two high impact scans</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>minimum time between two high impact scans</string>
+                     </property>
+                     <property name="suffix">
+                      <string> [s]</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>86400</number>
+                     </property>
+                     <property name="singleStep">
+                      <number>60</number>
+                     </property>
+                     <property name="value">
+                      <number>1800</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_44">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -10536,128 +10728,26 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </spacer>
                  </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_removeHighImpactAzEl">
-                   <property name="toolTip">
-                    <string>remove selected high impact condition</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>remove selected high impact condition</string>
-                   </property>
-                   <property name="text">
-                    <string>remove selected</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </item>
-              </layout>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_110">
-             <item>
-              <layout class="QFormLayout" name="formLayout_21">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_78">
-                 <property name="text">
-                  <string>checking interval</string>
+               <item>
+                <spacer name="verticalSpacer_28">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
                  </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QSpinBox" name="spinBox_highImpactInterval">
-                 <property name="toolTip">
-                  <string>check interval for high impact scans</string>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>287</height>
+                  </size>
                  </property>
-                 <property name="statusTip">
-                  <string>check interval for high impact scans</string>
-                 </property>
-                 <property name="suffix">
-                  <string> [s]</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>86400</number>
-                 </property>
-                 <property name="singleStep">
-                  <number>60</number>
-                 </property>
-                 <property name="value">
-                  <number>60</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_79">
-                 <property name="text">
-                  <string>min time between high priority scans</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QSpinBox" name="spinBox_highImpactMinRepeat">
-                 <property name="toolTip">
-                  <string>minimum time between two high impact scans</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>minimum time between two high impact scans</string>
-                 </property>
-                 <property name="suffix">
-                  <string> [s]</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>86400</number>
-                 </property>
-                 <property name="singleStep">
-                  <number>60</number>
-                 </property>
-                 <property name="value">
-                  <number>1800</number>
-                 </property>
-                </widget>
+                </spacer>
                </item>
               </layout>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_44">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_28">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>287</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>

@@ -7429,3 +7429,29 @@ void MainWindow::on_pushButton_contact_load_clicked()
 
 
 }
+
+void MainWindow::on_pushButton_runSatelliteScheduler_clicked()
+{
+
+    QString pathAntenna = ui->lineEdit_pathAntenna->text();
+    QString pathEquip = ui->lineEdit_pathEquip->text();
+    QString pathPosition = ui->lineEdit_pathPosition->text();
+    QString pathMask = ui->lineEdit_pathMask->text();
+
+    QDateTime startTime = ui->dateTimeEdit_sessionStart->dateTime();
+    double dur = ui->doubleSpinBox_sessionDuration->value();
+    int sec = dur*3600;
+    QDateTime endTime = startTime.addSecs(sec);
+
+    QStringList stations;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        QString txt = selectedStationModel->index(i,0).data().toString();
+        stations.append(txt);
+    }
+    if (stations.isEmpty()){
+        QMessageBox::information(this,"select stations first","Please select your station network before your start with satellite observations");
+    }else{
+        SatelliteScheduling *sat = new SatelliteScheduling(pathAntenna, pathEquip, pathPosition, pathMask, startTime, endTime, stations, this);
+        sat->show();
+    }
+}

@@ -76,6 +76,7 @@
 #include "Utility/multicolumnsortfilterproxymodel.h"
 #include "secondaryGUIs/obsmodedialog.h"
 #include "Utility/statistics.h"
+#include "Satellite/satellitescheduling.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -542,6 +543,8 @@ private slots:
     void on_pushButton_21_clicked();
 
     void on_pushButton_contact_load_clicked();
+
+    void on_pushButton_runSatelliteScheduler_clicked();
 
 private:
     Ui::MainWindow *ui;
