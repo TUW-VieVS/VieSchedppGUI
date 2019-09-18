@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,2,3,0">
@@ -32,7 +32,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_inputPath"/>
+           <widget class="QLineEdit" name="lineEdit_inputPath">
+            <property name="text">
+             <string>/home/mschartn/programming/CATALOGS/satellites.txt</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_inputBrowse">
@@ -80,25 +84,10 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QTreeWidget" name="treeWidget_available">
+             <widget class="QTreeView" name="treeView_available">
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
-              <column>
-               <property name="text">
-                <string>number</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>epoch</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string/>
-               </property>
-              </column>
              </widget>
             </item>
             <item>
@@ -183,7 +172,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_map">
+         <layout class="QHBoxLayout" name="horizontalLayout_map">
           <item>
            <widget class="QGroupBox" name="groupBox_3">
             <property name="title">
@@ -374,6 +363,13 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>0 scans selected</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -401,10 +397,101 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_3">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_9" stretch="2,3">
+          <item>
+           <widget class="QGroupBox" name="groupBox_6">
+            <property name="title">
+             <string>general information</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>session start time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QDateTimeEdit" name="dateTimeEdit_sessionStart">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>session end time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDateTimeEdit" name="dateTimeEdit_sessionEnd">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>list of stations</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QListWidget" name="listWidget_listOfStations"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_7">
+            <property name="title">
+             <string>selected scans</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QTreeView" name="treeView_listOfSelectedScans"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -416,18 +503,29 @@
    </property>
    <widget class="QMenu" name="menuSelect">
     <property name="title">
-     <string>Input</string>
+     <string>Browse</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuAdjust">
-    <property name="title">
-     <string>Select</string>
-    </property>
+    <addaction name="actionSatellite"/>
+    <addaction name="actionScan"/>
+    <addaction name="actionInfo"/>
    </widget>
    <addaction name="menuSelect"/>
-   <addaction name="menuAdjust"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSatellite">
+   <property name="text">
+    <string>Satellite</string>
+   </property>
+  </action>
+  <action name="actionScan">
+   <property name="text">
+    <string>Scan</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="text">
+    <string>Summary</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../myresources.qrc"/>
