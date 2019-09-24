@@ -338,7 +338,11 @@ void SatelliteScheduling::on_treeWidget_template_itemClicked(QTreeWidgetItem *it
         t->setCellWidget(i,0,checkBoxWidget);
 
         QString stationName = child->text(4);
-        t->setItem(i,1,new QTableWidgetItem(QIcon(":/icons/icons/station.png"),stationName));
+        QTableWidgetItem *staItem = new QTableWidgetItem(QIcon(":/icons/icons/station.png"),stationName);
+        staItem->setFlags(staItem->flags() ^ Qt::ItemIsEditable);
+        t->setItem(i,1,staItem);
+
+
 
         QDateTimeEdit *start = new QDateTimeEdit();
         QDateTimeEdit *end = new QDateTimeEdit();
