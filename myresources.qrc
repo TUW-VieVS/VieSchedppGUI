@@ -75,6 +75,7 @@
         <file>icons/arrow-left.png</file>
         <file>icons/insert-image-2.png</file>
         <file>icons/camera.png</file>
+        <file>icons/satellite.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>

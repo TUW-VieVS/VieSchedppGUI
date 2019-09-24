@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,2,3,0">
@@ -34,7 +34,7 @@
           <item>
            <widget class="QLineEdit" name="lineEdit_inputPath">
             <property name="text">
-             <string>/home/mschartn/programming/CATALOGS/satellites.txt</string>
+             <string>../CATALOGS/satellites.txt</string>
             </property>
            </widget>
           </item>
@@ -61,7 +61,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButton_savePath">
             <property name="text">
              <string/>
             </property>
@@ -244,6 +244,13 @@
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton_showConstant">
+            <property name="text">
+             <string>show constant times</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_process">
             <property name="text">
              <string>process</string>
@@ -285,7 +292,12 @@
              </column>
              <column>
               <property name="text">
-               <string>stations</string>
+               <string>duration</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>station(s)</string>
               </property>
              </column>
             </widget>
@@ -302,9 +314,6 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_7"/>
-             </item>
-             <item>
               <widget class="QLabel" name="label_3">
                <property name="text">
                 <string>Scan to satellite</string>
@@ -314,7 +323,7 @@
              <item>
               <widget class="QLabel" name="label_adjustSatName">
                <property name="text">
-                <string>sat01</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -335,6 +344,14 @@
            </item>
            <item>
             <widget class="QTableWidget" name="tableWidget_adjust">
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string/>
+              </property>
+             </column>
              <column>
               <property name="text">
                <string>station</string>
@@ -352,7 +369,7 @@
              </column>
              <column>
               <property name="text">
-               <string>remove</string>
+               <string>dur</string>
               </property>
              </column>
             </widget>
@@ -393,14 +410,21 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_showAll">
+            <property name="text">
+             <string>show all</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_3">
-       <layout class="QVBoxLayout" name="verticalLayout_11">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_9" stretch="2,3">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
            <widget class="QGroupBox" name="groupBox_6">
             <property name="title">
@@ -455,35 +479,62 @@
                </item>
               </layout>
              </item>
-             <item>
-              <spacer name="horizontalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox_7">
+           <widget class="QGroupBox" name="groupBox_8">
             <property name="title">
-             <string>selected scans</string>
+             <string>constant times</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_10">
-             <item>
-              <widget class="QTreeView" name="treeView_listOfSelectedScans"/>
+            <layout class="QFormLayout" name="formLayout_2">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>field system</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinBox_fs">
+               <property name="value">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox_preob">
+               <property name="value">
+                <number>10</number>
+               </property>
+               <property name="displayIntegerBase">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>preob</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>selected scans</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QTreeView" name="treeView_listOfSelectedScans"/>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>

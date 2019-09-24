@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>5</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1054,7 +1054,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
+             <width>932</width>
              <height>750</height>
             </rect>
            </property>
@@ -10353,7 +10353,7 @@ p, li { white-space: pre-wrap; }
                    </property>
                    <property name="icon">
                     <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
+                     <normaloff>:/icons/icons/satellite.png</normaloff>:/icons/icons/satellite.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -12510,7 +12510,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <action name="actionFix_High_Impact_Scans">
    <property name="icon">
     <iconset resource="myresources.qrc">
-     <normaloff>:/icons/icons/emblem-important-4.png</normaloff>:/icons/icons/emblem-important-4.png</iconset>
+     <normaloff>:/icons/icons/satellite.png</normaloff>:/icons/icons/satellite.png</iconset>
    </property>
    <property name="text">
     <string>Fix High Impact Scans</string>

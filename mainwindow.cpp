@@ -7451,7 +7451,7 @@ void MainWindow::on_pushButton_runSatelliteScheduler_clicked()
     if (stations.isEmpty()){
         QMessageBox::information(this,"select stations first","Please select your station network before your start with satellite observations");
     }else{
-        SatelliteScheduling *sat = new SatelliteScheduling(pathAntenna, pathEquip, pathPosition, pathMask, startTime, endTime, stations, this);
+        SatelliteScheduling *sat = new SatelliteScheduling(pathAntenna, pathEquip, pathPosition, pathMask, startTime, endTime, stations, &settings_, this);
         sat->show();
     }
 }
