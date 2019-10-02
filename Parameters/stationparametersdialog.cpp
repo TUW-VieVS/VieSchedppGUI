@@ -65,6 +65,7 @@ void stationParametersDialog::addDefaultParameters(VieVS::ParameterSettings::Par
     ui->spinBox_minScanTime->setValue(*d.minScan);
     ui->spinBox_maxScanTime->setValue(*d.maxScan);
     ui->spinBox_maxWaitTime->setValue(*d.maxWait);
+    ui->spinBox_minSlewTime->setValue(*d.minSlewtime);
     ui->spinBox_maxSlewTime->setValue(*d.maxSlewtime);
     ui->doubleSpinBox_minSlewDistance->setValue(*d.minSlewDistance);
     ui->doubleSpinBox_maxSlewDistance->setValue(*d.maxSlewDistance);
@@ -88,6 +89,8 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->checkBox_minElevation->setEnabled(false);
         ui->checkBox_maxWaitTime->setChecked(true);
         ui->checkBox_maxWaitTime->setEnabled(false);
+        ui->checkBox_minSlewTime->setChecked(true);
+        ui->checkBox_minSlewTime->setEnabled(false);
         ui->checkBox_maxSlewTime->setChecked(true);
         ui->checkBox_maxSlewTime->setEnabled(false);
         ui->checkBox_maxSlewDistance->setChecked(true);
@@ -142,6 +145,13 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
         ui->groupBox_tagalong->setChecked(false);
     }
 
+    if(sp.minSlewtime.is_initialized()){
+        ui->spinBox_minSlewTime->setValue(*sp.minSlewtime);
+        ui->checkBox_minSlewTime->setChecked(true);
+    }else{
+        ui->spinBox_minSlewTime->setValue(*dp.minSlewtime);
+        ui->checkBox_minSlewTime->setChecked(false);
+    }
     if(sp.maxSlewtime.is_initialized()){
         ui->spinBox_maxSlewTime->setValue(*sp.maxSlewtime);
         ui->checkBox_maxSlewTime->setChecked(true);
@@ -332,6 +342,9 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
 
     }
 
+    if(ui->spinBox_minSlewTime->isEnabled()){
+        para.minSlewtime = ui->spinBox_minSlewTime->value();
+    }
     if(ui->spinBox_maxSlewTime->isEnabled()){
         para.maxSlewtime = ui->spinBox_maxSlewTime->value();
     }

@@ -715,6 +715,12 @@ void MainWindow::displayStationSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("min scan time [s]"));
         ++r;
     }
+    if(para.minSlewtime.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.minSlewtime)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("min slew time [s]"));
+        ++r;
+    }
     if(para.maxSlewtime.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxSlewtime)));
@@ -1791,6 +1797,7 @@ void MainWindow::defaultParameters()
     sta.availableForFillinmode = true;
     sta.maxScan = 600;
     sta.minScan = 30;
+    sta.minSlewtime = 0;
     sta.maxSlewtime = 600;
     sta.maxSlewDistance = 175;
     sta.minSlewDistance = 0;
@@ -1814,6 +1821,8 @@ void MainWindow::defaultParameters()
                         sta.minScan = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxScan") {
                         sta.maxScan = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "minSlewtime") {
+                        sta.minSlewtime = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxSlewtime") {
                         sta.maxSlewtime = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxSlewDistance") {
@@ -6146,7 +6155,8 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                                    "fillinmode influence on scan selection",
                                    "fillinmode a posteriori"};
 
-            QStringList row2intDialog {"max slew time",
+            QStringList row2intDialog {"min slew time",
+                                       "max slew time",
                                        "max wait time",
                                        "max scan time",
                                        "min scan time",

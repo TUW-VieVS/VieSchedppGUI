@@ -376,7 +376,8 @@ QString MainWindow::writeXML()
                                          "fillinmode influence on scan selection",
                                          "fillinmode a posteriori"};
 
-            QStringList parameter2double {"max slew time",
+            QStringList parameter2double {"min slew time",
+                                          "max slew time",
                                           "max wait time",
                                           "max scan time",
                                           "min scan time",
@@ -423,6 +424,8 @@ QString MainWindow::writeXML()
 
             if(parameterIcon.pixmap(16,16).toImage() == icSta.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icStaGrp.pixmap(16,16).toImage()){
                 if(parameter == "weight"){
+                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+                }else if(parameter == "min slew time"){
                     ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
                 }else if(parameter == "max slew time"){
                     ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
@@ -1894,6 +1897,7 @@ void MainWindow::createDefaultParameterSettings()
     VieVS::ParameterSettings::ParametersStations sta;
     sta.maxScan = 600;
     sta.minScan = 30;
+    sta.minSlewtime = 0;
     sta.maxSlewtime = 600;
     sta.maxSlewDistance = 175;
     sta.minSlewDistance = 0;

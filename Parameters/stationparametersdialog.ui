@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>624</height>
+    <height>656</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
        </property>
       </widget>
@@ -68,7 +68,7 @@
         <string> load</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
        </property>
       </widget>
@@ -88,7 +88,7 @@
         <string> save</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
        </property>
       </widget>
@@ -294,7 +294,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QCheckBox" name="checkBox_maxSlewTime">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -304,7 +304,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <widget class="QSpinBox" name="spinBox_maxSlewTime">
             <property name="enabled">
              <bool>false</bool>
@@ -332,7 +332,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QCheckBox" name="checkBox_maxWaitTime">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -342,7 +342,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="5" column="1">
            <widget class="QSpinBox" name="spinBox_maxWaitTime">
             <property name="enabled">
              <bool>false</bool>
@@ -370,7 +370,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="6" column="0">
            <widget class="QCheckBox" name="checkBox_minElevation">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -380,7 +380,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="6" column="1">
            <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
             <property name="enabled">
              <bool>false</bool>
@@ -402,7 +402,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QCheckBox" name="checkBox_minSlewDistance">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -412,7 +412,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QCheckBox" name="checkBox_maxSlewDistance">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -422,7 +422,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="3" column="1">
            <widget class="QDoubleSpinBox" name="doubleSpinBox_minSlewDistance">
             <property name="enabled">
              <bool>false</bool>
@@ -447,7 +447,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QDoubleSpinBox" name="doubleSpinBox_maxSlewDistance">
             <property name="enabled">
              <bool>false</bool>
@@ -475,7 +475,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
             <property name="whatsThis">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -485,7 +485,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="7" column="1">
            <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
             <property name="enabled">
              <bool>false</bool>
@@ -504,6 +504,38 @@
             </property>
             <property name="value">
              <number>9999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBox_minSlewTime">
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>min slew time</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBox_minSlewTime">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="statusTip">
+             <string>minimum required slew time to next source in seconds</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="suffix">
+             <string> [s]</string>
+            </property>
+            <property name="maximum">
+             <number>999</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
             </property>
            </widget>
           </item>
@@ -807,7 +839,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="myresources.qrc"/>
+  <include location="../myresources.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -833,12 +865,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
-     <y>326</y>
+     <x>95</x>
+     <y>325</y>
     </hint>
     <hint type="destinationlabel">
-     <x>335</x>
-     <y>329</y>
+     <x>358</x>
+     <y>325</y>
     </hint>
    </hints>
   </connection>
@@ -849,8 +881,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>358</y>
+     <x>104</x>
+     <y>381</y>
     </hint>
     <hint type="destinationlabel">
      <x>358</x>
@@ -897,12 +929,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>142</x>
-     <y>379</y>
+     <x>165</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
-     <x>254</x>
-     <y>382</y>
+     <x>358</x>
+     <y>409</y>
     </hint>
    </hints>
   </connection>
@@ -913,12 +945,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>137</x>
-     <y>411</y>
+     <x>160</x>
+     <y>437</y>
     </hint>
     <hint type="destinationlabel">
-     <x>242</x>
-     <y>414</y>
+     <x>358</x>
+     <y>437</y>
     </hint>
    </hints>
   </connection>
@@ -935,6 +967,22 @@
     <hint type="destinationlabel">
      <x>244</x>
      <y>509</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_minSlewTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_minSlewTime</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>344</y>
     </hint>
    </hints>
   </connection>

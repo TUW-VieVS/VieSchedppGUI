@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -8877,6 +8877,11 @@ p, li { white-space: pre-wrap; }
                       <item>
                        <property name="text">
                         <string>weight</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>min slew time</string>
                        </property>
                       </item>
                       <item>

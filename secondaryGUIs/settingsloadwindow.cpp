@@ -213,6 +213,12 @@ void settingsLoadWindow::refreshList(QListWidgetItem *itm)
             t->setVerticalHeaderItem(r,new QTableWidgetItem("min scan time [s]"));
             ++r;
         }
+        if(para.minSlewtime.is_initialized()){
+            t->insertRow(r);
+            t->setItem(r,0,new QTableWidgetItem(QString::number(*para.minSlewtime)));
+            t->setVerticalHeaderItem(r,new QTableWidgetItem("min slew time [s]"));
+            ++r;
+        }
         if(para.maxSlewtime.is_initialized()){
             t->insertRow(r);
             t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxSlewtime)));
