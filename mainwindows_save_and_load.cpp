@@ -25,6 +25,67 @@ QString MainWindow::writeXML()
     para = VieVS::ParameterSettings();
     para.software(QApplication::applicationName().toStdString(), QApplication::applicationVersion().toStdString());
 
+    std::string experimentName = ui->experimentNameLineEdit->text().toStdString();
+
+    QString path = ui->lineEdit_outputPath->text();
+    path = path.simplified();
+    path.replace("\\\\","/");
+    path.replace("\\","/");
+    if(!path.isEmpty() && path.right(1) != "/"){
+        path.append("/");
+    }
+    QString NGSpath;
+    bool NGS = false;
+    if(ui->checkBox_redirectNGS->isChecked()){
+        NGSpath = ui->lineEdit_outputNGS->text().simplified();
+        NGSpath.replace("\\\\","/");
+        NGSpath.replace("\\","/");
+        if(!NGSpath.isEmpty() && NGSpath.right(1) != "/"){
+            NGSpath.append("/");
+        }
+        if(NGSpath != path){
+            NGS = true;
+        }
+    }
+
+
+    QDir mainDir(path);
+    if(!path.isEmpty() && !mainDir.exists() ){
+        QDir().mkpath(path);
+    }
+    if(NGS){
+        QDir mainDirNGS(NGSpath);
+        if( !mainDirNGS.exists() ){
+            QDir().mkpath(NGSpath);
+        }
+    }
+
+    QString ename = QString::fromStdString(experimentName).trimmed();
+    ename.simplified();
+    ename.replace(" ","_");
+    if(ui->checkBox_outputAddTimestamp->isChecked()){
+        QString dateTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+        path.append(dateTime).append("_").append(ename).append("/");
+        if(NGS){
+            NGSpath.append(dateTime).append("_").append(ename).append("/");
+        }
+    }else{
+        path.append(ename).append("/");
+        if(NGS){
+            NGSpath.append(ename).append("/");
+        }
+    }
+    QDir mydir(path);
+    if(! mydir.exists() ){
+        QDir().mkpath(path);
+    }
+    if(NGS){
+        QDir mydir(NGSpath);
+        if(! mydir.exists() ){
+            QDir().mkpath(NGSpath);
+        }
+    }
+
     boost::posix_time::ptime now = boost::posix_time::second_clock::local_time();
     std::string name = ui->nameLineEdit->text().toStdString();
     if(name.empty()){
@@ -95,7 +156,6 @@ QString MainWindow::writeXML()
     }else if(ui->radioButton_alignIndividual->isChecked()){
         scanAlignment = "individual";
     }
-    std::string experimentName = ui->experimentNameLineEdit->text().toStdString();
 
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
@@ -138,9 +198,7 @@ QString MainWindow::writeXML()
     bool ngs = ui->checkBox_outputNGSFile->isChecked();
     std::string NGS_directory = "";
     if(ui->checkBox_redirectNGS->isChecked()){
-        if(ui->lineEdit_outputNGS->text() != ui->lineEdit_outputPath->text()){
-            NGS_directory = ui->lineEdit_outputNGS->text().simplified().toStdString();
-        }
+        NGS_directory = NGSpath.toStdString();
     }
 
     bool skd = ui->checkBox_outputSkdFile->isChecked();
@@ -645,64 +703,7 @@ QString MainWindow::writeXML()
     }
 
 
-    QString path = ui->lineEdit_outputPath->text();
-    path = path.simplified();
-    path.replace("\\\\","/");
-    path.replace("\\","/");
-    if(!path.isEmpty() && path.right(1) != "/"){
-        path.append("/");
-    }
-    QString NGSpath;
-    bool NGS = false;
-    if(ui->checkBox_redirectNGS->isChecked()){
-        NGSpath = ui->lineEdit_outputNGS->text().simplified();
-        NGSpath.replace("\\\\","/");
-        NGSpath.replace("\\","/");
-        if(!NGSpath.isEmpty() && NGSpath.right(1) != "/"){
-            NGSpath.append("/");
-        }
-        if(NGSpath != path){
-            NGS = true;
-        }
-    }
 
-
-    QDir mainDir(path);
-    if(!path.isEmpty() && !mainDir.exists() ){
-        QDir().mkpath(path);
-    }
-    if(NGS){
-        QDir mainDirNGS(NGSpath);
-        if( !mainDirNGS.exists() ){
-            QDir().mkpath(NGSpath);
-        }
-    }
-
-    QString ename = QString::fromStdString(experimentName).trimmed();
-    ename.simplified();
-    ename.replace(" ","_");
-    if(ui->checkBox_outputAddTimestamp->isChecked()){
-        QString dateTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
-        path.append(dateTime).append("_").append(ename).append("/");
-        if(NGS){
-            NGSpath.append(dateTime).append("_").append(ename).append("/");
-        }
-    }else{
-        path.append(ename).append("/");
-        if(NGS){
-            NGSpath.append(ename).append("/");
-        }
-    }
-    QDir mydir(path);
-    if(! mydir.exists() ){
-        QDir().mkpath(path);
-    }
-    if(NGS){
-        QDir mydir(NGSpath);
-        if(! mydir.exists() ){
-            QDir().mkpath(NGSpath);
-        }
-    }
 
     path.append("VieSchedpp.xml");
     para.write(path.toStdString());
