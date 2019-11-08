@@ -112,6 +112,7 @@ SOURCES += \
     ../VieSchedpp/Scheduler.cpp \
     ../VieSchedpp/VieSchedpp.cpp \
     ../VieSchedpp/Initializer.cpp \
+    ../VieSchedpp/Algorithm/FocusCorners.cpp \
     main.cpp \
     mainwindow.cpp \
     Delegates/comboboxdelegate.cpp \
@@ -211,6 +212,7 @@ HEADERS += \
     ../VieSchedpp/Scheduler.h \
     ../VieSchedpp/VieSchedpp.h \
     ../VieSchedpp/Initializer.h \
+    ../VieSchedpp/Algorithm/FocusCorners.h \
     Delegates/comboboxdelegate.h \
     Delegates/doublespinboxdelegate.h \
     Delegates/spinboxdelegate.h \
