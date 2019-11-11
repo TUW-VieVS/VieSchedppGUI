@@ -543,6 +543,28 @@ private slots:
 
     void on_pushButton_contact_load_clicked();
 
+    void on_pushButton_autoSetupIntensive_weightFactor_clicked();
+
+    void on_pushButton_autoSetupIntensive_minStations_clicked();
+
+    void on_pushButton_autoSetupIntensive_maxScan120_clicked();
+
+    void on_pushButton_autoSetupIntensive_masScan200_clicked();
+
+    void on_pushButton_minTimeBetweenScans_clicked();
+
+    void on_pushButton_mulitScheduling_clicked();
+
+    void on_groupBox_34_toggled(bool arg1);
+
+    void on_groupBox_35_toggled(bool arg1);
+
+    void on_groupBox_scanSequence_toggled(bool arg1);
+
+    void on_groupBox_CalibratorBlock_toggled(bool arg1);
+
+    void on_pushButton_autoSetupIntensive_masScan300_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

@@ -338,6 +338,11 @@ QString MainWindow::writeXML()
                       weightDeclinationSlopeStart, weightDeclinationSlopeEnd,
                       weightElevation, weightElevationSlopeStart, weightElevationSlopeEnd);
 
+    if(ui->groupBox_34->isChecked()){
+        int cadence = ui->spinBox_intensiveBlockCadence->value();
+        para.ruleFocusCorners(cadence);
+    }
+
     if(ui->groupBox_scanSequence->isChecked()){
         int cadence = ui->spinBox_scanSequenceCadence->value();
         std::vector<unsigned int> modulo;
@@ -1717,6 +1722,20 @@ void MainWindow::loadXML(QString path)
             // TODO check statistics
         }else{
             ui->checkBox_outputSourceGroupStatFile->setChecked(false);
+        }
+    }
+
+    //ruleFocusCorners
+    {
+        ui->groupBox_34->setChecked(false);
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.focusCorners");
+        if (ctree.is_initialized()) {
+            ui->groupBox_34->setChecked(true);
+            for(const auto &any: *ctree){
+                if(any.first == "cadence"){
+                    ui->spinBox_intensiveBlockCadence->setValue(xml.get("VieSchedpp.focusCorners.cadence",900));
+                }
+            }
         }
     }
 

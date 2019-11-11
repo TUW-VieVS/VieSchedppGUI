@@ -7439,3 +7439,112 @@ void MainWindow::on_pushButton_contact_load_clicked()
 
 
 }
+
+// #################################### Algorithm ####################################
+
+void MainWindow::on_pushButton_autoSetupIntensive_weightFactor_clicked()
+{
+    ui->checkBox_weightNobs->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightCoverage->setCheckState(Qt::Checked);
+    ui->doubleSpinBox_weightSkyCoverage->setValue(0.02);
+    ui->checkBox_weightDuration->setCheckState(Qt::Checked);
+    ui->doubleSpinBox_weightDuration->setValue(1);
+    ui->checkBox_weightIdleTime->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightAverageStations->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightAverageSources->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightAverageBaselines->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightLowDeclination->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightLowElevation->setCheckState(Qt::Unchecked);
+}
+
+void MainWindow::on_pushButton_autoSetupIntensive_minStations_clicked()
+{
+    paraSrc["default"].minNumberOfStations = std::max({selectedStationModel->rowCount(),2});
+}
+
+void MainWindow::on_pushButton_autoSetupIntensive_maxScan120_clicked()
+{
+    paraSta["default"].maxScan = 120;
+}
+
+void MainWindow::on_pushButton_autoSetupIntensive_masScan200_clicked()
+{
+    paraSta["default"].maxScan = 200;
+}
+
+void MainWindow::on_pushButton_autoSetupIntensive_masScan300_clicked()
+{
+    paraSta["default"].maxScan = 90;
+}
+
+void MainWindow::on_pushButton_minTimeBetweenScans_clicked()
+{
+    paraSrc["default"].minRepeat = std::min({0, ui->spinBox_intensiveBlockCadence->value() -120});
+}
+
+void MainWindow::on_pushButton_mulitScheduling_clicked()
+{
+
+    ui->groupBox_multiScheduling->setChecked(Qt::Checked);
+    auto t = ui->treeWidget_multiSchedSelected;
+    t->clear();
+
+    QTreeWidgetItem *itm = new QTreeWidgetItem();
+    QVector<double> val = {0, 0.01, 0.02, 0.03, 0.04, 0.06, 0.08, 0.1};
+    int n = val.size();
+
+    itm->setText(1,"global");
+    itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
+
+    QComboBox *cb = new QComboBox(this);
+    for(const auto& any:val){
+        cb->addItem(QString::number(any));
+    }
+
+    itm->setText(2,QString::number(n));
+    itm->setText(0,"sky coverage");
+    itm->setIcon(0,QIcon(":/icons/icons/weight.png"));
+    t->addTopLevelItem(itm);
+    t->setItemWidget(itm,3,cb);
+    ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(true);
+}
+
+void MainWindow::on_groupBox_35_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(0,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(0,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+void MainWindow::on_groupBox_34_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(1,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(1,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+
+
+void MainWindow::on_groupBox_scanSequence_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(2,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(2,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+
