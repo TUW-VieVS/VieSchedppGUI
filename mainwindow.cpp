@@ -25,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+#if VieSchedppOnline
+    downloadManager = new DownloadManager();
+#endif //VieSchedppOnline
+
     QApplication::setWindowIcon(QIcon(":/icons/icons/VieSchedppGUI_logo.png"));
     this->setWindowTitle("VieSched++");
 
@@ -7547,4 +7551,62 @@ void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
     }
 }
 
+// ############################### DOWNLOAD ###############################
+#if VieSchedppOnline
+void MainWindow::downloadCatalogs(){
+    QDir folder = QDir("./master");
+    QString folderPath = folder.absolutePath();
+    if( !folder.exists() ){
+        folder.mkdir(folderPath);
+    }
 
+    QStringList catalogs;
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/antenna.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/equip.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/flux.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/freq.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/hdpos.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/loif.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/mask.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/modes.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/position.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rec.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rx.cat";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
+    catalogs << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
+
+    downloadManager->execute(catalogs);
+}
+
+void MainWindow::downloadMasterFiles(){
+    QDateTime now = QDateTime::currentDateTimeUtc();
+    int year = now.date().year();
+
+    QString a = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
+    QString b = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+    QStringList masterFiles = QStringList() << a << b;
+    QDir folder = QDir("./master");
+    QString folderPath = folder.absolutePath();
+    if( !folder.exists() ){
+        folder.mkdir(folderPath);
+    }
+
+    for (int i = 79; i<=99; ++i){
+        QString x = QString("./master/master%1.txt").arg(i);
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            masterFiles << z;
+        }
+    }
+    for (int i = 00; i<=year-1-2000; ++i){
+        QString x = QString("./master/master%1.txt").arg(i,2,10,QChar('0'));
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
+            masterFiles << z;
+        }
+    }
+
+    downloadManager->execute(masterFiles);
+
+}
+#endif //VieSchedppOnline

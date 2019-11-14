@@ -48,7 +48,6 @@ QString MainWindow::writeXML()
         }
     }
 
-
     QDir mainDir(path);
     if(!path.isEmpty() && !mainDir.exists() ){
         QDir().mkpath(path);

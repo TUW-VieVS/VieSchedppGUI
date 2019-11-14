@@ -77,6 +77,10 @@
 #include "secondaryGUIs/obsmodedialog.h"
 #include "Utility/statistics.h"
 
+#if VieSchedppOnline
+#include "Utility/downloadmanager.h"
+#endif //VieSchedppOnline
+
 QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
@@ -672,6 +676,15 @@ private:
     double interpolate( QVector<double> &xData, QVector<double> &yData, double x, bool extrapolate=false );
 
     void updateAdvancedObservingMode();
+
+
+
+#if VieSchedppOnline
+DownloadManager *downloadManager;
+void downloadCatalogs();
+void downloadMasterFiles();
+#endif //VieSchedppOnline
+
 
 };
 

@@ -26,8 +26,14 @@ CONFIG += c++14
 QMAKE_CXXFLAGS+= -fopenmp
 LIBS += -fopenmp
 
-QT       += core gui
-QT       += charts
+QT += core gui charts
+DEFINES += VieSchedppOnline=false
+
+# Comment the following lines for offline installation only without QT NETWORK
+# -----------------------
+QT += network
+DEFINES += VieSchedppOnline=true
+# -----------------------
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -113,6 +119,7 @@ SOURCES += \
     ../VieSchedpp/VieSchedpp.cpp \
     ../VieSchedpp/Initializer.cpp \
     ../VieSchedpp/Algorithm/FocusCorners.cpp \
+    Utility/downloadmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     Delegates/comboboxdelegate.cpp \
@@ -224,6 +231,7 @@ HEADERS += \
     Parameters/baselineparametersdialog.h \
     Parameters/sourceparametersdialog.h \
     Parameters/stationparametersdialog.h \
+    Utility/downloadmanager.h \
     secondaryGUIs/addbanddialog.h \
     secondaryGUIs/addgroupdialog.h \
     secondaryGUIs/multischededitdialogdatetime.h \
