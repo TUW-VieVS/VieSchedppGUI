@@ -567,6 +567,8 @@ private slots:
 
     void on_pushButton_autoSetupIntensive_masScan300_clicked();
 
+    void downloadFinished();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -675,14 +677,10 @@ private:
 
     void updateAdvancedObservingMode();
 
-
-#if VieSchedppOnline
     DownloadManager *downloadManager = new DownloadManager();
-#endif
 
     void download();
 
-    void downloadFinished();
 
 
 };

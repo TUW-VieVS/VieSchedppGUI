@@ -7483,7 +7483,8 @@ void MainWindow::on_pushButton_autoSetupIntensive_masScan300_clicked()
 
 void MainWindow::on_pushButton_minTimeBetweenScans_clicked()
 {
-    paraSrc["default"].minRepeat = std::min({0, ui->spinBox_intensiveBlockCadence->value() -120});
+    int val = ui->spinBox_intensiveBlockCadence->value();
+    paraSrc["default"].minRepeat = std::max({0,  2*val-120});
 }
 
 void MainWindow::on_pushButton_mulitScheduling_clicked()
@@ -7559,7 +7560,13 @@ void MainWindow::download(){
         folder.mkdir(folderPath);
     }
 
+    QDateTime now = QDateTime::currentDateTimeUtc();
+    int year = now.date().year();
     QStringList files;
+    QString a = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
+    QString b = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+    files << a << b;
+
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/antenna.cat";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/equip.cat";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/flux.cat";
@@ -7574,8 +7581,6 @@ void MainWindow::download(){
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
 
-    QDateTime now = QDateTime::currentDateTimeUtc();
-    int year = now.date().year();
 
     for (int i = 79; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD/master%1.txt").arg(i);
@@ -7592,19 +7597,33 @@ void MainWindow::download(){
         }
     }
 
-    QString a = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
-    QString b = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-    files << a << b;
+#if VieSchedppOnline
+    for(auto &any: ui->statusBar->children()){
+        QLabel *l = qobject_cast<QLabel *>(any);
+        if(l){
+            l->setText(QString("downloading catalogs and master files..."));
+        }
+    }
 
-
-
-    ui->statusBar->showMessage("downloading catalogs and master files... ");
     downloadManager->execute(files,"AUTO_DOWNLOAD");
 
     connect(downloadManager,SIGNAL(allDownloadsFinished()),this,SLOT(downloadFinished()));
+#endif
+
 
 }
 
 void MainWindow::downloadFinished(){
-        ui->statusBar->showMessage("download finished sucessfully!");
+
+
+    for(auto &any: ui->statusBar->children()){
+        QLabel *l = qobject_cast<QLabel *>(any);
+        if(l){
+            if( downloadManager->successful() ){
+                l->setText(QString("download finished sucessfully!"));
+            }else{
+                l->setText(QString("error while downloading catalogs and master file!"));
+            }
+        }
+    }
 }

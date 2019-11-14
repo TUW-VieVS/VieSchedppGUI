@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>2</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7941,7 +7941,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <attribute name="icon">

@@ -18,7 +18,6 @@ void DownloadManager::execute(const QStringList &files, QString outputFolder)
 //#endif
 }
 
-
 DownloadManager::DownloadManager()
 {
 //#if VieSchedppOnline
@@ -27,13 +26,14 @@ DownloadManager::DownloadManager()
 //#endif
 }
 
-//#if VieSchedppOnline
 void DownloadManager::doDownload(const QUrl &url)
 {
+//#if VieSchedppOnline
     QNetworkRequest request(url);
     QNetworkReply *reply = manager.get(request);
 
     currentDownloads.append(reply);
+//#endif
 }
 
 bool DownloadManager::saveToDisk(const QString &filename, QIODevice *data)
@@ -53,17 +53,19 @@ bool DownloadManager::saveToDisk(const QString &filename, QIODevice *data)
     return true;
 }
 
+//#if VieSchedppOnline
 bool DownloadManager::isHttpRedirect(QNetworkReply *reply)
 {
-    int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-
-    QString redirectUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+    int statusCode = 0;
+    statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
     return statusCode == 301 || statusCode == 302 || statusCode == 303
            || statusCode == 305 || statusCode == 307 || statusCode == 308;
 }
+//#endif
 
 
+//#if VieSchedppOnline
 void DownloadManager::downloadFinished(QNetworkReply *reply)
 {
     QUrl url = reply->url();
@@ -71,6 +73,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
 //        fprintf(stderr, "Download of %s failed: %s\n",
 //                url.toEncoded().constData(),
 //                qPrintable(reply->errorString()));
+        successful_ = false;
     } else {
         if (isHttpRedirect(reply)) {
             fputs("Request was redirected.\n", stderr);
@@ -81,6 +84,8 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             if (saveToDisk(filename, reply)) {
 //                printf("Download of %s succeeded (saved to %s)\n",
 //                       url.toEncoded().constData(), qPrintable(filename));
+            }else{
+                successful_ = false;
             }
         }
     }
@@ -93,5 +98,4 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
         emit DownloadManager::allDownloadsFinished();
     }
 }
-
-//#endif //VieSchedppOnline
+//#endif

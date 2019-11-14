@@ -4,14 +4,13 @@
 
 
 #include <QtCore>
+#include <QDateTime>
+#include <cstdio>
 
 //#if VieSchedppOnline
 #include <QtNetwork>
 //#endif // VieSchedppOnline
 
-#include <QDateTime>
-
-#include <cstdio>
 
 class DownloadManager: public QObject
 {
@@ -25,17 +24,22 @@ class DownloadManager: public QObject
 public:
     DownloadManager();
 
-//#if VieSchedppOnline
     void doDownload(const QUrl &url);
     bool saveToDisk(const QString &filename, QIODevice *data);
+
+//#if VieSchedppOnline
     static bool isHttpRedirect(QNetworkReply *reply);
 //#endif // VieSchedppOnline
 
+    bool successful() { return successful_; }
+
 public slots:
     void execute(const QStringList &files, QString outputFolder);
+
 //#if VieSchedppOnline
     void downloadFinished(QNetworkReply *reply);
 //#endif // VieSchedppOnline
+
 
 signals:
     void allDownloadsFinished();
@@ -43,6 +47,7 @@ signals:
 
 private:
     QString outputFolder_;
+    bool successful_ = true;
 };
 
 
