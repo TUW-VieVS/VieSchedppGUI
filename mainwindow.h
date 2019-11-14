@@ -77,9 +77,7 @@
 #include "secondaryGUIs/obsmodedialog.h"
 #include "Utility/statistics.h"
 
-#if VieSchedppOnline
 #include "Utility/downloadmanager.h"
-#endif //VieSchedppOnline
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -678,12 +676,13 @@ private:
     void updateAdvancedObservingMode();
 
 
-
 #if VieSchedppOnline
-DownloadManager *downloadManager;
-void downloadCatalogs();
-void downloadMasterFiles();
-#endif //VieSchedppOnline
+    DownloadManager *downloadManager = new DownloadManager();
+#endif
+
+    void download();
+
+    void downloadFinished();
 
 
 };
