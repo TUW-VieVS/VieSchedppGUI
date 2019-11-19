@@ -226,3 +226,238 @@ QList<QLineSeries *> qtUtil::baselineSeries(double lat1, double lon1, QString na
 
     return series;
 }
+
+boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString>>  qtUtil::searchSessionCodeInMasterFile(QString code){
+    QRegularExpression re_digit("\\d");
+    QRegularExpressionMatchIterator i = re_digit.globalMatch(code);
+
+    QVector<int> digits;
+    QVector<int> digit_idx;
+    while (i.hasNext()) {
+        QRegularExpressionMatch match = i.next();
+        QString word = match.captured();
+        digit_idx << match.capturedStart();
+        digits << word.toInt();
+    }
+
+    // check intensive:
+    bool intensive = false;
+    QVector<int> yearHint;
+    if(code.length()-digits.length() == 1 && code.length() == 6){
+        QStringList intensiveOLC;
+        intensiveOLC<< "A" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N" << "O" << "P" << "Q" << "R" << "T" << "W";
+        QString firstLetter = code.at(0);
+        if (intensiveOLC.indexOf( QRegularExpression(firstLetter, QRegularExpression::CaseInsensitiveOption) ) != -1){
+            if(digit_idx[0] == 1 && digit_idx[1] == 2){
+                yearHint << digits[0]*10 + digits[1];
+            }
+            intensive = true;
+        }
+
+        if ( QString::compare(code.left(4),"I01T") == 0){
+            intensive = true;
+            yearHint << 1;
+
+        }
+        if ( QString::compare(code.left(2),"WD") == 0 && QString::compare(code.right(1),"Q") == 0){
+            intensive = true;
+            yearHint << 20;
+        }
+        if ( QString::compare(code.left(4), "tswz", Qt::CaseInsensitive) == 0){
+            intensive = true;
+            yearHint << 99;
+        }
+
+    }
+
+    // check intensive:
+    bool vgos = false;
+    if(!intensive){
+        if( QString::compare(code.left(1),"B") == 0 && digit_idx[0] == 1){
+            vgos = true;
+            yearHint << 17;
+        }
+        if( QString::compare(code.left(1),"BB") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 13;
+        }
+        if( QString::compare(code.left(1),"EV") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 19;
+        }
+        if( QString::compare(code.left(1),"K") == 0 && digit_idx[0] == 1){
+            vgos = true;
+            yearHint << 16;
+        }
+        if( QString::compare(code.left(1),"KB") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 16;
+        }
+        if( QString::compare(code.left(1),"KT") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 16;
+        }
+        if( QString::compare(code.left(1),"MC") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 17;
+        }
+        if( QString::compare(code.left(1),"V") == 0 && digit_idx[0] == 1){
+            vgos = true;
+            yearHint << 16 << 15;
+        }
+        if( QString::compare(code.left(1),"VGM") == 0 && digit_idx[0] == 3){
+            vgos = true;
+            yearHint << 16;
+        }
+        if( QString::compare(code.left(1),"VGP") == 0 && digit_idx[0] == 3){
+            vgos = true;
+            yearHint << 16;
+        }
+        if( QString::compare(code.left(1),"VGT") == 0 && digit_idx[0] == 3){
+            vgos = true;
+            yearHint << 19 << 16;
+        }
+        if( QString::compare(code.left(1),"VT") == 0 && digit_idx[0] == 2){
+            vgos = true;
+            yearHint << 19 << 18 << 17;
+        }
+    }
+
+
+
+    QStringList files_sx;
+    QStringList files_int;
+    QStringList files_vgos;
+    QDirIterator it("./AUTO_DOWNLOAD_MASTER", QStringList() << "*.txt", QDir::Files, QDirIterator::NoIteratorFlags);
+    while (it.hasNext()) {
+        QString fileName = it.next();
+        if(fileName.contains("-int")){
+            files_int << fileName;
+        }else if(fileName.contains("-vgos")){
+            files_vgos << fileName;
+        }else{
+            files_sx << fileName;
+        }
+    }
+
+
+    auto comp = [ yearHint ]( const QString& lhs, const QString& rhs ){
+        QString leftStr = lhs.mid(29,2);
+        QString rightStr = rhs.mid(29,2);
+        int leftYear = leftStr.toInt();
+        int rightYear = rightStr.toInt();
+
+        if (yearHint.contains(leftYear) && !yearHint.contains(rightYear)){
+            return true;
+        }
+        if (!yearHint.contains(leftYear) && yearHint.contains(rightYear)){
+            return false;
+        }
+        if (yearHint.contains(leftYear) && yearHint.contains(rightYear)){
+            int idxLeft = yearHint.indexOf(leftYear);
+            int idxRight = yearHint.indexOf(leftYear);
+            return idxLeft < idxRight;
+        }
+
+        if(leftYear>50){
+            leftYear += 1900;
+        }else{
+            leftYear += 2000;
+        }
+
+        if(rightYear>50){
+            rightYear += 1900;
+        }else{
+            rightYear += 2000;
+        }
+
+        return leftYear > rightYear;
+
+    };
+
+    std::sort(files_int.begin(), files_int.end(), comp);
+    std::sort(files_vgos.begin(), files_vgos.end(), comp);
+    std::sort(files_sx.begin(), files_sx.end(), comp);
+
+
+    QStringList files;
+    if(intensive){
+        files.append(files_int);
+        files.append(files_vgos);
+        files.append(files_sx);
+    }else if(vgos){
+        files.append(files_vgos);
+        files.append(files_sx);
+        files.append(files_int);
+    }else{
+        files.append(files_sx);
+        files.append(files_int);
+        files.append(files_vgos);
+    }
+
+    QStringList found;
+    int year = -1;
+    bool checkNext = true;
+    for( const auto & file: files){
+        QFile inputFile(file);
+
+        if (inputFile.open(QIODevice::ReadOnly)){
+            QTextStream in(&inputFile);
+            while (!in.atEnd()) {
+               QString line = in.readLine();
+               if(line.isEmpty() || line.at(0) != '|'){
+                   continue;
+               }
+               QStringList content = line.split('|');
+               if( QString::compare(content[2].simplified(), code, Qt::CaseInsensitive) == 0){
+                   QString yearStr = file.mid(29,2);
+                   year = yearStr.toInt();
+
+                   found = content;
+                   checkNext = false;
+                   break;
+               }
+
+            }
+            inputFile.close();
+        }
+        if (!checkNext){
+            break;
+        }
+    }
+    if(checkNext){
+        return boost::none;
+    }
+    if (year > 70){
+        year += 1900;
+    }else{
+        year +=2000;
+    }
+
+
+    QString description = found[1].simplified();
+    QString sessionCode = found[2].simplified();
+
+    int doy = found[4].simplified().toInt();
+    int h = found[5].simplified().left(2).toInt();
+    int m = found[5].simplified().right(2).toInt();
+    QDate date(year,1,1);
+    date = date.addDays(doy-1);
+    QTime time(h,m);
+    QDateTime sessionStart(date,time);
+
+
+    double dur = found[6].simplified().toDouble();
+    QString stations = found[7].simplified().split("-").at(0).simplified();
+    QStringList tlc;
+    for (int i = 0; i<stations.length(); i+=2){
+        tlc << stations.mid(i,2);
+    }
+    QString scheduler = found[8].simplified();
+    QString correlator = found[9].simplified();
+
+    std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString> result{description, sessionCode, sessionStart, dur, tlc, scheduler, correlator};
+    return result;
+}
+
+

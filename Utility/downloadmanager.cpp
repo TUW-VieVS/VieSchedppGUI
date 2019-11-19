@@ -1,15 +1,10 @@
 
 #include "downloadmanager.h"
 
-//DownloadManager::DownloadManager()
-//{
-//    connect(&manager, SIGNAL(finished(QNetworkReply*)),
-//            SLOT(downloadFinished(QNetworkReply*)));
-//}
-
-void DownloadManager::execute(const QStringList &files, QString outputFolder)
+void DownloadManager::execute(const QStringList &files, QString outputFolder, QLabel *statusBarText)
 {
 //#if VieSchedppOnline
+    statusBarText_ = statusBarText;
     outputFolder_ = outputFolder;
     for (const QString &arg : files) {
         QUrl url = QUrl::fromEncoded(arg.toLocal8Bit());
@@ -24,6 +19,7 @@ DownloadManager::DownloadManager()
     connect(&manager, SIGNAL(finished(QNetworkReply*)),
             SLOT(downloadFinished(QNetworkReply*)));
 //#endif
+    master = true;
 }
 
 void DownloadManager::doDownload(const QUrl &url)
@@ -41,9 +37,6 @@ bool DownloadManager::saveToDisk(const QString &filename, QIODevice *data)
     QString filePath = QDir(outputFolder_).filePath(filename);
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly)) {
-//        fprintf(stderr, "Could not open %s for writing: %s\n",
-//                qPrintable(filename),
-//                qPrintable(file.errorString()));
         return false;
     }
 
@@ -70,11 +63,17 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
 {
     QUrl url = reply->url();
     if (reply->error()) {
-//        fprintf(stderr, "Download of %s failed: %s\n",
-//                url.toEncoded().constData(),
-//                qPrintable(reply->errorString()));
         successful_ = false;
+        QString txt = QString("error while downloading %1!").arg(url.fileName());
+
+        if(statusBarText_ != nullptr){
+            statusBarText_->setText(txt);
+        }
+
     } else {
+        QString txt = QString("successfully downloaded %1...").arg(url.fileName());
+
+
         if (isHttpRedirect(reply)) {
             fputs("Request was redirected.\n", stderr);
         } else {
@@ -82,9 +81,15 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             QString path = url.path();
             QString filename = QFileInfo(path).fileName();
             if (saveToDisk(filename, reply)) {
-//                printf("Download of %s succeeded (saved to %s)\n",
-//                       url.toEncoded().constData(), qPrintable(filename));
+                if(statusBarText_ != nullptr){
+                    statusBarText_->setText(txt);
+                }
             }else{
+                QString txt = QString("error while saving %1!").arg(url.fileName());
+
+                if(statusBarText_ != nullptr){
+                    statusBarText_->setText(txt);
+                }
                 successful_ = false;
             }
         }
@@ -95,7 +100,13 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
 
     if (currentDownloads.isEmpty()) {
         // all downloads finished
-        emit DownloadManager::allDownloadsFinished();
+        if(master){
+            emit DownloadManager::masterDownloadsFinished();
+            master = false;
+        }else{
+            emit DownloadManager::allDownloadsFinished();
+        }
+
     }
 }
 //#endif

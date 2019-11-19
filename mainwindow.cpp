@@ -3325,33 +3325,73 @@ void MainWindow::on_spinBox_doy_valueChanged(int arg1)
     ui->dateTimeEdit_sessionStart->setDate(x);
 }
 
+//void MainWindow::searchSessionCodeInMasterFile(QString code){
+
+
+
+//}
+
 void MainWindow::on_pushButton_clicked()
 {
     QString errorText = "";
-
-    QRegularExpression reg("([\\w\\&-]+)\\s(\\w+)\\s(\\d{4}-\\d{2}-\\d{2}\\s\\d{1,2}:\\d{2})\\s\\w+\\s(\\d{1,2}:\\d{2})\\s(.*?)(XA|XE|XH|XN|XU|XK|VG)\\s(\\w*)\\s(\\w*)");
-
     QString txt = ui->lineEdit_ivsMaster->text().simplified();
 
-    QRegularExpressionMatch match = reg.match(txt);
-    if(match.hasMatch()){
-        QString description = match.captured(1);
-        QString sessionName = match.captured(2);
-        QString date = match.captured(3);
-        QDateTime start = QDateTime::fromString(date,"yyyy-MM-dd hh:mm");
-        QString dur = match.captured(4);
-        int h = dur.split(":").at(0).toInt();
-        int min = dur.split(":").at(1).toInt();
-        QString stations = match.captured(5);
-        QStringList stas = stations.split(" ",QString::SkipEmptyParts);
-        QString sked = match.captured(7);
-        QString corr = match.captured(8);
 
+    QString description;
+    QString sessionName;
+    QDateTime start;
+    double dur = -1;
+    QStringList stas;
+    QString sked;
+    QString corr;
+
+    bool found = false;
+
+    if(txt.length() <= 6){
+        auto c = qtUtil::searchSessionCodeInMasterFile(txt);
+        if(c.is_initialized()){
+            std::tie(description, sessionName, start, dur, stas, sked, corr) = *c;
+
+            found = true;
+        }else{
+            QMessageBox::warning(this,"session code not found","The session was not found in the master files located in AUTO_DOWNLOAD_MASTER!");
+        }
+
+
+    } else {
+
+        QRegularExpression reg("([\\w\\&-]+)\\s(\\w+)\\s(\\d{4}-\\d{2}-\\d{2}\\s\\d{1,2}:\\d{2})\\s\\w+\\s(\\d{1,2}:\\d{2})\\s(.*?)(XA|XE|XH|XN|XU|XK|VG)\\s(\\w*)\\s(\\w*)");
+        QRegularExpressionMatch match = reg.match(txt);
+        if(match.hasMatch()){
+            description = match.captured(1);
+            sessionName = match.captured(2);
+            QString date = match.captured(3);
+            start = QDateTime::fromString(date,"yyyy-MM-dd hh:mm");
+            QString dur = match.captured(4);
+            int h = dur.split(":").at(0).toDouble();
+            int min = dur.split(":").at(1).toDouble();
+            dur = h+min/60.;
+            QString stations = match.captured(5);
+            stas = stations.split(" ",QString::SkipEmptyParts);
+            sked = match.captured(7);
+            corr = match.captured(8);
+            found = true;
+        } else {
+            QMessageBox::warning(this,"errors while reading from session master","Not possible to parse input!");
+        }
+    }
+
+    if (found){
 
         ui->lineEdit_experimentDescription->setText(description);
         ui->experimentNameLineEdit->setText(sessionName);
         ui->dateTimeEdit_sessionStart->setDateTime(start);
-        ui->doubleSpinBox_sessionDuration->setValue(h+min/60);
+        if(dur < 0){
+            errorText.append("session duration (and maybe start time) is unknown\n");
+        }else{
+            ui->doubleSpinBox_sessionDuration->setValue(dur);
+        }
+
 
         createBaselines = false;
 
@@ -3392,132 +3432,7 @@ void MainWindow::on_pushButton_clicked()
         if(errorText.size() != 0){
             QMessageBox::warning(this,"errors while reading session master line",errorText);
         }
-
-    }else{
-        QMessageBox::warning(this,"errors while reading session master line","Not possible to parse input!\nMake sure you copied full line!\n\nExamples:\n"
-                                                                             "    IVS-R1823	R1823 2018-01-02 17:00 2 24:00 Ft Ht Is Ke Kk Ny Wn Yg XA NASA WASH Released NASA\n"
-                                                                             "    IN118-002 I18002 2018-01-02 18:30 2 1:00 Kk Wz XU USNO WASH NASA\n"
-                                                                             "    VGOS-T8039 VT8039 2018-02-08 18:00 39 24:00 Gs K2 Oe Wf Ws VG HAYS HAYS NASA");
-
     }
-
-
-    /*
-    try{
-        QString txt = ui->lineEdit_ivsMaster->text();
-        QString errorText = "";
-        QStringList t = txt.split("\t");
-        if(t.size()>=0){
-            QString sessionName = t.at(0);
-            ui->lineEdit_experimentDescription->setText(sessionName);
-        }
-        if(t.size()>=1){
-            QString sessionName = t.at(1);
-            ui->experimentNameLineEdit->setText(sessionName);
-        }
-        if(t.size()>=2){
-            QString time = t.at(2);
-            time = time.split(" ",QString::SkipEmptyParts).at(1);
-
-            QStringList ts = time.split(":");
-            int hour, min;
-
-            if(ts.size()==2){
-                bool okh, okm;
-                hour = ts.at(0).toInt(&okh);
-                min = ts.at(1).toInt(&okm);
-                if(okh && okm){
-                    ui->dateTimeEdit_sessionStart->setTime(QTime(hour,min,0,0));
-                }else{
-                    errorText.append("cannot convert TIME\n");
-                }
-            }else{
-                errorText.append("cannot convert TIME\n");
-            }
-        }
-        if(t.size()>=3){
-            QString doys = t.at(3);
-            bool ok;
-            int doy = doys.toInt(&ok);
-            if(ok){
-                ui->spinBox_doy->setValue(doy);
-            }else{
-                errorText.append("cannot convert DOY\n");
-            }
-        }
-        if(t.size()>=4){
-            QString durs = t.at(4);
-            QStringList ts = durs.split(":");
-            int hour, min;
-
-            if(ts.size()==2){
-                bool okh, okm;
-                hour = ts.at(0).toInt(&okh);
-                min = ts.at(1).toInt(&okm);
-                if(okh && okm){
-                    ui->doubleSpinBox_sessionDuration->setValue(hour+min/60);
-                }else{
-                    errorText.append("cannot convert Duration\n");
-                }
-            }else{
-                errorText.append("cannot convert Duration\n");
-            }
-        }
-        if(t.size()>=5){
-            createBaselines = false;
-
-            QString tmp = t.at(5);
-            tmp = tmp.trimmed();
-            QStringList stas = tmp.split(" ", QString::SkipEmptyParts);
-            if(stas.size() >= 2){
-                int n = selectedStationModel->rowCount();
-                for(int i=0; i<n; ++i){
-                    QModelIndex index = selectedStationModel->index(0,0);
-                    on_treeView_allSelectedStations_clicked(index);
-                }
-
-                allStationProxyModel->setFilterRegExp("");
-                for(int i=0; i<stas.size(); ++i){
-                    QString sta = stas.at(i).toUpper();
-                    bool found = false;
-                    for(int j=0; j<allStationProxyModel->rowCount(); ++j){
-                        QString itsta = allStationProxyModel->index(j,1).data().toString().toUpper();
-                        if(itsta == sta){
-                            QModelIndex index = allStationProxyModel->index(j,0);
-                            on_treeView_allAvailabeStations_clicked(index);
-                            found = true;
-                            break;
-                        }
-                    }
-                    if(!found){
-                        errorText.append(QString("unknown station %1\n").arg(sta));
-                    }
-                }
-            }else{
-                errorText.append("error while reading stations\n");
-            }
-            createBaselines = true;
-            createBaselineModel();
-        }
-        if(t.size()>=7){
-            QString sked = t.at(7);
-            ui->schedulerLineEdit->setText(sked);
-        }
-        if(t.size()>=8){
-            QString corr = t.at(8);
-            ui->correlatorLineEdit->setText(corr);
-        }
-
-        if(errorText.size() != 0){
-            QMessageBox::warning(this,"errors while reading session master line",errorText);
-        }
-    }catch(...){
-        QMessageBox::warning(this,"errors while reading session master line",
-                             "Input could not be parsed. Please copy the full line from the session master.\n"
-                             "This feature was tested with Google Chrome and Firefox. It might not work with other browsers.\n"
-                             "In case this does not work you have to insert the settings manually.");
-    }
-    */
 }
 
 void MainWindow::on_experimentNameLineEdit_textChanged(const QString &arg1)
@@ -7554,7 +7469,17 @@ void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
 
 // ############################### DOWNLOAD ###############################
 void MainWindow::download(){
-    QDir folder = QDir("./AUTO_DOWNLOAD");
+
+    QLabel *statusBarLabel;
+    for(auto &any: ui->statusBar->children()){
+        QLabel *l = qobject_cast<QLabel *>(any);
+        if(l){
+            l->setText(QString("downloading files..."));
+            statusBarLabel = l;
+        }
+    }
+
+    QDir folder = QDir("./AUTO_DOWNLOAD_MASTER");
     QString folderPath = folder.absolutePath();
     if( !folder.exists() ){
         folder.mkdir(folderPath);
@@ -7562,11 +7487,92 @@ void MainWindow::download(){
 
     QDateTime now = QDateTime::currentDateTimeUtc();
     int year = now.date().year();
-    QStringList files;
-    QString a = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
-    QString b = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-    files << a << b;
 
+    QStringList files;
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
+
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
+//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
+
+
+    // legacy SX
+    for (int i = 79; i<=99; ++i){
+        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            files << z;
+        }
+    }
+    for (int i = 00; i<=year-1-2000; ++i){
+        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
+            files << z;
+        }
+    }
+
+    // intensives
+    for (int i = 92; i<=99; ++i){
+        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
+            files << z;
+        }
+    }
+    for (int i = 00; i<=year-1-2000; ++i){
+        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
+            files << z;
+        }
+    }
+
+    // vgos
+    QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+    if( !QFile::exists(x)){
+        QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        files << z;
+    }
+    for (int i = 15; i<=year-1-2000; ++i){
+        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+        if( !QFile::exists(x)){
+            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            files << z;
+        }
+    }
+
+#if VieSchedppOnline
+
+    downloadManager->execute(files,"AUTO_DOWNLOAD_MASTER", statusBarLabel);
+
+    connect(downloadManager,SIGNAL(masterDownloadsFinished()),this,SLOT(masterDownloadFinished()));
+    connect(downloadManager,SIGNAL(allDownloadsFinished()),this,SLOT(downloadFinished()));
+#endif
+
+
+}
+
+void MainWindow::masterDownloadFinished(){
+
+    QLabel *statusBarLabel;
+    for(auto &any: ui->statusBar->children()){
+        QLabel *l = qobject_cast<QLabel *>(any);
+        if(l){
+            l->setText(QString("downloading catalog files..."));
+            statusBarLabel = l;
+        }
+    }
+
+    QDir folder = QDir("./AUTO_DOWNLOAD_CATALOGS");
+    QString folderPath = folder.absolutePath();
+    if( !folder.exists() ){
+        folder.mkdir(folderPath);
+    }
+
+    QStringList files;
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/antenna.cat";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/equip.cat";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/flux.cat";
@@ -7581,48 +7587,24 @@ void MainWindow::download(){
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
 
+    downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
 
-    for (int i = 79; i<=99; ++i){
-        QString x = QString("./AUTO_DOWNLOAD/master%1.txt").arg(i);
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i);
-            files << z;
-        }
+
+    if( downloadManager->successful() ){
+        statusBarLabel->setText(QString("sucessfully downloaded master files, downloading catalogs..."));
+    }else{
+        statusBarLabel->setText(QString("error while downloading master files!"));
     }
-    for (int i = 00; i<=year-1-2000; ++i){
-        QString x = QString("./AUTO_DOWNLOAD/master%1.txt").arg(i,2,10,QChar('0'));
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
-            files << z;
-        }
-    }
-
-#if VieSchedppOnline
-    for(auto &any: ui->statusBar->children()){
-        QLabel *l = qobject_cast<QLabel *>(any);
-        if(l){
-            l->setText(QString("downloading catalogs and master files..."));
-        }
-    }
-
-    downloadManager->execute(files,"AUTO_DOWNLOAD");
-
-    connect(downloadManager,SIGNAL(allDownloadsFinished()),this,SLOT(downloadFinished()));
-#endif
-
-
 }
 
 void MainWindow::downloadFinished(){
-
-
     for(auto &any: ui->statusBar->children()){
         QLabel *l = qobject_cast<QLabel *>(any);
         if(l){
             if( downloadManager->successful() ){
-                l->setText(QString("download finished sucessfully!"));
+                l->setText(QString("all downloads finished sucessfully!"));
             }else{
-                l->setText(QString("error while downloading catalogs and master file!"));
+                l->setText(QString("error while downloading catalog files!"));
             }
         }
     }

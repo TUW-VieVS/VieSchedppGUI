@@ -1838,6 +1838,11 @@ void MainWindow::readSettings()
     }
 
 
+    bool newest = settings_.get<bool>("settings.catalog_path.useNewestCatalogs", true);
+    bool custom = settings_.get<bool>("settings.catalog_path.useCustomCatalogs", false);
+
+    ui->radioButton_useLatestCatalogs->setChecked(newest);
+    ui->radioButton_useCustomCatalogs->setChecked(custom);
 
     std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","../CATALOGS/antenna.cat");
     ui->lineEdit_pathAntenna->setText(QString::fromStdString(cAntenna));
@@ -2024,6 +2029,9 @@ void MainWindow::on_pushButton_17_clicked()
 
 void MainWindow::on_pushButton_saveCatalogPathes_clicked()
 {
+    settings_.put("settings.catalog_path.useNewestCatalogs",ui->radioButton_useLatestCatalogs->isChecked());
+    settings_.put("settings.catalog_path.useCustomCatalogs",ui->radioButton_useCustomCatalogs->isChecked());
+
     settings_.put("settings.catalog_path.antenna",ui->lineEdit_pathAntenna->text().toStdString());
     settings_.put("settings.catalog_path.equip",ui->lineEdit_pathEquip->text().toStdString());
     settings_.put("settings.catalog_path.position",ui->lineEdit_pathPosition->text().toStdString());

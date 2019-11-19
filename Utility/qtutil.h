@@ -24,6 +24,9 @@
 #include <QtCharts/QLineSeries>
 #include <QTextStream>
 #include <QtMath>
+#include <QRegularExpression>
+#include <QDirIterator>
+#include <QDateTime>
 
 #include "../VieSchedpp/Scheduler.h"
 #include "chartview.h"
@@ -52,6 +55,7 @@ namespace qtUtil {
 
     QList<QLineSeries *> baselineSeries(double lat1, double lon1, QString name1, double lat2, double lon2, QString name2);
 
+    boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString>> searchSessionCodeInMasterFile(QString code);
 }
 
 #endif // QTUTIL_H

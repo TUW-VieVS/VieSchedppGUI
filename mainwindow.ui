@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>12</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1109,7 +1109,7 @@ p, li { white-space: pre-wrap; }
          </layout>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_7">
+         <widget class="QRadioButton" name="radioButton_useLatestCatalogs">
           <property name="text">
            <string>automatic download</string>
           </property>
@@ -1119,7 +1119,7 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_6">
+         <widget class="QRadioButton" name="radioButton_useCustomCatalogs">
           <property name="text">
            <string>manual catalog selection</string>
           </property>
@@ -7933,8 +7933,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>485</width>
+             <height>627</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -13721,7 +13721,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_6</sender>
+   <sender>radioButton_useCustomCatalogs</sender>
    <signal>toggled(bool)</signal>
    <receiver>scrollArea_3</receiver>
    <slot>setEnabled(bool)</slot>

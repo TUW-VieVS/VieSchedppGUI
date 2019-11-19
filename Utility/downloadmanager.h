@@ -7,6 +7,8 @@
 #include <QDateTime>
 #include <cstdio>
 
+#include <QLabel>
+
 //#if VieSchedppOnline
 #include <QtNetwork>
 //#endif // VieSchedppOnline
@@ -34,7 +36,7 @@ public:
     bool successful() { return successful_; }
 
 public slots:
-    void execute(const QStringList &files, QString outputFolder);
+    void execute(const QStringList &files, QString outputFolder, QLabel *statusBarText = nullptr);
 
 //#if VieSchedppOnline
     void downloadFinished(QNetworkReply *reply);
@@ -43,11 +45,15 @@ public slots:
 
 signals:
     void allDownloadsFinished();
+    void masterDownloadsFinished();
 
 
 private:
     QString outputFolder_;
     bool successful_ = true;
+    bool master = true;
+
+    QLabel *statusBarText_;
 };
 
 

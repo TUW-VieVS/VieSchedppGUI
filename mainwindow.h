@@ -567,6 +567,8 @@ private slots:
 
     void on_pushButton_autoSetupIntensive_masScan300_clicked();
 
+    void masterDownloadFinished();
+
     void downloadFinished();
 
 private:
@@ -681,6 +683,7 @@ private:
 
     void download();
 
+//    void searchSessionCodeInMasterFile(QString code);
 
 
 };
