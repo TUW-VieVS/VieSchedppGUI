@@ -4324,7 +4324,7 @@ void MainWindow::on_treeView_allAvailabeStations_entered(const QModelIndex &inde
     double x = allStationProxyModel->index(row,3).data().toDouble();
     double y = allStationProxyModel->index(row,2).data().toDouble();
 
-    QString text = QString("%1 (%2) \nlat: %3 [deg] \nlon: %4 [deg] ").arg(name).arg(id).arg(x).arg(y);
+    QString text = QString("%1 (%2) \nlat: %3 [deg] \nlon: %4 [deg] ").arg(name).arg(id).arg(y).arg(x);
     worldMapCallout->setText(text);
     worldMapCallout->setAnchor(QPointF(x,y));
     worldMapCallout->setZValue(11);
@@ -4368,7 +4368,7 @@ void MainWindow::on_treeView_allSelectedStations_entered(const QModelIndex &inde
         if (newName == name){
             double x = allStationModel->index(i,3).data().toDouble();;
             double y = allStationModel->index(i,2).data().toDouble();;
-            QString text = QString("%1 (%2) \nlat: %3 [deg] \nlon: %4 [deg] ").arg(name).arg(id).arg(x).arg(y);
+            QString text = QString("%1 (%2) \nlat: %3 [deg] \nlon: %4 [deg] ").arg(name).arg(id).arg(y).arg(x);
             worldMapCallout->setText(text);
             worldMapCallout->setAnchor(QPointF(x,y));
             worldMapCallout->setZValue(11);
@@ -4436,7 +4436,7 @@ void MainWindow::worldmap_hovered(QPointF point, bool state)
 
         }
 
-        QString text = QString("%1 \nlat: %2 [deg] \nlon: %3 [deg] ").arg(sta).arg(point.x()).arg(point.y());
+        QString text = QString("%1 \nlat: %2 [deg] \nlon: %3 [deg] ").arg(sta).arg(point.y()).arg(point.x());
         worldMapCallout->setText(text);
         worldMapCallout->setAnchor(point);
         worldMapCallout->setZValue(11);

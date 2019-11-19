@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>4</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2877,7 +2877,7 @@ If you only want to run simulations you can deselect this to avoid error message
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an optional way to get the most basic information from your schedule, in case you are scheduling an IVS session. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Go to the IVS-Schedule master at &lt;/span&gt;&lt;a href=&quot;https://ivscc.gsfc.nasa.gov/sessions/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://ivscc.gsfc.nasa.gov/sessions/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, browse for your schedule and copy the full line into this form. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;IVS-R1823 R1823 2018-01-02 17:00 2 24:00 Ft Ht Is Ke Kk Ny Wn Yg XA NASA WASH Released NASA&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;By pressing the enter key or clicking &lt;/span&gt;&lt;img src=&quot;:/icons/icons/dialog-ok-2.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the information is read. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The software will now automatically set the following values:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment name&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment description&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session start&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session duration&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• list of stations &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;(all!)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• scheduler&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• correlator&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;manually deselect&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; stations which are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not participating&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="placeholderText">
-                 <string>e.g.: IVS-R1824 R1824 2018-01-08 17:00	8	24:00 Ft Ht Is Ke Kv Ny Wn Yg Sh XA NASA WASH Released NASA</string>
+                 <string>e.g.: session code such as &quot;R1928&quot; or copy line from html session master</string>
                 </property>
                </widget>
               </item>
