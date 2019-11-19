@@ -6,12 +6,12 @@ void DownloadManager::execute(const QStringList &files, QString outputFolder, QL
 //#if VieSchedppOnline
     statusBarText_ = statusBarText;
     outputFolder_ = outputFolder;
-    for (const QString &arg : files) {
-        QUrl url = QUrl::fromEncoded(arg.toLocal8Bit());
-        doDownload(url);
-    }
+    files_ = files;
+    startNextDownload();
+
 //#endif
 }
+
 
 DownloadManager::DownloadManager()
 {
@@ -20,6 +20,15 @@ DownloadManager::DownloadManager()
             SLOT(downloadFinished(QNetworkReply*)));
 //#endif
     master = true;
+}
+
+void DownloadManager::startNextDownload(){
+    QString file = files_.takeAt(0);
+    if(statusBarText_ != nullptr){
+        statusBarText_->setText(QString("downloading %1...").arg(file));
+    }
+    QUrl url = QUrl::fromEncoded(file.toLocal8Bit());
+    doDownload(url);
 }
 
 void DownloadManager::doDownload(const QUrl &url)
@@ -64,14 +73,9 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
     QUrl url = reply->url();
     if (reply->error()) {
         successful_ = false;
-        QString txt = QString("error while downloading %1!").arg(url.fileName());
 
-        if(statusBarText_ != nullptr){
-            statusBarText_->setText(txt);
-        }
-
+        errorText.append(QString("error while downloading %1\n").arg(url.toString()));
     } else {
-        QString txt = QString("successfully downloaded %1...").arg(url.fileName());
 
 
         if (isHttpRedirect(reply)) {
@@ -81,15 +85,8 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             QString path = url.path();
             QString filename = QFileInfo(path).fileName();
             if (saveToDisk(filename, reply)) {
-                if(statusBarText_ != nullptr){
-                    statusBarText_->setText(txt);
-                }
             }else{
-                QString txt = QString("error while saving %1!").arg(url.fileName());
-
-                if(statusBarText_ != nullptr){
-                    statusBarText_->setText(txt);
-                }
+                errorText.append(QString("error while saving %1!").arg(url.toString()));
                 successful_ = false;
             }
         }
@@ -98,7 +95,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
     currentDownloads.removeAll(reply);
     reply->deleteLater();
 
-    if (currentDownloads.isEmpty()) {
+    if (files_.isEmpty()) {
         // all downloads finished
         if(master){
             emit DownloadManager::masterDownloadsFinished();
@@ -107,6 +104,8 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             emit DownloadManager::allDownloadsFinished();
         }
 
+    }else {
+        startNextDownload();
     }
 }
 //#endif

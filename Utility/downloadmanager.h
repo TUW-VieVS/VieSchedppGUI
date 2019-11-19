@@ -42,6 +42,9 @@ public slots:
     void downloadFinished(QNetworkReply *reply);
 //#endif // VieSchedppOnline
 
+    void startNextDownload();
+
+    QString getErrorText(){ return errorText; }
 
 signals:
     void allDownloadsFinished();
@@ -52,7 +55,9 @@ private:
     QString outputFolder_;
     bool successful_ = true;
     bool master = true;
+    QString errorText;
 
+    QStringList files_;
     QLabel *statusBarText_;
 };
 

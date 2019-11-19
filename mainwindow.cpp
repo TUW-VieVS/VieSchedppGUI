@@ -450,7 +450,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->tableWidget_contact->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    download();
+    try {
+        download();
+    } catch ( ... ) {
+
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -7495,7 +7500,7 @@ void MainWindow::download(){
 
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
-//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
+    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
     // legacy SX
@@ -7588,24 +7593,11 @@ void MainWindow::masterDownloadFinished(){
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
-
-
-    if( downloadManager->successful() ){
-        statusBarLabel->setText(QString("sucessfully downloaded master files, downloading catalogs..."));
-    }else{
-        statusBarLabel->setText(QString("error while downloading master files!"));
-    }
 }
 
 void MainWindow::downloadFinished(){
-    for(auto &any: ui->statusBar->children()){
-        QLabel *l = qobject_cast<QLabel *>(any);
-        if(l){
-            if( downloadManager->successful() ){
-                l->setText(QString("all downloads finished sucessfully!"));
-            }else{
-                l->setText(QString("error while downloading catalog files!"));
-            }
-        }
+
+    if(!downloadManager->successful()){
+        QMessageBox::warning(this,"Error while downloading files", downloadManager->getErrorText());
     }
 }
