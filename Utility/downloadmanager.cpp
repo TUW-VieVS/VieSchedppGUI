@@ -75,6 +75,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
         successful_ = false;
 
         errorText.append(QString("error while downloading %1\n").arg(url.toString()));
+        errorFiles << url.fileName();
     } else {
 
 
@@ -87,6 +88,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             if (saveToDisk(filename, reply)) {
             }else{
                 errorText.append(QString("error while saving %1!").arg(url.toString()));
+                errorFiles << url.fileName();
                 successful_ = false;
             }
         }

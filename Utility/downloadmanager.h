@@ -45,6 +45,7 @@ public slots:
     void startNextDownload();
 
     QString getErrorText(){ return errorText; }
+    QStringList getErrorFileList(){ return errorFiles; }
 
 signals:
     void allDownloadsFinished();
@@ -56,6 +57,7 @@ private:
     bool successful_ = true;
     bool master = true;
     QString errorText;
+    QStringList errorFiles;
 
     QStringList files_;
     QLabel *statusBarText_;

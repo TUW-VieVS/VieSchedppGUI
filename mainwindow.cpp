@@ -7596,8 +7596,39 @@ void MainWindow::masterDownloadFinished(){
 }
 
 void MainWindow::downloadFinished(){
+    QLabel *statusBarLabel;
+    for(auto &any: ui->statusBar->children()){
+        QLabel *l = qobject_cast<QLabel *>(any);
+        if(l){
+            statusBarLabel = l;
+        }
+    }
 
     if(!downloadManager->successful()){
-        QMessageBox::warning(this,"Error while downloading files", downloadManager->getErrorText());
+        QStringList errorList = downloadManager->getErrorFileList();
+        QStringList errorFiles;
+        for( const auto &any: errorList ){
+            if( QString::compare(any.left(6),"master", Qt::CaseInsensitive) == 0){
+                QDateTime now = QDateTime::currentDateTimeUtc();
+                int year = now.date().year();
+                QString masterYearStr = any.mid(6,2);
+                int masterYear = masterYearStr.toInt()+2000;
+
+                if ( year+1 != masterYear){
+                    errorFiles << any;
+                }
+
+            }
+        }
+
+        if( errorFiles.isEmpty() ){
+            statusBarLabel->setText("all downloads finished successfully");
+        }else{
+            QMessageBox::warning(this,"Error while downloading files", downloadManager->getErrorText());
+            statusBarLabel->setText("Error while downloading files");
+        }
+
+    }else{
+        statusBarLabel->setText("all downloads finished successfully");
     }
 }
