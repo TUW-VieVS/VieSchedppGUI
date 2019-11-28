@@ -571,6 +571,8 @@ private slots:
 
     void downloadFinished();
 
+    void on_sampleBitsSpinBox_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

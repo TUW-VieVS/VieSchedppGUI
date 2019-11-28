@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>5</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2086,7 +2086,7 @@ If you only want to run simulations you can deselect this to avoid error message
                       <string> [MHz]</string>
                      </property>
                      <property name="maximum">
-                      <double>1000.000000000000000</double>
+                      <double>100000.000000000000000</double>
                      </property>
                      <property name="value">
                       <double>32.000000000000000</double>
@@ -2116,6 +2116,29 @@ If you only want to run simulations you can deselect this to avoid error message
                      </property>
                      <property name="value">
                       <number>2</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QDoubleSpinBox" name="doubleSpinBox_efficiencyFactor">
+                     <property name="decimals">
+                      <number>4</number>
+                     </property>
+                     <property name="maximum">
+                      <double>1.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.050000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>0.617500000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_106">
+                     <property name="text">
+                      <string>efficiency factor</string>
                      </property>
                     </widget>
                    </item>

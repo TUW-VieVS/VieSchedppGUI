@@ -213,23 +213,42 @@ QString MainWindow::writeXML()
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
                 skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov, contacts);
 
-    std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
-    std::string equip = ui->lineEdit_pathEquip->text().toStdString();
-    std::string flux = ui->lineEdit_pathFlux->text().toStdString();
-    std::string freq = ui->lineEdit_pathFreq->text().toStdString();
-    std::string hdpos = ui->lineEdit_pathHdpos->text().toStdString();
-    std::string loif = ui->lineEdit_pathLoif->text().toStdString();
-    std::string mask = ui->lineEdit_pathMask->text().toStdString();
-    std::string modes = ui->lineEdit_pathModes->text().toStdString();
-    std::string position = ui->lineEdit_pathPosition->text().toStdString();
-    std::string rec = ui->lineEdit_pathRec->text().toStdString();
-    std::string rx = ui->lineEdit_pathRx->text().toStdString();
-    std::string source;
-    if(ui->radioButton_browseSource->isChecked()){
-        source = ui->lineEdit_pathSource->text().toStdString();
+
+    std::string antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source;
+    QDir autoDownloadCatalogs = QDir("AUTO_DOWNLOAD_CATALOGS");
+
+    if(ui->radioButton_useLatestCatalogs->isChecked() && autoDownloadCatalogs.exists()){
+        antenna = autoDownloadCatalogs.absoluteFilePath("antenna.cat").toStdString();
+        equip = autoDownloadCatalogs.absoluteFilePath("equip.cat").toStdString();
+        flux = autoDownloadCatalogs.absoluteFilePath("flux.cat").toStdString();
+        freq = autoDownloadCatalogs.absoluteFilePath("freq.cat").toStdString();
+        hdpos = autoDownloadCatalogs.absoluteFilePath("hdpos.cat").toStdString();
+        loif = autoDownloadCatalogs.absoluteFilePath("loif.cat").toStdString();
+        mask = autoDownloadCatalogs.absoluteFilePath("mask.cat").toStdString();
+        modes = autoDownloadCatalogs.absoluteFilePath("modes.cat").toStdString();
+        position = autoDownloadCatalogs.absoluteFilePath("position.cat").toStdString();
+        rec = autoDownloadCatalogs.absoluteFilePath("rec.cat").toStdString();
+        rx = autoDownloadCatalogs.absoluteFilePath("rx.cat").toStdString();
+        source = autoDownloadCatalogs.absoluteFilePath("source.cat.geodetic.good").toStdString();
     }else{
-        source = ui->lineEdit_browseSource2->text().toStdString();
+        antenna = ui->lineEdit_pathAntenna->text().toStdString();
+        equip = ui->lineEdit_pathEquip->text().toStdString();
+        flux = ui->lineEdit_pathFlux->text().toStdString();
+        freq = ui->lineEdit_pathFreq->text().toStdString();
+        hdpos = ui->lineEdit_pathHdpos->text().toStdString();
+        loif = ui->lineEdit_pathLoif->text().toStdString();
+        mask = ui->lineEdit_pathMask->text().toStdString();
+        modes = ui->lineEdit_pathModes->text().toStdString();
+        position = ui->lineEdit_pathPosition->text().toStdString();
+        rec = ui->lineEdit_pathRec->text().toStdString();
+        rx = ui->lineEdit_pathRx->text().toStdString();
+        if(ui->radioButton_browseSource->isChecked()){
+            source = ui->lineEdit_pathSource->text().toStdString();
+        }else{
+            source = ui->lineEdit_browseSource2->text().toStdString();
+        }
     }
+
 
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks);
@@ -640,7 +659,8 @@ QString MainWindow::writeXML()
     }else if(ui->groupBox_modeCustom->isChecked()){
         double sampleRate = ui->sampleRateDoubleSpinBox->value();
         int bits = ui->sampleBitsSpinBox->value();
-        para.mode(sampleRate, bits);
+        double efficiencyFactor = ui->doubleSpinBox_efficiencyFactor->value();
+        para.mode(sampleRate, bits, efficiencyFactor);
 
         for(int i = 0; i<ui->tableWidget_modeCustonBand->rowCount(); ++i){
             std::string name = ui->tableWidget_modeCustonBand->verticalHeaderItem(i)->text().toStdString();

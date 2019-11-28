@@ -7632,3 +7632,12 @@ void MainWindow::downloadFinished(){
         statusBarLabel->setText("all downloads finished successfully");
     }
 }
+
+void MainWindow::on_sampleBitsSpinBox_valueChanged(int arg1)
+{
+    if (arg1 == 1){
+        ui->doubleSpinBox_efficiencyFactor->setValue(0.6366 * 0.97);
+    }else{
+        ui->doubleSpinBox_efficiencyFactor->setValue(0.625 * 0.97);
+    }
+}
