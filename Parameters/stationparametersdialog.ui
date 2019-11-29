@@ -107,453 +107,494 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_available">
-         <property name="toolTip">
-          <string>availability of this station for scans</string>
-         </property>
-         <property name="statusTip">
-          <string>availability of this station for scans</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to set &lt;span style=&quot; font-weight:600;&quot;&gt;antenna down times&lt;/span&gt;. If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;the antenna &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; during this periode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="title">
-          <string>available</string>
-         </property>
-         <property name="checkable">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
           <bool>true</bool>
          </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QRadioButton" name="radioButton_available_yes">
-            <property name="toolTip">
-             <string>station can be scheduled</string>
-            </property>
-            <property name="statusTip">
-             <string>station can be scheduled</string>
-            </property>
-            <property name="text">
-             <string>yes</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioButton_available_no">
-            <property name="toolTip">
-             <string>station cannot be scheduled</string>
-            </property>
-            <property name="statusTip">
-             <string>station cannot be scheduled</string>
-            </property>
-            <property name="text">
-             <string>no</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-90</y>
+            <width>344</width>
+            <height>607</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QGroupBox" name="groupBox_available">
+             <property name="toolTip">
+              <string>availability of this station for scans</string>
+             </property>
+             <property name="statusTip">
+              <string>availability of this station for scans</string>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to set &lt;span style=&quot; font-weight:600;&quot;&gt;antenna down times&lt;/span&gt;. If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;the antenna &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; during this periode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="title">
+              <string>available</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QRadioButton" name="radioButton_available_yes">
+                <property name="toolTip">
+                 <string>station can be scheduled</string>
+                </property>
+                <property name="statusTip">
+                 <string>station can be scheduled</string>
+                </property>
+                <property name="text">
+                 <string>yes</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton_available_no">
+                <property name="toolTip">
+                 <string>station cannot be scheduled</string>
+                </property>
+                <property name="statusTip">
+                 <string>station cannot be scheduled</string>
+                </property>
+                <property name="text">
+                 <string>no</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_availableForFillinmode">
+             <property name="toolTip">
+              <string>availability of this station for fillinmode scans</string>
+             </property>
+             <property name="statusTip">
+              <string>availability of this station for fillinmode scans</string>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to &lt;span style=&quot; font-weight:600;&quot;&gt;deselect antennas from fillin mode&lt;/span&gt; scans. Because fillin modes tend to have an smaller impact on the quality of a schedule you can deselect stations from fillin mode scans to &lt;span style=&quot; font-weight:600;&quot;&gt;reduce their number of scans&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;reduce the number of collected bits&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="title">
+              <string>available for fillin mode</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QRadioButton" name="radioButton_availableFillin_yes">
+                <property name="toolTip">
+                 <string>station can be scheduled for fillin mode scans</string>
+                </property>
+                <property name="statusTip">
+                 <string>station can be scheduled for fillin mode scans</string>
+                </property>
+                <property name="text">
+                 <string>yes</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton_availableFillin_no">
+                <property name="toolTip">
+                 <string>station cannot be scheduled for fillin mode scans</string>
+                </property>
+                <property name="text">
+                 <string>no</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_tagalong">
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to put stations in &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong mode&lt;/span&gt;. Tagalong mode means this &lt;span style=&quot; font-weight:600;&quot;&gt;station is not considered for scan selection&lt;/span&gt;. The schedule is first created without the tagalong stations, afterwards tagalong stations are included. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If you are unsure if a station can participate in a session, or if you are unsure about the quality of the observations from this station it might be a good idea to put this station in tagalong mode. &lt;span style=&quot; font-weight:600;&quot;&gt;This makes sure that the schedule is still good if the station drops out. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="title">
+              <string>tagalong</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QRadioButton" name="radioButton_tagalong_yes">
+                <property name="toolTip">
+                 <string>use tagalong mode for this station</string>
+                </property>
+                <property name="statusTip">
+                 <string>use tagalong mode for this station</string>
+                </property>
+                <property name="text">
+                 <string>yes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton_tagalong_no">
+                <property name="toolTip">
+                 <string>do not use tagalong mode for this station</string>
+                </property>
+                <property name="statusTip">
+                 <string>do not use tagalong mode for this station</string>
+                </property>
+                <property name="text">
+                 <string>no</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>general</string>
+             </property>
+             <layout class="QFormLayout" name="formLayout_3">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBox_weight">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weight">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>weight of this station for selection of best scan</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight of this station for selection of best scan</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a station &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans where this station is participating&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="checkBox_maxSlewTime">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>max slew time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBox_maxSlewTime">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>maximum allowed slew time to next source in seconds</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum allowed slew time to next source in seconds</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>60</number>
+                </property>
+                <property name="value">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="checkBox_minSlewDistance">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>min slew distance</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_minSlewDistance">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>minimum required slew distance to next source in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum required slew distance to next source in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew distance in degress. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The Antenna is forced to slew at least the selected angle between two scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="maximum">
+                 <double>360.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>5.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBox_maxSlewDistance">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>max slew distance</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_maxSlewDistance">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>maximum allowed slew distance to next source in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum allowed slew distance to next source in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew distance in degrees. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="maximum">
+                 <double>360.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>5.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>175.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBox_maxWaitTime">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>max wait time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBox_maxWaitTime">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>maximum allowed wait time for slower stations in seconds</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum allowed wait time for slower stations in seconds</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed idle time in seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If a station is idleing for longer then this value, the latest arriving antenna is removed from this scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>60</number>
+                </property>
+                <property name="value">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="checkBox_minElevation">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>min elevation</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>minimum elevation for observations in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum elevation for observations in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required elevation in degrees.&lt;/p&gt;&lt;p&gt;This value is also set in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot;  height=30 width=30 /&gt;. The minimum of this value and the value from the source parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="value">
+                 <double>5.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>max number of scans</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>maximum number of scans for this station</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum number of scans for this station</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this number is reached, the station is no longer available for additional scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="value">
+                 <number>9999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>special</string>
+             </property>
+             <layout class="QFormLayout" name="formLayout">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBox_minSlewTime">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>min slew time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="spinBox_minSlewTime">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="statusTip">
+                 <string>minimum required slew time to next source in seconds</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="maximum">
+                 <number>999</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="checkBox_dataWriteSpeed">
+                <property name="text">
+                 <string>data write speed</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_dataWriteSpeed">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> [Mbps]</string>
+                </property>
+                <property name="maximum">
+                 <double>100000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>1024.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>4096.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_availableForFillinmode">
-         <property name="toolTip">
-          <string>availability of this station for fillinmode scans</string>
-         </property>
-         <property name="statusTip">
-          <string>availability of this station for fillinmode scans</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to &lt;span style=&quot; font-weight:600;&quot;&gt;deselect antennas from fillin mode&lt;/span&gt; scans. Because fillin modes tend to have an smaller impact on the quality of a schedule you can deselect stations from fillin mode scans to &lt;span style=&quot; font-weight:600;&quot;&gt;reduce their number of scans&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;reduce the number of collected bits&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="title">
-          <string>available for fillin mode</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QRadioButton" name="radioButton_availableFillin_yes">
-            <property name="toolTip">
-             <string>station can be scheduled for fillin mode scans</string>
-            </property>
-            <property name="statusTip">
-             <string>station can be scheduled for fillin mode scans</string>
-            </property>
-            <property name="text">
-             <string>yes</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioButton_availableFillin_no">
-            <property name="toolTip">
-             <string>station cannot be scheduled for fillin mode scans</string>
-            </property>
-            <property name="text">
-             <string>no</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_tagalong">
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can use this option to put stations in &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong mode&lt;/span&gt;. Tagalong mode means this &lt;span style=&quot; font-weight:600;&quot;&gt;station is not considered for scan selection&lt;/span&gt;. The schedule is first created without the tagalong stations, afterwards tagalong stations are included. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If you are unsure if a station can participate in a session, or if you are unsure about the quality of the observations from this station it might be a good idea to put this station in tagalong mode. &lt;span style=&quot; font-weight:600;&quot;&gt;This makes sure that the schedule is still good if the station drops out. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="title">
-          <string>tagalong</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QRadioButton" name="radioButton_tagalong_yes">
-            <property name="toolTip">
-             <string>use tagalong mode for this station</string>
-            </property>
-            <property name="statusTip">
-             <string>use tagalong mode for this station</string>
-            </property>
-            <property name="text">
-             <string>yes</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioButton_tagalong_no">
-            <property name="toolTip">
-             <string>do not use tagalong mode for this station</string>
-            </property>
-            <property name="statusTip">
-             <string>do not use tagalong mode for this station</string>
-            </property>
-            <property name="text">
-             <string>no</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>general</string>
-         </property>
-         <layout class="QFormLayout" name="formLayout_3">
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="checkBox_weight">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>weight</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_weight">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>weight of this station for selection of best scan</string>
-            </property>
-            <property name="statusTip">
-             <string>weight of this station for selection of best scan</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a station &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans where this station is participating&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
-            </property>
-            <property name="value">
-             <double>1.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="checkBox_maxSlewTime">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>max slew time</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="spinBox_maxSlewTime">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>maximum allowed slew time to next source in seconds</string>
-            </property>
-            <property name="statusTip">
-             <string>maximum allowed slew time to next source in seconds</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [s]</string>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-            <property name="singleStep">
-             <number>60</number>
-            </property>
-            <property name="value">
-             <number>600</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="checkBox_maxWaitTime">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>max wait time</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QSpinBox" name="spinBox_maxWaitTime">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>maximum allowed wait time for slower stations in seconds</string>
-            </property>
-            <property name="statusTip">
-             <string>maximum allowed wait time for slower stations in seconds</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed idle time in seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;If a station is idleing for longer then this value, the latest arriving antenna is removed from this scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [s]</string>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-            <property name="singleStep">
-             <number>60</number>
-            </property>
-            <property name="value">
-             <number>600</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QCheckBox" name="checkBox_minElevation">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>min elevation</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>minimum elevation for observations in degrees</string>
-            </property>
-            <property name="statusTip">
-             <string>minimum elevation for observations in degrees</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required elevation in degrees.&lt;/p&gt;&lt;p&gt;This value is also set in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot;  height=30 width=30 /&gt;. The minimum of this value and the value from the source parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [deg]</string>
-            </property>
-            <property name="value">
-             <double>5.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBox_minSlewDistance">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>min slew distance</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QCheckBox" name="checkBox_maxSlewDistance">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>max slew distance</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_minSlewDistance">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>minimum required slew distance to next source in degrees</string>
-            </property>
-            <property name="statusTip">
-             <string>minimum required slew distance to next source in degrees</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew distance in degress. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The Antenna is forced to slew at least the selected angle between two scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [deg]</string>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>5.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_maxSlewDistance">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>maximum allowed slew distance to next source in degrees</string>
-            </property>
-            <property name="statusTip">
-             <string>maximum allowed slew distance to next source in degrees</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed slew distance in degrees. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [deg]</string>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>5.000000000000000</double>
-            </property>
-            <property name="value">
-             <double>175.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>max number of scans</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>maximum number of scans for this station</string>
-            </property>
-            <property name="statusTip">
-             <string>maximum number of scans for this station</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this number is reached, the station is no longer available for additional scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-            <property name="value">
-             <number>9999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBox_minSlewTime">
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>min slew time</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBox_minSlewTime">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="statusTip">
-             <string>minimum required slew time to next source in seconds</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required slew time between two scans in seconds. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="suffix">
-             <string> [s]</string>
-            </property>
-            <property name="maximum">
-             <number>999</number>
-            </property>
-            <property name="singleStep">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>
@@ -849,8 +890,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>290</x>
-     <y>614</y>
+     <x>299</x>
+     <y>646</y>
     </hint>
     <hint type="destinationlabel">
      <x>361</x>
@@ -865,12 +906,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>325</y>
+     <x>105</x>
+     <y>249</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>325</y>
+     <x>334</x>
+     <y>252</y>
     </hint>
    </hints>
   </connection>
@@ -881,12 +922,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>381</y>
+     <x>137</x>
+     <y>281</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>361</y>
+     <x>334</x>
+     <y>284</y>
     </hint>
    </hints>
   </connection>
@@ -897,12 +938,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>102</x>
-     <y>454</y>
+     <x>135</x>
+     <y>377</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>457</y>
+     <x>334</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>
@@ -913,12 +954,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>87</x>
-     <y>486</y>
+     <x>120</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>489</y>
+     <x>334</x>
+     <y>412</y>
     </hint>
    </hints>
   </connection>
@@ -929,12 +970,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>165</x>
-     <y>409</y>
+     <x>178</x>
+     <y>313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>409</y>
+     <x>334</x>
+     <y>316</y>
     </hint>
    </hints>
   </connection>
@@ -945,12 +986,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>160</x>
-     <y>437</y>
+     <x>181</x>
+     <y>345</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>437</y>
+     <x>334</x>
+     <y>348</y>
     </hint>
    </hints>
   </connection>
@@ -961,12 +1002,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>158</x>
-     <y>513</y>
+     <x>191</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>244</x>
-     <y>509</y>
+     <x>334</x>
+     <y>444</y>
     </hint>
    </hints>
   </connection>
@@ -977,12 +1018,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>344</y>
+     <x>144</x>
+     <y>517</y>
     </hint>
     <hint type="destinationlabel">
-     <x>237</x>
-     <y>344</y>
+     <x>334</x>
+     <y>520</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_dataWriteSpeed</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_dataWriteSpeed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>536</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>535</y>
     </hint>
    </hints>
   </connection>

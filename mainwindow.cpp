@@ -754,6 +754,12 @@ void MainWindow::displayStationSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("max wait time [s]"));
         ++r;
     }
+    if(para.dataWriteSpeed.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.dataWriteSpeed)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("data write speed to disk [Mbps]"));
+        ++r;
+    }
     if(para.maxNumberOfScans.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxNumberOfScans)));
@@ -1840,6 +1846,8 @@ void MainWindow::defaultParameters()
                         sta.minSlewDistance = it2.second.get_value < double > ();
                     } else if (paraName == "maxWait") {
                         sta.maxWait = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "dataWriteSpeed") {
+                        sta.dataWriteSpeed = it2.second.get_value < double > ();
                     } else if (paraName == "minElevation") {
                         sta.minElevation = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxNumberOfScans") {
@@ -2290,32 +2298,78 @@ void MainWindow::addModesPolicyTable(QString name){
         dsp->setValue(20.);
     }
     dsp->setMaximum(1000);
+
     QComboBox *psta = new QComboBox(this);
     psta->addItem("required");
     psta->addItem("optional");
-    QComboBox *psrc = new QComboBox(this);
-    psrc->addItem("required");
-    psrc->addItem("optional");
     QComboBox *bsta = new QComboBox(this);
-    bsta->addItem("none");
+//    bsta->addItem("none");
     bsta->addItem("value");
-    bsta->addItem("min value Times");
-    bsta->addItem("max value Times");
-    QComboBox *bsrc = new QComboBox(this);
-    bsrc->addItem("none");
-    bsrc->addItem("value");
-    bsrc->addItem("min value Times");
-    bsrc->addItem("max value Times");
+    bsta->addItem("min value times");
+    bsta->addItem("max value times");
+    bsta->setEnabled(false);
     QDoubleSpinBox *vsta = new QDoubleSpinBox(this);
     vsta->setMinimum(0);
     vsta->setMaximum(100000);
     vsta->setSingleStep(.1);
     vsta->setValue(1);
+    vsta->setEnabled(false);
+    connect(psta, QOverload<int>::of(&QComboBox::currentIndexChanged), [psta, bsta, vsta](){
+        if( psta->currentText() == "required" ){
+            bsta->setEnabled(false);
+            vsta->setEnabled(false);
+        }else{
+            bsta->setEnabled(true);
+            emit bsta->currentIndexChanged(bsta->currentIndex());
+        }
+    });
+    connect(bsta, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsta, vsta](){
+        if( bsta->currentText() == "internal model" || bsta->currentText() == "none" ){
+            vsta->setEnabled(false);
+        }else{
+            vsta->setEnabled(true);
+        }
+    });
+
+
+
+
+
+
+    QComboBox *psrc = new QComboBox(this);
+    psrc->addItem("required");
+    psrc->addItem("optional");
+    QComboBox *bsrc = new QComboBox(this);
+//    bsrc->addItem("none");
+    bsrc->addItem("internal model");
+    bsrc->addItem("value");
+    bsrc->addItem("min value times");
+    bsrc->addItem("max value times");
+    bsrc->setEnabled(false);
     QDoubleSpinBox *vsrc = new QDoubleSpinBox(this);
     vsrc->setMinimum(0);
     vsrc->setMaximum(100000);
     vsrc->setSingleStep(.1);
     vsrc->setValue(1);
+    vsrc->setEnabled(false);
+    connect(psrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [psrc, bsrc, vsrc](){
+        if( psrc->currentText() == "required" ){
+            bsrc->setEnabled(false);
+            vsrc->setEnabled(false);
+        }else{
+            bsrc->setEnabled(true);
+            emit bsrc->currentIndexChanged(bsrc->currentIndex());
+        }
+    });
+    connect(bsrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsrc, vsrc](){
+        if( bsrc->currentText() == "internal model" || bsrc->currentText() == "none" ){
+            vsrc->setEnabled(false);
+        }else{
+            vsrc->setEnabled(true);
+        }
+    });
+
+
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,0,dsp);
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,1,psta);
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,2,bsta);

@@ -99,11 +99,11 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->checkBox_minSlewDistance->setEnabled(false);
         ui->checkBox_maxNumberOfScans->setChecked(true);
         ui->checkBox_maxNumberOfScans->setEnabled(false);
+        ui->checkBox_dataWriteSpeed->setEnabled(false);
 
         ui->groupBox_scanTime->setCheckable(false);
         ui->pushButton_load->setEnabled(false);
         ui->pushButton_save->setEnabled(false);
-
     }
     ui->lineEdit->setEnabled(false);
 }
@@ -219,6 +219,13 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
         ui->groupBox_scanTime->setChecked(true);
     }else{
         ui->spinBox_minScanTime->setValue(*dp.minScan);
+    }
+
+    if(sp.dataWriteSpeed.is_initialized()){
+        ui->doubleSpinBox_dataWriteSpeed->setValue(*sp.dataWriteSpeed);
+        ui->checkBox_dataWriteSpeed->setChecked(true);
+    }else{
+        ui->doubleSpinBox_dataWriteSpeed->setValue(4096.0);
     }
 
     QVector<QString> bands;
@@ -365,6 +372,9 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
     }
     if(ui->doubleSpinBox_weight->isEnabled()){
         para.weight = ui->doubleSpinBox_weight->value();
+    }
+    if(ui->doubleSpinBox_dataWriteSpeed->isEnabled()){
+        para.dataWriteSpeed = ui->doubleSpinBox_dataWriteSpeed->value();
     }
 
     if(ui->groupBox_scanTime->isChecked() || !ui->groupBox_scanTime->isCheckable()){

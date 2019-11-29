@@ -702,9 +702,9 @@ QString MainWindow::writeXML()
             backupSta = VieVS::ParameterSettings::ObservationModeBackup::none;
         }else if(bacSta == "value"){
             backupSta = VieVS::ParameterSettings::ObservationModeBackup::value;
-        }else if(bacSta == "min value Times"){
+        }else if(bacSta == "min value times"){
             backupSta = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
-        }else if(bacSta == "max value Times"){
+        }else if(bacSta == "max value times"){
             backupSta = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
         }
 
@@ -714,9 +714,11 @@ QString MainWindow::writeXML()
             backupSrc = VieVS::ParameterSettings::ObservationModeBackup::none;
         }else if(bacSrc == "value"){
             backupSrc = VieVS::ParameterSettings::ObservationModeBackup::value;
-        }else if(bacSrc == "min value Times"){
+        }else if(bacSrc == "internal model"){
+            backupSrc = VieVS::ParameterSettings::ObservationModeBackup::internalModel;
+        }else if(bacSrc == "min value times"){
             backupSrc = VieVS::ParameterSettings::ObservationModeBackup::minValueTimes;
-        }else if(bacSrc == "max value Times"){
+        }else if(bacSrc == "max value times"){
             backupSrc = VieVS::ParameterSettings::ObservationModeBackup::maxValueTimes;
         }
 
