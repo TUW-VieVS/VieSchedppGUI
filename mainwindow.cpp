@@ -2312,7 +2312,7 @@ void MainWindow::addModesPolicyTable(QString name){
     vsta->setMinimum(0);
     vsta->setMaximum(100000);
     vsta->setSingleStep(.1);
-    vsta->setValue(1);
+    vsta->setValue(0);
     vsta->setEnabled(false);
     connect(psta, QOverload<int>::of(&QComboBox::currentIndexChanged), [psta, bsta, vsta](){
         if( psta->currentText() == "required" ){
@@ -2326,9 +2326,16 @@ void MainWindow::addModesPolicyTable(QString name){
     connect(bsta, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsta, vsta](){
         if( bsta->currentText() == "internal model" || bsta->currentText() == "none" ){
             vsta->setEnabled(false);
+            vsta->setValue(0.0);
         }else{
             vsta->setEnabled(true);
+            if ( bsta->currentText() == "value" ){
+                vsta->setValue(1000.0);
+            }else{
+                vsta->setValue(1.0);
+            }
         }
+
     });
 
 
@@ -2350,7 +2357,7 @@ void MainWindow::addModesPolicyTable(QString name){
     vsrc->setMinimum(0);
     vsrc->setMaximum(100000);
     vsrc->setSingleStep(.1);
-    vsrc->setValue(1);
+    vsrc->setValue(0);
     vsrc->setEnabled(false);
     connect(psrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [psrc, bsrc, vsrc](){
         if( psrc->currentText() == "required" ){
@@ -2364,8 +2371,14 @@ void MainWindow::addModesPolicyTable(QString name){
     connect(bsrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsrc, vsrc](){
         if( bsrc->currentText() == "internal model" || bsrc->currentText() == "none" ){
             vsrc->setEnabled(false);
+            vsrc->setValue(0.0);
         }else{
             vsrc->setEnabled(true);
+            if ( bsrc->currentText() == "value" ){
+                vsrc->setValue(0.25);
+            }else{
+                vsrc->setValue(1.0);
+            }
         }
     });
 
