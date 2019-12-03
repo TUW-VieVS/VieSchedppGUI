@@ -754,9 +754,9 @@ void MainWindow::displayStationSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("max wait time [s]"));
         ++r;
     }
-    if(para.dataWriteSpeed.is_initialized()){
+    if(para.dataWriteRate.is_initialized()){
         t->insertRow(r);
-        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.dataWriteSpeed)));
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.dataWriteRate)));
         t->setVerticalHeaderItem(r,new QTableWidgetItem("data write speed to disk [Mbps]"));
         ++r;
     }
@@ -1847,7 +1847,7 @@ void MainWindow::defaultParameters()
                     } else if (paraName == "maxWait") {
                         sta.maxWait = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "dataWriteSpeed") {
-                        sta.dataWriteSpeed = it2.second.get_value < double > ();
+                        sta.dataWriteRate = it2.second.get_value < double > ();
                     } else if (paraName == "minElevation") {
                         sta.minElevation = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxNumberOfScans") {

@@ -221,8 +221,8 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
         ui->spinBox_minScanTime->setValue(*dp.minScan);
     }
 
-    if(sp.dataWriteSpeed.is_initialized()){
-        ui->doubleSpinBox_dataWriteSpeed->setValue(*sp.dataWriteSpeed);
+    if(sp.dataWriteRate.is_initialized()){
+        ui->doubleSpinBox_dataWriteSpeed->setValue(*sp.dataWriteRate);
         ui->checkBox_dataWriteSpeed->setChecked(true);
     }else{
         ui->doubleSpinBox_dataWriteSpeed->setValue(4096.0);
@@ -374,7 +374,7 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
         para.weight = ui->doubleSpinBox_weight->value();
     }
     if(ui->doubleSpinBox_dataWriteSpeed->isEnabled()){
-        para.dataWriteSpeed = ui->doubleSpinBox_dataWriteSpeed->value();
+        para.dataWriteRate = ui->doubleSpinBox_dataWriteSpeed->value();
     }
 
     if(ui->groupBox_scanTime->isChecked() || !ui->groupBox_scanTime->isCheckable()){
