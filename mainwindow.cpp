@@ -2394,8 +2394,10 @@ void MainWindow::addModesPolicyTable(QString name){
 
 void MainWindow::createModesCustonBandTable()
 {
-    addModesCustomTable("X",8.590,10);
-    addModesCustomTable("S",2.260,6);
+    addModesCustomTable("A", 3.2564,  1);
+    addModesCustomTable("B", 5.4964,  1);
+    addModesCustomTable("C", 6.6164,  1);
+    addModesCustomTable("D", 10.4564, 1);
 
     ui->tableWidget_modeCustonBand->resizeColumnsToContents();
     ui->tableWidget_modeCustonBand->verticalHeader()->show();
@@ -2443,8 +2445,8 @@ void MainWindow::addModesCustomTable(QString name, double freq, int nChannel){
     freqSB->setMinimum(0);
     freqSB->setMaximum(100);
     freqSB->setSingleStep(.1);
-    freqSB->setValue(freq);
     freqSB->setDecimals(4);
+    freqSB->setValue(freq);
     freqSB->setSuffix(" [GHz]");
 
     QSpinBox *nChannelSB = new QSpinBox(this);
