@@ -2394,6 +2394,7 @@ void MainWindow::addModesPolicyTable(QString name){
 
 void MainWindow::createModesCustonBandTable()
 {
+    ui->groupBox_modeCustom->setChecked(Qt::Checked);
     addModesCustomTable("A", 3.2564,  1);
     addModesCustomTable("B", 5.4964,  1);
     addModesCustomTable("C", 6.6164,  1);
@@ -2404,7 +2405,7 @@ void MainWindow::createModesCustonBandTable()
 
     QHeaderView *hv = ui->tableWidget_modeCustonBand->horizontalHeader();
     hv->setSectionResizeMode(QHeaderView::ResizeToContents);
-
+    ui->groupBox_modeSked->setChecked(Qt::Checked);
 }
 
 void MainWindow::gbps()
@@ -2615,7 +2616,7 @@ void MainWindow::updateAdvancedObservingMode()
         ui->comboBox_observingMode_trackFrameFormat->addItem(QString::fromStdString(*any));
     }
 
-    for(const auto &band : advancedObservingMode_->getAllBands()){
+    for(const auto &band : advancedObservingMode_->bands){
         addModesPolicyTable(QString::fromStdString(band));
     }
 }

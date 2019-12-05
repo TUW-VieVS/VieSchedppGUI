@@ -27,7 +27,7 @@ ObsModeDialog::ObsModeDialog(VieVS::ObservingMode obsMode, QWidget *parent) :
     phaseCalIds_ = new QStringListModel(pc,this);
 
     QStringList bandIds;
-    for(const auto &any : obsMode.getAllBands()){
+    for(const auto &any : obsMode.bands){
         bandIds.append(QString::fromStdString(any));
     }
     bandIds_->setStringList(bandIds);
