@@ -76,6 +76,7 @@
 #include "Utility/multicolumnsortfilterproxymodel.h"
 #include "secondaryGUIs/obsmodedialog.h"
 #include "Utility/statistics.h"
+#include "secondaryGUIs/mastersessionviewer.h"
 
 #include "Utility/downloadmanager.h"
 
@@ -572,6 +573,8 @@ private slots:
     void downloadFinished();
 
     void on_sampleBitsSpinBox_valueChanged(int arg1);
+
+    void on_pushButton_viewNext_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -7711,3 +7711,23 @@ void MainWindow::on_sampleBitsSpinBox_valueChanged(int arg1)
         ui->doubleSpinBox_efficiencyFactor->setValue(0.625 * 0.97);
     }
 }
+
+void MainWindow::on_pushButton_viewNext_clicked()
+{
+    auto tmp = qtUtil::getUpcomingSessions();
+
+    masterSessionViewer *m = new masterSessionViewer(this);
+    m->addSessions(tmp);
+
+    int result = m->exec();
+    if(result == QDialog::Accepted){
+        QString code = m->getSessionCode();
+        if(!code.isEmpty()){
+            ui->lineEdit_ivsMaster->setText(code);
+            on_pushButton_clicked();
+        }
+    }
+    delete(m);
+}
+
+

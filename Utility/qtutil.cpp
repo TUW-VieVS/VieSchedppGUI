@@ -461,3 +461,77 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
 }
 
 
+
+QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
+{
+    QVector<std::pair<int, QString> > sessions;
+
+    QDateTime start = QDateTime::currentDateTime();
+    int year = start.date().year();
+    QString yearStr = QString::number(year);
+    int doy = start.date().dayOfYear();
+
+    QStringList files;
+    files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year-2000);
+    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year-2000);
+    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year-2000);
+
+    bool overYear = false;
+    QDateTime end = start.addMonths(1);
+    int year2 = end.date().year();
+    QString yearStr2 = QString::number(year2);
+    int doy2 = end.date().dayOfYear();
+    if(year2 > year){
+        files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year2-2000);
+        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year2-2000);
+        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year2-2000);
+        overYear = true;
+    }
+
+
+    for( const auto & file: files){
+        QFile inputFile(file);
+
+        QString yearStr = file.mid(29,2);
+        int tyear = yearStr.toInt()+2000;
+
+        if (inputFile.open(QIODevice::ReadOnly)){
+            QTextStream in(&inputFile);
+
+            int code;
+            if(inputFile.fileName().contains("-int")){
+                code = 1;
+            }else if(inputFile.fileName().contains("-vgos")){
+                code = 2;
+            }else{
+                code = 0;
+            }
+
+            while (!in.atEnd()) {
+               QString line = in.readLine();
+               if(line.isEmpty() || line.at(0) != '|'){
+                   continue;
+               }
+               QStringList content = line.split('|', QString::SplitBehavior::SkipEmptyParts);
+
+               int tdoy = content[3].toInt();
+
+
+               if(overYear){
+
+
+                   if ((tyear == year && tdoy >= doy) || (tyear == year2 && tdoy <= doy2)){
+                       sessions.append({code, line});
+                   }
+               }else{
+                   if (tdoy >= doy  && tdoy <= doy2){
+                       sessions.append({code, line});
+                   }
+               }
+            }
+            inputFile.close();
+        }
+    }
+
+    return sessions;
+}

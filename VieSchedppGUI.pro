@@ -135,6 +135,7 @@ SOURCES += \
     Parameters/stationparametersdialog.cpp \
     secondaryGUIs/addbanddialog.cpp \
     secondaryGUIs/addgroupdialog.cpp \
+    secondaryGUIs/mastersessionviewer.cpp \
     secondaryGUIs/multischededitdialogdatetime.cpp \
     secondaryGUIs/multischededitdialogdouble.cpp \
     secondaryGUIs/multischededitdialogint.cpp \
@@ -234,6 +235,7 @@ HEADERS += \
     Utility/downloadmanager.h \
     secondaryGUIs/addbanddialog.h \
     secondaryGUIs/addgroupdialog.h \
+    secondaryGUIs/mastersessionviewer.h \
     secondaryGUIs/multischededitdialogdatetime.h \
     secondaryGUIs/multischededitdialogdouble.h \
     secondaryGUIs/multischededitdialogint.h \
@@ -259,6 +261,7 @@ FORMS += \
     Parameters/stationparametersdialog.ui \
     secondaryGUIs/addbanddialog.ui \
     secondaryGUIs/addgroupdialog.ui \
+    secondaryGUIs/mastersessionviewer.ui \
     secondaryGUIs/multischededitdialogdatetime.ui \
     secondaryGUIs/multischededitdialogdouble.ui \
     secondaryGUIs/multischededitdialogint.ui \

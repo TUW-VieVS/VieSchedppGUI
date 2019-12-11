@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>22</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -2881,58 +2881,17 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>885</width>
-             <height>668</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
             <item>
              <layout class="QGridLayout" name="gridLayout_8">
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_ivsMaster">
-                <property name="toolTip">
-                 <string>import data from session master</string>
-                </property>
-                <property name="statusTip">
-                 <string>import data from session master</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an optional way to get the most basic information from your schedule, in case you are scheduling an IVS session. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Go to the IVS-Schedule master at &lt;/span&gt;&lt;a href=&quot;https://ivscc.gsfc.nasa.gov/sessions/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://ivscc.gsfc.nasa.gov/sessions/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, browse for your schedule and copy the full line into this form. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;IVS-R1823 R1823 2018-01-02 17:00 2 24:00 Ft Ht Is Ke Kk Ny Wn Yg XA NASA WASH Released NASA&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;By pressing the enter key or clicking &lt;/span&gt;&lt;img src=&quot;:/icons/icons/dialog-ok-2.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the information is read. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The software will now automatically set the following values:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment name&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment description&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session start&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session duration&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• list of stations &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;(all!)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• scheduler&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• correlator&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;manually deselect&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; stations which are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not participating&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="placeholderText">
-                 <string>e.g.: session code such as &quot;R1928&quot; or copy line from html session master</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="experimentDesctiptionLabel">
-                <property name="text">
-                 <string>session description</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="experimentNameLineEdit">
-                <property name="toolTip">
-                 <string>experiment name</string>
-                </property>
-                <property name="statusTip">
-                 <string>experiment name</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; session code&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This code is used as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for all output files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that several other software packages like difx only allow a session code with a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum of 6 characters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you only make simulations or do not plan to observe this schedule feel free to choose a longer session code. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Either way you can always just &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;rename&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the files manually. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="inputMask">
-                 <string/>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="placeholderText">
-                 <string>e.g.: R1823 (max 6 character)</string>
+              <item row="1" column="0" colspan="4">
+               <widget class="Line" name="line_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -2943,24 +2902,13 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="0" column="2">
-               <widget class="QPushButton" name="pushButton">
-                <property name="toolTip">
-                 <string>read session master line</string>
+              <item row="3" column="0">
+               <widget class="QLabel" name="experimentDesctiptionLabel">
+                <property name="text">
+                 <string>session description</string>
                 </property>
-                <property name="statusTip">
-                 <string>read session master line</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="myresources.qrc">
-                  <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" colspan="3">
-               <widget class="Line" name="line_4">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -2986,6 +2934,62 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
+              <item row="0" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_137">
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_ivsMaster">
+                  <property name="toolTip">
+                   <string>import data from session master</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>import data from session master</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an optional way to get the most basic information from your schedule, in case you are scheduling an IVS session. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Go to the IVS-Schedule master at &lt;/span&gt;&lt;a href=&quot;https://ivscc.gsfc.nasa.gov/sessions/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://ivscc.gsfc.nasa.gov/sessions/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, browse for your schedule and copy the full line into this form. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;IVS-R1823 R1823 2018-01-02 17:00 2 24:00 Ft Ht Is Ke Kk Ny Wn Yg XA NASA WASH Released NASA&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;By pressing the enter key or clicking &lt;/span&gt;&lt;img src=&quot;:/icons/icons/dialog-ok-2.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the information is read. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The software will now automatically set the following values:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment name&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• experiment description&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session start&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• session duration&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• list of stations &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;(all!)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• scheduler&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;• correlator&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;manually deselect&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; stations which are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not participating&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>e.g.: session code such as &quot;R1928&quot; or copy line from html session master</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="experimentNameLineEdit">
+                <property name="toolTip">
+                 <string>experiment name</string>
+                </property>
+                <property name="statusTip">
+                 <string>experiment name</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; session code&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This code is used as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for all output files. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Keep in mind that several other software packages like difx only allow a session code with a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum of 6 characters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you only make simulations or do not plan to observe this schedule feel free to choose a longer session code. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Either way you can always just &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;rename&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; the files manually. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="inputMask">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="placeholderText">
+                 <string>e.g.: R1823 (max 6 character)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QPushButton" name="pushButton">
+                <property name="toolTip">
+                 <string>read session master line</string>
+                </property>
+                <property name="statusTip">
+                 <string>read session master line</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="myresources.qrc">
+                  <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_66">
                 <property name="text">
@@ -2993,6 +2997,17 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                 <property name="openExternalLinks">
                  <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pushButton_viewNext">
+                <property name="text">
+                 <string> list next</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="myresources.qrc">
+                  <normaloff>:/icons/icons/documentation.png</normaloff>:/icons/icons/documentation.png</iconset>
                 </property>
                </widget>
               </item>
@@ -12113,6 +12128,19 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="label_107">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>270</y>
+          <width>461</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#cc0000;&quot;&gt;work in progress... &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="faq">
        <property name="toolTip">
@@ -13158,12 +13186,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>99</y>
+     <x>47</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>99</y>
+     <x>81</x>
+     <y>80</y>
     </hint>
    </hints>
   </connection>
@@ -13190,12 +13218,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>101</x>
-     <y>95</y>
+     <x>19</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>100</y>
+     <x>34</x>
+     <y>76</y>
     </hint>
    </hints>
   </connection>
@@ -13206,12 +13234,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>187</x>
-     <y>126</y>
+     <x>19</x>
+     <y>78</y>
     </hint>
     <hint type="destinationlabel">
-     <x>342</x>
-     <y>127</y>
+     <x>34</x>
+     <y>78</y>
     </hint>
    </hints>
   </connection>
@@ -13222,12 +13250,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>90</x>
-     <y>155</y>
+     <x>19</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>158</y>
+     <x>34</x>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -13238,12 +13266,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>144</x>
-     <y>184</y>
+     <x>19</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>187</y>
+     <x>34</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
@@ -13254,12 +13282,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>213</y>
+     <x>19</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>216</y>
+     <x>34</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -13270,12 +13298,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>152</x>
-     <y>242</y>
+     <x>19</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>245</y>
+     <x>34</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -13286,12 +13314,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>283</y>
+     <x>34</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -13302,12 +13330,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>72</x>
-     <y>339</y>
+     <x>19</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -13318,12 +13346,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>170</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>339</y>
+     <x>34</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -13334,12 +13362,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>380</y>
+     <x>34</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -13350,12 +13378,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>149</x>
-     <y>412</y>
+     <x>19</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -13366,12 +13394,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>126</x>
-     <y>444</y>
+     <x>19</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>
@@ -13382,12 +13410,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>412</y>
+     <x>34</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -13398,12 +13426,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>444</y>
+     <x>34</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>
@@ -13414,12 +13442,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>132</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>485</y>
+     <x>34</x>
+     <y>98</y>
     </hint>
    </hints>
   </connection>
@@ -13430,12 +13458,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>97</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>98</x>
-     <y>517</y>
+     <x>19</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
@@ -13446,12 +13474,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>115</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>549</y>
+     <x>19</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -13462,12 +13490,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>517</y>
+     <x>34</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
@@ -13478,12 +13506,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>377</x>
-     <y>549</y>
+     <x>34</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -13494,12 +13522,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>297</x>
-     <y>210</y>
+     <x>51</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>353</x>
-     <y>213</y>
+     <x>80</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -13510,12 +13538,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>116</x>
-     <y>322</y>
+     <x>31</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>223</x>
-     <y>324</y>
+     <x>54</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -13526,12 +13554,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>127</x>
-     <y>156</y>
+     <x>61</x>
+     <y>161</y>
     </hint>
     <hint type="destinationlabel">
-     <x>138</x>
-     <y>156</y>
+     <x>87</x>
+     <y>161</y>
     </hint>
    </hints>
   </connection>
@@ -13542,12 +13570,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>138</x>
-     <y>156</y>
+     <x>61</x>
+     <y>165</y>
     </hint>
     <hint type="destinationlabel">
-     <x>138</x>
-     <y>156</y>
+     <x>87</x>
+     <y>165</y>
     </hint>
    </hints>
   </connection>
@@ -13558,12 +13586,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>138</x>
-     <y>156</y>
+     <x>61</x>
+     <y>158</y>
     </hint>
     <hint type="destinationlabel">
-     <x>138</x>
-     <y>156</y>
+     <x>86</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
@@ -13574,12 +13602,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>138</x>
-     <y>156</y>
+     <x>61</x>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
-     <x>138</x>
-     <y>156</y>
+     <x>87</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
@@ -13686,12 +13714,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>99</y>
+     <x>31</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>99</y>
+     <x>54</x>
+     <y>122</y>
     </hint>
    </hints>
   </connection>
@@ -13702,12 +13730,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>99</y>
+     <x>31</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>99</y>
+     <x>31</x>
+     <y>123</y>
     </hint>
    </hints>
   </connection>
@@ -13718,12 +13746,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>99</y>
+     <x>31</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>99</y>
+     <x>54</x>
+     <y>123</y>
     </hint>
    </hints>
   </connection>
@@ -13750,12 +13778,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>119</y>
+     <x>131</x>
+     <y>163</y>
     </hint>
     <hint type="destinationlabel">
-     <x>109</x>
-     <y>138</y>
+     <x>127</x>
+     <y>308</y>
     </hint>
    </hints>
   </connection>

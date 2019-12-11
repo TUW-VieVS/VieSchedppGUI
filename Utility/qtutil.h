@@ -56,6 +56,8 @@ namespace qtUtil {
     QList<QLineSeries *> baselineSeries(double lat1, double lon1, QString name1, double lat2, double lon2, QString name2);
 
     boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString>> searchSessionCodeInMasterFile(QString code);
+
+    QVector<std::pair<int, QString>> getUpcomingSessions();
 }
 
 #endif // QTUTIL_H
