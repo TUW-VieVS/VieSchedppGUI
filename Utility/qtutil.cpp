@@ -460,7 +460,58 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
     return result;
 }
 
+QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime sessionStart, QDateTime sessionEnd, QStringList stations){
 
+    int dur = static_cast<int>(sessionStart.secsTo(sessionEnd));
+
+    QVector<std::pair<QString, std::pair<int,int>>> downTimes;
+
+    int year = sessionStart.date().year();
+
+    QFile inputFile(QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year%100));
+
+    if (inputFile.open(QIODevice::ReadOnly)){
+        QTextStream in(&inputFile);
+        while (!in.atEnd()) {
+           QString line = in.readLine();
+           if(line.isEmpty() || line.at(0) != '|'){
+               continue;
+           }
+           QStringList content = line.split('|', QString::SplitBehavior::SkipEmptyParts);
+
+           int tDoy = content[3].toInt();
+           QDate tDate(year,1,1);
+           tDate = tDate.addDays(tDoy-1);
+
+           auto hm = content[4].split(':');
+           int tHour = hm.at(0).toInt();
+           int tMin = hm.at(1).toInt();
+           QTime tTime(tHour,tMin);
+
+           QDateTime tStart(tDate,tTime);
+
+
+           QDateTime tEnd = tStart.addSecs(content[5].toDouble()*3600);
+
+
+           if( (tStart > sessionStart && tStart < sessionEnd ) || (tEnd > sessionStart && tEnd < sessionEnd) ){
+               QString tStations = content[6].split(' ').at(0);
+
+               for (int c = 0; c < tStations.length(); c+=2) {
+                   QString tSta = tStations.mid(c,2);
+                   if(stations.contains(tSta)){
+                       int s = std::max(static_cast<int>(sessionStart.secsTo(tStart)-600),0);
+                       int e = std::min(static_cast<int>(sessionStart.secsTo(tEnd)+600),dur);
+                       downTimes.append({tSta, {s,e}});
+                   }
+               }
+
+           }
+        }
+        inputFile.close();
+    }
+    return downTimes;
+}
 
 QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
 {

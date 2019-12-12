@@ -1950,6 +1950,12 @@ void MainWindow::defaultParameters()
     paraSta["default"] = sta;
     ui->ComboBox_parameterStation->addItem("default");
 
+    VieVS::ParameterSettings::ParametersStations down;
+    down.available = false;
+    paraSta["down"] = down;
+    ui->ComboBox_parameterStation->addItem("down");
+
+
     paraSrc["default"] = src;
     ui->ComboBox_parameterSource->addItem("default");
 
@@ -3456,6 +3462,8 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
+
+    QMap<QString,QString> tlc2station;
     if (found){
 
         ui->lineEdit_experimentDescription->setText(description);
@@ -3484,6 +3492,7 @@ void MainWindow::on_pushButton_clicked()
                 for(int j=0; j<allStationProxyModel->rowCount(); ++j){
                     QString itsta = allStationProxyModel->index(j,1).data().toString().toUpper();
                     if(itsta == sta){
+                        tlc2station[sta] = allStationProxyModel->index(j,0).data().toString();
                         QModelIndex index = allStationProxyModel->index(j,0);
                         on_treeView_allAvailabeStations_clicked(index);
                         found = true;
@@ -3506,6 +3515,43 @@ void MainWindow::on_pushButton_clicked()
 
         if(errorText.size() != 0){
             QMessageBox::warning(this,"errors while reading session master line",errorText);
+        }
+
+        auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600), stas);
+        if(!downtimes.isEmpty()){
+
+            for(const auto any : downtimes){
+                QString downTLC = any.first.toUpper();
+                std::string station = tlc2station[downTLC].toStdString();
+                unsigned int downStart = any.second.first;
+                unsigned int downEnd = any.second.second;
+                VieVS::ParameterSetup setupDown("down",station,downStart,downEnd,VieVS::ParameterSetup::Transition::hard);
+
+                setupStationTree.refChildren().at(0).addChild(setupDown);
+
+
+
+
+                auto *targetTreeWidget = ui->treeWidget_setupStation;
+                auto *targetStationPlot = ui->ComboBox_parameterStation;
+                auto *setupChartView = setupStation;
+
+                targetTreeWidget->clear();
+
+
+                QTreeWidgetItem *c = new QTreeWidgetItem();
+
+                VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
+
+                drawTable(setupStationTree, c, groupSta, setupType);
+                targetTreeWidget->addTopLevelItem(c);
+                targetTreeWidget->expandAll();
+
+
+                drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
+
+
+            }
         }
     }
 }
@@ -3717,40 +3763,76 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
 
             QMessageBox ms;
             ms.warning(this,"Invalid child",txt);
-        }else{
+        } else {
+            targetTreeWidget->clear();
+
             QTreeWidgetItem *c = new QTreeWidgetItem();
-            QIcon ic;
-            if(isGroup || member->currentText() == "__all__"){
-                if(targetTreeWidget == ui->treeWidget_setupStation){
-                    ic = QIcon(":/icons/icons/station_group.png");
-                }else if(targetTreeWidget == ui->treeWidget_setupSource){
-                    ic = QIcon(":/icons/icons/source_group.png");
-                }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
-                    ic = QIcon(":/icons/icons/baseline_group.png");
-                }
-            }else{
-                if(targetTreeWidget == ui->treeWidget_setupStation){
-                    ic = QIcon(":/icons/icons/station.png");
-                }else if(targetTreeWidget == ui->treeWidget_setupSource){
-                    ic = QIcon(":/icons/icons/source.png");
-                }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
-                    ic = QIcon(":/icons/icons/baseline.png");
-                }
+
+            VieVS::ParameterSettings::Type setupType;
+
+            if(targetTreeWidget == ui->treeWidget_setupStation){
+                setupType = VieVS::ParameterSettings::Type::station;
+            }else if(targetTreeWidget == ui->treeWidget_setupSource){
+                setupType = VieVS::ParameterSettings::Type::source;
+            }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
+                setupType = VieVS::ParameterSettings::Type::baseline;
             }
 
-            c->setIcon(0,ic);
-            c->setText(0,member->currentText());
-            c->setText(1,parameter->currentText());
-            c->setText(2,paraStart->dateTime().toString("dd.MM.yyyy hh:mm"));
-            c->setText(3,paraEnd->dateTime().toString("dd.MM.yyyy hh:mm"));
-            c->setText(4,transition->currentText());
+            drawTable(paraSetup, c, groups, setupType);
+            targetTreeWidget->addTopLevelItem(c);
+            targetTreeWidget->expandAll();
 
-            sel.at(0)->addChild(c);
-            sel.at(0)->setExpanded(true);
+
             drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
         }
     }
 }
+
+void MainWindow::drawTable(const VieVS::ParameterSetup &setup, QTreeWidgetItem *c, const std::map<std::string, std::vector<std::string>> &groups, VieVS::ParameterSettings::Type type){
+
+    bool isGroup = groups.find(setup.getMemberName() ) != groups.end();
+    QIcon ic;
+    if(isGroup || setup.getMemberName() == "__all__"){
+        if(type == VieVS::ParameterSettings::Type::station){
+            ic = QIcon(":/icons/icons/station_group.png");
+        }else if(type == VieVS::ParameterSettings::Type::source){
+            ic = QIcon(":/icons/icons/source_group.png");
+        }else if(type == VieVS::ParameterSettings::Type::baseline){
+            ic = QIcon(":/icons/icons/baseline_group.png");
+        }
+    }else{
+        if(type == VieVS::ParameterSettings::Type::station){
+            ic = QIcon(":/icons/icons/station.png");
+        }else if(type == VieVS::ParameterSettings::Type::source){
+            ic = QIcon(":/icons/icons/source.png");
+        }else if(type == VieVS::ParameterSettings::Type::baseline){
+            ic = QIcon(":/icons/icons/baseline.png");
+        }
+    }
+
+    c->setIcon(0,ic);
+    c->setText(0,QString::fromStdString(setup.getMemberName()));
+    c->setText(1,QString::fromStdString(setup.getParameterName()));
+    QDateTime start = ui->dateTimeEdit_sessionStart->dateTime().addSecs(setup.getStart());
+    QDateTime end = ui->dateTimeEdit_sessionStart->dateTime().addSecs(setup.getEnd());
+    c->setText(2,start.toString("dd.MM.yyyy hh:mm"));
+    c->setText(3,end.toString("dd.MM.yyyy hh:mm"));
+    if(setup.getTransition() == VieVS::ParameterSetup::Transition::hard){
+        c->setText(4,"hard");
+    }else{
+        c->setText(4,"smooth");
+    }
+
+    for(const auto any: setup.getChildren()){
+        QTreeWidgetItem *c_new = new QTreeWidgetItem();
+        drawTable(any, c_new, groups, type);
+        c->addChild(c_new);
+    }
+
+
+}
+
+
 
 void MainWindow::deleteSetupSelection(VieVS::ParameterSetup &setup, QChartView *setupChartView, QComboBox *setupCB,
                                       QTreeWidget *setupTW){

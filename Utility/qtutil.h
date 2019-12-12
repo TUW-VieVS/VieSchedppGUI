@@ -30,6 +30,7 @@
 
 #include "../VieSchedpp/Scheduler.h"
 #include "chartview.h"
+#include <algorithm>
 
 namespace qtUtil {
 
@@ -58,6 +59,10 @@ namespace qtUtil {
     boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString>> searchSessionCodeInMasterFile(QString code);
 
     QVector<std::pair<int, QString>> getUpcomingSessions();
+
+    QVector<std::pair<QString, std::pair<int,int>>> getDownTimes(QDateTime sessionStart, QDateTime sessionEnd, QStringList stations);
+
+    QVector<std::pair<QString, std::pair<int,int>>> getStationIdleTimes(QStringList stations, QDateTime sessionsStart, QDateTime sessionEnd);
 }
 
 #endif // QTUTIL_H

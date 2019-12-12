@@ -237,6 +237,8 @@ private slots:
                   QComboBox *transition, QComboBox *member, QComboBox *parameter, VieVS::ParameterSetup &paraSetup,
                   QChartView *setupChartView, QComboBox *targetStationPlot);
 
+    void drawTable(const VieVS::ParameterSetup &paraSetup, QTreeWidgetItem *c, const std::map<std::string, std::vector<std::string>> &groups, VieVS::ParameterSettings::Type type);
+
     void on_pushButton_4_clicked();
 
     void deleteSetupSelection(VieVS::ParameterSetup &setup, QChartView *setupChartView, QComboBox *setupCB, QTreeWidget *setupTW);
