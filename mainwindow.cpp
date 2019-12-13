@@ -3529,28 +3529,19 @@ void MainWindow::on_pushButton_clicked()
 
                 setupStationTree.refChildren().at(0).addChild(setupDown);
 
-
-
-
                 auto *targetTreeWidget = ui->treeWidget_setupStation;
                 auto *targetStationPlot = ui->ComboBox_parameterStation;
                 auto *setupChartView = setupStation;
 
                 targetTreeWidget->clear();
 
-
                 QTreeWidgetItem *c = new QTreeWidgetItem();
-
                 VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
-
                 drawTable(setupStationTree, c, groupSta, setupType);
                 targetTreeWidget->addTopLevelItem(c);
                 targetTreeWidget->expandAll();
 
-
                 drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
-
-
             }
         }
     }
@@ -3667,124 +3658,85 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
                           QComboBox *transition, QComboBox *member, QComboBox *parameter,
                           VieVS::ParameterSetup &paraSetup, QChartView *setupChartView, QComboBox *targetStationPlot){
 
-    QList<QTreeWidgetItem *> sel = targetTreeWidget->selectedItems();
+    setupChanged = true;
+    VieVS::ParameterSetup ps;
 
-    if(sel.size() != 1){
-        QMessageBox *ms = new QMessageBox;
-        ms->warning(this,"Wrong selection","Please select one parent in the right window!");
+    QDateTime sessionStart = ui->dateTimeEdit_sessionStart->dateTime();
+    unsigned int startt = sessionStart.secsTo(paraStart->dateTime());
+    unsigned int endt = sessionStart.secsTo(paraEnd->dateTime());
+    VieVS::ParameterSetup::Transition trans;
+    if(transition->currentText() == "smooth"){
+        trans = VieVS::ParameterSetup::Transition::smooth;
     }else{
-        setupChanged = true;
-        VieVS::ParameterSetup ps;
+        trans = VieVS::ParameterSetup::Transition::hard;
+    }
 
-        QDateTime sessionStart = ui->dateTimeEdit_sessionStart->dateTime();
-        unsigned int startt = sessionStart.secsTo(paraStart->dateTime());
-        unsigned int endt = sessionStart.secsTo(paraEnd->dateTime());
-        VieVS::ParameterSetup::Transition trans;
-        if(transition->currentText() == "smooth"){
-            trans = VieVS::ParameterSetup::Transition::smooth;
-        }else{
-            trans = VieVS::ParameterSetup::Transition::hard;
+    std::map<std::string, std::vector<std::string>> groups;
+    if(targetTreeWidget == ui->treeWidget_setupStation){
+        groups = groupSta;
+    }else if(targetTreeWidget == ui->treeWidget_setupSource){
+        groups = groupSrc;
+    }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
+        groups = groupBl;
+    }
+    bool isGroup = groups.find(member->currentText().toStdString() ) != groups.end();
+    if(isGroup){
+        std::string parameterName = parameter->currentText().toStdString();
+        std::string groupName = member->currentText().toStdString();
+        std::vector<std::string> groupMembers = groups.at(member->currentText().toStdString());
+        ps = VieVS::ParameterSetup(parameterName,
+                                      groupName,
+                                      groupMembers,
+                                      startt,
+                                      endt,
+                                      trans);
+    }else{
+        std::string parameterName = parameter->currentText().toStdString();
+        std::string stationName = member->currentText().toStdString();
+        ps = VieVS::ParameterSetup(parameterName,
+                                      stationName,
+                                      startt,
+                                      endt,
+                                      trans);
+    }
+
+    int errorCode = paraSetup.refChildren().at(0).addChild(ps);
+
+    if (errorCode != 0) {
+        QString txt;
+        switch (errorCode) {
+        case 1: txt = "Conflict with parent: child contains all stations but parent object does not! Always make sure that all stations in child are also part of parent."; break;
+        case 2: txt = "Conflict with parent: time span of child is not part of time span of parent!"; break;
+        case 3: txt = "Conflict with parent: at least one of the stations in child are not part of parent! Always make sure that all stations in child are also part of parent."; break;
+        case 4: txt = "Conflict with sibling: overlapping time series with at least one sibling and at least one of the siblings or new setup contains all stations"; break;
+        case 5: txt = "Conflict with sibling: overlapping time series with at least one sibling and somehow there are no members in at least one sibling or in the new setup... maybe error with a group."; break;
+        case 6: txt = "Conflict with sibling: overpassing time series with at least one sibling and at least one station is part of a sibling! "; break;
+        default: txt = "Child could not be added... wired error... please report to developers! This should not have happened :-) "; break;
         }
 
-        std::map<std::string, std::vector<std::string>> groups;
+        QMessageBox ms;
+        ms.warning(this,"Invalid child",txt);
+    } else {
+        targetTreeWidget->clear();
+
+        QTreeWidgetItem *c = new QTreeWidgetItem();
+
+        VieVS::ParameterSettings::Type setupType;
+
         if(targetTreeWidget == ui->treeWidget_setupStation){
-            groups = groupSta;
+            setupType = VieVS::ParameterSettings::Type::station;
         }else if(targetTreeWidget == ui->treeWidget_setupSource){
-            groups = groupSrc;
+            setupType = VieVS::ParameterSettings::Type::source;
         }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
-            groups = groupBl;
-        }
-        bool isGroup = groups.find(member->currentText().toStdString() ) != groups.end();
-        if(isGroup){
-            std::string parameterName = parameter->currentText().toStdString();
-            std::string groupName = member->currentText().toStdString();
-            std::vector<std::string> groupMembers = groups.at(member->currentText().toStdString());
-            ps = VieVS::ParameterSetup(parameterName,
-                                          groupName,
-                                          groupMembers,
-                                          startt,
-                                          endt,
-                                          trans);
-        }else{
-            std::string parameterName = parameter->currentText().toStdString();
-            std::string stationName = member->currentText().toStdString();
-            ps = VieVS::ParameterSetup(parameterName,
-                                          stationName,
-                                          startt,
-                                          endt,
-                                          trans);
+            setupType = VieVS::ParameterSettings::Type::baseline;
         }
 
-        int level=0;
-        QTreeWidgetItem * t = sel.at(0);
-        while(t->parent()){
-            t = t->parent();
-            ++level;
-        }
+        drawTable(paraSetup, c, groups, setupType);
+        targetTreeWidget->addTopLevelItem(c);
+        targetTreeWidget->expandAll();
 
 
-        QString txt2 = sel.at(0)->text(2);
-        QString txt3 = sel.at(0)->text(3);
-        QDateTime start2 = QDateTime::fromString(txt2,"dd.MM.yyyy hh:mm");
-        QDateTime start3 = QDateTime::fromString(txt3,"dd.MM.yyyy hh:mm");
-
-        unsigned int startt2 = sessionStart.secsTo(start2);
-        unsigned int endt2 = sessionStart.secsTo(start3);
-        std::string parameterName2 = sel.at(0)->text(1).toStdString();
-        std::string memberName2 = sel.at(0)->text(0).toStdString();
-        std::vector<std::string> members2;
-        if(groups.find(memberName2) != groups.end()){
-            members2 = groups.at(memberName2);
-        }else{
-            members2.push_back(memberName2);
-        }
-        VieVS::ParameterSetup::Transition trans2;
-        if(sel.at(0)->text(4) == "smooth"){
-            trans2 = VieVS::ParameterSetup::Transition::smooth;
-        }else{
-            trans2 = VieVS::ParameterSetup::Transition::hard;
-        }
-
-        boost::optional<VieVS::ParameterSetup &> root = paraSetup.search(0,level, parameterName2, memberName2, members2, trans2, startt2, endt2);
-
-        int errorCode = root->addChild(ps);
-
-        if (errorCode != 0) {
-            QString txt;
-            switch (errorCode) {
-            case 1: txt = "Conflict with parent: child contains all stations but parent object does not! Always make sure that all stations in child are also part of parent."; break;
-            case 2: txt = "Conflict with parent: time span of child is not part of time span of parent!"; break;
-            case 3: txt = "Conflict with parent: at least one of the stations in child are not part of parent! Always make sure that all stations in child are also part of parent."; break;
-            case 4: txt = "Conflict with sibling: overlapping time series with at least one sibling and at least one of the siblings or new setup contains all stations"; break;
-            case 5: txt = "Conflict with sibling: overlapping time series with at least one sibling and somehow there are no members in at least one sibling or in the new setup... maybe error with a group."; break;
-            case 6: txt = "Conflict with sibling: overpassing time series with at least one sibling and at least one station is part of a sibling! "; break;
-            default: txt = "Child could not be added... wired error... please report to developers! This should not have happened :-) "; break;
-            }
-
-            QMessageBox ms;
-            ms.warning(this,"Invalid child",txt);
-        } else {
-            targetTreeWidget->clear();
-
-            QTreeWidgetItem *c = new QTreeWidgetItem();
-
-            VieVS::ParameterSettings::Type setupType;
-
-            if(targetTreeWidget == ui->treeWidget_setupStation){
-                setupType = VieVS::ParameterSettings::Type::station;
-            }else if(targetTreeWidget == ui->treeWidget_setupSource){
-                setupType = VieVS::ParameterSettings::Type::source;
-            }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
-                setupType = VieVS::ParameterSettings::Type::baseline;
-            }
-
-            drawTable(paraSetup, c, groups, setupType);
-            targetTreeWidget->addTopLevelItem(c);
-            targetTreeWidget->expandAll();
-
-
-            drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
-        }
+        drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
     }
 }
 
@@ -7813,3 +7765,48 @@ void MainWindow::on_pushButton_viewNext_clicked()
 }
 
 
+
+void MainWindow::on_pushButton_24_clicked()
+{
+
+    QDateTime start = ui->dateTimeEdit_sessionStart->dateTime();
+    double dur = ui->doubleSpinBox_sessionDuration->value();
+    QStringList stas;
+    QMap<QString,QString> tlc2station;
+
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        QString name = selectedStationModel->index(i,0).data().toString();
+        QString tlc = selectedStationModel->index(i,1).data().toString().toUpper();
+        stas << tlc;
+        tlc2station[tlc] = name;
+    }
+
+    auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600), stas);
+    if(!downtimes.isEmpty()){
+
+        for(const auto any : downtimes){
+            QString downTLC = any.first.toUpper();
+            std::string station = tlc2station[downTLC].toStdString();
+            unsigned int downStart = any.second.first;
+            unsigned int downEnd = any.second.second;
+            VieVS::ParameterSetup setupDown("down",station,downStart,downEnd,VieVS::ParameterSetup::Transition::hard);
+
+            setupStationTree.refChildren().at(0).addChild(setupDown);
+
+            auto *targetTreeWidget = ui->treeWidget_setupStation;
+            auto *targetStationPlot = ui->comboBox_setupStation;
+            auto *setupChartView = setupStation;
+
+            targetTreeWidget->clear();
+
+            QTreeWidgetItem *c = new QTreeWidgetItem();
+            VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
+            drawTable(setupStationTree, c, groupSta, setupType);
+            targetTreeWidget->addTopLevelItem(c);
+            targetTreeWidget->expandAll();
+
+            drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
+        }
+    }
+
+}

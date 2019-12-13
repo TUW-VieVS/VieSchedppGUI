@@ -499,7 +499,7 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
 
                for (int c = 0; c < tStations.length(); c+=2) {
                    QString tSta = tStations.mid(c,2);
-                   if(stations.contains(tSta)){
+                   if(stations.contains(tSta,Qt::CaseInsensitive)){
                        int s = std::max(static_cast<int>(sessionStart.secsTo(tStart)-600),0);
                        int e = std::min(static_cast<int>(sessionStart.secsTo(tEnd)+600),dur);
                        downTimes.append({tSta, {s,e}});
