@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -277,6 +277,54 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidget_24hSX</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>masterSessionViewer</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>491</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>622</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidget_IntensiveSX</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>masterSessionViewer</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidget_VGOS</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>masterSessionViewer</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>2</y>
     </hint>
    </hints>
   </connection>

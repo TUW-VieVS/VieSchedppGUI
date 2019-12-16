@@ -3530,7 +3530,7 @@ void MainWindow::on_pushButton_clicked()
                 setupStationTree.refChildren().at(0).addChild(setupDown);
 
                 auto *targetTreeWidget = ui->treeWidget_setupStation;
-                auto *targetStationPlot = ui->ComboBox_parameterStation;
+                auto *targetStationPlot = ui->comboBox_setupStation;
                 auto *setupChartView = setupStation;
 
                 targetTreeWidget->clear();
