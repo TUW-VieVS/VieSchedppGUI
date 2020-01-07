@@ -277,17 +277,6 @@ QString MainWindow::writeXML()
         para.group(VieVS::ParameterSettings::Type::baseline,VieVS::ParameterGroup(any.first,any.second));
     }
 
-
-    for(int i=0; i<ui->treeWidget_setupStationWait->topLevelItemCount(); ++i){
-        auto itm = ui->treeWidget_setupStationWait->topLevelItem(i);
-        std::string name = itm->text(0).toStdString();
-        int fieldSystem = QString(itm->text(1).left(itm->text(1).count()-6)).toInt();
-        int preob = QString(itm->text(2).left(itm->text(2).count()-6)).toInt();
-        int midob = QString(itm->text(3).left(itm->text(3).count()-6)).toInt();
-        int postob = QString(itm->text(4).left(itm->text(4).count()-6)).toInt();
-        para.stationWaitTimes(name,fieldSystem,preob,midob,postob);
-    }
-
     for(int i=0; i<ui->treeWidget_setupStationAxis->topLevelItemCount(); ++i){
         auto itm = ui->treeWidget_setupStationAxis->topLevelItem(i);
         std::string name = itm->text(0).toStdString();
@@ -1174,30 +1163,6 @@ void MainWindow::loadXML(QString path)
         }
     }
 
-    //wait times
-    {
-        auto waitTime_tree = xml.get_child("VieSchedpp.station.waitTimes");
-        ui->treeWidget_setupStationWait->clear();
-        for (auto &it: waitTime_tree) {
-            std::string name = it.first;
-            if (name == "waitTime") {
-                std::string memberName = it.second.get_child("<xmlattr>.member").data();
-
-                int fieldSystem = it.second.get<int>("fieldSystem");
-                int preob = it.second.get<int>("preob");
-                int midob = it.second.get<int>("midob");
-                int postob = it.second.get<int>("postob");
-
-                ui->comboBox_stationSettingMember_wait->setCurrentText(QString::fromStdString(memberName));
-                ui->SpinBox_fieldSystem->setValue(fieldSystem);
-                ui->SpinBox_preob->setValue(preob);
-                ui->SpinBox_midob->setValue(midob);
-                ui->SpinBox_postob->setValue(postob);
-
-                ui->pushButton_setupWaitAdd->click();
-            }
-        }
-    }
     // cable wrap buffer
     {
         auto waitTime_tree = xml.get_child("VieSchedpp.station.cableWrapBuffers");
@@ -2321,23 +2286,6 @@ void MainWindow::on_pushButton_10_clicked()
 
 }
 
-void MainWindow::on_pushButton_11_clicked()
-{
-    QStringList path;
-    QStringList value;
-
-    path << "settings.station.waitTimes.fieldSystem";
-    value << QString("%1").arg(ui->SpinBox_fieldSystem->value());
-    path << "settings.station.waitTimes.preob";
-    value << QString("%1").arg(ui->SpinBox_preob->value());
-    path << "settings.station.waitTimes.midob";
-    value << QString("%1").arg(ui->SpinBox_midob->value());
-    path << "settings.station.waitTimes.postob";
-    value << QString("%1").arg(ui->SpinBox_postob->value());
-
-    QString name = "Default wait times changed!";
-    changeDefaultSettings(path,value,name);
-}
 
 void MainWindow::on_pushButton_12_clicked()
 {

@@ -70,6 +70,12 @@ void stationParametersDialog::addDefaultParameters(VieVS::ParameterSettings::Par
     ui->doubleSpinBox_minSlewDistance->setValue(*d.minSlewDistance);
     ui->doubleSpinBox_maxSlewDistance->setValue(*d.maxSlewDistance);
     ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
+
+
+    ui->spinBox_midob->setValue(*d.midob);
+    ui->spinBox_preob->setValue(*d.preob);
+    ui->spinBox_systemDelay->setValue(*d.systemDelay);
+
 }
 
 void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::ParametersStations para, QString paraName)
@@ -104,6 +110,14 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->groupBox_scanTime->setCheckable(false);
         ui->pushButton_load->setEnabled(false);
         ui->pushButton_save->setEnabled(false);
+
+        ui->checkBox_midob->setEnabled(false);
+        ui->checkBox_midob->setChecked(true);
+        ui->checkBox_preob->setEnabled(false);
+        ui->checkBox_preob->setChecked(true);
+        ui->checkBox_systemDelay->setEnabled(false);
+        ui->checkBox_systemDelay->setChecked(true);
+
     }
     ui->lineEdit->setEnabled(false);
 }
@@ -265,6 +279,30 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
         QMessageBox::warning(this,"Unknown parameters!",txt);
     }
 
+
+    if(sp.preob.is_initialized()){
+        ui->spinBox_preob->setValue(*sp.preob);
+        ui->checkBox_preob->setChecked(true);
+    }else{
+        ui->spinBox_preob->setValue(*dp.preob);
+        ui->checkBox_preob->setChecked(false);
+    }
+    if(sp.midob.is_initialized()){
+        ui->spinBox_midob->setValue(*sp.midob);
+        ui->checkBox_midob->setChecked(true);
+    }else{
+        ui->spinBox_midob->setValue(*dp.midob);
+        ui->checkBox_midob->setChecked(false);
+    }
+    if(sp.systemDelay.is_initialized()){
+        ui->spinBox_systemDelay->setValue(*sp.systemDelay);
+        ui->checkBox_systemDelay->setChecked(true);
+    }else{
+        ui->spinBox_systemDelay->setValue(*dp.systemDelay);
+        ui->checkBox_systemDelay->setChecked(false);
+    }
+
+
 }
 
 void stationParametersDialog::addSourceNames(QStandardItemModel *otherSources)
@@ -393,6 +431,18 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
             para.ignoreSourcesString.push_back(ui->listWidget_selectedIgnoreSources->item(i)->text().toStdString());
         }
     }
+
+    if(ui->spinBox_preob->isEnabled()){
+        para.preob = ui->spinBox_preob->value();
+    }
+    if(ui->spinBox_midob->isEnabled()){
+        para.midob = ui->spinBox_midob->value();
+    }
+    if(ui->spinBox_systemDelay->isEnabled()){
+        para.systemDelay = ui->spinBox_systemDelay->value();
+    }
+
+
 
     return std::make_pair(name,para);
 }

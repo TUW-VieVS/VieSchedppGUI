@@ -280,7 +280,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->comboBox_stationSettingMember->setModel(allStationPlusGroupModel);
     ui->comboBox_stationSettingMember_axis->setModel(allStationPlusGroupModel);
-    ui->comboBox_stationSettingMember_wait->setModel(allStationPlusGroupModel);
     ui->comboBox_sourceSettingMember->setModel(allSourcePlusGroupModel);
     ui->comboBox_baselineSettingMember->setModel(allBaselinePlusGroupModel);
 
@@ -292,7 +291,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect (deleteModeMapper, SIGNAL(mapped(QString)), this, SLOT(deleteModesCustomLine(QString))) ;
 
     connect(ui->pushButton_addGroupStationSetup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
-    connect(ui->pushButton_addGroupStationWait, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
     connect(ui->pushButton_addGroupStationCable, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
 
     connect(ui->pushButton_addSourceGroup_Calibrator,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
@@ -349,16 +347,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBox_fontSize->setValue(QApplication::font().pointSize());
     ui->iconSizeSpinBox->setValue(ui->fileToolBar->iconSize().width());
 
-    auto hv6 = ui->treeWidget_setupStationWait->header();
-    hv6->setSectionResizeMode(QHeaderView::ResizeToContents);
     auto hv7 = ui->treeWidget_setupStationAxis->header();
     hv7->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     connect(ui->pushButton_setupAxisAdd,SIGNAL(clicked(bool)),this,SLOT(setupStationAxisBufferAddRow()));
-    connect(ui->pushButton_setupWaitAdd,SIGNAL(clicked(bool)),this,SLOT(setupStationWaitAddRow()));
 
     setupStationAxisBufferAddRow();
-    setupStationWaitAddRow();
 
     connect(ui->pushButton_addGroupStationSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupStation()));
     connect(ui->pushButton_addGroupsourceSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupSource()));
@@ -800,6 +794,25 @@ void MainWindow::displayStationSetupParameter(QString name)
               ++r;
           }
     }
+    if(para.preob.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.preob)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("preob [s]"));
+        ++r;
+    }
+    if(para.midob.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.midob)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("midob [s]"));
+        ++r;
+    }
+    if(para.systemDelay.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.systemDelay)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("system delay [s]"));
+        ++r;
+    }
+
     QHeaderView *hv = t->verticalHeader();
     hv->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
@@ -1820,6 +1833,9 @@ void MainWindow::defaultParameters()
     sta.maxNumberOfScans = 9999;
     sta.weight = 1;
     sta.minElevation = 5;
+    sta.preob = 10;
+    sta.midob = 3;
+    sta.systemDelay = 6;
 
     auto stationTree = settings_.get_child_optional("settings.station.parameters");
     if(stationTree.is_initialized()){
@@ -1852,6 +1868,12 @@ void MainWindow::defaultParameters()
                         sta.minElevation = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxNumberOfScans") {
                         sta.maxNumberOfScans = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "preob") {
+                        sta.preob = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "midob") {
+                        sta.midob = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "systemDelay") {
+                        sta.systemDelay = it2.second.get_value < unsigned int > ();
                     } else {
                         QString txt = "Ignoring parameter: ";
                         txt.append(QString::fromStdString(paraName)).append(" in station default parameters!\nCheck settings.xml file!");
@@ -1963,23 +1985,6 @@ void MainWindow::defaultParameters()
     ui->ComboBox_parameterBaseline->addItem("default");
 
     clearSetup(true,true,true);
-
-    boost::optional<int> setup = settings_.get_optional<int>("settings.station.waitTimes.fieldSystem");
-    if(setup.is_initialized()){
-        ui->SpinBox_fieldSystem->setValue(*setup);
-    }
-    boost::optional<int> source = settings_.get_optional<int>("settings.station.waitTimes.preob");
-    if(source.is_initialized()){
-        ui->SpinBox_preob->setValue(*source);
-    }
-    boost::optional<int> tape = settings_.get_optional<int>("settings.station.waitTimes.midob");
-    if(tape.is_initialized()){
-        ui->SpinBox_midob->setValue(*tape);
-    }
-    boost::optional<int> calibration = settings_.get_optional<int>("settings.station.waitTimes.postob");
-    if(calibration.is_initialized()){
-        ui->SpinBox_postob->setValue(*calibration);
-    }
 
 
     boost::optional<double> ax1low = settings_.get_optional<double>("settings.station.cableWrapBuffers.axis1LowOffset");
@@ -5051,86 +5056,6 @@ void MainWindow::on_comboBox_setupBaseline_currentTextChanged(const QString &arg
     }
 }
 
-void MainWindow::setupStationWaitAddRow()
-{
-    auto t = ui->treeWidget_setupStationWait;
-    int row = t->topLevelItemCount();
-    QString name = ui->comboBox_stationSettingMember_wait->currentText();
-    QIcon ic;
-    bool inGroup = groupSta.find(name.toStdString()) != groupSta.end();
-    if( inGroup || name == "__all__"){
-        ic = QIcon(":/icons/icons/station_group.png");
-    }else{
-        ic = QIcon(":/icons/icons/station.png");
-    }
-
-    QString errorStation;
-    bool valid = true;
-    for(int i = 0; i<row; ++i){
-        QString itmName = t->topLevelItem(i)->text(0);
-        if(name == "__all__" || itmName == "__all__"){
-            valid = false;
-            errorStation = QString("__all__");
-            break;
-        }
-
-        if(groupSta.find(itmName.toStdString()) != groupSta.end()){
-            std::vector<std::string> itmMembers = groupSta.at(itmName.toStdString());
-            if(inGroup){
-                std::vector<std::string> members = groupSta.at(name.toStdString());
-                for(const auto &any:members){
-                    if(std::find(itmMembers.begin(),itmMembers.end(),any) != itmMembers.end()){
-                        valid = false;
-                        errorStation = QString::fromStdString(any);
-                        break;
-                    }
-                }
-            }else{
-                if(std::find(itmMembers.begin(),itmMembers.end(),name.toStdString()) != itmMembers.end()){
-                    valid = false;
-                    errorStation = name;
-                    break;
-                }
-            }
-        }else{
-            if(inGroup){
-                std::vector<std::string> members = groupSta.at(name.toStdString());
-                if(std::find(members.begin(),members.end(),itmName.toStdString()) != members.end()){
-                    valid = false;
-                    errorStation = itmName;
-                    break;
-                }
-            }else{
-                if(itmName.toStdString() == name.toStdString()){
-                    valid = false;
-                    errorStation = name;
-                    break;
-                }
-            }
-        }
-    }
-
-    if(valid){
-        t->insertTopLevelItem(row,new QTreeWidgetItem());
-        t->topLevelItem(row)->setText(0,name);
-        t->topLevelItem(row)->setIcon(0,ic);
-        t->topLevelItem(row)->setText(1,QString::number(ui->SpinBox_fieldSystem->value()).append(" [sec]"));
-        t->topLevelItem(row)->setText(2,QString::number(ui->SpinBox_preob->value()).append(" [sec]"));
-        t->topLevelItem(row)->setText(3,QString::number(ui->SpinBox_midob->value()).append(" [sec]"));
-        t->topLevelItem(row)->setText(4,QString::number(ui->SpinBox_postob->value()).append(" [sec]"));
-    }else{
-        QMessageBox *ms = new QMessageBox(this);
-        QString txt;
-        if(errorStation != "__all__"){
-            txt = QString("Setup for station %1 already defined!").arg(errorStation);
-        }else{
-            txt = QString("Setup for all stations is already defined! \nRemove selection and try again!");
-        }
-        ms->warning(this,"Multiple setup for station",txt);
-        delete(ms);
-    }
-}
-
 void MainWindow::setupStationAxisBufferAddRow()
 {
     auto t = ui->treeWidget_setupStationAxis;
@@ -5208,15 +5133,6 @@ void MainWindow::setupStationAxisBufferAddRow()
         }
         ms->warning(this,"Multiple setup for station",txt);
         delete(ms);
-    }
-}
-
-void MainWindow::on_pushButton_14_clicked()
-{
-    auto t = ui->treeWidget_setupStationWait;
-    auto sel = t->selectedItems();
-    for(int i=0; i<sel.count(); ++i){
-        delete(sel.at(i));
     }
 }
 

@@ -2881,8 +2881,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>885</width>
+             <height>670</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -4932,330 +4932,6 @@ If you only want to run simulations you can deselect this to avoid error message
                </layout>
               </widget>
              </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabWidgetPage2">
-           <attribute name="title">
-            <string>Times</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_6" stretch="1,5">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_21">
-              <item>
-               <layout class="QGridLayout" name="gridLayout" columnstretch="1,3">
-                <property name="horizontalSpacing">
-                 <number>20</number>
-                </property>
-                <item row="1" column="0">
-                 <layout class="QHBoxLayout" name="horizontalLayout_12">
-                  <item>
-                   <widget class="QPushButton" name="pushButton_11">
-                    <property name="toolTip">
-                     <string>save as default times</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>save as default times</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="myresources.qrc">
-                      <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_14">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_setupWaitAdd">
-                    <property name="toolTip">
-                     <string>add new times</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>add new times</string>
-                    </property>
-                    <property name="text">
-                     <string>add</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="myresources.qrc">
-                      <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="0" column="0">
-                 <layout class="QFormLayout" name="formLayout_2">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="setupLabel_3">
-                    <property name="text">
-                     <string>field system</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="SpinBox_fieldSystem">
-                    <property name="toolTip">
-                     <string>extra time for field system commands in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>extra time for field system commands in seconds</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [sec]</string>
-                    </property>
-                    <property name="prefix">
-                     <string/>
-                    </property>
-                    <property name="value">
-                     <number>6</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="sourceLabel_3">
-                    <property name="text">
-                     <string>preob</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="SpinBox_preob">
-                    <property name="toolTip">
-                     <string>preob time in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>preob time in seconds</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [sec]</string>
-                    </property>
-                    <property name="value">
-                     <number>10</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="tapeLabel_3">
-                    <property name="text">
-                     <string>extra midob</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QSpinBox" name="SpinBox_midob">
-                    <property name="toolTip">
-                     <string>extra midob time for correlator synchronization in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>extra midob time for correlator synchronization in seconds</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [sec]</string>
-                    </property>
-                    <property name="value">
-                     <number>3</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="calibrationLabel_3">
-                    <property name="text">
-                     <string>postob</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QSpinBox" name="SpinBox_postob">
-                    <property name="toolTip">
-                     <string>postob time in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>postob time in seconds</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [sec]</string>
-                    </property>
-                    <property name="value">
-                     <number>0</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0" colspan="2">
-                   <widget class="Line" name="line_8">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="groupLabel_4">
-                    <property name="text">
-                     <string>member</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
-                   <layout class="QHBoxLayout" name="horizontalLayout_15">
-                    <item>
-                     <widget class="QComboBox" name="comboBox_stationSettingMember_wait">
-                      <property name="toolTip">
-                       <string>select member</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>select member</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_addGroupStationWait">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>1</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>20</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="toolTip">
-                       <string>add new station group</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>add new station group</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </item>
-                <item row="0" column="1">
-                 <layout class="QVBoxLayout" name="verticalLayout_11">
-                  <item>
-                   <widget class="QLabel" name="label_25">
-                    <property name="text">
-                     <string>defined</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QTreeWidget" name="treeWidget_setupStationWait">
-                    <property name="toolTip">
-                     <string>list of all times</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>list of all times</string>
-                    </property>
-                    <column>
-                     <property name="text">
-                      <string>member</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>field system</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>preob</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>extra midop</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>postob</string>
-                     </property>
-                    </column>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="1" column="1">
-                 <layout class="QHBoxLayout" name="horizontalLayout_20">
-                  <item>
-                   <spacer name="horizontalSpacer_21">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_14">
-                    <property name="toolTip">
-                     <string>remove selected times</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>remove selected times</string>
-                    </property>
-                    <property name="text">
-                     <string>remove selected</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="myresources.qrc">
-                      <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_8">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>356</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </widget>
@@ -7981,7 +7657,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <attribute name="icon">
@@ -13099,7 +12775,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>pushButton_22</tabstop>
   <tabstop>comboBox_stationSettingMember_axis</tabstop>
   <tabstop>treeWidget_setupStationAxis</tabstop>
-  <tabstop>pushButton_setupWaitAdd</tabstop>
   <tabstop>scrollArea_2</tabstop>
   <tabstop>spinBox_scanSequenceCadence</tabstop>
   <tabstop>pushButton_addSourceGroup_Sequence</tabstop>
@@ -13122,7 +12797,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>doubleSpinBox_calibratorHighElEnd</tabstop>
   <tabstop>groupBox_multiScheduling</tabstop>
   <tabstop>treeWidget_multiSched</tabstop>
-  <tabstop>pushButton_addGroupStationWait</tabstop>
   <tabstop>pushButton_addGroupStationSetup_2</tabstop>
   <tabstop>pushButton_addGroupsourceSetup_2</tabstop>
   <tabstop>pushButton_addGroupBaselineSetup_2</tabstop>
@@ -13158,8 +12832,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>lineEdit_faqSearch</tabstop>
   <tabstop>textEdit_faq</tabstop>
   <tabstop>DoubleSpinBox_axis1up</tabstop>
-  <tabstop>pushButton_14</tabstop>
-  <tabstop>treeWidget_setupStationWait</tabstop>
   <tabstop>DoubleSpinBox_axis1low</tabstop>
   <tabstop>comboBox_jobSchedule</tabstop>
   <tabstop>comboBox_nThreads</tabstop>
@@ -13168,11 +12840,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>DoubleSpinBox_axis2low</tabstop>
   <tabstop>pushButton_16</tabstop>
   <tabstop>pushButton_setupAxisAdd</tabstop>
-  <tabstop>SpinBox_midob</tabstop>
-  <tabstop>SpinBox_postob</tabstop>
-  <tabstop>SpinBox_fieldSystem</tabstop>
-  <tabstop>comboBox_stationSettingMember_wait</tabstop>
-  <tabstop>SpinBox_preob</tabstop>
   <tabstop>pushButton_addGroupStationCable</tabstop>
   <tabstop>DoubleSpinBox_axis2up</tabstop>
  </tabstops>

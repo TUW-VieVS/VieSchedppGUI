@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>792</width>
     <height>656</height>
    </rect>
   </property>
@@ -115,9 +115,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-90</y>
-            <width>344</width>
-            <height>607</height>
+            <y>-192</y>
+            <width>365</width>
+            <height>709</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -309,7 +309,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QCheckBox" name="checkBox_maxSlewTime">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -319,7 +319,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="1">
                <widget class="QSpinBox" name="spinBox_maxSlewTime">
                 <property name="enabled">
                  <bool>false</bool>
@@ -347,7 +347,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QCheckBox" name="checkBox_minSlewDistance">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -357,7 +357,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_minSlewDistance">
                 <property name="enabled">
                  <bool>false</bool>
@@ -382,7 +382,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QCheckBox" name="checkBox_maxSlewDistance">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -392,7 +392,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_maxSlewDistance">
                 <property name="enabled">
                  <bool>false</bool>
@@ -420,7 +420,7 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <widget class="QCheckBox" name="checkBox_maxWaitTime">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -430,7 +430,7 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <widget class="QSpinBox" name="spinBox_maxWaitTime">
                 <property name="enabled">
                  <bool>false</bool>
@@ -458,7 +458,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QCheckBox" name="checkBox_minElevation">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -468,7 +468,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
                 <property name="enabled">
                  <bool>false</bool>
@@ -490,8 +490,14 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="7" column="0">
                <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -500,7 +506,7 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="7" column="1">
                <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
                 <property name="enabled">
                  <bool>false</bool>
@@ -522,16 +528,7 @@
                 </property>
                </widget>
               </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>special</string>
-             </property>
-             <layout class="QFormLayout" name="formLayout">
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QCheckBox" name="checkBox_minSlewTime">
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -541,7 +538,7 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="1" column="1">
                <widget class="QSpinBox" name="spinBox_minSlewTime">
                 <property name="enabled">
                  <bool>false</bool>
@@ -563,8 +560,23 @@
                 </property>
                </widget>
               </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>delays</string>
+             </property>
+             <layout class="QFormLayout" name="formLayout">
               <item row="1" column="0">
                <widget class="QCheckBox" name="checkBox_dataWriteSpeed">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>data write speed</string>
                 </property>
@@ -586,6 +598,57 @@
                 </property>
                 <property name="value">
                  <double>4096.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="checkBox_systemDelay">
+                <property name="text">
+                 <string>system delay</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBox_preob">
+                <property name="text">
+                 <string>preob</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBox_midob">
+                <property name="text">
+                 <string>extra midob</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="spinBox_systemDelay">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="spinBox_preob">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBox_midob">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
                 </property>
                </widget>
               </item>
@@ -907,11 +970,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>105</x>
-     <y>249</y>
+     <y>-30</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>252</y>
+     <x>355</x>
+     <y>-27</y>
     </hint>
    </hints>
   </connection>
@@ -922,12 +985,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>137</x>
-     <y>281</y>
+     <x>155</x>
+     <y>36</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>284</y>
+     <x>355</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -938,12 +1001,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>377</y>
+     <x>153</x>
+     <y>132</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>380</y>
+     <x>355</x>
+     <y>135</y>
     </hint>
    </hints>
   </connection>
@@ -954,12 +1017,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>409</y>
+     <x>143</x>
+     <y>164</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>412</y>
+     <x>355</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -971,11 +1034,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>178</x>
-     <y>313</y>
+     <y>68</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>316</y>
+     <x>355</x>
+     <y>71</y>
     </hint>
    </hints>
   </connection>
@@ -987,11 +1050,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>181</x>
-     <y>345</y>
+     <y>100</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>348</y>
+     <x>355</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -1002,12 +1065,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>191</x>
-     <y>441</y>
+     <x>202</x>
+     <y>196</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>444</y>
+     <x>355</x>
+     <y>199</y>
     </hint>
    </hints>
   </connection>
@@ -1018,12 +1081,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>144</x>
-     <y>517</y>
+     <x>152</x>
+     <y>2</y>
     </hint>
     <hint type="destinationlabel">
-     <x>334</x>
-     <y>520</y>
+     <x>355</x>
+     <y>5</y>
     </hint>
    </hints>
   </connection>
@@ -1034,12 +1097,60 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>536</y>
+     <x>164</x>
+     <y>278</y>
     </hint>
     <hint type="destinationlabel">
-     <x>216</x>
-     <y>535</y>
+     <x>355</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_systemDelay</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_systemDelay</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>129</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_preob</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_preob</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>291</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_midob</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_midob</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>127</x>
+     <y>360</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>275</x>
+     <y>365</y>
     </hint>
    </hints>
   </connection>

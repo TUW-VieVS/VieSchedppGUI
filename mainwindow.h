@@ -293,11 +293,7 @@ private slots:
 
     void on_comboBox_setupBaseline_currentTextChanged(const QString &arg1);
 
-    void setupStationWaitAddRow();
-
     void setupStationAxisBufferAddRow();
-
-    void on_pushButton_14_clicked();
 
     void on_pushButton_16_clicked();
 
@@ -438,8 +434,6 @@ private slots:
     void on_pushButton_9_clicked();
 
     void on_pushButton_10_clicked();
-
-    void on_pushButton_11_clicked();
 
     void on_pushButton_12_clicked();
 
