@@ -274,16 +274,27 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
     bool vgos = false;
     if(!intensive){
         if( QString::compare(code.left(1),"B") == 0 && digit_idx[0] == 1){
-            vgos = true;
-            yearHint << 17;
+            if(digit_idx.size()>=2 && digit_idx[0] == 1 && digit_idx[1] == 2){
+                int thisYear = digits[0]*10 + digits[1];
+                if (thisYear >=20){
+                    intensive = true;
+                }else{
+                    vgos = true;
+                }
+                yearHint << thisYear;
+            }
         }
         if( QString::compare(code.left(1),"BB") == 0 && digit_idx[0] == 2){
             vgos = true;
             yearHint << 13;
         }
         if( QString::compare(code.left(1),"EV") == 0 && digit_idx[0] == 2){
-            vgos = true;
-            yearHint << 19;
+            if(digit_idx[0] == 9){
+                vgos = true;
+                yearHint << 19;
+            }else{
+                yearHint << 20+digit_idx[0];
+            }
         }
         if( QString::compare(code.left(1),"K") == 0 && digit_idx[0] == 1){
             vgos = true;
@@ -525,7 +536,7 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
     QStringList files;
     files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year-2000);
     files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year-2000);
-    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year-2000);
+//    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year-2000);
 
     bool overYear = false;
     QDateTime end = start.addMonths(1);
@@ -535,7 +546,7 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
     if(year2 > year){
         files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year2-2000);
         files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year2-2000);
-        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year2-2000);
+//        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year2-2000);
         overYear = true;
     }
 

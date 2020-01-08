@@ -8,7 +8,6 @@ masterSessionViewer::masterSessionViewer(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
-    ui->tableWidget_VGOS->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_24hSX->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_IntensiveSX->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
@@ -32,8 +31,6 @@ QString masterSessionViewer::getSessionCode()
         t = ui->tableWidget_24hSX;
     }else if(idx == 1){
         t = ui->tableWidget_IntensiveSX;
-    }else{
-        t = ui->tableWidget_VGOS;
     }
 
     auto selected = t->selectedItems();
@@ -49,7 +46,6 @@ void masterSessionViewer::updateTable()
 {
     ui->tableWidget_IntensiveSX->setRowCount(0);
     ui->tableWidget_24hSX->setRowCount(0);
-    ui->tableWidget_VGOS->setRowCount(0);
 
     for(const auto &any : sessions_){
         int code = any.first;
@@ -60,8 +56,6 @@ void masterSessionViewer::updateTable()
             t = ui->tableWidget_24hSX;
         }else if(code == 1){
             t = ui->tableWidget_IntensiveSX;
-        }else{
-            t = ui->tableWidget_VGOS;
         }
 
 

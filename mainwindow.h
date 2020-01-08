@@ -77,6 +77,7 @@
 #include "secondaryGUIs/obsmodedialog.h"
 #include "Utility/statistics.h"
 #include "secondaryGUIs/mastersessionviewer.h"
+#include "secondaryGUIs/parsedowntimes.h"
 
 #include "Utility/downloadmanager.h"
 
@@ -573,6 +574,8 @@ private slots:
     void on_pushButton_viewNext_clicked();
 
     void on_pushButton_24_clicked();
+
+    void on_pushButton_parseDownTime_clicked();
 
 private:
     Ui::MainWindow *ui;

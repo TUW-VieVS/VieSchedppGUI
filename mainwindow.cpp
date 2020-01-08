@@ -7516,11 +7516,13 @@ void MainWindow::download(){
     QStringList files;
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
+//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
 
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
+    if (now.date().month() >=11){
+        files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+        files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
+    }
+//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
     // legacy SX
@@ -7561,7 +7563,7 @@ void MainWindow::download(){
         QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
-    for (int i = 15; i<=year-1-2000; ++i){
+    for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
             QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
@@ -7725,4 +7727,53 @@ void MainWindow::on_pushButton_24_clicked()
         }
     }
 
+}
+
+void MainWindow::on_pushButton_parseDownTime_clicked()
+{
+    QVector<QString> sta;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        sta.push_back(selectedStationModel->item(i)->text());
+    }
+    QDateTime start_time = ui->dateTimeEdit_sessionStart->dateTime();
+    double dur = ui->doubleSpinBox_sessionDuration->value();
+    int sec = dur*3600;
+    QDateTime end_time = start_time.addSecs(sec);
+
+    ParseDownTimes *dial = new ParseDownTimes(sta,start_time,end_time,this);
+
+    int result = dial->exec();
+
+    if(result == QDialog::Accepted){
+        auto downtimes = dial->getDownTimes();
+
+        if(!downtimes.isEmpty()){
+
+            for(const auto any : downtimes){
+                QString station = any.first;
+                unsigned int downStart = any.second.first;
+                unsigned int downEnd = any.second.second;
+                VieVS::ParameterSetup setupDown("down",station.toStdString(),downStart,downEnd,VieVS::ParameterSetup::Transition::hard);
+
+                setupStationTree.refChildren().at(0).addChild(setupDown);
+
+                auto *targetTreeWidget = ui->treeWidget_setupStation;
+                auto *targetStationPlot = ui->comboBox_setupStation;
+                auto *setupChartView = setupStation;
+
+                targetTreeWidget->clear();
+
+                QTreeWidgetItem *c = new QTreeWidgetItem();
+                VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
+                drawTable(setupStationTree, c, groupSta, setupType);
+                targetTreeWidget->addTopLevelItem(c);
+                targetTreeWidget->expandAll();
+
+                drawSetupPlot(setupChartView, targetStationPlot, targetTreeWidget);
+            }
+        }
+
+    }
+
+    delete(dial);
 }

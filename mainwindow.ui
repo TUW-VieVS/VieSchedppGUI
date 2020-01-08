@@ -4676,11 +4676,17 @@ If you only want to run simulations you can deselect this to avoid error message
                     </layout>
                    </item>
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_18">
-                     <item>
+                    <layout class="QGridLayout" name="gridLayout">
+                     <property name="bottomMargin">
+                      <number>6</number>
+                     </property>
+                     <item row="0" column="0">
                       <widget class="QPushButton" name="pushButton_24">
+                       <property name="styleSheet">
+                        <string notr="true">Text-align:left</string>
+                       </property>
                        <property name="text">
-                        <string> add IVS down time</string>
+                        <string> IVS down time</string>
                        </property>
                        <property name="icon">
                         <iconset resource="myresources.qrc">
@@ -4688,7 +4694,7 @@ If you only want to run simulations you can deselect this to avoid error message
                        </property>
                       </widget>
                      </item>
-                     <item>
+                     <item row="0" column="1">
                       <spacer name="horizontalSpacer_20">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
@@ -4701,7 +4707,7 @@ If you only want to run simulations you can deselect this to avoid error message
                        </property>
                       </spacer>
                      </item>
-                     <item>
+                     <item row="0" column="2">
                       <widget class="QPushButton" name="pushButton_3">
                        <property name="toolTip">
                         <string>add new setup as child of selected setup</string>
@@ -4715,6 +4721,20 @@ If you only want to run simulations you can deselect this to avoid error message
                        <property name="icon">
                         <iconset resource="myresources.qrc">
                          <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="pushButton_parseDownTime">
+                       <property name="styleSheet">
+                        <string notr="true">Text-align:left</string>
+                       </property>
+                       <property name="text">
+                        <string> parse down time</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/sleep-icon.png</normaloff>:/icons/icons/sleep-icon.png</iconset>
                        </property>
                       </widget>
                      </item>
@@ -7649,8 +7669,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>485</width>
+             <height>627</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -12731,7 +12751,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>DateTimeEdit_startParameterStation</tabstop>
   <tabstop>DateTimeEdit_endParameterStation</tabstop>
   <tabstop>comboBox_parameterStationTransition</tabstop>
-  <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_4</tabstop>
   <tabstop>comboBox_setupStation</tabstop>
   <tabstop>comboBox_sourceSettingMember</tabstop>
@@ -12870,12 +12889,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>374</x>
-     <y>127</y>
+     <x>219</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>636</x>
-     <y>199</y>
+     <x>247</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -12887,11 +12906,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>19</x>
-     <y>76</y>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>34</x>
-     <y>76</y>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -12903,11 +12922,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>19</x>
-     <y>78</y>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>34</x>
-     <y>78</y>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -13255,11 +13274,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>61</x>
-     <y>158</y>
+     <y>156</y>
     </hint>
     <hint type="destinationlabel">
      <x>86</x>
-     <y>159</y>
+     <y>157</y>
     </hint>
    </hints>
   </connection>
@@ -13271,11 +13290,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>61</x>
-     <y>159</y>
+     <y>157</y>
     </hint>
     <hint type="destinationlabel">
      <x>87</x>
-     <y>159</y>
+     <y>157</y>
     </hint>
    </hints>
   </connection>
@@ -13287,11 +13306,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>111</x>
-     <y>446</y>
+     <y>370</y>
     </hint>
     <hint type="destinationlabel">
-     <x>440</x>
-     <y>449</y>
+     <x>173</x>
+     <y>373</y>
     </hint>
    </hints>
   </connection>
@@ -13303,11 +13322,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>111</x>
-     <y>479</y>
+     <y>403</y>
     </hint>
     <hint type="destinationlabel">
-     <x>440</x>
-     <y>482</y>
+     <x>173</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -13318,8 +13337,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>943</x>
-     <y>360</y>
+     <x>882</x>
+     <y>397</y>
     </hint>
     <hint type="destinationlabel">
      <x>269</x>
@@ -13334,12 +13353,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>514</x>
-     <y>566</y>
+     <x>490</x>
+     <y>568</y>
     </hint>
     <hint type="destinationlabel">
-     <x>631</x>
-     <y>569</y>
+     <x>607</x>
+     <y>571</y>
     </hint>
    </hints>
   </connection>
@@ -13350,12 +13369,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>514</x>
-     <y>534</y>
+     <x>490</x>
+     <y>536</y>
     </hint>
     <hint type="destinationlabel">
-     <x>631</x>
-     <y>537</y>
+     <x>607</x>
+     <y>539</y>
     </hint>
    </hints>
   </connection>
@@ -13370,8 +13389,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
      <y>236</y>
     </hint>
     <hint type="destinationlabel">
-     <x>943</x>
-     <y>348</y>
+     <x>882</x>
+     <y>397</y>
     </hint>
    </hints>
   </connection>
@@ -13383,11 +13402,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>31</x>
-     <y>122</y>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
      <x>54</x>
-     <y>122</y>
+     <y>118</y>
     </hint>
    </hints>
   </connection>
@@ -13399,11 +13418,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>31</x>
-     <y>122</y>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
      <x>31</x>
-     <y>123</y>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -13415,11 +13434,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>31</x>
-     <y>122</y>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
      <x>54</x>
-     <y>123</y>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -13431,11 +13450,11 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <hints>
     <hint type="sourcelabel">
      <x>111</x>
-     <y>479</y>
+     <y>403</y>
     </hint>
     <hint type="destinationlabel">
-     <x>927</x>
-     <y>482</y>
+     <x>259</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -13446,12 +13465,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>131</x>
-     <y>163</y>
+     <x>99</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>127</x>
-     <y>308</y>
+     <x>99</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>

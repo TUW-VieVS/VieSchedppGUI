@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -161,77 +161,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
-      <attribute name="title">
-       <string>VGOS</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QTableWidget" name="tableWidget_VGOS">
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="alternatingRowColors">
-          <bool>true</bool>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>Name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Code</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Ops Center</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Start</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>DOY</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Duration</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Stations</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Correlator</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>DB Code</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item>
@@ -309,22 +238,6 @@
     <hint type="destinationlabel">
      <x>335</x>
      <y>4</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tableWidget_VGOS</sender>
-   <signal>cellDoubleClicked(int,int)</signal>
-   <receiver>masterSessionViewer</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>439</x>
-     <y>164</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>518</x>
-     <y>2</y>
     </hint>
    </hints>
   </connection>

@@ -140,6 +140,7 @@ SOURCES += \
     secondaryGUIs/multischededitdialogdouble.cpp \
     secondaryGUIs/multischededitdialogint.cpp \
     secondaryGUIs/obsmodedialog.cpp \
+    secondaryGUIs/parsedowntimes.cpp \
     secondaryGUIs/savetosettingsdialog.cpp \
     secondaryGUIs/settingsloadwindow.cpp \
     secondaryGUIs/skedcataloginfo.cpp \
@@ -240,6 +241,7 @@ HEADERS += \
     secondaryGUIs/multischededitdialogdouble.h \
     secondaryGUIs/multischededitdialogint.h \
     secondaryGUIs/obsmodedialog.h \
+    secondaryGUIs/parsedowntimes.h \
     secondaryGUIs/savetosettingsdialog.h \
     secondaryGUIs/settingsloadwindow.h \
     secondaryGUIs/skedcataloginfo.h \
@@ -266,6 +268,7 @@ FORMS += \
     secondaryGUIs/multischededitdialogdouble.ui \
     secondaryGUIs/multischededitdialogint.ui \
     secondaryGUIs/obsmodedialog.ui \
+    secondaryGUIs/parsedowntimes.ui \
     secondaryGUIs/savetosettingsdialog.ui \
     secondaryGUIs/settingsloadwindow.ui \
     secondaryGUIs/skedcataloginfo.ui \
