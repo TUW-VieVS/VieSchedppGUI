@@ -2308,7 +2308,7 @@ void MainWindow::addModesPolicyTable(QString name){
     }else{
         dsp->setValue(20.);
     }
-    dsp->setMaximum(1000);
+    dsp->setMaximum(10000);
 
     QComboBox *psta = new QComboBox(this);
     psta->addItem("required");

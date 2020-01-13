@@ -33,6 +33,7 @@ void baselineParametersDialog::addBandNames(QStringList bands)
         ui->tableWidget_SNR->setVerticalHeaderItem(nextrow,new QTableWidgetItem(text));
         QDoubleSpinBox *spin = new QDoubleSpinBox(this);
         spin->setSuffix(" [Jy]");
+        spin->setMaximum(10000.0);
         ui->tableWidget_SNR->setCellWidget(nextrow,0,spin);
     }
 }

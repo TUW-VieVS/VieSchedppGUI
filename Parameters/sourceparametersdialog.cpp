@@ -65,6 +65,7 @@ void sourceParametersDialog::addBandNames(QStringList bands)
         ui->tableWidget_minSNR->setVerticalHeaderItem(nextrow,new QTableWidgetItem(text));
         QDoubleSpinBox *spin = new QDoubleSpinBox(this);
         spin->setSuffix(" [Jy]");
+        spin->setMaximum(10000.0);
         ui->tableWidget_minSNR->setCellWidget(nextrow,0,spin);
     }
 }
