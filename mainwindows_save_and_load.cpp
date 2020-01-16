@@ -213,44 +213,20 @@ QString MainWindow::writeXML()
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
                 skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov, contacts);
 
-
-    std::string antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source;
-    QDir autoDownloadCatalogs = QDir("AUTO_DOWNLOAD_CATALOGS");
-
-    if(ui->radioButton_useLatestCatalogs->isChecked() && autoDownloadCatalogs.exists()){
-        antenna = autoDownloadCatalogs.absoluteFilePath("antenna.cat").toStdString();
-        equip = autoDownloadCatalogs.absoluteFilePath("equip.cat").toStdString();
-        flux = autoDownloadCatalogs.absoluteFilePath("flux.cat").toStdString();
-        freq = autoDownloadCatalogs.absoluteFilePath("freq.cat").toStdString();
-        hdpos = autoDownloadCatalogs.absoluteFilePath("hdpos.cat").toStdString();
-        loif = autoDownloadCatalogs.absoluteFilePath("loif.cat").toStdString();
-        mask = autoDownloadCatalogs.absoluteFilePath("mask.cat").toStdString();
-        modes = autoDownloadCatalogs.absoluteFilePath("modes.cat").toStdString();
-        position = autoDownloadCatalogs.absoluteFilePath("position.cat").toStdString();
-        rec = autoDownloadCatalogs.absoluteFilePath("rec.cat").toStdString();
-        rx = autoDownloadCatalogs.absoluteFilePath("rx.cat").toStdString();
-        source = autoDownloadCatalogs.absoluteFilePath("source.cat.geodetic.good").toStdString();
-    }else{
-        antenna = ui->lineEdit_pathAntenna->text().toStdString();
-        equip = ui->lineEdit_pathEquip->text().toStdString();
-        flux = ui->lineEdit_pathFlux->text().toStdString();
-        freq = ui->lineEdit_pathFreq->text().toStdString();
-        hdpos = ui->lineEdit_pathHdpos->text().toStdString();
-        loif = ui->lineEdit_pathLoif->text().toStdString();
-        mask = ui->lineEdit_pathMask->text().toStdString();
-        modes = ui->lineEdit_pathModes->text().toStdString();
-        position = ui->lineEdit_pathPosition->text().toStdString();
-        rec = ui->lineEdit_pathRec->text().toStdString();
-        rx = ui->lineEdit_pathRx->text().toStdString();
-        if(ui->radioButton_browseSource->isChecked()){
-            source = ui->lineEdit_pathSource->text().toStdString();
-        }else{
-            source = ui->lineEdit_browseSource2->text().toStdString();
-        }
-    }
-
-
+    std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
+    std::string equip = ui->lineEdit_pathEquip->text().toStdString();
+    std::string flux = ui->lineEdit_pathFlux->text().toStdString();
+    std::string freq = ui->lineEdit_pathFreq->text().toStdString();
+    std::string hdpos = ui->lineEdit_pathHdpos->text().toStdString();
+    std::string loif = ui->lineEdit_pathLoif->text().toStdString();
+    std::string mask = ui->lineEdit_pathMask->text().toStdString();
+    std::string modes = ui->lineEdit_pathModes->text().toStdString();
+    std::string position = ui->lineEdit_pathPosition->text().toStdString();
+    std::string rec = ui->lineEdit_pathRec->text().toStdString();
+    std::string rx = ui->lineEdit_pathRx->text().toStdString();
+    std::string source = ui->lineEdit_pathSource->text().toStdString();
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
+
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks);
 
 
@@ -762,7 +738,6 @@ void MainWindow::loadXML(QString path)
         if(!source.empty()){
             ui->lineEdit_pathSource->setText(QString::fromStdString(source));
         }
-        ui->radioButton_browseSource->setChecked(true);
         std::string flux = xml.get("VieSchedpp.catalogs.flux","");
         if(!flux.empty()){
             ui->lineEdit_pathFlux->setText(QString::fromStdString(flux));
@@ -1825,39 +1800,31 @@ void MainWindow::readSettings()
     }
 
 
-    bool newest = settings_.get<bool>("settings.catalog_path.useNewestCatalogs", true);
-    bool custom = settings_.get<bool>("settings.catalog_path.useCustomCatalogs", false);
-
-    ui->radioButton_useLatestCatalogs->setChecked(newest);
-    ui->radioButton_useCustomCatalogs->setChecked(custom);
-
-    std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","../CATALOGS/antenna.cat");
+    std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
     ui->lineEdit_pathAntenna->setText(QString::fromStdString(cAntenna));
-    std::string cEquip = settings_.get<std::string>("settings.catalog_path.equip","../CATALOGS/equip.cat");
+    std::string cEquip = settings_.get<std::string>("settings.catalog_path.equip","./AUTO_DOWNLOAD_CATALOGS/equip.cat");
     ui->lineEdit_pathEquip->setText(QString::fromStdString(cEquip));
-    std::string cPosition = settings_.get<std::string>("settings.catalog_path.position","../CATALOGS/position.cat");
+    std::string cPosition = settings_.get<std::string>("settings.catalog_path.position","./AUTO_DOWNLOAD_CATALOGS/position.cat");
     ui->lineEdit_pathPosition->setText(QString::fromStdString(cPosition));
-    std::string cMask = settings_.get<std::string>("settings.catalog_path.mask","../CATALOGS/mask.cat");
+    std::string cMask = settings_.get<std::string>("settings.catalog_path.mask","./AUTO_DOWNLOAD_CATALOGS/mask.cat");
     ui->lineEdit_pathMask->setText(QString::fromStdString(cMask));
-    std::string cSource = settings_.get<std::string>("settings.catalog_path.source","../CATALOGS/source.cat.geodetic.good");
+    std::string cSource = settings_.get<std::string>("settings.catalog_path.source","./AUTO_DOWNLOAD_CATALOGS/source.cat.geodetic.good");
     ui->lineEdit_pathSource->setText(QString::fromStdString(cSource));
-    std::string cSource2 = settings_.get<std::string>("settings.catalog_path.source2","../CATALOGS/source.cat");
-    ui->lineEdit_browseSource2->setText(QString::fromStdString(cSource2));
-    std::string cFlux = settings_.get<std::string>("settings.catalog_path.flux","../CATALOGS/flux.cat");
+    std::string cFlux = settings_.get<std::string>("settings.catalog_path.flux","./AUTO_DOWNLOAD_CATALOGS/flux.cat");
     ui->lineEdit_pathFlux->setText(QString::fromStdString(cFlux));
-    std::string cModes = settings_.get<std::string>("settings.catalog_path.modes","../CATALOGS/modes.cat");
+    std::string cModes = settings_.get<std::string>("settings.catalog_path.modes","./AUTO_DOWNLOAD_CATALOGS/modes.cat");
     ui->lineEdit_pathModes->setText(QString::fromStdString(cModes));
-    std::string cFreq = settings_.get<std::string>("settings.catalog_path.freq","../CATALOGS/freq.cat");
+    std::string cFreq = settings_.get<std::string>("settings.catalog_path.freq","./AUTO_DOWNLOAD_CATALOGS/freq.cat");
     ui->lineEdit_pathFreq->setText(QString::fromStdString(cFreq));
-    std::string cTracks = settings_.get<std::string>("settings.catalog_path.tracks","../CATALOGS/tracks.cat");
+    std::string cTracks = settings_.get<std::string>("settings.catalog_path.tracks","./AUTO_DOWNLOAD_CATALOGS/tracks.cat");
     ui->lineEdit_pathTracks->setText(QString::fromStdString(cTracks));
-    std::string cLoif = settings_.get<std::string>("settings.catalog_path.loif","../CATALOGS/loif.cat");
+    std::string cLoif = settings_.get<std::string>("settings.catalog_path.loif","./AUTO_DOWNLOAD_CATALOGS/loif.cat");
     ui->lineEdit_pathLoif->setText(QString::fromStdString(cLoif));
-    std::string cRec = settings_.get<std::string>("settings.catalog_path.rec","../CATALOGS/rec.cat");
+    std::string cRec = settings_.get<std::string>("settings.catalog_path.rec","./AUTO_DOWNLOAD_CATALOGS/rec.cat");
     ui->lineEdit_pathRec->setText(QString::fromStdString(cRec));
-    std::string cRx = settings_.get<std::string>("settings.catalog_path.rx","../CATALOGS/rx.cat");
+    std::string cRx = settings_.get<std::string>("settings.catalog_path.rx","./AUTO_DOWNLOAD_CATALOGS/rx.cat");
     ui->lineEdit_pathRx->setText(QString::fromStdString(cRx));
-    std::string cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","../CATALOGS/hdpos.cat");
+    std::string cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
     ui->lineEdit_pathHdpos->setText(QString::fromStdString(cHdpos));
 
     std::string outputDirectory = settings_.get<std::string>("settings.output.directory","../out/");
@@ -2016,15 +1983,11 @@ void MainWindow::on_pushButton_17_clicked()
 
 void MainWindow::on_pushButton_saveCatalogPathes_clicked()
 {
-    settings_.put("settings.catalog_path.useNewestCatalogs",ui->radioButton_useLatestCatalogs->isChecked());
-    settings_.put("settings.catalog_path.useCustomCatalogs",ui->radioButton_useCustomCatalogs->isChecked());
-
     settings_.put("settings.catalog_path.antenna",ui->lineEdit_pathAntenna->text().toStdString());
     settings_.put("settings.catalog_path.equip",ui->lineEdit_pathEquip->text().toStdString());
     settings_.put("settings.catalog_path.position",ui->lineEdit_pathPosition->text().toStdString());
     settings_.put("settings.catalog_path.mask",ui->lineEdit_pathMask->text().toStdString());
     settings_.put("settings.catalog_path.source",ui->lineEdit_pathSource->text().toStdString());
-    settings_.put("settings.catalog_path.source2",ui->lineEdit_browseSource2->text().toStdString());
     settings_.put("settings.catalog_path.flux",ui->lineEdit_pathFlux->text().toStdString());
     settings_.put("settings.catalog_path.modes",ui->lineEdit_pathModes->text().toStdString());
     settings_.put("settings.catalog_path.freq",ui->lineEdit_pathFreq->text().toStdString());

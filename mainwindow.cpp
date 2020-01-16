@@ -3114,16 +3114,6 @@ void MainWindow::on_pushButton_browseSource_clicked()
 }
 
 
-void MainWindow::on_pushButton_browseSource2_clicked()
-{
-    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_browseSource2->text());
-    if( !path.isEmpty() ){
-        ui->lineEdit_browseSource2->setText(path);
-    }
-
-}
-
-
 void MainWindow::on_pushButton_browseFlux_clicked()
 {
     QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathFlux->text());
@@ -5309,12 +5299,7 @@ void MainWindow::on_checkBox_showBaselines_clicked(bool checked)
 void MainWindow::readSources()
 {
 
-    QString sourcePath;
-    if(ui->radioButton_browseSource->isChecked()){
-        sourcePath = ui->lineEdit_pathSource->text();
-    }else{
-        sourcePath = ui->lineEdit_browseSource2->text();
-    }
+    QString sourcePath = ui->lineEdit_pathSource->text();
 
     QFile sourceFile(sourcePath);
     if (sourceFile.open(QIODevice::ReadOnly)){
