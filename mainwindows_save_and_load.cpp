@@ -1799,33 +1799,55 @@ void MainWindow::readSettings()
         ui->iconSizeSpinBox->setValue(iconSize);
     }
 
+    auto f = [](QLineEdit *edit, const std::string &fname){
+        QString n = QString::fromStdString(fname);
+        if( !QFileInfo::exists(n) ){
+            edit->setText("");
+        }else{
+            edit->setText(n);
+        }
+    };
 
-    std::string cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
-    ui->lineEdit_pathAntenna->setText(QString::fromStdString(cAntenna));
-    std::string cEquip = settings_.get<std::string>("settings.catalog_path.equip","./AUTO_DOWNLOAD_CATALOGS/equip.cat");
-    ui->lineEdit_pathEquip->setText(QString::fromStdString(cEquip));
-    std::string cPosition = settings_.get<std::string>("settings.catalog_path.position","./AUTO_DOWNLOAD_CATALOGS/position.cat");
-    ui->lineEdit_pathPosition->setText(QString::fromStdString(cPosition));
-    std::string cMask = settings_.get<std::string>("settings.catalog_path.mask","./AUTO_DOWNLOAD_CATALOGS/mask.cat");
-    ui->lineEdit_pathMask->setText(QString::fromStdString(cMask));
-    std::string cSource = settings_.get<std::string>("settings.catalog_path.source","./AUTO_DOWNLOAD_CATALOGS/source.cat.geodetic.good");
-    ui->lineEdit_pathSource->setText(QString::fromStdString(cSource));
-    std::string cFlux = settings_.get<std::string>("settings.catalog_path.flux","./AUTO_DOWNLOAD_CATALOGS/flux.cat");
-    ui->lineEdit_pathFlux->setText(QString::fromStdString(cFlux));
-    std::string cModes = settings_.get<std::string>("settings.catalog_path.modes","./AUTO_DOWNLOAD_CATALOGS/modes.cat");
-    ui->lineEdit_pathModes->setText(QString::fromStdString(cModes));
-    std::string cFreq = settings_.get<std::string>("settings.catalog_path.freq","./AUTO_DOWNLOAD_CATALOGS/freq.cat");
-    ui->lineEdit_pathFreq->setText(QString::fromStdString(cFreq));
-    std::string cTracks = settings_.get<std::string>("settings.catalog_path.tracks","./AUTO_DOWNLOAD_CATALOGS/tracks.cat");
-    ui->lineEdit_pathTracks->setText(QString::fromStdString(cTracks));
-    std::string cLoif = settings_.get<std::string>("settings.catalog_path.loif","./AUTO_DOWNLOAD_CATALOGS/loif.cat");
-    ui->lineEdit_pathLoif->setText(QString::fromStdString(cLoif));
-    std::string cRec = settings_.get<std::string>("settings.catalog_path.rec","./AUTO_DOWNLOAD_CATALOGS/rec.cat");
-    ui->lineEdit_pathRec->setText(QString::fromStdString(cRec));
-    std::string cRx = settings_.get<std::string>("settings.catalog_path.rx","./AUTO_DOWNLOAD_CATALOGS/rx.cat");
-    ui->lineEdit_pathRx->setText(QString::fromStdString(cRx));
-    std::string cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
-    ui->lineEdit_pathHdpos->setText(QString::fromStdString(cHdpos));
+    auto cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
+    f(ui->lineEdit_pathAntenna, cAntenna);
+
+    auto cEquip = settings_.get<std::string>("settings.catalog_path.equip","./AUTO_DOWNLOAD_CATALOGS/equip.cat");
+    f(ui->lineEdit_pathEquip, cEquip);
+
+    auto cPosition = settings_.get<std::string>("settings.catalog_path.position","./AUTO_DOWNLOAD_CATALOGS/position.cat");
+    f(ui->lineEdit_pathPosition, cPosition);
+
+    auto cMask = settings_.get<std::string>("settings.catalog_path.mask","./AUTO_DOWNLOAD_CATALOGS/mask.cat");
+    f(ui->lineEdit_pathMask, cMask);
+
+    auto cSource = settings_.get<std::string>("settings.catalog_path.source","./AUTO_DOWNLOAD_CATALOGS/source.cat.geodetic.good");
+    f(ui->lineEdit_pathSource, cSource);
+
+    auto cFlux = settings_.get<std::string>("settings.catalog_path.flux","./AUTO_DOWNLOAD_CATALOGS/flux.cat");
+    f(ui->lineEdit_pathFlux, cFlux);
+
+    auto cModes = settings_.get<std::string>("settings.catalog_path.modes","./AUTO_DOWNLOAD_CATALOGS/modes.cat");
+    f(ui->lineEdit_pathModes, cModes);
+
+    auto cFreq = settings_.get<std::string>("settings.catalog_path.freq","./AUTO_DOWNLOAD_CATALOGS/freq.cat");
+    f(ui->lineEdit_pathFreq, cFreq);
+
+    auto cTracks = settings_.get<std::string>("settings.catalog_path.tracks","./AUTO_DOWNLOAD_CATALOGS/tracks.cat");
+    f(ui->lineEdit_pathTracks, cTracks);
+
+    auto cLoif = settings_.get<std::string>("settings.catalog_path.loif","./AUTO_DOWNLOAD_CATALOGS/loif.cat");
+    f(ui->lineEdit_pathEquip, cEquip);
+
+    auto cRec = settings_.get<std::string>("settings.catalog_path.rec","./AUTO_DOWNLOAD_CATALOGS/rec.cat");
+    f(ui->lineEdit_pathRec, cEquip);
+
+    auto cRx = settings_.get<std::string>("settings.catalog_path.rx","./AUTO_DOWNLOAD_CATALOGS/rx.cat");
+    f(ui->lineEdit_pathEquip, cEquip);
+
+    auto cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
+    f(ui->lineEdit_pathHdpos, cHdpos);
+
+
 
     std::string outputDirectory = settings_.get<std::string>("settings.output.directory","../out/");
     ui->lineEdit_outputPath->setText(QString::fromStdString(outputDirectory));

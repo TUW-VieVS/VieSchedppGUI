@@ -3014,58 +3014,84 @@ void MainWindow::readSkedCatalogs()
     QFileInfo bsrc(ui->lineEdit_pathSource->text());
     QFileInfo btra(ui->lineEdit_pathTracks->text());
 
-    if(bant.exists() && bequ.exists() && bflu.exists() && bfre.exists() && bhdp.exists() && bloi.exists() & bmas.exists() && bmod.exists() && bpos.exists() && brec.exists() && brx.exists() && bsrc.exists() && btra.exists()){
+    bool sta = false;
+    if(bant.exists() && bequ.exists() && bmas.exists() && bpos.exists() ){
         skdCatalogReader.initializeStationCatalogs();
+        sta = true;
+    }
+    bool src = false;
+    if( bflu.exists() && bsrc.exists()){
         skdCatalogReader.initializeSourceCatalogs();
-
+        src = true;
+    }
+    bool mode = false;
+    if( bfre.exists() && bhdp.exists() && bloi.exists() && bmod.exists() && brec.exists() && brx.exists() && btra.exists()){
         skdCatalogReader.initializeModesCatalogs(ui->comboBox_skedObsModes->currentText().toStdString());
-    }else{
+        mode = true;
+    }
+
+
+    if(!sta || !src || !mode) {
         QString txt = "One or multiple catalog files not found:<br><ul>";
 
-        if(!bant.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathAntenna->text()).append(" not found!</li>");
+        auto f=[&txt](QLineEdit *le, QString name){
+            if(le->text().isEmpty()){
+                txt.append("<li>").append(name).append(" not found!</li>");
+            }else{
+                txt.append("<li>").append(name).append(": ").append(le->text()).append(" not found!</li>");
+            }
+        };
+
+        if(!bant.exists() ){
+            f(ui->lineEdit_pathAntenna,"antenna.cat");
         }
         if(!bequ.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathEquip->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathEquip,"equip.cat");
         }
         if(!bflu.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathFlux->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathFlux,"flux.cat");
         }
         if(!bfre.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathFreq->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathFreq,"freq.cat");
         }
         if(!bhdp.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathHdpos->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathHdpos,"hdpos.cat");
         }
         if(!bloi.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathLoif->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathLoif,"loif.cat");
         }
         if(!bmas.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathMask->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathMask,"mask.cat");
         }
         if(!bmod.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathModes->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathModes,"modes.cat");
         }
         if(!bpos.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathPosition->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathPosition,"position.cat");
         }
         if(!brec.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathRec->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathRec,"rec.cat");
         }
         if(!brx.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathRx->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathRx,"rx.cat");
         }
         if(!bsrc.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathSource->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathSource,"source.cat");
         }
         if(!btra.exists()){
-            txt.append("<li>").append(ui->lineEdit_pathTracks->text()).append(" not found!</li>");
+            f(ui->lineEdit_pathTracks,"tracks.cat");
         }
 
-        txt.append("</ul>Copy the catalogs to the required position or change the path in the <img src=\":/icons/icons/document-import-2.png\" height=\"30\" width=\"30\"/> menu!");
+        txt.append("</ul>Either:<ul><li>copy the catalogs to the required position</li><li>wait for the automatic download to finish and restart VieSched++ or reload the catalogs</li><li>change the path in the catalogs menu</li></ul>");
 
-        QMessageBox::information(this, "CATALOG files", txt);
-
+        QDialog *dial = new QDialog(this);
+        dial->setWindowTitle("Catalog files not found!");
+        QLabel *label = new QLabel(txt);
+        QVBoxLayout *l = new QVBoxLayout();
+        l->addWidget(label);
+        dial->setLayout(l);
+        dial->show();
+        //QMessageBox::information(this, "CATALOG files", txt);
     }
 
 
