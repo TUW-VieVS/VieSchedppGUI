@@ -150,9 +150,8 @@ void Statistics::reload()
             }
         }
     }
-    stations.sort();
-    baselines.sort();
-    sources.sort();    
+    //stations.sort();
+    //baselines.sort();
 
     // ################# read data #################
     statistics.clear();
@@ -194,7 +193,7 @@ void Statistics::reload()
             }
         }
     }
-    int offset = general.size() + 5+5*stations.size() +6+6*stations.size() + 2*stations.size() + baselines.size() + 14;
+    int offset = 1 + general.size() + 5+5*stations.size() +6+6*stations.size() + 2*stations.size() + baselines.size() + 14;
     QList<char> remove;
     for (int i=offset; i<offset+sources.size(); ++i) {
         if(counter[i] > 0){
@@ -226,6 +225,7 @@ void Statistics::reload()
             }
         }
     }
+    //sources.sort();
 
     // ################# add items to itemlist #################
     itemlist->blockSignals(true);
@@ -1437,6 +1437,7 @@ void Statistics::plotStatistics(bool animation)
     chart->createDefaultAxes();
     chart->setAxisX(axis, sortedSeries);
     sortedSeries->attachAxis(chart->axisY());
+    static_cast<QValueAxis *>(chart->axisY())->applyNiceNumbers();
 
     int showN = show->value();
 
@@ -1451,6 +1452,7 @@ void Statistics::plotStatistics(bool animation)
         axis->setMin(minax);
         axis->setMax(maxax);
     }
+
 
     statisticsView->setRenderHint(QPainter::Antialiasing);
 

@@ -20,6 +20,7 @@
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QBarSet>
 #include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
 
 QT_CHARTS_USE_NAMESPACE
 
