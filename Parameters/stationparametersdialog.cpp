@@ -71,6 +71,7 @@ void stationParametersDialog::addDefaultParameters(VieVS::ParameterSettings::Par
     ui->doubleSpinBox_minSlewDistance->setValue(*d.minSlewDistance);
     ui->doubleSpinBox_maxSlewDistance->setValue(*d.maxSlewDistance);
     ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
+    ui->spinBox_maxTotalObsTime->setValue(*d.maxTotalObsTime);
 
 
     ui->spinBox_midob->setValue(*d.midob);
@@ -107,6 +108,7 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->checkBox_maxNumberOfScans->setChecked(true);
         ui->checkBox_maxNumberOfScans->setEnabled(false);
         ui->checkBox_dataWriteSpeed->setEnabled(false);
+        ui->checkBox_maxTotalObsTime->setEnabled(false);
 
         ui->groupBox_scanTime->setCheckable(false);
         ui->pushButton_load->setEnabled(false);
@@ -204,6 +206,14 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
         ui->spinBox_maxNumberOfScans->setValue(*dp.maxNumberOfScans);
         ui->checkBox_maxNumberOfScans->setChecked(false);
     }
+    if(sp.maxTotalObsTime.is_initialized()){
+        ui->spinBox_maxTotalObsTime->setValue(*sp.maxTotalObsTime);
+        ui->checkBox_maxTotalObsTime->setChecked(true);
+    }else{
+        ui->spinBox_maxTotalObsTime->setValue(*dp.maxTotalObsTime);
+        ui->checkBox_maxTotalObsTime->setChecked(false);
+    }
+
 
     if(sp.minElevation.is_initialized()){
         ui->doubleSpinBox_minElevation->setValue(*sp.minElevation);
@@ -414,6 +424,9 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
     }
     if(ui->doubleSpinBox_dataWriteSpeed->isEnabled()){
         para.dataWriteRate = ui->doubleSpinBox_dataWriteSpeed->value();
+    }
+    if(ui->spinBox_maxTotalObsTime->isEnabled() ){
+        para.maxTotalObsTime = ui->spinBox_maxTotalObsTime->value();
     }
 
     if(ui->groupBox_scanTime->isChecked() || !ui->groupBox_scanTime->isCheckable()){

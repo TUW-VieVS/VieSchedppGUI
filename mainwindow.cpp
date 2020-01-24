@@ -772,6 +772,12 @@ void MainWindow::displayStationSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("weight"));
         ++r;
     }
+    if(para.maxTotalObsTime.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxTotalObsTime)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("max total obs time [s]"));
+        ++r;
+    }
     if(para.minSNR.size() >0 ){
         for(const auto& any: para.minSNR){
             t->insertRow(r);
@@ -1830,6 +1836,7 @@ void MainWindow::defaultParameters()
     sta.maxSlewDistance = 175;
     sta.minSlewDistance = 0;
     sta.maxWait = 600;
+    sta.maxTotalObsTime = 999999;
     sta.maxNumberOfScans = 9999;
     sta.weight = 1;
     sta.minElevation = 5;
@@ -1868,6 +1875,8 @@ void MainWindow::defaultParameters()
                         sta.minElevation = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxNumberOfScans") {
                         sta.maxNumberOfScans = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "maxTotalObsTime") {
+                        sta.maxTotalObsTime = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "preob") {
                         sta.preob = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "midob") {
@@ -2251,7 +2260,7 @@ void MainWindow::addSetup(QTreeWidget *tree, const boost::property_tree::ptree &
     QString parameter;
     QString member;
     QString transition = "smooth";
-    QTreeWidgetItem *selected = tree->selectedItems().at(0);
+//    QTreeWidgetItem *selected = tree->selectedItems().at(0);
 
 
     for(const auto & any: ptree){
@@ -2275,15 +2284,15 @@ void MainWindow::addSetup(QTreeWidget *tree, const boost::property_tree::ptree &
     dte_start->setDateTime(start_time);
     dte_end->setDateTime(end_time);
     trans->setCurrentText(transition);
-    int ns = selected->childCount();
+//    int ns = selected->childCount();
 
     add->click();
-    selected->setSelected(false);
+//    selected->setSelected(false);
 
     for(const auto & any: ptree){
         if(any.first == "setup"){
-            selected->child(selected->childCount()-1)->setSelected(true);
-            int n = selected->childCount();
+//            selected->child(selected->childCount()-1)->setSelected(true);
+//            int n = selected->childCount();
             addSetup(tree, any.second, cmember, cpara, dte_start, dte_end, trans, add);
         }
     }

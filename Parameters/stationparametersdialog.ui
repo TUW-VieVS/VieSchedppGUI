@@ -115,9 +115,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-192</y>
+            <y>-224</y>
             <width>365</width>
-            <height>709</height>
+            <height>741</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -560,6 +560,32 @@
                 </property>
                </widget>
               </item>
+              <item row="8" column="0">
+               <widget class="QCheckBox" name="checkBox_maxTotalObsTime">
+                <property name="text">
+                 <string>max total scan duration</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QSpinBox" name="spinBox_maxTotalObsTime">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+                <property name="value">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -578,7 +604,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>data write speed</string>
+                 <string>write to disk speed</string>
                 </property>
                </widget>
               </item>
@@ -970,11 +996,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>105</x>
-     <y>-30</y>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>-27</y>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
@@ -986,11 +1012,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>155</x>
-     <y>36</y>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>39</y>
+     <y>154</y>
     </hint>
    </hints>
   </connection>
@@ -1002,11 +1028,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>153</x>
-     <y>132</y>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>135</y>
+     <y>250</y>
     </hint>
    </hints>
   </connection>
@@ -1017,12 +1043,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>164</y>
+     <x>150</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>167</y>
+     <y>282</y>
     </hint>
    </hints>
   </connection>
@@ -1034,11 +1060,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>178</x>
-     <y>68</y>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>71</y>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -1050,11 +1076,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>181</x>
-     <y>100</y>
+     <y>218</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>103</y>
+     <y>218</y>
     </hint>
    </hints>
   </connection>
@@ -1066,11 +1092,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>202</x>
-     <y>196</y>
+     <y>314</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>199</y>
+     <y>314</y>
     </hint>
    </hints>
   </connection>
@@ -1082,11 +1108,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>152</x>
-     <y>2</y>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>5</y>
+     <y>122</y>
     </hint>
    </hints>
   </connection>
@@ -1097,12 +1123,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>164</x>
-     <y>278</y>
+     <x>187</x>
+     <y>428</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>281</y>
+     <y>428</y>
     </hint>
    </hints>
   </connection>
@@ -1113,12 +1139,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>302</y>
+     <x>146</x>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>300</y>
+     <x>355</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -1129,12 +1155,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>80</x>
-     <y>325</y>
+     <x>98</x>
+     <y>492</y>
     </hint>
     <hint type="destinationlabel">
-     <x>291</x>
-     <y>332</y>
+     <x>355</x>
+     <y>492</y>
     </hint>
    </hints>
   </connection>
@@ -1145,12 +1171,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>127</x>
-     <y>360</y>
+     <x>140</x>
+     <y>524</y>
     </hint>
     <hint type="destinationlabel">
-     <x>275</x>
-     <y>365</y>
+     <x>355</x>
+     <y>524</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_maxTotalObsTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_maxTotalObsTime</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>186</x>
+     <y>362</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>

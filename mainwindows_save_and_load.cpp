@@ -1839,10 +1839,10 @@ void MainWindow::readSettings()
     f(ui->lineEdit_pathEquip, cEquip);
 
     auto cRec = settings_.get<std::string>("settings.catalog_path.rec","./AUTO_DOWNLOAD_CATALOGS/rec.cat");
-    f(ui->lineEdit_pathRec, cEquip);
+    f(ui->lineEdit_pathRec, cRec);
 
     auto cRx = settings_.get<std::string>("settings.catalog_path.rx","./AUTO_DOWNLOAD_CATALOGS/rx.cat");
-    f(ui->lineEdit_pathEquip, cEquip);
+    f(ui->lineEdit_pathRx, cRx);
 
     auto cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
     f(ui->lineEdit_pathHdpos, cHdpos);
