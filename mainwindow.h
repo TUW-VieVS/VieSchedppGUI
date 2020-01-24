@@ -575,6 +575,8 @@ private slots:
 
     void on_pushButton_parseDownTime_clicked();
 
+    void on_groupBox_highImpactAzEl_toggled(bool arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

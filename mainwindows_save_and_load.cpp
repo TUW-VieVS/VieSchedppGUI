@@ -694,6 +694,17 @@ QString MainWindow::writeXML()
     }
 
 
+    if(ui->groupBox_35->isChecked()){
+        bool start = ui->checkBox_calibration_sessionStart->isChecked();
+        unsigned int offset = ui->spinBox_calibration_delay->value();
+        bool mid = ui->checkBox_calibration_sessionMid->isChecked();
+        bool end = ui->checkBox_calibration_sessionEnd->isChecked();
+        unsigned int scans = ui->spinBox_calibration_scansPerBlock->value();
+        unsigned int dur = ui->spinBox_calibration_scanDuration->value();
+        std::string sourceGroup = ui->comboBox_calibration_sources->currentText().toStdString();
+
+        para.calibratorBlock(start, offset, mid, end, scans, dur, sourceGroup);
+    }
 
 
     path.append("VieSchedpp.xml");
@@ -1766,6 +1777,25 @@ void MainWindow::loadXML(QString path)
                     ui->pushButton_addHighImpactAzEl->click();
                 }
             }
+        }
+    }
+
+    // rule calibrator
+    {
+        ui->groupBox_35->setChecked(false);
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.rules.calibration");
+
+        if (ctree.is_initialized()) {
+            ui->groupBox_35->setChecked(true);
+
+            ui->checkBox_calibration_sessionStart->setChecked(xml.get("VieSchedpp.rules.calibration.start",false));
+            ui->spinBox_calibration_delay->setValue(xml.get("VieSchedpp.rules.calibration.offset_start",600));
+            ui->checkBox_calibration_sessionMid->setChecked(xml.get("VieSchedpp.rules.calibration.mid",false));
+            ui->checkBox_calibration_sessionEnd->setChecked(xml.get("VieSchedpp.rules.calibration.end",false));
+            ui->spinBox_calibration_scansPerBlock->setValue(xml.get("VieSchedpp.rules.calibration.n_scans",4));
+            ui->spinBox_calibration_scanDuration->setValue(xml.get("VieSchedpp.rules.calibration.scan_duration",300));
+            ui->comboBox_calibration_sources->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.sources","__all__")));
+
         }
     }
 }

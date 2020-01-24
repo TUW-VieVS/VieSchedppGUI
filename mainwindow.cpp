@@ -296,6 +296,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_addSourceGroup_Calibrator,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addSourceGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addGroupSourceSetup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(ui->pushButton_calibration_addSrcGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
 
     connect(ui->pushButton_addGroupBaselineSetup,SIGNAL(clicked(bool)),this, SLOT(addGroupBaseline()));
 
@@ -384,6 +385,7 @@ MainWindow::MainWindow(QWidget *parent) :
     statistics->setupStatisticView();
     setupSkyCoverageTemplatePlot();
 
+    ui->comboBox_calibration_sources->setModel(allSourcePlusGroupModel);
     ui->comboBox_conditions_members->setModel(allSourcePlusGroupModel);
     connect(ui->pushButton_addSourceGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
 
@@ -7512,6 +7514,17 @@ void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
     }
 }
 
+void MainWindow::on_groupBox_highImpactAzEl_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(4,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(4,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+
+
 // ############################### DOWNLOAD ###############################
 void MainWindow::download(){
 
@@ -7797,3 +7810,4 @@ void MainWindow::on_pushButton_parseDownTime_clicked()
 
     delete(dial);
 }
+
