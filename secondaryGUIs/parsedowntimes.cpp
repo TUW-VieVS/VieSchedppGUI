@@ -44,33 +44,39 @@ void ParseDownTimes::on_pushButton_parse_clicked()
     QString txt = ui->plainTextEdit_insert->toPlainText();
     QStringList lines = txt.split("\n");
 
-    QRegularExpression r1("(\\d\\d\\d\\d).(0?[1-9]|1[0-2]).(00|[0-9]|1[0-9]|2[0-3]).(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])");
+    QRegularExpression r1("(\\d\\d\\d\\d).(0?\\d|1[0-2]).([0-2]\\d|3[0-1]).([0-1]\\d|2[0-3]):([0-5][0-9])");
+//    QRegularExpression r2("(\\d\\d\\d\\d).(0?\\d|1[0-2]).([0-2]\\d|3[0-1]).([0-1]\\d|2[0-3]).([0-5][0-9])");
+    QVector<QRegularExpression> r;
+    r << r1;
+//    r << r2;
 
     QTableWidget *t = ui->tableWidget_downTimes;
-    for (const auto &line : lines){
-        auto down = getStartEndTime(r1,line);
-        if(down.is_initialized()){
-            int r = ui->tableWidget_downTimes->rowCount();
+    for(const auto &any : r){
+        for (const auto &line : lines){
+            auto down = getStartEndTime(any,line);
+            if(down.is_initialized()){
+                int r = ui->tableWidget_downTimes->rowCount();
 
-            QString t1 = down->first.toString("dd.MM.yyyy hh:mm");
-            QString t2 = down->second.toString("dd.MM.yyyy hh:mm");
-            bool duplicate = false;
-            for(int i = 0; i<r; ++i){
-                if(t->item(i,0)->text() == t1 && t->item(i,1)->text() == t2){
-                    duplicate = true;
-                    break;
+                QString t1 = down->first.toString("dd.MM.yyyy hh:mm");
+                QString t2 = down->second.toString("dd.MM.yyyy hh:mm");
+                bool duplicate = false;
+                for(int i = 0; i<r; ++i){
+                    if(t->item(i,0)->text() == t1 && t->item(i,1)->text() == t2){
+                        duplicate = true;
+                        break;
+                    }
                 }
+                if(duplicate){
+                    continue;
+                }
+
+
+                t->insertRow(r);
+
+                t->setItem(r,0,new QTableWidgetItem(t1));
+                t->setItem(r,1,new QTableWidgetItem(t2));
+                t->setItem(r,2,new QTableWidgetItem(QString("%1 [min]").arg(down->first.secsTo(down->second)/60)));
             }
-            if(duplicate){
-                continue;
-            }
-
-
-            t->insertRow(r);
-
-            t->setItem(r,0,new QTableWidgetItem(t1));
-            t->setItem(r,1,new QTableWidgetItem(t2));
-            t->setItem(r,2,new QTableWidgetItem(QString("%1 [min]").arg(down->first.secsTo(down->second)/60)));
         }
     }
 }

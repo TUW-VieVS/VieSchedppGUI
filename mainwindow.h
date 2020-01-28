@@ -577,6 +577,12 @@ private slots:
 
     void on_groupBox_highImpactAzEl_toggled(bool arg1);
 
+    void on_checkBox_calibration_sessionStart_toggled(bool checked);
+
+    void on_checkBox_calibration_sessionEnd_toggled(bool checked);
+
+    void on_checkBox_calibration_sessionMid_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

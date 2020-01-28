@@ -386,6 +386,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setupSkyCoverageTemplatePlot();
 
     ui->comboBox_calibration_sources->setModel(allSourcePlusGroupModel);
+    ui->comboBox_calibration_sources2->setModel(allSourcePlusGroupModel);
+    ui->comboBox_calibration_sources3->setModel(allSourcePlusGroupModel);
     ui->comboBox_conditions_members->setModel(allSourcePlusGroupModel);
     connect(ui->pushButton_addSourceGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
 
@@ -7810,4 +7812,30 @@ void MainWindow::on_pushButton_parseDownTime_clicked()
 
     delete(dial);
 }
+
+
+void MainWindow::on_checkBox_calibration_sessionStart_toggled(bool checked)
+{
+    auto *l = ui->gridLayout_10;
+    for( int i =1; i<=8; ++i){
+        l->itemAtPosition(0,i)->widget()->setEnabled(checked);
+    }
+}
+
+void MainWindow::on_checkBox_calibration_sessionMid_toggled(bool checked)
+{
+    auto *l = ui->gridLayout_10;
+    for( int i =1; i<=8; ++i){
+        l->itemAtPosition(1,i)->widget()->setEnabled(checked);
+    }
+}
+
+void MainWindow::on_checkBox_calibration_sessionEnd_toggled(bool checked)
+{
+    auto *l = ui->gridLayout_10;
+    for( int i =1; i<=8; ++i){
+        l->itemAtPosition(2,i)->widget()->setEnabled(checked);
+    }
+}
+
 

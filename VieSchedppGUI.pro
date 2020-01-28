@@ -64,6 +64,7 @@ SOURCES += \
     ../VieSchedpp/Misc/CalibratorBlock.cpp \
     ../VieSchedpp/Misc/Flags.cpp \
     ../VieSchedpp/Misc/HighImpactScanDescriptor.cpp \
+    ../VieSchedpp/Misc/CalibratorScanDescriptor.cpp \
     ../VieSchedpp/Misc/LookupTable.cpp \
     ../VieSchedpp/Misc/MultiScheduling.cpp \
     ../VieSchedpp/Misc/StationEndposition.cpp \
@@ -164,6 +165,7 @@ HEADERS += \
     ../VieSchedpp/Misc/Constants.h \
     ../VieSchedpp/Misc/Flags.h \
     ../VieSchedpp/Misc/HighImpactScanDescriptor.h \
+    ../VieSchedpp/Misc/CalibratorScanDescriptor.h \
     ../VieSchedpp/Misc/LookupTable.h \
     ../VieSchedpp/Misc/MultiScheduling.h \
     ../VieSchedpp/Misc/sofa.h \

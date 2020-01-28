@@ -1121,7 +1121,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>247</width>
              <height>652</height>
             </rect>
            </property>
@@ -2720,8 +2720,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>885</width>
+             <height>670</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -7548,6 +7548,99 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
+                     <item row="0" column="8">
+                      <widget class="QComboBox" name="comboBox_calibration_sources"/>
+                     </item>
+                     <item row="2" column="4">
+                      <widget class="QSpinBox" name="spinBox_calibration_scanDuration2">
+                       <property name="suffix">
+                        <string> [s]</string>
+                       </property>
+                       <property name="maximum">
+                        <number>1200</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>60</number>
+                       </property>
+                       <property name="value">
+                        <number>300</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QCheckBox" name="checkBox_calibration_sessionStart">
+                       <property name="text">
+                        <string>session start</string>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="7">
+                      <widget class="QLabel" name="label_108">
+                       <property name="text">
+                        <string>allowed sources</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="6">
+                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock2">
+                       <property name="maximum">
+                        <number>10</number>
+                       </property>
+                       <property name="value">
+                        <number>2</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="6">
+                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>10</number>
+                       </property>
+                       <property name="value">
+                        <number>2</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QLabel" name="label_103">
+                       <property name="text">
+                        <string>scan duration</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QCheckBox" name="checkBox_calibration_sessionEnd">
+                       <property name="text">
+                        <string>session end</string>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="8">
+                      <widget class="QComboBox" name="comboBox_calibration_sources2"/>
+                     </item>
+                     <item row="2" column="3">
+                      <widget class="QLabel" name="label_112">
+                       <property name="text">
+                        <string>scan duration</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="5">
+                      <widget class="QLabel" name="label_114">
+                       <property name="text">
+                        <string>scans per block</string>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="0" column="2">
                       <widget class="QSpinBox" name="spinBox_calibration_delay">
                        <property name="suffix">
@@ -7564,52 +7657,7 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="2" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionMid">
-                       <property name="text">
-                        <string>session mid</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionStart">
-                       <property name="text">
-                        <string>session start</string>
-                       </property>
-                       <property name="checked">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionEnd">
-                       <property name="text">
-                        <string>session end</string>
-                       </property>
-                       <property name="checked">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="Line" name="line_14">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QFormLayout" name="formLayout_2">
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_103">
-                       <property name="text">
-                        <string>scan duration</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
+                     <item row="0" column="4">
                       <widget class="QSpinBox" name="spinBox_calibration_scanDuration">
                        <property name="suffix">
                         <string> [s]</string>
@@ -7628,52 +7676,184 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="0">
+                     <item row="0" column="5">
                       <widget class="QLabel" name="label_102">
                        <property name="text">
                         <string>scans per block</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="1">
-                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock">
-                       <property name="minimum">
-                        <number>1</number>
+                     <item row="2" column="2">
+                      <widget class="QSpinBox" name="spinBox_calibration_advance">
+                       <property name="suffix">
+                        <string> [s]</string>
                        </property>
                        <property name="maximum">
-                        <number>10</number>
+                        <number>86400</number>
                        </property>
-                       <property name="value">
-                        <number>4</number>
+                       <property name="singleStep">
+                        <number>600</number>
                        </property>
                       </widget>
                      </item>
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="label_108">
+                     <item row="2" column="7">
+                      <widget class="QLabel" name="label_116">
                        <property name="text">
                         <string>allowed sources</string>
                        </property>
                       </widget>
                      </item>
                      <item row="2" column="1">
-                      <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,0">
-                       <item>
-                        <widget class="QComboBox" name="comboBox_calibration_sources"/>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_calibration_addSrcGroup">
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
+                      <widget class="QLabel" name="label_110">
+                       <property name="text">
+                        <string>advance</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QCheckBox" name="checkBox_calibration_sessionMid">
+                       <property name="text">
+                        <string>session mid</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="label_111">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>offset</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QSpinBox" name="spinBox_calibration_offset">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="suffix">
+                        <string> [s]</string>
+                       </property>
+                       <property name="minimum">
+                        <number>-86400</number>
+                       </property>
+                       <property name="maximum">
+                        <number>86400</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>600</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QLabel" name="label_113">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>scan duration</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="4">
+                      <widget class="QSpinBox" name="spinBox_calibration_scanDuration3">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="suffix">
+                        <string> [s]</string>
+                       </property>
+                       <property name="maximum">
+                        <number>1200</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>60</number>
+                       </property>
+                       <property name="value">
+                        <number>300</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="5">
+                      <widget class="QLabel" name="label_115">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>scans per block</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="6">
+                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock3">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="maximum">
+                        <number>10</number>
+                       </property>
+                       <property name="value">
+                        <number>2</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="7">
+                      <widget class="QLabel" name="label_117">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>allowed sources</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="8">
+                      <widget class="QComboBox" name="comboBox_calibration_sources3">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_15">
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <spacer name="horizontalSpacer_14">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_calibration_addSrcGroup">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line_14">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="verticalSpacer_36">
@@ -7690,19 +7870,6 @@ p, li { white-space: pre-wrap; }
                    </item>
                   </layout>
                  </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_63">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>617</width>
-                    <height>17</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                </layout>
               </widget>
@@ -8893,6 +9060,16 @@ p, li { white-space: pre-wrap; }
                       </spacer>
                      </item>
                     </layout>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_109">
+                     <property name="styleSheet">
+                      <string notr="true">color : red</string>
+                     </property>
+                     <property name="text">
+                      <string>This option is deprecated. It might not work properly with all other options of VieSched++.</string>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <spacer name="verticalSpacer_28">
@@ -12726,12 +12903,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>392</x>
-     <y>135</y>
+     <x>219</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>676</x>
-     <y>211</y>
+     <x>247</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -12742,12 +12919,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>103</y>
+     <x>19</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>106</y>
+     <x>34</x>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -12758,12 +12935,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>135</y>
+     <x>19</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>138</y>
+     <x>34</x>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -12774,12 +12951,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>167</y>
+     <x>19</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>170</y>
+     <x>34</x>
+     <y>79</y>
     </hint>
    </hints>
   </connection>
@@ -12790,12 +12967,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>199</y>
+     <x>19</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>202</y>
+     <x>34</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
@@ -12806,12 +12983,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>231</y>
+     <x>19</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>234</y>
+     <x>34</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -12822,12 +12999,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>263</y>
+     <x>19</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>266</y>
+     <x>34</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12838,12 +13015,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>307</y>
+     <x>34</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -12854,12 +13031,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>339</y>
+     <x>19</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12870,12 +13047,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>304</y>
+     <x>19</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>339</y>
+     <x>34</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12886,12 +13063,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>380</y>
+     <x>34</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -12902,12 +13079,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>412</y>
+     <x>19</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -12918,12 +13095,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>444</y>
+     <x>19</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>
@@ -12934,12 +13111,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>412</y>
+     <x>34</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -12950,12 +13127,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>377</y>
+     <x>19</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>444</y>
+     <x>34</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>
@@ -12966,12 +13143,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>485</y>
+     <x>34</x>
+     <y>98</y>
     </hint>
    </hints>
   </connection>
@@ -12982,12 +13159,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>517</y>
+     <x>19</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
@@ -12998,12 +13175,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>549</y>
+     <x>19</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -13014,12 +13191,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>517</y>
+     <x>34</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
@@ -13030,12 +13207,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>482</y>
+     <x>19</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>549</y>
+     <x>34</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -13046,12 +13223,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>74</x>
-     <y>225</y>
+     <x>51</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>405</x>
-     <y>279</y>
+     <x>80</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -13062,12 +13239,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>54</x>
-     <y>342</y>
+     <x>31</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>222</x>
-     <y>344</y>
+     <x>54</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -13136,22 +13313,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>calendarWidget</sender>
-   <signal>clicked(QDate)</signal>
-   <receiver>dateTimeEdit_sessionStart</receiver>
-   <slot>setDate(QDate)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>882</x>
-     <y>397</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>269</x>
-     <y>236</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>radioButton_subnetting_allBut</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinBox_subnetting_min_sta</receiver>
@@ -13206,12 +13367,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
-     <y>372</y>
+     <x>54</x>
+     <y>118</y>
     </hint>
    </hints>
   </connection>
@@ -13222,12 +13383,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>63</x>
-     <y>404</y>
+     <x>31</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -13238,12 +13399,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
-     <y>404</y>
+     <x>54</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
