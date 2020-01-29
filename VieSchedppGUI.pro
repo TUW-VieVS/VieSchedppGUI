@@ -61,10 +61,10 @@ SOURCES += \
     ../VieSchedpp/Input/SkdCatalogReader.cpp \
     ../VieSchedpp/Input/SkdParser.cpp \
     ../VieSchedpp/Misc/AstronomicalParameters.cpp \
-    ../VieSchedpp/Misc/CalibratorBlock.cpp \
+    ../VieSchedpp/Misc/AstrometricCalibratorBlock.cpp \
     ../VieSchedpp/Misc/Flags.cpp \
     ../VieSchedpp/Misc/HighImpactScanDescriptor.cpp \
-    ../VieSchedpp/Misc/CalibratorScanDescriptor.cpp \
+    ../VieSchedpp/Misc/CalibratorBlock.cpp \
     ../VieSchedpp/Misc/LookupTable.cpp \
     ../VieSchedpp/Misc/MultiScheduling.cpp \
     ../VieSchedpp/Misc/StationEndposition.cpp \
@@ -161,11 +161,11 @@ HEADERS += \
     ../VieSchedpp/Input/SkdCatalogReader.h \
     ../VieSchedpp/Input/SkdParser.h \
     ../VieSchedpp/Misc/AstronomicalParameters.h \
-    ../VieSchedpp/Misc/CalibratorBlock.h \
+    ../VieSchedpp/Misc/AstrometricCalibratorBlock.h \
     ../VieSchedpp/Misc/Constants.h \
     ../VieSchedpp/Misc/Flags.h \
     ../VieSchedpp/Misc/HighImpactScanDescriptor.h \
-    ../VieSchedpp/Misc/CalibratorScanDescriptor.h \
+    ../VieSchedpp/Misc/CalibratorBlock.h \
     ../VieSchedpp/Misc/LookupTable.h \
     ../VieSchedpp/Misc/MultiScheduling.h \
     ../VieSchedpp/Misc/sofa.h \

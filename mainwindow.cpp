@@ -350,6 +350,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto hv7 = ui->treeWidget_setupStationAxis->header();
     hv7->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_calibrationBlock->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->spinBox_NCalibrationBlocks->setValue(1);
+    ui->spinBox_NCalibrationBlocks->setValue(2);
+    ui->spinBox_NCalibrationBlocks->setValue(3);
+    ui->spinBox_NCalibrationBlocks->setValue(4);
+    ui->spinBox_NCalibrationBlocks->setValue(5);
+    ui->spinBox_NCalibrationBlocks->setValue(6);
+    ui->spinBox_NCalibrationBlocks->setValue(7);
 
     connect(ui->pushButton_setupAxisAdd,SIGNAL(clicked(bool)),this,SLOT(setupStationAxisBufferAddRow()));
 
@@ -7839,3 +7847,47 @@ void MainWindow::on_checkBox_calibration_sessionEnd_toggled(bool checked)
 }
 
 
+
+void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
+{
+    auto *tab = ui->tableWidget_calibrationBlock;
+    int nBefore = tab->rowCount();
+    tab->setRowCount(row);
+
+    if(row > nBefore){
+
+        QDoubleSpinBox *t = new QDoubleSpinBox();
+        t->setMaximum(24);
+        t->setSingleStep(.5);
+        double v = (row-1)*4;
+        if(v==0){
+            v=.5;
+        }else if(v==24){
+            v = 23.5;
+        }
+        t->setValue(v);
+        t->setSuffix(" [hours]");
+
+        QSpinBox *d = new QSpinBox();
+        d->setMaximum(1200);
+        d->setSingleStep(60);
+        d->setValue(300);
+        d->setSuffix(" [s]");
+
+        QSpinBox *s = new QSpinBox();
+        s->setMaximum(10);
+        s->setValue(2);
+
+        QComboBox *c = new QComboBox();
+        c->setModel(allSourcePlusGroupModel);
+
+        tab->setCellWidget(row-1,0,t);
+        tab->setCellWidget(row-1,1,d);
+        tab->setCellWidget(row-1,2,s);
+        tab->setCellWidget(row-1,3,c);
+
+    }
+
+
+
+}

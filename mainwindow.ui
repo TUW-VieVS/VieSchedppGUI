@@ -7540,288 +7540,23 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_68">
                    <item>
-                    <layout class="QGridLayout" name="gridLayout_10">
-                     <item row="0" column="1">
-                      <widget class="QLabel" name="label_101">
-                       <property name="text">
-                        <string>delay</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="8">
-                      <widget class="QComboBox" name="comboBox_calibration_sources"/>
-                     </item>
-                     <item row="2" column="4">
-                      <widget class="QSpinBox" name="spinBox_calibration_scanDuration2">
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="maximum">
-                        <number>1200</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>60</number>
-                       </property>
-                       <property name="value">
-                        <number>300</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionStart">
-                       <property name="text">
-                        <string>session start</string>
-                       </property>
-                       <property name="checked">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="7">
-                      <widget class="QLabel" name="label_108">
-                       <property name="text">
-                        <string>allowed sources</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="6">
-                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock2">
-                       <property name="maximum">
-                        <number>10</number>
-                       </property>
-                       <property name="value">
-                        <number>2</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="6">
-                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock">
-                       <property name="minimum">
-                        <number>1</number>
-                       </property>
-                       <property name="maximum">
-                        <number>10</number>
-                       </property>
-                       <property name="value">
-                        <number>2</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="3">
-                      <widget class="QLabel" name="label_103">
-                       <property name="text">
-                        <string>scan duration</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionEnd">
-                       <property name="text">
-                        <string>session end</string>
-                       </property>
-                       <property name="checked">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="8">
-                      <widget class="QComboBox" name="comboBox_calibration_sources2"/>
-                     </item>
-                     <item row="2" column="3">
-                      <widget class="QLabel" name="label_112">
-                       <property name="text">
-                        <string>scan duration</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="5">
-                      <widget class="QLabel" name="label_114">
-                       <property name="text">
-                        <string>scans per block</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="2">
-                      <widget class="QSpinBox" name="spinBox_calibration_delay">
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="maximum">
-                        <number>86400</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>600</number>
-                       </property>
-                       <property name="value">
-                        <number>600</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="4">
-                      <widget class="QSpinBox" name="spinBox_calibration_scanDuration">
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="minimum">
-                        <number>1</number>
-                       </property>
-                       <property name="maximum">
-                        <number>1200</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>60</number>
-                       </property>
-                       <property name="value">
-                        <number>300</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="5">
-                      <widget class="QLabel" name="label_102">
-                       <property name="text">
-                        <string>scans per block</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="2">
-                      <widget class="QSpinBox" name="spinBox_calibration_advance">
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="maximum">
-                        <number>86400</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>600</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="7">
-                      <widget class="QLabel" name="label_116">
-                       <property name="text">
-                        <string>allowed sources</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QLabel" name="label_110">
-                       <property name="text">
-                        <string>advance</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QCheckBox" name="checkBox_calibration_sessionMid">
-                       <property name="text">
-                        <string>session mid</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="1">
-                      <widget class="QLabel" name="label_111">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>offset</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="2">
-                      <widget class="QSpinBox" name="spinBox_calibration_offset">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="minimum">
-                        <number>-86400</number>
-                       </property>
-                       <property name="maximum">
-                        <number>86400</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>600</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="3">
-                      <widget class="QLabel" name="label_113">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>scan duration</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="4">
-                      <widget class="QSpinBox" name="spinBox_calibration_scanDuration3">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="suffix">
-                        <string> [s]</string>
-                       </property>
-                       <property name="maximum">
-                        <number>1200</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>60</number>
-                       </property>
-                       <property name="value">
-                        <number>300</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="5">
-                      <widget class="QLabel" name="label_115">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>scans per block</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="6">
-                      <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock3">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="maximum">
-                        <number>10</number>
-                       </property>
-                       <property name="value">
-                        <number>2</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="7">
-                      <widget class="QLabel" name="label_117">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>allowed sources</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="8">
-                      <widget class="QComboBox" name="comboBox_calibration_sources3">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_15">
+                    <layout class="QHBoxLayout" name="horizontalLayout_20">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
                      <property name="topMargin">
                       <number>0</number>
                      </property>
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_calibrationBlocks_predefined">
+                       <property name="text">
+                        <string>predefined</string>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
                      <item>
                       <spacer name="horizontalSpacer_14">
                        <property name="orientation">
@@ -7849,6 +7584,309 @@ p, li { white-space: pre-wrap; }
                     </layout>
                    </item>
                    <item>
+                    <widget class="QGroupBox" name="groupBox_37">
+                     <property name="title">
+                      <string/>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_69">
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout_10">
+                        <item row="0" column="1">
+                         <widget class="QLabel" name="label_101">
+                          <property name="text">
+                           <string>delay</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="8">
+                         <widget class="QComboBox" name="comboBox_calibration_sources"/>
+                        </item>
+                        <item row="2" column="4">
+                         <widget class="QSpinBox" name="spinBox_calibration_scanDuration2">
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="maximum">
+                           <number>1200</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>60</number>
+                          </property>
+                          <property name="value">
+                           <number>300</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QCheckBox" name="checkBox_calibration_sessionStart">
+                          <property name="text">
+                           <string>session start</string>
+                          </property>
+                          <property name="checked">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="7">
+                         <widget class="QLabel" name="label_108">
+                          <property name="text">
+                           <string>allowed sources</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="6">
+                         <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock2">
+                          <property name="maximum">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>2</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="6">
+                         <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock">
+                          <property name="minimum">
+                           <number>1</number>
+                          </property>
+                          <property name="maximum">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>2</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QLabel" name="label_103">
+                          <property name="text">
+                           <string>scan duration</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QCheckBox" name="checkBox_calibration_sessionEnd">
+                          <property name="text">
+                           <string>session end</string>
+                          </property>
+                          <property name="checked">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="8">
+                         <widget class="QComboBox" name="comboBox_calibration_sources2"/>
+                        </item>
+                        <item row="2" column="3">
+                         <widget class="QLabel" name="label_112">
+                          <property name="text">
+                           <string>scan duration</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="5">
+                         <widget class="QLabel" name="label_114">
+                          <property name="text">
+                           <string>scans per block</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QSpinBox" name="spinBox_calibration_delay">
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="maximum">
+                           <number>86400</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>600</number>
+                          </property>
+                          <property name="value">
+                           <number>600</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="4">
+                         <widget class="QSpinBox" name="spinBox_calibration_scanDuration">
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="minimum">
+                           <number>1</number>
+                          </property>
+                          <property name="maximum">
+                           <number>1200</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>60</number>
+                          </property>
+                          <property name="value">
+                           <number>300</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="5">
+                         <widget class="QLabel" name="label_102">
+                          <property name="text">
+                           <string>scans per block</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="2">
+                         <widget class="QSpinBox" name="spinBox_calibration_advance">
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="maximum">
+                           <number>86400</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>600</number>
+                          </property>
+                          <property name="value">
+                           <number>1200</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="7">
+                         <widget class="QLabel" name="label_116">
+                          <property name="text">
+                           <string>allowed sources</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLabel" name="label_110">
+                          <property name="text">
+                           <string>advance*</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QCheckBox" name="checkBox_calibration_sessionMid">
+                          <property name="text">
+                           <string>session mid</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLabel" name="label_111">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>offset</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QSpinBox" name="spinBox_calibration_offset">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="minimum">
+                           <number>-86400</number>
+                          </property>
+                          <property name="maximum">
+                           <number>86400</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>600</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QLabel" name="label_113">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>scan duration</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="4">
+                         <widget class="QSpinBox" name="spinBox_calibration_scanDuration3">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="maximum">
+                           <number>1200</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>60</number>
+                          </property>
+                          <property name="value">
+                           <number>300</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="5">
+                         <widget class="QLabel" name="label_115">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>scans per block</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="6">
+                         <widget class="QSpinBox" name="spinBox_calibration_scansPerBlock3">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="maximum">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>2</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="7">
+                         <widget class="QLabel" name="label_117">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>allowed sources</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="8">
+                         <widget class="QComboBox" name="comboBox_calibration_sources3">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_118">
+                        <property name="text">
+                         <string>* make sure to start early enough at the session end to have enough time left otherwise fewer calibrator scans will be scheduled</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
                     <widget class="Line" name="line_14">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
@@ -7856,17 +7894,68 @@ p, li { white-space: pre-wrap; }
                     </widget>
                    </item>
                    <item>
-                    <spacer name="verticalSpacer_36">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
+                    <layout class="QHBoxLayout" name="horizontalLayout_18">
+                     <property name="topMargin">
+                      <number>0</number>
                      </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>40</height>
-                      </size>
+                     <item>
+                      <widget class="QRadioButton" name="radioButton_calibrationBlocksCustom">
+                       <property name="text">
+                        <string>custom</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QSpinBox" name="spinBox_NCalibrationBlocks">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_21">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTableWidget" name="tableWidget_calibrationBlock">
+                     <property name="enabled">
+                      <bool>false</bool>
                      </property>
-                    </spacer>
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <column>
+                      <property name="text">
+                       <string>offset from session start</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>duration</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>scans per block</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>allowed sources</string>
+                      </property>
+                     </column>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -13405,6 +13494,54 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>54</x>
      <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibrationBlocks_predefined</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>groupBox_37</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>121</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibrationBlocksCustom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_NCalibrationBlocks</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>396</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>143</x>
+     <y>396</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibrationBlocksCustom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tableWidget_calibrationBlock</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>100</x>
+     <y>401</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>438</y>
     </hint>
    </hints>
   </connection>

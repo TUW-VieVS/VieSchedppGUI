@@ -583,6 +583,8 @@ private slots:
 
     void on_checkBox_calibration_sessionMid_toggled(bool checked);
 
+    void on_spinBox_NCalibrationBlocks_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
