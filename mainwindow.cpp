@@ -1166,6 +1166,11 @@ void MainWindow::on_actionConditions_triggered()
     ui->main_stacked->setCurrentIndex(15);
 }
 
+void MainWindow::on_actionadvanced_triggered()
+{
+    ui->main_stacked->setCurrentIndex(16);
+}
+
 void MainWindow::on_actionFix_High_Impact_Scans_triggered()
 {
     ui->main_stacked->setCurrentIndex(16);
@@ -7891,3 +7896,5 @@ void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
 
 
 }
+
+

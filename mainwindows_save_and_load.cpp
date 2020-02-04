@@ -156,16 +156,18 @@ QString MainWindow::writeXML()
         scanAlignment = "individual";
     }
 
+    bool doNotObserveSourcesWithinMinRepeat = ui->radioButton_sourcesMinRepeat_doNotObserve->isChecked();
+
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
                      idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     srcNames, scanAlignment, logConsole, logFile);
+                     srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
                      idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     ignoreSrcNames, scanAlignment, logConsole, logFile);
+                     ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat);
     }
 
 
@@ -864,6 +866,13 @@ void MainWindow::loadXML(QString path)
         ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeDuringScan);
         bool fillinmodeInfluenceOnSchedule = xml.get("VieSchedpp.general.fillinmodeInfluenceOnSchedule",false);
         ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeInfluenceOnSchedule);
+
+        if(xml.get("VieSchedpp.general.doNotObserveSourcesWithinMinRepeat",true)){
+            ui->radioButton_sourcesMinRepeat_doNotObserve->setChecked(true);
+        }else{
+            ui->radioButton_sourcesMinRepeat_reduceWeight->setChecked(true);
+        }
+
 
         bool idleToObservingTime = xml.get("VieSchedpp.general.idleToObservingTime",false);
         if(idleToObservingTime){
@@ -2216,12 +2225,6 @@ void MainWindow::on_pushButton_8_clicked()
         value << "false";
     }
 
-    path << "settings.general.fillinmodeInfluenceOnSchedule";
-    if(ui->checkBox_fillinModeInfluence->isChecked()){
-        value << "true";
-    }else{
-        value << "false";
-    }
 
     path << "settings.general.fillinmodeAPosteriori";
     if(ui->checkBox_fillinmode_aposteriori->isChecked()){
@@ -2244,6 +2247,24 @@ void MainWindow::on_pushButton_8_clicked()
         value << "false";
     }
 
+    QString name = "Default general parameters changed!";
+    changeDefaultSettings(path,value,name);
+
+}
+
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    QStringList path;
+    QStringList value;
+
+    path << "settings.general.fillinmodeInfluenceOnSchedule";
+    if(ui->checkBox_fillinModeInfluence->isChecked()){
+        value << "true";
+    }else{
+        value << "false";
+    }
+
     path << "settings.general.alignObservingTime";
     if(ui->radioButton_alignStart->isChecked()){
         value << "start";
@@ -2253,10 +2274,18 @@ void MainWindow::on_pushButton_8_clicked()
         value << "individual";
     }
 
-    QString name = "Default general parameters changed!";
-    changeDefaultSettings(path,value,name);
+    path << "settings.general.doNotObserveSourcesWithinMinRepeat";
+    if( ui->radioButton_sourcesMinRepeat_doNotObserve->isChecked() ){
+        value << "true";
+    }else{
+        value << "false";
+    }
 
+
+    QString name = "Default advanced settings changed!";
+    changeDefaultSettings(path,value,name);
 }
+
 
 void MainWindow::on_pushButton_9_clicked()
 {
@@ -2480,9 +2509,6 @@ void MainWindow::on_pushButton_contactlist_save_clicked()
     boost::property_tree::xml_parser::write_xml(os, settings_, boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
     os.close();
     QMessageBox::information(this,"Default contacts change","Default contacts changed!");
-
-
-
 }
 
 

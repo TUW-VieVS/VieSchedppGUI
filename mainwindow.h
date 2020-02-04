@@ -585,6 +585,10 @@ private slots:
 
     void on_spinBox_NCalibrationBlocks_valueChanged(int arg1);
 
+    void on_pushButton_11_clicked();
+
+    void on_actionadvanced_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

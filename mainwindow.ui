@@ -14,11 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_134">
+   <layout class="QHBoxLayout" name="horizontalLayout_12">
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>12</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1121,7 +1121,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>247</width>
+             <width>932</width>
              <height>652</height>
             </rect>
            </property>
@@ -2720,8 +2720,8 @@ If you only want to run simulations you can deselect this to avoid error message
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>885</width>
-             <height>670</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_47">
@@ -3040,32 +3040,29 @@ If you only want to run simulations you can deselect this to avoid error message
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,0">
                <item>
-                <layout class="QGridLayout" name="gridLayout_9" columnstretch="1,1,1">
-                 <item row="0" column="2">
-                  <widget class="QGroupBox" name="groupBox_15">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
+                <layout class="QGridLayout" name="gridLayout_9" columnstretch="1,0,0">
+                 <item row="0" column="0">
+                  <widget class="QGroupBox" name="groupBox_fillin_mode">
                    <property name="title">
-                    <string>align observing time</string>
+                    <string>fillin mode</string>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_77">
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_32">
                     <item>
-                     <widget class="QRadioButton" name="radioButton_alignStart">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
+                     <widget class="QCheckBox" name="checkBox_fillinmode_duringscan">
                       <property name="toolTip">
-                       <string>use this if every scan should start at same time</string>
+                       <string>use fillin mode during scan selection</string>
                       </property>
                       <property name="statusTip">
-                       <string>use this if every scan should start at same time</string>
+                       <string>use fillin mode during scan selection</string>
                       </property>
                       <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is the &lt;span style=&quot; font-weight:600;&quot;&gt;default option&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;should not be changed&lt;/span&gt;, unless you have good reasons. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, every station which is part of a scan &lt;span style=&quot; font-weight:600;&quot;&gt;starts its observation at the same time&lt;/span&gt;..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This option enables to schedule &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin mode scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;preferred option &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;you should use. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Fillin mode scans are a way to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;reduce idle time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the stations and gain &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;more scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Typically those scans contain a reduced number of stations - only those who are idling. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You should &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;always use this option&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if you do not have a good reason why not. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is possible to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;deselect stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for fillin mode scans using the station parameters &lt;/span&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                       <property name="text">
-                       <string>scan start</string>
+                       <string>during scan selection</string>
                       </property>
                       <property name="checked">
                        <bool>true</bool>
@@ -3073,39 +3070,80 @@ If you only want to run simulations you can deselect this to avoid error message
                      </widget>
                     </item>
                     <item>
-                     <widget class="QRadioButton" name="radioButton_alignEnd">
+                     <widget class="QCheckBox" name="checkBox_fillinmode_aposteriori">
                       <property name="toolTip">
-                       <string>use this if every scan should end at same time</string>
+                       <string>use fillin mode a posteriori</string>
                       </property>
                       <property name="statusTip">
-                       <string>use this if every scan should end at same time</string>
+                       <string>use fillin mode a posteriori</string>
                       </property>
                       <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;experimental&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; option where the software is aligning the scans to have the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;same end time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This means &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;all scans will end at the same time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is experimental because this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, only with .vex.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might also not work with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;drudge&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the &lt;span style=&quot; font-weight:600;&quot;&gt;fillin mode a posteriori.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This schedules &lt;span style=&quot; font-weight:600;&quot;&gt;additional scans&lt;/span&gt; in case of &lt;span style=&quot; font-weight:600;&quot;&gt;long idle times&lt;/span&gt;. Those scans inserted &lt;span style=&quot; font-weight:600;&quot;&gt;after the normal schedule is finished&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;If you already use &lt;span style=&quot; font-weight:600;&quot;&gt;fillin modes during scan&lt;/span&gt; selection the a posteriori option &lt;span style=&quot; font-weight:600;&quot;&gt;might not improve your schedule&lt;/span&gt; any further. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception&lt;/span&gt; is when you have &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong stations&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In any case, this option does only cost a bit of time, the schedule will &lt;span style=&quot; font-weight:600;&quot;&gt;never get worse &lt;/span&gt;because of this. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Most of the time it is &lt;span style=&quot; font-weight:600;&quot;&gt;not necessary&lt;/span&gt; to use this option but in case you are unsure simply use it.&lt;span style=&quot; font-weight:600;&quot;&gt; It has no negative influence&lt;/span&gt; (except for more collected data). &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                       <property name="text">
-                       <string>scan end (experimental)</string>
+                       <string>a posteriori</string>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QRadioButton" name="radioButton_alignIndividual">
-                      <property name="toolTip">
-                       <string>use this if every scan is allowed to start/end at individual times</string>
+                     <spacer name="verticalSpacer_21">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
                       </property>
-                      <property name="statusTip">
-                       <string>use this if every scan is allowed to start/end at individual times</string>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
                       </property>
-                      <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; option where the software is &lt;span style=&quot; font-weight:600;&quot;&gt;not aligning&lt;/span&gt; the scans to have the &lt;span style=&quot; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This means &lt;span style=&quot; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;It is experimental because this is &lt;span style=&quot; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;, only with .vex.&lt;/p&gt;&lt;p&gt;It might also not work with &lt;span style=&quot; font-style:italic;&quot;&gt;drudge&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QGroupBox" name="groupBox_idleToObservingTime">
+                   <property name="statusTip">
+                    <string>convert idle time to observing time</string>
+                   </property>
+                   <property name="whatsThis">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option should be used to &lt;span style=&quot; font-weight:600;&quot;&gt;increase the observing time&lt;/span&gt; if possible.&lt;/p&gt;&lt;p&gt;Generally speaking, the observing time is calculated to &lt;span style=&quot; font-weight:600;&quot;&gt;reach a certain SNR&lt;/span&gt;, not longer. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;Using this option &lt;span style=&quot; font-weight:600;&quot;&gt;idle time &lt;/span&gt;is converted to extra &lt;span style=&quot; font-weight:600;&quot;&gt;observing time&lt;/span&gt; if possible. &lt;/p&gt;&lt;p&gt;This step is done at the end of the schedule. &lt;/p&gt;&lt;p&gt;It does &lt;span style=&quot; font-weight:600;&quot;&gt;not affect the source selection&lt;/span&gt;, you will get &lt;span style=&quot; font-weight:600;&quot;&gt;exactly the same schedule&lt;/span&gt; but with longer observing times and less idle time. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;It is &lt;span style=&quot; font-weight:600;&quot;&gt;recommended&lt;/span&gt; to use this option if you do not have any good reasons against it (like limited disk space at the stations)&lt;/p&gt;&lt;p&gt;You can set a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum allowed observing&lt;/span&gt; time for this option. &lt;/p&gt;&lt;p&gt;This value only effects this algroithm. &lt;/p&gt;&lt;p&gt;In case you want to restrict the observing time for source selection, use the station, source and baseline based parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=30/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=30/&gt; or &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=30 /&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="accessibleName">
+                    <string>convert idle time to observing time</string>
+                   </property>
+                   <property name="title">
+                    <string>idle to observing time</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_71">
+                    <item>
+                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_yes">
                       <property name="text">
-                       <string>individual (experimental)</string>
+                       <string>yes</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <spacer name="verticalSpacer_22">
+                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_no">
+                      <property name="text">
+                       <string>no</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_11">
                       <property name="orientation">
                        <enum>Qt::Vertical</enum>
                       </property>
@@ -3271,344 +3309,6 @@ If you only want to run simulations you can deselect this to avoid error message
                        </size>
                       </property>
                      </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QGroupBox" name="groupBox_fillin_mode">
-                   <property name="title">
-                    <string>fillin mode</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_32">
-                    <item>
-                     <widget class="QCheckBox" name="checkBox_fillinmode_duringscan">
-                      <property name="toolTip">
-                       <string>use fillin mode during scan selection</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>use fillin mode during scan selection</string>
-                      </property>
-                      <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This option enables to schedule &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin mode scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;preferred option &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;you should use. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Fillin mode scans are a way to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;reduce idle time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the stations and gain &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;more scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Typically those scans contain a reduced number of stations - only those who are idling. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You should &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;always use this option&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if you do not have a good reason why not. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is possible to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;deselect stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for fillin mode scans using the station parameters &lt;/span&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="text">
-                       <string>during scan selection</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkBox_fillinModeInfluence">
-                      <property name="toolTip">
-                       <string>should fillin mode scans influence upcoming source selection</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>should fillin mode scans influence upcoming source selection</string>
-                      </property>
-                      <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Sets if &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin mode scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; should have an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;influence on your schedule&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, more specific on your &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;further scan selection&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If set to true, those scans are used in the calculation of the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and used in other statistics like the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;number of scans/observations per station/source/baseline&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; which effects weight factors like average stations/sources/baselines. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="text">
-                       <string>influence on scan selection</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkBox_fillinmode_aposteriori">
-                      <property name="toolTip">
-                       <string>use fillin mode a posteriori</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>use fillin mode a posteriori</string>
-                      </property>
-                      <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the &lt;span style=&quot; font-weight:600;&quot;&gt;fillin mode a posteriori.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This schedules &lt;span style=&quot; font-weight:600;&quot;&gt;additional scans&lt;/span&gt; in case of &lt;span style=&quot; font-weight:600;&quot;&gt;long idle times&lt;/span&gt;. Those scans inserted &lt;span style=&quot; font-weight:600;&quot;&gt;after the normal schedule is finished&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;If you already use &lt;span style=&quot; font-weight:600;&quot;&gt;fillin modes during scan&lt;/span&gt; selection the a posteriori option &lt;span style=&quot; font-weight:600;&quot;&gt;might not improve your schedule&lt;/span&gt; any further. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception&lt;/span&gt; is when you have &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong stations&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In any case, this option does only cost a bit of time, the schedule will &lt;span style=&quot; font-weight:600;&quot;&gt;never get worse &lt;/span&gt;because of this. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Most of the time it is &lt;span style=&quot; font-weight:600;&quot;&gt;not necessary&lt;/span&gt; to use this option but in case you are unsure simply use it.&lt;span style=&quot; font-weight:600;&quot;&gt; It has no negative influence&lt;/span&gt; (except for more collected data). &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="text">
-                       <string>a posteriori</string>
-                      </property>
-                      <property name="checked">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="verticalSpacer_21">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QGroupBox" name="groupBox_idleToObservingTime">
-                   <property name="statusTip">
-                    <string>convert idle time to observing time</string>
-                   </property>
-                   <property name="whatsThis">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option should be used to &lt;span style=&quot; font-weight:600;&quot;&gt;increase the observing time&lt;/span&gt; if possible.&lt;/p&gt;&lt;p&gt;Generally speaking, the observing time is calculated to &lt;span style=&quot; font-weight:600;&quot;&gt;reach a certain SNR&lt;/span&gt;, not longer. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;Using this option &lt;span style=&quot; font-weight:600;&quot;&gt;idle time &lt;/span&gt;is converted to extra &lt;span style=&quot; font-weight:600;&quot;&gt;observing time&lt;/span&gt; if possible. &lt;/p&gt;&lt;p&gt;This step is done at the end of the schedule. &lt;/p&gt;&lt;p&gt;It does &lt;span style=&quot; font-weight:600;&quot;&gt;not affect the source selection&lt;/span&gt;, you will get &lt;span style=&quot; font-weight:600;&quot;&gt;exactly the same schedule&lt;/span&gt; but with longer observing times and less idle time. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;It is &lt;span style=&quot; font-weight:600;&quot;&gt;recommended&lt;/span&gt; to use this option if you do not have any good reasons against it (like limited disk space at the stations)&lt;/p&gt;&lt;p&gt;You can set a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum allowed observing&lt;/span&gt; time for this option. &lt;/p&gt;&lt;p&gt;This value only effects this algroithm. &lt;/p&gt;&lt;p&gt;In case you want to restrict the observing time for source selection, use the station, source and baseline based parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=30/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=30/&gt; or &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=30 /&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                   </property>
-                   <property name="accessibleName">
-                    <string>convert idle time to observing time</string>
-                   </property>
-                   <property name="title">
-                    <string>idle to observing time</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="checked">
-                    <bool>false</bool>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_71">
-                    <item>
-                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_yes">
-                      <property name="text">
-                       <string>yes</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QRadioButton" name="radioButton_idleToObservingTime_no">
-                      <property name="text">
-                       <string>no</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="verticalSpacer_11">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QGroupBox" name="groupBox_10">
-                   <property name="title">
-                    <string>observations per scan</string>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_50">
-                    <item>
-                     <widget class="QRadioButton" name="radioButton_5">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
-                      <property name="toolTip">
-                       <string>scan is forced to have all possible observations</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>scan is forced to have all possible observations</string>
-                      </property>
-                      <property name="text">
-                       <string>always schedule all observations</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QRadioButton" name="radioButton_4">
-                      <property name="toolTip">
-                       <string>scan is allowed to drop single observation if considered advantageous</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>scan is allowed to drop single observation if considered advantageous</string>
-                      </property>
-                      <property name="whatsThis">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It is possible to &lt;span style=&quot; font-weight:600;&quot;&gt;ignore single baselines&lt;/span&gt; during a scan. &lt;/p&gt;&lt;p&gt;This means that if a scan contains &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; stations the number of observations must not always be &lt;span style=&quot; font-style:italic;&quot;&gt;(n*(n-1))/2&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The scheduler is &lt;span style=&quot; font-weight:600;&quot;&gt;only removing&lt;/span&gt; single baselines from a scan if they &lt;span style=&quot; font-weight:600;&quot;&gt;do not meet the required parameters&lt;/span&gt;, for example if the required observing time would be too long. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Those removements &lt;span style=&quot; font-weight:600;&quot;&gt;are taken properly into account for the scan selection&lt;/span&gt;. The removed observations are also &lt;span style=&quot; font-weight:600;&quot;&gt;not listed&lt;/span&gt; in the &lt;span style=&quot; font-style:italic;&quot;&gt;ngs&lt;/span&gt; file. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="text">
-                       <string>allow to drop single observations</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="verticalSpacer_20">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QGroupBox" name="groupBox_11">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="whatsThis">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the &lt;span style=&quot; font-weight:600;&quot;&gt;debug level&lt;/span&gt; of your log files. &lt;/p&gt;&lt;p&gt;You have two sinks: The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; and the &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt; is the file created in the output folder and called something like &lt;span style=&quot; font-style:italic;&quot;&gt;VieSchedpp_yyyy-MM-dd_hh-mm-ss.xxx.log&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; is the dock widget that opens when you hit start. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Keep in mind that &lt;span style=&quot; font-weight:600;&quot;&gt;increasing&lt;/span&gt; the debug level can drastically &lt;span style=&quot; font-weight:600;&quot;&gt;increase the processing time &lt;/span&gt;and produce a lot of output. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                   </property>
-                   <property name="title">
-                    <string>debug level</string>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_65">
-                    <item>
-                     <layout class="QFormLayout" name="formLayout_18">
-                      <item row="0" column="0">
-                       <widget class="QLabel" name="label_67">
-                        <property name="text">
-                         <string>log file</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="1">
-                       <widget class="QComboBox" name="comboBox_log_file">
-                        <property name="toolTip">
-                         <string>severity level for file log</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>severity level for file log</string>
-                        </property>
-                        <property name="currentIndex">
-                         <number>2</number>
-                        </property>
-                        <item>
-                         <property name="text">
-                          <string>trace</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>debug</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>info</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>warning</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>error</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>fatal</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                      <item row="1" column="0">
-                       <widget class="QLabel" name="label_68">
-                        <property name="text">
-                         <string>console</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QComboBox" name="comboBox_log_console">
-                        <property name="toolTip">
-                         <string>severity level for console log</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>severity level for console log</string>
-                        </property>
-                        <property name="currentIndex">
-                         <number>2</number>
-                        </property>
-                        <item>
-                         <property name="text">
-                          <string>trace</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>debug</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>info</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>warning</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>error</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>fatal</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_log">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
                     </item>
                    </layout>
                   </widget>
@@ -10986,14 +10686,395 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="highimpact">
+      <widget class="QWidget" name="advancedSettings">
        <property name="toolTip">
-        <string>high impact scans</string>
+        <string/>
        </property>
        <property name="statusTip">
-        <string>high impact scans</string>
+        <string/>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_84"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <item>
+         <widget class="QGroupBox" name="groupBox_15">
+          <property name="title">
+           <string>Advanced settings</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_84">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_21">
+             <item>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <item row="1" column="1">
+                <widget class="QGroupBox" name="groupBox_39">
+                 <property name="title">
+                  <string>scans to sources within &quot;min repeat&quot; time</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_65">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_doNotObserve">
+                    <property name="text">
+                     <string>do not observe</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_reduceWeight">
+                    <property name="text">
+                     <string>reduce weight</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_10">
+                 <property name="title">
+                  <string>observations per scan</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_50">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_5">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>scan is forced to have all possible observations</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>scan is forced to have all possible observations</string>
+                    </property>
+                    <property name="text">
+                     <string>always schedule all observations</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_4">
+                    <property name="toolTip">
+                     <string>scan is allowed to drop single observation if considered advantageous</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>scan is allowed to drop single observation if considered advantageous</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It is possible to &lt;span style=&quot; font-weight:600;&quot;&gt;ignore single baselines&lt;/span&gt; during a scan. &lt;/p&gt;&lt;p&gt;This means that if a scan contains &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; stations the number of observations must not always be &lt;span style=&quot; font-style:italic;&quot;&gt;(n*(n-1))/2&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The scheduler is &lt;span style=&quot; font-weight:600;&quot;&gt;only removing&lt;/span&gt; single baselines from a scan if they &lt;span style=&quot; font-weight:600;&quot;&gt;do not meet the required parameters&lt;/span&gt;, for example if the required observing time would be too long. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Those removements &lt;span style=&quot; font-weight:600;&quot;&gt;are taken properly into account for the scan selection&lt;/span&gt;. The removed observations are also &lt;span style=&quot; font-weight:600;&quot;&gt;not listed&lt;/span&gt; in the &lt;span style=&quot; font-style:italic;&quot;&gt;ngs&lt;/span&gt; file. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>allow to drop single observations</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QGroupBox" name="groupBox_11">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the &lt;span style=&quot; font-weight:600;&quot;&gt;debug level&lt;/span&gt; of your log files. &lt;/p&gt;&lt;p&gt;You have two sinks: The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; and the &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;log file&lt;/span&gt; is the file created in the output folder and called something like &lt;span style=&quot; font-style:italic;&quot;&gt;VieSchedpp_yyyy-MM-dd_hh-mm-ss.xxx.log&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The &lt;span style=&quot; font-weight:600;&quot;&gt;console&lt;/span&gt; is the dock widget that opens when you hit start. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Keep in mind that &lt;span style=&quot; font-weight:600;&quot;&gt;increasing&lt;/span&gt; the debug level can drastically &lt;span style=&quot; font-weight:600;&quot;&gt;increase the processing time &lt;/span&gt;and produce a lot of output. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="title">
+                  <string>debug level</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_123">
+                  <item>
+                   <layout class="QFormLayout" name="formLayout_2">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_67">
+                      <property name="text">
+                       <string>log file</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QComboBox" name="comboBox_log_file">
+                      <property name="toolTip">
+                       <string>severity level for file log</string>
+                      </property>
+                      <property name="statusTip">
+                       <string>severity level for file log</string>
+                      </property>
+                      <property name="currentIndex">
+                       <number>2</number>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>trace</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>debug</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>info</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>warning</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>error</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>fatal</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_68">
+                      <property name="text">
+                       <string>console</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QComboBox" name="comboBox_log_console">
+                      <property name="toolTip">
+                       <string>severity level for console log</string>
+                      </property>
+                      <property name="statusTip">
+                       <string>severity level for console log</string>
+                      </property>
+                      <property name="currentIndex">
+                       <number>2</number>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>trace</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>debug</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/warning.png</normaloff>:/icons/icons/warning.png</iconset>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>info</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>warning</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>error</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>fatal</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_log">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_36">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="title">
+                  <string>align observing time</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_77">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignStart">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>use this if every scan should start at same time</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan should start at same time</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is the &lt;span style=&quot; font-weight:600;&quot;&gt;default option&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;should not be changed&lt;/span&gt;, unless you have good reasons. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, every station which is part of a scan &lt;span style=&quot; font-weight:600;&quot;&gt;starts its observation at the same time&lt;/span&gt;..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>scan start</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignEnd">
+                    <property name="toolTip">
+                     <string>use this if every scan should end at same time</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan should end at same time</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;experimental&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; option where the software is aligning the scans to have the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;same end time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This means &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;all scans will end at the same time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is experimental because this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, only with .vex.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might also not work with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;drudge&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>scan end (experimental)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignIndividual">
+                    <property name="toolTip">
+                     <string>use this if every scan is allowed to start/end at individual times</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan is allowed to start/end at individual times</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; option where the software is &lt;span style=&quot; font-weight:600;&quot;&gt;not aligning&lt;/span&gt; the scans to have the &lt;span style=&quot; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This means &lt;span style=&quot; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;It is experimental because this is &lt;span style=&quot; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;, only with .vex.&lt;/p&gt;&lt;p&gt;It might also not work with &lt;span style=&quot; font-style:italic;&quot;&gt;drudge&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>individual (experimental)</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="groupBox_38">
+                 <property name="title">
+                  <string>fillin-mode</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_119">
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_fillinModeInfluence">
+                    <property name="toolTip">
+                     <string>should fillin mode scans influence upcoming source selection</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>should fillin mode scans influence upcoming source selection</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Sets if &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fillin mode scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; should have an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;influence on your schedule&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, more specific on your &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;further scan selection&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If set to true, those scans are used in the calculation of the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and used in other statistics like the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;number of scans/observations per station/source/baseline&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; which effects weight factors like average stations/sources/baselines. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>influence on scan selection</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_46">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_122">
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pushButton_11">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="myresources.qrc">
+                   <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_8">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>222</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_20">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>312</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="statistics">
        <property name="toolTip">
@@ -12396,6 +12477,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <addaction name="actionMulti_Scheduling"/>
    <addaction name="actionSky_Coverage"/>
    <addaction name="actionConditions"/>
+   <addaction name="actionadvanced"/>
   </widget>
   <widget class="QToolBar" name="helpToolBar">
    <property name="windowTitle">
@@ -12453,7 +12535,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <addaction name="actionMulti_Scheduling"/>
     <addaction name="actionSky_Coverage"/>
     <addaction name="actionConditions"/>
-    <addaction name="actionFix_High_Impact_Scans"/>
+    <addaction name="actionadvanced"/>
    </widget>
    <widget class="QMenu" name="menufile">
     <property name="title">
@@ -12761,15 +12843,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <string>Source List</string>
    </property>
   </action>
-  <action name="actionFix_High_Impact_Scans">
-   <property name="icon">
-    <iconset resource="myresources.qrc">
-     <normaloff>:/icons/icons/emblem-important-4.png</normaloff>:/icons/icons/emblem-important-4.png</iconset>
-   </property>
-   <property name="text">
-    <string>Fix High Impact Scans</string>
-   </property>
-  </action>
   <action name="actionLog_parser">
    <property name="icon">
     <iconset resource="myresources.qrc">
@@ -12789,6 +12862,18 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="toolTip">
     <string>VieSched++ Analyzer</string>
+   </property>
+  </action>
+  <action name="actionadvanced">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/icons/configure-3.png</normaloff>:/icons/icons/configure-3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Advanced settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Advanced settings</string>
    </property>
   </action>
  </widget>
