@@ -478,15 +478,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->doubleSpinBox_weightLowEl, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
 
     updateWeightFactorSliders();
-    connect(ui->horizontalSlider_wSky, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_wObs, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_wDur, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_wIdle, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_Asrc, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_Asta, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_Abl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_wSky, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_wObs, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_wDur, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_wIdle, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_Asrc, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_Asta, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_Abl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
+//    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 
     try {
         download();
@@ -7978,19 +7978,19 @@ void MainWindow::updateWeightFactorSliders()
     if(ui->checkBox_weightLowElevation->isChecked()){
         weightElevation = ui->doubleSpinBox_weightLowEl->value();
     }
-//    double sum = weightSkyCoverage + weightNumberOfObservations + weightDuration + weightAverageSources + weightAverageStations + weightAverageBaselines + weightIdleTime + weightDeclination + weightElevation;
-    double sum = std::max({weightSkyCoverage, weightNumberOfObservations, weightDuration, weightAverageSources, weightAverageStations, weightAverageBaselines, weightIdleTime, weightDeclination, weightElevation});
+    double sum = weightSkyCoverage + weightNumberOfObservations + weightDuration + weightAverageSources + weightAverageStations + weightAverageBaselines + weightIdleTime + weightDeclination + weightElevation;
+//    double sum = std::max({weightSkyCoverage, weightNumberOfObservations, weightDuration, weightAverageSources, weightAverageStations, weightAverageBaselines, weightIdleTime, weightDeclination, weightElevation});
 
     if(sum == 0){
-        ui->horizontalSlider_wSky->setValue(0);
-        ui->horizontalSlider_wObs->setValue(0);
-        ui->horizontalSlider_wDur->setValue(0);
-        ui->horizontalSlider_wIdle->setValue(0);
-        ui->horizontalSlider_Asrc->setValue(0);
-        ui->horizontalSlider_Asta->setValue(0);
-        ui->horizontalSlider_Abl->setValue(0);
-        ui->horizontalSlider_LowDec->setValue(0);
-        ui->horizontalSlider_LowEl->setValue(0);
+        ui->progressBar_wSky->setValue(0);
+        ui->progressBar_wObs->setValue(0);
+        ui->progressBar_wDur->setValue(0);
+        ui->progressBar_wIdle->setValue(0);
+        ui->progressBar_Asrc->setValue(0);
+        ui->progressBar_Asta->setValue(0);
+        ui->progressBar_Abl->setValue(0);
+        ui->progressBar_LowDec->setValue(0);
+        ui->progressBar_LowEl->setValue(0);
         return;
     }
 
@@ -8005,89 +8005,89 @@ void MainWindow::updateWeightFactorSliders()
     weightElevation /= sum;
 
 
-    ui->horizontalSlider_wSky->blockSignals(true);
-    ui->horizontalSlider_wObs->blockSignals(true);
-    ui->horizontalSlider_wDur->blockSignals(true);
-    ui->horizontalSlider_wIdle->blockSignals(true);
-    ui->horizontalSlider_Asrc->blockSignals(true);
-    ui->horizontalSlider_Asta->blockSignals(true);
-    ui->horizontalSlider_Abl->blockSignals(true);
-    ui->horizontalSlider_LowDec->blockSignals(true);
-    ui->horizontalSlider_LowEl->blockSignals(true);
+//    ui->progressBar_wSky->blockSignals(true);
+//    ui->progressBar_wObs->blockSignals(true);
+//    ui->progressBar_wDur->blockSignals(true);
+//    ui->progressBar_wIdle->blockSignals(true);
+//    ui->progressBar_Asrc->blockSignals(true);
+//    ui->progressBar_Asta->blockSignals(true);
+//    ui->progressBar_Abl->blockSignals(true);
+//    ui->progressBar_LowDec->blockSignals(true);
+//    ui->progressBar_LowEl->blockSignals(true);
 
-    ui->horizontalSlider_wSky->setValue(weightSkyCoverage*100);
-    ui->horizontalSlider_wObs->setValue(weightNumberOfObservations*100);
-    ui->horizontalSlider_wDur->setValue(weightDuration*100);
-    ui->horizontalSlider_wIdle->setValue(weightIdleTime*100);
-    ui->horizontalSlider_Asrc->setValue(weightAverageSources*100);
-    ui->horizontalSlider_Asta->setValue(weightAverageStations*100);
-    ui->horizontalSlider_Abl->setValue(weightAverageBaselines*100);
-    ui->horizontalSlider_LowDec->setValue(weightDeclination*100);
-    ui->horizontalSlider_LowEl->setValue(weightElevation*100);
+    ui->progressBar_wSky->setValue(weightSkyCoverage*100);
+    ui->progressBar_wObs->setValue(weightNumberOfObservations*100);
+    ui->progressBar_wDur->setValue(weightDuration*100);
+    ui->progressBar_wIdle->setValue(weightIdleTime*100);
+    ui->progressBar_Asrc->setValue(weightAverageSources*100);
+    ui->progressBar_Asta->setValue(weightAverageStations*100);
+    ui->progressBar_Abl->setValue(weightAverageBaselines*100);
+    ui->progressBar_LowDec->setValue(weightDeclination*100);
+    ui->progressBar_LowEl->setValue(weightElevation*100);
 
-    ui->horizontalSlider_wSky->blockSignals(false);
-    ui->horizontalSlider_wObs->blockSignals(false);
-    ui->horizontalSlider_wDur->blockSignals(false);
-    ui->horizontalSlider_wIdle->blockSignals(false);
-    ui->horizontalSlider_Asrc->blockSignals(false);
-    ui->horizontalSlider_Asta->blockSignals(false);
-    ui->horizontalSlider_Abl->blockSignals(false);
-    ui->horizontalSlider_LowDec->blockSignals(false);
-    ui->horizontalSlider_LowEl->blockSignals(false);
+//    ui->progressBar_wSky->blockSignals(false);
+//    ui->progressBar_wObs->blockSignals(false);
+//    ui->progressBar_wDur->blockSignals(false);
+//    ui->progressBar_wIdle->blockSignals(false);
+//    ui->progressBar_Asrc->blockSignals(false);
+//    ui->progressBar_Asta->blockSignals(false);
+//    ui->progressBar_Abl->blockSignals(false);
+//    ui->progressBar_LowDec->blockSignals(false);
+//    ui->progressBar_LowEl->blockSignals(false);
 }
 
 void MainWindow::updateWeightFactorValue()
 {
-    auto *s = qobject_cast<QSlider *>( sender() );
+    auto *s = qobject_cast<QProgressBar *>( sender() );
 
     QDoubleSpinBox *dsb;
-    if(s == ui->horizontalSlider_wSky){
+    if(s == ui->progressBar_wSky){
         dsb = ui->doubleSpinBox_weightSkyCoverage;
     }
-    if(s == ui->horizontalSlider_wObs){
+    if(s == ui->progressBar_wObs){
         dsb = ui->doubleSpinBox_weightNumberOfObservations;
     }
-    if(s == ui->horizontalSlider_wDur){
+    if(s == ui->progressBar_wDur){
         dsb = ui->doubleSpinBox_weightDuration;
     }
-    if(s == ui->horizontalSlider_wIdle){
+    if(s == ui->progressBar_wIdle){
         dsb = ui->doubleSpinBox_weightIdleTime;
     }
-    if(s == ui->horizontalSlider_Asrc){
+    if(s == ui->progressBar_Asrc){
         dsb = ui->doubleSpinBox_weightAverageSources;
     }
-    if(s == ui->horizontalSlider_Asta){
+    if(s == ui->progressBar_Asta){
         dsb = ui->doubleSpinBox_weightAverageStations;
     }
-    if(s == ui->horizontalSlider_Abl){
+    if(s == ui->progressBar_Abl){
         dsb = ui->doubleSpinBox_weightAverageBaselines;
     }
-    if(s == ui->horizontalSlider_LowDec){
+    if(s == ui->progressBar_LowDec){
         dsb = ui->doubleSpinBox_weightLowDec;
     }
-    if(s == ui->horizontalSlider_LowEl){
+    if(s == ui->progressBar_LowEl){
         dsb = ui->doubleSpinBox_weightLowEl;
     }
 
     double point2val = 1;
-    if(s != ui->horizontalSlider_wSky && ui->horizontalSlider_wSky->value() > 0){
-        point2val = ui->doubleSpinBox_weightSkyCoverage->value() / ui->horizontalSlider_wSky->value();
-    } else  if(s != ui->horizontalSlider_wObs && ui->horizontalSlider_wObs->value() > 0){
-        point2val = ui->doubleSpinBox_weightNumberOfObservations->value() / ui->horizontalSlider_wObs->value();
-    } else  if(s != ui->horizontalSlider_wDur && ui->horizontalSlider_wDur->value() > 0){
-        point2val = ui->doubleSpinBox_weightDuration->value() / ui->horizontalSlider_wDur->value();
-    } else  if(s != ui->horizontalSlider_wIdle && ui->horizontalSlider_wIdle->value() > 0){
-        point2val = ui->doubleSpinBox_weightIdleTime->value() / ui->horizontalSlider_wIdle->value();
-    } else  if(s != ui->horizontalSlider_Asrc && ui->horizontalSlider_Asrc->value() > 0){
-        point2val = ui->doubleSpinBox_weightAverageSources->value() / ui->horizontalSlider_Asrc->value();
-    } else  if(s != ui->horizontalSlider_Asta && ui->horizontalSlider_Asta->value() > 0){
-        point2val = ui->doubleSpinBox_weightAverageStations->value() / ui->horizontalSlider_Asta->value();
-    } else  if(s != ui->horizontalSlider_Abl && ui->horizontalSlider_Abl->value() > 0){
-        point2val = ui->doubleSpinBox_weightAverageBaselines->value() / ui->horizontalSlider_Abl->value();
-    } else  if(s != ui->horizontalSlider_LowDec && ui->horizontalSlider_LowDec->value() > 0){
+    if(s != ui->progressBar_wSky && ui->progressBar_wSky->value() > 0){
+        point2val = ui->doubleSpinBox_weightSkyCoverage->value() / ui->progressBar_wSky->value();
+    } else  if(s != ui->progressBar_wObs && ui->progressBar_wObs->value() > 0){
+        point2val = ui->doubleSpinBox_weightNumberOfObservations->value() / ui->progressBar_wObs->value();
+    } else  if(s != ui->progressBar_wDur && ui->progressBar_wDur->value() > 0){
+        point2val = ui->doubleSpinBox_weightDuration->value() / ui->progressBar_wDur->value();
+    } else  if(s != ui->progressBar_wIdle && ui->progressBar_wIdle->value() > 0){
+        point2val = ui->doubleSpinBox_weightIdleTime->value() / ui->progressBar_wIdle->value();
+    } else  if(s != ui->progressBar_Asrc && ui->progressBar_Asrc->value() > 0){
+        point2val = ui->doubleSpinBox_weightAverageSources->value() / ui->progressBar_Asrc->value();
+    } else  if(s != ui->progressBar_Asta && ui->progressBar_Asta->value() > 0){
+        point2val = ui->doubleSpinBox_weightAverageStations->value() / ui->progressBar_Asta->value();
+    } else  if(s != ui->progressBar_Abl && ui->progressBar_Abl->value() > 0){
+        point2val = ui->doubleSpinBox_weightAverageBaselines->value() / ui->progressBar_Abl->value();
+    } else  if(s != ui->progressBar_LowDec && ui->progressBar_LowDec->value() > 0){
         point2val = ui->doubleSpinBox_weightLowDec->value() / ui->doubleSpinBox_weightLowDec->value();
-    } else  if(s != ui->horizontalSlider_LowEl && ui->horizontalSlider_LowEl->value() > 0){
-        point2val = ui->doubleSpinBox_weightLowEl->value() / ui->horizontalSlider_LowEl->value();
+    } else  if(s != ui->progressBar_LowEl && ui->progressBar_LowEl->value() > 0){
+        point2val = ui->doubleSpinBox_weightLowEl->value() / ui->progressBar_LowEl->value();
     }
     double newVal = s->value() * point2val;
 

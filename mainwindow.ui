@@ -5874,59 +5874,6 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="3" column="2">
-               <widget class="QSlider" name="horizontalSlider_wIdle">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>25</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkBox_weightCoverage">
                 <property name="toolTip">
@@ -5974,59 +5921,6 @@ If you only want to run simulations you can deselect this to avoid error message
               </item>
               <item row="9" column="2">
                <widget class="Line" name="line_16">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QSlider" name="horizontalSlider_wObs">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>25</number>
-                </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -6085,56 +5979,6 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="13" column="2">
-               <widget class="QSlider" name="horizontalSlider_LowEl">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
               <item row="11" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowDecStart">
                 <property name="enabled">
@@ -6160,56 +6004,6 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                 <property name="singleStep">
                  <double>5.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="2">
-               <widget class="QSlider" name="horizontalSlider_Abl">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -6402,159 +6196,6 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="10" column="2">
-               <widget class="QSlider" name="horizontalSlider_LowDec">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QSlider" name="horizontalSlider_wSky">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>25</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="2">
-               <widget class="QSlider" name="horizontalSlider_Asrc">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
               <item row="7" column="0">
                <widget class="QCheckBox" name="checkBox_weightAverageStations">
                 <property name="toolTip">
@@ -6602,56 +6243,6 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                 <property name="value">
                  <number>300</number>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QSlider" name="horizontalSlider_Asta">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -6710,62 +6301,6 @@ If you only want to run simulations you can deselect this to avoid error message
                <widget class="Line" name="line_11">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QSlider" name="horizontalSlider_wDur">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="palette">
-                 <palette>
-                  <active>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </active>
-                  <inactive>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </inactive>
-                  <disabled>
-                   <colorrole role="Highlight">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="255">
-                      <red>48</red>
-                      <green>140</green>
-                      <blue>198</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                  </disabled>
-                 </palette>
-                </property>
-                <property name="maximum">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>25</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="invertedAppearance">
-                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -6835,6 +6370,84 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                 <property name="text">
                  <string>low elevation</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QProgressBar" name="progressBar_wSky">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QProgressBar" name="progressBar_wObs">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QProgressBar" name="progressBar_wDur">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QProgressBar" name="progressBar_wIdle">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="2">
+               <widget class="QProgressBar" name="progressBar_Asrc">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QProgressBar" name="progressBar_Asta">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="2">
+               <widget class="QProgressBar" name="progressBar_Abl">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="2">
+               <widget class="QProgressBar" name="progressBar_LowDec">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="2">
+               <widget class="QProgressBar" name="progressBar_LowEl">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
                 </property>
                </widget>
               </item>
@@ -14109,6 +13722,150 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>106</x>
      <y>116</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightCoverage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wSky</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>158</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>423</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightNobs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wObs</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>235</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightDuration</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wDur</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>245</x>
+     <y>155</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightIdleTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wIdle</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>236</x>
+     <y>190</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageSources</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Asrc</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageStations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Asta</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>435</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageBaselines</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Abl</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>328</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>457</x>
+     <y>325</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_LowDec</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_LowEl</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>254</x>
+     <y>461</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>427</x>
+     <y>462</y>
     </hint>
    </hints>
   </connection>
