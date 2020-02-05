@@ -2,7 +2,7 @@
 #include "ui_mastersessionviewer.h"
 
 
-masterSessionViewer::masterSessionViewer(QWidget *parent) :
+masterSessionViewer::masterSessionViewer(QString loadText, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::masterSessionViewer)
 {
@@ -10,6 +10,10 @@ masterSessionViewer::masterSessionViewer(QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
     ui->tableWidget_24hSX->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_IntensiveSX->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->lineEdit->setText(loadText);
+
+    connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(highlight()));
 }
 
 masterSessionViewer::~masterSessionViewer()
@@ -21,6 +25,7 @@ void masterSessionViewer::addSessions(QVector<std::pair<int, QString> > sessions
 {
     sessions_ = sessions;
     updateTable();
+    highlight();
 }
 
 QString masterSessionViewer::getSessionCode()
@@ -46,6 +51,8 @@ void masterSessionViewer::updateTable()
 {
     ui->tableWidget_IntensiveSX->setRowCount(0);
     ui->tableWidget_24hSX->setRowCount(0);
+
+    QDateTime now = QDateTime::currentDateTime();
 
     for(const auto &any : sessions_){
         int code = any.first;
@@ -91,13 +98,23 @@ void masterSessionViewer::updateTable()
         }
 
 
-        t->setItem(r, 0, new QTableWidgetItem( content[0] ));
+        t->setItem(r, 0, new QTableWidgetItem( content[0]));
+        if(now.date().daysTo(tStart.date())<=7){
+            t->item(r,0)->setForeground(Qt::red);
+            auto font = t->item(r,0)->font();
+            font.setBold(true);
+        }else if(now.date().daysTo(tStart.date())<=12){
+            t->item(r,0)->setForeground(QColor(255,140,0));
+            auto font = t->item(r,0)->font();
+            font.setBold(true);
+        }
+
         QTableWidgetItem *twi = new QTableWidgetItem( content[1] );
         auto font = twi->font();
         font.setBold(true);
         twi->setFont(font);
         t->setItem(r, 1, twi);
-        t->setItem(r, 2, createTableWidgetItem( content[7], Qt::AlignRight ));
+        t->setItem(r, 2, createTableWidgetItem( content[7].simplified(), Qt::AlignRight ));
         t->setItem(r, 3, new QTableWidgetItem( tStart.toString("dd.MM.yyyy HH:mm") ));
         t->setItem(r, 4, createTableWidgetItem( content[3] , Qt::AlignCenter ));
         t->setItem(r, 5, createTableWidgetItem( content[4].trimmed(), Qt::AlignCenter ));
@@ -105,6 +122,37 @@ void masterSessionViewer::updateTable()
         t->setItem(r, 7, createTableWidgetItem( content[8], Qt::AlignRight ));
         t->setItem(r, 8, createTableWidgetItem( content[11], Qt::AlignRight ));
 
+    }
+}
+
+void masterSessionViewer::highlight()
+{
+    QString txt = ui->lineEdit->text();
+    txt = txt.simplified();
+    QStringList sl = txt.split(" ");
+
+    QVector<QTableWidget *>tl{ui->tableWidget_24hSX,ui->tableWidget_IntensiveSX};
+
+    for(const auto &t : tl){
+        for (int i = 0; i<t->rowCount(); ++i) {
+            bool h;
+            QString item = t->item(i,2)->text();
+            if( sl.contains(item, Qt::CaseInsensitive)){
+                h = true;
+            }else{
+                h = false;
+            }
+
+            QColor c;
+            if(h){
+                c = QColor(255,255,0,128);
+            }else{
+                c = Qt::white;
+            }
+            for(int j = 0; j<t->columnCount(); ++j){
+                t->item(i,j)->setBackground(c);
+            }
+        }
     }
 }
 
@@ -117,3 +165,10 @@ QTableWidgetItem* masterSessionViewer::createTableWidgetItem( const QString& tex
     return item;
 }
 
+
+void masterSessionViewer::on_pushButton_clicked()
+{
+    updateSave = true;
+    saveText = ui->lineEdit->text();
+    QMessageBox::information(this,"Default settings changed", "Default filter changed!");
+}

@@ -2068,7 +2068,10 @@ void MainWindow::changeDefaultSettings(QStringList path, QStringList value, QStr
     boost::property_tree::xml_parser::write_xml(os, settings_,
                                                 boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
     os.close();
-    QMessageBox::information(this,"Default settings changed",name);
+    if(!name.isEmpty()){
+        QMessageBox::information(this,"Default settings changed",name);
+    }
+
 }
 
 void MainWindow::on_pushButton_5_clicked()

@@ -44,6 +44,7 @@
 #include <QRegularExpression>
 #include <QFontDatabase>
 #include <QInputDialog>
+#include <QSlider>
 
 #include <QtCharts/QChart>
 #include <QtCharts/QBarSeries>
@@ -454,8 +455,6 @@ private slots:
 
     void on_pushButton_removeHighImpactAzEl_clicked();
 
-    void on_actionFix_High_Impact_Scans_triggered();
-
     void on_pushButton_readLogFile_read_clicked();
 
     void on_pushButton_readSkdFile_read_clicked();
@@ -588,6 +587,10 @@ private slots:
     void on_pushButton_11_clicked();
 
     void on_actionadvanced_triggered();
+
+    void updateWeightFactorSliders();
+
+    void updateWeightFactorValue();
 
 private:
     Ui::MainWindow *ui;
