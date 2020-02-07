@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     int result = 0;
 
     do{
+        QApplication::setStyle("plastique");
         QApplication a(argc, argv);
         MainWindow w;
         w.show();
