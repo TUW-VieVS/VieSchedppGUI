@@ -267,6 +267,7 @@ boost::property_tree::ptree Simulator::toXML()
     int cmax = t->columnCount();
 
     boost::property_tree::ptree tree;
+    tree.add("simulator.number_of_simulations", ui->spinBox_simulations->value());
     if(t->topLevelItem(0)->checkState(0) == Qt::Checked){
         QTreeWidgetItem *itm = t->topLevelItem(0);
         int c = 1;
@@ -341,6 +342,8 @@ void Simulator::fromXML(const boost::property_tree::ptree &tree)
 {
     QTreeWidget *t = ui->treeWidget_simpara;
     int rmax = t->topLevelItemCount();
+    ui->spinBox_simulations->setValue(tree.get("number_of_simulations",1000));
+
     for(const auto &any : tree){
         if(any.first == "station"){
             QString name = QString::fromStdString(any.second.get("<xmlattr>.name",""));
