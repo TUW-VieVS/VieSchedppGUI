@@ -748,6 +748,12 @@ QString MainWindow::writeXML()
         para.calibratorBlock(blocks);
     }
 
+    if(ui->groupBox_simulator->isChecked()){
+        auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        Simulator *sim = qobject_cast<Simulator *>(tmp);
+        para.simulator(sim->toXML());
+    }
+
 
     path.append("VieSchedpp.xml");
     para.write(path.toStdString());
@@ -1876,6 +1882,19 @@ void MainWindow::loadXML(QString path)
             ui->comboBox_calibration_sources2->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.end.sources","__all__")));
 
 
+        }
+    }
+
+    //simulator
+    {
+        ui->groupBox_simulator->setChecked(false);
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.simulator");
+
+        if (ctree.is_initialized()) {
+            ui->groupBox_simulator->setChecked(true);
+            auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+            Simulator *sim = qobject_cast<Simulator *>(tmp);
+            sim->fromXML(*ctree);
         }
     }
 }

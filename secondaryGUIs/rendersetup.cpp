@@ -51,8 +51,8 @@ QVector<QPair<int, int> > RenderSetup::times()
 {
     QVector<QPair<int, int>> v;
     if(ui->groupBox_timeSeries->isChecked()){
-        for(int i=0; i<duration_; i+=ui->spinBox_increment->value()){
-            v.push_back({i, i+ui->spinBox_timespan->value()});
+        for(int i=-ui->spinBox_timespan->value(); i<duration_; i+=ui->spinBox_increment->value()){
+            v.push_back({std::max(i,0), std::max(i+ui->spinBox_timespan->value(),0)});
         }
     }else{
         v.push_back({0,duration_});

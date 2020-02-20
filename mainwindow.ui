@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7285,6 +7285,32 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page">
+       <layout class="QVBoxLayout" name="verticalLayout_120">
+        <item>
+         <widget class="QGroupBox" name="groupBox_simulator">
+          <property name="title">
+           <string>simulate schedules</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_121">
+           <item>
+            <widget class="QTabWidget" name="tabWidget_simAna">
+             <property name="currentIndex">
+              <number>-1</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="rules">
        <property name="toolTip">
         <string>rules</string>
@@ -7303,8 +7329,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>917</width>
-             <height>627</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -12568,6 +12594,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionSimulator"/>
    <addaction name="actionRules"/>
    <addaction name="actionMulti_Scheduling"/>
    <addaction name="actionSky_Coverage"/>
@@ -12626,6 +12653,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <property name="title">
      <string>Advanced</string>
     </property>
+    <addaction name="actionSimulator"/>
     <addaction name="actionRules"/>
     <addaction name="actionMulti_Scheduling"/>
     <addaction name="actionSky_Coverage"/>
@@ -12969,6 +12997,15 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="toolTip">
     <string>Advanced settings</string>
+   </property>
+  </action>
+  <action name="actionSimulator">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/icons/sim.png</normaloff>:/icons/icons/sim.png</iconset>
+   </property>
+   <property name="text">
+    <string>Simulator</string>
    </property>
   </action>
  </widget>

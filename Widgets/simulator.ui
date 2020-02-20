@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Simulator</class>
+ <widget class="QWidget" name="Simulator">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>980</width>
+    <height>583</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="whatsThis">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- white noise: &lt;/span&gt;standard deviation of gaussian distributed noise in [picoseconds] &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- clock ASD:&lt;/span&gt; Allan standard deviation of clock accuracy in [picoseconds]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- clock dur:&lt;/span&gt; equivalent time of clock ASD in [minutes]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo Cn:&lt;/span&gt; tropospheric turbolence parameter in [10^-7 m^-1/3] &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo H:&lt;/span&gt; troposhperic height in [meters]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo dh:&lt;/span&gt; tropospheric height increment in [meters]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo dhseg:&lt;/span&gt; tropospheric time increment in [hours]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo wzd0:&lt;/span&gt; additional constant wet zenith delay in [millimeters]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo ve:&lt;/span&gt; wind velocity towards eastern direction in [meters/second]&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- tropo vn:&lt;/span&gt; wind velocity towards northern direction in [meters/second]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_changeAll">
+       <property name="text">
+        <string>change all</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="treeWidget_simpara">
+     <column>
+      <property name="text">
+       <string>Station</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>white noise</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>clock ASD</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>clock dur</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo Cn</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo H</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo dh</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo dhseg</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo ve</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo vn</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>tropo wzd0</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

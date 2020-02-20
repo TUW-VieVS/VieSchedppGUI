@@ -144,6 +144,7 @@ SOURCES += \
     secondaryGUIs/parsedowntimes.cpp \
     secondaryGUIs/savetosettingsdialog.cpp \
     secondaryGUIs/settingsloadwindow.cpp \
+    Widgets/simulator.cpp \
     secondaryGUIs/skedcataloginfo.cpp \
     secondaryGUIs/textfileviewer.cpp \
     secondaryGUIs/vieschedpp_analyser.cpp \
@@ -246,6 +247,7 @@ HEADERS += \
     secondaryGUIs/parsedowntimes.h \
     secondaryGUIs/savetosettingsdialog.h \
     secondaryGUIs/settingsloadwindow.h \
+    Widgets/simulator.h \
     secondaryGUIs/skedcataloginfo.h \
     secondaryGUIs/textfileviewer.h \
     secondaryGUIs/vieschedpp_analyser.h \
@@ -273,6 +275,7 @@ FORMS += \
     secondaryGUIs/parsedowntimes.ui \
     secondaryGUIs/savetosettingsdialog.ui \
     secondaryGUIs/settingsloadwindow.ui \
+    Widgets/simulator.ui \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
     secondaryGUIs/vieschedpp_analyser.ui \

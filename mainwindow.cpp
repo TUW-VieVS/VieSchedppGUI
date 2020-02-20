@@ -488,6 +488,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 //    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 
+    Simulator *simulator = new Simulator(selectedStationModel);
+    simulator->setObjectName("Simulation_Widged");
+    ui->tabWidget_simAna->addTab(simulator, "Simulation");
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
+
     try {
         download();
     } catch ( ... ) {
@@ -1178,54 +1184,59 @@ void MainWindow::on_actionOutput_triggered()
     ui->main_stacked->setCurrentIndex(11);
 }
 
-void MainWindow::on_actionRules_triggered()
+void MainWindow::on_actionSimulator_triggered()
 {
     ui->main_stacked->setCurrentIndex(12);
 }
 
-void MainWindow::on_actionMulti_Scheduling_triggered()
+void MainWindow::on_actionRules_triggered()
 {
     ui->main_stacked->setCurrentIndex(13);
 }
 
-void MainWindow::on_actionSky_Coverage_triggered()
+void MainWindow::on_actionMulti_Scheduling_triggered()
 {
     ui->main_stacked->setCurrentIndex(14);
 }
 
-void MainWindow::on_actionConditions_triggered()
+void MainWindow::on_actionSky_Coverage_triggered()
 {
     ui->main_stacked->setCurrentIndex(15);
 }
 
-void MainWindow::on_actionadvanced_triggered()
+void MainWindow::on_actionConditions_triggered()
 {
     ui->main_stacked->setCurrentIndex(16);
 }
 
-void MainWindow::on_actionsummary_triggered()
+void MainWindow::on_actionadvanced_triggered()
 {
     ui->main_stacked->setCurrentIndex(17);
 }
 
-void MainWindow::on_actionSkd_Parser_triggered()
+void MainWindow::on_actionsummary_triggered()
 {
     ui->main_stacked->setCurrentIndex(18);
 }
 
-void MainWindow::on_actionLog_parser_triggered()
+void MainWindow::on_actionSkd_Parser_triggered()
 {
     ui->main_stacked->setCurrentIndex(19);
 }
 
-void MainWindow::on_actionFAQ_triggered()
+void MainWindow::on_actionLog_parser_triggered()
 {
     ui->main_stacked->setCurrentIndex(20);
 }
 
-void MainWindow::on_actionCurrent_Release_triggered()
+void MainWindow::on_actionFAQ_triggered()
 {
     ui->main_stacked->setCurrentIndex(21);
+}
+
+void MainWindow::on_actionCurrent_Release_triggered()
+{
+    ui->main_stacked->setCurrentIndex(22);
 }
 
 void MainWindow::on_actionAbout_Qt_triggered()
@@ -8093,5 +8104,4 @@ void MainWindow::updateWeightFactorValue()
 
     dsb->setValue(newVal);
 }
-
 

@@ -77,6 +77,7 @@
         <file>icons/camera.png</file>
         <file>icons/sleep-icon.png</file>
         <file>icons/configure-3.png</file>
+        <file>icons/sim.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>

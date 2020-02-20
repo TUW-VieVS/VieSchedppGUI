@@ -79,6 +79,7 @@
 #include "Utility/statistics.h"
 #include "secondaryGUIs/mastersessionviewer.h"
 #include "secondaryGUIs/parsedowntimes.h"
+#include "Widgets/simulator.h"
 
 #include "Utility/downloadmanager.h"
 
@@ -591,6 +592,8 @@ private slots:
     void updateWeightFactorSliders();
 
     void updateWeightFactorValue();
+
+    void on_actionSimulator_triggered();
 
 private:
     Ui::MainWindow *ui;
