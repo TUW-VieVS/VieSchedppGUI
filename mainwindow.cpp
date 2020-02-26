@@ -494,6 +494,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
 
+    Solver *solver = new Solver(selectedStationModel);
+    solver->setObjectName("Solver_Widged");
+    ui->tabWidget_simAna->addTab(solver, "Solver");
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addStations(QStandardItem *)));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addStations()));
+
+
+
     try {
         download();
     } catch ( ... ) {
@@ -7601,6 +7609,7 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
+    files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
 //    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
@@ -7700,6 +7709,7 @@ void MainWindow::masterDownloadFinished(){
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rx.cat";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
     files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
+    files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
 }
@@ -7738,7 +7748,7 @@ void MainWindow::downloadFinished(){
         }
 
     }else{
-        statusBarLabel->setText("all downloads finished successfully");
+        statusBarLabel->setText("all downloads finished");
     }
 }
 

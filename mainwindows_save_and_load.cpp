@@ -752,6 +752,9 @@ QString MainWindow::writeXML()
         auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
         Simulator *sim = qobject_cast<Simulator *>(tmp);
         para.simulator(sim->toXML());
+        auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        Solver *solver = qobject_cast<Solver *>(tmp2);
+        para.solver(solver->toXML());
     }
 
 
@@ -1965,7 +1968,7 @@ void MainWindow::readSettings()
     f(ui->lineEdit_pathTracks, cTracks);
 
     auto cLoif = settings_.get<std::string>("settings.catalog_path.loif","./AUTO_DOWNLOAD_CATALOGS/loif.cat");
-    f(ui->lineEdit_pathEquip, cEquip);
+    f(ui->lineEdit_pathLoif, cLoif);
 
     auto cRec = settings_.get<std::string>("settings.catalog_path.rec","./AUTO_DOWNLOAD_CATALOGS/rec.cat");
     f(ui->lineEdit_pathRec, cRec);

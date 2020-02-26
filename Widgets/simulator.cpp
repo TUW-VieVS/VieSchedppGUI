@@ -2,12 +2,20 @@
 #include "ui_simulator.h"
 
 Simulator::Simulator(QStandardItemModel *model, QWidget *parent) :
-    QWidget(parent), model_{model},
-    ui(new Ui::Simulator)
+    QWidget(parent),
+    ui(new Ui::Simulator),
+    model_{model}
 {
+
     ui->setupUi(this);
+
+    unsigned long seed = std::chrono::system_clock::now().time_since_epoch().count();
+    int iseed = seed%(std::numeric_limits<int>::max());
+    ui->spinBox_seed->setValue(iseed);
     auto hv = ui->treeWidget_simpara->header();
     hv->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->treeWidget_simpara->setSelectionMode(QAbstractItemView::NoSelection);
+
     connect(ui->treeWidget_simpara,
             SIGNAL(itemChanged(QTreeWidgetItem*, int)),
             this,
@@ -264,10 +272,12 @@ boost::property_tree::ptree Simulator::toXML()
 {
     QTreeWidget *t = ui->treeWidget_simpara;
     int rmax = t->topLevelItemCount();
-    int cmax = t->columnCount();
 
     boost::property_tree::ptree tree;
     tree.add("simulator.number_of_simulations", ui->spinBox_simulations->value());
+    if(ui->checkBox_seed->isChecked()){
+        tree.add("simulator.seed", ui->spinBox_seed->value());
+    }
     if(t->topLevelItem(0)->checkState(0) == Qt::Checked){
         QTreeWidgetItem *itm = t->topLevelItem(0);
         int c = 1;
@@ -343,6 +353,12 @@ void Simulator::fromXML(const boost::property_tree::ptree &tree)
     QTreeWidget *t = ui->treeWidget_simpara;
     int rmax = t->topLevelItemCount();
     ui->spinBox_simulations->setValue(tree.get("number_of_simulations",1000));
+
+    auto tmp = tree.get_optional<int>("seed");
+    if(tmp.is_initialized()){
+        ui->checkBox_seed->setCheckState(Qt::Checked);
+        ui->spinBox_seed->setValue(*tmp);
+    }
 
     for(const auto &any : tree){
         if(any.first == "station"){
@@ -428,7 +444,7 @@ void Simulator::toggleAll(QTreeWidgetItem *item, int column)
 
         QTreeWidget *t = ui->treeWidget_simpara;
         int rmax = t->topLevelItemCount();
-        int cmax = t->columnCount();
+        int cmax = t->columnCount()-1;
         for(int r=0; r<rmax; ++r){
             bool flag = !checked;
 

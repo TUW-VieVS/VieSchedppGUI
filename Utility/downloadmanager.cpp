@@ -37,6 +37,7 @@ void DownloadManager::doDownload(const QUrl &url)
     QNetworkRequest request(url);
     QNetworkReply *reply = manager.get(request);
 
+    QString txt(reply->errorString());
     currentDownloads.append(reply);
 //#endif
 }

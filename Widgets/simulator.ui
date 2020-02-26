@@ -58,6 +58,29 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox_seed">
+       <property name="text">
+        <string>fixed seed</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox_seed">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-2147483647</number>
+       </property>
+       <property name="maximum">
+        <number>2147483647</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -117,10 +140,32 @@
        <string>tropo wzd0</string>
       </property>
      </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
     </widget>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBox_seed</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_seed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>835</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>914</x>
+     <y>22</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

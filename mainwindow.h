@@ -80,6 +80,7 @@
 #include "secondaryGUIs/mastersessionviewer.h"
 #include "secondaryGUIs/parsedowntimes.h"
 #include "Widgets/simulator.h"
+#include "Widgets/solver.h"
 
 #include "Utility/downloadmanager.h"
 
