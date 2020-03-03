@@ -331,9 +331,9 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *constraint = new QDoubleSpinBox();
         constraint->setRange(0.01,1000);
-        constraint->setSingleStep(1);
-        constraint->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        constraint->setDecimals(2);
+        constraint->setSingleStep(.1);
+        //constraint->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
+        constraint->setDecimals(3);
         constraint->setValue(1.3);
         constraint->setSuffix(" [cm]");
         constraint->setEnabled(enable);
@@ -450,9 +450,9 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *zwd_const = new QDoubleSpinBox();
         zwd_const->setRange(0.01,1000);
-        zwd_const->setSingleStep(1);
-        zwd_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        zwd_const->setDecimals(2);
+        zwd_const->setSingleStep(.1);
+        //zwd_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
+        zwd_const->setDecimals(3);
         zwd_const->setValue(1.5);
         zwd_const->setSuffix(" [cm]");
         zwd_const->setEnabled(enable);
@@ -491,8 +491,8 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *ngr_const = new QDoubleSpinBox();
         ngr_const->setRange(0.01,1000);
-        ngr_const->setSingleStep(1);
-        ngr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
+        ngr_const->setSingleStep(.01);
+        //ngr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
         ngr_const->setDecimals(3);
         ngr_const->setValue(0.05);
         ngr_const->setSuffix(" [cm]");
@@ -533,8 +533,8 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *egr_const = new QDoubleSpinBox();
         egr_const->setRange(0.01,1000);
-        egr_const->setSingleStep(1);
-        egr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
+        egr_const->setSingleStep(.01);
+        //egr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
         egr_const->setDecimals(3);
         egr_const->setValue(0.05);
         egr_const->setSuffix(" [cm]");

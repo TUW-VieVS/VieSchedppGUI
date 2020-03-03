@@ -86,7 +86,7 @@
              </column>
              <column>
               <property name="text">
-               <string> </string>
+               <string/>
               </property>
              </column>
             </widget>
@@ -311,7 +311,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QGroupBox" name="groupBox_3">
@@ -365,9 +365,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -404,9 +401,6 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
              </widget>
             </item>
             <item row="1" column="1">
@@ -422,9 +416,6 @@
               </property>
               <property name="singleStep">
                <double>1.000000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
               <property name="value">
                <double>24.000000000000000</double>
@@ -445,9 +436,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -466,9 +454,6 @@
               </property>
               <property name="singleStep">
                <double>1.000000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
               <property name="value">
                <double>24.000000000000000</double>
@@ -489,9 +474,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -508,9 +490,6 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
              </widget>
             </item>
             <item row="2" column="2">
@@ -523,9 +502,6 @@
               </property>
               <property name="minimum">
                <double>0.000100000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
              </widget>
             </item>
@@ -540,9 +516,6 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
              </widget>
             </item>
             <item row="4" column="2">
@@ -555,9 +528,6 @@
               </property>
               <property name="minimum">
                <double>0.000100000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
              </widget>
             </item>
