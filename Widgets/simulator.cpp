@@ -62,8 +62,8 @@ void Simulator::addStations(QStandardItem *dummy)
         QDoubleSpinBox *wn = new QDoubleSpinBox();
         wn->setRange(0,250);
         wn->setSingleStep(2.5);
-        wn->setValue(25);
-        wn->setDecimals(1);
+        wn->setValue(17.68);
+        wn->setDecimals(2);
         wn->setSuffix(" [ps]");
         wn->setEnabled(enable);
         t->setItemWidget(item,c++,wn);
@@ -367,7 +367,7 @@ void Simulator::fromXML(const boost::property_tree::ptree &tree)
                 QTreeWidgetItem *itm = t->topLevelItem(0);
                 itm->setCheckState(0,Qt::Checked);
 
-                double wn = any.second.get("wn",25.);
+                double wn = any.second.get("wn",17.68);
 
                 double clockASD = any.second.get("clockASD",1.);
                 double clockDur = any.second.get("clockDur",50.);
@@ -407,7 +407,7 @@ void Simulator::fromXML(const boost::property_tree::ptree &tree)
                     continue;
                 }
 
-                double wn = any.second.get("wn",25.);
+                double wn = any.second.get("wn",17.68);
 
                 double clockASD = any.second.get("clockASD",1.);
                 double clockDur = any.second.get("clockDur",50.);
@@ -466,4 +466,59 @@ void Simulator::toggleAll(QTreeWidgetItem *item, int column)
             }
         }
     }
+}
+
+void Simulator::on_pushButton_wnTable_clicked()
+{
+    QDialog *d = new QDialog(this);
+    QHBoxLayout *l = new QHBoxLayout();
+    QTreeWidget *t = new QTreeWidget(d);
+    l->addWidget(t);
+    d->setLayout(l);
+
+    t->setColumnCount(2);
+    t->setHeaderItem(new QTreeWidgetItem(QStringList() << "wn per paseline" << "wn per station"));
+    for(double d = 0.1; d< 1; d+=.1){
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0, QString::number(d,'f',2) + " [ps]");
+        itm->setTextAlignment(0,Qt::AlignRight | Qt::AlignVCenter);
+        itm->setText(1, QString::number(d/std::sqrt(2),'f',2) + " [ps]");
+        itm->setTextAlignment(1,Qt::AlignRight | Qt::AlignVCenter);
+        t->addTopLevelItem(itm);
+    }
+    for(double d = 1; d< 10; ++d){
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0, QString::number(d,'f',2) + " [ps]");
+        itm->setTextAlignment(0,Qt::AlignRight | Qt::AlignVCenter);
+        itm->setText(1, QString::number(d/std::sqrt(2),'f',2) + " [ps]");
+        itm->setTextAlignment(1,Qt::AlignRight | Qt::AlignVCenter);
+        t->addTopLevelItem(itm);
+    }
+    for(double d = 10; d< 20; d+=2){
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0, QString::number(d,'f',2) + " [ps]");
+        itm->setTextAlignment(0,Qt::AlignRight | Qt::AlignVCenter);
+        itm->setText(1, QString::number(d/std::sqrt(2),'f',2) + " [ps]");
+        itm->setTextAlignment(1,Qt::AlignRight | Qt::AlignVCenter);
+        t->addTopLevelItem(itm);
+    }
+    for(double d = 20; d< 50; d+=5){
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0, QString::number(d,'f',2) + " [ps]");
+        itm->setTextAlignment(0,Qt::AlignRight | Qt::AlignVCenter);
+        itm->setText(1, QString::number(d/std::sqrt(2),'f',2) + " [ps]");
+        itm->setTextAlignment(1,Qt::AlignRight | Qt::AlignVCenter);
+        t->addTopLevelItem(itm);
+    }
+    for(double d = 50; d< 100; d+=10){
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0, QString::number(d,'f',2) + " [ps]");
+        itm->setTextAlignment(0,Qt::AlignRight | Qt::AlignVCenter);
+        itm->setText(1, QString::number(d/std::sqrt(2),'f',2) + " [ps]");
+        itm->setTextAlignment(1,Qt::AlignRight | Qt::AlignVCenter);
+        t->addTopLevelItem(itm);
+    }
+    t->header()->resizeSections(QHeaderView::ResizeToContents);
+
+    d->show();
 }

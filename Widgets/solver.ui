@@ -246,7 +246,7 @@
            </column>
            <column>
             <property name="text">
-             <string>constraing</string>
+             <string>constraint</string>
             </property>
             <property name="textAlignment">
              <set>AlignCenter</set>
