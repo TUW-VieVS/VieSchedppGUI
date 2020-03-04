@@ -752,9 +752,14 @@ QString MainWindow::writeXML()
         auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
         Simulator *sim = qobject_cast<Simulator *>(tmp);
         para.simulator(sim->toXML());
+
         auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
         Solver *solver = qobject_cast<Solver *>(tmp2);
         para.solver(solver->toXML());
+
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        para.priorities(priorities->toXML());
     }
 
 
