@@ -126,6 +126,7 @@ SOURCES += \
     ../VieSchedpp/Simulator/Solver.cpp \
     ../VieSchedpp/Simulator/Unknown.cpp \
     Utility/downloadmanager.cpp \
+    Widgets/priorities.cpp \
     Widgets/solver.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -246,6 +247,7 @@ HEADERS += \
     Parameters/sourceparametersdialog.h \
     Parameters/stationparametersdialog.h \
     Utility/downloadmanager.h \
+    Widgets/priorities.h \
     Widgets/solver.h \
     secondaryGUIs/addbanddialog.h \
     secondaryGUIs/addgroupdialog.h \
@@ -271,6 +273,7 @@ HEADERS += \
     secondaryGUIs/rendersetup.h
 
 FORMS += \
+    Widgets/priorities.ui \
     Widgets/solver.ui \
     mainwindow.ui \
     Parameters/baselineparametersdialog.ui \

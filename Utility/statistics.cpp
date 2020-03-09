@@ -141,7 +141,7 @@ void Statistics::reload()
                     sources.append(thisName);
                 }
                 lookForMultiSchedulingParameteres = true;
-            }else if( name.left(10) == "vievs_sim_") {
+            }else if( name.left(4) == "sim_") {
                 continue;
             }else if(lookForMultiSchedulingParameteres){
                 if(multiScheduling.indexOf(name) == -1){
@@ -551,7 +551,7 @@ void Statistics::reload()
         }
 
         QStringList simPara;
-        simPara << "#sim" << "dUT1 [mus]" << "x pol [muas]" << "y pol_[muas]" << "x nut [muas]" << "y nut [muas]";
+        simPara << "#sim" << "dUT1 [mus]" << "x pol [muas]" << "y pol [muas]" << "x nut [muas]" << "y nut [muas]";
 
         for(int i=0; i<2; ++i){
             const auto &itm = sim->child(i);
@@ -1029,7 +1029,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<simMeanFormalError->childCount()-1; ++i){
         const auto &child = simMeanFormalError->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("vievs_sim_mean_formal_error_").append(child->text(0));
+            QString name = QString("sim_mean_formal_error_").append(child->text(0));
             name = name.replace("#","n_");
             name = name.replace(" ","_");
             barSets.push_back(statisticsBarSet(offset, name));
@@ -1046,7 +1046,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<simMeanFormalError_station->childCount(); ++i){
         const auto &child = simMeanFormalError_station->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("vievs_sim_mean_formal_error_").append(child->text(0));
+            QString name = QString("sim_mean_formal_error_").append(child->text(0));
             barSets.push_back(statisticsBarSet(offset, name.replace(" ","_")));
             child->setBackground(1,brushes.at(counter));
 
@@ -1063,7 +1063,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<simRepeatability->childCount()-1; ++i){
         const auto &child = simRepeatability->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("vievs_sim_repeatability_").append(child->text(0));
+            QString name = QString("sim_repeatability_").append(child->text(0));
             name = name.replace("#","n_");
             name = name.replace(" ","_");
             barSets.push_back(statisticsBarSet(offset, name));
@@ -1080,7 +1080,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<simRepeatability_station->childCount(); ++i){
         const auto &child = simRepeatability_station->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("vievs_sim_repeatability_").append(child->text(0));
+            QString name = QString("sim_repeatability_").append(child->text(0));
             barSets.push_back(statisticsBarSet(offset, name.replace(" ","_")));
             child->setBackground(1,brushes.at(counter));
 

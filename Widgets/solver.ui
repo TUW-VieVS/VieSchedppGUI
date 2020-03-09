@@ -86,7 +86,7 @@
              </column>
              <column>
               <property name="text">
-               <string> </string>
+               <string/>
               </property>
              </column>
             </widget>
@@ -187,33 +187,6 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QCheckBox" name="checkBox_6">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="text">
-            <string>merge twin telescope troposphere</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
           <widget class="QTreeWidget" name="treeWidget_sta_tropo">
@@ -246,7 +219,7 @@
            </column>
            <column>
             <property name="text">
-             <string>constraing</string>
+             <string>constraint</string>
             </property>
             <property name="textAlignment">
              <set>AlignCenter</set>
@@ -311,7 +284,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QGroupBox" name="groupBox_3">
@@ -365,9 +338,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -404,8 +374,8 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              <property name="singleStep">
+               <double>0.000100000000000</double>
               </property>
              </widget>
             </item>
@@ -422,9 +392,6 @@
               </property>
               <property name="singleStep">
                <double>1.000000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
               <property name="value">
                <double>24.000000000000000</double>
@@ -445,9 +412,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -466,9 +430,6 @@
               </property>
               <property name="singleStep">
                <double>1.000000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
               </property>
               <property name="value">
                <double>24.000000000000000</double>
@@ -489,9 +450,6 @@
               <property name="singleStep">
                <double>1.000000000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
-              </property>
               <property name="value">
                <double>24.000000000000000</double>
               </property>
@@ -508,8 +466,8 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              <property name="singleStep">
+               <double>0.000100000000000</double>
               </property>
              </widget>
             </item>
@@ -524,8 +482,8 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              <property name="singleStep">
+               <double>0.000100000000000</double>
               </property>
              </widget>
             </item>
@@ -540,8 +498,8 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              <property name="singleStep">
+               <double>0.000100000000000</double>
               </property>
              </widget>
             </item>
@@ -556,8 +514,8 @@
               <property name="minimum">
                <double>0.000100000000000</double>
               </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+              <property name="singleStep">
+               <double>0.000100000000000</double>
               </property>
              </widget>
             </item>

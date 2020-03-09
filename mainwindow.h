@@ -81,6 +81,7 @@
 #include "secondaryGUIs/parsedowntimes.h"
 #include "Widgets/simulator.h"
 #include "Widgets/solver.h"
+#include "Widgets/priorities.h"
 
 #include "Utility/downloadmanager.h"
 

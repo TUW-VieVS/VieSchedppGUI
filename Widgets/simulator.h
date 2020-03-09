@@ -7,6 +7,7 @@
 #include "QStandardItemModel"
 #include <QTreeWidgetItem>
 #include "QDialog"
+#include <cmath>
 
 namespace Ui {
 class Simulator;
@@ -27,6 +28,8 @@ public slots:
 
 private slots:
     void toggleAll(QTreeWidgetItem *, int column);
+
+    void on_pushButton_wnTable_clicked();
 
 private:
     Ui::Simulator *ui;

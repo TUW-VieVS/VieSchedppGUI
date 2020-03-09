@@ -140,12 +140,12 @@ boost::property_tree::ptree Solver::toXML()
         for (int r = 1; r<rmax; ++r){
             boost::property_tree::ptree staTree;
             int c = 1;
-            QTreeWidgetItem *itm_coord = t_coord->topLevelItem(0);
+            QTreeWidgetItem *itm_coord = t_coord->topLevelItem(r);
             bool coord = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
             bool datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
 
             c = 1;
-            QTreeWidgetItem *itm_clock = t_clock->topLevelItem(0);
+            QTreeWidgetItem *itm_clock = t_clock->topLevelItem(r);
             bool linear_clk  = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
             bool quadratic_clk = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
             bool pwl_clk  = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
@@ -153,7 +153,7 @@ boost::property_tree::ptree Solver::toXML()
             double pwl_clk_const = qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->value();
 
             c = 1;
-            QTreeWidgetItem *itm_tropo = t_tropo->topLevelItem(0);
+            QTreeWidgetItem *itm_tropo = t_tropo->topLevelItem(r);
             bool zwd  = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
             double zwd_int = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
             double zwd_const = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
@@ -164,28 +164,29 @@ boost::property_tree::ptree Solver::toXML()
             double egr_int = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
             double egr_const = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
 
-            staTree.add("solver.station.<xmlattr>.name","__all__");
-            staTree.add("solver.station.coordinates",coord);
-            staTree.add("solver.station.datum",datum);
+            QString itmName = itm_tropo->text(0);
+            staTree.add("station.<xmlattr>.name", itmName.toStdString());
+            staTree.add("station.coordinates",coord);
+            staTree.add("station.datum",datum);
 
-            staTree.add("solver.station.linear_clock",linear_clk);
-            staTree.add("solver.station.quadratic_clock",quadratic_clk);
+            staTree.add("station.linear_clock",linear_clk);
+            staTree.add("station.quadratic_clock",quadratic_clk);
             if(pwl_clk){
-                staTree.add("solver.station.PWL_clock.interval",pwl_clk_int);
-                staTree.add("solver.station.PWL_clock.constraint",pwl_clk_const);
+                staTree.add("station.PWL_clock.interval",pwl_clk_int);
+                staTree.add("station.PWL_clock.constraint",pwl_clk_const);
             }
 
             if(zwd){
-                staTree.add("solver.station.PWL_ZWD.interval",zwd_int);
-                staTree.add("solver.station.PWL_ZWD.constraint",zwd_const);
+                staTree.add("station.PWL_ZWD.interval",zwd_int);
+                staTree.add("station.PWL_ZWD.constraint",zwd_const);
             }
             if(ngr){
-                staTree.add("solver.station.PWL_NGR.interval",ngr_int);
-                staTree.add("solver.station.PWL_NGR.constraint",ngr_const);
+                staTree.add("station.PWL_NGR.interval",ngr_int);
+                staTree.add("station.PWL_NGR.constraint",ngr_const);
             }
             if(egr){
-                staTree.add("solver.station.PWL_EGR.interval",egr_int);
-                staTree.add("solver.station.PWL_EGR.constraint",egr_const);
+                staTree.add("station.PWL_EGR.interval",egr_int);
+                staTree.add("station.PWL_EGR.constraint",egr_const);
             }
             tree.add_child("solver.station",staTree.get_child("station"));
         }
@@ -330,9 +331,9 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *constraint = new QDoubleSpinBox();
         constraint->setRange(0.01,1000);
-        constraint->setSingleStep(0.1);
+        constraint->setSingleStep(.1);
         //constraint->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        constraint->setDecimals(2);
+        constraint->setDecimals(3);
         constraint->setValue(1.3);
         constraint->setSuffix(" [cm]");
         constraint->setEnabled(enable);
@@ -451,7 +452,7 @@ void Solver::addStations(QStandardItem *dummy)
         zwd_const->setRange(0.01,1000);
         zwd_const->setSingleStep(0.1);
         //zwd_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        zwd_const->setDecimals(2);
+        zwd_const->setDecimals(3);
         zwd_const->setValue(1.5);
         zwd_const->setSuffix(" [cm]");
         zwd_const->setEnabled(enable);
@@ -490,9 +491,9 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *ngr_const = new QDoubleSpinBox();
         ngr_const->setRange(0.01,1000);
-        ngr_const->setSingleStep(0.01);
+        ngr_const->setSingleStep(.01);
         //ngr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        ngr_const->setDecimals(2);
+        ngr_const->setDecimals(3);
         ngr_const->setValue(0.05);
         ngr_const->setSuffix(" [cm]");
         ngr_const->setEnabled(enable);
@@ -523,7 +524,7 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *egr_int = new QDoubleSpinBox();
         egr_int->setRange(5,1440);
-        egr_int->setSingleStep(5);
+        egr_int->setSingleStep(30);
         egr_int->setDecimals(0);
         egr_int->setValue(180);
         egr_int->setSuffix(" [min]");
@@ -532,9 +533,9 @@ void Solver::addStations(QStandardItem *dummy)
 
         QDoubleSpinBox *egr_const = new QDoubleSpinBox();
         egr_const->setRange(0.01,1000);
-        egr_const->setSingleStep(0.01);
+        egr_const->setSingleStep(.01);
         //egr_const->setStepType(QAbstractSpinBox::StepType::AdaptiveDecimalStepType);
-        egr_const->setDecimals(2);
+        egr_const->setDecimals(3);
         egr_const->setValue(0.05);
         egr_const->setSuffix(" [cm]");
         egr_const->setEnabled(enable);

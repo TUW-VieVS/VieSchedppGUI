@@ -81,6 +81,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_wnTable">
+       <property name="text">
+        <string>*show wn table</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -92,7 +99,7 @@
      </column>
      <column>
       <property name="text">
-       <string>white noise</string>
+       <string>white noise*</string>
       </property>
      </column>
      <column>
