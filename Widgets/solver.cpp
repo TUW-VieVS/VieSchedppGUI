@@ -1,10 +1,11 @@
 #include "solver.h"
 #include "ui_solver.h"
 
-Solver::Solver(QStandardItemModel *model, QWidget *parent) :
+Solver::Solver(QStandardItemModel *station_model, QStandardItemModel *source_model, QWidget *parent) :
       QWidget(parent),
       ui(new Ui::Solver),
-      model_{model}
+      station_model_{station_model},
+      source_model_{source_model}
 {
     ui->setupUi(this);
 
@@ -29,6 +30,11 @@ Solver::Solver(QStandardItemModel *model, QWidget *parent) :
             this,
             SLOT(toggleAll_sta_coord(QTreeWidgetItem*, int)));
 
+    connect(ui->treeWidget_src_coord,
+            SIGNAL(itemChanged(QTreeWidgetItem*, int)),
+            this,
+            SLOT(toggleAll_src_coord(QTreeWidgetItem*, int)));
+
     connect(ui->treeWidget_sta_clock,
             SIGNAL(itemChanged(QTreeWidgetItem*, int)),
             this,
@@ -39,7 +45,7 @@ Solver::Solver(QStandardItemModel *model, QWidget *parent) :
             this,
             SLOT(toggleAll_sta_tropo(QTreeWidgetItem*, int)));
 
-    ui->comboBox_ref_clock->setModel(model_);
+    ui->comboBox_ref_clock->setModel(station_model);
 }
 
 Solver::~Solver()
@@ -142,7 +148,13 @@ boost::property_tree::ptree Solver::toXML()
             int c = 1;
             QTreeWidgetItem *itm_coord = t_coord->topLevelItem(r);
             bool coord = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
-            bool datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
+
+            bool datum;
+            if( !coord ){
+                datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
+            }else{
+                datum = false;
+            }
 
             c = 1;
             QTreeWidgetItem *itm_clock = t_clock->topLevelItem(r);
@@ -191,6 +203,40 @@ boost::property_tree::ptree Solver::toXML()
             tree.add_child("solver.station",staTree.get_child("station"));
         }
     }
+
+    tree.add("solver.source.minScans", ui->spinBox_src_minScans->value() );
+    tree.add("solver.source.minObs", ui->spinBox_src_minObs->value() );
+
+    for(int i = 0; i<ui->treeWidget_src_coord->topLevelItemCount(); ++i){
+        QTreeWidgetItem *itm_coord = ui->treeWidget_src_coord->topLevelItem(i);
+        if(i == 0){
+            if(itm_coord->checkState(0) == Qt::Checked){
+                tree.add("solver.source.estimate", "__all__");
+                tree.add("solver.source.datum", "__all__");
+                break;
+            }else{
+                continue;
+            }
+        }
+
+        std::string name = itm_coord->text(0).toStdString();
+
+        bool coord = qobject_cast<QCheckBox *>(ui->treeWidget_src_coord->itemWidget(itm_coord,1))->checkState() == Qt::Checked;
+        bool datum = false;
+        if(coord){
+            datum = qobject_cast<QCheckBox *>(ui->treeWidget_src_coord->itemWidget(itm_coord,2))->checkState() == Qt::Checked;
+        }
+        boost::property_tree::ptree srcTree;
+
+        if(coord){
+            srcTree.add("name",name);
+            tree.add_child("solver.source.estimate.name", srcTree.get_child("name"));
+        }
+        if(datum){
+            srcTree.add("name",name);
+            tree.add_child("solver.source.datum.name", srcTree.get_child("name"));
+        }
+    }
     return tree;
 }
 
@@ -206,8 +252,8 @@ void Solver::addStations(QStandardItem *dummy)
     }
     QStringList stations;
     stations << "__all__";
-    for( int i = 0; i<model_->rowCount(); ++i){
-        stations << model_->item(i,0)->text();
+    for( int i = 0; i<station_model_->rowCount(); ++i){
+        stations << station_model_->item(i,0)->text();
     }
 
     QTreeWidget *t_coord = ui->treeWidget_sta_coord;
@@ -697,6 +743,121 @@ void Solver::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
         }
     }
 }
+
+void Solver::addSources(QStandardItem *dummy)
+{
+    if(dummy != nullptr && dummy->column() != 0){
+        return;
+    }
+    QStringList sources;
+    sources << "__all__";
+    for( int i = 0; i<source_model_->rowCount(); ++i){
+        sources << source_model_->item(i,0)->text();
+    }
+
+    QTreeWidget *t_coord = ui->treeWidget_src_coord;
+    t_coord->clear();
+
+    int r = 0;
+    for(const auto &src : sources){
+        // ####### coord ########
+        QTreeWidgetItem *item = new QTreeWidgetItem();
+        bool enable = false;
+        if(src == "__all__"){
+            item->setIcon(0,QIcon(":/icons/icons/source_group.png"));
+            item->setCheckState(0, Qt::Checked);
+            enable = true;
+        }else{
+            item->setFlags(item->flags() & (~Qt::ItemIsEnabled));
+            item->setIcon(0,QIcon(":/icons/icons/source.png"));
+        }
+
+        item->setText(0,src);
+        t_coord->addTopLevelItem(item);
+
+        int c = 1;
+
+        QCheckBox *coord = new QCheckBox();
+        coord->setStyleSheet("margin-left:20%; margin-right:00%;");
+        coord->setChecked(true);
+        coord->setEnabled(enable);
+        t_coord->setItemWidget(item,c++,coord);
+
+        QCheckBox *datum = new QCheckBox();
+        datum->setStyleSheet("margin-left:30%; margin-right:00%;");
+        datum->setChecked(true);
+        datum->setEnabled(enable);
+        t_coord->setItemWidget(item,c++,datum);
+
+        connect(coord, &QCheckBox::toggled, [coord, datum](){
+            if( coord->isEnabled() && coord->checkState() == Qt::Checked){
+                datum ->setEnabled(true);
+            }else {
+                datum ->setEnabled(false);
+            }
+        });
+
+        if(r == 0){
+            connect(coord, &QCheckBox::toggled, [t_coord](){
+                int c = 1;
+                int rmax = t_coord->topLevelItemCount();
+                QTreeWidgetItem *ref = t_coord->topLevelItem(0);
+                Qt::CheckState val = qobject_cast<QCheckBox *>(t_coord->itemWidget(ref,c))->checkState();
+
+                for(int r=1; r<rmax; ++r){
+                    QTreeWidgetItem *itm = t_coord->topLevelItem(r);
+                    qobject_cast<QCheckBox *>(t_coord->itemWidget(itm,c))->setCheckState(val);
+                }
+            });
+
+            connect(datum, &QCheckBox::toggled, [t_coord](){
+                int c = 2;
+                int rmax = t_coord->topLevelItemCount();
+                QTreeWidgetItem *ref = t_coord->topLevelItem(0);
+                Qt::CheckState val = qobject_cast<QCheckBox *>(t_coord->itemWidget(ref,c))->checkState();
+
+                for(int r=1; r<rmax; ++r){
+                    QTreeWidgetItem *itm = t_coord->topLevelItem(r);
+                    qobject_cast<QCheckBox *>(t_coord->itemWidget(itm,c))->setCheckState(val);
+                }
+            });
+        }
+        ++r;
+    }
+}
+
+void Solver::toggleAll_src_coord(QTreeWidgetItem *item, int column)
+{
+    if(item->text(0) == "__all__" && column == 0){
+        bool checked = item->checkState(0);
+
+        QTreeWidget *t = ui->treeWidget_src_coord;
+        int rmax = t->topLevelItemCount();
+        int cmax = t->columnCount();
+        for(int r=0; r<rmax; ++r){
+            bool flag = !checked;
+
+            QTreeWidgetItem *itm = t->topLevelItem(r);
+            if(r==0){
+                flag = checked;
+            }
+            int c = 1;
+
+            if(r>0){
+                if(flag){
+                    itm->setFlags(item->flags() | Qt::ItemIsEnabled);
+                }else{
+                    itm->setFlags(item->flags() & (~Qt::ItemIsEnabled));
+                }
+            }
+            for (int c = 1; c<cmax; ++c){
+                t->itemWidget(itm,c)->setEnabled(flag);
+            }
+        }
+    }
+}
+
+
 
 void Solver::toggleAll_sta_clock(QTreeWidgetItem *item, int column)
 {

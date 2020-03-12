@@ -494,11 +494,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
 
-    Solver *solver = new Solver(selectedStationModel);
+    Solver *solver = new Solver(selectedStationModel, selectedSourceModel);
     solver->setObjectName("Solver_Widged");
     ui->tabWidget_simAna->addTab(solver, "Solve");
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addStations()));
+
+    connect(selectedSourceModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addSources(QStandardItem *)));
+    connect(selectedSourceModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addSources()));
+    solver->addSources();
 
     Priorities *priorities = new Priorities(selectedStationModel);
     priorities->setObjectName("Priorities_Widged");

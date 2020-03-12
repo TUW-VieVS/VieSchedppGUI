@@ -10,7 +10,6 @@ Priorities::Priorities(QStandardItemModel *model, QWidget *parent) :
     setup();
     connect(ui->checkBox_EOP, SIGNAL(toggled(bool)), this, SLOT(setup()));
     connect(ui->checkBox_stations, SIGNAL(toggled(bool)), this, SLOT(setup()));
-    connect(ui->checkBox_sources, SIGNAL(toggled(bool)), this, SLOT(setup()));
 }
 
 Priorities::~Priorities()
@@ -28,6 +27,7 @@ boost::property_tree::ptree Priorities::toXML()
     }else{
         tree.add("priorities.type","repeatabilities");
     }
+    tree.add("priorities.percentile",ui->doubleSpinBox_quantile->value());
 
     for( int i = 0; i<t->rowCount(); ++i){
         boost::property_tree::ptree t2;
@@ -45,6 +45,7 @@ boost::property_tree::ptree Priorities::toXML()
 
 void Priorities::fromXML(const boost::property_tree::ptree &tree)
 {
+    auto *t = ui->tableWidget_params;
 
 }
 
@@ -99,10 +100,10 @@ void Priorities::setup()
     if(ui->checkBox_stations->checkState() == Qt::Checked){
         QStringList stations;
         for( int i = 0; i<model_->rowCount(); ++i){
-            addRow( model_->item(i,0)->text() + " coord");
+            addRow( model_->item(i,0)->text());
         }
     }else{
-        addRow("station coord");
+        addRow("stations");
     }
 
 }
@@ -130,6 +131,4 @@ void Priorities::paintBars()
         qobject_cast<QProgressBar *>(t->cellWidget(i,1))->setValue(std::lround(p));
         qobject_cast<QProgressBar *>(t->cellWidget(i,1))->setFormat(QString("%1%").arg(p,0,'f',2));
     }
-
-
 }
