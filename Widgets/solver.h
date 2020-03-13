@@ -34,6 +34,8 @@ private slots:
     void toggleAll_sta_clock(QTreeWidgetItem *, int column);
     void toggleAll_sta_tropo(QTreeWidgetItem *, int column);
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::Solver *ui;
     QStandardItemModel *station_model_;

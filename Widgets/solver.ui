@@ -568,19 +568,9 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>datum: ICRF3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="pushButton_3">
                <property name="enabled">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
                <property name="text">
                 <string>datum: ICRF3 defining</string>
