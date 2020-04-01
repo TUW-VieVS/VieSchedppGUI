@@ -158,16 +158,18 @@ QString MainWindow::writeXML()
 
     bool doNotObserveSourcesWithinMinRepeat = ui->radioButton_sourcesMinRepeat_doNotObserve->isChecked();
 
+    int versionOffset = ui->spinBox_startVersion->value();
+
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
                      idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat);
+                     srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
                      idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat);
+                     ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }
 
 
@@ -2310,7 +2312,8 @@ void MainWindow::on_pushButton_11_clicked()
     }else{
         value << "false";
     }
-
+    path << "settings.general.versionOffset";
+    value << QString::number(ui->spinBox_startVersion->value());
 
     QString name = "Default advanced settings changed!";
     changeDefaultSettings(path,value,name);

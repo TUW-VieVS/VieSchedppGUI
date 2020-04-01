@@ -41,16 +41,13 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreState(settings.value("myWidget/windowState").toByteArray());
 
     QString schedVersion = GIT_SCHEDULER_COMMIT_HASH;
-    if(schedVersion.length() != 40){
-        schedVersion = "unknown";
+    if(QCoreApplication::applicationVersion().length() == 40){
+        ui->lineEdit_gui_version->setText(QCoreApplication::applicationVersion().left(8));
     }
-    if( schedVersion !=  "unknown"){
-        ui->label_version->setText("VieSched++ GUI version: " + QCoreApplication::applicationVersion() + "\n../VieSched++ version: " + schedVersion);
-    }else{
-        ui->label_version->setText("VieSched++ GUI version: " + QCoreApplication::applicationVersion());
+    if(schedVersion.length() == 40){
+        ui->lineEdit_scheduler_version->setText(schedVersion.left(8));
     }
 
-    ui->label_version->setFont(QFont(QApplication::font().family(),8));
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setOrganizationDomain("http://hg.geo.tuwien.ac.at/");
 
