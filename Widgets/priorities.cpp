@@ -24,8 +24,10 @@ boost::property_tree::ptree Priorities::toXML()
     boost::property_tree::ptree tree;
     if(ui->radioButton_mfe->isChecked()){
         tree.add("priorities.type","mean formal errors");
-    }else{
+    }else if(ui->radioButton_rep->isChecked()){
         tree.add("priorities.type","repeatabilities");
+    }else{
+        tree.add("priorities.type","none");
     }
     tree.add("priorities.percentile",ui->doubleSpinBox_quantile->value());
 
@@ -45,7 +47,31 @@ boost::property_tree::ptree Priorities::toXML()
 
 void Priorities::fromXML(const boost::property_tree::ptree &tree)
 {
+    QString type = QString::fromStdString(tree.get("priorities.type","none"));
+    if (type == "none"){
+        ui->radioButton_noRec->setChecked(true);
+    }else if(type == "repeatabilities"){
+        ui->radioButton_rep->setChecked(true);
+    }else if(type == "mean formal errors"){
+        ui->radioButton_mfe->setChecked(true);
+    }
+    ui->doubleSpinBox_quantile->setValue(tree.get("priorities.percentile",0.75));
+
     auto *t = ui->tableWidget_params;
+    t->clear();
+    t->setRowCount(0);
+    t->setHorizontalHeaderItem(0,new QTableWidgetItem("priority"));
+    t->setHorizontalHeaderItem(1,new QTableWidgetItem(""));
+    for( const auto &any : tree){
+        if(any.first != "variable"){
+            continue;
+        }
+        QString name = QString::fromStdString(any.second.get("<xmlattr>.name",""));
+        double val = QString::fromStdString(any.second.data()).toDouble();
+        addRow(name,val);
+
+    }
+    paintBars();
 
 }
 
@@ -54,7 +80,7 @@ void Priorities::addStations(QStandardItem *)
     setup();
 }
 
-void Priorities::addRow(QString name)
+void Priorities::addRow(QString name, double val)
 {
     auto *t = ui->tableWidget_params;
     int r = t->rowCount();
@@ -62,7 +88,7 @@ void Priorities::addRow(QString name)
     t->setVerticalHeaderItem(r, new QTableWidgetItem(name));
 
     QDoubleSpinBox *a = new QDoubleSpinBox();
-    a->setValue(1);
+    a->setValue(val);
     a->setRange(0,100);
     a->setSingleStep(.25);
     t->setCellWidget(r,0,a);

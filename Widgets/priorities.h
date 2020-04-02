@@ -29,7 +29,7 @@ private:
     Ui::Priorities *ui;
     QStandardItemModel *model_;
 
-    void addRow(QString name);
+    void addRow(QString name, double val=1);
 
 private slots:
     void paintBars();

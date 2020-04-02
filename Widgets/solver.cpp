@@ -8,6 +8,7 @@ Solver::Solver(QStandardItemModel *station_model, QStandardItemModel *source_mod
       source_model_{source_model}
 {
     ui->setupUi(this);
+    ui->tabWidget->setCurrentIndex(0);
 
     auto hv1 = ui->treeWidget_sta_clock->header();
     hv1->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -211,7 +212,17 @@ boost::property_tree::ptree Solver::toXML()
         QTreeWidgetItem *itm_coord = ui->treeWidget_src_coord->topLevelItem(i);
         if(i == 0){
             if(itm_coord->checkState(0) == Qt::Checked){
-                tree.add("solver.source.estimate", "__all__");
+                bool coord = qobject_cast<QCheckBox *>(ui->treeWidget_src_coord->itemWidget(itm_coord,1))->checkState() == Qt::Checked;
+                bool datum = false;
+                if(coord){
+                    datum = qobject_cast<QCheckBox *>(ui->treeWidget_src_coord->itemWidget(itm_coord,2))->checkState() == Qt::Checked;
+                }
+                if(coord){
+                    tree.add("solver.source.estimate", "__all__");
+                }else{
+                    tree.add("solver.source.estimate", "__none__");
+                }
+
                 tree.add("solver.source.datum", "__all__");
                 break;
             }else{
@@ -242,6 +253,250 @@ boost::property_tree::ptree Solver::toXML()
 
 void Solver::fromXML(const boost::property_tree::ptree &tree)
 {
+    // read EOP
+    double xpo = tree.get("EOP.XPO.interval",-1.0);
+    if(xpo != -1){
+        ui->checkBox_XPO->setChecked(true);
+        ui->doubleSpinBox_xpo_int->setValue(xpo);
+        ui->doubleSpinBox_xpo_const->setValue(tree.get("EOP.XPO.interval",.0001));
+    }else{
+        ui->checkBox_XPO->setChecked(false);
+    }
+    double ypo = tree.get("EOP.YPO.interval",-1.0);
+    if(ypo != -1){
+        ui->checkBox_YPO->setChecked(true);
+        ui->doubleSpinBox_ypo_int->setValue(xpo);
+        ui->doubleSpinBox_ypo_const->setValue(tree.get("EOP.YPO.interval",.0001));
+    }else{
+        ui->checkBox_YPO->setChecked(false);
+    }
+    double dut1 = tree.get("EOP.dUT1.interval",-1.0);
+    if(dut1 != -1){
+        ui->checkBox_dUT1->setChecked(true);
+        ui->doubleSpinBox_dut1_int->setValue(xpo);
+        ui->doubleSpinBox_dut1_const->setValue(tree.get("EOP.dUT1.interval",.0001));
+    }else{
+        ui->checkBox_dUT1->setChecked(false);
+    }
+    double nutx = tree.get("EOP.NUTX.interval",-1.0);
+    if(nutx != -1){
+        ui->checkBox_NUTX->setChecked(true);
+        ui->doubleSpinBox_nutx_int->setValue(xpo);
+        ui->doubleSpinBox_nutx_const->setValue(tree.get("EOP.NUTX.interval",.0001));
+    }else{
+        ui->checkBox_NUTX->setChecked(false);
+    }
+    double nuty = tree.get("EOP.NUTY.interval",-1.0);
+    if(nuty != -1){
+        ui->checkBox_NUTY->setChecked(true);
+        ui->doubleSpinBox_nuty_int->setValue(xpo);
+        ui->doubleSpinBox_nuty_const->setValue(tree.get("EOP.NUTY.interval",.0001));
+    }else{
+        ui->checkBox_NUTY->setChecked(false);
+    }
+
+    // read stations
+    QString refClock = QString::fromStdString(tree.get("reference_clock",""));
+    ui->comboBox_ref_clock->setCurrentText(refClock);
+
+    for(const auto &any : tree){
+        if(any.first == "station"){
+            QString name = QString::fromStdString(any.second.get("<xmlattr>.name","__all__"));
+
+            // clock
+            {
+                QTreeWidget *t_clock = ui->treeWidget_sta_clock;
+                QTreeWidgetItem *itm_clock;
+                for(int i = 0; i<t_clock->topLevelItemCount(); ++i){
+                    itm_clock = t_clock->topLevelItem(i);
+                    if(i == 0){
+                        if(name == "__all__"){
+                            itm_clock->setCheckState(0,Qt::Checked);
+                        }else{
+                            itm_clock->setCheckState(0,Qt::Unchecked);
+                        }
+                    }
+                    if(itm_clock->text(0) == name){
+                        break;
+                    }
+                }
+                if(name == "__all__"){
+                    itm_clock->setCheckState(0,Qt::Checked);
+                }
+
+                int c = 1;
+                qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
+                qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
+
+                const auto &pwl = any.second.get_child_optional("PWL_clock");
+                if(pwl.is_initialized()){
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(true);
+                    qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.interval",60.));
+                    qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.constraint",1.3));
+                }else{
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(false);
+                }
+            }
+
+            // coord
+            {
+                QTreeWidget *t_coord = ui->treeWidget_sta_coord;
+                QTreeWidgetItem *itm_coord;
+                for(int i = 0; i<t_coord->topLevelItemCount(); ++i){
+                    itm_coord = t_coord->topLevelItem(i);
+                    if(i == 0){
+                        if(name == "__all__"){
+                            itm_coord->setCheckState(0,Qt::Checked);
+                        }else{
+                            itm_coord->setCheckState(0,Qt::Unchecked);
+                        }
+                    }
+                    if(itm_coord->text(0) == name){
+                        break;
+                    }
+                }
+
+                int c = 1;
+                qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("coordinates",true));
+                qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("datum",true));
+            }
+
+            // tropo
+            {
+                QTreeWidget *t_tropo = ui->treeWidget_sta_tropo;
+
+                QTreeWidgetItem *itm_tropo;
+                for(int i = 0; i<t_tropo->topLevelItemCount(); ++i){
+                    itm_tropo = t_tropo->topLevelItem(i);
+                    if(i == 0){
+                        if(name == "__all__"){
+                            itm_tropo->setCheckState(0,Qt::Checked);
+                        }else{
+                            itm_tropo->setCheckState(0,Qt::Unchecked);
+                        }
+                    }
+
+                    if(itm_tropo->text(0) == name){
+                        break;
+                    }
+                }
+
+                int c = 1;
+                const auto &zwd = any.second.get_child_optional("PWL_ZWD");
+                if(zwd.is_initialized()){
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.interval",30.));
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.constraint",1.5));
+                }else{
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                    ++c;
+                    ++c;
+                }
+
+                const auto &ngr = any.second.get_child_optional("PWL_NGR");
+                if(ngr.is_initialized()){
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.interval",180.));
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.constraint",0.05));
+                }else{
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                    ++c;
+                    ++c;
+                }
+
+                const auto &egr = any.second.get_child_optional("PWL_EGR");
+                if(egr.is_initialized()){
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.interval",180.));
+                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.constraint",0.05));
+                }else{
+                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                    ++c;
+                    ++c;
+                }
+            }
+        }
+
+        // read sources
+        ui->spinBox_src_minScans->setValue(tree.get("source.minScans",3));
+        ui->spinBox_src_minObs->setValue(tree.get("source.minScans",4));
+        if(any.first == "source"){
+
+            QTreeWidget *t_src = ui->treeWidget_src_coord;
+            t_src->topLevelItem(0)->setCheckState(0,Qt::Unchecked);
+
+            if(any.second.get("estimate","__all__") == "__all__"){
+                t_src->topLevelItem(0)->setCheckState(0,Qt::Checked);
+                QTreeWidgetItem *itm_src;
+                for(int i = 0; i<t_src->topLevelItemCount(); ++i){
+                    itm_src = t_src->topLevelItem(i);
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,1))->setChecked(true);
+                }
+            }
+            if(any.second.get("estimate","__all__") == "__none__"){
+                t_src->topLevelItem(0)->setCheckState(0,Qt::Checked);
+                QTreeWidgetItem *itm_src;
+                for(int i = 0; i<t_src->topLevelItemCount(); ++i){
+                    itm_src = t_src->topLevelItem(i);
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,1))->setChecked(false);
+                }
+            }
+            if(any.second.get("datum","__all__") == "__all__"){
+                t_src->topLevelItem(0)->setCheckState(0,Qt::Checked);
+                QTreeWidgetItem *itm_src;
+                for(int i = 0; i<t_src->topLevelItemCount(); ++i){
+                    itm_src = t_src->topLevelItem(i);
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,2))->setChecked(true);
+                }
+            }
+            QStringList estimateSource;
+            QStringList datumSource;
+
+            for(const auto &any2 : any.second){
+                if(any2.first == "estimate"){
+                    for(const auto &any3 : any2.second){
+                        if(any3.first == "name"){
+                            QString name = QString::fromStdString(any3.second.data());
+                            estimateSource << name;
+                        }
+                    }
+                }
+                if(any2.first == "datum"){
+                    for(const auto &any3 : any2.second){
+                        if(any3.first == "name"){
+                            QString name = QString::fromStdString(any3.second.data());
+                            datumSource << name;
+                        }
+                    }
+                }
+            }
+
+
+            QTreeWidgetItem *itm_src;
+            for(int i = 0; i<t_src->topLevelItemCount(); ++i){
+                itm_src = t_src->topLevelItem(i);
+                if(i == 0){
+                    continue;
+                }
+
+                if(estimateSource.contains(itm_src->text(0))){
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,1))->setChecked(true);
+                }else{
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,1))->setChecked(false);
+                }
+                if(datumSource.contains(itm_src->text(0))){
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,2))->setChecked(true);
+                }else{
+                    qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,2))->setChecked(false);
+                }
+            }
+
+
+        }
+
+    }
+
+
 
 }
 

@@ -1669,6 +1669,7 @@ void MainWindow::loadXML(QString path)
 
 
         }
+        multi_sched_count_nsched();
     }
 
     //output
@@ -1903,8 +1904,32 @@ void MainWindow::loadXML(QString path)
         if (ctree.is_initialized()) {
             ui->groupBox_simulator->setChecked(true);
             auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
-            Simulator *sim = qobject_cast<Simulator *>(tmp);
-            sim->fromXML(*ctree);
+            auto *w = qobject_cast<Simulator *>(tmp);
+            w->fromXML(*ctree);
+        }
+    }
+
+    // solver
+    {
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.solver");
+
+        if (ctree.is_initialized()) {
+            ui->groupBox_simulator->setChecked(true);
+            auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+            auto *w = qobject_cast<Solver *>(tmp);
+            w->fromXML(*ctree);
+        }
+    }
+
+    // priorities
+    {
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.priorities");
+
+        if (ctree.is_initialized()) {
+            ui->groupBox_simulator->setChecked(true);
+            auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+            auto *w = qobject_cast<Priorities *>(tmp);
+            w->fromXML(*ctree);
         }
     }
 }

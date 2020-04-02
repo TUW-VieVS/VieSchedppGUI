@@ -259,43 +259,58 @@ p, li { white-space: pre-wrap; }
           </item>
           <item>
            <layout class="QFormLayout" name="formLayout_6">
-            <property name="verticalSpacing">
+            <property name="horizontalSpacing">
              <number>6</number>
             </property>
-            <property name="bottomMargin">
+            <property name="verticalSpacing">
+             <number>1</number>
+            </property>
+            <property name="rightMargin">
              <number>0</number>
             </property>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_gui_version">
-              <property name="text">
-               <string>unknown</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_scheduler_version">
-              <property name="text">
-               <string>unknown</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="0">
-             <widget class="QLabel" name="label_119">
+             <widget class="QLabel" name="label_120">
               <property name="text">
                <string>GUI version</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_gui_version">
+              <property name="styleSheet">
+               <string notr="true">background-color : rgba(0,0,0,0%)</string>
+              </property>
+              <property name="text">
+               <string>unknown</string>
+              </property>
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_0">
               <property name="text">
-               <string>scheduler version</string>
+               <string>scheduler version:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_scheduler_version">
+              <property name="styleSheet">
+               <string notr="true">background-color : rgba(0,0,0,0%)</string>
+              </property>
+              <property name="text">
+               <string>unknown</string>
+              </property>
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
