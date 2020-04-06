@@ -131,7 +131,6 @@ void Priorities::setup()
     }else{
         addRow("stations");
     }
-
 }
 
 void Priorities::paintBars()
@@ -145,6 +144,12 @@ void Priorities::paintBars()
             continue;
         }
         double v = itm->value();
+        if(t->item(i,0)->text() == "EOP"){
+            v += 5;
+        }
+        if(t->item(i,0)->text() == "stations"){
+            v *= model_->rowCount();
+        }
         vals << v;
         total+=v;
     }

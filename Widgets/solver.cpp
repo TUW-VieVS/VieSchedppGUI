@@ -258,7 +258,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
     if(xpo != -1){
         ui->checkBox_XPO->setChecked(true);
         ui->doubleSpinBox_xpo_int->setValue(xpo);
-        ui->doubleSpinBox_xpo_const->setValue(tree.get("EOP.XPO.interval",.0001));
+        ui->doubleSpinBox_xpo_const->setValue(tree.get("EOP.XPO.constraint",.0001));
     }else{
         ui->checkBox_XPO->setChecked(false);
     }
@@ -266,7 +266,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
     if(ypo != -1){
         ui->checkBox_YPO->setChecked(true);
         ui->doubleSpinBox_ypo_int->setValue(xpo);
-        ui->doubleSpinBox_ypo_const->setValue(tree.get("EOP.YPO.interval",.0001));
+        ui->doubleSpinBox_ypo_const->setValue(tree.get("EOP.YPO.constraint",.0001));
     }else{
         ui->checkBox_YPO->setChecked(false);
     }
@@ -274,7 +274,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
     if(dut1 != -1){
         ui->checkBox_dUT1->setChecked(true);
         ui->doubleSpinBox_dut1_int->setValue(xpo);
-        ui->doubleSpinBox_dut1_const->setValue(tree.get("EOP.dUT1.interval",.0001));
+        ui->doubleSpinBox_dut1_const->setValue(tree.get("EOP.dUT1.constraint",.0001));
     }else{
         ui->checkBox_dUT1->setChecked(false);
     }
@@ -282,7 +282,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
     if(nutx != -1){
         ui->checkBox_NUTX->setChecked(true);
         ui->doubleSpinBox_nutx_int->setValue(xpo);
-        ui->doubleSpinBox_nutx_const->setValue(tree.get("EOP.NUTX.interval",.0001));
+        ui->doubleSpinBox_nutx_const->setValue(tree.get("EOP.NUTX.constraint",.0001));
     }else{
         ui->checkBox_NUTX->setChecked(false);
     }
@@ -290,7 +290,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
     if(nuty != -1){
         ui->checkBox_NUTY->setChecked(true);
         ui->doubleSpinBox_nuty_int->setValue(xpo);
-        ui->doubleSpinBox_nuty_const->setValue(tree.get("EOP.NUTY.interval",.0001));
+        ui->doubleSpinBox_nuty_const->setValue(tree.get("EOP.NUTY.constraint",.0001));
     }else{
         ui->checkBox_NUTY->setChecked(false);
     }
