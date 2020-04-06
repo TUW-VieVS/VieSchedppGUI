@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>14</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -9165,7 +9165,7 @@ p, li { white-space: pre-wrap; }
                     <number>1</number>
                    </property>
                    <property name="maximum">
-                    <number>999</number>
+                    <number>9999</number>
                    </property>
                   </widget>
                  </item>

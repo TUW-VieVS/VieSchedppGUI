@@ -159,7 +159,6 @@ void Priorities::setup()
             if(tli == 2){
                 a->setValue(1./model_->rowCount());
             }
-            a->setDecimals(4);
             a->setRange(0,100);
             a->setSingleStep(.25);
             t->setItemWidget(itm_c, 1, a);

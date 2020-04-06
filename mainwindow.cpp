@@ -6707,8 +6707,8 @@ void MainWindow::multi_sched_count_nsched()
         ui->label_multiSchedulingNsched->setStyleSheet("");
     }
 
-    if(nsched>999){
-        ui->spinBox_multiSched_maxNumber->setValue(999);
+    if(nsched>9999){
+        ui->spinBox_multiSched_maxNumber->setValue(9999);
         ui->comboBox_multiSched_maxNumber->setCurrentIndex(1);
         ui->comboBox_multiSched_maxNumber->setEnabled(false);
     }else{
