@@ -29,11 +29,15 @@ private:
     Ui::Priorities *ui;
     QStandardItemModel *model_;
 
+    bool blockPaint = false;
     void addRow(QString name, double val=1);
 
 private slots:
     void paintBars();
     void setup();
+
+    void averageEOP();
+    void averageSta();
 };
 
 #endif // PRIORITIES_H
