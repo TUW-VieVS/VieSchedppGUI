@@ -2078,7 +2078,7 @@ void MainWindow::createDefaultParameterSettings()
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
-    src.minNumberOfStations = 2;
+    src.minNumberOfStations = 3;
     src.minElevation = 0;
     src.minSunDistance = 4;
     settings_.add_child("settings.source.parameters.parameter",VieVS::ParameterSettings::parameterSource2ptree("default",src).get_child("parameters"));

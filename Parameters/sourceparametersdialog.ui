@@ -116,9 +116,9 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-604</y>
-          <width>342</width>
-          <height>1185</height>
+          <y>0</y>
+          <width>317</width>
+          <height>1101</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -297,7 +297,7 @@
                <string>required number of stations for scans to this source</string>
               </property>
               <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum number of participating stations in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum number of participating stations in a scan to this source. If there are fewer stations in the session this number will be removed to the number of stations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="suffix">
                <string/>

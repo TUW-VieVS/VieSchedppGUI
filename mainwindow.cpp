@@ -1974,7 +1974,7 @@ void MainWindow::defaultParameters()
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
-    src.minNumberOfStations = 2;
+    src.minNumberOfStations = 3;
     src.minElevation = 0;
     src.minSunDistance = 4;
 

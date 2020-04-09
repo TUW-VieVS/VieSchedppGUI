@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>14</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1193,8 +1193,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>650</height>
+             <width>210</width>
+             <height>627</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_102">
@@ -7412,6 +7412,9 @@ p, li { white-space: pre-wrap; }
                <number>0</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Schedule calibration blocks. &lt;/p&gt;&lt;p&gt;During calibration blocks, the &lt;span style=&quot; font-weight:600;&quot;&gt;brightest sources&lt;/span&gt; are observed with a maximum number of stations. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Make sure that you have enough time at the session end to schedule the full calibration bock.&lt;/p&gt;&lt;p&gt;e.g: if a scan takes 300 seconds and you plan to observe 4 calibration scans it will take 4*300 seconds + slew time + calibration time + overhead. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <attribute name="icon">
                 <iconset resource="myresources.qrc">
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
@@ -7856,6 +7859,9 @@ p, li { white-space: pre-wrap; }
                </layout>
               </widget>
               <widget class="QWidget" name="tab_intensives">
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option is especially designed for &lt;span style=&quot; font-weight:600;&quot;&gt;intensive&lt;/span&gt; schedules. The idea is, that you start with you observations in one corner of the mutually visible sky. Every X seconds the schedule is forced to observe a source in alternating corners of the mutually visible sky. This gives a good sky-coverage and improved the overall quality of the schedule. Furthermore, scans at the corners of the mutually visible sky are assumed to be the most important to observe dUT1.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;You can use the &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Automatically change setup&lt;/span&gt;&amp;quot; buttons to quickly adjust your settings for intensive sessions. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <attribute name="icon">
                 <iconset resource="myresources.qrc">
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>

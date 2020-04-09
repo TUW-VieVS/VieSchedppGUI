@@ -26,10 +26,16 @@
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Estimate source coordinates. &lt;/p&gt;&lt;p&gt;Be careful when using this option. It is often not advisable to estimate sources from single sessions. Be especially carful with how to define the datum. Do not add sources into the datum if they have too few observations! &lt;/p&gt;&lt;p&gt;It might be that VieSched++ does remove some sources from the datum. For example: this is the case if you a source is only observed by single-baseline scans. &lt;/p&gt;&lt;p&gt;Simillarly, observations to sources might be removed completely from the estimation process in case there are to few scans or observations. &lt;/p&gt;&lt;p&gt;If you want to estimate sources it is recommended to define a minimum of three stations per scan in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="currentIndex">
           <number>2</number>
          </property>
          <widget class="QWidget" name="EOP">
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Earth orientation parameters (&lt;span style=&quot; font-weight:600;&quot;&gt;EOP&lt;/span&gt;) will be estimated using piecewise-linear offsets.&lt;/p&gt;&lt;p&gt;Define EOP estimation interval and constraints. &lt;/p&gt;&lt;p&gt;The default constraints are tight constraints --&amp;gt; EOPs are estimated as one offset over the full session&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date.&lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <attribute name="title">
            <string>EOP</string>
           </attribute>
@@ -300,6 +306,9 @@
           </layout>
          </widget>
          <widget class="QWidget" name="Stations">
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define estimation parameters for station-based parameters.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PWL&lt;/span&gt; stands for piecewise-linear. &lt;/p&gt;&lt;p&gt;For PWL parameters you have to define their estimation interval and rate. &lt;/p&gt;&lt;p&gt;The default constraints are loose constraints. &lt;/p&gt;&lt;p&gt;The reference clock (&amp;quot;ref clock&amp;quot;) is not estimated.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date. &lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <attribute name="title">
            <string>Stations</string>
           </attribute>
@@ -624,10 +633,13 @@
              <item>
               <widget class="QSpinBox" name="spinBox_src_minObs">
                <property name="minimum">
-                <number>4</number>
+                <number>5</number>
                </property>
                <property name="maximum">
                 <number>1000</number>
+               </property>
+               <property name="value">
+                <number>5</number>
                </property>
               </widget>
              </item>
@@ -643,6 +655,26 @@
                 </size>
                </property>
               </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>min #obs datum:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox_src_minObs_datum">
+               <property name="minimum">
+                <number>4</number>
+               </property>
+               <property name="maximum">
+                <number>9999</number>
+               </property>
+               <property name="value">
+                <number>25</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -669,7 +701,7 @@
              </column>
              <column>
               <property name="text">
-               <string>datum</string>
+               <string>*datum</string>
               </property>
               <property name="textAlignment">
                <set>AlignLeading|AlignVCenter</set>
@@ -680,6 +712,16 @@
                <string/>
               </property>
              </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;*sources only observed with single baseline scans additionally get removed from datum!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
           </layout>

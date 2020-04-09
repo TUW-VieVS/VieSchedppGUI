@@ -207,6 +207,7 @@ boost::property_tree::ptree Solver::toXML()
 
     tree.add("solver.source.minScans", ui->spinBox_src_minScans->value() );
     tree.add("solver.source.minObs", ui->spinBox_src_minObs->value() );
+    tree.add("solver.source.minObs_datum", ui->spinBox_src_minObs_datum->value() );
 
     for(int i = 0; i<ui->treeWidget_src_coord->topLevelItemCount(); ++i){
         QTreeWidgetItem *itm_coord = ui->treeWidget_src_coord->topLevelItem(i);
@@ -419,7 +420,9 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
 
         // read sources
         ui->spinBox_src_minScans->setValue(tree.get("source.minScans",3));
-        ui->spinBox_src_minObs->setValue(tree.get("source.minScans",4));
+        ui->spinBox_src_minObs->setValue(tree.get("source.minObs",5));
+        ui->spinBox_src_minObs_datum->setValue(tree.get("source.minObs_datum",25));
+
         if(any.first == "source"){
 
             QTreeWidget *t_src = ui->treeWidget_src_coord;
@@ -1034,14 +1037,22 @@ void Solver::addSources(QStandardItem *dummy)
 
         QCheckBox *coord = new QCheckBox();
         coord->setStyleSheet("margin-left:20%; margin-right:00%;");
-        coord->setChecked(true);
+        if(src == "__all__"){
+            coord->setChecked(false);
+        }else{
+            coord->setChecked(true);
+        }
         coord->setEnabled(enable);
         t_coord->setItemWidget(item,c++,coord);
 
         QCheckBox *datum = new QCheckBox();
         datum->setStyleSheet("margin-left:30%; margin-right:00%;");
         datum->setChecked(true);
-        datum->setEnabled(enable);
+        if(src == "__all__"){
+            datum->setEnabled(false);
+        }else{
+            datum->setEnabled(enable);
+        }
         t_coord->setItemWidget(item,c++,datum);
 
         connect(coord, &QCheckBox::toggled, [coord, datum](){
