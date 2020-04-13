@@ -752,11 +752,11 @@ QString MainWindow::writeXML()
 
     if(ui->groupBox_simulator->isChecked()){
         auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
-        Simulator *sim = qobject_cast<Simulator *>(tmp);
+        SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
         para.simulator(sim->toXML());
 
         auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
-        Solver *solver = qobject_cast<Solver *>(tmp2);
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
         para.solver(solver->toXML());
 
         auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
@@ -1904,7 +1904,7 @@ void MainWindow::loadXML(QString path)
         if (ctree.is_initialized()) {
             ui->groupBox_simulator->setChecked(true);
             auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
-            auto *w = qobject_cast<Simulator *>(tmp);
+            auto *w = qobject_cast<SimulatorWidget *>(tmp);
             w->fromXML(*ctree);
         }
     }
@@ -1916,7 +1916,7 @@ void MainWindow::loadXML(QString path)
         if (ctree.is_initialized()) {
             ui->groupBox_simulator->setChecked(true);
             auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
-            auto *w = qobject_cast<Solver *>(tmp);
+            auto *w = qobject_cast<SolverWidget *>(tmp);
             w->fromXML(*ctree);
         }
     }

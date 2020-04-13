@@ -1,25 +1,26 @@
-#ifndef SOLVER_H
-#define SOLVER_H
+#ifndef SOLVERWIDGET_H
+#define SOLVERWIDGET_H
 
+#include <QWidget>
 #include <QWidget>
 #include <QDoubleSpinBox>
 #include <QCheckBox>
 #include <boost/property_tree/ptree.hpp>
-#include "QStandardItemModel"
+#include <QStandardItemModel>
 #include <QTreeWidgetItem>
-#include "QDialog"
+#include <QDialog>
 
 namespace Ui {
-class Solver;
+class SolverWidget;
 }
 
-class Solver : public QWidget
+class SolverWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Solver(QStandardItemModel *station_model_, QStandardItemModel *source_model_, QWidget *parent = nullptr);
-    ~Solver();
+    explicit SolverWidget(QStandardItemModel *station_model_, QStandardItemModel *source_model_, QWidget *parent = nullptr);
+    ~SolverWidget();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
 
@@ -37,9 +38,9 @@ private slots:
     void on_pushButton_3_clicked();
 
 private:
-    Ui::Solver *ui;
+    Ui::SolverWidget *ui;
     QStandardItemModel *station_model_;
     QStandardItemModel *source_model_;
 };
 
-#endif // SOLVER_H
+#endif // SOLVERWIDGET_H

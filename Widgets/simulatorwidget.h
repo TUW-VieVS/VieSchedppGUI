@@ -1,25 +1,25 @@
-#ifndef SIMULATOR_H
-#define SIMULATOR_H
+#ifndef SIMULATORWIDGET_H
+#define SIMULATORWIDGET_H
 
 #include <QWidget>
 #include <QDoubleSpinBox>
 #include <boost/property_tree/ptree.hpp>
-#include "QStandardItemModel"
+#include <QStandardItemModel>
 #include <QTreeWidgetItem>
-#include "QDialog"
+#include <QDialog>
 #include <cmath>
 
 namespace Ui {
-class Simulator;
+class SimulatorWidget;
 }
 
-class Simulator : public QWidget
+class SimulatorWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Simulator(QStandardItemModel *model, QWidget *parent = nullptr);
-    ~Simulator();
+    explicit SimulatorWidget(QStandardItemModel *model, QWidget *parent = nullptr);
+    ~SimulatorWidget();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
 
@@ -32,8 +32,8 @@ private slots:
     void on_pushButton_wnTable_clicked();
 
 private:
-    Ui::Simulator *ui;
+    Ui::SimulatorWidget *ui;
     QStandardItemModel *model_;
 };
 
-#endif // SIMULATOR_H
+#endif // SIMULATORWIDGET_H

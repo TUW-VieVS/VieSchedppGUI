@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Solver</class>
- <widget class="QWidget" name="Solver">
+ <class>SolverWidget</class>
+ <widget class="QWidget" name="SolverWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>843</width>
-    <height>649</height>
+    <width>828</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -735,166 +735,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkBox_XPO</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_xpo_int</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>51</x>
-     <y>369</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>118</x>
-     <y>375</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_XPO</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_xpo_const</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>74</x>
-     <y>375</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>280</x>
-     <y>371</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_YPO</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_ypo_int</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>65</x>
-     <y>405</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>120</x>
-     <y>407</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_YPO</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_ypo_const</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>73</x>
-     <y>408</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>262</x>
-     <y>405</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_dUT1</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_dut1_int</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>52</x>
-     <y>432</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>139</x>
-     <y>435</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_dUT1</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_dut1_const</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>67</x>
-     <y>433</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>254</x>
-     <y>437</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_NUTX</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_nutx_int</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>73</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>129</x>
-     <y>468</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_NUTX</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_nutx_const</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>78</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>251</x>
-     <y>467</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_NUTY</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_nuty_int</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>62</x>
-     <y>498</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>142</x>
-     <y>498</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_NUTY</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_nuty_const</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>71</x>
-     <y>504</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>238</x>
-     <y>503</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

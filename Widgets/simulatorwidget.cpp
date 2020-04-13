@@ -1,9 +1,9 @@
-#include "simulator.h"
-#include "ui_simulator.h"
+#include "simulatorwidget.h"
+#include "ui_simulatorwidget.h"
 
-Simulator::Simulator(QStandardItemModel *model, QWidget *parent) :
+SimulatorWidget::SimulatorWidget(QStandardItemModel *model, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Simulator),
+    ui(new Ui::SimulatorWidget),
     model_{model}
 {
 
@@ -22,13 +22,13 @@ Simulator::Simulator(QStandardItemModel *model, QWidget *parent) :
             SLOT(toggleAll(QTreeWidgetItem*, int)));
 }
 
-Simulator::~Simulator()
+SimulatorWidget::~SimulatorWidget()
 {
     delete ui;
 }
 
-void Simulator::addStations(QStandardItem *dummy)
-{    
+void SimulatorWidget::addStations(QStandardItem *dummy)
+{
     if(dummy != nullptr && dummy->column() != 0){
         return;
     }
@@ -268,7 +268,7 @@ void Simulator::addStations(QStandardItem *dummy)
     }
 }
 
-boost::property_tree::ptree Simulator::toXML()
+boost::property_tree::ptree SimulatorWidget::toXML()
 {
     QTreeWidget *t = ui->treeWidget_simpara;
     int rmax = t->topLevelItemCount();
@@ -348,7 +348,7 @@ boost::property_tree::ptree Simulator::toXML()
     }
 }
 
-void Simulator::fromXML(const boost::property_tree::ptree &tree)
+void SimulatorWidget::fromXML(const boost::property_tree::ptree &tree)
 {
     QTreeWidget *t = ui->treeWidget_simpara;
     int rmax = t->topLevelItemCount();
@@ -437,7 +437,7 @@ void Simulator::fromXML(const boost::property_tree::ptree &tree)
     }
 }
 
-void Simulator::toggleAll(QTreeWidgetItem *item, int column)
+void SimulatorWidget::toggleAll(QTreeWidgetItem *item, int column)
 {
     if(item->text(0) == "__all__" && column == 0){
         bool checked = item->checkState(0);
@@ -468,7 +468,7 @@ void Simulator::toggleAll(QTreeWidgetItem *item, int column)
     }
 }
 
-void Simulator::on_pushButton_wnTable_clicked()
+void SimulatorWidget::on_pushButton_wnTable_clicked()
 {
     QDialog *d = new QDialog(this);
     QHBoxLayout *l = new QHBoxLayout();

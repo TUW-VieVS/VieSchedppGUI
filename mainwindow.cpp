@@ -485,13 +485,13 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 //    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 
-    Simulator *simulator = new Simulator(selectedStationModel);
+    SimulatorWidget *simulator = new SimulatorWidget(selectedStationModel);
     simulator->setObjectName("Simulation_Widged");
     ui->tabWidget_simAna->addTab(simulator, "Simulation");
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
 
-    Solver *solver = new Solver(selectedStationModel, selectedSourceModel);
+    SolverWidget *solver = new SolverWidget(selectedStationModel, selectedSourceModel);
     solver->setObjectName("Solver_Widged");
     ui->tabWidget_simAna->addTab(solver, "Solve");
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addStations(QStandardItem *)));

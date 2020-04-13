@@ -1,9 +1,10 @@
-#include "solver.h"
-#include "ui_solver.h"
+#include "solverwidget.h"
+#include "ui_solverwidget.h"
 
-Solver::Solver(QStandardItemModel *station_model, QStandardItemModel *source_model, QWidget *parent) :
+
+SolverWidget::SolverWidget(QStandardItemModel *station_model, QStandardItemModel *source_model, QWidget *parent) :
       QWidget(parent),
-      ui(new Ui::Solver),
+      ui(new Ui::SolverWidget),
       station_model_{station_model},
       source_model_{source_model}
 {
@@ -49,12 +50,12 @@ Solver::Solver(QStandardItemModel *station_model, QStandardItemModel *source_mod
     ui->comboBox_ref_clock->setModel(station_model);
 }
 
-Solver::~Solver()
+SolverWidget::~SolverWidget()
 {
     delete ui;
 }
 
-boost::property_tree::ptree Solver::toXML()
+boost::property_tree::ptree SolverWidget::toXML()
 {
     QTreeWidget *t_clock = ui->treeWidget_sta_clock;
     QTreeWidget *t_coord = ui->treeWidget_sta_coord;
@@ -252,7 +253,7 @@ boost::property_tree::ptree Solver::toXML()
     return tree;
 }
 
-void Solver::fromXML(const boost::property_tree::ptree &tree)
+void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
 {
     // read EOP
     double xpo = tree.get("EOP.XPO.interval",-1.0);
@@ -503,7 +504,7 @@ void Solver::fromXML(const boost::property_tree::ptree &tree)
 
 }
 
-void Solver::addStations(QStandardItem *dummy)
+void SolverWidget::addStations(QStandardItem *dummy)
 {
     if(dummy != nullptr && dummy->column() != 0){
         return;
@@ -971,7 +972,7 @@ void Solver::addStations(QStandardItem *dummy)
     }
 }
 
-void Solver::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
+void SolverWidget::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
 {
     if(item->text(0) == "__all__" && column == 0){
         bool checked = item->checkState(0);
@@ -1002,7 +1003,7 @@ void Solver::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
     }
 }
 
-void Solver::addSources(QStandardItem *dummy)
+void SolverWidget::addSources(QStandardItem *dummy)
 {
     if(dummy != nullptr && dummy->column() != 0){
         return;
@@ -1092,7 +1093,7 @@ void Solver::addSources(QStandardItem *dummy)
     }
 }
 
-void Solver::toggleAll_src_coord(QTreeWidgetItem *item, int column)
+void SolverWidget::toggleAll_src_coord(QTreeWidgetItem *item, int column)
 {
     if(item->text(0) == "__all__" && column == 0){
         bool checked = item->checkState(0);
@@ -1125,7 +1126,7 @@ void Solver::toggleAll_src_coord(QTreeWidgetItem *item, int column)
 
 
 
-void Solver::toggleAll_sta_clock(QTreeWidgetItem *item, int column)
+void SolverWidget::toggleAll_sta_clock(QTreeWidgetItem *item, int column)
 {
     if(item->text(0) == "__all__" && column == 0){
         bool checked = item->checkState(0);
@@ -1156,7 +1157,7 @@ void Solver::toggleAll_sta_clock(QTreeWidgetItem *item, int column)
     }
 }
 
-void Solver::toggleAll_sta_tropo(QTreeWidgetItem *item, int column)
+void SolverWidget::toggleAll_sta_tropo(QTreeWidgetItem *item, int column)
 {
     if(item->text(0) == "__all__" && column == 0){
         bool checked = item->checkState(0);
@@ -1188,7 +1189,7 @@ void Solver::toggleAll_sta_tropo(QTreeWidgetItem *item, int column)
 }
 
 
-void Solver::on_pushButton_3_clicked()
+void SolverWidget::on_pushButton_3_clicked()
 {
     QStringList icrf3d;
     icrf3d       << "0002-478" << "0007+106" << "0009-148" << "0010+405" << "0013-005" << "0017+200" << "0016+731"

@@ -127,7 +127,8 @@ SOURCES += \
     ../VieSchedpp/Simulator/Unknown.cpp \
     Utility/downloadmanager.cpp \
     Widgets/priorities.cpp \
-    Widgets/solver.cpp \
+    Widgets/simulatorwidget.cpp \
+    Widgets/solverwidget.cpp \
     main.cpp \
     mainwindow.cpp \
     Delegates/comboboxdelegate.cpp \
@@ -151,7 +152,6 @@ SOURCES += \
     secondaryGUIs/parsedowntimes.cpp \
     secondaryGUIs/savetosettingsdialog.cpp \
     secondaryGUIs/settingsloadwindow.cpp \
-    Widgets/simulator.cpp \
     secondaryGUIs/skedcataloginfo.cpp \
     secondaryGUIs/textfileviewer.cpp \
     secondaryGUIs/vieschedpp_analyser.cpp \
@@ -248,7 +248,8 @@ HEADERS += \
     Parameters/stationparametersdialog.h \
     Utility/downloadmanager.h \
     Widgets/priorities.h \
-    Widgets/solver.h \
+    Widgets/simulatorwidget.h \
+    Widgets/solverwidget.h \
     secondaryGUIs/addbanddialog.h \
     secondaryGUIs/addgroupdialog.h \
     secondaryGUIs/mastersessionviewer.h \
@@ -259,7 +260,6 @@ HEADERS += \
     secondaryGUIs/parsedowntimes.h \
     secondaryGUIs/savetosettingsdialog.h \
     secondaryGUIs/settingsloadwindow.h \
-    Widgets/simulator.h \
     secondaryGUIs/skedcataloginfo.h \
     secondaryGUIs/textfileviewer.h \
     secondaryGUIs/vieschedpp_analyser.h \
@@ -274,7 +274,8 @@ HEADERS += \
 
 FORMS += \
     Widgets/priorities.ui \
-    Widgets/solver.ui \
+    Widgets/simulatorwidget.ui \
+    Widgets/solverwidget.ui \
     mainwindow.ui \
     Parameters/baselineparametersdialog.ui \
     Parameters/sourceparametersdialog.ui \
@@ -289,7 +290,6 @@ FORMS += \
     secondaryGUIs/parsedowntimes.ui \
     secondaryGUIs/savetosettingsdialog.ui \
     secondaryGUIs/settingsloadwindow.ui \
-    Widgets/simulator.ui \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
     secondaryGUIs/vieschedpp_analyser.ui \
