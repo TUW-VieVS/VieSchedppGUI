@@ -7075,7 +7075,7 @@ void MainWindow::on_pushButton_addCondition_clicked()
 
     QIcon ic;
     QTreeWidgetItem *c = new QTreeWidgetItem();
-    if(isGroup || members == '__all__'){
+    if(isGroup || members == "__all__"){
         ic = QIcon(":/icons/icons/source_group.png");
     }else{
         ic = QIcon(":/icons/icons/source.png");
@@ -7122,7 +7122,7 @@ void MainWindow::on_pushButton_addHighImpactAzEl_clicked()
 
     QIcon ic;
     QTreeWidgetItem *c = new QTreeWidgetItem();
-    if(isGroup || members == '__all__'){
+    if(isGroup || members == "__all__"){
         ic = QIcon(":/icons/icons/station_group.png");
     }else{
         ic = QIcon(":/icons/icons/station.png");

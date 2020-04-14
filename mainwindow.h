@@ -84,7 +84,6 @@
 #include "Widgets/priorities.h"
 
 #include "Utility/downloadmanager.h"
-
 QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {

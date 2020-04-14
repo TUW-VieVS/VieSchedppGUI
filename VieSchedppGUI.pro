@@ -53,10 +53,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 #INCLUDEPATH += /home/mschartn/boost_1_64_0/
 #LIBS += "-LC:/home/mschartn/boost_1_64_0//stage/lib/"
-INCLUDEPATH += C:/MinGW/include
+#INCLUDEPATH += C:/MinGW/include
+INCLUDEPATH += ../boost_1_72_0
 INCLUDEPATH += ../VieSchedpp/EIGEN
 INCLUDEPATH += ../VieSchedpp/EIGEN/Dense
-LIBS += ../IAU_SOFA/Release/libsofa_c.a
+LIBS += ../IAU_SOFA/Release/sofa_c.lib
 
 SOURCES += \
     ../VieSchedpp/Input/LogParser.cpp \
@@ -314,6 +315,7 @@ exists( ../VieSchedpp/.git){
 }else{
     GIT_SCHEDULER_COMMIT_HASH = "unknown"
 }
+DEFINES += BOOST_ALL_NO_LIB
 
 message(VieSched++ GUI version $$GIT_COMMIT_HASH)
 message(VieSched++ version $$GIT_SCHEDULER_COMMIT_HASH)
