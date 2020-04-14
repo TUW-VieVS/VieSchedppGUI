@@ -51,13 +51,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-#INCLUDEPATH += /home/mschartn/boost_1_64_0/
-#LIBS += "-LC:/home/mschartn/boost_1_64_0//stage/lib/"
-#INCLUDEPATH += C:/MinGW/include
-INCLUDEPATH += ../boost_1_72_0
 INCLUDEPATH += ../VieSchedpp/EIGEN
 INCLUDEPATH += ../VieSchedpp/EIGEN/Dense
-LIBS += ../IAU_SOFA/Release/sofa_c.lib
+unix {
+    LIBS += ../IAU_SOFA/Release/libsofa_c.a
+}
+
+# for my windows builds
+win32{
+    INCLUDEPATH += ../boost_1_72_0
+    LIBS += ../IAU_SOFA/Release/sofa_c.lib
+}
 
 SOURCES += \
     ../VieSchedpp/Input/LogParser.cpp \
