@@ -301,6 +301,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     readSkedCatalogs();
 
+    SimulatorWidget *simulator = new SimulatorWidget(selectedStationModel);
+    simulator->setObjectName("Simulation_Widged");
+    ui->tabWidget_simAna->addTab(simulator, "Simulation");
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
+
+    SolverWidget *solver = new SolverWidget(selectedStationModel, selectedSourceModel);
+    solver->setObjectName("Solver_Widged");
+    ui->tabWidget_simAna->addTab(solver, "Solve");
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addStations(QStandardItem *)));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addStations()));
+
+    connect(selectedSourceModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addSources(QStandardItem *)));
+    connect(selectedSourceModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addSources()));
+
+    Priorities *priorities = new Priorities(selectedStationModel);
+    priorities->setObjectName("Priorities_Widged");
+    ui->tabWidget_simAna->addTab(priorities, "Priority");
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), priorities, SLOT(addStations(QStandardItem *)));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addStations()));
+
     readStations();
     readSources();
 
@@ -485,27 +506,6 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 //    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 
-    SimulatorWidget *simulator = new SimulatorWidget(selectedStationModel);
-    simulator->setObjectName("Simulation_Widged");
-    ui->tabWidget_simAna->addTab(simulator, "Simulation");
-    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
-    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), simulator, SLOT(addStations()));
-
-    SolverWidget *solver = new SolverWidget(selectedStationModel, selectedSourceModel);
-    solver->setObjectName("Solver_Widged");
-    ui->tabWidget_simAna->addTab(solver, "Solve");
-    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addStations(QStandardItem *)));
-    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addStations()));
-
-    connect(selectedSourceModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addSources(QStandardItem *)));
-    connect(selectedSourceModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addSources()));
-    solver->addSources();
-
-    Priorities *priorities = new Priorities(selectedStationModel);
-    priorities->setObjectName("Priorities_Widged");
-    ui->tabWidget_simAna->addTab(priorities, "Priority");
-    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), priorities, SLOT(addStations(QStandardItem *)));
-    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addStations()));
 
 
 
@@ -5404,6 +5404,8 @@ void MainWindow::on_checkBox_showBaselines_clicked(bool checked)
 
 void MainWindow::readSources()
 {
+    ui->comboBox_setupSource->blockSignals(true);
+    selectedSourceModel->blockSignals(true);
 
     QString sourcePath = ui->lineEdit_pathSource->text();
 
@@ -5460,6 +5462,14 @@ void MainWindow::readSources()
         }
         sourceFile.close();
     }
+    selectedSourceModel->blockSignals(false);
+    ui->comboBox_setupSource->blockSignals(false);
+    ui->comboBox_setupSource->setCurrentIndex(0);
+    sourceListChanged();
+    auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+    SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+    solver->addSources();
+
     plotSkyMap();
 }
 
@@ -5913,12 +5923,20 @@ void MainWindow::on_pushButton_13_clicked()
 {
     ui->lineEdit_allStationsFilter_3->setText("");
     ui->comboBox_setupSource->blockSignals(true);
+    selectedSourceModel->blockSignals(true);
 
     for(int i=0; i<allSourceModel->rowCount(); ++i){
         on_treeView_allAvailabeSources_clicked(allSourceModel->index(i,0));
     }
+
+    selectedSourceModel->blockSignals(false);
     ui->comboBox_setupSource->blockSignals(false);
     ui->comboBox_setupSource->setCurrentIndex(0);
+    sourceListChanged();
+    auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+    SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+    solver->addSources();
+
 }
 
 void MainWindow::on_pushButton_15_clicked()
