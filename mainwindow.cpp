@@ -5577,7 +5577,7 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
 
 void MainWindow::on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1)
 {
-    allSourceProxyModel->setFilterFixedString(arg1);
+    allSourceProxyModel->addFilterFixedString(arg1);
 }
 
 void MainWindow::on_treeView_allAvailabeSources_entered(const QModelIndex &index)
@@ -5911,6 +5911,7 @@ void MainWindow::on_comboBox_setupSource_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_13_clicked()
 {
+    ui->lineEdit_allStationsFilter_3->setText("");
     ui->comboBox_setupSource->blockSignals(true);
 
     for(int i=0; i<allSourceModel->rowCount(); ++i){

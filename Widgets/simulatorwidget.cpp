@@ -279,34 +279,34 @@ boost::property_tree::ptree SimulatorWidget::toXML()
         tree.add("simulator.seed", ui->spinBox_seed->value());
     }
     if(t->topLevelItem(0)->checkState(0) == Qt::Checked){
-        QTreeWidgetItem *itm = t->topLevelItem(0);
-        int c = 1;
-        double wn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          QTreeWidgetItem *itm = t->topLevelItem(0);
+          int c = 1;
+          double wn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
 
-        double clockASD = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double clockDur = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double clockASD = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double clockDur = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
 
-        double tropo_Cn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_H = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_dH = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_dHseg = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_ve = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_vn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
-        double tropo_wzd0 = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_Cn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_H = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_dH = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_dHseg = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_ve = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_vn = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
+          double tropo_wzd0 = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,c++))->value();
 
-        tree.add("simulator.station.wn",wn);
-        tree.add("simulator.station.<xmlattr>.name","__all__");
+          tree.add("simulator.station.wn",wn);
+          tree.add("simulator.station.<xmlattr>.name","__all__");
 
-        tree.add("simulator.station.clockASD",clockASD);
-        tree.add("simulator.station.clockDur",clockDur);
+          tree.add("simulator.station.clockASD",clockASD);
+          tree.add("simulator.station.clockDur",clockDur);
 
-        tree.add("simulator.station.tropo_Cn",tropo_Cn);
-        tree.add("simulator.station.tropo_H",tropo_H);
-        tree.add("simulator.station.tropo_dH",tropo_dH);
-        tree.add("simulator.station.tropo_dHseg",tropo_dHseg);
-        tree.add("simulator.station.tropo_ve",tropo_ve);
-        tree.add("simulator.station.tropo_vn",tropo_vn);
-        tree.add("simulator.station.tropo_wzd0",tropo_wzd0);
+          tree.add("simulator.station.tropo_Cn",tropo_Cn);
+          tree.add("simulator.station.tropo_H",tropo_H);
+          tree.add("simulator.station.tropo_dH",tropo_dH);
+          tree.add("simulator.station.tropo_dHseg",tropo_dHseg);
+          tree.add("simulator.station.tropo_ve",tropo_ve);
+          tree.add("simulator.station.tropo_vn",tropo_vn);
+          tree.add("simulator.station.tropo_wzd0",tropo_wzd0);
     }else{
 
         for (int r = 1; r<rmax; ++r){
@@ -344,8 +344,8 @@ boost::property_tree::ptree SimulatorWidget::toXML()
 
             tree.add_child("simulator.station",staTree.get_child("station"));
         }
-        return tree;
     }
+    return tree;
 }
 
 void SimulatorWidget::fromXML(const boost::property_tree::ptree &tree)
