@@ -3578,6 +3578,7 @@ void MainWindow::on_pushButton_clicked()
 
 
         createBaselines = false;
+        selectedStationModel->blockSignals(true);
 
         if(stas.size() >= 2){
             int n = selectedStationModel->rowCount();
@@ -3589,6 +3590,9 @@ void MainWindow::on_pushButton_clicked()
             allStationProxyModel->addFilterFixedString("");
             for(int i=0; i<stas.size(); ++i){
                 QString sta = stas.at(i).toUpper();
+                if(i==stas.size()-1){
+                    selectedStationModel->blockSignals(false);
+                }
                 bool found = false;
                 for(int j=0; j<allStationProxyModel->rowCount(); ++j){
                     QString itsta = allStationProxyModel->index(j,1).data().toString().toUpper();
@@ -3608,6 +3612,19 @@ void MainWindow::on_pushButton_clicked()
             errorText.append("error while reading stations\n");
         }
         createBaselines = true;
+        networkSizeChanged();
+        auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
+        sim->addStations();
+
+        auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+        solver->addStations();
+
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        priorities->addStations();
+
         createBaselineModel();
 
 
@@ -4267,6 +4284,8 @@ void MainWindow::clearSetup(bool sta, bool src, bool bl)
 
 void MainWindow::readStations()
 {
+    selectedStationModel->blockSignals(true);
+
     QString antennaPath = ui->lineEdit_pathAntenna->text();
     QString equipPath = ui->lineEdit_pathEquip->text();
     QString positionPath = ui->lineEdit_pathPosition->text();
@@ -4427,6 +4446,21 @@ void MainWindow::readStations()
     for(int i=0; i<19; ++i){
         ui->treeView_allAvailabeStations->resizeColumnToContents(i);
     }
+
+    selectedStationModel->blockSignals(false);
+    networkSizeChanged();
+    auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+    SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
+    sim->addStations();
+
+    auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+    SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+    solver->addStations();
+
+    auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+    Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+    priorities->addStations();
+
     plotWorldMap();
 
 }
