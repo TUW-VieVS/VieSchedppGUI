@@ -20,12 +20,9 @@ boost::property_tree::ptree Priorities::toXML()
     auto *t = ui->treeWidget_params;
 
     boost::property_tree::ptree tree;
-    if(ui->radioButton_mfe->isChecked()){
-        tree.add("priorities.type","mean formal errors");
-    }else if(ui->radioButton_rep->isChecked()){
-        tree.add("priorities.type","repeatabilities");
-    }else{
-        tree.add("priorities.type","none");
+    if(ui->groupBox_recom->isChecked()){
+        int v = ui->horizontalSlider_recom->value();
+        tree.add("priorities.type.fraction", v*10);
     }
     tree.add("priorities.percentile",ui->doubleSpinBox_quantile->value());
 
@@ -66,14 +63,15 @@ boost::property_tree::ptree Priorities::toXML()
 
 void Priorities::fromXML(const boost::property_tree::ptree &tree)
 {
-    QString type = QString::fromStdString(tree.get("priorities.type","none"));
-    if (type == "none"){
-        ui->radioButton_noRec->setChecked(true);
-    }else if(type == "repeatabilities"){
-        ui->radioButton_rep->setChecked(true);
-    }else if(type == "mean formal errors"){
-        ui->radioButton_mfe->setChecked(true);
+    const auto &type = tree.get_child_optional("priorities.type");
+    if(type.is_initialized()){
+        ui->groupBox_recom->setChecked(true);
+        int v = tree.get("priorities.type.fraction", 70);
+        ui->horizontalSlider_recom->setValue(v/10);
+    }else{
+        ui->groupBox_recom->setChecked(false);
     }
+
     ui->doubleSpinBox_quantile->setValue(tree.get("priorities.percentile",0.75));
 
 

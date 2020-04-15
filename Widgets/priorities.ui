@@ -16,7 +16,7 @@
   <property name="whatsThis">
    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The priopities section defines how to compare schedules. &lt;/p&gt;&lt;p&gt;It is used to calculate the score of a schedule that is listed in the &lt;span style=&quot; font-style:italic;&quot;&gt;simulation_summary.txt&lt;/span&gt; file. &lt;/p&gt;&lt;p&gt;Additonally, it defines which schedule is reported to be the &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;recommended&lt;/span&gt;&amp;quot; schedule in the log file. The &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;recommended&lt;/span&gt;&amp;quot; schedule is selected based on the mean formal error or repeatability. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The reference quantile is used to define how the scores are calculated. &lt;/p&gt;&lt;p&gt;The score is calculated based on individual scores per parameters:&lt;/p&gt;&lt;p&gt;For a given parameter, all simulated accuracies are compared. The highest accuracy gets a score of 1. Accuracy at the reference quantile of all accuracies and poorer get a score of 0. Linear interpolation is used in between. &lt;br/&gt;&lt;/p&gt;&lt;p&gt;Use the spin box to define how much weight you want to give one parameter. &lt;/p&gt;&lt;p&gt;e.g.: if you are especially interested in dUT1 give this parameter a high weight. &lt;/p&gt;&lt;p&gt;It is advisable to always select a high number of observations as a goal of scheduling to minimize inaccuracies from the simulations. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <property name="spacing">
@@ -25,40 +25,6 @@
      <property name="bottomMargin">
       <number>0</number>
      </property>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>recommend based on</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton_noRec">
-       <property name="text">
-        <string>no recommendation</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton_mfe">
-       <property name="text">
-        <string>mean formal error</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="radioButton_rep">
-       <property name="text">
-        <string>repeatability</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
@@ -98,7 +64,119 @@
     </layout>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox_recom">
+     <property name="title">
+      <string>output recommendation</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QSlider" name="horizontalSlider_recom">
+        <property name="maximum">
+         <number>10</number>
+        </property>
+        <property name="singleStep">
+         <number>1</number>
+        </property>
+        <property name="pageStep">
+         <number>1</number>
+        </property>
+        <property name="value">
+         <number>7</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::NoTicks</enum>
+        </property>
+        <property name="tickInterval">
+         <number>50</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>&lt;-- mean formal errors only</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>both equally</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>repeatability only --&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QTreeWidget" name="treeWidget_params">
+     <property name="toolTip">
+      <string>specify the goal of your session</string>
+     </property>
+     <property name="statusTip">
+      <string>specify the goal of your session</string>
+     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
      </property>

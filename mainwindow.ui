@@ -7391,6 +7391,12 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_simulator_save">
+               <property name="statusTip">
+                <string>save simulator setup</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save simulator setup to be able to lead it in upcoming sessions. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The setup is loaded from the &lt;span style=&quot; font-weight:600;&quot;&gt;settings.xml&lt;/span&gt; file in your VieSched++ GUI directory. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -7402,6 +7408,12 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_simulator_load">
+               <property name="statusTip">
+                <string>load simulator settings</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load simulator setup from previous sessions. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The setup is loaded from the &lt;span style=&quot; font-weight:600;&quot;&gt;settings.xml&lt;/span&gt; file in your VieSched++ GUI directory. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string/>
                </property>

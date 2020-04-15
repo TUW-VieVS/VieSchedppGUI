@@ -33,6 +33,12 @@
           <number>2</number>
          </property>
          <widget class="QWidget" name="EOP">
+          <property name="toolTip">
+           <string>Earth orientation parameter estimation setup</string>
+          </property>
+          <property name="statusTip">
+           <string>Earth orientation parameter estimation setup</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Earth orientation parameters (&lt;span style=&quot; font-weight:600;&quot;&gt;EOP&lt;/span&gt;) will be estimated using piecewise-linear offsets.&lt;/p&gt;&lt;p&gt;Define EOP estimation interval and constraints. &lt;/p&gt;&lt;p&gt;The default constraints are tight constraints --&amp;gt; EOPs are estimated as one offset over the full session&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date.&lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -306,6 +312,12 @@
           </layout>
          </widget>
          <widget class="QWidget" name="Stations">
+          <property name="toolTip">
+           <string>station-based parameter estimation setup</string>
+          </property>
+          <property name="statusTip">
+           <string>station-based parameter estimation setup</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define estimation parameters for station-based parameters.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PWL&lt;/span&gt; stands for piecewise-linear. &lt;/p&gt;&lt;p&gt;For PWL parameters you have to define their estimation interval and rate. &lt;/p&gt;&lt;p&gt;The default constraints are loose constraints. &lt;/p&gt;&lt;p&gt;The reference clock (&amp;quot;ref clock&amp;quot;) is not estimated.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date. &lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -570,6 +582,15 @@
           </layout>
          </widget>
          <widget class="QWidget" name="Sources">
+          <property name="toolTip">
+           <string>source-based parameter estimation setup</string>
+          </property>
+          <property name="statusTip">
+           <string>source-based parameter estimation setup</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define estimation parameters for source-based parameters.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Source coordinates are only estimated if the minimum number of scans and minimum number of observations is reached. &lt;/p&gt;&lt;p&gt;If they are not reached and the coordinates of the source should be estimated, all observations to this source are instead removed.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Be careful with your datum definition. Sources are only added to the datum if they reach a minimum number of observations. Under certain circumstances, sources are removed from the datum e.g.: if they are only observed by single baseline scans. &lt;/p&gt;&lt;p&gt;If you really want to estimate source coordinates from a single session, consider using a minimum of three stations per scan.&lt;/p&gt;&lt;p&gt;Use the &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;datum: ICRF3 defining&amp;quot;&lt;/span&gt; buttom to only use ICRF3 defining sources for the datum definition. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <attribute name="title">
            <string>Sources</string>
           </attribute>

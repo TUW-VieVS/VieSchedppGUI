@@ -973,6 +973,8 @@ void SolverWidget::addStations(QStandardItem *dummy)
         }
         ++r;
     }
+
+    ui->comboBox_ref_clock->setCurrentIndex(0);
 }
 
 void SolverWidget::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
