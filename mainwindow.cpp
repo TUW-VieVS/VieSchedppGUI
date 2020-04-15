@@ -8175,3 +8175,4 @@ void MainWindow::updateWeightFactorValue()
     dsb->setValue(newVal);
 }
 
+

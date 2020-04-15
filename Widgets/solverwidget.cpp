@@ -297,11 +297,9 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
         ui->checkBox_NUTY->setChecked(false);
     }
 
-    // read stations
-    QString refClock = QString::fromStdString(tree.get("reference_clock",""));
-    ui->comboBox_ref_clock->setCurrentText(refClock);
-
     for(const auto &any : tree){
+
+        // read stations
         if(any.first == "station"){
             QString name = QString::fromStdString(any.second.get("<xmlattr>.name","__all__"));
 
@@ -322,21 +320,20 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
                         break;
                     }
                 }
-                if(name == "__all__"){
-                    itm_clock->setCheckState(0,Qt::Checked);
-                }
 
-                int c = 1;
-                qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
-                qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
+                if(itm_clock != nullptr){
+                    int c = 1;
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
 
-                const auto &pwl = any.second.get_child_optional("PWL_clock");
-                if(pwl.is_initialized()){
-                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(true);
-                    qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.interval",60.));
-                    qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.constraint",1.3));
-                }else{
-                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(false);
+                    const auto &pwl = any.second.get_child_optional("PWL_clock");
+                    if(pwl.is_initialized()){
+                        qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(true);
+                        qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.interval",60.));
+                        qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->setValue(any.second.get("PWL_clock.constraint",1.3));
+                    }else{
+                        qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(false);
+                    }
                 }
             }
 
@@ -358,9 +355,11 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
                     }
                 }
 
-                int c = 1;
-                qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("coordinates",true));
-                qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("datum",true));
+                if(itm_coord != nullptr){
+                    int c = 1;
+                    qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("coordinates",true));
+                    qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->setChecked(any.second.get("datum",true));
+                }
             }
 
             // tropo
@@ -383,41 +382,51 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
                     }
                 }
 
-                int c = 1;
-                const auto &zwd = any.second.get_child_optional("PWL_ZWD");
-                if(zwd.is_initialized()){
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.interval",30.));
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.constraint",1.5));
-                }else{
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
-                    ++c;
-                    ++c;
-                }
+                if(itm_tropo != nullptr){
+                    int c = 1;
+                    const auto &zwd = any.second.get_child_optional("PWL_ZWD");
+                    if(zwd.is_initialized()){
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.interval",30.));
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_ZWD.constraint",1.5));
+                    }else{
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                        ++c;
+                        ++c;
+                    }
 
-                const auto &ngr = any.second.get_child_optional("PWL_NGR");
-                if(ngr.is_initialized()){
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.interval",180.));
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.constraint",0.05));
-                }else{
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
-                    ++c;
-                    ++c;
-                }
+                    const auto &ngr = any.second.get_child_optional("PWL_NGR");
+                    if(ngr.is_initialized()){
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.interval",180.));
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_NGR.constraint",0.05));
+                    }else{
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                        ++c;
+                        ++c;
+                    }
 
-                const auto &egr = any.second.get_child_optional("PWL_EGR");
-                if(egr.is_initialized()){
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.interval",180.));
-                    qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.constraint",0.05));
-                }else{
-                    qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
-                    ++c;
-                    ++c;
+                    const auto &egr = any.second.get_child_optional("PWL_EGR");
+                    if(egr.is_initialized()){
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(true);
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.interval",180.));
+                        qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->setValue(any.second.get("PWL_EGR.constraint",0.05));
+                    }else{
+                        qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->setChecked(false);
+                        ++c;
+                        ++c;
+                    }
                 }
             }
         }
+
+        QString refClock = QString::fromStdString(tree.get("reference_clock",""));
+        if(!refClock.isEmpty()){
+            ui->comboBox_ref_clock->setCurrentText(refClock);
+        }else{
+            ui->comboBox_ref_clock->setCurrentIndex(0);
+        }
+
 
         // read sources
         ui->spinBox_src_minScans->setValue(tree.get("source.minScans",3));
@@ -494,14 +503,8 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
                     qobject_cast<QCheckBox *>(t_src->itemWidget(itm_src,2))->setChecked(false);
                 }
             }
-
-
         }
-
     }
-
-
-
 }
 
 void SolverWidget::addStations(QStandardItem *dummy)

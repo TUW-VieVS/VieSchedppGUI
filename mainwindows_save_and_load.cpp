@@ -2570,6 +2570,85 @@ void MainWindow::on_pushButton_contactlist_save_clicked()
 }
 
 
+void MainWindow::on_pushButton_simulator_save_clicked()
+{
+    bool ok;
+    QString text = QInputDialog::getText(this, "set name",
+                                         "setting name:", QLineEdit::Normal,
+                                         "", &ok);
+    if (ok && !text.isEmpty()){
+        auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
+        std::string path = "settings.simulator_templates.";
+        path += text.toStdString();
+
+        settings_.add_child(path+".simulator", sim->toXML().get_child("simulator"));
+
+        auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+        settings_.add_child(path+".solver", solver->toXML().get_child("solver"));
+
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        settings_.add_child(path+".priorities", priorities->toXML().get_child("priorities"));
+
+        std::ofstream os;
+        os.open("settings.xml");
+        boost::property_tree::xml_parser::write_xml(os, settings_, boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
+        os.close();
+        QMessageBox::information(this,"Simulation setup saved","Simulation setup saved!");
+    }
+}
+
+void MainWindow::on_pushButton_simulator_load_clicked()
+{
+    QStringList items;
+    const auto &root = settings_.get_child_optional("settings.simulator_templates");
+    if(root.is_initialized()){
+        for(const auto & any : *root){
+            items << QString::fromStdString(any.first);
+        }
+    }
+
+    if(items.isEmpty()){
+        QMessageBox::information(this,"No simulation settings found","No simulation settings found!");
+    }
+
+    bool ok;
+    QString text = QInputDialog::getItem(this, tr("QInputDialog::getItem()"),
+                                         "Select parameter:", items, 0, false, &ok);
+    if (ok && !text.isEmpty()){
+        std::string path = "settings.simulator_templates.";
+        path += text.toStdString();
+
+        auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
+        const auto &simTree = settings_.get_child_optional(path+".simulator");
+        if(simTree.is_initialized()){
+            sim->fromXML(*simTree);
+        }
+
+        auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+        const auto &solverTree = settings_.get_child_optional(path+".solver");
+        if(solverTree.is_initialized()){
+            solver->fromXML(*solverTree);
+        }
+
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        const auto &prioritiesTree = settings_.get_child_optional(path+".priorities");
+        if(prioritiesTree.is_initialized()){
+            priorities->fromXML(*prioritiesTree);
+        }
+
+
+        QMessageBox::information(this,"Simulation setup loaded","Simulation setup loaded!");
+    }
+
+}
+
+
 
 
 

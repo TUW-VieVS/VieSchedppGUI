@@ -596,6 +596,10 @@ private slots:
 
     void on_actionSimulator_triggered();
 
+    void on_pushButton_simulator_save_clicked();
+
+    void on_pushButton_simulator_load_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

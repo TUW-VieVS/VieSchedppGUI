@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>4</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7372,6 +7372,48 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_121">
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_51">
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="horizontalSpacer_48">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_simulator_save">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="myresources.qrc">
+                 <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_simulator_load">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="myresources.qrc">
+                 <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <widget class="QTabWidget" name="tabWidget_simAna">
              <property name="currentIndex">
               <number>-1</number>
@@ -7401,8 +7443,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>854</width>
-             <height>589</height>
+             <width>946</width>
+             <height>682</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
