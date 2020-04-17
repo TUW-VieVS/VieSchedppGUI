@@ -47,6 +47,11 @@ SolverWidget::SolverWidget(QStandardItemModel *station_model, QStandardItemModel
             this,
             SLOT(toggleAll_sta_tropo(QTreeWidgetItem*, int)));
 
+//    connect(ui->treeWidget_sta_coord,
+//            SIGNAL(itemChanged(QTreeWidgetItem*, int)),
+//            this,
+//            SLOT(checkDatum()));
+
     ui->comboBox_ref_clock->setModel(station_model);
 }
 
@@ -267,7 +272,7 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
     double ypo = tree.get("EOP.YPO.interval",-1.0);
     if(ypo != -1){
         ui->checkBox_YPO->setChecked(true);
-        ui->doubleSpinBox_ypo_int->setValue(xpo);
+        ui->doubleSpinBox_ypo_int->setValue(ypo);
         ui->doubleSpinBox_ypo_const->setValue(tree.get("EOP.YPO.constraint",.0001));
     }else{
         ui->checkBox_YPO->setChecked(false);
@@ -275,7 +280,7 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
     double dut1 = tree.get("EOP.dUT1.interval",-1.0);
     if(dut1 != -1){
         ui->checkBox_dUT1->setChecked(true);
-        ui->doubleSpinBox_dut1_int->setValue(xpo);
+        ui->doubleSpinBox_dut1_int->setValue(dut1);
         ui->doubleSpinBox_dut1_const->setValue(tree.get("EOP.dUT1.constraint",.0001));
     }else{
         ui->checkBox_dUT1->setChecked(false);
@@ -283,7 +288,7 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
     double nutx = tree.get("EOP.NUTX.interval",-1.0);
     if(nutx != -1){
         ui->checkBox_NUTX->setChecked(true);
-        ui->doubleSpinBox_nutx_int->setValue(xpo);
+        ui->doubleSpinBox_nutx_int->setValue(nutx);
         ui->doubleSpinBox_nutx_const->setValue(tree.get("EOP.NUTX.constraint",.0001));
     }else{
         ui->checkBox_NUTX->setChecked(false);
@@ -291,7 +296,7 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
     double nuty = tree.get("EOP.NUTY.interval",-1.0);
     if(nuty != -1){
         ui->checkBox_NUTY->setChecked(true);
-        ui->doubleSpinBox_nuty_int->setValue(xpo);
+        ui->doubleSpinBox_nuty_int->setValue(nuty);
         ui->doubleSpinBox_nuty_const->setValue(tree.get("EOP.NUTY.constraint",.0001));
     }else{
         ui->checkBox_NUTY->setChecked(false);
@@ -323,8 +328,8 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
 
                 if(itm_clock != nullptr){
                     int c = 1;
-                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
-                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("",true));
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("linear_clock",true));
+                    qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->setChecked(any.second.get("quadratic_clock",true));
 
                     const auto &pwl = any.second.get_child_optional("PWL_clock");
                     if(pwl.is_initialized()){
@@ -549,12 +554,15 @@ void SolverWidget::addStations(QStandardItem *dummy)
         coord->setChecked(true);
         coord->setEnabled(enable);
         t_coord->setItemWidget(item,c++,coord);
+        connect(coord,SIGNAL(toggled(bool)),this,SLOT(checkDatum()));
 
         QCheckBox *datum = new QCheckBox();
         datum->setStyleSheet("margin-left:30%; margin-right:00%;");
         datum->setChecked(true);
         datum->setEnabled(enable);
         t_coord->setItemWidget(item,c++,datum);
+        connect(coord,SIGNAL(toggled(bool)),this,SLOT(checkDatum()));
+        connect(datum,SIGNAL(toggled(bool)),this,SLOT(checkDatum()));
 
         connect(coord, &QCheckBox::toggled, [coord, datum](){
             if( coord->isEnabled() && coord->checkState() == Qt::Checked){
@@ -565,7 +573,7 @@ void SolverWidget::addStations(QStandardItem *dummy)
         });
 
         if(r == 0){
-            connect(coord, &QCheckBox::toggled, [t_coord](){
+            connect(coord, &QCheckBox::toggled, [this, t_coord](){
                 int c = 1;
                 int rmax = t_coord->topLevelItemCount();
                 QTreeWidgetItem *ref = t_coord->topLevelItem(0);
@@ -577,7 +585,7 @@ void SolverWidget::addStations(QStandardItem *dummy)
                 }
             });
 
-            connect(datum, &QCheckBox::toggled, [t_coord](){
+            connect(datum, &QCheckBox::toggled, [this, t_coord](){
                 int c = 2;
                 int rmax = t_coord->topLevelItemCount();
                 QTreeWidgetItem *ref = t_coord->topLevelItem(0);
@@ -1006,6 +1014,7 @@ void SolverWidget::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
             }
         }
     }
+    checkDatum();
 }
 
 void SolverWidget::addSources(QStandardItem *dummy)
@@ -1259,4 +1268,43 @@ void SolverWidget::on_pushButton_3_clicked()
         }
     }
 
+}
+
+void SolverWidget::checkDatum()
+{
+    QTreeWidget *t = ui->treeWidget_sta_coord;
+    int rmax = t->topLevelItemCount();
+    int cdatum = 0;
+    int ccoord = 0;
+    for(int r=0; r<rmax; ++r){
+        QTreeWidgetItem *itm = t->topLevelItem(r);
+        if(r==0){
+            bool checked = itm->checkState(0);
+            if(checked){
+                QCheckBox *coord = qobject_cast<QCheckBox *>(t->itemWidget(itm,1));
+                QCheckBox *datum = qobject_cast<QCheckBox *>(t->itemWidget(itm,2));
+                if((coord->isChecked() && !datum->isChecked()) || (coord->isChecked() && rmax<4)){
+                    ui->label_warning->setText("<html><head/><body><p><span style=\" font-weight:600; color:#ff5500;\">[WARNING] </span><span style=\" color:#ff5500;\">missing datum definition</span></p></body></html>");
+                }else{
+                    ui->label_warning->setText("");
+                }
+                return;
+            }
+            continue;
+        }
+        QCheckBox *coord = qobject_cast<QCheckBox *>(t->itemWidget(itm,1));
+        if(coord->checkState()){
+            ++ccoord;
+        }
+        QCheckBox *datum = qobject_cast<QCheckBox *>(t->itemWidget(itm,2));
+        if(coord->checkState() && datum->checkState()){
+            ++cdatum;
+        }
+    }
+    int fixed = rmax-1-ccoord; //-1 because of "__all__" row
+    if(fixed+cdatum < 3){
+        ui->label_warning->setText("<html><head/><body><p><span style=\" font-weight:600; color:#ff5500;\">[WARNING] </span><span style=\" color:#ff5500;\">missing datum definition</span></p></body></html>");
+    }else{
+        ui->label_warning->setText("");
+    }
 }

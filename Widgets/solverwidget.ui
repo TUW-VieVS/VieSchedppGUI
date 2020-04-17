@@ -30,7 +30,7 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Estimate source coordinates. &lt;/p&gt;&lt;p&gt;Be careful when using this option. It is often not advisable to estimate sources from single sessions. Be especially carful with how to define the datum. Do not add sources into the datum if they have too few observations! &lt;/p&gt;&lt;p&gt;It might be that VieSched++ does remove some sources from the datum. For example: this is the case if you a source is only observed by single-baseline scans. &lt;/p&gt;&lt;p&gt;Simillarly, observations to sources might be removed completely from the estimation process in case there are to few scans or observations. &lt;/p&gt;&lt;p&gt;If you want to estimate sources it is recommended to define a minimum of three stations per scan in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="EOP">
           <property name="toolTip">
@@ -353,6 +353,13 @@
                     </size>
                    </property>
                   </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_warning">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -756,5 +763,166 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBox_XPO</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_xpo_int</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>123</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_XPO</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_xpo_const</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_YPO</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_ypo_int</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_YPO</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_ypo_const</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_dUT1</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_dut1_int</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>54</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_dUT1</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_dut1_const</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>76</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>251</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_NUTX</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_nutx_int</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>99</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_NUTX</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_nutx_const</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>235</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_NUTY</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_nuty_int</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>180</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>95</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_NUTY</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_nuty_const</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>76</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>231</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

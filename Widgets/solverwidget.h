@@ -37,6 +37,8 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void checkDatum();
+
 private:
     Ui::SolverWidget *ui;
     QStandardItemModel *station_model_;
