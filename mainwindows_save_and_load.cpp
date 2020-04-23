@@ -2576,6 +2576,8 @@ void MainWindow::on_pushButton_simulator_save_clicked()
     QString text = QInputDialog::getText(this, "set name",
                                          "setting name:", QLineEdit::Normal,
                                          "", &ok);
+    text = text.simplified().replace(" ","_");
+
     if (ok && !text.isEmpty()){
         auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
         SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
