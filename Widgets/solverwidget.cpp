@@ -103,6 +103,9 @@ boost::property_tree::ptree SolverWidget::toXML()
         QTreeWidgetItem *itm_coord = t_coord->topLevelItem(0);
         bool coord = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
         bool datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
+        if(!coord){
+            datum = false;
+        }
 
         c = 1;
         QTreeWidgetItem *itm_clock = t_clock->topLevelItem(0);
@@ -152,35 +155,32 @@ boost::property_tree::ptree SolverWidget::toXML()
 
         for (int r = 1; r<rmax; ++r){
             boost::property_tree::ptree staTree;
-            int c = 1;
             QTreeWidgetItem *itm_coord = t_coord->topLevelItem(r);
+            int c = 1;
             bool coord = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
-
-            bool datum;
-            if( !coord ){
-                datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
-            }else{
+            bool datum = qobject_cast<QCheckBox *>(t_coord->itemWidget(itm_coord,c++))->checkState() == Qt::Checked;
+            if(!coord){
                 datum = false;
             }
 
             c = 1;
             QTreeWidgetItem *itm_clock = t_clock->topLevelItem(r);
-            bool linear_clk  = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
-            bool quadratic_clk = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
-            bool pwl_clk  = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
-            double pwl_clk_int = qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->value();
+            bool linear_clk      = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
+            bool quadratic_clk   = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
+            bool pwl_clk         = qobject_cast<QCheckBox *>(t_clock->itemWidget(itm_clock,c++))->checkState() == Qt::Checked;
+            double pwl_clk_int   = qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->value();
             double pwl_clk_const = qobject_cast<QDoubleSpinBox *>(t_clock->itemWidget(itm_clock,c++))->value();
 
             c = 1;
             QTreeWidgetItem *itm_tropo = t_tropo->topLevelItem(r);
-            bool zwd  = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
-            double zwd_int = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
+            bool zwd         = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
+            double zwd_int   = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
             double zwd_const = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
-            bool ngr  = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
-            double ngr_int = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
+            bool ngr         = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
+            double ngr_int   = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
             double ngr_const = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
-            bool egr  = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
-            double egr_int = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
+            bool egr         = qobject_cast<QCheckBox *>(t_tropo->itemWidget(itm_tropo,c++))->checkState() == Qt::Checked;
+            double egr_int   = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
             double egr_const = qobject_cast<QDoubleSpinBox *>(t_tropo->itemWidget(itm_tropo,c++))->value();
 
             QString itmName = itm_tropo->text(0);
