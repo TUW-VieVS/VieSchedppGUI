@@ -369,12 +369,6 @@ MainWindow::MainWindow(QWidget *parent) :
     auto hv7 = ui->treeWidget_setupStationAxis->header();
     hv7->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_calibrationBlock->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->spinBox_NCalibrationBlocks->setValue(1);
-    ui->spinBox_NCalibrationBlocks->setValue(2);
-    ui->spinBox_NCalibrationBlocks->setValue(3);
-    ui->spinBox_NCalibrationBlocks->setValue(4);
-    ui->spinBox_NCalibrationBlocks->setValue(5);
-    ui->spinBox_NCalibrationBlocks->setValue(6);
     ui->spinBox_NCalibrationBlocks->setValue(7);
 
     connect(ui->pushButton_setupAxisAdd,SIGNAL(clicked(bool)),this,SLOT(setupStationAxisBufferAddRow()));
@@ -7980,20 +7974,19 @@ void MainWindow::on_checkBox_calibration_sessionEnd_toggled(bool checked)
 
 void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
 {
+    double session_dur = ui->doubleSpinBox_sessionDuration->value();
+    double delta = session_dur/(row-1);
     auto *tab = ui->tableWidget_calibrationBlock;
-    int nBefore = tab->rowCount();
     tab->setRowCount(row);
-
-    if(row > nBefore){
-
+    for(int i_row = 0; i_row<row; ++i_row){
         QDoubleSpinBox *t = new QDoubleSpinBox();
-        t->setMaximum(24);
+        t->setMaximum(session_dur);
         t->setSingleStep(.5);
-        double v = (row-1)*4;
+        double v = i_row * delta;
         if(v==0){
             v=.5;
-        }else if(v==24){
-            v = 23.5;
+        }else if(abs(v-session_dur)<.5){
+            v = session_dur-.5;
         }
         t->setValue(v);
         t->setSuffix(" [hours]");
@@ -8011,10 +8004,10 @@ void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
         QComboBox *c = new QComboBox();
         c->setModel(allSourcePlusGroupModel);
 
-        tab->setCellWidget(row-1,0,t);
-        tab->setCellWidget(row-1,1,d);
-        tab->setCellWidget(row-1,2,s);
-        tab->setCellWidget(row-1,3,c);
+        tab->setCellWidget(i_row,0,t);
+        tab->setCellWidget(i_row,1,d);
+        tab->setCellWidget(i_row,2,s);
+        tab->setCellWidget(i_row,3,c);
 
     }
 }
