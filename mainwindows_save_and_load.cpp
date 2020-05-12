@@ -422,9 +422,9 @@ QString MainWindow::writeXML()
             QStringList parameter2toggle{"subnetting",
                                          "subnetting min participating stations",
                                          "subnetting min source angle",
-                                         "fillinmode during scan selection",
-                                         "fillinmode influence on scan selection",
-                                         "fillinmode a posteriori"};
+                                         "fillin-mode during scan selection",
+                                         "fillin-mode influence on scan selection",
+                                         "fillin-mode a posteriori"};
 
             QStringList parameter2double {"min slew time",
                                           "max slew time",
@@ -437,7 +437,7 @@ QString MainWindow::writeXML()
                                           "max number of scans",
                                           "subnetting min source angle",
                                           "subnetting min participating stations",
-                                          "sky coverage",
+                                          "sky-coverage",
                                           "number of observations",
                                           "duration",
                                           "average stations",
@@ -542,18 +542,18 @@ QString MainWindow::writeXML()
                     ms.setStart(times);
                 }else if(parameter == "subnetting"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillinmode during scan selection"){
+                }else if(parameter == "fillin-mode during scan selection"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillinmode influence on scan selection"){
+                }else if(parameter == "fillin-mode influence on scan selection"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillinmode a posteriori"){
+                }else if(parameter == "fillin-mode a posteriori"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
 
                 }else if(parameter == "subnetting min participating stations"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "subnetting min source angle"){
                     ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "sky coverage"){
+                }else if(parameter == "sky-coverage"){
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "number of observations"){
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
@@ -582,9 +582,9 @@ QString MainWindow::writeXML()
                 }else if(parameter == "low elevation full"){
                     ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "influence distance"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+                    ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }else if(parameter == "influence time"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+                    ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
                 }
             }
         }
@@ -1539,27 +1539,27 @@ void MainWindow::loadXML(QString path)
                 if(name.left(8) == "station_"){
                     name = name.mid(8);
                     hasMember = true;
-                    parameterName = "Station";
+                    parameterName = "station";
                 }else if(name.left(7) == "source_"){
                     name = name.mid(7);
                     hasMember = true;
-                    parameterName = "Source";
+                    parameterName = "source";
                 }else if(name.left(9) == "baseline_"){
                     name = name.mid(9);
                     hasMember = true;
-                    parameterName = "Baseline";
+                    parameterName = "baseline";
                 }else if(name.left(14) == "weight_factor_"){
                     name = name.mid(14);
                     hasMember = false;
-                    parameterName = "Weight factor";
+                    parameterName = "weight factor";
                 }else if(name.left(8) == "general_"){
                     name = name.mid(8);
                     hasMember = false;
-                    parameterName = "General";
-                }else if(name.left(13) == "Sky_Coverage_"){
+                    parameterName = "general";
+                }else if(name.left(13) == "sky-coverage_"){
                     name = name.mid(13);
                     hasMember = false;
-                    parameterName = "Sky Coverage";
+                    parameterName = "sky-coverage";
                 }
                 name.replace("_"," ");
                 for(int i=0; i<3; ++i){
@@ -1577,8 +1577,8 @@ void MainWindow::loadXML(QString path)
                     member = QString::fromStdString(any.second.get<std::string>("<xmlattr>.member"));
                 }
                 QVector<double> values;
-                if(name != "general subnetting" && name != "general fillinmode during scan selection" &&
-                        name != "general fillinmode influence on scan selection" && name != "general fillinmode a posteriori" ){
+                if(name != "general subnetting" && name != "general fillin-mode during scan selection" &&
+                        name != "general fillin-mode influence on scan selection" && name != "general fillin-mode a posteriori" ){
                     for(const auto &any2 : any.second){
                         if(any2.first == "value"){
                             values.push_back(any2.second.get_value<double>());
@@ -1586,21 +1586,21 @@ void MainWindow::loadXML(QString path)
                     }
                 }
 
-                if(parameterName == "General"){
+                if(parameterName == "general"){
                     for(int i=0; i<twms->topLevelItem(0)->childCount(); ++i){
                         if(name == twms->topLevelItem(0)->child(i)->text(0)){
                             twms->topLevelItem(0)->child(i)->setDisabled(true);
                             break;
                         }
                     }
-                }else if(parameterName == "Weight factor"){
+                }else if(parameterName == "weight factor"){
                     for(int i=0; i<twms->topLevelItem(1)->childCount(); ++i){
                         if(name == twms->topLevelItem(1)->child(i)->text(0)){
                             twms->topLevelItem(1)->child(i)->setDisabled(true);
                             break;
                         }
                     }
-                }else if(parameterName == "Sky Coverage"){
+                }else if(parameterName == "sky-coverage"){
                     for(int i=0; i<twms->topLevelItem(2)->childCount(); ++i){
                         if(name == twms->topLevelItem(2)->child(i)->text(0)){
                             twms->topLevelItem(2)->child(i)->setDisabled(true);
@@ -1611,23 +1611,23 @@ void MainWindow::loadXML(QString path)
 
                 QIcon ic1;
                 QIcon ic2;
-                if(parameterName == "General"){
+                if(parameterName == "general"){
                     ic1 = QIcon(":/icons/icons/applications-internet-2.png");
                     ic2 = QIcon(":/icons/icons/applications-internet-2.png");
-                }else if(parameterName == "Weight factor"){
+                }else if(parameterName == "weight factor"){
                     ic1 = QIcon(":/icons/icons/weight.png");
                     ic2 = QIcon(":/icons/icons/applications-internet-2.png");
-                }else if(parameterName == "Sky Coverage"){
+                }else if(parameterName == "sky-coverage"){
                     ic1 = QIcon(":/icons/icons/sky_coverage.png");
                     ic2 = QIcon(":/icons/icons/sky_coverage.png");
-                }else if(parameterName == "Station"){
+                }else if(parameterName == "station"){
                     ic1 = QIcon(":/icons/icons/station.png");
                     if(member == "__all__" || groupSta.find(member.toStdString()) != groupSta.end()){
                         ic2 = QIcon(":/icons/icons/station_group.png");
                     }else{
                         ic2 = QIcon(":/icons/icons/station.png");
                     }
-                }else if(parameterName == "Source"){
+                }else if(parameterName == "source"){
                     ic1 = QIcon(":/icons/icons/source.png");
                     if(member == "__all__" || groupSrc.find(member.toStdString()) == groupSrc.end()){
                         ic2 = QIcon(":/icons/icons/source_group.png");
@@ -1635,7 +1635,7 @@ void MainWindow::loadXML(QString path)
                         ic2 = QIcon(":/icons/icons/source.png");
                     }
 
-                }else if(parameterName == "Baseline"){
+                }else if(parameterName == "baseline"){
                     ic1 = QIcon(":/icons/icons/baseline.png");
                     if(member == "__all__" || groupBl.find(member.toStdString()) == groupBl.end()){
                         ic2 = QIcon(":/icons/icons/baseline.png");

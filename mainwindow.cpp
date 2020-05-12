@@ -1763,10 +1763,10 @@ void MainWindow::on_treeWidget_2_itemChanged(QTreeWidgetItem *item, int column)
                 }
             }
         }
-    } else if(item->text(0) == "Sky Coverage"){
+    } else if(item->text(0) == "Sky-Coverage"){
         auto actions = ui->advancedToolBar->actions();
         for(const auto &any:actions){
-            if(any->text() == "Sky Coverage"){
+            if(any->text() == "Sky-Coverage"){
                 if(item->checkState(0) == Qt::Checked){
                     any->setVisible(true);
                 }else{
@@ -6233,9 +6233,9 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
             QStringList row2dateTimeDialog {"session start"};
 
             QStringList row2toggle{"subnetting",
-                                   "fillinmode during scan selection",
-                                   "fillinmode influence on scan selection",
-                                   "fillinmode a posteriori"};
+                                   "fillin-mode during scan selection",
+                                   "fillin-mode influence on scan selection",
+                                   "fillin-mode a posteriori"};
 
             QStringList row2intDialog {"min slew time",
                                        "max slew time",
@@ -6250,7 +6250,7 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
 
             QStringList row2doubleDialog {"subnetting min source angle",
                                           "subnetting min participating stations",
-                                          "sky coverage",
+                                          "sky-coverage",
                                           "number of observations",
                                           "duration",
                                           "average stations",
@@ -6272,17 +6272,17 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                                           "min sun distance"};
 
             QIcon ic;
-            if(parameterType == "General"){
+            if(parameterType == "general"){
                 ic = QIcon(":/icons/icons/applications-internet-2.png");
-            }else if(parameterType == "Weight factor"){
+            }else if(parameterType == "weight factor"){
                 ic = QIcon(":/icons/icons/weight.png");
-            }else if(parameterType == "Sky Coverage"){
+            }else if(parameterType == "sky-coverage"){
                 ic = QIcon(":/icons/icons/sky_coverage.png");
-            }else if(parameterType == "Station"){
+            }else if(parameterType == "station"){
                 ic = QIcon(":/icons/icons/station.png");
-            }else if(parameterType == "Source"){
+            }else if(parameterType == "source"){
                 ic = QIcon(":/icons/icons/source.png");
-            }else if(parameterType == "Baseline"){
+            }else if(parameterType == "baseline"){
                 ic = QIcon(":/icons/icons/baseline.png");
             }
 
@@ -6291,7 +6291,7 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
             QTreeWidgetItem *itm = new QTreeWidgetItem();
 
             if(row2toggle.indexOf(name) != -1){
-                if(parameterType == "General" || parameterType == "Weight factor" || parameterType == "Sky Coverage"){
+                if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
                     any->setDisabled(true);
                 }
                 QString valuesString = "True, False";
@@ -6311,27 +6311,30 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
 
             }else if(row2intDialog.indexOf(name) != -1){
                 multiSchedEditDialogInt *dialog = new multiSchedEditDialogInt(this);
-                if(parameterType == "Station"){
+                if(parameterType == "station"){
                     dialog->addMember(allStationPlusGroupModel);
-                }else if(parameterType == "Source"){
+                }else if(parameterType == "source"){
                     dialog->addMember(allSourcePlusGroupModel);
-                }else if(parameterType == "Baseline"){
+                }else if(parameterType == "baseline"){
                     dialog->addMember(allBaselinePlusGroupModel);
                 }
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
-                    if(parameterType == "General" || parameterType == "Weight factor" || parameterType == "Sky Coverage"){
+                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
                         any->setDisabled(true);
                     }
                     QVector<int> val = dialog->getValues();
                     int n = val.size();
-                    if(parameterType == "Station" || parameterType == "Source" || parameterType == "Baseline"){
+                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
                         QStandardItem* member = dialog->getMember();
                         itm->setText(1,member->text());
                         itm->setIcon(1,member->icon());
-                    }else if(parameterType == "Weight factor"){
+                    }else if(parameterType == "weight factor"){
                         itm->setText(1,"global");
                         itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
+                    }else if(parameterType == "sky-coverage"){
+                        itm->setText(1,"global");
+                        itm->setIcon(1,QIcon(":/icons/icons/sky_coverage.png"));
                     }else{
                         itm->setText(1,"global");
                         itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
@@ -6352,29 +6355,29 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
 
             }else if(row2doubleDialog.indexOf(name) != -1){
                 multiSchedEditDialogDouble *dialog = new multiSchedEditDialogDouble(this);
-                if(parameterType == "Station"){
+                if(parameterType == "station"){
                     dialog->addMember(allStationPlusGroupModel);
-                }else if(parameterType == "Source"){
+                }else if(parameterType == "source"){
                     dialog->addMember(allSourcePlusGroupModel);
-                }else if(parameterType == "Baseline"){
+                }else if(parameterType == "baseline"){
                     dialog->addMember(allBaselinePlusGroupModel);
-                }else if(parameterType == "Weight factor"){
+                }else if(parameterType == "weight factor"){
                     itm->setText(1,"global");
                     itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
                 }
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
-                    if(parameterType == "General" || parameterType == "Weight factor" || parameterType == "Sky Coverage"){
+                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
                         any->setDisabled(true);
                     }
                     QVector<double> val = dialog->getValues();
                     int n = val.size();
 
-                    if(parameterType == "Station" || parameterType == "Source" || parameterType == "Baseline"){
+                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
                         QStandardItem* member = dialog->getMember();
                         itm->setText(1,member->text());
                         itm->setIcon(1,member->icon());
-                    }else if(parameterType == "Sky Coverage"){
+                    }else if(parameterType == "sky-coverage"){
                         itm->setText(1,"global");
                         itm->setIcon(1,QIcon(":/icons/icons/sky_coverage.png"));
                     }else{
@@ -6399,7 +6402,7 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
 
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
-                    if(parameterType == "General" || parameterType == "Weight factor" || parameterType == "Sky Coverage"){
+                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
                         any->setDisabled(true);
                     }
                     QVector<QDateTime> val = dialog->getValues();
@@ -6439,14 +6442,14 @@ void MainWindow::on_pushButton_25_clicked()
                 ui->treeWidget_multiSched->topLevelItem(0)->child(1)->setDisabled(false);
             }else if(any->text(0) == "subnetting min participating stations"){
                 ui->treeWidget_multiSched->topLevelItem(0)->child(2)->setDisabled(false);
-            }else if(any->text(0) == "fillin mode during scan selection"){
+            }else if(any->text(0) == "fillin-mode during scan selection"){
                 ui->treeWidget_multiSched->topLevelItem(0)->child(3)->setDisabled(false);
-            }else if(any->text(0) == "fillin mode influence on scan selection"){
+            }else if(any->text(0) == "fillin-mode influence on scan selection"){
                 ui->treeWidget_multiSched->topLevelItem(0)->child(4)->setDisabled(false);
-            }else if(any->text(0) == "fillin mode a posteriori"){
+            }else if(any->text(0) == "fillin-mode a posteriori"){
                 ui->treeWidget_multiSched->topLevelItem(0)->child(5)->setDisabled(false);
 
-            }else if(any->text(0) == "sky coverage"){
+            }else if(any->text(0) == "sky-coverage"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(false);
             }else if(any->text(0) == "number of observations"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(1)->setDisabled(false);
@@ -6590,7 +6593,7 @@ void MainWindow::multi_sched_count_nsched()
 
     bool weigthFactorFound = false;
     for(int i = 0; i<t->topLevelItemCount(); ++i){
-        if(t->topLevelItem(i)->text(0) == "sky coverage"){
+        if(t->topLevelItem(i)->text(0) == "sky-coverage"){
             QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
             std::vector<double> values;
             for(int ilist = 0; ilist<list->count(); ++ilist){
@@ -6724,7 +6727,7 @@ void MainWindow::multi_sched_count_nsched()
         nsched = weightFactorValues.size();
     }
 
-    QStringList weightFactorsStr {"sky coverage",
+    QStringList weightFactorsStr {"sky-coverage",
                                   "number of observations",
                                   "duration",
                                   "average stations",
@@ -6854,8 +6857,8 @@ void MainWindow::setupSkyCoverageTemplatePlot()
 {
     plotSkyCoverageTemplate = true;
     skyCoverageTemplateView = new QChartView(this);
-    skyCoverageTemplateView->setStatusTip("sky coverage example");
-    skyCoverageTemplateView->setToolTip("sky coverage example");
+    skyCoverageTemplateView->setStatusTip("sky-coverage example");
+    skyCoverageTemplateView->setToolTip("sky-coverage example");
 
     QPolarChart *chart = new QPolarChart();
 
@@ -6876,7 +6879,7 @@ void MainWindow::setupSkyCoverageTemplatePlot()
 
 
     chart->legend()->setVisible(false);
-    chart->setTitle("possible sky coverage example");
+    chart->setTitle("possible sky-coverage example");
     skyCoverageTemplateView->setChart(chart);
     skyCoverageTemplateView->setRenderHint(QPainter::Antialiasing);
     ui->verticalLayout_54->insertWidget(0,skyCoverageTemplateView,2);
@@ -7585,7 +7588,7 @@ void MainWindow::on_pushButton_mulitScheduling_clicked()
     }
 
     itm->setText(2,QString::number(n));
-    itm->setText(0,"sky coverage");
+    itm->setText(0,"sky-coverage");
     itm->setIcon(0,QIcon(":/icons/icons/weight.png"));
     t->addTopLevelItem(itm);
     t->setItemWidget(itm,3,cb);

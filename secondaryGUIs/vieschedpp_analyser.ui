@@ -25,7 +25,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>5</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="skyCoverage">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1486,7 +1486,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menusky_coverage">
@@ -1547,7 +1547,7 @@
      <normaloff>:/icons/icons/sky_coverage_analyser.png</normaloff>:/icons/icons/sky_coverage_analyser.png</iconset>
    </property>
    <property name="text">
-    <string>sky coverage</string>
+    <string>sky-coverage</string>
    </property>
   </action>
   <action name="actionuv_coverage">
@@ -1556,7 +1556,7 @@
      <normaloff>:/icons/icons/uv.png</normaloff>:/icons/icons/uv.png</iconset>
    </property>
    <property name="text">
-    <string>uv coverage</string>
+    <string>uv-coverage</string>
    </property>
   </action>
   <action name="actiongeneral">

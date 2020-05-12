@@ -54,8 +54,8 @@ void Statistics::setupStatisticView()
 
     hoveredTitle->setStyleSheet("font-weight: bold");
 
-    general << "#scans" << "#single source scans" << "#subnetting scans" << "#fillinmode scans" << "#calibrator_scans" << "#observations" << "#stations" << "#sources";
-    weightFactors << "weight_factor_sky_coverage"
+    general << "#scans" << "#single source scans" << "#subnetting scans" << "#fillin-mode scans" << "#calibrator_scans" << "#observations" << "#stations" << "#sources";
+    weightFactors << "weight_factor_sky-coverage"
                   << "weight_factor_number_of_observations"
                   << "weight_factor_duration"
                   << "weight_factor_average_sources"
@@ -446,7 +446,7 @@ void Statistics::reload()
         QStringList skyList;
         skyList << "average" << "13 areas 30 min" << "25 areas 30 min" << "37 areas 30 min" << "13 areas 60 min" << "25 areas 60 min" << "37 areas 60 min";
 
-        itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "sky coverage score"));
+        itemlist->addTopLevelItem(new QTreeWidgetItem(QStringList() << "sky-coverage score"));
         const auto &st = itemlist->topLevelItem(7);
         st->setCheckState(0,Qt::Unchecked);
         for(const auto &any : skyList){
@@ -730,7 +730,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_avg->childCount(); ++i){
         const auto &child = skyCov_avg->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_average_").append(child->text(0).replace(" ","_"));
+            QString name = QString("sky-coverage_average_").append(child->text(0).replace(" ","_"));
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -842,7 +842,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a13m30->childCount(); ++i){
         const auto &child = skyCov_a13m30->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_13_areas_30_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_13_areas_30_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -857,7 +857,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a25m30->childCount(); ++i){
         const auto &child = skyCov_a25m30->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_25_areas_30_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_25_areas_30_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -872,7 +872,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a37m30->childCount(); ++i){
         const auto &child = skyCov_a37m30->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_37_areas_30_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_37_areas_30_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -887,7 +887,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a13m60->childCount(); ++i){
         const auto &child = skyCov_a13m60->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_13_areas_60_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_13_areas_60_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -902,7 +902,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a25m60->childCount(); ++i){
         const auto &child = skyCov_a25m60->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_25_areas_60_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_25_areas_60_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 
@@ -917,7 +917,7 @@ void Statistics::plotStatistics(bool animation)
     for(int i=0; i<skyCov_a37m60->childCount(); ++i){
         const auto &child = skyCov_a37m60->child(i);
         if(child->checkState(0) == Qt::Checked){
-            QString name = QString("sky_coverage_").append(child->text(0)).append("_37_areas_60_min");
+            QString name = QString("sky-coverage_").append(child->text(0)).append("_37_areas_60_min");
             barSets.push_back(statisticsBarSet(offset,name));
             child->setBackground(1,brushes.at(counter));
 

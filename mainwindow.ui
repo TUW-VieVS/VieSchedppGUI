@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>13</number>
+       <number>14</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -168,8 +168,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;For more information look at our &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;reference page &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-sign-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Getting started: &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Read through the &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;tutorial &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;below, it will give you an idea of how VieSched++ should be used. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Additonally, you can have a look at our &lt;/span&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCl2VPe7OrnznNtrh0_lwrqQ&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;YouTube&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; channel where we upload &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;Videos&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; on how to use VieSched++. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Read through the &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;tutorial &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;below, it will give you an idea of how VieSched++ should be used. A build in help is available (hit the&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; key or clicking the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/help.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; button)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Additonally, you can have a look at our &lt;/span&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCl2VPe7OrnznNtrh0_lwrqQ&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;YouTube&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; channel where we upload &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;Videos&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; on how to use VieSched++ and the &lt;/span&gt;&lt;a href=&quot;https://vievswiki.geo.tuwien.ac.at/doku.php?id=public:vieschedpp:vieschedpp&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;VieVS Wiki page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; where we upload cookbooks about how to use VieSched++. &lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;One minute tutorial: &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;1. Set up the paths to your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;catalog files &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-import-2.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
@@ -177,7 +177,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;3. Choose your session &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;time&lt;/span&gt;&lt;img src=&quot;:/icons/icons/view-pim-calendar.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;station network&lt;/span&gt;&lt;img src=&quot;:/icons/icons/applications-internet-2.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;source list &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_list.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;4. Define your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;parameter&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; setup &lt;/span&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; (look at &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;FAQ&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; page &lt;/span&gt;&lt;img src=&quot;:/icons/icons/documentation.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; for further explanation)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;5. Define your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;weight factors &lt;/span&gt;&lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;output files&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, and select other desired features.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;6. Try out some of the advanced tools like applying some special &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;rules&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/system-run-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, the very useful &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, optimize your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; representation &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, add some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;optimization conditions&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/conditions.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; or try to fix some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;high impact&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; scans &lt;/span&gt;&lt;img src=&quot;:/icons/icons/emblem-important-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;6. Try out some of the advanced tools like applying some special &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;rules&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/system-run-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, the very useful &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi-scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, optimize your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; representation &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, add some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;optimization conditions&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/conditions.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; or try to fix some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;high impact&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; scans &lt;/span&gt;&lt;img src=&quot;:/icons/icons/emblem-important-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;7. &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;simulate&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; your schedule using the simulation tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sim.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and look at the expected &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;man formal errors&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;repeatabilities&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;8. click &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;run&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/arrow-right-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;The GUI will now create a &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;parameters.xml&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; file in the directory specified in &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;output files&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. All output files will be stored in this directory. You should also see a log file appearing. &lt;/span&gt;&lt;/p&gt;
@@ -186,7 +186,7 @@ p, li { white-space: pre-wrap; }
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Optimize your schedule:&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Have a look at the schedule using our &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;VieSched++ Analyzer&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage_analyser.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Do not simply create only a single schedule but try to create multiple schedules using the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; you can then compare your versions using our statistics tools &lt;/span&gt;&lt;img src=&quot;:/icons/icons/office-chart-bar.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Do not simply create only a single schedule but try to create multiple schedules using the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi-scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; you can then compare your versions using our statistics tools &lt;/span&gt;&lt;img src=&quot;:/icons/icons/office-chart-bar.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Start by varying some of the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;weight factors&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. This usually brings the best improvement. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;If a station is still underrepresented &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;increase the weight&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; of this station &lt;/span&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; or adjusts the &amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-style:italic;&quot;&gt;average stations&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;&amp;quot; weight factor &lt;/span&gt;&lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. The same is true for sources and baselines. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Use the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;optimization conditions&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/conditions.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; to reduce the number of scheduled sources and increase the number of scans per source. &lt;/span&gt;&lt;/p&gt;
@@ -684,7 +684,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>Sky Coverage</string>
+               <string>Sky-Coverage</string>
               </property>
               <property name="checkState">
                <enum>Checked</enum>
@@ -696,7 +696,7 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <property name="text">
-               <string>Multi Scheduling</string>
+               <string>Multi-Scheduling</string>
               </property>
               <property name="checkState">
                <enum>Checked</enum>
@@ -780,6 +780,10 @@ p, li { white-space: pre-wrap; }
               </property>
               <property name="checkState">
                <enum>Checked</enum>
+              </property>
+              <property name="icon">
+               <iconset resource="myresources.qrc">
+                <normaloff>:/icons/icons/VieSchedppGUI_logo.png</normaloff>:/icons/icons/VieSchedppGUI_logo.png</iconset>
               </property>
              </item>
              <item>
@@ -1205,7 +1209,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Catalogs which describe the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;stations&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Make sure the paths are set correctly to the catalogs. You can use relative paths here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case you want to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;save&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; these settings for the future use the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; button at the top right. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="title">
-               <string>Station</string>
+               <string>station</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
@@ -1401,7 +1405,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Catalogs which describe the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sourcces&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Make sure the paths are set correctly to the catalogs. You can use relative paths here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case you want to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;save&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; these settings for the future use the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; button at the top right. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="title">
-               <string>Source</string>
+               <string>source</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
@@ -1521,7 +1525,7 @@ If you only want to run simulations you can deselect this to avoid error message
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Catalogs which describe the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;observing mode&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Make sure the paths are set correctly to the catalogs. You can use relative paths here. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;deselect&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this catalogs if you use a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;custom observing mode&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; but keep in mind that you &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;will not&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; get the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;information written in the .skd or .vex files &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;then. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case you want to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;save&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; these settings for the future use the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; button at the top right. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="title">
-               <string>Observing mode</string>
+               <string>observing mode</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -3102,7 +3106,7 @@ If you only want to run simulations you can deselect this to avoid error message
              <item row="0" column="0">
               <widget class="QGroupBox" name="groupBox_fillin_mode">
                <property name="title">
-                <string>fillin mode</string>
+                <string>fillin-mode</string>
                </property>
                <property name="checkable">
                 <bool>false</bool>
@@ -4012,7 +4016,7 @@ If you only want to run simulations you can deselect this to avoid error message
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Most of the times you &lt;span style=&quot; font-weight:600;&quot;&gt;do not have to use this options at all&lt;/span&gt;, because you want to use the &lt;span style=&quot; font-weight:600;&quot;&gt;same parameters for all stations&lt;/span&gt; and for the &lt;span style=&quot; font-weight:600;&quot;&gt;whole timespan&lt;/span&gt;. It is then sufficient to simply &lt;span style=&quot; font-weight:600;&quot;&gt;change the default parameters&lt;/span&gt; using the &lt;img src=&quot;:/icons/icons/edit-undo-7.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception is antenna down time&lt;/span&gt; (for example when there is an &lt;span style=&quot; font-weight:600;&quot;&gt;intensive session&lt;/span&gt; during your 24h experiment) &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;However, using this option might bring some benefit and &lt;span style=&quot; font-weight:600;&quot;&gt;might increase the quality of the schedule&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Here is a &lt;span style=&quot; font-weight:600;&quot;&gt;step by step example&lt;/span&gt; of how to &lt;span style=&quot; font-weight:600;&quot;&gt;insert a new child &lt;/span&gt;at the tree-based parameterization. If you have general questions about the tree-based parametrization have a look at the &lt;span style=&quot; font-weight:600;&quot;&gt;FAQ page&lt;/span&gt;&lt;img src=&quot;:/icons/icons/documentation.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/setup_manual.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;The first thing you have to do is to &lt;span style=&quot; font-weight:600;&quot;&gt;select the member&lt;/span&gt; whos parameter you want to change. Select it using the combobox. &lt;/p&gt;&lt;p&gt;Then &lt;span style=&quot; font-weight:600;&quot;&gt;select the parameter&lt;/span&gt; you want to add using the combobox. You can add &lt;span style=&quot; font-weight:600;&quot;&gt;new parameters&lt;/span&gt; using the &lt;img src=&quot;:/icons/icons/edit-add.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;If these parameters should only be used during a &lt;span style=&quot; font-weight:600;&quot;&gt;certain time period&lt;/span&gt; select this period at using the forms. In case you want to use these parameters for the full timespan you do not have to change anything here. &lt;/p&gt;&lt;p&gt;Set the &lt;span style=&quot; font-weight:600;&quot;&gt;transition type&lt;/span&gt; of your parameter change using the combobox. This option is only necessary if you are using a certain timespan for your parameter. Look at the &lt;span style=&quot; font-weight:600;&quot;&gt;FAQ&lt;/span&gt; for further details. As a &lt;span style=&quot; font-weight:600;&quot;&gt;rule of thumb&lt;/span&gt;: you can always use the transition &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;hard&amp;quot;&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Finally, click the &lt;span style=&quot; font-weight:600;&quot;&gt;add setup button&lt;/span&gt;&lt;img src=&quot;:/icons/icons/edit-add.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; marked with . &lt;/p&gt;&lt;p&gt;The new parameters should now appear in the tree-based list on the left as well as in the visual representation. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;If you get an error message, make sure that there are no ambigurities within your setup (e.g. make sure that the groups/times do not overlap in a wired way)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <attribute name="title">
-            <string>Station setup</string>
+            <string>station setup</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_31">
             <item>
@@ -4095,7 +4099,7 @@ If you only want to run simulations you can deselect this to avoid error message
                      <item row="1" column="0">
                       <widget class="QLabel" name="parameterLabel">
                        <property name="text">
-                        <string>Parameter</string>
+                        <string>parameter</string>
                        </property>
                       </widget>
                      </item>
@@ -4168,7 +4172,7 @@ If you only want to run simulations you can deselect this to avoid error message
                      <item row="2" column="0">
                       <widget class="QLabel" name="startLabel">
                        <property name="text">
-                        <string>Start</string>
+                        <string>start</string>
                        </property>
                       </widget>
                      </item>
@@ -4205,7 +4209,7 @@ If you only want to run simulations you can deselect this to avoid error message
                      <item row="3" column="0">
                       <widget class="QLabel" name="endLabel">
                        <property name="text">
-                        <string>End</string>
+                        <string>end</string>
                        </property>
                       </widget>
                      </item>
@@ -4229,7 +4233,7 @@ If you only want to run simulations you can deselect this to avoid error message
                      <item row="4" column="0">
                       <widget class="QLabel" name="label_11">
                        <property name="text">
-                        <string>Transition</string>
+                        <string>transition</string>
                        </property>
                       </widget>
                      </item>
@@ -4537,7 +4541,7 @@ If you only want to run simulations you can deselect this to avoid error message
           </widget>
           <widget class="QWidget" name="tabWidgetPage3">
            <attribute name="title">
-            <string>Axis limit buffer</string>
+            <string>axis limit buffer</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_64">
             <item>
@@ -4872,7 +4876,7 @@ If you only want to run simulations you can deselect this to avoid error message
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Have a look at the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Station setup page&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;/&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and use the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;what is this?&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;mode there!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="title">
-           <string>Source setup</string>
+           <string>source setup</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_87">
            <item>
@@ -4955,7 +4959,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="1" column="0">
                      <widget class="QLabel" name="parameterLabel_2">
                       <property name="text">
-                       <string>Parameter</string>
+                       <string>parameter</string>
                       </property>
                      </widget>
                     </item>
@@ -5028,7 +5032,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="2" column="0">
                      <widget class="QLabel" name="startLabel_2">
                       <property name="text">
-                       <string>Start</string>
+                       <string>start</string>
                       </property>
                      </widget>
                     </item>
@@ -5052,7 +5056,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="3" column="0">
                      <widget class="QLabel" name="endLabel_2">
                       <property name="text">
-                       <string>End</string>
+                       <string>end</string>
                       </property>
                      </widget>
                     </item>
@@ -5076,7 +5080,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="4" column="0">
                      <widget class="QLabel" name="label_14">
                       <property name="text">
-                       <string>Transition</string>
+                       <string>transition</string>
                       </property>
                      </widget>
                     </item>
@@ -5365,7 +5369,7 @@ If you only want to run simulations you can deselect this to avoid error message
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Have a look at the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Station setup page&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;/&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and use the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;what is this?&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;mode there!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="title">
-           <string>Baseline setup</string>
+           <string>baseline setup</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_88">
            <item>
@@ -5436,7 +5440,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="1" column="0">
                      <widget class="QLabel" name="parameterLabel_3">
                       <property name="text">
-                       <string>Parameter</string>
+                       <string>parameter</string>
                       </property>
                      </widget>
                     </item>
@@ -5500,7 +5504,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="2" column="0">
                      <widget class="QLabel" name="startLabel_3">
                       <property name="text">
-                       <string>Start</string>
+                       <string>start</string>
                       </property>
                      </widget>
                     </item>
@@ -5524,7 +5528,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="3" column="0">
                      <widget class="QLabel" name="endLabel_3">
                       <property name="text">
-                       <string>End</string>
+                       <string>end</string>
                       </property>
                      </widget>
                     </item>
@@ -5548,7 +5552,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item row="4" column="0">
                      <widget class="QLabel" name="label_18">
                       <property name="text">
-                       <string>Transition</string>
+                       <string>transition</string>
                       </property>
                      </widget>
                     </item>
@@ -5956,10 +5960,10 @@ If you only want to run simulations you can deselect this to avoid error message
                  <string>prefer scans with good sky coverage</string>
                 </property>
                 <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky coverage is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky-coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky-coverage at this position is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>sky coverage</string>
+                 <string>sky-coverage</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>
@@ -6201,7 +6205,7 @@ If you only want to run simulations you can deselect this to avoid error message
                  <string>weight</string>
                 </property>
                 <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky coverage is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky-coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky-coverage at this position is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="maximum">
                  <double>99999.990000000005239</double>
@@ -7054,7 +7058,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QTabWidget" name="tabWidget_2">
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="tab_10">
               <attribute name="title">
@@ -7475,13 +7479,13 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>Calibration block</string>
+                <string>calibration block</string>
                </attribute>
                <layout class="QHBoxLayout" name="horizontalLayout_131">
                 <item>
                  <widget class="QGroupBox" name="groupBox_35">
                   <property name="title">
-                   <string>Schedule calibration scans</string>
+                   <string>schedule calibration scans</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -7925,13 +7929,13 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>Intensive</string>
+                <string>intensive</string>
                </attribute>
                <layout class="QHBoxLayout" name="horizontalLayout_129">
                 <item>
                  <widget class="QGroupBox" name="groupBox_34">
                   <property name="title">
-                   <string>Focus observations at corners of commonly visible sky</string>
+                   <string>focus observations at corners of commonly visible sky</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -7945,7 +7949,7 @@ p, li { white-space: pre-wrap; }
                      <item>
                       <widget class="QLabel" name="label_85">
                        <property name="text">
-                        <string>Cadence</string>
+                        <string>cadence</string>
                        </property>
                       </widget>
                      </item>
@@ -7993,7 +7997,7 @@ p, li { white-space: pre-wrap; }
                    <item>
                     <widget class="QLabel" name="label_100">
                      <property name="text">
-                      <string>Automatically change setup:</string>
+                      <string>automatically change setup:</string>
                      </property>
                     </widget>
                    </item>
@@ -8139,7 +8143,7 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>Scan sequence</string>
+                <string>scan sequence</string>
                </attribute>
                <layout class="QHBoxLayout" name="horizontalLayout_127">
                 <item>
@@ -8154,7 +8158,7 @@ p, li { white-space: pre-wrap; }
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Define a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scan sequence of different sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The software will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;try to select sources in the defined order&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If no source of the selected list is visible the software will choose any other preferred source. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This has &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;no influence on fillin mode scans&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;! Those are scheduled using every available source. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Consider you have selected a cadence of 4 and a source group called target.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;1: &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_group.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;__all__&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;2: &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_group.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;__all__&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;3: &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_group.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;__all__&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;4: &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_group.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;target&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Every fourth scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of your schedule will now be to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;one source of the target group.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might be possible that the software still uses different sources, all this option does is to increase the weight of the defined sources by a factor of 100. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="title">
-                   <string>Scan Sequence</string>
+                   <string>scan sequence</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -8286,7 +8290,7 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>Calibration block (astrometry)</string>
+                <string>calibration block (astrometry)</string>
                </attribute>
                <layout class="QHBoxLayout" name="horizontalLayout_128">
                 <item>
@@ -8304,7 +8308,7 @@ p, li { white-space: pre-wrap; }
                    <string notr="true"/>
                   </property>
                   <property name="title">
-                   <string>Calibrator Block</string>
+                   <string>calibrator block</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -8756,7 +8760,7 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>Force az/el</string>
+                <string>force az/el</string>
                </attribute>
                <layout class="QVBoxLayout" name="verticalLayout_67">
                 <item>
@@ -9358,7 +9362,7 @@ p, li { white-space: pre-wrap; }
                      </column>
                      <item>
                       <property name="text">
-                       <string>General</string>
+                       <string>general</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -9381,23 +9385,23 @@ p, li { white-space: pre-wrap; }
                       </item>
                       <item>
                        <property name="text">
-                        <string>fillinmode during scan selection</string>
+                        <string>fillin-mode during scan selection</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>fillinmode influence on scan selection</string>
+                        <string>fillin-mode influence on scan selection</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>fillinmode a posteriori</string>
+                        <string>fillin-mode a posteriori</string>
                        </property>
                       </item>
                      </item>
                      <item>
                       <property name="text">
-                       <string>Weight factor</string>
+                       <string>weight factor</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -9405,7 +9409,7 @@ p, li { white-space: pre-wrap; }
                       </property>
                       <item>
                        <property name="text">
-                        <string>sky coverage</string>
+                        <string>sky-coverage</string>
                        </property>
                       </item>
                       <item>
@@ -9476,7 +9480,7 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <property name="text">
-                       <string>Sky Coverage</string>
+                       <string>sky-coverage</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -9495,7 +9499,7 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <property name="text">
-                       <string>Station</string>
+                       <string>station</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -9554,7 +9558,7 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <property name="text">
-                       <string>Source</string>
+                       <string>source</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -9608,7 +9612,7 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <property name="text">
-                       <string>Baseline</string>
+                       <string>baseline</string>
                       </property>
                       <property name="icon">
                        <iconset resource="myresources.qrc">
@@ -10089,10 +10093,10 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QGroupBox" name="groupBox_19">
             <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Those values describe how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage is represented&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;two parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;distance&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Distance&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the angular distance between previous observations and a possible new observation. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the time between previous observations and a possible new observation. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;different functions&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to calculate the influence like a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;constant function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;linear function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; or a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;half cosine function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;At the right is a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;visual representation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of your selected values.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Those values describe how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage is represented&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;two parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;: &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;distance&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Distance&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the angular distance between previous observations and a possible new observation. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is the time between previous observations and a possible new observation. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;different functions&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to calculate the influence like a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;constant function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;linear function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; or a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;half cosine function&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;At the right is a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;visual representation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of your selected values.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="title">
-             <string>Sky coverage parameters</string>
+             <string>sky-coverage parameters</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_86">
              <item>
@@ -10326,10 +10330,10 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QGroupBox" name="groupBox_5">
             <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Visual example&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; could look like. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff0000;&quot;&gt;Red dots&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mark observations.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#000000;&quot;&gt;Dark blue&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky coverage is fully saturated&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in this area.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#000000;&quot;&gt;Yellow&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means those are the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;most preferred areas for a next scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;This is only a visual example to understand the settings selected at the left side!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set the expected number of scans per hour and randomize new observations to get a clearer picture. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Visual example&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; could look like. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff0000;&quot;&gt;Red dots&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mark observations.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#000000;&quot;&gt;Dark blue&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage is fully saturated&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; in this area.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#000000;&quot;&gt;Yellow&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; means those are the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;most preferred areas for a next scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;This is only a visual example to understand the settings selected at the left side!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set the expected number of scans per hour and randomize new observations to get a clearer picture. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="title">
-             <string>Display</string>
+             <string>display</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_52">
              <item>
@@ -10539,7 +10543,7 @@ p, li { white-space: pre-wrap; }
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Using this option, the software will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;iteratively&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; create the schedule and reduce the number of allowed sources after each iteration.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Depending on your computer this &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;might take a while&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, but in general, it is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;recommended&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to use this option to increase the quality of your schedule.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;To set a number of at least&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; 3 scans per source&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is usually a good idea. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="title">
-           <string>Source based conditions</string>
+           <string>source-based conditions</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_85">
            <item>
@@ -10931,7 +10935,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QGroupBox" name="groupBox_15">
           <property name="title">
-           <string>Advanced settings</string>
+           <string>advanced settings</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_84">
            <item>
@@ -12603,8 +12607,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;doi: &lt;/span&gt;&lt;a href=&quot;https://doi.org/10.1088/1538-3873/ab1820&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://doi.org/10.1088/1538-3873/ab1820&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;web: &lt;/span&gt;&lt;a href=&quot;https://iopscience.iop.org/article/10.1088/1538-3873/ab1820&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://iopscience.iop.org/article/10.1088/1538-3873/ab1820&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:16pt; font-weight:600; text-decoration: underline;&quot;&gt;Related references:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:16pt; font-weight:600; text-decoration: underline;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14pt; font-weight:600;&quot;&gt;Schartner, 2020 (Dissertation)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;M. Schartner, J. Böhm&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-style:italic;&quot;&gt;Optimizing geodetic VLBI schedules with VieSched++&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Technische Universität Wien, Dissertation, 2020&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;urn: &lt;/span&gt;&lt;a href=&quot;https://resolver.obvsg.at/urn:nbn:at:at-ubtuw:1-133691&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;urn:nbn:at:at-ubtuw:1-133691&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;web: &lt;/span&gt;&lt;a href=&quot;http://repositum.tuwien.ac.at/obvutwhs/content/titleinfo/4655766?lang=en
+&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://repositum.tuwien.ac.at/obvutwhs/content/titleinfo/4655766?lang=en&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14pt; font-weight:600;&quot;&gt;Schartner and Böhm, 2020&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;M. Schartner, J. Böhm&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-style:italic;&quot;&gt;Optimizing schedules for the VLBI global observing system&lt;/span&gt;&lt;/p&gt;
@@ -12612,7 +12625,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;doi: &lt;/span&gt;&lt;a href=&quot;https://doi.org/10.1007/s00190-019-01340-z&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://doi.org/10.1007/s00190-019-01340-z&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;web: &lt;/span&gt;&lt;a href=&quot;https://link.springer.com/article/10.1007/s00190-019-01340-z&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://link.springer.com/article/10.1007/s00190-019-01340-z&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14pt; font-weight:600;&quot;&gt;Schartner and Böhm, 2018&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14pt; font-weight:600;&quot;&gt;Schartner and Böhm, 2019&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;M. Schartner, J. Böhm&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-style:italic;&quot;&gt;VieSched++: A new Scheduling Tool in VieVS&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;IVS 2018 General Meeting Proceedings &lt;/span&gt;&lt;/p&gt;
@@ -13120,7 +13133,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
      <normaloff>:/icons/icons/sky_coverage.png</normaloff>:/icons/icons/sky_coverage.png</iconset>
    </property>
    <property name="text">
-    <string>Sky Coverage</string>
+    <string>Sky-Coverage</string>
    </property>
   </action>
   <action name="actionFAQ">
