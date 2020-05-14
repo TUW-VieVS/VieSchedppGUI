@@ -574,7 +574,7 @@ void VieSchedpp_Analyser::on_pushButton_skyCov_screenshot_clicked()
         QVector<QPair<int, int>> times = render.times();
         QString outDir = render.outDir();
         QPair<int, int> res = render.resolution();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size() -1) != '/'){
             outDir.append('/');
         }
 
@@ -677,7 +677,7 @@ void VieSchedpp_Analyser::on_pushButton_uv_screenshot_clicked()
         QVector<QPair<int, int>> times = render.times();
         QString outDir = render.outDir();
         QPair<int, int> res = render.resolution();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size() -1) != '/'){
             outDir.append('/');
         }
 
@@ -787,7 +787,7 @@ void VieSchedpp_Analyser::on_pushButton_el_screenshot_clicked()
         QVector<QPair<int, int>> times = render.times();
         QString outDir = render.outDir();
         QPair<int, int> res = render.resolution();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size() -1) != '/'){
             outDir.append('/');
         }
 
