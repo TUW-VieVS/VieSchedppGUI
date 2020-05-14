@@ -1255,7 +1255,7 @@ void MainWindow::on_actionAbout_Qt_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    ui->main_stacked->setCurrentIndex(22);
+    ui->main_stacked->setCurrentIndex(23);
 }
 
 
@@ -7326,7 +7326,7 @@ void MainWindow::on_pushButton_outputNgsFild_clicked()
         QString startPath = ui->lineEdit_sessionPath->text();
         QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
         if( !path.isEmpty() ){
-            if(path.back() != '/'){
+            if(path[path.size()-1] != '/'){
                 path += '/';
             }
 
@@ -7360,7 +7360,7 @@ void MainWindow::on_pushButton_outputSnrTable_2_clicked()
         QString startPath = ui->lineEdit_sessionPath->text();
         QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
         if( !path.isEmpty() ){
-            if(path.back() != '/'){
+            if(path[path.size()-1] != '/'){
                 path += '/';
             }
 
@@ -7395,7 +7395,7 @@ void MainWindow::on_pushButton_outputSnrTable_clicked()
         QString startPath = ui->lineEdit_sessionPath->text();
         QString path = QFileDialog::getExistingDirectory(this, "Browse to folder", startPath);
         if( !path.isEmpty() ){
-            if(path.back() != '/'){
+            if(path[path.size()-1] != '/'){
                 path += '/';
             }
 
