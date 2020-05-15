@@ -22,6 +22,8 @@
 #
 #-------------------------------------------------
 CONFIG += c++14
+CONFIG(release, debug|release):message(Release build)
+CONFIG(debug, debug|release):message(Debug build)
 
 QMAKE_CXXFLAGS+= -fopenmp
 LIBS += -fopenmp
@@ -54,13 +56,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += ../VieSchedpp/EIGEN
 INCLUDEPATH += ../VieSchedpp/EIGEN/Dense
 unix {
-    LIBS += ../IAU_SOFA/Release/libsofa_c.a
+    IAU_SOFA_PATH=$${IAU_SOFA}
+    isEmpty(IAU_SOFA_PATH) {
+        LIBS += ../IAU_SOFA/Release/libsofa_c.a
+    } else {
+        LIBS += $${IAU_SOFA_PATH}
+    }
 }
 
 # for my windows builds
 win32{
-    INCLUDEPATH += ../boost_1_72_0
-    LIBS += ../IAU_SOFA/Release/sofa_c.lib
+    BOOST_PATH=$${BOOST}
+    isEmpty(BOOST_PATH) {
+        INCLUDEPATH += ../boost_1_72_0
+    } else {
+        INCLUDEPATH += $${BOOST_PATH}
+    }
+
+    IAU_SOFA_PATH=$${IAU_SOFA}
+    isEmpty(IAU_SOFA_PATH) {
+        LIBS += ../IAU_SOFA/Release/sofa_c.lib
+    } else {
+        LIBS += $${IAU_SOFA_PATH}
+    }
 }
 
 SOURCES += \
