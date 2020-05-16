@@ -89,15 +89,23 @@ MainWindow::MainWindow(QWidget *parent) :
     if(ui->pathToSchedulerLineEdit->text().isEmpty()){
 
         QFileInfo check_file1("../VieSchedpp/Release/VieSchedpp");
-        QFileInfo check_file2("../VieSchedpp/cmake-build-release/VieSchedpp");
-        QFileInfo check_file3("./VieSchedpp");
+        QFileInfo check_file2("../../VieSchedpp/Release/VieSchedpp");
+        QFileInfo check_file3("../VieSchedpp/cmake-build-release/VieSchedpp");
+        QFileInfo check_file4("../../VieSchedpp/cmake-build-release/VieSchedpp");
+        QFileInfo check_file5("./VieSchedpp");
         if(check_file1.exists() && check_file1.isFile() && check_file1.isExecutable()){
             ui->pathToSchedulerLineEdit->setText("../VieSchedpp/Release/VieSchedpp");
             ui->pushButton_17->click();
         }else if(check_file2.exists() && check_file2.isFile() && check_file2.isExecutable()){
-            ui->pathToSchedulerLineEdit->setText("../VieSchedpp/cmake-build-release/VieSchedpp");
+            ui->pathToSchedulerLineEdit->setText("../../VieSchedpp/Release/VieSchedpp");
             ui->pushButton_17->click();
         }else if(check_file3.exists() && check_file3.isFile() && check_file3.isExecutable()){
+            ui->pathToSchedulerLineEdit->setText("../VieSchedpp/cmake-build-release/VieSchedpp");
+            ui->pushButton_17->click();
+        }else if(check_file4.exists() && check_file4.isFile() && check_file4.isExecutable()){
+            ui->pathToSchedulerLineEdit->setText("../../VieSchedpp/cmake-build-release/VieSchedpp");
+            ui->pushButton_17->click();
+        }else if(check_file5.exists() && check_file5.isFile() && check_file5.isExecutable()){
             ui->pathToSchedulerLineEdit->setText("./VieSchedpp");
             ui->pushButton_17->click();
         }else{
