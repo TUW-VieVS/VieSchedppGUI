@@ -55,6 +55,9 @@
               <property name="statusTip">
                <string>start value for automatic value generation</string>
               </property>
+              <property name="minimum">
+               <double>-99.989999999999995</double>
+              </property>
               <property name="singleStep">
                <double>0.250000000000000</double>
               </property>
@@ -70,6 +73,9 @@
               </property>
               <property name="statusTip">
                <string>stop value for automatic value generation</string>
+              </property>
+              <property name="minimum">
+               <double>-99.989999999999995</double>
               </property>
               <property name="singleStep">
                <double>0.250000000000000</double>
@@ -127,7 +133,7 @@
                <string>generate</string>
               </property>
               <property name="icon">
-               <iconset resource="myresources.qrc">
+               <iconset resource="../myresources.qrc">
                 <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
               </property>
              </widget>
@@ -221,7 +227,7 @@
             <string>add</string>
            </property>
            <property name="icon">
-            <iconset resource="myresources.qrc">
+            <iconset resource="../myresources.qrc">
              <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
            </property>
           </widget>
@@ -251,7 +257,7 @@
             <string>delete selected</string>
            </property>
            <property name="icon">
-            <iconset resource="myresources.qrc">
+            <iconset resource="../myresources.qrc">
              <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
            </property>
           </widget>
@@ -302,7 +308,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="myresources.qrc"/>
+  <include location="../myresources.qrc"/>
  </resources>
  <connections>
   <connection>

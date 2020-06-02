@@ -330,8 +330,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), priorities, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addStations()));
 
-    readStations();
     readSources();
+    readStations();
 
 
     createMultiSchedTable();
@@ -3240,7 +3240,7 @@ void MainWindow::on_pushButton_browsModes_clicked()
 
 void MainWindow::on_pushButton_browseFreq_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathModes->text());
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathFreq->text());
     if( !path.isEmpty() ){
         ui->lineEdit_pathFreq->setText(path);
     }
@@ -6279,6 +6279,41 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                                           "min flux",
                                           "min sun distance"};
 
+            std::map<QString, QVector<double>> defaultValues;
+            defaultValues["min slew time"         ] = {0, 150};
+            defaultValues["max slew time"         ] = {150, 300, 450};
+            defaultValues["max wait time"         ] = {150, 300, 450};
+            defaultValues["max scan time"         ] = {900, 600, 300};
+            defaultValues["min scan time"         ] = {20, 30, 40};
+            defaultValues["min number of stations"] = {2, 3, 4};
+            defaultValues["min repeat time"       ] = {1200, 1800};
+            defaultValues["idle time interval"    ] = {120, 180, 240, 300};
+            defaultValues["influence time"        ] = {900, 1200, 1800, 3600};
+            defaultValues["max number of scans"   ] = {10, 25, 999};
+
+            defaultValues["subnetting min source angle"          ] = {120, 150};
+            defaultValues["subnetting min participating stations"] = {60, 80, 100};
+            defaultValues["sky-coverage"                         ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["number of observations"               ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["duration"                             ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["average stations"                     ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["average sources"                      ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["average baselines"                    ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["idle time"                            ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["low declination"                      ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["low declination begin"                ] = {0, -22.5, -45};
+            defaultValues["low declination full"                 ] = {-75, -90};
+            defaultValues["low elevation"                        ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["low elevation begin"                  ] = {40, 30, 20};
+            defaultValues["low elevation full"                   ] = {20, 10};
+            defaultValues["influence distance"                   ] = {15, 30, 45};
+            defaultValues["weight"                               ] = {1, 1.5, 2, 3};
+            defaultValues["min slew distance"                    ] = {0, 20, 40};
+            defaultValues["max slew distance"                    ] = {90, 60};
+            defaultValues["min elevation"                        ] = {5, 10};
+            defaultValues["min flux"                             ] = {0.01, 0.15, 0.25, 0.35};
+            defaultValues["min sun distance"                     ] = {4, 10};
+
             QIcon ic;
             if(parameterType == "general"){
                 ic = QIcon(":/icons/icons/applications-internet-2.png");
@@ -6326,6 +6361,8 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                 }else if(parameterType == "baseline"){
                     dialog->addMember(allBaselinePlusGroupModel);
                 }
+                dialog->addDefaultValues(defaultValues[name]);
+
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
                     if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
@@ -6373,6 +6410,8 @@ void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
                     itm->setText(1,"global");
                     itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
                 }
+                dialog->addDefaultValues(defaultValues[name]);
+
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
                     if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
@@ -6751,6 +6790,10 @@ void MainWindow::multi_sched_count_nsched()
         }
         nsched *= t->topLevelItem(i)->text(2).toInt();
     }
+    if(ui->groupBox_ms_gen->isChecked()){
+        nsched += ui->spinBox_ms_gen_popsize->value() * (ui->spinBox_ms_gen_iterations->value() - 1);
+    }
+
     if(nsched > 300){
         ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(nsched));
         ui->label_multiSchedulingNsched->setStyleSheet("color : red; font-weight : bold");
@@ -6765,18 +6808,21 @@ void MainWindow::multi_sched_count_nsched()
         ui->label_multiSchedulingNsched->setStyleSheet("");
     }
 
-    if(nsched>9999){
-        ui->spinBox_multiSched_maxNumber->setValue(9999);
-        ui->comboBox_multiSched_maxNumber->setCurrentIndex(1);
-        ui->comboBox_multiSched_maxNumber->setEnabled(false);
+    if(!ui->pushButton_ms_pick_random->isChecked()){
+        if(nsched>9999){
+            ui->spinBox_multiSched_maxNumber->setValue(9999);
+            ui->comboBox_multiSched_maxNumber->setCurrentIndex(1);
+            ui->comboBox_multiSched_maxNumber->setEnabled(false);
+        }else{
+            ui->spinBox_multiSched_maxNumber->setValue(nsched);
+            ui->comboBox_multiSched_maxNumber->setEnabled(true);
+        }
     }else{
-        ui->spinBox_multiSched_maxNumber->setValue(nsched);
-        ui->comboBox_multiSched_maxNumber->setEnabled(true);
+        if(nsched >9999){
+            QMessageBox::warning(this,"ignoring multi scheduling","Too many possible multi scheduling parameters!\nMulti scheduling will be ignored");
+        }
     }
 
-    if(nsched >9999){
-        QMessageBox::warning(this,"ignoring multi scheduling","Too many possible multi scheduling parameters!\nMulti scheduling will be ignored");
-    }
 }
 
 // ########################################### GUI UTILITY ###########################################
@@ -8180,3 +8226,36 @@ void MainWindow::updateWeightFactorValue()
 }
 
 
+
+void MainWindow::on_pushButton_ms_pick_random_toggled(bool checked)
+{
+    ui->treeWidget_multiSchedSelected->clear();
+    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
+        ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
+        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
+            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
+        }
+    }
+    if(checked){
+        ui->comboBox_multiSched_maxNumber->setEnabled(false);
+        ui->spinBox_multiSched_maxNumber->setEnabled(true);
+        ui->spinBox_multiSched_maxNumber->setValue(32);
+    }else{
+        ui->comboBox_multiSched_maxNumber->setEnabled(true);
+        if(ui->comboBox_multiSched_maxNumber->currentText() == "all"){
+            ui->spinBox_multiSched_maxNumber->setEnabled(false);
+        }else{
+            ui->spinBox_multiSched_maxNumber->setEnabled(true);
+        }
+        ui->spinBox_multiSched_maxNumber->setValue(1);
+    }
+
+    ui->label_multiSchedulingNsched->setText(QString("total number of schedules: 1"));
+    ui->label_multiSchedulingNsched->setStyleSheet("");
+
+}
+
+void MainWindow::on_pushButton_ms_pick_random_clicked()
+{
+
+}

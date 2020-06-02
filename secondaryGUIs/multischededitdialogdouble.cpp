@@ -68,6 +68,27 @@ QStandardItem *multiSchedEditDialogDouble::getMember()
     return all->item(ui->listView_member->selectionModel()->selectedIndexes().at(0).row());
 }
 
+void multiSchedEditDialogDouble::addDefaultValues(const QVector<double> &vals)
+{
+    double min = *std::min_element(vals.begin(), vals.end());
+    double max = *std::max_element(vals.begin(), vals.end());
+    double step = (max-min)/(vals.count()-1);
+    ui->doubleSpinBox_start->setValue(min);
+    ui->doubleSpinBox_stop->setValue(max);
+    ui->doubleSpinBox_step->setValue(step);
+
+    for(double v : vals){
+        int r = ui->tableWidget_values->rowCount();
+        ui->tableWidget_values->insertRow(r);
+        QDoubleSpinBox *spinBox = new QDoubleSpinBox(this);
+        spinBox->setMaximum(10000);
+        spinBox->setMinimum(-10000);
+        spinBox->setSingleStep(step);
+        spinBox->setValue(v);
+        ui->tableWidget_values->setCellWidget(r,0, spinBox);
+    }
+}
+
 void multiSchedEditDialogDouble::on_doubleSpinBox_start_valueChanged(double arg1)
 {
     if(arg1 > ui->doubleSpinBox_stop->value()){

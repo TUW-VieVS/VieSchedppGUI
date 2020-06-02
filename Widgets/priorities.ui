@@ -66,10 +66,10 @@
    <item>
     <widget class="QGroupBox" name="groupBox_recom">
      <property name="title">
-      <string>output recommendation</string>
+      <string>recommendation based on</string>
      </property>
      <property name="checkable">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="checked">
       <bool>false</bool>
@@ -91,6 +91,12 @@
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="invertedAppearance">
+         <bool>false</bool>
+        </property>
+        <property name="invertedControls">
+         <bool>false</bool>
         </property>
         <property name="tickPosition">
          <enum>QSlider::NoTicks</enum>

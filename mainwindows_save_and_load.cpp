@@ -593,13 +593,24 @@ QString MainWindow::writeXML()
         int n = ui->spinBox_multiSched_maxNumber->value();
         std::string seedStr = ui->comboBox_multiSched_seed->currentText().toStdString();
         int seed = ui->spinBox_multiSched_seed->value();
-        para.multisched(ms.createPropertyTree(),countNr,n,seedStr,seed);
+        bool pickRandom = ui->pushButton_ms_pick_random->isChecked();
+        para.multisched(ms.createPropertyTree(),countNr,n,seedStr,seed, pickRandom);
 
         std::string threads = ui->comboBox_nThreads->currentText().toStdString();
         int nThreadsManual = ui->spinBox_nCores->value();
         std::string jobScheduler = ui->comboBox_jobSchedule->currentText().toStdString();
         int chunkSize = ui->spinBox_chunkSize->value();
         para.multiCore(threads,nThreadsManual,jobScheduler,chunkSize);
+    }
+    if(ui->groupBox_ms_gen->isChecked()){
+        int iterations = ui->spinBox_ms_gen_iterations->value();
+        int parents = ui->spinBox_ms_gen_parents->value();
+        int popsize = ui->spinBox_ms_gen_popsize->value();
+        double selectBest =ui->doubleSpinBox_ms_gen_selBest->value();
+        double selectRandom = ui->doubleSpinBox_ms_gen_selRandom->value();
+        double mutation = ui->doubleSpinBox_ms_gen_mutation->value();
+        double minmutation = ui->doubleSpinBox_ms_gen_minMutation->value();
+        para.mulitsched_genetic(iterations,popsize,selectBest,selectRandom,mutation,minmutation,parents);
     }
 
     if(ui->groupBox_highImpactAzEl->isChecked() && ui->treeWidget_highImpactAzEl->topLevelItemCount()>0){
@@ -1525,7 +1536,9 @@ void MainWindow::loadXML(QString path)
                 ui->comboBox_multiSched_seed->setCurrentText("select");
                 ui->spinBox_multiSched_seed->setValue(ctree.get<int>("seed"));
             }
-
+            if(ctree.get_optional<bool>("pick_random").is_initialized()){
+                ui->pushButton_ms_pick_random->setChecked(ctree.get<bool>("pick_random"));
+            }
 
             for(const auto &any: ctree){
                 QString name = QString::fromStdString(any.first);
@@ -1671,6 +1684,22 @@ void MainWindow::loadXML(QString path)
         }
         multi_sched_count_nsched();
     }
+
+    {
+        ui->groupBox_ms_gen->setChecked(false);
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.multisched.genetic");
+        if (ctree.is_initialized()) {
+            ui->groupBox_ms_gen->setChecked(true);
+            ui->spinBox_ms_gen_iterations->setValue(xml.get("VieSchedpp.multisched.genetic.evolutions",2));
+            ui->spinBox_ms_gen_parents->setValue(xml.get("VieSchedpp.multisched.genetic.parents_for_crossover",2));
+            ui->spinBox_ms_gen_popsize->setValue(xml.get("VieSchedpp.multisched.genetic.population_size",128));
+            ui->doubleSpinBox_ms_gen_selBest->setValue(xml.get("VieSchedpp.multisched.genetic.select_best_percent",10.0));
+            ui->doubleSpinBox_ms_gen_selRandom->setValue(xml.get("VieSchedpp.multisched.genetic.select_random_percent",2.5));
+            ui->doubleSpinBox_ms_gen_mutation->setValue(xml.get("VieSchedpp.multisched.genetic.mutation_acceleration",0.5));
+            ui->doubleSpinBox_ms_gen_minMutation->setValue(xml.get("VieSchedpp.multisched.genetic.min_mutation_percent",10.0));
+        }
+    }
+
 
     //output
     {

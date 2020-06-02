@@ -600,6 +600,10 @@ private slots:
 
     void on_pushButton_simulator_load_clicked();
 
+    void on_pushButton_ms_pick_random_toggled(bool checked);
+
+    void on_pushButton_ms_pick_random_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

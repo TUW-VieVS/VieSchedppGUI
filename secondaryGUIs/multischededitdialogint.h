@@ -23,6 +23,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
+#include <cmath>
 
 namespace Ui {
 class multiSchedEditDialogInt;
@@ -41,6 +42,8 @@ public:
     void addMember(QStandardItemModel *model);
 
     QStandardItem* getMember();
+
+    void addDefaultValues(const QVector<double> &vals);
 
 private slots:
     void on_pushButton_generate_clicked();

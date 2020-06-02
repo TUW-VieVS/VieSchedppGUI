@@ -20,10 +20,8 @@ boost::property_tree::ptree Priorities::toXML()
     auto *t = ui->treeWidget_params;
 
     boost::property_tree::ptree tree;
-    if(ui->groupBox_recom->isChecked()){
-        int v = ui->horizontalSlider_recom->value();
-        tree.add("priorities.type.fraction", v*10);
-    }
+    int v = ui->horizontalSlider_recom->value();
+    tree.add("priorities.type.fraction", v*10);
     tree.add("priorities.percentile",ui->doubleSpinBox_quantile->value());
 
 
@@ -63,14 +61,8 @@ boost::property_tree::ptree Priorities::toXML()
 
 void Priorities::fromXML(const boost::property_tree::ptree &tree)
 {
-    const auto &type = tree.get_child_optional("priorities.type");
-    if(type.is_initialized()){
-        ui->groupBox_recom->setChecked(true);
-        int v = tree.get("priorities.type.fraction", 70);
-        ui->horizontalSlider_recom->setValue(v/10);
-    }else{
-        ui->groupBox_recom->setChecked(false);
-    }
+    int v = tree.get("priorities.type.fraction", 70);
+    ui->horizontalSlider_recom->setValue(v/10);
 
     ui->doubleSpinBox_quantile->setValue(tree.get("priorities.percentile",0.75));
 
