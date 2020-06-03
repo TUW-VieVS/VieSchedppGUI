@@ -58,9 +58,6 @@
 #include <QtCharts/QAreaSeries>
 
 #include "Utility/chartview.h"
-#include "secondaryGUIs/multischededitdialogint.h"
-#include "secondaryGUIs/multischededitdialogdouble.h"
-#include "secondaryGUIs/multischededitdialogdatetime.h"
 #include "Utility/callout.h"
 #include "secondaryGUIs/addgroupdialog.h"
 #include "Parameters/baselineparametersdialog.h"
@@ -82,6 +79,7 @@
 #include "Widgets/simulatorwidget.h"
 #include "Widgets/solverwidget.h"
 #include "Widgets/priorities.h"
+#include "Widgets/mulitschedulingwidget.h"
 
 #include "Utility/downloadmanager.h"
 QT_CHARTS_USE_NAMESPACE
@@ -121,13 +119,13 @@ private slots:
 
     void on_actionRules_triggered();
 
-    void on_actionMulti_Scheduling_triggered();
-
     void on_actionOutput_triggered();
 
     void on_actionSettings_triggered();
 
     void on_actionWeight_factors_triggered();
+
+    void on_actionMulti_Scheduling_triggered();
 
     void on_pushButton_browseAntenna_clicked();
 
@@ -184,8 +182,6 @@ private slots:
     void on_doubleSpinBox_calibratorHighElStart_valueChanged(double arg1);
 
     void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
-
-    void createMultiSchedTable();
 
     void createModesPolicyTable();
 
@@ -327,10 +323,6 @@ private slots:
 
     void on_ComboBox_parameterBaseline_currentTextChanged(const QString &arg1);
 
-    void on_pushButton_multiSchedAddSelected_clicked();
-
-    void on_pushButton_25_clicked();
-
     QString on_actionSave_triggered();
 
     void on_pushButton_5_clicked();
@@ -382,10 +374,6 @@ private slots:
     void sourceListChanged();
 
     void baselineListChanged();
-
-    void on_comboBox_nThreads_currentTextChanged(const QString &arg1);
-
-    void on_comboBox_jobSchedule_currentTextChanged(const QString &arg1);
 
     void on_actionsummary_triggered();
 
@@ -466,14 +454,6 @@ private slots:
     void on_actionSkd_Parser_triggered();
 
     void on_actionAbout_Qt_triggered();
-
-    void on_comboBox_multiSched_maxNumber_currentIndexChanged(const QString &arg1);
-
-    void on_comboBox_multiSched_seed_currentIndexChanged(const QString &arg1);
-
-    void multi_sched_count_nsched();
-
-    void on_pushButton_save_multiCore_clicked();
 
     void on_pushButton_sessionBrowse_clicked();
 
@@ -600,9 +580,7 @@ private slots:
 
     void on_pushButton_simulator_load_clicked();
 
-    void on_pushButton_ms_pick_random_toggled(bool checked);
-
-    void on_pushButton_ms_pick_random_clicked();
+    void saveMultiCoreSetup();
 
 private:
     Ui::MainWindow *ui;
@@ -664,9 +642,9 @@ private:
     VieVS::ParameterSetup setupSourceTree;
     VieVS::ParameterSetup setupBaselineTree;
 
-    std::map<std::string, std::vector<std::string>> groupSta;
-    std::map<std::string, std::vector<std::string>> groupSrc;
-    std::map<std::string, std::vector<std::string>> groupBl;
+    std::map<std::string, std::vector<std::string>> *groupSta = new std::map<std::string, std::vector<std::string>>();
+    std::map<std::string, std::vector<std::string>> *groupSrc = new std::map<std::string, std::vector<std::string>>();
+    std::map<std::string, std::vector<std::string>> *groupBl = new std::map<std::string, std::vector<std::string>>();
 
     std::map<std::string, VieVS::ParameterSettings::ParametersStations> paraSta;
     std::map<std::string, VieVS::ParameterSettings::ParametersSources> paraSrc;

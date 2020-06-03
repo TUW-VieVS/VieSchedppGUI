@@ -32,6 +32,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->main_stacked->setCurrentIndex(0);
 
 
+    allSourcePlusGroupModel = new QStandardItemModel();
+    allSourcePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__all__"));
+
+    allStationPlusGroupModel = new QStandardItemModel();
+    allStationPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/station_group.png"),"__all__"));
+
+    allBaselinePlusGroupModel = new QStandardItemModel();
+    allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
+
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setApplicationName("VieSched++ GUI");
     QCoreApplication::setApplicationVersion(GIT_COMMIT_HASH);
@@ -85,7 +94,46 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->lineEdit_outputPath, SIGNAL(textChanged(QString)), ui->lineEdit_sessionPath, SLOT(setText(QString)));
     std::ifstream iSettings("settings.xml");
     boost::property_tree::read_xml(iSettings,settings_,boost::property_tree::xml_parser::trim_whitespace);
+
+    MulitSchedulingWidget *ms_widget = new MulitSchedulingWidget(allSourcePlusGroupModel,
+                                                                 allStationPlusGroupModel,
+                                                                 allBaselinePlusGroupModel,
+                                                                 ui->checkBox_weightCoverage,
+                                                                 ui->doubleSpinBox_weightSkyCoverage,
+                                                                 ui->checkBox_weightNobs,
+                                                                 ui->doubleSpinBox_weightNumberOfObservations,
+                                                                 ui->checkBox_weightDuration,
+                                                                 ui->doubleSpinBox_weightDuration,
+                                                                 ui->checkBox_weightAverageSources,
+                                                                 ui->doubleSpinBox_weightAverageSources,
+                                                                 ui->checkBox_weightAverageStations,
+                                                                 ui->doubleSpinBox_weightAverageStations,
+                                                                 ui->checkBox_weightAverageBaselines,
+                                                                 ui->doubleSpinBox_weightAverageBaselines,
+                                                                 ui->checkBox_weightIdleTime,
+                                                                 ui->doubleSpinBox_weightIdleTime,
+                                                                 ui->checkBox_weightLowDeclination,
+                                                                 ui->doubleSpinBox_weightLowDec,
+                                                                 ui->checkBox_weightLowElevation,
+                                                                 ui->doubleSpinBox_weightLowEl,
+                                                                 ui->groupBox_multiScheduling,
+                                                                 groupSta,
+                                                                 groupSrc,
+                                                                 groupBl,
+                                                                 ui->groupBox_multiScheduling);
+
+    connect(ms_widget->newStationGroup,SIGNAL(clicked(bool)),this,SLOT(addGroupStation()));
+    connect(ms_widget->newSourceGroup,SIGNAL(clicked(bool)),this,SLOT(addGroupSource()));
+    connect(ms_widget->newBaselineGroup,SIGNAL(clicked(bool)),this,SLOT(addGroupBaseline()));
+    connect(ms_widget->saveMultiCoreSetup, SIGNAL(clicked(bool)), this, SLOT(saveMultiCoreSetup()));
+
+    ms_widget->setObjectName("MultiScheduling_Widged");
+    QVBoxLayout *vbox_ms = new QVBoxLayout;
+    vbox_ms->addWidget(ms_widget,1);
+    ui->groupBox_multiScheduling->setLayout(vbox_ms);
+
     readSettings();
+
     if(ui->pathToSchedulerLineEdit->text().isEmpty()){
 
         QFileInfo check_file1("../VieSchedpp/Release/VieSchedpp");
@@ -224,15 +272,6 @@ MainWindow::MainWindow(QWidget *parent) :
     selectedBaselineModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     selectedBaselineModel->setHeaderData(1, Qt::Horizontal, QObject::tr("distance [km]"));
 
-    allSourcePlusGroupModel = new QStandardItemModel();
-    allSourcePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__all__"));
-
-    allStationPlusGroupModel = new QStandardItemModel();
-    allStationPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/station_group.png"),"__all__"));
-
-    allBaselinePlusGroupModel = new QStandardItemModel();
-    allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
-
     allSkedModesModel = new QStringListModel();
 
     connect(selectedStationModel,SIGNAL(rowsInserted(QModelIndex,int,int)),this,SLOT(networkSizeChanged()));
@@ -333,8 +372,6 @@ MainWindow::MainWindow(QWidget *parent) :
     readSources();
     readStations();
 
-
-    createMultiSchedTable();
     createModesPolicyTable();
     createModesCustonBandTable();
 
@@ -366,7 +403,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setSizes({2000,5000});
     ui->splitter_2->setSizes({2000,5000});
     ui->splitter_3->setSizes({2000,5000});
-    ui->splitter_5->setStretchFactor(1,3);
     ui->splitter_4->setSizes(QList<int>({INT_MAX, INT_MAX}));
     ui->splitter_6->setSizes(QList<int>({INT_MAX, INT_MAX}));
     ui->splitter_statistics->setSizes({1000,5000});
@@ -383,9 +419,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupStationAxisBufferAddRow();
 
-    connect(ui->pushButton_addGroupStationSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupStation()));
-    connect(ui->pushButton_addGroupsourceSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupSource()));
-    connect(ui->pushButton_addGroupBaselineSetup_2,SIGNAL(clicked(bool)),this,SLOT(addGroupBaseline()));
 
     connect(ui->lineEdit_faqSearch,SIGNAL(textChanged(QString)),this,SLOT(faqSearch()));
 
@@ -610,9 +643,9 @@ void MainWindow::displayStationSetupMember(QString name)
             QString txt = selectedStationModel->index(i,0).data().toString();
             t->setItem(i,0,new QTableWidgetItem(QIcon(":/icons/icons/station.png"),txt));
         }
-    }else if(groupSta.find(name.toStdString()) != groupSta.end()){
+    }else if(groupSta->find(name.toStdString()) != groupSta->end()){
         t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString("Group: %1").arg(name)));
-        auto members = groupSta.at(name.toStdString());
+        auto members = groupSta->at(name.toStdString());
         t->setRowCount(members.size());
         for(int i=0; i<members.size(); ++i){
             QString txt = QString::fromStdString(members.at(i));
@@ -652,9 +685,9 @@ void MainWindow::displaySourceSetupMember(QString name)
             QString txt = selectedSourceModel->index(i,0).data().toString();
             t->setItem(i,0,new QTableWidgetItem(QIcon(":/icons/icons/source.png"),txt));
         }
-    }else if(groupSrc.find(name.toStdString()) != groupSrc.end()){
+    }else if(groupSrc->find(name.toStdString()) != groupSrc->end()){
         t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/source_group.png"),QString("Group: %1").arg(name)));
-        auto members = groupSrc.at(name.toStdString());
+        auto members = groupSrc->at(name.toStdString());
         t->setRowCount(members.size());
         for(int i=0; i<members.size(); ++i){
             QString txt = QString::fromStdString(members.at(i));
@@ -694,9 +727,9 @@ void MainWindow::displayBaselineSetupMember(QString name)
             QString txt = selectedBaselineModel->index(i,0).data().toString();
             t->setItem(i,0,new QTableWidgetItem(QIcon(":/icons/icons/baseline.png"),txt));
         }
-    }else if(groupBl.find(name.toStdString()) != groupBl.end()){
+    }else if(groupBl->find(name.toStdString()) != groupBl->end()){
         t->setHorizontalHeaderItem(0,new QTableWidgetItem(QIcon(":/icons/icons/baseline_group.png"),QString("Group: %1").arg(name)));
-        auto members = groupBl.at(name.toStdString());
+        auto members = groupBl->at(name.toStdString());
         t->setRowCount(members.size());
         for(int i=0; i<members.size(); ++i){
             QString txt = QString::fromStdString(members.at(i));
@@ -857,7 +890,7 @@ void MainWindow::displayStationSetupParameter(QString name)
     if(para.ignoreSourcesString.size() > 0){
           for(const auto &any: para.ignoreSourcesString){
               t->insertRow(r);
-              if(groupSrc.find(any) != groupSrc.end() || any == "__all__"){
+              if(groupSrc->find(any) != groupSrc->end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("ignore source group"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(any)));
               }else{
@@ -1035,7 +1068,7 @@ void MainWindow::displaySourceSetupParameter(QString name){
     if(para.ignoreStationsString.size() > 0){
           for(const auto &any: para.ignoreStationsString){
               t->insertRow(r);
-              if(groupSta.find(any) != groupSta.end() || any == "__all__"){
+              if(groupSta->find(any) != groupSta->end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("ignore station group"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(any)));
               }else{
@@ -1048,7 +1081,7 @@ void MainWindow::displaySourceSetupParameter(QString name){
     if(para.requiredStationsString.size() > 0){
           for(const auto &any: para.requiredStationsString){
               t->insertRow(r);
-              if(groupSta.find(any) != groupSta.end() || any == "__all__"){
+              if(groupSta->find(any) != groupSta->end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("required station group"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(any)));
               }else{
@@ -1062,7 +1095,7 @@ void MainWindow::displaySourceSetupParameter(QString name){
     if(para.ignoreBaselinesString.size() > 0){
           for(const auto &any: para.ignoreBaselinesString){
               t->insertRow(r);
-              if(groupBl.find(any) != groupBl.end() || any == "__all__"){
+              if(groupBl->find(any) != groupBl->end() || any == "__all__"){
                   t->setVerticalHeaderItem(r,new QTableWidgetItem("ignore baseline group"));
                   t->setItem(r,0,new QTableWidgetItem(QIcon(":/icons/icons/baseline_group.png"),QString::fromStdString(any)));
               }else{
@@ -3321,12 +3354,12 @@ void MainWindow::on_pushButton_stations_clicked()
         warnings.append("baseline setup cleared\n");
         clearSetup(false,false,true);
     }
-    if(!groupSta.empty()){
-        groupSta.clear();
+    if(!groupSta->empty()){
+        groupSta->clear();
         warnings.append("station groups cleared\n");
     }
-    if(!groupBl.empty()){
-        groupBl.clear();
+    if(!groupBl->empty()){
+        groupBl->clear();
         warnings.append("baseline groups cleared\n");
     }
     if(ui->treeWidget_highImpactAzEl->topLevelItemCount() != 0){
@@ -3334,29 +3367,12 @@ void MainWindow::on_pushButton_stations_clicked()
         warnings.append("high impact scans setup cleared\n");
     }
 
-    QIcon icSta = QIcon(":/icons/icons/station.png");
-    QIcon icBl = QIcon(":/icons/icons/baseline.png");
-    QIcon icStaGrp = QIcon(":/icons/icons/station_group.png");
-    QIcon icBlGrp = QIcon(":/icons/icons/baseline_group.png");
     bool mssta = false;
     bool msbl = false;
-    int i=0;
-    while(i < ui->treeWidget_multiSchedSelected->topLevelItemCount()){
-        QIcon parameterIcon = ui->treeWidget_multiSchedSelected->topLevelItem(i)->icon(0);
-        if(parameterIcon.pixmap(16,16).toImage() == icSta.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icStaGrp.pixmap(16,16).toImage()){
-            auto itm = ui->treeWidget_multiSchedSelected->takeTopLevelItem(i);
-            delete(itm);
-            mssta = true;
-            continue;
-        }else if(parameterIcon.pixmap(16,16).toImage() == icBl.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icBlGrp.pixmap(16,16).toImage()){
-            auto itm = ui->treeWidget_multiSchedSelected->takeTopLevelItem(i);
-            delete(itm);
-            msbl = true;
-            continue;
-        }else{
-            ++i;
-        }
-    }
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->resetStationParameters(mssta, msbl);
+
     if(mssta){
         warnings.append("station multi scheduling parameters cleared\n");
     }
@@ -3391,26 +3407,15 @@ void MainWindow::on_pushButton_reloadsources_clicked()
         warnings.append("source setup cleared\n");
         clearSetup(false,true,false);
     }
-    if(!groupSrc.empty()){
-        groupSrc.clear();
+    if(!groupSrc->empty()){
+        groupSrc->clear();
         warnings.append("source groups cleared\n");
     }
 
-    QIcon icSrc = QIcon(":/icons/icons/source.png");
-    QIcon icSrcGrp = QIcon(":/icons/icons/source_group.png");
     bool mssrc = false;
-    int i=0;
-    while(i < ui->treeWidget_multiSchedSelected->topLevelItemCount()){
-        QIcon parameterIcon = ui->treeWidget_multiSchedSelected->topLevelItem(i)->icon(0);
-        if(parameterIcon.pixmap(16,16).toImage() == icSrc.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icSrcGrp.pixmap(16,16).toImage()){
-            auto itm = ui->treeWidget_multiSchedSelected->takeTopLevelItem(i);
-            delete(itm);
-            mssrc = true;
-            continue;
-        }else{
-            ++i;
-        }
-    }
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->resetSourceParameters(mssrc);
     if(mssrc){
         warnings.append("source multi scheduling parameters cleared\n");
     }
@@ -3657,7 +3662,7 @@ void MainWindow::on_pushButton_clicked()
 
                 QTreeWidgetItem *c = new QTreeWidgetItem();
                 VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
-                drawTable(setupStationTree, c, groupSta, setupType);
+                drawTable(setupStationTree, c, *groupSta, setupType);
                 targetTreeWidget->addTopLevelItem(c);
                 targetTreeWidget->expandAll();
 
@@ -3755,11 +3760,11 @@ void MainWindow::drawSetupPlot(QChartView *cv, QComboBox *cb, QTreeWidget *tw)
 
     std::map<std::string,std::vector<std::string>> map;
     if(cv == setupStation){
-        map = groupSta;
+        map = *groupSta;
     }else if(cv == setupSource){
-        map = groupSrc;
+        map = *groupSrc;
     }else if(cv == setupBaseline){
-        map = groupBl;
+        map = *groupBl;
     }
 
     QTreeWidgetItem *root = tw->topLevelItem(0);
@@ -3793,11 +3798,11 @@ void MainWindow::addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStar
 
     std::map<std::string, std::vector<std::string>> groups;
     if(targetTreeWidget == ui->treeWidget_setupStation){
-        groups = groupSta;
+        groups = *groupSta;
     }else if(targetTreeWidget == ui->treeWidget_setupSource){
-        groups = groupSrc;
+        groups = *groupSrc;
     }else if(targetTreeWidget == ui->treeWidget_setupBaseline){
-        groups = groupBl;
+        groups = *groupBl;
     }
     bool isGroup = groups.find(member->currentText().toStdString() ) != groups.end();
     if(isGroup){
@@ -3925,8 +3930,8 @@ void MainWindow::deleteSetupSelection(VieVS::ParameterSetup &setup, QChartView *
             std::string parameterName2 = sel.at(0)->text(1).toStdString();
             std::string memberName2 = sel.at(0)->text(0).toStdString();
             std::vector<std::string> members2;
-            if(groupSta.find(memberName2) != groupSta.end()){
-                members2 = groupSta.at(memberName2);
+            if(groupSta->find(memberName2) != groupSta->end()){
+                members2 = groupSta->at(memberName2);
             }else{
                 members2.push_back(memberName2);
             }
@@ -4041,16 +4046,16 @@ void MainWindow::clearGroup(bool sta, bool src, bool bl, QString name)
                 ++i;
                 continue;
             }
-            if(groupSta.find(txt.toStdString()) != groupSta.end()){
-                auto vec = groupSta[txt.toStdString()];
+            if(groupSta->find(txt.toStdString()) != groupSta->end()){
+                auto vec = (*groupSta)[txt.toStdString()];
                 auto it = std::find(vec.begin(),vec.end(),name.toStdString());
                 if(it != vec.end()){
                     vec.erase(it);
-                    groupSta[txt.toStdString()] = vec;
+                    (*groupSta)[txt.toStdString()] = vec;
                 }
                 if(vec.empty()){
                     allStationPlusGroupModel->removeRow(i);
-                    groupSta.erase(txt.toStdString());
+                    groupSta->erase(txt.toStdString());
                     mapCleared = true;
                 }else{
                     ++i;
@@ -4073,12 +4078,12 @@ void MainWindow::clearGroup(bool sta, bool src, bool bl, QString name)
                 ++i;
                 continue;
             }
-            if(groupSrc.find(txt.toStdString()) != groupSrc.end()){
-                auto vec = groupSrc[txt.toStdString()];
+            if(groupSrc->find(txt.toStdString()) != groupSrc->end()){
+                auto vec = (*groupSrc)[txt.toStdString()];
                 auto it = std::find(vec.begin(),vec.end(),name.toStdString());
                 if(it != vec.end()){
                     vec.erase(it);
-                    groupSrc[txt.toStdString()] = vec;
+                    (*groupSrc)[txt.toStdString()] = vec;
                 }
                 if(vec.empty()){
                     if(ui->comboBox_calibratorBlock_calibratorSources->currentText() == txt){
@@ -4093,7 +4098,7 @@ void MainWindow::clearGroup(bool sta, bool src, bool bl, QString name)
                         }
                     }
                     allSourcePlusGroupModel->removeRow(i);
-                    groupSrc.erase(txt.toStdString());
+                    groupSrc->erase(txt.toStdString());
                     mapCleared = true;
                 }else{
                     ++i;
@@ -4116,8 +4121,8 @@ void MainWindow::clearGroup(bool sta, bool src, bool bl, QString name)
                 ++i;
                 continue;
             }
-            if(groupBl.find(txt.toStdString()) != groupBl.end()){
-                auto vec = groupBl[txt.toStdString()];
+            if(groupBl->find(txt.toStdString()) != groupBl->end()){
+                auto vec = (*groupBl)[txt.toStdString()];
                 int j = 0;
                 while(j<vec.size()){
                     QString itm = QString::fromStdString(vec.at(j));
@@ -4127,11 +4132,11 @@ void MainWindow::clearGroup(bool sta, bool src, bool bl, QString name)
                     }else{
                         ++j;
                     }
-                    groupBl[txt.toStdString()] = vec;
+                    (*groupBl)[txt.toStdString()] = vec;
                 }
                 if(vec.empty()){
                     allBaselinePlusGroupModel->removeRow(i);
-                    groupBl.erase(txt.toStdString());
+                    groupBl->erase(txt.toStdString());
                     mapCleared = true;
                 }else{
                     ++i;
@@ -4507,13 +4512,9 @@ void MainWindow::on_treeView_allSelectedStations_clicked(const QModelIndex &inde
         createBaselineModel();
     }
 
-    ui->treeWidget_multiSchedSelected->clear();
-    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
-        ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
-        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
-            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
-        }
-    }
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->clear();
 }
 
 void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &index)
@@ -4536,7 +4537,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
         int r = 0;
         for(int i = 0; i<allStationPlusGroupModel->rowCount(); ++i){
             QString txt = allStationPlusGroupModel->item(i)->text();
-            if(groupSta.find(txt.toStdString()) != groupSta.end() || txt == "__all__"){
+            if(groupSta->find(txt.toStdString()) != groupSta->end() || txt == "__all__"){
                 ++r;
                 continue;
             }
@@ -4697,7 +4698,7 @@ void MainWindow::worldmap_hovered(QPointF point, bool state)
 void MainWindow::addGroupStation()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::station,this);
-    dial->addModel(selectedStationModel, groupSta);
+    dial->addModel(selectedStationModel, *groupSta);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
@@ -4711,7 +4712,7 @@ void MainWindow::addGroupStation()
                 ++r;
                 continue;
             }
-            if(groupSta.find(txt.toStdString()) == groupSta.end()){
+            if(groupSta->find(txt.toStdString()) == groupSta->end()){
                 break;
             }
             if(txt>QString::fromStdString(stdname)){
@@ -4720,7 +4721,7 @@ void MainWindow::addGroupStation()
                 ++r;
             }
         }
-        groupSta[stdname] = stdlist;
+        (*groupSta)[stdname] = stdlist;
 
         allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group.png"),QString::fromStdString(stdname) ));
         if(sender() == ui->pushButton_addGroupStationSetup){
@@ -4733,7 +4734,7 @@ void MainWindow::addGroupStation()
 void MainWindow::addGroupBaseline()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::baseline,this);
-    dial->addModel(selectedBaselineModel, groupBl);
+    dial->addModel(selectedBaselineModel, *groupBl);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
@@ -4747,7 +4748,7 @@ void MainWindow::addGroupBaseline()
                 ++r;
                 continue;
             }
-            if(groupBl.find(txt.toStdString()) == groupBl.end()){
+            if(groupBl->find(txt.toStdString()) == groupBl->end()){
                 break;
             }
             if(txt>QString::fromStdString(stdname)){
@@ -4757,7 +4758,7 @@ void MainWindow::addGroupBaseline()
             }
         }
 
-        groupBl[stdname] = stdlist;
+        (*groupBl)[stdname] = stdlist;
 
         allBaselinePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),QString::fromStdString(stdname) ));
         if(sender() == ui->pushButton_addGroupBaselineSetup){
@@ -4873,7 +4874,7 @@ void MainWindow::createBaselineModel()
     selectedBaselineModel->removeRows(0,selectedBaselineModel->rowCount());
 
     allBaselinePlusGroupModel->setRowCount(1);
-    for(const auto& any:groupBl){
+    for(const auto& any:*groupBl){
         allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),QString::fromStdString(any.first)));
     }
 
@@ -5194,7 +5195,7 @@ void MainWindow::setupStationAxisBufferAddRow()
     int row = t->topLevelItemCount();
     QString name = ui->comboBox_stationSettingMember_axis->currentText();
     QIcon ic;
-    bool inGroup = groupSta.find(name.toStdString()) != groupSta.end();
+    bool inGroup = groupSta->find(name.toStdString()) != groupSta->end();
     if( inGroup || name == "__all__"){
         ic = QIcon(":/icons/icons/station_group.png");
     }else{
@@ -5211,10 +5212,10 @@ void MainWindow::setupStationAxisBufferAddRow()
             break;
         }
 
-        if(groupSta.find(itmName.toStdString()) != groupSta.end()){
-            std::vector<std::string> itmMembers = groupSta.at(itmName.toStdString());
+        if(groupSta->find(itmName.toStdString()) != groupSta->end()){
+            std::vector<std::string> itmMembers = groupSta->at(itmName.toStdString());
             if(inGroup){
-                std::vector<std::string> members = groupSta.at(name.toStdString());
+                std::vector<std::string> members = groupSta->at(name.toStdString());
                 for(const auto &any:members){
                     if(std::find(itmMembers.begin(),itmMembers.end(),any) != itmMembers.end()){
                         valid = false;
@@ -5231,7 +5232,7 @@ void MainWindow::setupStationAxisBufferAddRow()
             }
         }else{
             if(inGroup){
-                std::vector<std::string> members = groupSta.at(name.toStdString());
+                std::vector<std::string> members = groupSta->at(name.toStdString());
                 if(std::find(members.begin(),members.end(),itmName.toStdString()) != members.end()){
                     valid = false;
                     errorStation = itmName;
@@ -5483,7 +5484,7 @@ void MainWindow::readSources()
             int r = 0;
             for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
                 QString txt = allSourcePlusGroupModel->item(i)->text();
-                if(groupSrc.find(txt.toStdString()) != groupSrc.end() || txt == "__all__"){
+                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
                     ++r;
                     continue;
                 }
@@ -5562,14 +5563,9 @@ void MainWindow::on_treeView_allSelectedSources_clicked(const QModelIndex &index
             break;
         }
     }
-    ui->treeWidget_multiSchedSelected->clear();
-    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
-        ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
-        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
-            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
-        }
-    }
-
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->clear();
 }
 
 void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index)
@@ -5604,7 +5600,7 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
         int r = 0;
         for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
             QString txt = allSourcePlusGroupModel->item(i)->text();
-            if(groupSrc.find(txt.toStdString()) != groupSrc.end() || txt == "__all__"){
+            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
                 ++r;
                 continue;
             }
@@ -5767,7 +5763,7 @@ void MainWindow::skymap_hovered(QPointF point, bool state){
 void MainWindow::addGroupSource()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::source,this);
-    dial->addModel(selectedSourceModel, groupSrc);
+    dial->addModel(selectedSourceModel, *groupSrc);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
@@ -5781,7 +5777,7 @@ void MainWindow::addGroupSource()
                 ++r;
                 continue;
             }
-            if(groupSrc.find(txt.toStdString()) == groupSrc.end()){
+            if(groupSrc->find(txt.toStdString()) == groupSrc->end()){
                 break;
             }
             if(txt>QString::fromStdString(stdname)){
@@ -5791,7 +5787,7 @@ void MainWindow::addGroupSource()
             }
         }
 
-        groupSrc[stdname] = stdlist;
+        (*groupSrc)[stdname] = stdlist;
 
         allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname) ));
         if(sender() == ui->pushButton_addGroupSourceSetup){
@@ -5982,19 +5978,15 @@ void MainWindow::on_pushButton_15_clicked()
     int i = 0;
     while(i<allSourcePlusGroupModel->rowCount()){
         QString name = allSourcePlusGroupModel->item(i)->text();
-        if(name != "__all__" && groupSrc.find(name.toStdString()) == groupSrc.end()){
+        if(name != "__all__" && groupSrc->find(name.toStdString()) == groupSrc->end()){
             allSourcePlusGroupModel->removeRow(i);
         }else{
             ++i;
         }
     }
-    ui->treeWidget_multiSchedSelected->clear();
-    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
-        ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
-        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
-            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
-        }
-    }
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->clear();
     ui->label_sourceList_selected->setText("selected: ");
 }
 
@@ -6208,622 +6200,6 @@ void MainWindow::on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1)
     }
 }
 
-// ########################################### MULTI SCHED ###########################################
-
-void MainWindow::createMultiSchedTable()
-{
-
-    QTreeWidget *t = ui->treeWidget_multiSched;
-
-    t->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    t->expandAll();
-    ui->treeWidget_multiSchedSelected->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
-        for(int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
-            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
-        }
-    }
-
-}
-
-void MainWindow::on_pushButton_multiSchedAddSelected_clicked()
-{
-    auto tall = ui->treeWidget_multiSched;
-    auto list = tall->selectedItems();
-
-    for(const auto&any:list){
-
-        if(any->parent()){
-            QString name = any->text(0);
-            QString parameterType = any->parent()->text(0);
-
-            QStringList row2dateTimeDialog {"session start"};
-
-            QStringList row2toggle{"subnetting",
-                                   "fillin-mode during scan selection",
-                                   "fillin-mode influence on scan selection",
-                                   "fillin-mode a posteriori"};
-
-            QStringList row2intDialog {"min slew time",
-                                       "max slew time",
-                                       "max wait time",
-                                       "max scan time",
-                                       "min scan time",
-                                       "min number of stations",
-                                       "min repeat time",
-                                       "idle time interval",
-                                       "influence time",
-                                       "max number of scans"};
-
-            QStringList row2doubleDialog {"subnetting min source angle",
-                                          "subnetting min participating stations",
-                                          "sky-coverage",
-                                          "number of observations",
-                                          "duration",
-                                          "average stations",
-                                          "average sources",
-                                          "average baselines",
-                                          "idle time",
-                                          "low declination",
-                                          "low declination begin",
-                                          "low declination full",
-                                          "low elevation",
-                                          "low elevation begin",
-                                          "low elevation full",
-                                          "influence distance",
-                                          "weight",
-                                          "min slew distance",
-                                          "max slew distance",
-                                          "min elevation",
-                                          "min flux",
-                                          "min sun distance"};
-
-            std::map<QString, QVector<double>> defaultValues;
-            defaultValues["min slew time"         ] = {0, 150};
-            defaultValues["max slew time"         ] = {150, 300, 450};
-            defaultValues["max wait time"         ] = {150, 300, 450};
-            defaultValues["max scan time"         ] = {900, 600, 300};
-            defaultValues["min scan time"         ] = {20, 30, 40};
-            defaultValues["min number of stations"] = {2, 3, 4};
-            defaultValues["min repeat time"       ] = {1200, 1800};
-            defaultValues["idle time interval"    ] = {120, 180, 240, 300};
-            defaultValues["influence time"        ] = {900, 1200, 1800, 3600};
-            defaultValues["max number of scans"   ] = {10, 25, 999};
-
-            defaultValues["subnetting min source angle"          ] = {120, 150};
-            defaultValues["subnetting min participating stations"] = {60, 80, 100};
-            defaultValues["sky-coverage"                         ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["number of observations"               ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["duration"                             ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["average stations"                     ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["average sources"                      ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["average baselines"                    ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["idle time"                            ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["low declination"                      ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["low declination begin"                ] = {0, -22.5, -45};
-            defaultValues["low declination full"                 ] = {-75, -90};
-            defaultValues["low elevation"                        ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["low elevation begin"                  ] = {40, 30, 20};
-            defaultValues["low elevation full"                   ] = {20, 10};
-            defaultValues["influence distance"                   ] = {15, 30, 45};
-            defaultValues["weight"                               ] = {1, 1.5, 2, 3};
-            defaultValues["min slew distance"                    ] = {0, 20, 40};
-            defaultValues["max slew distance"                    ] = {90, 60};
-            defaultValues["min elevation"                        ] = {5, 10};
-            defaultValues["min flux"                             ] = {0.01, 0.15, 0.25, 0.35};
-            defaultValues["min sun distance"                     ] = {4, 10};
-
-            QIcon ic;
-            if(parameterType == "general"){
-                ic = QIcon(":/icons/icons/applications-internet-2.png");
-            }else if(parameterType == "weight factor"){
-                ic = QIcon(":/icons/icons/weight.png");
-            }else if(parameterType == "sky-coverage"){
-                ic = QIcon(":/icons/icons/sky_coverage.png");
-            }else if(parameterType == "station"){
-                ic = QIcon(":/icons/icons/station.png");
-            }else if(parameterType == "source"){
-                ic = QIcon(":/icons/icons/source.png");
-            }else if(parameterType == "baseline"){
-                ic = QIcon(":/icons/icons/baseline.png");
-            }
-
-            auto t = ui->treeWidget_multiSchedSelected;
-
-            QTreeWidgetItem *itm = new QTreeWidgetItem();
-
-            if(row2toggle.indexOf(name) != -1){
-                if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
-                    any->setDisabled(true);
-                }
-                QString valuesString = "True, False";
-
-                itm->setText(0,name);
-                itm->setIcon(0,ic);
-                itm->setText(1,"global");
-                itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
-                itm->setText(2,"2");
-
-                QComboBox *cb = new QComboBox(this);
-                cb->addItem("True");
-                cb->addItem("False");
-
-                t->addTopLevelItem(itm);
-                t->setItemWidget(itm,3,cb);
-
-            }else if(row2intDialog.indexOf(name) != -1){
-                multiSchedEditDialogInt *dialog = new multiSchedEditDialogInt(this);
-                if(parameterType == "station"){
-                    dialog->addMember(allStationPlusGroupModel);
-                }else if(parameterType == "source"){
-                    dialog->addMember(allSourcePlusGroupModel);
-                }else if(parameterType == "baseline"){
-                    dialog->addMember(allBaselinePlusGroupModel);
-                }
-                dialog->addDefaultValues(defaultValues[name]);
-
-                int result = dialog->exec();
-                if(result == QDialog::Accepted){
-                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
-                        any->setDisabled(true);
-                    }
-                    QVector<int> val = dialog->getValues();
-                    int n = val.size();
-                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
-                        QStandardItem* member = dialog->getMember();
-                        itm->setText(1,member->text());
-                        itm->setIcon(1,member->icon());
-                    }else if(parameterType == "weight factor"){
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
-                    }else if(parameterType == "sky-coverage"){
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/sky_coverage.png"));
-                    }else{
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
-                    }
-                    QComboBox *cb = new QComboBox(this);
-                    for(const auto& any:val){
-                        cb->addItem(QString::number(any));
-                    }
-
-                    itm->setText(2,QString::number(n));
-                    itm->setText(0,name);
-                    itm->setIcon(0,ic);
-                    t->addTopLevelItem(itm);
-                    t->setItemWidget(itm,3,cb);
-
-                }
-                delete(dialog);
-
-            }else if(row2doubleDialog.indexOf(name) != -1){
-                multiSchedEditDialogDouble *dialog = new multiSchedEditDialogDouble(this);
-                if(parameterType == "station"){
-                    dialog->addMember(allStationPlusGroupModel);
-                }else if(parameterType == "source"){
-                    dialog->addMember(allSourcePlusGroupModel);
-                }else if(parameterType == "baseline"){
-                    dialog->addMember(allBaselinePlusGroupModel);
-                }else if(parameterType == "weight factor"){
-                    itm->setText(1,"global");
-                    itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
-                }
-                dialog->addDefaultValues(defaultValues[name]);
-
-                int result = dialog->exec();
-                if(result == QDialog::Accepted){
-                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
-                        any->setDisabled(true);
-                    }
-                    QVector<double> val = dialog->getValues();
-                    int n = val.size();
-
-                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
-                        QStandardItem* member = dialog->getMember();
-                        itm->setText(1,member->text());
-                        itm->setIcon(1,member->icon());
-                    }else if(parameterType == "sky-coverage"){
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/sky_coverage.png"));
-                    }else{
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
-                    }
-                    QComboBox *cb = new QComboBox(this);
-                    for(const auto& any:val){
-                        cb->addItem(QString::number(any));
-                    }
-
-                    itm->setText(2,QString::number(n));
-                    itm->setText(0,name);
-                    itm->setIcon(0,ic);
-                    t->addTopLevelItem(itm);
-                    t->setItemWidget(itm,3,cb);
-                }
-                delete(dialog);
-
-            }else if(row2dateTimeDialog.indexOf(name) != -1){
-                multiSchedEditDialogDateTime *dialog = new multiSchedEditDialogDateTime(this);
-
-                int result = dialog->exec();
-                if(result == QDialog::Accepted){
-                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
-                        any->setDisabled(true);
-                    }
-                    QVector<QDateTime> val = dialog->getValues();
-                    int n = val.size();
-
-                    itm->setText(1,"global");
-                    itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
-                    QComboBox *cb = new QComboBox(this);
-                    for(const auto& any:val){
-                        cb->addItem(any.toString("dd.MM.yyyy hh:mm"));
-                    }
-
-                    itm->setText(2,QString::number(n));
-                    itm->setText(0,name);
-                    itm->setIcon(0,ic);
-                    t->addTopLevelItem(itm);
-                    t->setItemWidget(itm,3,cb);
-                }
-                delete(dialog);
-            }
-
-            multi_sched_count_nsched();
-
-        }
-    }
-}
-
-void MainWindow::on_pushButton_25_clicked()
-{
-    auto list = ui->treeWidget_multiSchedSelected->selectedItems();{
-        for(const auto& any:list){
-            if(any->text(0) == "session start"){
-//                ui->treeWidget_multiSched->topLevelItem(0)->child(0)->setDisabled(false);
-            }else if(any->text(0) == "subnetting"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(0)->setDisabled(false);
-            }else if(any->text(0) == "subnetting min source angle"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(1)->setDisabled(false);
-            }else if(any->text(0) == "subnetting min participating stations"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(2)->setDisabled(false);
-            }else if(any->text(0) == "fillin-mode during scan selection"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(3)->setDisabled(false);
-            }else if(any->text(0) == "fillin-mode influence on scan selection"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(4)->setDisabled(false);
-            }else if(any->text(0) == "fillin-mode a posteriori"){
-                ui->treeWidget_multiSched->topLevelItem(0)->child(5)->setDisabled(false);
-
-            }else if(any->text(0) == "sky-coverage"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(false);
-            }else if(any->text(0) == "number of observations"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(1)->setDisabled(false);
-            }else if(any->text(0) == "duration"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(2)->setDisabled(false);
-            }else if(any->text(0) == "average stations"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(3)->setDisabled(false);
-            }else if(any->text(0) == "average sources"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(4)->setDisabled(false);
-            }else if(any->text(0) == "average baselines"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(5)->setDisabled(false);
-            }else if(any->text(0) == "idle time"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(6)->setDisabled(false);
-            }else if(any->text(0) == "idle time interval"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(7)->setDisabled(false);
-            }else if(any->text(0) == "low declination"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(8)->setDisabled(false);
-            }else if(any->text(0) == "low declination begin"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(9)->setDisabled(false);
-            }else if(any->text(0) == "low declination full"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(10)->setDisabled(false);
-            }else if(any->text(0) == "low elevation"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(11)->setDisabled(false);
-            }else if(any->text(0) == "low elevation begin"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(12)->setDisabled(false);
-            }else if(any->text(0) == "low elevation full"){
-                ui->treeWidget_multiSched->topLevelItem(1)->child(13)->setDisabled(false);
-
-            }else if(any->text(0) == "influence distance"){
-                ui->treeWidget_multiSched->topLevelItem(2)->child(0)->setDisabled(false);
-            }else if(any->text(0) == "influence time"){
-                ui->treeWidget_multiSched->topLevelItem(2)->child(1)->setDisabled(false);
-            }
-            delete(any);
-        }
-    }
-
-    multi_sched_count_nsched();
-
-}
-
-void MainWindow::on_comboBox_nThreads_currentTextChanged(const QString &arg1)
-{
-    if(arg1 == "manual"){
-        ui->label_nCores->setEnabled(true);
-        ui->spinBox_nCores->setEnabled(true);
-    }else{
-        ui->label_nCores->setEnabled(false);
-        ui->spinBox_nCores->setEnabled(false);
-    }
-}
-
-void MainWindow::on_comboBox_jobSchedule_currentTextChanged(const QString &arg1)
-{
-    if(arg1 == "auto"){
-        ui->label_chunkSize->setEnabled(false);
-        ui->spinBox_chunkSize->setEnabled(false);
-    }else{
-        ui->label_chunkSize->setEnabled(true);
-        ui->spinBox_chunkSize->setEnabled(true);
-    }
-}
-
-void MainWindow::on_comboBox_multiSched_maxNumber_currentIndexChanged(const QString &arg1)
-{
-    if(arg1 == "all"){
-        ui->spinBox_multiSched_maxNumber->setEnabled(false);
-        ui->comboBox_multiSched_seed->setEnabled(false);
-        ui->label_multiSched_seed->setEnabled(false);
-        ui->spinBox_multiSched_seed->setEnabled(false);
-    } else {
-        ui->spinBox_multiSched_maxNumber->setEnabled(true);
-        ui->comboBox_multiSched_seed->setEnabled(true);
-        ui->label_multiSched_seed->setEnabled(true);
-        on_comboBox_multiSched_seed_currentIndexChanged(ui->comboBox_multiSched_seed->currentText());
-    }
-}
-
-void MainWindow::on_comboBox_multiSched_seed_currentIndexChanged(const QString &arg1)
-{
-    if(arg1 == "random"){
-        ui->spinBox_multiSched_seed->setEnabled(false);
-    } else {
-        ui->spinBox_multiSched_seed->setEnabled(true);
-    }
-}
-
-void MainWindow::multi_sched_count_nsched()
-{
-
-    auto t = ui->treeWidget_multiSchedSelected;
-
-    int nsched = 1;
-    double wsky_ = 0;
-    if(ui->checkBox_weightCoverage->isChecked()){
-        wsky_ = ui->doubleSpinBox_weightSkyCoverage->value();
-    }
-    double wobs_ = 0;
-    if(ui->checkBox_weightNobs->isChecked()){
-        wobs_ = ui->doubleSpinBox_weightNumberOfObservations->value();
-    }
-    double wdur_ = 0;
-    if(ui->checkBox_weightDuration->isChecked()){
-        wdur_ = ui->doubleSpinBox_weightDuration->value();
-    }
-    double wasrc_ = 0;
-    if(ui->checkBox_weightAverageSources->isChecked()){
-        wasrc_ = ui->doubleSpinBox_weightAverageSources->value();
-    }
-    double wasta_ = 0;
-    if(ui->checkBox_weightAverageStations->isChecked()){
-        wasta_ = ui->doubleSpinBox_weightAverageStations->value();
-    }
-    double wabls_ = 0;
-    if(ui->checkBox_weightAverageBaselines->isChecked()){
-        wabls_ = ui->doubleSpinBox_weightAverageBaselines->value();
-    }
-    double widle_ = 0;
-    if(ui->checkBox_weightIdleTime->isChecked()){
-        widle_ = ui->doubleSpinBox_weightIdleTime->value();
-    }
-    double wdec_ = 0;
-    if(ui->checkBox_weightLowDeclination->isChecked()){
-        wdec_ = ui->doubleSpinBox_weightLowDec->value();
-    }
-    double wel_ = 0;
-    if(ui->checkBox_weightLowElevation->isChecked()){
-        wel_ = ui->doubleSpinBox_weightLowEl->value();
-    }
-
-
-    std::map<std::string,std::vector<double>> weightFactors = {{"weight_factor_sky_coverage",std::vector<double>{wsky_}},
-                                                    {"weight_factor_number_of_observations",std::vector<double>{wobs_}},
-                                                    {"weight_factor_duration",std::vector<double>{wdur_}},
-                                                    {"weight_factor_average_sources",std::vector<double>{wasrc_}},
-                                                    {"weight_factor_average_stations",std::vector<double>{wasta_}},
-                                                    {"weight_factor_average_baselines",std::vector<double>{wabls_}},
-                                                    {"weight_factor_idle_time",std::vector<double>{widle_}},
-                                                    {"weight_factor_low_declination",std::vector<double>{wdec_}},
-                                                    {"weight_factor_low_elevation",std::vector<double>{wel_}}};
-
-    bool weigthFactorFound = false;
-    for(int i = 0; i<t->topLevelItemCount(); ++i){
-        if(t->topLevelItem(i)->text(0) == "sky-coverage"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_sky_coverage"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "number of observations"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_number_of_observations"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "duration"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_duration"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "average stations"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_average_stations"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "average baselines"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_average_baselines"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "average sources"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_average_sources"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "idle time"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_idle_time"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "low declination"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_low_declination"] = values;
-            weigthFactorFound = true;
-        }else if(t->topLevelItem(i)->text(0) == "low elevation"){
-            QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
-            std::vector<double> values;
-            for(int ilist = 0; ilist<list->count(); ++ilist){
-                values.push_back( QString(list->itemText(ilist)).toDouble());
-            }
-            weightFactors["weight_factor_low_elevation"] = values;
-            weigthFactorFound = true;
-        }
-    }
-
-    std::vector<std::vector<double> > weightFactorValues;
-    if(weigthFactorFound){
-        for (double wsky: weightFactors["weight_factor_sky_coverage"]) {
-            for (double wobs: weightFactors["weight_factor_number_of_observations"]) {
-                for (double wdur: weightFactors["weight_factor_duration"]) {
-                    for (double wasrc: weightFactors["weight_factor_average_sources"]) {
-                        for (double wasta: weightFactors["weight_factor_average_stations"]) {
-                            for (double wabls: weightFactors["weight_factor_average_baselines"]) {
-                                for (double widle: weightFactors["weight_factor_idle_time"]) {
-                                    for (double wdec: weightFactors["weight_factor_low_declination"]) {
-                                        for (double wel: weightFactors["weight_factor_low_elevation"]) {
-
-                                            double sum = wsky + wobs + wdur + wasrc + wasta + wabls + widle + wdec + wel;
-
-                                            if (sum == 0) {
-                                                continue;
-                                            }
-
-                                            std::vector<double> wf{wsky/sum, wobs/sum, wdur/sum, wasrc/sum, wasta/sum,
-                                                                   wabls/sum, widle/sum, wdec/sum, wel/sum};
-                                            weightFactorValues.push_back(std::move(wf));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // remove duplicated weight factors
-    int i1 = 0;
-    while (i1 < weightFactorValues.size()) {
-        const std::vector<double> &v1 = weightFactorValues[i1];
-        int i2 = i1 + 1;
-
-        while (i2 < weightFactorValues.size()) {
-            const std::vector<double> &v2 = weightFactorValues[i2];
-            int equal = 0;
-            for (int i3 = 0; i3 < v1.size(); ++i3) {
-                if (fabs(v1[i3] - v2[i3]) < 1e-10) {
-                    ++equal;
-                }
-            }
-            if (equal == v1.size()) {
-                weightFactorValues.erase(next(weightFactorValues.begin(), i2));
-            } else {
-                ++i2;
-            }
-        }
-        ++i1;
-    }
-
-    if (!weightFactorValues.empty()) {
-        nsched = weightFactorValues.size();
-    }
-
-    QStringList weightFactorsStr {"sky-coverage",
-                                  "number of observations",
-                                  "duration",
-                                  "average stations",
-                                  "average sources",
-                                  "average baselines",
-                                  "idle time",
-                                  "low declination",
-                                  "low elevation"};
-
-    for(int i = 0; i<t->topLevelItemCount(); ++i){
-        if(weightFactorsStr.indexOf(t->topLevelItem(i)->text(0)) != -1){
-            continue;
-        }
-        nsched *= t->topLevelItem(i)->text(2).toInt();
-    }
-    if(ui->groupBox_ms_gen->isChecked()){
-        nsched += ui->spinBox_ms_gen_popsize->value() * (ui->spinBox_ms_gen_iterations->value() - 1);
-    }
-
-    if(nsched > 300){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(nsched));
-        ui->label_multiSchedulingNsched->setStyleSheet("color : red; font-weight : bold");
-    }else if(nsched > 100){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(nsched));
-        ui->label_multiSchedulingNsched->setStyleSheet("color : orange; font-weight : bold");
-    }else if(nsched > 50){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(nsched));
-        ui->label_multiSchedulingNsched->setStyleSheet("font-weight : bold");
-    }else{
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(nsched));
-        ui->label_multiSchedulingNsched->setStyleSheet("");
-    }
-
-    if(!ui->pushButton_ms_pick_random->isChecked()){
-        if(nsched>9999){
-            ui->spinBox_multiSched_maxNumber->setValue(9999);
-            ui->comboBox_multiSched_maxNumber->setCurrentIndex(1);
-            ui->comboBox_multiSched_maxNumber->setEnabled(false);
-        }else{
-            ui->spinBox_multiSched_maxNumber->setValue(nsched);
-            ui->comboBox_multiSched_maxNumber->setEnabled(true);
-        }
-    }else{
-        if(nsched >9999){
-            QMessageBox::warning(this,"ignoring multi scheduling","Too many possible multi scheduling parameters!\nMulti scheduling will be ignored");
-        }
-    }
-
-}
 
 // ########################################### GUI UTILITY ###########################################
 
@@ -7172,7 +6548,7 @@ double MainWindow::interpolate( QVector<double> &xData, QVector<double> &yData, 
 void MainWindow::on_pushButton_addCondition_clicked()
 {
     QString members = ui->comboBox_conditions_members->currentText();
-    bool isGroup = groupSrc.find(members.toStdString() ) != groupSrc.end();
+    bool isGroup = groupSrc->find(members.toStdString() ) != groupSrc->end();
 
     int scans = ui->spinBox_condtionsMinNumScans->value();
     int bls = ui->spinBox_conditionsMinNumBaselines->value();
@@ -7218,7 +6594,7 @@ void MainWindow::on_spinBox_maxNumberOfIterations_valueChanged(int arg1)
 void MainWindow::on_pushButton_addHighImpactAzEl_clicked()
 {
     QString members = ui->comboBox_highImpactStation->currentText();
-    bool isGroup = groupSta.find(members.toStdString() ) != groupSrc.end();
+    bool isGroup = groupSta->find(members.toStdString() ) != groupSrc->end();
 
     double az = ui->doubleSpinBox_highImpactAzimuth->value();
     double el = ui->doubleSpinBox_highImpactElevation->value();
@@ -7624,29 +7000,10 @@ void MainWindow::on_pushButton_minTimeBetweenScans_clicked()
 
 void MainWindow::on_pushButton_mulitScheduling_clicked()
 {
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->defaultIntensive();
 
-    ui->groupBox_multiScheduling->setChecked(Qt::Checked);
-    auto t = ui->treeWidget_multiSchedSelected;
-    t->clear();
-
-    QTreeWidgetItem *itm = new QTreeWidgetItem();
-    QVector<double> val = {0, 0.01, 0.02, 0.03, 0.04, 0.06, 0.08, 0.1};
-    int n = val.size();
-
-    itm->setText(1,"global");
-    itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
-
-    QComboBox *cb = new QComboBox(this);
-    for(const auto& any:val){
-        cb->addItem(QString::number(any));
-    }
-
-    itm->setText(2,QString::number(n));
-    itm->setText(0,"sky-coverage");
-    itm->setIcon(0,QIcon(":/icons/icons/weight.png"));
-    t->addTopLevelItem(itm);
-    t->setItemWidget(itm,3,cb);
-    ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(true);
 }
 
 void MainWindow::on_groupBox_35_toggled(bool arg1)
@@ -7943,7 +7300,7 @@ void MainWindow::on_pushButton_24_clicked()
 
             QTreeWidgetItem *c = new QTreeWidgetItem();
             VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
-            drawTable(setupStationTree, c, groupSta, setupType);
+            drawTable(setupStationTree, c, *groupSta, setupType);
             targetTreeWidget->addTopLevelItem(c);
             targetTreeWidget->expandAll();
 
@@ -7989,7 +7346,7 @@ void MainWindow::on_pushButton_parseDownTime_clicked()
 
                 QTreeWidgetItem *c = new QTreeWidgetItem();
                 VieVS::ParameterSettings::Type setupType = VieVS::ParameterSettings::Type::station;
-                drawTable(setupStationTree, c, groupSta, setupType);
+                drawTable(setupStationTree, c, *groupSta, setupType);
                 targetTreeWidget->addTopLevelItem(c);
                 targetTreeWidget->expandAll();
 
@@ -8227,35 +7584,3 @@ void MainWindow::updateWeightFactorValue()
 
 
 
-void MainWindow::on_pushButton_ms_pick_random_toggled(bool checked)
-{
-    ui->treeWidget_multiSchedSelected->clear();
-    for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
-        ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
-        for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
-            ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
-        }
-    }
-    if(checked){
-        ui->comboBox_multiSched_maxNumber->setEnabled(false);
-        ui->spinBox_multiSched_maxNumber->setEnabled(true);
-        ui->spinBox_multiSched_maxNumber->setValue(32);
-    }else{
-        ui->comboBox_multiSched_maxNumber->setEnabled(true);
-        if(ui->comboBox_multiSched_maxNumber->currentText() == "all"){
-            ui->spinBox_multiSched_maxNumber->setEnabled(false);
-        }else{
-            ui->spinBox_multiSched_maxNumber->setEnabled(true);
-        }
-        ui->spinBox_multiSched_maxNumber->setValue(1);
-    }
-
-    ui->label_multiSchedulingNsched->setText(QString("total number of schedules: 1"));
-    ui->label_multiSchedulingNsched->setStyleSheet("");
-
-}
-
-void MainWindow::on_pushButton_ms_pick_random_clicked()
-{
-
-}

@@ -149,6 +149,7 @@ SOURCES += \
     ../VieSchedpp/Simulator/Solver.cpp \
     ../VieSchedpp/Simulator/Unknown.cpp \
     Utility/downloadmanager.cpp \
+    Widgets/mulitschedulingwidget.cpp \
     Widgets/priorities.cpp \
     Widgets/simulatorwidget.cpp \
     Widgets/solverwidget.cpp \
@@ -270,6 +271,7 @@ HEADERS += \
     Parameters/sourceparametersdialog.h \
     Parameters/stationparametersdialog.h \
     Utility/downloadmanager.h \
+    Widgets/mulitschedulingwidget.h \
     Widgets/priorities.h \
     Widgets/simulatorwidget.h \
     Widgets/solverwidget.h \
@@ -296,6 +298,7 @@ HEADERS += \
     secondaryGUIs/rendersetup.h
 
 FORMS += \
+    Widgets/mulitschedulingwidget.ui \
     Widgets/priorities.ui \
     Widgets/simulatorwidget.ui \
     Widgets/solverwidget.ui \

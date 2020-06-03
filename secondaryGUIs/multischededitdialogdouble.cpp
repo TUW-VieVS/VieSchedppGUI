@@ -68,25 +68,67 @@ QStandardItem *multiSchedEditDialogDouble::getMember()
     return all->item(ui->listView_member->selectionModel()->selectedIndexes().at(0).row());
 }
 
-void multiSchedEditDialogDouble::addDefaultValues(const QVector<double> &vals)
+void multiSchedEditDialogDouble::addDefaultValues(const QVector<double> &vals, bool random, bool weightFactors)
 {
     double min = *std::min_element(vals.begin(), vals.end());
     double max = *std::max_element(vals.begin(), vals.end());
     double step = (max-min)/(vals.count()-1);
     ui->doubleSpinBox_start->setValue(min);
+    ui->doubleSpinBox_start->setSingleStep(step);
     ui->doubleSpinBox_stop->setValue(max);
+    ui->doubleSpinBox_stop->setSingleStep(step);
     ui->doubleSpinBox_step->setValue(step);
+    ui->doubleSpinBox_step->setSingleStep(step*.1);
 
-    for(double v : vals){
-        int r = ui->tableWidget_values->rowCount();
-        ui->tableWidget_values->insertRow(r);
-        QDoubleSpinBox *spinBox = new QDoubleSpinBox(this);
-        spinBox->setMaximum(10000);
-        spinBox->setMinimum(-10000);
-        spinBox->setSingleStep(step);
-        spinBox->setValue(v);
-        ui->tableWidget_values->setCellWidget(r,0, spinBox);
+    if(random){
+        ui->autogenerat->setEnabled(false);
+        ui->pushButton_insert->setEnabled(false);
+        ui->pushButton_delete->setEnabled(false);
+
+        int r1 = ui->tableWidget_values->rowCount();
+        ui->tableWidget_values->insertRow(r1);
+        QDoubleSpinBox *spinBox1 = new QDoubleSpinBox(this);
+        if(weightFactors){
+            spinBox1->setMaximum(1);
+            spinBox1->setMinimum(0);
+        }else{
+            spinBox1->setMaximum(10000);
+            spinBox1->setMinimum(-10000);
+        }
+        spinBox1->setSingleStep(step);
+        spinBox1->setValue(min);
+        ui->tableWidget_values->setCellWidget(r1,0, spinBox1);
+
+        int r2 = ui->tableWidget_values->rowCount();
+        ui->tableWidget_values->insertRow(r2);
+        QDoubleSpinBox *spinBox2 = new QDoubleSpinBox(this);
+        if(weightFactors){
+            spinBox2->setMaximum(1);
+            spinBox2->setMinimum(0);
+        }else{
+            spinBox2->setMaximum(10000);
+            spinBox2->setMinimum(-10000);
+        }
+        spinBox2->setSingleStep(step);
+        spinBox2->setValue(max);
+        ui->tableWidget_values->setCellWidget(r2,0, spinBox2);
+
+        ui->tableWidget_values->setVerticalHeaderItem(0, new QTableWidgetItem("min"));
+        ui->tableWidget_values->setVerticalHeaderItem(1, new QTableWidgetItem("max"));
+
+    }else{
+        for(double v : vals){
+            int r = ui->tableWidget_values->rowCount();
+            ui->tableWidget_values->insertRow(r);
+            QDoubleSpinBox *spinBox = new QDoubleSpinBox(this);
+            spinBox->setMaximum(10000);
+            spinBox->setMinimum(-10000);
+            spinBox->setSingleStep(step);
+            spinBox->setValue(v);
+            ui->tableWidget_values->setCellWidget(r,0, spinBox);
+        }
     }
+
 }
 
 void multiSchedEditDialogDouble::on_doubleSpinBox_start_valueChanged(double arg1)

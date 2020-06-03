@@ -124,23 +124,52 @@ QStandardItem *multiSchedEditDialogInt::getMember()
     return all->item(ui->listView_member->selectionModel()->selectedIndexes().at(0).row());
 }
 
-void multiSchedEditDialogInt::addDefaultValues(const QVector<double> &vals)
+void multiSchedEditDialogInt::addDefaultValues(const QVector<double> &vals, bool random)
 {
     double min = *std::min_element(vals.begin(), vals.end());
     double max = *std::max_element(vals.begin(), vals.end());
     double step = (max-min)/vals.count();
     ui->spinBox_start->setValue(std::lround(min));
+    ui->spinBox_start->setSingleStep(std::lround(step));
     ui->spinBox_stop->setValue(std::lround(max));
+    ui->spinBox_stop->setSingleStep(std::lround(step));
     ui->spinBox_step->setValue(std::lround(step));
+    ui->spinBox_step->setSingleStep(std::lround(step*.1));
 
-    for(double v : vals){
-        int r = ui->tableWidget_values->rowCount();
-        ui->tableWidget_values->insertRow(r);
-        QSpinBox *spinBox = new QSpinBox(this);
-        spinBox->setMaximum(10000);
-        spinBox->setSingleStep(std::lround(step));
-        spinBox->setValue(std::lround(v));
-        ui->tableWidget_values->setCellWidget(r,0, spinBox);
+    if(random){
+        ui->autogenerat->setEnabled(false);
+        ui->pushButton_insert->setEnabled(false);
+        ui->pushButton_delete->setEnabled(false);
+
+        int r1 = ui->tableWidget_values->rowCount();
+        ui->tableWidget_values->insertRow(r1);
+        QDoubleSpinBox *spinBox1 = new QDoubleSpinBox(this);
+        spinBox1->setMaximum(10000);
+        spinBox1->setSingleStep(step);
+        spinBox1->setValue(min);
+        ui->tableWidget_values->setCellWidget(r1,0, spinBox1);
+
+        int r2 = ui->tableWidget_values->rowCount();
+        ui->tableWidget_values->insertRow(r2);
+        QDoubleSpinBox *spinBox2 = new QDoubleSpinBox(this);
+        spinBox2->setMaximum(10000);
+        spinBox2->setSingleStep(step);
+        spinBox2->setValue(max);
+        ui->tableWidget_values->setCellWidget(r2,0, spinBox2);
+
+        ui->tableWidget_values->setVerticalHeaderItem(0, new QTableWidgetItem("min"));
+        ui->tableWidget_values->setVerticalHeaderItem(1, new QTableWidgetItem("max"));
+
+    }else{
+        for(double v : vals){
+            int r = ui->tableWidget_values->rowCount();
+            ui->tableWidget_values->insertRow(r);
+            QSpinBox *spinBox = new QSpinBox(this);
+            spinBox->setMaximum(10000);
+            spinBox->setSingleStep(std::lround(step));
+            spinBox->setValue(std::lround(v));
+            ui->tableWidget_values->setCellWidget(r,0, spinBox);
+        }
     }
 }
 

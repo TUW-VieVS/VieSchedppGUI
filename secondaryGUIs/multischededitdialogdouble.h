@@ -42,7 +42,7 @@ public:
 
     QStandardItem* getMember();
 
-    void addDefaultValues(const QVector<double> &vals);
+    void addDefaultValues(const QVector<double> &vals, bool random, bool weightFactors=false);
 
 private slots:
     void on_doubleSpinBox_start_valueChanged(double arg1);

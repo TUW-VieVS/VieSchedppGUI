@@ -233,7 +233,6 @@ QString MainWindow::writeXML()
 
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks);
 
-
     para.setup(VieVS::ParameterSettings::Type::station,setupStationTree);
     para.setup(VieVS::ParameterSettings::Type::source,setupSourceTree);
     para.setup(VieVS::ParameterSettings::Type::baseline,setupBaselineTree);
@@ -247,13 +246,13 @@ QString MainWindow::writeXML()
     for(const auto&any:paraBl){
         para.parameters(any.first, any.second);
     }
-    for(const auto&any:groupSta){
+    for(const auto&any : *groupSta){
         para.group(VieVS::ParameterSettings::Type::station,VieVS::ParameterGroup(any.first,any.second));
     }
-    for(const auto&any:groupSrc){
+    for(const auto&any : *groupSrc){
         para.group(VieVS::ParameterSettings::Type::source,VieVS::ParameterGroup(any.first,any.second));
     }
-    for(const auto&any:groupBl){
+    for(const auto&any : *groupBl){
         para.group(VieVS::ParameterSettings::Type::baseline,VieVS::ParameterGroup(any.first,any.second));
     }
 
@@ -386,231 +385,10 @@ QString MainWindow::writeXML()
         para.conditions(members, minScans, minBaselines, andForCombination, maxNumberOfIterations, numberOfGentleSourceReductions, minNumberOfReducedSources, percentage);
     }
 
-    if (ui->groupBox_multiScheduling->isChecked() && ui->treeWidget_multiSchedSelected->topLevelItemCount()>0){
-
-        std::unordered_map<std::string, std::vector<std::string>> gsta;
-        std::unordered_map<std::string, std::vector<std::string>> gsrc;
-        std::unordered_map<std::string, std::vector<std::string>> gbl;
-        for(const auto &any: groupSta){
-            gsta[any.first] = any.second;
-        }
-        for(const auto &any: groupSrc){
-            gsrc[any.first] = any.second;
-        }
-        for(const auto &any: groupBl){
-            gbl[any.first] = any.second;
-        }
-
-        VieVS::MultiScheduling ms(gsta, gsrc, gbl);
-        QIcon icSta = QIcon(":/icons/icons/station.png");
-        QIcon icSrc = QIcon(":/icons/icons/source.png");
-        QIcon icBl = QIcon(":/icons/icons/baseline.png");
-        QIcon icStaGrp = QIcon(":/icons/icons/station_group.png");
-        QIcon icSrcGrp = QIcon(":/icons/icons/source_group.png");
-        QIcon icBlGrp = QIcon(":/icons/icons/baseline_group.png");
-
-        for(int i = 0; i<ui->treeWidget_multiSchedSelected->topLevelItemCount(); ++i){
-            auto itm = ui->treeWidget_multiSchedSelected->topLevelItem(i);
-            QString parameter = itm->text(0);
-            QIcon parameterIcon = itm->icon(0);
-            std::string member = itm->text(1).toStdString();
-            QIcon memberIcon = itm->icon(0);
-            QComboBox *list = qobject_cast<QComboBox*>(ui->treeWidget_multiSchedSelected->itemWidget(itm,3));
-
-            QStringList parameter2dateTime {"session start"};
-
-            QStringList parameter2toggle{"subnetting",
-                                         "subnetting min participating stations",
-                                         "subnetting min source angle",
-                                         "fillin-mode during scan selection",
-                                         "fillin-mode influence on scan selection",
-                                         "fillin-mode a posteriori"};
-
-            QStringList parameter2double {"min slew time",
-                                          "max slew time",
-                                          "max wait time",
-                                          "max scan time",
-                                          "min scan time",
-                                          "min number of stations",
-                                          "min repeat time",
-                                          "idle time interval",
-                                          "max number of scans",
-                                          "subnetting min source angle",
-                                          "subnetting min participating stations",
-                                          "sky-coverage",
-                                          "number of observations",
-                                          "duration",
-                                          "average stations",
-                                          "average baselines",
-                                          "average sources",
-                                          "idle time",
-                                          "low declination",
-                                          "low declination begin",
-                                          "low declination full",
-                                          "low elevation",
-                                          "low elevation begin",
-                                          "low elevation full",
-                                          "influence distance",
-                                          "influence time",
-                                          "weight",
-                                          "min slew distance",
-                                          "max slew distance",
-                                          "min elevation",
-                                          "min flux",
-                                          "min sun distance"};
-
-
-            std::vector<double> vecDouble;
-            std::vector<unsigned int> vecInt;
-            if(parameter2double.indexOf(parameter) != -1 ){
-                for(int j = 0; j<list->count(); ++j){
-                    vecDouble.push_back( QString(list->itemText(j)).toDouble());
-                }
-//            }else if(parameter2int.indexOf(parameter) != -1){
-//                for(int j = 0; j<list->count(); ++j){
-//                    vecInt.push_back( QString(list->itemText(j)).toInt());
-//                }
-            }
-
-            if(parameterIcon.pixmap(16,16).toImage() == icSta.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icStaGrp.pixmap(16,16).toImage()){
-                if(parameter == "weight"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min slew time"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max slew time"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min slew distance"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max slew distance"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max wait time"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min elevation"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max number of scans"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max scan time"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min scan time"){
-                    ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }
-
-            }else if(parameterIcon.pixmap(16,16).toImage() == icSrc.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icSrcGrp.pixmap(16,16).toImage()){
-                if(parameter == "weight"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min number of stations"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min flux"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max number of scans"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min elevation"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min sun distance"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max scan time"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min scan time"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min repeat time"){
-                    ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }
-
-            }else if(parameterIcon.pixmap(16,16).toImage() == icBl.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icBlGrp.pixmap(16,16).toImage()){
-                if(parameter == "weight"){
-                    ms.addParameters(std::string("baseline_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "max scan time"){
-                    ms.addParameters(std::string("baseline_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }else if(parameter == "min scan time"){
-                    ms.addParameters(std::string("baseline_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-                }
-
-            }else{
-                if(parameter == "session start"){
-                    std::vector<boost::posix_time::ptime> times;
-                    for(int j = 0; j<list->count(); ++j){
-                        QString txt = list->itemText(j);
-                        int year = QString(txt.mid(6,4)).toInt();
-                        int month = QString(txt.mid(3,2)).toInt();
-                        int day = QString(txt.mid(0,2)).toInt();
-                        int hour = QString(txt.mid(11,2)).toInt();
-                        int min = QString(txt.mid(14,2)).toInt();
-                        int sec = 0;
-                        boost::posix_time::ptime t(boost::gregorian::date(year,month,day),boost::posix_time::time_duration(hour,min,sec));
-                        times.push_back(t);
-                    }
-                    ms.setStart(times);
-                }else if(parameter == "subnetting"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillin-mode during scan selection"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillin-mode influence on scan selection"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-                }else if(parameter == "fillin-mode a posteriori"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
-
-                }else if(parameter == "subnetting min participating stations"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "subnetting min source angle"){
-                    ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "sky-coverage"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "number of observations"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "duration"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "average stations"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "average baselines"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "average sources"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "idle time"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "idle time interval"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low declination"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low declination begin"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low declination full"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low elevation"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low elevation begin"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "low elevation full"){
-                    ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "influence distance"){
-                    ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }else if(parameter == "influence time"){
-                    ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-                }
-            }
-        }
-
-        std::string countNr = ui->comboBox_multiSched_maxNumber->currentText().toStdString();
-        int n = ui->spinBox_multiSched_maxNumber->value();
-        std::string seedStr = ui->comboBox_multiSched_seed->currentText().toStdString();
-        int seed = ui->spinBox_multiSched_seed->value();
-        bool pickRandom = ui->pushButton_ms_pick_random->isChecked();
-        para.multisched(ms.createPropertyTree(),countNr,n,seedStr,seed, pickRandom);
-
-        std::string threads = ui->comboBox_nThreads->currentText().toStdString();
-        int nThreadsManual = ui->spinBox_nCores->value();
-        std::string jobScheduler = ui->comboBox_jobSchedule->currentText().toStdString();
-        int chunkSize = ui->spinBox_chunkSize->value();
-        para.multiCore(threads,nThreadsManual,jobScheduler,chunkSize);
-    }
-    if(ui->groupBox_ms_gen->isChecked()){
-        int iterations = ui->spinBox_ms_gen_iterations->value();
-        int parents = ui->spinBox_ms_gen_parents->value();
-        int popsize = ui->spinBox_ms_gen_popsize->value();
-        double selectBest =ui->doubleSpinBox_ms_gen_selBest->value();
-        double selectRandom = ui->doubleSpinBox_ms_gen_selRandom->value();
-        double mutation = ui->doubleSpinBox_ms_gen_mutation->value();
-        double minmutation = ui->doubleSpinBox_ms_gen_minMutation->value();
-        para.mulitsched_genetic(iterations,popsize,selectBest,selectRandom,mutation,minmutation,parents);
+    if (ui->groupBox_multiScheduling->isChecked()){
+        auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+        MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+        ms->toXML(para);
     }
 
     if(ui->groupBox_highImpactAzEl->isChecked() && ui->treeWidget_highImpactAzEl->topLevelItemCount()>0){
@@ -630,7 +408,6 @@ QString MainWindow::writeXML()
         int repeat = ui->spinBox_highImpactMinRepeat->value();
 
         para.highImpactAzEl(members,azs,els,margins,interval,repeat);
-
     }
 
     if(ui->groupBox_modeSked->isChecked()){
@@ -708,7 +485,6 @@ QString MainWindow::writeXML()
         para.mode_bandPolicy(name,minSNR,policySta,backupSta,valSta,policySrc,backupSrc,valSrc);
     }
 
-
     if(ui->groupBox_35->isChecked()){
         std::vector<VieVS::CalibratorBlock> blocks;
 
@@ -784,6 +560,7 @@ QString MainWindow::writeXML()
         QDesktopServices::openUrl(QUrl(mydir.absolutePath()));
     }
     return path;
+
 }
 
 void MainWindow::loadXML(QString path)
@@ -1011,7 +788,7 @@ void MainWindow::loadXML(QString path)
 
     // groups
     {
-        groupSta.clear();
+        groupSta->clear();
         auto groupTree = xml.get_child_optional("VieSchedpp.station.groups");
         if(groupTree.is_initialized()){
             for (auto &it: *groupTree) {
@@ -1032,7 +809,7 @@ void MainWindow::loadXML(QString path)
                             ++r;
                             continue;
                         }
-                        if(groupSta.find(txt.toStdString()) == groupSta.end()){
+                        if(groupSta->find(txt.toStdString()) == groupSta->end()){
                             break;
                         }
                         if(txt>QString::fromStdString(groupName)){
@@ -1042,7 +819,7 @@ void MainWindow::loadXML(QString path)
                         }
                     }
 
-                    groupSta[groupName] = members;
+                    (*groupSta)[groupName] = members;
                     allStationPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/station_group.png"),
                                                                             QString::fromStdString(groupName) ));
                 }
@@ -1050,7 +827,7 @@ void MainWindow::loadXML(QString path)
         }
     }
     {
-        groupSrc.clear();
+        groupSrc->clear();
         ui->treeWidget_srcGroupForStatistics->clear();
         auto groupTree = xml.get_child_optional("VieSchedpp.source.groups");
         if(groupTree.is_initialized()){
@@ -1072,7 +849,7 @@ void MainWindow::loadXML(QString path)
                             ++r;
                             continue;
                         }
-                        if(groupSrc.find(txt.toStdString()) == groupSrc.end()){
+                        if(groupSrc->find(txt.toStdString()) == groupSrc->end()){
                             break;
                         }
                         if(txt>QString::fromStdString(groupName)){
@@ -1082,7 +859,7 @@ void MainWindow::loadXML(QString path)
                         }
                     }
 
-                    groupSrc[groupName] = members;
+                    (*groupSrc)[groupName] = members;
                     allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),
                                                                             QString::fromStdString(groupName) ));
                     QTreeWidgetItem *itm = new QTreeWidgetItem();
@@ -1095,7 +872,7 @@ void MainWindow::loadXML(QString path)
         }
     }
     {
-        groupBl.clear();
+        groupBl->clear();
         auto groupTree = xml.get_child_optional("VieSchedpp.baseline.groups");
         if(groupTree.is_initialized()){
             for (auto &it: *groupTree) {
@@ -1116,7 +893,7 @@ void MainWindow::loadXML(QString path)
                             ++r;
                             continue;
                         }
-                        if(groupBl.find(txt.toStdString()) == groupBl.end()){
+                        if(groupBl->find(txt.toStdString()) == groupBl->end()){
                             break;
                         }
                         if(txt>QString::fromStdString(groupName)){
@@ -1126,7 +903,7 @@ void MainWindow::loadXML(QString path)
                         }
                     }
 
-                    groupBl[groupName] = members;
+                    (*groupBl)[groupName] = members;
                     allBaselinePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),
                                                                             QString::fromStdString(groupName) ));
                 }
@@ -1510,194 +1287,10 @@ void MainWindow::loadXML(QString path)
 
     //multisched
     {
-        auto twmss = ui->treeWidget_multiSchedSelected;
-        auto twms = ui->treeWidget_multiSched;
         ui->groupBox_multiScheduling->setChecked(false);
-        twmss->clear();
-        for(int i=0; i<3; ++i){
-            for(int j=0; j<twms->topLevelItem(i)->childCount(); ++j){
-                twms->topLevelItem(i)->child(j)->setDisabled(false);
-            }
-        }
-
-
-        boost::optional<boost::property_tree::ptree &> ctree_o = xml.get_child_optional("VieSchedpp.multisched");
-        if(ctree_o.is_initialized()){
-            const boost::property_tree::ptree &ctree = ctree_o.get();
-            ui->groupBox_multiScheduling->setChecked(true);
-            ui->comboBox_multiSched_maxNumber->setCurrentText("all");
-            ui->comboBox_multiSched_seed->setCurrentText("random");
-
-            if(ctree.get_optional<int>("maxNumber").is_initialized()){
-                ui->comboBox_multiSched_maxNumber->setCurrentText("select");
-                ui->spinBox_multiSched_maxNumber->setValue(ctree.get<int>("maxNumber"));
-            }
-            if(ctree.get_optional<int>("seed").is_initialized()){
-                ui->comboBox_multiSched_seed->setCurrentText("select");
-                ui->spinBox_multiSched_seed->setValue(ctree.get<int>("seed"));
-            }
-            if(ctree.get_optional<bool>("pick_random").is_initialized()){
-                ui->pushButton_ms_pick_random->setChecked(ctree.get<bool>("pick_random"));
-            }
-
-            for(const auto &any: ctree){
-                QString name = QString::fromStdString(any.first);
-                if(name == "maxNumber" || name == "seed"){
-                    continue;
-                }
-                QString parameterName;
-                bool hasMember = false;
-                QString member = "global";
-
-                if(name.left(8) == "station_"){
-                    name = name.mid(8);
-                    hasMember = true;
-                    parameterName = "station";
-                }else if(name.left(7) == "source_"){
-                    name = name.mid(7);
-                    hasMember = true;
-                    parameterName = "source";
-                }else if(name.left(9) == "baseline_"){
-                    name = name.mid(9);
-                    hasMember = true;
-                    parameterName = "baseline";
-                }else if(name.left(14) == "weight_factor_"){
-                    name = name.mid(14);
-                    hasMember = false;
-                    parameterName = "weight factor";
-                }else if(name.left(8) == "general_"){
-                    name = name.mid(8);
-                    hasMember = false;
-                    parameterName = "general";
-                }else if(name.left(13) == "sky-coverage_"){
-                    name = name.mid(13);
-                    hasMember = false;
-                    parameterName = "sky-coverage";
-                }
-                name.replace("_"," ");
-                for(int i=0; i<3; ++i){
-                    for(int j=0; j<twms->topLevelItem(i)->childCount(); ++j){
-                        if(twms->topLevelItem(i)->child(j)->text(0) == name){
-                            parameterName = twms->topLevelItem(i)->text(0);
-                            break;
-                        }
-                    }
-                }
-
-
-
-                if(hasMember){
-                    member = QString::fromStdString(any.second.get<std::string>("<xmlattr>.member"));
-                }
-                QVector<double> values;
-                if(name != "general subnetting" && name != "general fillin-mode during scan selection" &&
-                        name != "general fillin-mode influence on scan selection" && name != "general fillin-mode a posteriori" ){
-                    for(const auto &any2 : any.second){
-                        if(any2.first == "value"){
-                            values.push_back(any2.second.get_value<double>());
-                        }
-                    }
-                }
-
-                if(parameterName == "general"){
-                    for(int i=0; i<twms->topLevelItem(0)->childCount(); ++i){
-                        if(name == twms->topLevelItem(0)->child(i)->text(0)){
-                            twms->topLevelItem(0)->child(i)->setDisabled(true);
-                            break;
-                        }
-                    }
-                }else if(parameterName == "weight factor"){
-                    for(int i=0; i<twms->topLevelItem(1)->childCount(); ++i){
-                        if(name == twms->topLevelItem(1)->child(i)->text(0)){
-                            twms->topLevelItem(1)->child(i)->setDisabled(true);
-                            break;
-                        }
-                    }
-                }else if(parameterName == "sky-coverage"){
-                    for(int i=0; i<twms->topLevelItem(2)->childCount(); ++i){
-                        if(name == twms->topLevelItem(2)->child(i)->text(0)){
-                            twms->topLevelItem(2)->child(i)->setDisabled(true);
-                            break;
-                        }
-                    }
-                }
-
-                QIcon ic1;
-                QIcon ic2;
-                if(parameterName == "general"){
-                    ic1 = QIcon(":/icons/icons/applications-internet-2.png");
-                    ic2 = QIcon(":/icons/icons/applications-internet-2.png");
-                }else if(parameterName == "weight factor"){
-                    ic1 = QIcon(":/icons/icons/weight.png");
-                    ic2 = QIcon(":/icons/icons/applications-internet-2.png");
-                }else if(parameterName == "sky-coverage"){
-                    ic1 = QIcon(":/icons/icons/sky_coverage.png");
-                    ic2 = QIcon(":/icons/icons/sky_coverage.png");
-                }else if(parameterName == "station"){
-                    ic1 = QIcon(":/icons/icons/station.png");
-                    if(member == "__all__" || groupSta.find(member.toStdString()) != groupSta.end()){
-                        ic2 = QIcon(":/icons/icons/station_group.png");
-                    }else{
-                        ic2 = QIcon(":/icons/icons/station.png");
-                    }
-                }else if(parameterName == "source"){
-                    ic1 = QIcon(":/icons/icons/source.png");
-                    if(member == "__all__" || groupSrc.find(member.toStdString()) == groupSrc.end()){
-                        ic2 = QIcon(":/icons/icons/source_group.png");
-                    }else{
-                        ic2 = QIcon(":/icons/icons/source.png");
-                    }
-
-                }else if(parameterName == "baseline"){
-                    ic1 = QIcon(":/icons/icons/baseline.png");
-                    if(member == "__all__" || groupBl.find(member.toStdString()) == groupBl.end()){
-                        ic2 = QIcon(":/icons/icons/baseline.png");
-                    }else{
-                        ic2 = QIcon(":/icons/icons/baseline_group.png");
-                    }
-
-                }
-
-                QTreeWidgetItem *itm = new QTreeWidgetItem();
-                itm->setText(0,name);
-                itm->setText(1,member);
-                itm->setIcon(0,ic1);
-                itm->setIcon(1,ic2);
-                QComboBox *cb = new QComboBox(this);
-                if(!values.empty()){
-                    itm->setText(2,QString::number(values.count()));
-                    for(const auto& any:values){
-                        cb->addItem(QString::number(any));
-                    }
-                }else{
-                    itm->setText(2,QString::number(2));
-                    cb->addItem("True");
-                    cb->addItem("False");
-                }
-
-                twmss->addTopLevelItem(itm);
-                twmss->setItemWidget(itm,3,cb);
-
-            }
-
-
-        }
-        multi_sched_count_nsched();
-    }
-
-    {
-        ui->groupBox_ms_gen->setChecked(false);
-        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.multisched.genetic");
-        if (ctree.is_initialized()) {
-            ui->groupBox_ms_gen->setChecked(true);
-            ui->spinBox_ms_gen_iterations->setValue(xml.get("VieSchedpp.multisched.genetic.evolutions",2));
-            ui->spinBox_ms_gen_parents->setValue(xml.get("VieSchedpp.multisched.genetic.parents_for_crossover",2));
-            ui->spinBox_ms_gen_popsize->setValue(xml.get("VieSchedpp.multisched.genetic.population_size",128));
-            ui->doubleSpinBox_ms_gen_selBest->setValue(xml.get("VieSchedpp.multisched.genetic.select_best_percent",10.0));
-            ui->doubleSpinBox_ms_gen_selRandom->setValue(xml.get("VieSchedpp.multisched.genetic.select_random_percent",2.5));
-            ui->doubleSpinBox_ms_gen_mutation->setValue(xml.get("VieSchedpp.multisched.genetic.mutation_acceleration",0.5));
-            ui->doubleSpinBox_ms_gen_minMutation->setValue(xml.get("VieSchedpp.multisched.genetic.min_mutation_percent",10.0));
-        }
+        auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+        MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+        ms->fromXML(xml);
     }
 
 
@@ -2054,34 +1647,20 @@ void MainWindow::readSettings()
     ui->lineEdit_pi_phone->setText(QString::fromStdString(settings_.get("settings.output.pi.phone","")));
     ui->lineEdit_pi_affiliation->setText(QString::fromStdString(settings_.get("settings.output.pi.affiliation","")));
 
-//    ui->lineEdit_contactName->setText(QString::fromStdString(settings_.get("settings.output.contact1.name","")));
-//    ui->lineEdit_contactEmail->setText(QString::fromStdString(settings_.get("settings.output.contact1.email","")));
-//    ui->lineEdit_contact_phone->setText(QString::fromStdString(settings_.get("settings.output.contact1.phone","")));
-//    ui->lineEdit_contact_affiliation->setText(QString::fromStdString(settings_.get("settings.output.contact1.affiliation","")));
-
-//    ui->lineEdit_contactName_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.name","")));
-//    ui->lineEdit_contactEmail_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.email","")));
-//    ui->lineEdit_contact_phone_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.phone","")));
-//    ui->lineEdit_contact_affiliation_2->setText(QString::fromStdString(settings_.get("settings.output.contact2.affiliation","")));
-
-//    ui->lineEdit_contactName_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.name","")));
-//    ui->lineEdit_contactEmail_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.email","")));
-//    ui->lineEdit_contact_phone_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.phone","")));
-//    ui->lineEdit_contact_affiliation_3->setText(QString::fromStdString(settings_.get("settings.output.contact3.affiliation","")));
-
     std::string notes = settings_.get<std::string>("settings.output.notes","");
     if(!notes.empty()){
         ui->plainTextEdit_notes->setPlainText(QString::fromStdString(notes).replace("\\n","\n"));
     }
 
     std::string threads = settings_.get<std::string>("settings.multiCore.threads","auto");
-    ui->comboBox_nThreads->setCurrentText(QString::fromStdString(threads));
     int nThreadsManual = settings_.get<int>("settings.multiCore.nThreads",1);
-    ui->spinBox_nCores->setValue(nThreadsManual);
     std::string jobScheduler = settings_.get<std::string>("settings.multiCore.jobScheduling","auto");
-    ui->comboBox_jobSchedule->setCurrentText(QString::fromStdString(jobScheduler));
     int chunkSize = settings_.get<int>("settings.multiCore.chunkSize",0);
-    ui->spinBox_chunkSize->setValue(chunkSize);
+
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    ms->setMultiprocessing(threads, nThreadsManual, jobScheduler, chunkSize);
+
 
 }
 
@@ -2517,21 +2096,6 @@ void MainWindow::on_pushButton_41_clicked()
 }
 
 
-void MainWindow::on_pushButton_save_multiCore_clicked()
-{
-    QString threads = ui->comboBox_nThreads->currentText();
-    QString nThreadsManual = QString::number(ui->spinBox_nCores->value());
-    QString jobScheduler = ui->comboBox_jobSchedule->currentText();
-    QString chunkSize = QString::number(ui->spinBox_chunkSize->value());
-
-    QStringList path {"settings.multiCore.threads", "settings.multiCore.nThreads", "settings.multiCore.jobScheduling", "settings.multiCore.chunkSize"};
-    QStringList value {threads, nThreadsManual, jobScheduler, chunkSize};
-    QString name = "Default multi core settings changed!";
-    changeDefaultSettings(path,value,name);
-
-}
-
-
 void MainWindow::on_pushButton_contact_save_clicked()
 {
     QString function = ui->lineEdit_PITask->text();
@@ -2677,6 +2241,15 @@ void MainWindow::on_pushButton_simulator_load_clicked()
         QMessageBox::information(this,"Simulation setup loaded","Simulation setup loaded!");
     }
 
+}
+
+void MainWindow::saveMultiCoreSetup()
+{
+    auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
+    MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
+    std::pair<QStringList, QStringList> p = ms->getMultiCoreSupport();
+    QString name = "Default multi core settings changed!";
+    changeDefaultSettings(p.first,p.second,name);
 }
 
 

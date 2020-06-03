@@ -43,7 +43,7 @@ public:
 
     QStandardItem* getMember();
 
-    void addDefaultValues(const QVector<double> &vals);
+    void addDefaultValues(const QVector<double> &vals, bool random);
 
 private slots:
     void on_pushButton_generate_clicked();

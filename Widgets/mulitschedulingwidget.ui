@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MulitSchedulingWidget</class>
+ <widget class="QWidget" name="MulitSchedulingWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>794</width>
+    <height>594</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget_3">
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>parameters</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_48" stretch="0,0,1">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_106">
+         <item>
+          <widget class="QLabel" name="label_82">
+           <property name="text">
+            <string>max number of schedules:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_multiSched_maxNumber">
+           <property name="toolTip">
+            <string>maximum number of created schedules</string>
+           </property>
+           <property name="statusTip">
+            <string>maximum number of created schedules</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>all</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>select</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_multiSched_maxNumber">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>set maximum number of created schedules</string>
+           </property>
+           <property name="statusTip">
+            <string>set maximum number of created schedules</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_ms_pick_random">
+           <property name="text">
+            <string>pick random values</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_multiSched_seed">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>seed:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_multiSched_seed">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>set seed for multi scheduling selection</string>
+           </property>
+           <property name="statusTip">
+            <string>set seed for multi scheduling selection</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you create &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the maximum amount of possible schedules &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;some parameter combinations are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;chosen randomly&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;seed&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; here that &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;always the same parameters are chosen&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This might help you if you want to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;test different things&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>random</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>select</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_multiSched_seed">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>seed for multi scheduling selection</string>
+           </property>
+           <property name="statusTip">
+            <string>seed for multi scheduling selection</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you create &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the maximum amount of possible schedules &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;some parameter combinations are &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;chosen randomly&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can set a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;seed&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; here that &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;always the same parameters are chosen&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This might help you if you want to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;test different things&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_60">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QSplitter" name="splitter_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="verticalLayout_33">
+           <item>
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>available multi scheduling parameters</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="treeWidget_multiSched">
+             <property name="toolTip">
+              <string>select multi scheduling parameter</string>
+             </property>
+             <property name="statusTip">
+              <string>select multi scheduling parameter</string>
+             </property>
+             <attribute name="headerHighlightSections">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Parameters:</string>
+              </property>
+             </column>
+             <item>
+              <property name="text">
+               <string>general</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>subnetting</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>subnetting min source angle</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>subnetting min participating stations</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>fillin-mode during scan selection</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>fillin-mode influence on scan selection</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>fillin-mode a posteriori</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>weight factor</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/weight.png</normaloff>:/icons/icons/weight.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>sky-coverage</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>number of observations</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>duration</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>average stations</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>average sources</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>average baselines</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>idle time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>idle time interval</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low declination</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low declination begin</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low declination full</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low elevation</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low elevation begin</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>low elevation full</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>sky-coverage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/sky_coverage.png</normaloff>:/icons/icons/sky_coverage.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>influence distance</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>influence time</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>station</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/station.png</normaloff>:/icons/icons/station.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>weight</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min slew time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max slew time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min slew distance</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max slew distance</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max wait time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min elevation</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max number of scans</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max scan time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min scan time</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>source</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/source.png</normaloff>:/icons/icons/source.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>weight</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min number of stations</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min flux</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max number of scans</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min elevation</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min sun distance</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max scan time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min scan time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min repeat time</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>baseline</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/baseline.png</normaloff>:/icons/icons/baseline.png</iconset>
+              </property>
+              <item>
+               <property name="text">
+                <string>weight</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max scan time</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>min scan time</string>
+               </property>
+              </item>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_91">
+             <item>
+              <widget class="QPushButton" name="pushButton_addGroupStationSetup_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>add new station group</string>
+               </property>
+               <property name="statusTip">
+                <string>add new station group</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_addGroupsourceSetup_2">
+               <property name="toolTip">
+                <string>add new source group</string>
+               </property>
+               <property name="statusTip">
+                <string>add new source group</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_addGroupBaselineSetup_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>add new baseline group</string>
+               </property>
+               <property name="statusTip">
+                <string>add new baseline group</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/baseline_group_plus.png</normaloff>:/icons/icons/baseline_group_plus.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_17">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_multiSchedAddSelected">
+               <property name="toolTip">
+                <string>add selected multi scheduling parameter</string>
+               </property>
+               <property name="statusTip">
+                <string>add selected multi scheduling parameter</string>
+               </property>
+               <property name="text">
+                <string>add selected</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget_2">
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>selected multi scheduling parameters</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="treeWidget_multiSchedSelected">
+             <property name="toolTip">
+              <string>list of all multi scheduling parameters</string>
+             </property>
+             <property name="statusTip">
+              <string>list of all multi scheduling parameters</string>
+             </property>
+             <column>
+              <property name="text">
+               <string>parameter</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>member</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>nr. values</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>list of values</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_63">
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_25">
+               <property name="toolTip">
+                <string>remove selected multi scheduling parameter</string>
+               </property>
+               <property name="statusTip">
+                <string>remove selected multi scheduling parameter</string>
+               </property>
+               <property name="text">
+                <string>remove selected</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_12">
+      <attribute name="title">
+       <string>evolutionary selection</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_128">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_126">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_53">
+           <item>
+            <widget class="QGroupBox" name="groupBox_ms_gen">
+             <property name="title">
+              <string>genetic algorithm (experimental)</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_125">
+              <item>
+               <layout class="QFormLayout" name="formLayout_7">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_119">
+                  <property name="text">
+                   <string>iterations</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_121">
+                  <property name="text">
+                   <string>population size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_122">
+                  <property name="text">
+                   <string>mutation acceleration</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_123">
+                  <property name="text">
+                   <string>select best</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_124">
+                  <property name="text">
+                   <string>select random</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QSpinBox" name="spinBox_ms_gen_iterations">
+                  <property name="minimum">
+                   <number>2</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QSpinBox" name="spinBox_ms_gen_popsize">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>1024</number>
+                  </property>
+                  <property name="singleStep">
+                   <number>8</number>
+                  </property>
+                  <property name="value">
+                   <number>32</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_selBest">
+                  <property name="prefix">
+                   <string/>
+                  </property>
+                  <property name="suffix">
+                   <string>%</string>
+                  </property>
+                  <property name="maximum">
+                   <double>50.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>10.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_selRandom">
+                  <property name="suffix">
+                   <string>%</string>
+                  </property>
+                  <property name="maximum">
+                   <double>50.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.500000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>2.500000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_mutation">
+                  <property name="maximum">
+                   <double>10.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>0.500000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
+                 <widget class="QLabel" name="label_125">
+                  <property name="text">
+                   <string>parents</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="1">
+                 <widget class="QSpinBox" name="spinBox_ms_gen_parents">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>10</number>
+                  </property>
+                  <property name="value">
+                   <number>2</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="label_126">
+                  <property name="text">
+                   <string>minimum mutation</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_minMutation">
+                  <property name="suffix">
+                   <string>%</string>
+                  </property>
+                  <property name="maximum">
+                   <double>100.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>5.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>10.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_63">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_37">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>multi core support</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_72" stretch="0,1">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_90">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_chunkSize">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>chunk size</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBox_jobSchedule">
+             <property name="toolTip">
+              <string>choose job scheduling for multicore processing</string>
+             </property>
+             <property name="statusTip">
+              <string>choose job scheduling for multicore processing</string>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Different ways how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;multi-core support is scheduled&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Test different settings here to potentially &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;speed up the computation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; on your computer. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Depending on your hardware and compiler different settings could lead to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;different processing times&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;OpenMP&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used to realize the parallel processing. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Here are some short descriptions of the different scheduling concepts from an &lt;/span&gt;&lt;a href=&quot;https://software.intel.com/en-us/articles/openmp-loop-scheduling&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;intel web page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;static: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Divide the loop into equal-sized chunks or as equal as possible in the case where the number of loop iterations is not evenly divisible by the number of threads multiplied by the chunk size. By default, chunk size is loop_count/number_of_threads.Set chunk to 1 to interleave the iterations.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dynamic: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Use the internal work queue to give a chunk-sized block of loop iterations to each thread. When a thread is finished, it retrieves the next block of loop iterations from the top of the work queue. By default, the chunk size is 1. Be careful when using this scheduling type because of the extra overhead involved.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;guided: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Similar to dynamic scheduling, but the chunk size starts off large and decreases to better handle load imbalance between iterations. The optional chunk parameter specifies the minimum size chunk to use. By default, the chunk size is approximately loop_count/number_of_threads.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;auto:&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; When schedule (auto) is specified, the decision regarding scheduling is delegated to the compiler. The programmer gives the compiler the freedom to choose any possible mapping of iterations to threads in the team.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;more information can be found &lt;/span&gt;&lt;a href=&quot;https://software.intel.com/en-us/node/522683&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>auto</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>static</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>dynamic</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>guided</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_nCores">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>select</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBox_nThreads">
+             <property name="toolTip">
+              <string>choose number of threads for multicore processing</string>
+             </property>
+             <property name="statusTip">
+              <string>choose number of threads for multicore processing</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>auto</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>single</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>manual</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>job scheduling</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>number of threads</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="spinBox_nCores">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>number of cores for multicore processing</string>
+             </property>
+             <property name="statusTip">
+              <string>number of cores for multicore processing</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>10000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QSpinBox" name="spinBox_chunkSize">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>chunk size for multicore processing</string>
+             </property>
+             <property name="statusTip">
+              <string>chunk size for multicore processing</string>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Different ways how the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;multi-core support is scheduled&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Test different settings here to potentially &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;speed up the computation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; on your computer. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Depending on your hardware and compiler different settings could lead to &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;different processing times&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;OpenMP&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used to realize the parallel processing. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Here are some short descriptions of the different scheduling concepts from an &lt;/span&gt;&lt;a href=&quot;https://software.intel.com/en-us/articles/openmp-loop-scheduling&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;intel web page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;static: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Divide the loop into equal-sized chunks or as equal as possible in the case where the number of loop iterations is not evenly divisible by the number of threads multiplied by the chunk size. By default, chunk size is loop_count/number_of_threads.Set chunk to 1 to interleave the iterations.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dynamic: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Use the internal work queue to give a chunk-sized block of loop iterations to each thread. When a thread is finished, it retrieves the next block of loop iterations from the top of the work queue. By default, the chunk size is 1. Be careful when using this scheduling type because of the extra overhead involved.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;guided: &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Similar to dynamic scheduling, but the chunk size starts off large and decreases to better handle load imbalance between iterations. The optional chunk parameter specifies the minimum size chunk to use. By default, the chunk size is approximately loop_count/number_of_threads.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;auto:&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; When schedule (auto) is specified, the decision regarding scheduling is delegated to the compiler. The programmer gives the compiler the freedom to choose any possible mapping of iterations to threads in the team.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;more information can be found &lt;/span&gt;&lt;a href=&quot;https://software.intel.com/en-us/node/522683&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>10000</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_35">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_49">
+           <item>
+            <widget class="QPushButton" name="pushButton_save_multiCore">
+             <property name="toolTip">
+              <string>save as default settings</string>
+             </property>
+             <property name="statusTip">
+              <string>save as default settings</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../myresources.qrc">
+               <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_24">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>504</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_62">
+     <item>
+      <spacer name="horizontalSpacer_16">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_multiSchedulingNsched">
+       <property name="text">
+        <string>total number of schedules: 1</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../myresources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
