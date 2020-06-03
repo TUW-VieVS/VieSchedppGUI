@@ -151,7 +151,8 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                                        "min repeat time",
                                        "idle time interval",
                                        "influence time",
-                                       "max number of scans"};
+                                       "max number of scans",
+                                       "focus corner switch cadence"};
 
             QStringList row2doubleDialog {"subnetting min source angle",
                                           "subnetting min participating stations",
@@ -187,6 +188,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["idle time interval"    ] = {120, 180, 240, 300};
             defaultValues["influence time"        ] = {900, 1200, 1800, 3600};
             defaultValues["max number of scans"   ] = {10, 25, 999};
+            defaultValues["focus corner switch cadence"] = {600, 750, 900};
 
             defaultValues["subnetting min source angle"          ] = {120, 150};
             defaultValues["subnetting min participating stations"] = {60, 80, 100};
@@ -365,6 +367,8 @@ void MulitSchedulingWidget::on_pushButton_25_clicked()
                 ui->treeWidget_multiSched->topLevelItem(0)->child(4)->setDisabled(false);
             }else if(any->text(0) == "fillin-mode a posteriori"){
                 ui->treeWidget_multiSched->topLevelItem(0)->child(5)->setDisabled(false);
+            }else if(any->text(0) == "focus corner switch cadence"){
+                ui->treeWidget_multiSched->topLevelItem(0)->child(6)->setDisabled(false);
 
             }else if(any->text(0) == "sky-coverage"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(false);
@@ -771,7 +775,8 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                                        "max slew distance",
                                        "min elevation",
                                        "min flux",
-                                       "min sun distance"};
+                                       "min sun distance",
+                                       "focus corner switch cadence"};
 
 
          std::vector<double> vecDouble;
@@ -863,6 +868,8 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
              }else if(parameter == "fillin-mode a posteriori"){
                  ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()));
 
+             }else if(parameter == "focus corner switch cadence"){
+                 ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "subnetting min participating stations"){
                  ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "subnetting min source angle"){
@@ -964,7 +971,7 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
 
         for(const auto &any: ctree){
             QString name = QString::fromStdString(any.first);
-            if(name == "maxNumber" || name == "seed"){
+            if(name == "maxNumber" || name == "seed" || name == "genetic"){
                 continue;
             }
             QString parameterName;
@@ -1099,10 +1106,7 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
 
             twmss->addTopLevelItem(itm);
             twmss->setItemWidget(itm,3,cb);
-
         }
-
-
     }
     multi_sched_count_nsched();
 

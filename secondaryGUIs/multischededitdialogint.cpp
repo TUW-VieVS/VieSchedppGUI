@@ -128,7 +128,7 @@ void multiSchedEditDialogInt::addDefaultValues(const QVector<double> &vals, bool
 {
     double min = *std::min_element(vals.begin(), vals.end());
     double max = *std::max_element(vals.begin(), vals.end());
-    double step = (max-min)/vals.count();
+    double step = (max-min)/(vals.count()-1);
     ui->spinBox_start->setValue(std::lround(min));
     ui->spinBox_start->setSingleStep(std::lround(step));
     ui->spinBox_stop->setValue(std::lround(max));
@@ -143,7 +143,7 @@ void multiSchedEditDialogInt::addDefaultValues(const QVector<double> &vals, bool
 
         int r1 = ui->tableWidget_values->rowCount();
         ui->tableWidget_values->insertRow(r1);
-        QDoubleSpinBox *spinBox1 = new QDoubleSpinBox(this);
+        QSpinBox *spinBox1 = new QSpinBox(this);
         spinBox1->setMaximum(10000);
         spinBox1->setSingleStep(step);
         spinBox1->setValue(min);
@@ -151,7 +151,7 @@ void multiSchedEditDialogInt::addDefaultValues(const QVector<double> &vals, bool
 
         int r2 = ui->tableWidget_values->rowCount();
         ui->tableWidget_values->insertRow(r2);
-        QDoubleSpinBox *spinBox2 = new QDoubleSpinBox(this);
+        QSpinBox *spinBox2 = new QSpinBox(this);
         spinBox2->setMaximum(10000);
         spinBox2->setSingleStep(step);
         spinBox2->setValue(max);

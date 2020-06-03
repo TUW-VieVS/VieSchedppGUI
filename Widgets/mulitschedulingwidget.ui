@@ -249,6 +249,11 @@
                 <string>fillin-mode a posteriori</string>
                </property>
               </item>
+              <item>
+               <property name="text">
+                <string>focus corner switch cadence</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
