@@ -134,6 +134,7 @@ QString MainWindow::writeXML()
     bool fillinModeDuringScan = ui->checkBox_fillinmode_duringscan->isChecked();
     bool fillinModeInfluence = ui->checkBox_fillinModeInfluence->isChecked();
     bool idleToObservingTime = ui->radioButton_idleToObservingTime_yes->isChecked();
+    std::string idleToObservingTimeGroup = ui->comboBox_idleToObserving_stations->currentText().toStdString();
     bool subnetting = ui->groupBox_subnetting->isChecked();
     double subnettingAngle = ui->doubleSpinBox_subnettingDistance->value();
 
@@ -163,12 +164,12 @@ QString MainWindow::writeXML()
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
-                     idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
+                     idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
                      srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
-                     idleToObservingTime, station_names, useSourcesFromParameter_otherwiseIgnore,
+                     idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
                      ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }
 
@@ -679,8 +680,10 @@ void MainWindow::loadXML(QString path)
 
 
         bool idleToObservingTime = xml.get("VieSchedpp.general.idleToObservingTime",false);
+        QString idleToObservingTimeGroup = QString::fromStdString(xml.get("VieSchedpp.general.idleToObservingTimeGroup","__all__"));
         if(idleToObservingTime){
             ui->radioButton_idleToObservingTime_yes->setChecked(true);
+            ui->comboBox_idleToObserving_stations->setCurrentText(idleToObservingTimeGroup);
         }else{
             ui->radioButton_idleToObservingTime_no->setChecked(true);
         }

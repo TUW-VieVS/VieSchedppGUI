@@ -330,6 +330,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_calibratorBlock_calibratorSources->setModel(allSourcePlusGroupModel);
 
     ui->comboBox_setupStation->setModel(selectedStationModel);
+    ui->comboBox_idleToObserving_stations->setModel(allStationPlusGroupModel);
+    connect(ui->pushButton_idleToObserving_addStationGroup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
 
     deleteModeMapper = new QSignalMapper(this);
     connect (deleteModeMapper, SIGNAL(mapped(QString)), this, SLOT(deleteModesCustomLine(QString))) ;
