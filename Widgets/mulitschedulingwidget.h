@@ -45,6 +45,7 @@ public:
             QCheckBox *checkBox_weightLowElevation,
             QDoubleSpinBox *doubleSpinBox_weightLowEl,
             QGroupBox *groupBox_multiScheduling,
+            QGroupBox *groupBox_simulator,
             std::map<std::string, std::vector<std::string>> *groupSta,
             std::map<std::string, std::vector<std::string>> *groupSrc,
             std::map<std::string, std::vector<std::string>> *groupBl,
@@ -95,6 +96,8 @@ private slots:
 
     void createMultiSchedTable();
 
+    void on_groupBox_ms_gen_clicked(bool checked);
+
 private:
     Ui::MulitSchedulingWidget *ui;
     QStandardItemModel *allSourcePlusGroupModel;
@@ -121,6 +124,7 @@ private:
     QDoubleSpinBox *doubleSpinBox_weightLowEl;
 
     QGroupBox *groupBox_multiScheduling;
+    QGroupBox *groupBox_simulator;
 
     std::map<std::string, std::vector<std::string>> *groupSta;
     std::map<std::string, std::vector<std::string>> *groupSrc;

@@ -117,6 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
                                                                  ui->checkBox_weightLowElevation,
                                                                  ui->doubleSpinBox_weightLowEl,
                                                                  ui->groupBox_multiScheduling,
+                                                                 ui->groupBox_simulator,
                                                                  groupSta,
                                                                  groupSrc,
                                                                  groupBl,

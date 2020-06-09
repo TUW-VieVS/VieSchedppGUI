@@ -23,6 +23,7 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
                                              QCheckBox *checkBox_weightLowElevation,
                                              QDoubleSpinBox *doubleSpinBox_weightLowEl,
                                              QGroupBox *groupBox_multiScheduling,
+                                             QGroupBox *groupBox_simulator,
                                              std::map<std::string, std::vector<std::string>> *groupSta,
                                              std::map<std::string, std::vector<std::string>> *groupSrc,
                                              std::map<std::string, std::vector<std::string>> *groupBl,
@@ -51,6 +52,7 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
     checkBox_weightLowElevation{checkBox_weightLowElevation},
     doubleSpinBox_weightLowEl{doubleSpinBox_weightLowEl},
     groupBox_multiScheduling{groupBox_multiScheduling},
+    groupBox_simulator{groupBox_simulator},
     groupSta{groupSta},
     groupSrc{groupSrc},
     groupBl{groupBl}
@@ -64,6 +66,7 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
     saveMultiCoreSetup = ui->pushButton_save_multiCore;
 
     createMultiSchedTable();
+    ui->tabWidget_3->setCurrentIndex(0);
 
 }
 
@@ -1226,3 +1229,13 @@ std::pair<QStringList, QStringList> MulitSchedulingWidget::getMultiCoreSupport()
 }
 
 
+
+void MulitSchedulingWidget::on_groupBox_ms_gen_clicked(bool checked)
+{
+    if(checked){
+        if(!groupBox_simulator->isChecked()){
+            QMessageBox::information(this,"Simulations enabled","Genetic algorithm only works if you do simulations.\nSimulations are now activated!\nCheck simulation and estimation parameters!");
+            groupBox_simulator->setChecked(true);
+        }
+    }
+}
