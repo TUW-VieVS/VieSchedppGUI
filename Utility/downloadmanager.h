@@ -47,6 +47,8 @@ public slots:
     QString getErrorText(){ return errorText; }
     QStringList getErrorFileList(){ return errorFiles; }
 
+    void checkDownloads();
+
 signals:
     void allDownloadsFinished();
     void masterDownloadsFinished();

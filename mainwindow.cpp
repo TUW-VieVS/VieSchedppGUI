@@ -7100,7 +7100,6 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
     files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
 //    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
@@ -7232,7 +7231,7 @@ void MainWindow::downloadFinished(){
         }
 
         if( errorFiles.isEmpty() ){
-            statusBarLabel->setText("all downloads finished successfully");
+            statusBarLabel->setText("all downloads finished");
         }else{
             QMessageBox::warning(this,"Error while downloading files", downloadManager->getErrorText());
             statusBarLabel->setText("Error while downloading files");
@@ -7240,6 +7239,12 @@ void MainWindow::downloadFinished(){
 
     }else{
         statusBarLabel->setText("all downloads finished");
+    }
+    downloadManager->checkDownloads();
+    QString errorMsg = downloadManager->getErrorText();
+    if(!errorMsg.isEmpty()){
+        errorMsg.append("Did you install OpenSSL?");
+        QMessageBox::warning(this,"Error while downloading files", errorMsg);
     }
 }
 
