@@ -84,8 +84,6 @@ private slots:
 
     void on_pushButton_ms_pick_random_toggled(bool checked);
 
-    void on_pushButton_ms_pick_random_clicked();
-
     void on_comboBox_multiSched_maxNumber_currentIndexChanged(const QString &arg1);
 
     void on_comboBox_multiSched_seed_currentIndexChanged(const QString &arg1);

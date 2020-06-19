@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1198,7 +1198,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>247</width>
+             <width>932</width>
              <height>652</height>
             </rect>
            </property>
@@ -3132,22 +3132,127 @@ If you only want to run simulations you can deselect this to avoid error message
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkBox_fillinmode_aposteriori">
+                 <widget class="QGroupBox" name="groupBox_fillinmode_aposteriori">
                   <property name="toolTip">
-                   <string>use fillin mode a posteriori</string>
+                   <string>enable fillin-mode a posteriri</string>
                   </property>
                   <property name="statusTip">
-                   <string>use fillin mode a posteriori</string>
+                   <string>enable fillin-mode a posteriri</string>
                   </property>
                   <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the &lt;span style=&quot; font-weight:600;&quot;&gt;fillin mode a posteriori.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This schedules &lt;span style=&quot; font-weight:600;&quot;&gt;additional scans&lt;/span&gt; in case of &lt;span style=&quot; font-weight:600;&quot;&gt;long idle times&lt;/span&gt;. Those scans inserted &lt;span style=&quot; font-weight:600;&quot;&gt;after the normal schedule is finished&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;If you already use &lt;span style=&quot; font-weight:600;&quot;&gt;fillin modes during scan&lt;/span&gt; selection the a posteriori option &lt;span style=&quot; font-weight:600;&quot;&gt;might not improve your schedule&lt;/span&gt; any further. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception&lt;/span&gt; is when you have &lt;span style=&quot; font-weight:600;&quot;&gt;tagalong stations&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In any case, this option does only cost a bit of time, the schedule will &lt;span style=&quot; font-weight:600;&quot;&gt;never get worse &lt;/span&gt;because of this. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Most of the time it is &lt;span style=&quot; font-weight:600;&quot;&gt;not necessary&lt;/span&gt; to use this option but in case you are unsure simply use it.&lt;span style=&quot; font-weight:600;&quot;&gt; It has no negative influence&lt;/span&gt; (except for more collected data). &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable fillin-mode a posteriri.&lt;/p&gt;&lt;p&gt;After the schedule is generated, the fillin-mode a posteriori starts. &lt;/p&gt;&lt;p&gt;During this mode, VieSched++ checks if it is possible to squeeze in additional scans in between the already scheduled scans. &lt;/p&gt;&lt;p&gt;It is possible to adjust the minimum number of stations per scan, as well as the minimum time between two scans to the same source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
-                  <property name="text">
+                  <property name="title">
                    <string>a posteriori</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
                   </property>
                   <property name="checked">
                    <bool>false</bool>
                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_7">
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="1">
+                      <widget class="QSpinBox" name="spinBox_fi_apost_minSta">
+                       <property name="toolTip">
+                        <string>minimum number of stations participating in a scan</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>minimum number of stations participating in a scan</string>
+                       </property>
+                       <property name="whatsThis">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the source parameter &amp;quot;min number of stations&amp;quot; &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Defines how many stations have to participate in a scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                       <property name="minimum">
+                        <number>2</number>
+                       </property>
+                       <property name="value">
+                        <number>2</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QCheckBox" name="checkBox_fi_apost_minSta">
+                       <property name="toolTip">
+                        <string>override source parameter &quot;min  number of stations&quot;</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>override source parameter &quot;min  number of stations&quot;</string>
+                       </property>
+                       <property name="whatsThis">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the source parameter &amp;quot;min number of stations&amp;quot; &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Defines how many stations have to participate in a scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                       <property name="text">
+                        <string>min stations</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/source_p.png</normaloff>:/icons/icons/source_p.png</iconset>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QCheckBox" name="checkBox_fi_apost_minRepeat">
+                       <property name="toolTip">
+                        <string>override source parameter &quot;min repeat&quot;</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>override source parameter &quot;min repeat&quot;</string>
+                       </property>
+                       <property name="whatsThis">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the source parameter &amp;quot;min repeat&amp;quot; &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Defines how much time must lay between two scans to the same source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                       <property name="text">
+                        <string>min repeat</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/source_p.png</normaloff>:/icons/icons/source_p.png</iconset>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QSpinBox" name="spinBox_fi_apost_minRepeat">
+                       <property name="toolTip">
+                        <string>minimum time between two scans to same source</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>minimum time between two scans to same source</string>
+                       </property>
+                       <property name="whatsThis">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the source parameter &amp;quot;min repeat&amp;quot; &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Defines how much time must lay between two scans to the same source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                       <property name="suffix">
+                        <string> [s]</string>
+                       </property>
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>3600</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>60</number>
+                       </property>
+                       <property name="value">
+                        <number>180</number>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
@@ -3240,6 +3345,17 @@ If you only want to run simulations you can deselect this to avoid error message
                    <widget class="QComboBox" name="comboBox_idleToObserving_stations"/>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="pushButton_idleToObserving_addStationGroup">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <spacer name="horizontalSpacer_12">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -3251,17 +3367,6 @@ If you only want to run simulations you can deselect this to avoid error message
                      </size>
                     </property>
                    </spacer>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_idleToObserving_addStationGroup">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="myresources.qrc">
-                      <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
-                    </property>
-                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -9951,7 +10056,7 @@ p, li { white-space: pre-wrap; }
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The iteration will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;stop&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; if you only would&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; reduce the selected number of sources or less&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This will &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;speed up &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;the creation of your schedule, because &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;iterations with very little effect&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; are not carried out. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="value">
-                  <number>5</number>
+                  <number>3</number>
                  </property>
                 </widget>
                </item>
@@ -12557,12 +12662,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>47</x>
-     <y>77</y>
+     <x>122</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>81</x>
-     <y>77</y>
+     <x>930</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -12653,8 +12758,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>282</y>
+     <x>92</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
      <x>345</x>
@@ -12669,12 +12774,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>311</y>
+     <x>92</x>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>313</y>
+     <x>378</x>
+     <y>340</y>
     </hint>
    </hints>
   </connection>
@@ -12733,12 +12838,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>351</y>
+     <x>378</x>
+     <y>381</y>
     </hint>
    </hints>
   </connection>
@@ -12749,12 +12854,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>71</x>
-     <y>380</y>
+     <x>92</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>
@@ -12765,12 +12870,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>71</x>
-     <y>409</y>
+     <x>92</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>
@@ -12781,12 +12886,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>380</y>
+     <x>378</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>
@@ -12797,12 +12902,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>409</y>
+     <x>378</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>
@@ -12813,12 +12918,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>438</y>
+     <x>378</x>
+     <y>477</y>
     </hint>
    </hints>
   </connection>
@@ -12829,12 +12934,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>71</x>
-     <y>467</y>
+     <x>92</x>
+     <y>509</y>
     </hint>
    </hints>
   </connection>
@@ -12845,12 +12950,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>71</x>
-     <y>496</y>
+     <x>92</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -12861,12 +12966,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>467</y>
+     <x>378</x>
+     <y>509</y>
     </hint>
    </hints>
   </connection>
@@ -12877,12 +12982,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>496</y>
+     <x>378</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -12925,12 +13030,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>201</y>
+     <x>63</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
-     <x>268</x>
-     <y>204</y>
+     <x>89</x>
+     <y>190</y>
     </hint>
    </hints>
   </connection>
@@ -12941,12 +13046,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>230</y>
+     <x>63</x>
+     <y>194</y>
     </hint>
     <hint type="destinationlabel">
-     <x>268</x>
-     <y>233</y>
+     <x>89</x>
+     <y>194</y>
     </hint>
    </hints>
   </connection>
@@ -12957,12 +13062,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>398</y>
+     <x>63</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>320</x>
-     <y>402</y>
+     <x>88</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -12973,12 +13078,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>429</y>
+     <x>63</x>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
-     <x>320</x>
-     <y>506</y>
+     <x>89</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -12989,12 +13094,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>438</x>
-     <y>506</y>
+     <x>514</x>
+     <y>558</y>
     </hint>
     <hint type="destinationlabel">
-     <x>618</x>
-     <y>509</y>
+     <x>631</x>
+     <y>561</y>
     </hint>
    </hints>
   </connection>
@@ -13005,12 +13110,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>438</x>
-     <y>477</y>
+     <x>514</x>
+     <y>526</y>
     </hint>
     <hint type="destinationlabel">
-     <x>618</x>
-     <y>480</y>
+     <x>631</x>
+     <y>529</y>
     </hint>
    </hints>
   </connection>
@@ -13037,12 +13142,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>112</y>
+     <x>63</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>54</x>
-     <y>112</y>
+     <x>394</x>
+     <y>372</y>
     </hint>
    </hints>
   </connection>
@@ -13053,12 +13158,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>112</y>
+     <x>63</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>114</y>
+     <x>63</x>
+     <y>404</y>
     </hint>
    </hints>
   </connection>
@@ -13069,12 +13174,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>112</y>
+     <x>63</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>54</x>
-     <y>114</y>
+     <x>394</x>
+     <y>404</y>
     </hint>
    </hints>
   </connection>
@@ -13101,12 +13206,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>121</x>
-     <y>364</y>
+     <x>126</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>366</y>
+     <x>174</x>
+     <y>408</y>
     </hint>
    </hints>
   </connection>
@@ -13117,8 +13222,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>121</x>
-     <y>364</y>
+     <x>126</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
      <x>159</x>
@@ -13213,8 +13318,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>282</y>
+     <x>92</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
      <x>446</x>
@@ -13229,12 +13334,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>311</y>
+     <x>92</x>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>312</y>
+     <x>479</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -13245,12 +13350,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>349</y>
+     <x>92</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>350</y>
+     <x>479</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>
@@ -13261,12 +13366,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>436</y>
+     <x>92</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>437</y>
+     <x>479</x>
+     <y>476</y>
     </hint>
    </hints>
   </connection>
@@ -13297,8 +13402,8 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
      <y>449</y>
     </hint>
     <hint type="destinationlabel">
-     <x>675</x>
-     <y>467</y>
+     <x>718</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -13309,12 +13414,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>695</x>
-     <y>443</y>
+     <x>711</x>
+     <y>494</y>
     </hint>
     <hint type="destinationlabel">
-     <x>734</x>
-     <y>468</y>
+     <x>810</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -13325,12 +13430,44 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>675</x>
-     <y>441</y>
+     <x>711</x>
+     <y>494</y>
     </hint>
     <hint type="destinationlabel">
-     <x>807</x>
-     <y>469</y>
+     <x>903</x>
+     <y>526</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_fi_apost_minSta</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_fi_apost_minSta</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>546</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>202</x>
+     <y>542</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_fi_apost_minRepeat</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_fi_apost_minRepeat</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>580</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>209</x>
+     <y>577</y>
     </hint>
    </hints>
   </connection>

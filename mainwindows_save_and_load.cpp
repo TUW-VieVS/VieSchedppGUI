@@ -130,7 +130,17 @@ QString MainWindow::writeXML()
     }else{
         useSourcesFromParameter_otherwiseIgnore = true;
     }
-    bool fillinModeAPosteriori = ui->checkBox_fillinmode_aposteriori->isChecked();
+    bool fillinModeAPosteriori = ui->groupBox_fillinmode_aposteriori->isChecked();
+    int fiapost_minSta = -1;
+    int fiapost_minRepeat = -1;
+    if(fillinModeAPosteriori){
+        if(ui->checkBox_fi_apost_minSta->isChecked()){
+            fiapost_minSta = ui->spinBox_fi_apost_minSta->value();
+        }
+        if(ui->checkBox_fi_apost_minRepeat->isChecked()){
+            fiapost_minRepeat = ui->spinBox_fi_apost_minRepeat->value();
+        }
+    }
     bool fillinModeDuringScan = ui->checkBox_fillinmode_duringscan->isChecked();
     bool fillinModeInfluence = ui->checkBox_fillinModeInfluence->isChecked();
     bool idleToObservingTime = ui->radioButton_idleToObservingTime_yes->isChecked();
@@ -163,12 +173,12 @@ QString MainWindow::writeXML()
 
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
-                     fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
+                     fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
                      srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
-                     fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori,
+                     fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
                      ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }
@@ -666,7 +676,28 @@ void MainWindow::loadXML(QString path)
         ui->groupBox_subnetting->setChecked(subnetting);
 
         bool fillinmodeAPosteriori = xml.get("VieSchedpp.general.fillinmodeAPosteriori",false);
-        ui->checkBox_fillinmode_aposteriori->setChecked(fillinmodeAPosteriori);
+        ui->groupBox_fillinmode_aposteriori->setChecked(fillinmodeAPosteriori);
+        if(fillinmodeAPosteriori){
+            auto o_min_stations = xml.get_optional<int>("VieSchedpp.general.fillinmodeAPosteriori_minNumberOfStations");
+            if(o_min_stations.is_initialized()){
+                ui->checkBox_fi_apost_minSta->setChecked(true);
+                ui->spinBox_fi_apost_minSta->setEnabled(true);
+                ui->spinBox_fi_apost_minSta->setValue(*o_min_stations);
+            }else{
+                ui->checkBox_fi_apost_minSta->setChecked(false);
+                ui->spinBox_fi_apost_minSta->setEnabled(false);
+            }
+            auto o_min_repeat = xml.get_optional<int>("VieSchedpp.general.fillinmodeAPosteriori_minRepeat");
+            if(o_min_repeat.is_initialized()){
+                ui->checkBox_fi_apost_minRepeat->setChecked(true);
+                ui->spinBox_fi_apost_minRepeat->setEnabled(true);
+                ui->spinBox_fi_apost_minRepeat->setValue(*o_min_repeat);
+            }else{
+                ui->checkBox_fi_apost_minRepeat->setChecked(false);
+                ui->spinBox_fi_apost_minRepeat->setEnabled(false);
+            }
+        }
+
         bool fillinmodeDuringScan = xml.get("VieSchedpp.general.fillinmodeDuringScan",false);
         ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeDuringScan);
         bool fillinmodeInfluenceOnSchedule = xml.get("VieSchedpp.general.fillinmodeInfluenceOnSchedule",false);
@@ -1895,11 +1926,33 @@ void MainWindow::on_pushButton_8_clicked()
 
 
     path << "settings.general.fillinmodeAPosteriori";
-    if(ui->checkBox_fillinmode_aposteriori->isChecked()){
+    if(ui->groupBox_fillinmode_aposteriori->isChecked()){
         value << "true";
     }else{
         value << "false";
     }
+
+    path << "settings.general.fillinmodeAPosteriori_minNumberOfStations_checked";
+    if(ui->checkBox_fi_apost_minSta->isChecked()){
+        value << "true";
+    }else{
+        value << "false";
+    }
+
+    path << "settings.general.fillinmodeAPosteriori_minNumberOfStations";
+    value << QString("%1").arg(ui->spinBox_fi_apost_minSta->value());
+
+    path << "settings.general.fillinmodeAPosteriori_minRepeat_checked";
+    if(ui->checkBox_fi_apost_minRepeat->isChecked()){
+        value << "true";
+    }else{
+        value << "false";
+    }
+
+    path << "settings.general.fillinmodeAPosteriori_minRepeat";
+    value << QString("%1").arg(ui->spinBox_fi_apost_minRepeat->value());
+
+
 
     path << "settings.general.fillinmodeDuringScanSelection";
     if(ui->checkBox_fillinmode_duringscan->isChecked()){

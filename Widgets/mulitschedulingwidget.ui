@@ -20,7 +20,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -72,6 +72,9 @@
            </property>
            <property name="maximum">
             <number>9999</number>
+           </property>
+           <property name="singleStep">
+            <number>8</number>
            </property>
           </widget>
          </item>

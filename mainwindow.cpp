@@ -2134,9 +2134,29 @@ void MainWindow::defaultParameters()
     if(fillinmodeInfluenceOnSchedule.is_initialized()){
         ui->checkBox_fillinModeInfluence->setChecked(*fillinmodeInfluenceOnSchedule);
     }
+
+    if(settings_.get("settings.general.fillinmodeAPosteriori_minNumberOfStations_checked",false)){
+        ui->checkBox_fi_apost_minSta->setChecked(true);
+        ui->spinBox_fi_apost_minSta->setEnabled(true);
+        ui->spinBox_fi_apost_minSta->setValue(settings_.get("settings.general.fillinmodeAPosteriori_minNumberOfStations",2));
+    }else{
+        ui->checkBox_fi_apost_minSta->setChecked(false);
+        ui->spinBox_fi_apost_minSta->setEnabled(false);
+    }
+    if(settings_.get("settings.general.fillinmodeAPosteriori_minRepeat_checked",false)){
+        ui->checkBox_fi_apost_minRepeat->setChecked(true);
+        ui->spinBox_fi_apost_minRepeat->setEnabled(true);
+        ui->spinBox_fi_apost_minRepeat->setValue(settings_.get("settings.general.fillinmodeAPosteriori_minRepeat",180));
+    }else{
+        ui->checkBox_fi_apost_minRepeat->setChecked(false);
+        ui->spinBox_fi_apost_minRepeat->setEnabled(false);
+    }
     boost::optional<bool> fillinmodeAPosteriori = settings_.get_optional<bool>("settings.general.fillinmodeAPosteriori");
+    ui->groupBox_fillinmode_aposteriori->setChecked(true);
     if(fillinmodeAPosteriori.is_initialized()){
-        ui->checkBox_fillinmode_aposteriori->setChecked(*fillinmodeAPosteriori);
+        ui->groupBox_fillinmode_aposteriori->setChecked(*fillinmodeAPosteriori);
+    }else{
+        ui->groupBox_fillinmode_aposteriori->setChecked(false);
     }
 
     boost::optional<double> subnettingMinAngle = settings_.get_optional<double>("settings.general.subnettingMinAngle");

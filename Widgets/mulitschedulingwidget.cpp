@@ -64,6 +64,10 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
     newSourceGroup = ui->pushButton_addGroupsourceSetup_2;
     newBaselineGroup = ui->pushButton_addGroupBaselineSetup_2;
     saveMultiCoreSetup = ui->pushButton_save_multiCore;
+    connect(ui->groupBox_ms_gen, &QGroupBox::toggled, this, &MulitSchedulingWidget::multi_sched_count_nsched);
+    connect(ui->spinBox_multiSched_maxNumber, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
+    connect(ui->spinBox_ms_gen_popsize, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
+    connect(ui->spinBox_ms_gen_iterations, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
 
     createMultiSchedTable();
     ui->tabWidget_3->setCurrentIndex(0);
@@ -102,12 +106,9 @@ void MulitSchedulingWidget::on_pushButton_ms_pick_random_toggled(bool checked)
     ui->label_multiSchedulingNsched->setText(QString("total number of schedules: 1"));
     ui->label_multiSchedulingNsched->setStyleSheet("");
 
+    multi_sched_count_nsched();
 }
 
-void MulitSchedulingWidget::on_pushButton_ms_pick_random_clicked()
-{
-
-}
 // ########################################### MULTI SCHED ###########################################
 
 void MulitSchedulingWidget::createMultiSchedTable()
