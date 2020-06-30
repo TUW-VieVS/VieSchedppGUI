@@ -87,15 +87,33 @@ void sourceParametersDialog::addBaselineModel(QStandardItemModel *otherBaselines
 void sourceParametersDialog::addDefaultParameters(VieVS::ParameterSettings::ParametersSources d)
 {
     dp = d;
-    ui->spinBox_minRepeatTime->setValue(*d.minRepeat);
-    ui->spinBox_minScanTime->setValue(*d.minScan);
-    ui->spinBox_maxScanTime->setValue(*d.maxScan);
-    ui->weightDoubleSpinBox->setValue(*d.weight);
-    ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
-    ui->doubleSpinBox_minFlux->setValue(*d.minFlux);
-    ui->doubleSpinBox_minElevation->setValue(*d.minElevation);
-    ui->doubleSpinBox_minSunDistance->setValue(*d.minSunDistance);
-    ui->spinBox_minNumberOfStations->setValue(*d.minNumberOfStations);
+    if(d.minRepeat.is_initialized()){
+        ui->spinBox_minRepeatTime->setValue(*d.minRepeat);
+    }
+    if(d.minScan.is_initialized()){
+        ui->spinBox_minScanTime->setValue(*d.minScan);
+    }
+    if(d.maxScan.is_initialized()){
+        ui->spinBox_maxScanTime->setValue(*d.maxScan);
+    }
+    if(d.weight.is_initialized()){
+        ui->weightDoubleSpinBox->setValue(*d.weight);
+    }
+    if(d.maxNumberOfScans.is_initialized()){
+        ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
+    }
+    if(d.minFlux.is_initialized()){
+        ui->doubleSpinBox_minFlux->setValue(*d.minFlux);
+    }
+    if(d.minElevation.is_initialized()){
+        ui->doubleSpinBox_minElevation->setValue(*d.minElevation);
+    }
+    if(d.minSunDistance.is_initialized()){
+        ui->doubleSpinBox_minSunDistance->setValue(*d.minSunDistance);
+    }
+    if(d.minNumberOfStations.is_initialized()){
+        ui->spinBox_minNumberOfStations->setValue(*d.minNumberOfStations);
+    }
 }
 
 void sourceParametersDialog::addSelectedParameters(VieVS::ParameterSettings::ParametersSources para, QString paraName)
@@ -166,7 +184,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->spinBox_minNumberOfStations->setValue(*sp.minNumberOfStations);
         ui->checkBox_minNumberOfStations->setChecked(true);
     }else{
-        ui->spinBox_minNumberOfStations->setValue(*dp.minNumberOfStations);
+        if(dp.minNumberOfStations.is_initialized()){
+            ui->spinBox_minNumberOfStations->setValue(*dp.minNumberOfStations);
+        }
         ui->checkBox_minNumberOfStations->setChecked(false);
     }
 
@@ -174,7 +194,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->doubleSpinBox_minFlux->setValue(*sp.minFlux);
         ui->checkBox_minFlux->setChecked(true);
     }else{
-        ui->doubleSpinBox_minFlux->setValue(*dp.minFlux);
+        if(dp.minFlux.is_initialized()){
+            ui->doubleSpinBox_minFlux->setValue(*dp.minFlux);
+        }
         ui->checkBox_minFlux->setChecked(false);
     }
 
@@ -190,7 +212,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->weightDoubleSpinBox->setValue(*sp.weight);
         ui->checkBox_weight->setChecked(true);
     }else{
-        ui->weightDoubleSpinBox->setValue(*dp.weight);
+        if(dp.weight.is_initialized()){
+            ui->weightDoubleSpinBox->setValue(*dp.weight);
+        }
         ui->checkBox_weight->setChecked(false);
     }
 
@@ -198,7 +222,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->doubleSpinBox_minElevation->setValue(*sp.minElevation);
         ui->checkBox_minElevation->setChecked(true);
     }else{
-        ui->doubleSpinBox_minElevation->setValue(*dp.minElevation);
+        if(dp.minElevation.is_initialized()){
+            ui->doubleSpinBox_minElevation->setValue(*dp.minElevation);
+        }
         ui->checkBox_minElevation->setChecked(false);
     }
 
@@ -206,7 +232,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->doubleSpinBox_minSunDistance->setValue(*sp.minSunDistance);
         ui->checkBox_minSunDistance->setChecked(true);
     }else{
-        ui->doubleSpinBox_minSunDistance->setValue(*dp.minSunDistance);
+        if(dp.minSunDistance.is_initialized()){
+            ui->doubleSpinBox_minSunDistance->setValue(*dp.minSunDistance);
+        }
         ui->checkBox_minSunDistance->setChecked(false);
     }
 
@@ -215,7 +243,9 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->spinBox_minRepeatTime->setValue(*sp.minRepeat);
         ui->groupBox_10->setChecked(true);
     }else{
-        ui->spinBox_minRepeatTime->setValue(*dp.minRepeat);
+        if(dp.minRepeat.is_initialized()){
+            ui->spinBox_minRepeatTime->setValue(*dp.minRepeat);
+        }
         ui->groupBox_10->setChecked(false);
     }
 
@@ -252,13 +282,17 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->spinBox_maxScanTime->setValue(*sp.maxScan);
         ui->groupBox_variableScanDuration->setChecked(true);
     }else{
-        ui->spinBox_maxScanTime->setValue(*dp.maxScan);
+        if(dp.maxScan.is_initialized()){
+            ui->spinBox_maxScanTime->setValue(*dp.maxScan);
+        }
     }
     if(sp.minScan.is_initialized()){
         ui->spinBox_minScanTime->setValue(*sp.minScan);
         ui->groupBox_variableScanDuration->setChecked(true);
     }else{
-        ui->spinBox_minScanTime->setValue(*dp.minScan);
+        if(dp.minScan.is_initialized()){
+            ui->spinBox_minScanTime->setValue(*dp.minScan);
+        }
     }
     QVector<QString> bands;
     for(int i=0; i<ui->tableWidget_minSNR->rowCount(); ++i){

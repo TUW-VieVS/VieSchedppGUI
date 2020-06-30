@@ -41,9 +41,16 @@ void baselineParametersDialog::addBandNames(QStringList bands)
 void baselineParametersDialog::addDefaultParameters(VieVS::ParameterSettings::ParametersBaselines d)
 {
     dp = d;
-    ui->doubleSpinBox_weight->setValue(*d.weight);
-    ui->spinBox_minScan->setValue(*d.minScan);
-    ui->spinBox_maxScan->setValue(*d.maxScan);
+    if(d.weight.is_initialized()){
+        ui->doubleSpinBox_weight->setValue(*d.weight);
+    }
+    if(d.minScan.is_initialized()){
+        ui->spinBox_minScan->setValue(*d.minScan);
+    }
+    if(d.maxScan.is_initialized()){
+        ui->spinBox_maxScan->setValue(*d.maxScan);
+    }
+
 }
 
 void baselineParametersDialog::addSelectedParameters(VieVS::ParameterSettings::ParametersBaselines para, QString paraName)

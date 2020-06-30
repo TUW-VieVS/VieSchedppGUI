@@ -61,23 +61,48 @@ void stationParametersDialog::addBandNames(QStringList bands)
 void stationParametersDialog::addDefaultParameters(VieVS::ParameterSettings::ParametersStations d)
 {
     dp = d;
-    ui->doubleSpinBox_weight->setValue(*d.weight);
-    ui->doubleSpinBox_minElevation->setValue(*d.minElevation);
-    ui->spinBox_minScanTime->setValue(*d.minScan);
-    ui->spinBox_maxScanTime->setValue(*d.maxScan);
-    ui->spinBox_maxWaitTime->setValue(*d.maxWait);
-    ui->spinBox_minSlewTime->setValue(*d.minSlewtime);
-    ui->spinBox_maxSlewTime->setValue(*d.maxSlewtime);
-    ui->doubleSpinBox_minSlewDistance->setValue(*d.minSlewDistance);
-    ui->doubleSpinBox_maxSlewDistance->setValue(*d.maxSlewDistance);
-    ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
-    ui->spinBox_maxTotalObsTime->setValue(*d.maxTotalObsTime);
-
-
-    ui->spinBox_midob->setValue(*d.midob);
-    ui->spinBox_preob->setValue(*d.preob);
-    ui->spinBox_systemDelay->setValue(*d.systemDelay);
-
+    if(d.weight.is_initialized()){
+        ui->doubleSpinBox_weight->setValue(*d.weight);
+    }
+    if(d.minElevation.is_initialized()){
+        ui->doubleSpinBox_minElevation->setValue(*d.minElevation);
+    }
+    if(d.minScan.is_initialized()){
+        ui->spinBox_minScanTime->setValue(*d.minScan);
+    }
+    if(d.maxScan.is_initialized()){
+        ui->spinBox_maxScanTime->setValue(*d.maxScan);
+    }
+    if(d.maxWait.is_initialized()){
+        ui->spinBox_maxWaitTime->setValue(*d.maxWait);
+    }
+    if(d.minSlewtime.is_initialized()){
+        ui->spinBox_minSlewTime->setValue(*d.minSlewtime);
+    }
+    if(d.maxSlewtime.is_initialized()){
+        ui->spinBox_maxSlewTime->setValue(*d.maxSlewtime);
+    }
+    if(d.minSlewDistance.is_initialized()){
+        ui->doubleSpinBox_minSlewDistance->setValue(*d.minSlewDistance);
+    }
+    if(d.maxSlewDistance.is_initialized()){
+        ui->doubleSpinBox_maxSlewDistance->setValue(*d.maxSlewDistance);
+    }
+    if(d.maxNumberOfScans.is_initialized()){
+        ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
+    }
+    if(d.maxTotalObsTime.is_initialized()){
+        ui->spinBox_maxTotalObsTime->setValue(*d.maxTotalObsTime);
+    }
+    if(d.midob.is_initialized()){
+        ui->spinBox_midob->setValue(*d.midob);
+    }
+    if(d.preob.is_initialized()){
+        ui->spinBox_preob->setValue(*d.preob);
+    }
+    if(d.systemDelay.is_initialized()){
+        ui->spinBox_systemDelay->setValue(*d.systemDelay);
+    }
 }
 
 void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::ParametersStations para, QString paraName)
@@ -108,6 +133,7 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->checkBox_maxNumberOfScans->setChecked(true);
         connect(ui->checkBox_maxNumberOfScans, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         // ui->checkBox_dataWriteSpeed->setEnabled(false);
+        ui->checkBox_maxTotalObsTime->setChecked(true);
         connect(ui->checkBox_maxTotalObsTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
 
         ui->groupBox_scanTime->setCheckable(false);
