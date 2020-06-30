@@ -92,34 +92,34 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         ui->groupBox_tagalong->setEnabled(false);
 
         ui->checkBox_weight->setChecked(true);
-        ui->checkBox_weight->setEnabled(false);
+        connect(ui->checkBox_weight, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_minElevation->setChecked(true);
-        ui->checkBox_minElevation->setEnabled(false);
+        connect(ui->checkBox_minElevation, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_maxWaitTime->setChecked(true);
-        ui->checkBox_maxWaitTime->setEnabled(false);
+        connect(ui->checkBox_maxWaitTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_minSlewTime->setChecked(true);
-        ui->checkBox_minSlewTime->setEnabled(false);
+        connect(ui->checkBox_minSlewTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_maxSlewTime->setChecked(true);
-        ui->checkBox_maxSlewTime->setEnabled(false);
+        connect(ui->checkBox_maxSlewTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_maxSlewDistance->setChecked(true);
-        ui->checkBox_maxSlewDistance->setEnabled(false);
+        connect(ui->checkBox_maxSlewDistance, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_minSlewDistance->setChecked(true);
-        ui->checkBox_minSlewDistance->setEnabled(false);
+        connect(ui->checkBox_minSlewDistance, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_maxNumberOfScans->setChecked(true);
-        ui->checkBox_maxNumberOfScans->setEnabled(false);
-        ui->checkBox_dataWriteSpeed->setEnabled(false);
-        ui->checkBox_maxTotalObsTime->setEnabled(false);
+        connect(ui->checkBox_maxNumberOfScans, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
+        // ui->checkBox_dataWriteSpeed->setEnabled(false);
+        connect(ui->checkBox_maxTotalObsTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
 
         ui->groupBox_scanTime->setCheckable(false);
         ui->pushButton_load->setEnabled(false);
         ui->pushButton_save->setEnabled(false);
 
-        ui->checkBox_midob->setEnabled(false);
         ui->checkBox_midob->setChecked(true);
-        ui->checkBox_preob->setEnabled(false);
+        connect(ui->checkBox_midob, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_preob->setChecked(true);
-        ui->checkBox_systemDelay->setEnabled(false);
+        connect(ui->checkBox_preob, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_systemDelay->setChecked(true);
+        connect(ui->checkBox_systemDelay, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
 
     }
     ui->lineEdit->setEnabled(false);
@@ -510,4 +510,10 @@ void stationParametersDialog::on_pushButton_load_clicked()
 void stationParametersDialog::on_pushButton_clicked()
 {
     QWhatsThis::enterWhatsThisMode();
+}
+
+void stationParametersDialog::force_checked()
+{
+    auto *cb = qobject_cast<QCheckBox *>( sender() );
+    cb->setChecked(true);
 }

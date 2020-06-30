@@ -93,6 +93,8 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void force_checked();
+
 private:
     Ui::sourceParametersDialog *ui;
     VieVS::ParameterSettings::ParametersSources dp;

@@ -59,6 +59,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void force_checked();
+
 private:
     Ui::baselineParametersDialog *ui;
     VieVS::ParameterSettings::ParametersBaselines dp;

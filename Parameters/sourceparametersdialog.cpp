@@ -106,27 +106,29 @@ void sourceParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Par
         ui->groupBox_available->setCheckable(false);
         ui->groupBox_availableForFillinmode->setCheckable(false);
 
-        ui->checkBox_maxNumberOfScans->setChecked(true);
-        ui->checkBox_maxNumberOfScans->setEnabled(false);
-        ui->checkBox_minElevation->setChecked(true);
-        ui->checkBox_minElevation->setEnabled(false);
-        ui->checkBox_minSunDistance->setChecked(true);
-        ui->checkBox_minSunDistance->setEnabled(false);
-        ui->checkBox_minFlux->setChecked(true);
-        ui->checkBox_minFlux->setEnabled(false);
-        ui->checkBox_minNumberOfStations->setChecked(true);
-        ui->checkBox_minNumberOfStations->setEnabled(false);
-        ui->checkBox_weight->setChecked(true);
-        ui->checkBox_weight->setEnabled(false);
 
-        ui->groupBox_variableScanDuration->setCheckable(false);
-        ui->groupBox_fixedScanDuration->setCheckable(false);
-        ui->groupBox_fixedScanDuration->setEnabled(false);
-        ui->groupBox_9->setCheckable(false);
-        ui->groupBox_9->setEnabled(false);
-        ui->groupBox_10->setCheckable(false);
-        ui->groupBox_increaseWeightIfObservedOnce->setCheckable(false);
-        ui->groupBox_increaseWeightIfObservedOnce->setEnabled(false);
+        ui->checkBox_maxNumberOfScans->setChecked(true);
+        connect(ui->checkBox_maxNumberOfScans, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+        ui->checkBox_minElevation->setChecked(true);
+        connect(ui->checkBox_minElevation, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+        ui->checkBox_minSunDistance->setChecked(true);
+        connect(ui->checkBox_minSunDistance, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+        ui->checkBox_minFlux->setChecked(true);
+        connect(ui->checkBox_minFlux, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+        ui->checkBox_minNumberOfStations->setChecked(true);
+        connect(ui->checkBox_minNumberOfStations, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+        ui->checkBox_weight->setChecked(true);
+        connect(ui->checkBox_weight, &QCheckBox::toggled, this, &sourceParametersDialog::force_checked);
+
+        // ui->groupBox_variableScanDuration->setCheckable(false);
+        // ui->groupBox_fixedScanDuration->setCheckable(false);
+        // ui->groupBox_fixedScanDuration->setEnabled(false);
+
+        // ui->groupBox_9->setCheckable(false);
+        // ui->groupBox_9->setEnabled(false);
+        // ui->groupBox_10->setCheckable(false);
+        // ui->groupBox_increaseWeightIfObservedOnce->setCheckable(false);
+        // ui->groupBox_increaseWeightIfObservedOnce->setEnabled(false);
 
         ui->pushButton->setEnabled(false);
         ui->pushButton_2->setEnabled(false);
@@ -601,28 +603,40 @@ void sourceParametersDialog::on_spinBox_evenlyDistScans_valueChanged(int arg1)
 void sourceParametersDialog::on_groupBox_10_toggled(bool arg1)
 {
     if(arg1){
-        ui->groupBox_9->setChecked(!arg1);
+        ui->groupBox_9->setChecked(false);
+    }
+    if(!arg1 && ui->lineEdit_paraName->text() == "default" && !ui->lineEdit_paraName->isEnabled()){
+        ui->groupBox_9->setChecked(true);
     }
 }
 
 void sourceParametersDialog::on_groupBox_9_toggled(bool arg1)
 {
     if(arg1){
-        ui->groupBox_10->setChecked(!arg1);
+        ui->groupBox_10->setChecked(false);
+    }
+    if(!arg1 && ui->lineEdit_paraName->text() == "default" && !ui->lineEdit_paraName->isEnabled()){
+        ui->groupBox_10->setChecked(true);
     }
 }
 
 void sourceParametersDialog::on_groupBox_variableScanDuration_toggled(bool arg1)
 {
     if(arg1){
-        ui->groupBox_fixedScanDuration->setChecked(!arg1);
+        ui->groupBox_fixedScanDuration->setChecked(false);
+    }
+    if(!arg1 && ui->lineEdit_paraName->text() == "default" && !ui->lineEdit_paraName->isEnabled()){
+        ui->groupBox_fixedScanDuration->setChecked(true);
     }
 }
 
 void sourceParametersDialog::on_groupBox_fixedScanDuration_toggled(bool arg1)
 {
     if(arg1){
-        ui->groupBox_variableScanDuration->setChecked(!arg1);
+        ui->groupBox_variableScanDuration->setChecked(false);
+    }
+    if(!arg1 && ui->lineEdit_paraName->text() == "default" && !ui->lineEdit_paraName->isEnabled()){
+        ui->groupBox_variableScanDuration->setChecked(true);
     }
 }
 
@@ -630,3 +644,11 @@ void sourceParametersDialog::on_pushButton_3_clicked()
 {
     QWhatsThis::enterWhatsThisMode();
 }
+
+void sourceParametersDialog::force_checked()
+{
+    auto *cb = qobject_cast<QCheckBox *>( sender() );
+    cb->setChecked(true);
+}
+
+

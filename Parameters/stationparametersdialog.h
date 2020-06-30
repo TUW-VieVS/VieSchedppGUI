@@ -67,6 +67,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void force_checked();
+
 private:
     Ui::stationParametersDialog *ui;
     VieVS::ParameterSettings::ParametersStations dp;

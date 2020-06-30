@@ -53,7 +53,7 @@ void baselineParametersDialog::addSelectedParameters(VieVS::ParameterSettings::P
     if(paraName == "default"){
         ui->groupBox_ignore->setCheckable(false);
         ui->checkBox->setChecked(true);
-        ui->checkBox->setEnabled(false);
+        connect(ui->checkBox, &QCheckBox::toggled, this, &baselineParametersDialog::force_checked);
         ui->groupBox_scanTime->setCheckable(false);
 
         ui->pushButton_load->setEnabled(false);
@@ -242,4 +242,10 @@ void baselineParametersDialog::on_pushButton_save_clicked()
 void baselineParametersDialog::on_pushButton_clicked()
 {
     QWhatsThis::enterWhatsThisMode();
+}
+
+void baselineParametersDialog::force_checked()
+{
+    auto *cb = qobject_cast<QCheckBox *>( sender() );
+    cb->setChecked(true);
 }
