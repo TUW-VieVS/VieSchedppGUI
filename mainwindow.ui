@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>4</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -168,7 +168,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;For more information look at our &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600;&quot;&gt;reference page &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-sign-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Getting started: &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Read through the &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;tutorial &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;below, it will give you an idea of how VieSched++ should be used. A build in help is available (hit the&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; font-style:italic;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; key or clicking the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/help.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; button)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Read through the &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;tutorial &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;below, it will give you an idea of how VieSched++ should be used. A built-in help is available (hit the&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600; font-style:italic;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; key or clicking the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/help.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; button)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Additonally, you can have a look at our &lt;/span&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCl2VPe7OrnznNtrh0_lwrqQ&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;YouTube&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; channel where we upload &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;Videos&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; on how to use VieSched++ and the &lt;/span&gt;&lt;a href=&quot;https://vievswiki.geo.tuwien.ac.at/doku.php?id=public:vieschedpp:vieschedpp&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;VieVS Wiki page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; where we upload cookbooks about how to use VieSched++. &lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;One minute tutorial: &lt;/span&gt;&lt;/p&gt;
@@ -7634,7 +7634,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <property name="whatsThis">
@@ -7650,6 +7650,15 @@ p, li { white-space: pre-wrap; }
                <layout class="QHBoxLayout" name="horizontalLayout_131">
                 <item>
                  <widget class="QGroupBox" name="groupBox_35">
+                  <property name="toolTip">
+                   <string>schedule calibration blocks</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>schedule calibration blocks</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Schedule calibration blocks. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Calibration scans are observed with a fixed observation duration. &lt;/p&gt;&lt;p&gt;The scans are selected in a way to include a &lt;span style=&quot; font-weight:600;&quot;&gt;large number of stations&lt;/span&gt; and achieve a &lt;span style=&quot; font-weight:600;&quot;&gt;high SNR&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;You can define the number of calibration scans per block and additionally define which sources are observable for calibration scans. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;You always define the &lt;span style=&quot; font-weight:600;&quot;&gt;calibration block start time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Therefore, make sure that there is enough time offset for the session end to include all calibration scans. &lt;/p&gt;&lt;p&gt;Additionally, it often happens that a station starts observing a bit late. &lt;/p&gt;&lt;p&gt;Therefore, it is advisable to not schedule calibration blocks at the session start but rather some (e.g.: 10-30) minutes later. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;There are two options:&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- predifined:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Schedule a calibration block at the session start, mid and end. &lt;/p&gt;&lt;p&gt;You can define an time offset (in seconds) for the calibration block start. &lt;/p&gt;&lt;p&gt;This might be useful to avoid scheduling calibration blocks during intensive sessions and for the reason listed above. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- custom:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Schedule any number of calibration scans. &lt;/p&gt;&lt;p&gt;By default, the calibration blocks are equally spaced troughout the session but you can adjust the calibration block start time to your needs. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
                   <property name="title">
                    <string>schedule calibration scans</string>
                   </property>
@@ -7706,6 +7715,12 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <widget class="QGroupBox" name="groupBox_37">
+                     <property name="toolTip">
+                      <string>schedule predifined calibration blocks (session start, mid, and end)</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>schedule predifined calibration blocks (session start, mid, and end)</string>
+                     </property>
                      <property name="title">
                       <string/>
                      </property>
@@ -7814,6 +7829,9 @@ p, li { white-space: pre-wrap; }
                         </item>
                         <item row="0" column="2">
                          <widget class="QSpinBox" name="spinBox_calibration_delay">
+                          <property name="toolTip">
+                           <string>time offset in seconds from session start</string>
+                          </property>
                           <property name="suffix">
                            <string> [s]</string>
                           </property>
@@ -7856,6 +7874,12 @@ p, li { white-space: pre-wrap; }
                         </item>
                         <item row="2" column="2">
                          <widget class="QSpinBox" name="spinBox_calibration_advance">
+                          <property name="toolTip">
+                           <string>negativ time offset in seconds from session end</string>
+                          </property>
+                          <property name="statusTip">
+                           <string>negativ time offset in seconds from session end</string>
+                          </property>
                           <property name="suffix">
                            <string> [s]</string>
                           </property>
@@ -7905,6 +7929,12 @@ p, li { white-space: pre-wrap; }
                          <widget class="QSpinBox" name="spinBox_calibration_offset">
                           <property name="enabled">
                            <bool>false</bool>
+                          </property>
+                          <property name="toolTip">
+                           <string>time offset in seconds from session mid</string>
+                          </property>
+                          <property name="statusTip">
+                           <string>time offset in seconds from session mid</string>
                           </property>
                           <property name="suffix">
                            <string> [s]</string>
@@ -8021,6 +8051,12 @@ p, li { white-space: pre-wrap; }
                      </property>
                      <item>
                       <widget class="QRadioButton" name="radioButton_calibrationBlocksCustom">
+                       <property name="toolTip">
+                        <string>schedule calibration blocks </string>
+                       </property>
+                       <property name="statusTip">
+                        <string>schedule calibration blocks </string>
+                       </property>
                        <property name="text">
                         <string>custom</string>
                        </property>
@@ -8030,6 +8066,12 @@ p, li { white-space: pre-wrap; }
                       <widget class="QSpinBox" name="spinBox_NCalibrationBlocks">
                        <property name="enabled">
                         <bool>false</bool>
+                       </property>
+                       <property name="toolTip">
+                        <string>select number of (equally spaced) calibration blocks</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>select number of (equally spaced) calibration blocks</string>
                        </property>
                        <property name="minimum">
                         <number>2</number>
@@ -8055,6 +8097,12 @@ p, li { white-space: pre-wrap; }
                     <widget class="QTableWidget" name="tableWidget_calibrationBlock">
                      <property name="enabled">
                       <bool>false</bool>
+                     </property>
+                     <property name="toolTip">
+                      <string>schedule calibration blocks </string>
+                     </property>
+                     <property name="statusTip">
+                      <string>schedule calibration blocks </string>
                      </property>
                      <attribute name="verticalHeaderVisible">
                       <bool>false</bool>
@@ -8100,6 +8148,12 @@ p, li { white-space: pre-wrap; }
                <layout class="QHBoxLayout" name="horizontalLayout_129">
                 <item>
                  <widget class="QGroupBox" name="groupBox_34">
+                  <property name="toolTip">
+                   <string>focus on observations at the corners of commonly visible sky</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>focus on observations at the corners of commonly visible sky</string>
+                  </property>
                   <property name="title">
                    <string>focus observations at corners of commonly visible sky</string>
                   </property>
@@ -8121,6 +8175,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QSpinBox" name="spinBox_intensiveBlockCadence">
+                       <property name="toolTip">
+                        <string>corner switch cadence</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>corner switch cadence</string>
+                       </property>
                        <property name="suffix">
                         <string> [s]</string>
                        </property>
@@ -8171,6 +8231,12 @@ p, li { white-space: pre-wrap; }
                     <layout class="QVBoxLayout" name="verticalLayout_117">
                      <item>
                       <widget class="QPushButton" name="pushButton_autoSetupIntensive_weightFactor">
+                       <property name="toolTip">
+                        <string>shortcut to use predefined weight factors</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>shortcut to use predefined weight factors</string>
+                       </property>
                        <property name="text">
                         <string> weight factors</string>
                        </property>
@@ -8182,6 +8248,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_autoSetupIntensive_minStations">
+                       <property name="toolTip">
+                        <string>shortcut to make sure that all stations always observe together</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>shortcut to make sure that all stations always observe together</string>
+                       </property>
                        <property name="text">
                         <string> min number of stations/scans</string>
                        </property>
@@ -8227,6 +8299,12 @@ p, li { white-space: pre-wrap; }
                        </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_autoSetupIntensive_masScan300">
+                         <property name="toolTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
+                         <property name="statusTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
                          <property name="text">
                           <string>90 [s]</string>
                          </property>
@@ -8234,6 +8312,12 @@ p, li { white-space: pre-wrap; }
                        </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_autoSetupIntensive_maxScan120">
+                         <property name="toolTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
+                         <property name="statusTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
                          <property name="text">
                           <string>120 [s]</string>
                          </property>
@@ -8241,6 +8325,12 @@ p, li { white-space: pre-wrap; }
                        </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_autoSetupIntensive_masScan200">
+                         <property name="toolTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
+                         <property name="statusTip">
+                          <string>shortcut to define a maximum scan duration</string>
+                         </property>
                          <property name="text">
                           <string>200 [s]</string>
                          </property>
@@ -8250,6 +8340,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_minTimeBetweenScans">
+                       <property name="toolTip">
+                        <string>shortcut to adjust the minimum time between two scans to the same source based on corner swith cadence</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>shortcut to adjust the minimum time between two scans to the same source based on corner swith cadence</string>
+                       </property>
                        <property name="text">
                         <string> min time between two scans to source</string>
                        </property>
@@ -8261,6 +8357,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_mulitScheduling">
+                       <property name="toolTip">
+                        <string>shortcut to select predefined multi-scheduling parameters</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>shortcut to select predefined multi-scheduling parameters</string>
+                       </property>
                        <property name="text">
                         <string> multi-scheduling</string>
                        </property>
@@ -10069,8 +10171,14 @@ p, li { white-space: pre-wrap; }
                </item>
                <item row="9" column="1">
                 <widget class="QDoubleSpinBox" name="doubleSpinBox_gentleSourceReductionPercentage">
+                 <property name="statusTip">
+                  <string>during &quot;genle source reduction&quot; only remove this amount of sources from source list</string>
+                 </property>
                  <property name="whatsThis">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The percentage of sources which will be removed during each iteration of &lt;span style=&quot; font-weight:600;&quot;&gt;gentle source reduction&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;The sources with the fewest number of scans get removed. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="accessibleName">
+                  <string>during &quot;genle source reduction&quot; only remove this amount of sources from source list</string>
                  </property>
                  <property name="suffix">
                   <string> [%]</string>

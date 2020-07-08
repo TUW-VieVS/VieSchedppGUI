@@ -708,6 +708,15 @@
           <layout class="QHBoxLayout" name="horizontalLayout_53">
            <item>
             <widget class="QGroupBox" name="groupBox_ms_gen">
+             <property name="toolTip">
+              <string>use genetic algorithm to optimize scheduling parameters</string>
+             </property>
+             <property name="statusTip">
+              <string>use genetic algorithm to optimize scheduling parameters</string>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;genetic algorithms&lt;/span&gt; to optimize scheduling parameters.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The optimization is done &lt;span style=&quot; font-weight:600;&quot;&gt;iterative&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;1.) the &lt;span style=&quot; font-weight:600;&quot;&gt;standard multi-scheduling feature&lt;/span&gt; is used to generate all schedules. &lt;/p&gt;&lt;p&gt;2.) all schedules are &lt;span style=&quot; font-weight:600;&quot;&gt;simulated&lt;/span&gt; and some of the &lt;span style=&quot; font-weight:600;&quot;&gt;best&lt;/span&gt; and some &lt;span style=&quot; font-weight:600;&quot;&gt;random&lt;/span&gt; scheduling parameters are selected as parents &lt;/p&gt;&lt;p&gt;3.) the parent parameters are &lt;span style=&quot; font-weight:600;&quot;&gt;combined &lt;/span&gt;and &lt;span style=&quot; font-weight:600;&quot;&gt;mutated&lt;/span&gt; to form a new set of scheduling parameters &lt;/p&gt;&lt;p&gt;4.) new schedules are generated using the &lt;span style=&quot; font-weight:600;&quot;&gt;new scheduling parameters&lt;/span&gt;&lt;/p&gt;&lt;p&gt;5.) step 2-4 are exectued &lt;span style=&quot; font-weight:600;&quot;&gt;iteratively&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="title">
               <string>genetic algorithm (experimental)</string>
              </property>
@@ -757,6 +766,12 @@
                 </item>
                 <item row="0" column="1">
                  <widget class="QSpinBox" name="spinBox_ms_gen_iterations">
+                  <property name="toolTip">
+                   <string>maximum number of iterations (first itation is standard multi-scheduling)</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>maximum number of iterations (first itation is standard multi-scheduling)</string>
+                  </property>
                   <property name="minimum">
                    <number>2</number>
                   </property>
@@ -764,6 +779,12 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QSpinBox" name="spinBox_ms_gen_popsize">
+                  <property name="toolTip">
+                   <string>number of schedules from 2nd iteration onwards</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>number of schedules from 2nd iteration onwards</string>
+                  </property>
                   <property name="minimum">
                    <number>1</number>
                   </property>
@@ -780,6 +801,12 @@
                 </item>
                 <item row="2" column="1">
                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_selBest">
+                  <property name="toolTip">
+                   <string>amount of best parameters selected as parents (best is defined trough simulation priorities)</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>amount of best parameters selected as parents (best is defined trough simulation priorities)</string>
+                  </property>
                   <property name="prefix">
                    <string/>
                   </property>
@@ -796,6 +823,15 @@
                 </item>
                 <item row="3" column="1">
                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_selRandom">
+                  <property name="toolTip">
+                   <string>select </string>
+                  </property>
+                  <property name="statusTip">
+                   <string>amount of random parameters selected as parents</string>
+                  </property>
+                  <property name="accessibleName">
+                   <string>amount of random parameters selected as parents</string>
+                  </property>
                   <property name="suffix">
                    <string>%</string>
                   </property>
@@ -812,6 +848,12 @@
                 </item>
                 <item row="4" column="1">
                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_mutation">
+                  <property name="toolTip">
+                   <string>mutation equals this factor * difference of parents * random normally distributed variable</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>mutation equals this factor * difference of parents * random normally distributed variable</string>
+                  </property>
                   <property name="maximum">
                    <double>10.000000000000000</double>
                   </property>
@@ -832,6 +874,12 @@
                 </item>
                 <item row="6" column="1">
                  <widget class="QSpinBox" name="spinBox_ms_gen_parents">
+                  <property name="toolTip">
+                   <string>number of parents per child</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>number of parents per child</string>
+                  </property>
                   <property name="minimum">
                    <number>1</number>
                   </property>
@@ -852,6 +900,12 @@
                 </item>
                 <item row="5" column="1">
                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ms_gen_minMutation">
+                  <property name="toolTip">
+                   <string>minimum mutation in percent from difference of parents</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>minimum mutation in percent from difference of parents</string>
+                  </property>
                   <property name="suffix">
                    <string>%</string>
                   </property>
