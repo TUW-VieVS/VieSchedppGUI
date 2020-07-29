@@ -96,7 +96,10 @@ boost::property_tree::ptree SolverWidget::toXML()
         tree.add("solver.EOP.NUTY.constraint",ui->doubleSpinBox_nuty_const->value());
     }
 
-    tree.add("solver.reference_clock", ui->comboBox_ref_clock->currentText().toStdString());
+    if (ui->radioButton_force_ref_clock->isChecked()){
+        std::string refClock = ui->comboBox_ref_clock->currentText().toStdString();
+        tree.add("solver.reference_clock", refClock);
+    }
 
     if(all_sta){
         int c = 1;
@@ -427,9 +430,11 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
 
         QString refClock = QString::fromStdString(tree.get("reference_clock",""));
         if(!refClock.isEmpty()){
+            ui->radioButton_force_ref_clock->setChecked(true);
             ui->comboBox_ref_clock->setCurrentText(refClock);
         }else{
             ui->comboBox_ref_clock->setCurrentIndex(0);
+            ui->radioButton_obs_based_ref_clock->setChecked(true);
         }
 
 

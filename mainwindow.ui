@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>16</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7626,8 +7626,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>679</height>
+             <width>917</width>
+             <height>627</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -12802,12 +12802,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>94</y>
+     <x>20</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>101</y>
+     <x>26</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
@@ -12818,12 +12818,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>128</y>
+     <x>20</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>130</y>
+     <x>26</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -12834,12 +12834,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>157</y>
+     <x>20</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>159</y>
+     <x>26</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -12850,12 +12850,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>253</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>255</y>
+     <x>26</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -12866,12 +12866,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>306</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>284</y>
+     <x>26</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -12882,12 +12882,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>338</y>
+     <x>20</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>340</y>
+     <x>26</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -12898,12 +12898,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>186</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>188</y>
+     <x>26</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12914,12 +12914,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>186</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>71</x>
-     <y>217</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12930,12 +12930,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>186</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
-     <y>217</y>
+     <x>26</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12946,12 +12946,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>381</y>
+     <x>26</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12962,12 +12962,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>92</x>
-     <y>413</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12978,12 +12978,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>92</x>
-     <y>445</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
@@ -12994,12 +12994,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>413</y>
+     <x>26</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -13010,12 +13010,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>445</y>
+     <x>26</x>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
@@ -13026,12 +13026,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>477</y>
+     <x>26</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -13042,12 +13042,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>92</x>
-     <y>509</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -13058,12 +13058,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>92</x>
-     <y>541</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -13074,12 +13074,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>509</y>
+     <x>26</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -13090,12 +13090,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>378</x>
-     <y>541</y>
+     <x>26</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -13106,12 +13106,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>122</x>
-     <y>210</y>
+     <x>51</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>412</x>
-     <y>270</y>
+     <x>80</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -13122,12 +13122,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>102</x>
-     <y>329</y>
+     <x>31</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>271</x>
-     <y>331</y>
+     <x>54</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -13138,12 +13138,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>190</y>
+     <x>61</x>
+     <y>161</y>
     </hint>
     <hint type="destinationlabel">
-     <x>89</x>
-     <y>190</y>
+     <x>87</x>
+     <y>161</y>
     </hint>
    </hints>
   </connection>
@@ -13154,12 +13154,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>194</y>
+     <x>61</x>
+     <y>165</y>
     </hint>
     <hint type="destinationlabel">
-     <x>89</x>
-     <y>194</y>
+     <x>87</x>
+     <y>165</y>
     </hint>
    </hints>
   </connection>
@@ -13170,12 +13170,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>185</y>
+     <x>61</x>
+     <y>156</y>
     </hint>
     <hint type="destinationlabel">
-     <x>88</x>
-     <y>186</y>
+     <x>86</x>
+     <y>157</y>
     </hint>
    </hints>
   </connection>
@@ -13186,12 +13186,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>186</y>
+     <x>61</x>
+     <y>157</y>
     </hint>
     <hint type="destinationlabel">
-     <x>89</x>
-     <y>186</y>
+     <x>87</x>
+     <y>157</y>
     </hint>
    </hints>
   </connection>
@@ -13202,12 +13202,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>514</x>
-     <y>558</y>
+     <x>53</x>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
-     <x>631</x>
-     <y>561</y>
+     <x>59</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
@@ -13218,12 +13218,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>514</x>
-     <y>526</y>
+     <x>53</x>
+     <y>156</y>
     </hint>
     <hint type="destinationlabel">
-     <x>631</x>
-     <y>529</y>
+     <x>59</x>
+     <y>156</y>
     </hint>
    </hints>
   </connection>
@@ -13234,12 +13234,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setSelectedDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>259</x>
-     <y>226</y>
+     <x>194</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>798</x>
-     <y>298</y>
+     <x>87</x>
+     <y>115</y>
     </hint>
    </hints>
   </connection>
@@ -13298,12 +13298,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>174</y>
+     <x>77</x>
+     <y>130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>159</x>
-     <y>280</y>
+     <x>106</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -13314,12 +13314,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>126</x>
-     <y>406</y>
+     <x>71</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
-     <x>174</x>
-     <y>408</y>
+     <x>99</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -13330,12 +13330,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>126</x>
-     <y>406</y>
+     <x>71</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
-     <x>159</x>
-     <y>470</y>
+     <x>106</x>
+     <y>116</y>
     </hint>
    </hints>
   </connection>
@@ -13346,12 +13346,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>94</y>
+     <x>20</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>100</y>
+     <x>31</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
@@ -13362,12 +13362,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>128</y>
+     <x>20</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>129</y>
+     <x>31</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -13378,12 +13378,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>157</y>
+     <x>20</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>158</y>
+     <x>31</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -13394,12 +13394,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>186</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>187</y>
+     <x>31</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -13410,12 +13410,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>253</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>254</y>
+     <x>31</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -13426,12 +13426,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>306</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>283</y>
+     <x>31</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -13442,12 +13442,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>338</y>
+     <x>20</x>
+     <y>87</y>
     </hint>
     <hint type="destinationlabel">
-     <x>479</x>
-     <y>339</y>
+     <x>31</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -13458,12 +13458,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>379</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>479</x>
-     <y>380</y>
+     <x>31</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -13474,12 +13474,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>475</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>479</x>
-     <y>476</y>
+     <x>31</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -13490,12 +13490,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>798</x>
-     <y>298</y>
+     <x>87</x>
+     <y>115</y>
     </hint>
     <hint type="destinationlabel">
-     <x>259</x>
-     <y>226</y>
+     <x>194</x>
+     <y>117</y>
     </hint>
    </hints>
   </connection>
@@ -13506,12 +13506,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>673</x>
-     <y>449</y>
+     <x>54</x>
+     <y>121</y>
     </hint>
     <hint type="destinationlabel">
-     <x>718</x>
-     <y>527</y>
+     <x>63</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -13522,12 +13522,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>711</x>
-     <y>494</y>
+     <x>63</x>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
-     <x>810</x>
-     <y>527</y>
+     <x>65</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -13538,12 +13538,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>711</x>
-     <y>494</y>
+     <x>63</x>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
-     <x>903</x>
-     <y>526</y>
+     <x>67</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -13554,12 +13554,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>546</y>
+     <x>55</x>
+     <y>177</y>
     </hint>
     <hint type="destinationlabel">
-     <x>202</x>
-     <y>542</y>
+     <x>61</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -13570,12 +13570,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>139</x>
-     <y>580</y>
+     <x>55</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>209</x>
-     <y>577</y>
+     <x>61</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
