@@ -152,21 +152,38 @@ void VieSchedpp_Analyser::setup()
     srcModel->setHeaderData(3, Qt::Horizontal, QObject::tr("#obs"));
     srcModel->setHeaderData(4, Qt::Horizontal, QObject::tr("ra [deg]"));
     srcModel->setHeaderData(5, Qt::Horizontal, QObject::tr("de [deg]"));
-    srcModel->setRowCount(schedule_.getSources().size());
+    srcModel->setRowCount(schedule_.getSourceList().getNSrc());
 
     int i = 0;
-    for(const VieVS::Source &any : schedule_.getSources()){
-        QString sourceName = QString::fromStdString(any.getName());
-        QString aSourceName = QString::fromStdString(any.getAlternativeName());
-        double ra = qRadiansToDegrees(any.getRa());
-        double de = qRadiansToDegrees(any.getDe());
+    for(const auto &any : schedule_.getSourceList().getQuasars()){
+        QString sourceName = QString::fromStdString(any->getName());
+        QString aSourceName = QString::fromStdString(any->getAlternativeName());
+        double ra = qRadiansToDegrees(any->getRa());
+        double de = qRadiansToDegrees(any->getDe());
         srcModel->setData(srcModel->index(i,0), sourceName);
         srcModel->setData(srcModel->index(i,1), aSourceName);
         srcModel->item(i,0)->setIcon(QIcon(":/icons/icons/source.png"));
-        srcModel->setData(srcModel->index(i,2), static_cast<int>(any.getNTotalScans()));
-        srcModel->setData(srcModel->index(i,3), static_cast<int>(any.getNObs()));
+        srcModel->setData(srcModel->index(i,2), static_cast<int>(any->getNTotalScans()));
+        srcModel->setData(srcModel->index(i,3), static_cast<int>(any->getNObs()));
         srcModel->setData(srcModel->index(i,4), (double)((int)(ra*100000 +0.5))/100000.0);
         srcModel->setData(srcModel->index(i,5), (double)((int)(de*100000 +0.5))/100000.0);
+        srcModel->item(i,2)->setTextAlignment(Qt::AlignRight);
+        srcModel->item(i,3)->setTextAlignment(Qt::AlignRight);
+        srcModel->item(i,4)->setTextAlignment(Qt::AlignRight);
+        srcModel->item(i,5)->setTextAlignment(Qt::AlignRight);
+        ++i;
+    }
+    for(const auto &any : schedule_.getSourceList().getSatellites()){
+        QString sourceName = QString::fromStdString(any->getName());
+        QString aSourceName = QString::fromStdString(any->getAlternativeName());
+
+        srcModel->setData(srcModel->index(i,0), sourceName);
+        srcModel->setData(srcModel->index(i,1), aSourceName);
+        srcModel->item(i,0)->setIcon(QIcon(":/icons/icons/source.png"));
+        srcModel->setData(srcModel->index(i,2), static_cast<int>(any->getNTotalScans()));
+        srcModel->setData(srcModel->index(i,3), static_cast<int>(any->getNObs()));
+        srcModel->setData(srcModel->index(i,4), "variable");
+        srcModel->setData(srcModel->index(i,5), "variable");
         srcModel->item(i,2)->setTextAlignment(Qt::AlignRight);
         srcModel->item(i,3)->setTextAlignment(Qt::AlignRight);
         srcModel->item(i,4)->setTextAlignment(Qt::AlignRight);
@@ -1500,12 +1517,12 @@ void VieSchedpp_Analyser::setupSkymap()
     connect(selectedSources,SIGNAL(hovered(QPointF,bool)),this,SLOT(skymap_hovered(QPointF,bool)));
     connect(observedSources,SIGNAL(hovered(QPointF,bool)),this,SLOT(skymap_hovered(QPointF,bool)));
 
-    const std::vector<VieVS::Source> &sources = schedule_.getSources();
-    for(const VieVS::Source &source : sources){
-        double ra = source.getRa();
+    const auto &sources = schedule_.getSourceList().getQuasars();
+    for(const auto &source : sources){
+        double ra = source->getRa();
         double lambda = ra;
 
-        double phi = source.getDe();
+        double phi = source->getDe();
 
         auto xy = qtUtil::radec2xy(lambda, phi);
 
@@ -1532,21 +1549,21 @@ void VieSchedpp_Analyser::skymap_hovered(QPointF point, bool state)
         if(Callout *skyMapCallout = dynamic_cast<Callout *>(childItem)){
 
             if (state) {
-                const std::vector<VieVS::Source> &sources = schedule_.getSources();
+                const auto &sources = schedule_.getSourceList().getQuasars();
                 QString text;
-                for(const VieVS::Source &source : sources){
-                    double ra = source.getRa();
-                    double dec = source.getDe();
+                for(const auto &source : sources){
+                    double ra = source->getRa();
+                    double dec = source->getDe();
 
                     auto xy = qtUtil::radec2xy(ra, dec);
 
                     auto dx = xy.first-point.x();
                     auto dy = xy.second-point.y();
                     if(dx*dx+dy*dy < 1e-3){
-                        if(source.hasAlternativeName()){
-                            text = QString("%1 (%2)\n#scans %3 \n#obs %4\nra %5 [deg] \ndec %6 [deg] ").arg(QString::fromStdString(source.getName())).arg(QString::fromStdString(source.getAlternativeName())).arg(source.getNscans()).arg(source.getNObs()).arg(ra*rad2deg).arg(dec*rad2deg);
+                        if(source->hasAlternativeName()){
+                            text = QString("%1 (%2)\n#scans %3 \n#obs %4\nra %5 [deg] \ndec %6 [deg] ").arg(QString::fromStdString(source->getName())).arg(QString::fromStdString(source->getAlternativeName())).arg(source->getNscans()).arg(source->getNObs()).arg(ra*rad2deg).arg(dec*rad2deg);
                         }else{
-                            text = QString("%1 \n#scans %2 \n#obs %3\nra %4 [deg] \ndec %5 [deg] ").arg(QString::fromStdString(source.getName())).arg(source.getNscans()).arg(source.getNObs()).arg(ra*rad2deg).arg(dec*rad2deg);
+                            text = QString("%1 \n#scans %2 \n#obs %3\nra %4 [deg] \ndec %5 [deg] ").arg(QString::fromStdString(source->getName())).arg(source->getNscans()).arg(source->getNObs()).arg(ra*rad2deg).arg(dec*rad2deg);
                         }
                         break;
                     }
@@ -2006,7 +2023,7 @@ void VieSchedpp_Analyser::updateGeneralStatistics()
 {
     int nsta = schedule_.getNetwork().getNSta();
     QVector<int> nstaPerScan(nsta+1,0);
-    int nsrc = schedule_.getSources().size();
+    int nsrc = schedule_.getSourceList().getNSrc();
     QVector<int> stations(nsta,0);
     QVector<int> sources(nsrc,0);
 
@@ -2585,7 +2602,7 @@ void VieSchedpp_Analyser::updateStatisticsSource()
     int idx = ids[0];
     QString name = ui->treeView_statistics_source->model()->index(idx,0).data().toString();
 
-    const VieVS::Source &src = schedule_.getSources().at(idx);
+    const auto &src = schedule_.getSourceList().getSource(idx);
 //    chart->setTitle(QString::fromStdString(src.getName()));
     std::vector<VieVS::Station> stations = schedule_.getNetwork().getStations();
 
@@ -2610,7 +2627,7 @@ void VieSchedpp_Analyser::updateStatisticsSource()
         for(int i = 0; i<=ui->horizontalSlider_end->maximum()+300; i+=300){
             QDateTime t = sessionStart_.addSecs(i);
 
-            VieVS::PointingVector pv(sta.getId(),src.getId());
+            VieVS::PointingVector pv(sta.getId(), src->getId());
             pv.setTime(i);
 
             sta.calcAzEl_rigorous(src,pv);
@@ -3356,7 +3373,7 @@ void VieSchedpp_Analyser::updateUVCoverage(int idx, QString source, QString band
 
     int srcid = srcModel->findItems(source).at(0)->row();
     const VieVS::Network &network = schedule_.getNetwork();
-    const std::vector<VieVS::Source> &sources = schedule_.getSources();
+    const auto &sources = schedule_.getSourceList().getSources();
 
     double max = 0;
 
@@ -3374,7 +3391,7 @@ void VieSchedpp_Analyser::updateUVCoverage(int idx, QString source, QString band
 
                 double mjd = sessionStartMjd_ + obs.getStartTime()/86400.0;
                 double gmst  = iauGmst82(2400000.5,mjd);
-                std::pair<double, double> uv = sources.at(srcid).calcUV(gmst, dxyz);
+                std::pair<double, double> uv = sources.at(srcid)->calcUV(obs.getStartTime(), gmst, dxyz);
 
                 QString bl = QString::fromStdString(network.getStation(staid1).getAlternativeName()+"-"+network.getStation(staid2).getAlternativeName());
                 int start = std::max({scan.getTimes().getObservingTime(idx1,VieVS::Timestamp::start), scan.getTimes().getObservingTime(idx2,VieVS::Timestamp::start)});

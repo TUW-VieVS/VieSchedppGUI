@@ -119,7 +119,10 @@ SOURCES += \
     ../VieSchedpp/Source/Flux/AbstractFlux.cpp \
     ../VieSchedpp/Source/Flux/Flux_B.cpp \
     ../VieSchedpp/Source/Flux/Flux_M.cpp \
-    ../VieSchedpp/Source/Source.cpp \
+    ../VieSchedpp/Source/AbstractSource.cpp \
+    ../VieSchedpp/Source/Quasar.cpp \
+    ../VieSchedpp/Source/Satellite.cpp \
+    ../VieSchedpp/Source/SourceList.cpp \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.cpp \
@@ -230,7 +233,10 @@ HEADERS += \
     ../VieSchedpp/Source/Flux/AbstractFlux.h \
     ../VieSchedpp/Source/Flux/Flux_B.h \
     ../VieSchedpp/Source/Flux/Flux_M.h \
-    ../VieSchedpp/Source/Source.h \
+    ../VieSchedpp/Source/AbstractSource.h \
+    ../VieSchedpp/Source/Quasar.h \
+    ../VieSchedpp/Source/Satellite.h \
+    ../VieSchedpp/Source/SourceList.h \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.h \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.h \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.h \

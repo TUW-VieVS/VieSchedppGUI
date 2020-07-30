@@ -6706,12 +6706,12 @@ void MainWindow::on_pushButton_parse_clicked()
                 ui->dateTimeEdit_parseSessionStart->setDateTime(qstart);
                 ui->dateTimeEdit_parseSessionEnd->setDateTime(qend);
                 ui->spinBox_parseStations->setValue(parsedSchedule->getNetwork().getStations().size());
-                ui->spinBox_parseSources->setValue(parsedSchedule->getSources().size());
+                ui->spinBox_parseSources->setValue(parsedSchedule->getSourceList().getNSrc());
                 ui->spinBox_parseScans->setValue(parsedSchedule->getScans().size());
                 ui->spinBox_parseObs->setValue(parsedSchedule->getNumberOfObservations());
 
                 const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
-                const auto &sources = parsedSchedule->getSources();
+                const auto &sources = parsedSchedule->getSourceList().getSources();
                 const auto &network = parsedSchedule->getNetwork();
                 QString txt = " Source      Start      DURATIONS           \n";
                 txt .append(" name     yyddd-hhmmss   ") ;
