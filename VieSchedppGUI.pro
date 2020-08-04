@@ -62,6 +62,13 @@ unix {
     } else {
         LIBS += $${IAU_SOFA_PATH}
     }
+
+    PATH_SGP4=$${SGP4}
+    isEmpty(PATH_SGP4) {
+        LIBS += ..//sgp4/Release/libsgp4/libsgp4.a
+    } else {
+        LIBS += $${PATH_SGP4}
+    }
 }
 
 # for my windows builds
@@ -79,6 +86,14 @@ win32{
     } else {
         LIBS += $${IAU_SOFA_PATH}
     }
+
+    PATH_SGP4=$${SGP4}
+    isEmpty(PATH_SGP4) {
+        LIBS += ..//sgp4/Release/libsgp4/libsgp4.lib
+    } else {
+        LIBS += $${PATH_SGP4}
+    }
+
 }
 
 SOURCES += \
@@ -265,6 +280,14 @@ HEADERS += \
     ../VieSchedpp/Simulator/Simulator.h \
     ../VieSchedpp/Simulator/Solver.h \
     ../VieSchedpp/Simulator/Unknown.h \
+    ../VieSchedpp/SGP4/CoordGeodetic.h \
+    ../VieSchedpp/SGP4/Tle.h \
+    ../VieSchedpp/SGP4/TleException.h \
+    ../VieSchedpp/SGP4/DateTime.h \
+    ../VieSchedpp/SGP4/SGP4.h \
+    ../VieSchedpp/SGP4/OrbitalElements.h \
+    ../VieSchedpp/SGP4/Observer.h \
+    ../VieSchedpp/SGP4/Eci.h \
     Delegates/comboboxdelegate.h \
     Delegates/doublespinboxdelegate.h \
     Delegates/spinboxdelegate.h \

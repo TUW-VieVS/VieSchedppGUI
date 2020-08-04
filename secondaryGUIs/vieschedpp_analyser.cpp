@@ -220,8 +220,8 @@ void VieSchedpp_Analyser::setup()
     for(const VieVS::Station &any : schedule_.getNetwork().getStations()){
         QString staName = QString::fromStdString(any.getName());
         QString id = QString::fromStdString(any.getAlternativeName());
-        double lat = qRadiansToDegrees(any.getPosition().getLat());
-        double lon = qRadiansToDegrees(any.getPosition().getLon());
+        double lat = qRadiansToDegrees(any.getPosition()->getLat());
+        double lon = qRadiansToDegrees(any.getPosition()->getLon());
         staModel->setData(staModel->index(i,0), staName);
         staModel->item(i,0)->setIcon(QIcon(":/icons/icons/station.png"));
         staModel->setData(staModel->index(i,1), id);
@@ -1353,18 +1353,18 @@ void VieSchedpp_Analyser::setupWorldmap()
 
     const std::vector<VieVS::Station> &stations = schedule_.getNetwork().getStations();
     for(const VieVS::Station &station : stations){
-        double lat = station.getPosition().getLat()*rad2deg;
-        double lon = station.getPosition().getLon()*rad2deg;
+        double lat = station.getPosition()->getLat()*rad2deg;
+        double lon = station.getPosition()->getLon()*rad2deg;
         selectedStations->append(lon,lat);
     }
     for(int i=0; i<stations.size(); ++i){
-        double lat1 = stations.at(i).getPosition().getLat()*rad2deg;
-        double lon1 = stations.at(i).getPosition().getLon()*rad2deg;
+        double lat1 = stations.at(i).getPosition()->getLat()*rad2deg;
+        double lon1 = stations.at(i).getPosition()->getLon()*rad2deg;
         QString name1 = QString::fromStdString(stations.at(i).getAlternativeName());
 
         for(int j=i+1; j<stations.size(); ++j){
-            double lat2 = stations.at(j).getPosition().getLat()*rad2deg;
-            double lon2 = stations.at(j).getPosition().getLon()*rad2deg;
+            double lat2 = stations.at(j).getPosition()->getLat()*rad2deg;
+            double lon2 = stations.at(j).getPosition()->getLon()*rad2deg;
             QString name2 = QString::fromStdString(stations.at(j).getAlternativeName());
 
             QList<QLineSeries *>series = qtUtil::baselineSeries(lat1,lon1,name1,lat2,lon2,name2);
@@ -1409,8 +1409,8 @@ void VieSchedpp_Analyser::worldmap_hovered(QPointF point, bool state)
                 QString obs;
                 const std::vector<VieVS::Station> &stations = schedule_.getNetwork().getStations();
                 for(const VieVS::Station &station : stations){
-                    double y = station.getPosition().getLat()*rad2deg;
-                    double x = station.getPosition().getLon()*rad2deg;
+                    double y = station.getPosition()->getLat()*rad2deg;
+                    double x = station.getPosition()->getLon()*rad2deg;
 
                     auto dx = x-point.x();
                     auto dy = y-point.y();
@@ -3006,18 +3006,18 @@ void VieSchedpp_Analyser::statisticsBaselineSetup()
 
     const std::vector<VieVS::Station> &stations = schedule_.getNetwork().getStations();
     for(const VieVS::Station &station : stations){
-        double lat = station.getPosition().getLat()*rad2deg;
-        double lon = station.getPosition().getLon()*rad2deg;
+        double lat = station.getPosition()->getLat()*rad2deg;
+        double lon = station.getPosition()->getLon()*rad2deg;
         stationsSeries->append(lon,lat);
     }
     for(int i=0; i<stations.size(); ++i){
-        double lat1 = stations.at(i).getPosition().getLat()*rad2deg;
-        double lon1 = stations.at(i).getPosition().getLon()*rad2deg;
+        double lat1 = stations.at(i).getPosition()->getLat()*rad2deg;
+        double lon1 = stations.at(i).getPosition()->getLon()*rad2deg;
         QString name1 = QString::fromStdString(stations.at(i).getAlternativeName());
 
         for(int j=i+1; j<stations.size(); ++j){
-            double lat2 = stations.at(j).getPosition().getLat()*rad2deg;
-            double lon2 = stations.at(j).getPosition().getLon()*rad2deg;
+            double lat2 = stations.at(j).getPosition()->getLat()*rad2deg;
+            double lon2 = stations.at(j).getPosition()->getLon()*rad2deg;
             QString name2 = QString::fromStdString(stations.at(j).getAlternativeName());
 
             QList<QLineSeries *>series = qtUtil::baselineSeries(lat1,lon1,name1,lat2,lon2,name2);
