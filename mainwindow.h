@@ -80,6 +80,7 @@
 #include "Widgets/solverwidget.h"
 #include "Widgets/priorities.h"
 #include "Widgets/mulitschedulingwidget.h"
+#include "Widgets/setupwidget.h"
 
 #include "Utility/downloadmanager.h"
 QT_CHARTS_USE_NAMESPACE
@@ -221,77 +222,11 @@ private slots:
 
     void addGroupBaseline();
 
-    void on_pushButton_stationParameter_clicked();
-
     void on_dateTimeEdit_sessionStart_dateTimeChanged(const QDateTime &dateTime);
 
     void on_doubleSpinBox_sessionDuration_valueChanged(double arg1);
 
-    void on_DateTimeEdit_startParameterStation_dateTimeChanged(const QDateTime &dateTime);
-
-    void on_DateTimeEdit_endParameterStation_dateTimeChanged(const QDateTime &dateTime);
-
-    void on_pushButton_3_clicked();
-
-    void addSetup(QTreeWidget *targetTreeWidget, QDateTimeEdit *paraStart, QDateTimeEdit *paraEnd,
-                  QComboBox *transition, QComboBox *member, QComboBox *parameter, VieVS::ParameterSetup &paraSetup,
-                  QChartView *setupChartView, QComboBox *targetStationPlot);
-
-    void drawTable(const VieVS::ParameterSetup &paraSetup, QTreeWidgetItem *c, const std::map<std::string, std::vector<std::string>> &groups, VieVS::ParameterSettings::Type type);
-
-    void on_pushButton_4_clicked();
-
-    void deleteSetupSelection(VieVS::ParameterSetup &setup, QChartView *setupChartView, QComboBox *setupCB, QTreeWidget *setupTW);
-
-    void on_treeWidget_setupStation_itemEntered(QTreeWidgetItem *item, int column);
-
-    void prepareSetupPlot(QChartView *figure, QVBoxLayout *container);
-
-    void drawSetupPlot(QChartView *cv, QComboBox *cb, QTreeWidget *tw);
-
-    void setBackgroundColorOfChildrenWhite(QTreeWidgetItem *item);
-
-    void on_comboBox_stationSettingMember_currentTextChanged(const QString &arg1);
-
-    void on_ComboBox_parameterStation_currentTextChanged(const QString &arg1);
-
-    void displayStationSetupParameterFromPlot(QPointF,bool);
-
-    void displaySourceSetupParameterFromPlot(QPointF,bool);
-
-    void displayBaselineSetupParameterFromPlot(QPointF,bool);
-
-    void on_comboBox_setupStation_currentTextChanged(const QString &arg1);
-
-    void on_pushButton_sourceParameter_clicked();
-
-    void on_comboBox_setupSource_currentTextChanged(const QString &arg1);
-
-    void on_treeWidget_setupSource_itemEntered(QTreeWidgetItem *item, int column);
-
-    void on_pushButton_removeSetupSource_clicked();
-
-    void on_pushButton_addSetupSource_clicked();
-
-    void on_DateTimeEdit_startParameterSource_dateTimeChanged(const QDateTime &dateTime);
-
-    void on_DateTimeEdit_endParameterSource_dateTimeChanged(const QDateTime &dateTime);
-
     void createBaselineModel();
-
-    void on_pushButton__baselineParameter_clicked();
-
-    void on_DateTimeEdit_startParameterBaseline_dateTimeChanged(const QDateTime &dateTime);
-
-    void on_DateTimeEdit_endParameterBaseline_dateTimeChanged(const QDateTime &dateTime);
-
-    void on_pushButton_addSetupBaseline_clicked();
-
-    void on_pushButton_removeSetupBaseline_clicked();
-
-    void on_treeWidget_setupBaseline_itemEntered(QTreeWidgetItem *item, int column);
-
-    void on_comboBox_setupBaseline_currentTextChanged(const QString &arg1);
 
     void setupStationAxisBufferAddRow();
 
@@ -314,14 +249,6 @@ private slots:
     void on_pushButton_19_clicked();
 
     void on_actionNew_triggered();
-
-    void on_comboBox_sourceSettingMember_currentTextChanged(const QString &arg1);
-
-    void on_comboBox_baselineSettingMember_currentTextChanged(const QString &arg1);
-
-    void on_ComboBox_parameterSource_currentTextChanged(const QString &arg1);
-
-    void on_ComboBox_parameterBaseline_currentTextChanged(const QString &arg1);
 
     QString on_actionSave_triggered();
 
@@ -357,7 +284,7 @@ private slots:
 
     void clearGroup(bool sta, bool src, bool bl, QString name);
 
-    void clearSetup(bool sta, bool src, bool bl);
+    bool clearSetup(bool sta, bool src, bool bl);
 
     void splitterMoved();
 
@@ -429,12 +356,6 @@ private slots:
 
     void on_pushButton_12_clicked();
 
-    void on_pushButton_parameterStation_edit_clicked();
-
-    void on_pushButton_parameterSource_edit_clicked();
-
-    void on_pushButton_parameterBaseline_edit_clicked();
-
     void on_spinBox_maxNumberOfIterations_valueChanged(int arg1);
 
     void on_experimentNameLineEdit_textChanged(const QString &arg1);
@@ -471,9 +392,6 @@ private slots:
 
     void on_actionOpen_triggered();
 
-    void addSetup(QTreeWidget *tree, const boost::property_tree::ptree &ptree, QComboBox *cmember,
-                  QComboBox *cpara, QDateTimeEdit *dte_start, QDateTimeEdit *dte_end, QComboBox *trans,
-                  QPushButton *add);
     void gbps();
 
     void on_pushButton_modeCustomAddBAnd_clicked();
@@ -552,10 +470,6 @@ private slots:
 
     void on_pushButton_viewNext_clicked();
 
-    void on_pushButton_24_clicked();
-
-    void on_pushButton_parseDownTime_clicked();
-
     void on_groupBox_highImpactAzEl_toggled(bool arg1);
 
     void on_checkBox_calibration_sessionStart_toggled(bool checked);
@@ -624,9 +538,6 @@ private:
 
     Callout *worldMapCallout;
     Callout *skyMapCallout;
-    Callout *stationSetupCallout;
-    Callout *sourceSetupCallout;
-    Callout *baselineSetupCallout;
 
     QVector<double> obsAz;
     QVector<double> obsEl;
@@ -634,21 +545,13 @@ private:
 
     QSignalMapper *deleteModeMapper;
 
-    bool setupChanged;
-    boost::property_tree::ptree setupStation_;
-    boost::property_tree::ptree setupSource_;
-    boost::property_tree::ptree setupBaseline_;
-    VieVS::ParameterSetup setupStationTree;
-    VieVS::ParameterSetup setupSourceTree;
-    VieVS::ParameterSetup setupBaselineTree;
-
     std::map<std::string, std::vector<std::string>> *groupSta = new std::map<std::string, std::vector<std::string>>();
     std::map<std::string, std::vector<std::string>> *groupSrc = new std::map<std::string, std::vector<std::string>>();
     std::map<std::string, std::vector<std::string>> *groupBl = new std::map<std::string, std::vector<std::string>>();
 
-    std::map<std::string, VieVS::ParameterSettings::ParametersStations> paraSta;
-    std::map<std::string, VieVS::ParameterSettings::ParametersSources> paraSrc;
-    std::map<std::string, VieVS::ParameterSettings::ParametersBaselines> paraBl;
+    setupWidget *stationSetupWidget;
+    setupWidget *sourceSetupWidget;
+    setupWidget *baselineSetupWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;
@@ -667,8 +570,6 @@ private:
     void plotSkyMap();
 
     void defaultParameters();
-
-    bool eventFilter(QObject *watched, QEvent *event);
 
     void displayStationSetupMember(QString name);
 

@@ -169,6 +169,7 @@ SOURCES += \
     Utility/downloadmanager.cpp \
     Widgets/mulitschedulingwidget.cpp \
     Widgets/priorities.cpp \
+    Widgets/setupwidget.cpp \
     Widgets/simulatorwidget.cpp \
     Widgets/solverwidget.cpp \
     main.cpp \
@@ -302,6 +303,7 @@ HEADERS += \
     Utility/downloadmanager.h \
     Widgets/mulitschedulingwidget.h \
     Widgets/priorities.h \
+    Widgets/setupwidget.h \
     Widgets/simulatorwidget.h \
     Widgets/solverwidget.h \
     secondaryGUIs/addbanddialog.h \
@@ -329,6 +331,7 @@ HEADERS += \
 FORMS += \
     Widgets/mulitschedulingwidget.ui \
     Widgets/priorities.ui \
+    Widgets/setupwidget.ui \
     Widgets/simulatorwidget.ui \
     Widgets/solverwidget.ui \
     mainwindow.ui \

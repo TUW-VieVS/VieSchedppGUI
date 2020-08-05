@@ -14,11 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_127">
+   <layout class="QVBoxLayout" name="verticalLayout_28">
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>3</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -4167,7 +4167,7 @@ If you only want to run simulations you can deselect this to avoid error message
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QTabWidget" name="tabWidget">
+         <widget class="QTabWidget" name="tabWidget_setupStations">
           <property name="tabPosition">
            <enum>QTabWidget::North</enum>
           </property>
@@ -4186,522 +4186,7 @@ If you only want to run simulations you can deselect this to avoid error message
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_31">
             <item>
-             <widget class="QSplitter" name="splitter">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <widget class="QWidget" name="layoutWidget">
-               <layout class="QVBoxLayout" name="verticalLayout_29" stretch="1,2">
-                <item>
-                 <widget class="QGroupBox" name="groupBox_9">
-                  <property name="title">
-                   <string>manipulate setup</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_79">
-                   <item>
-                    <layout class="QFormLayout" name="formLayout_4">
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="groupLabel_2">
-                       <property name="text">
-                        <string>member</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <layout class="QHBoxLayout" name="horizontalLayout_10">
-                       <item>
-                        <widget class="QComboBox" name="comboBox_stationSettingMember">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                           <horstretch>2</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="toolTip">
-                          <string>select member</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>select member</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_addGroupStationSetup">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>20</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="toolTip">
-                          <string>add new station group</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>add new station group</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>16</width>
-                           <height>16</height>
-                          </size>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QLabel" name="parameterLabel">
-                       <property name="text">
-                        <string>parameter</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="1">
-                      <layout class="QHBoxLayout" name="horizontalLayout_11">
-                       <item>
-                        <widget class="QComboBox" name="ComboBox_parameterStation">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                           <horstretch>2</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="toolTip">
-                          <string>select parameter</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>select parameter</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_parameterStation_edit">
-                         <property name="toolTip">
-                          <string>change selected parameter</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>change selected parameter</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_stationParameter">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>20</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="toolTip">
-                          <string>add new parameter</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>add new parameter</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="myresources.qrc">
-                           <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="startLabel">
-                       <property name="text">
-                        <string>start</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <layout class="QHBoxLayout" name="horizontalLayout_32">
-                       <item>
-                        <widget class="QDateTimeEdit" name="DateTimeEdit_startParameterStation">
-                         <property name="toolTip">
-                          <string>select start time (dd.mm.yy hh:mm)</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>select start time (dd.mm.yy hh:mm)</string>
-                         </property>
-                         <property name="dateTime">
-                          <datetime>
-                           <hour>0</hour>
-                           <minute>0</minute>
-                           <second>0</second>
-                           <year>2000</year>
-                           <month>1</month>
-                           <day>1</day>
-                          </datetime>
-                         </property>
-                         <property name="displayFormat">
-                          <string>dd.MM.yy HH:mm</string>
-                         </property>
-                         <property name="timeSpec">
-                          <enum>Qt::LocalTime</enum>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QLabel" name="endLabel">
-                       <property name="text">
-                        <string>end</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="1">
-                      <layout class="QHBoxLayout" name="horizontalLayout_44">
-                       <item>
-                        <widget class="QDateTimeEdit" name="DateTimeEdit_endParameterStation">
-                         <property name="toolTip">
-                          <string>select end time (dd.mm.yy hh:mm)</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>select end time (dd.mm.yy hh:mm)</string>
-                         </property>
-                         <property name="timeSpec">
-                          <enum>Qt::LocalTime</enum>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item row="4" column="0">
-                      <widget class="QLabel" name="label_11">
-                       <property name="text">
-                        <string>transition</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="1">
-                      <widget class="QComboBox" name="comboBox_parameterStationTransition">
-                       <property name="toolTip">
-                        <string>transition type</string>
-                       </property>
-                       <property name="statusTip">
-                        <string>transition type</string>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>hard</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>smooth</string>
-                        </property>
-                       </item>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QGridLayout" name="gridLayout">
-                     <property name="bottomMargin">
-                      <number>6</number>
-                     </property>
-                     <item row="0" column="0">
-                      <widget class="QPushButton" name="pushButton_24">
-                       <property name="styleSheet">
-                        <string notr="true">Text-align:left</string>
-                       </property>
-                       <property name="text">
-                        <string> IVS down time</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="myresources.qrc">
-                         <normaloff>:/icons/icons/sleep-icon.png</normaloff>:/icons/icons/sleep-icon.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <spacer name="horizontalSpacer_20">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item row="0" column="2">
-                      <widget class="QPushButton" name="pushButton_3">
-                       <property name="toolTip">
-                        <string>add new setup as child of selected setup</string>
-                       </property>
-                       <property name="statusTip">
-                        <string>add new setup as child of selected setup</string>
-                       </property>
-                       <property name="text">
-                        <string>add setup</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="myresources.qrc">
-                         <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QPushButton" name="pushButton_parseDownTime">
-                       <property name="styleSheet">
-                        <string notr="true">Text-align:left</string>
-                       </property>
-                       <property name="text">
-                        <string> parse down time</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="myresources.qrc">
-                         <normaloff>:/icons/icons/sleep-icon.png</normaloff>:/icons/icons/sleep-icon.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <spacer name="verticalSpacer_25">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>40</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QGroupBox" name="groupBox_25">
-                  <property name="title">
-                   <string>hovered element</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_107">
-                   <item>
-                    <widget class="QTableWidget" name="tableWidget_setupStation">
-                     <property name="toolTip">
-                      <string>parameter overview</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>parameter overview</string>
-                     </property>
-                     <property name="editTriggers">
-                      <set>QAbstractItemView::NoEditTriggers</set>
-                     </property>
-                     <attribute name="horizontalHeaderStretchLastSection">
-                      <bool>true</bool>
-                     </attribute>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="layoutWidget">
-               <layout class="QVBoxLayout" name="verticalLayout_30" stretch="1,2">
-                <item>
-                 <widget class="QGroupBox" name="groupBox_26">
-                  <property name="title">
-                   <string>setup</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_108">
-                   <item>
-                    <widget class="QTreeWidget" name="treeWidget_setupStation">
-                     <property name="mouseTracking">
-                      <bool>true</bool>
-                     </property>
-                     <property name="toolTip">
-                      <string>list of all setups</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>list of all setups</string>
-                     </property>
-                     <property name="editTriggers">
-                      <set>QAbstractItemView::NoEditTriggers</set>
-                     </property>
-                     <property name="alternatingRowColors">
-                      <bool>true</bool>
-                     </property>
-                     <property name="selectionMode">
-                      <enum>QAbstractItemView::SingleSelection</enum>
-                     </property>
-                     <property name="animated">
-                      <bool>false</bool>
-                     </property>
-                     <attribute name="headerStretchLastSection">
-                      <bool>false</bool>
-                     </attribute>
-                     <column>
-                      <property name="text">
-                       <string>member</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>parameter</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>start</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>end</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>transition</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>color</string>
-                      </property>
-                     </column>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_22">
-                     <item>
-                      <spacer name="horizontalSpacer_22">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_4">
-                       <property name="toolTip">
-                        <string>remove selected setup</string>
-                       </property>
-                       <property name="statusTip">
-                        <string>remove selected setup</string>
-                       </property>
-                       <property name="text">
-                        <string>remove selected</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="myresources.qrc">
-                         <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QGroupBox" name="groupBox_22">
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is a &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;visual representation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;tree-based setup&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for each station. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parents&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; are always displayed &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;above&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;children below&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Children parameter override parent parameters.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="title">
-                   <string>visual representation of setup</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_89">
-                   <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_28">
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_24" stretch="1,0,1,1">
-                       <item>
-                        <spacer name="horizontalSpacer_26">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_13">
-                         <property name="text">
-                          <string>plot setup for station</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QComboBox" name="comboBox_setupStation">
-                         <property name="toolTip">
-                          <string>select station to display setup</string>
-                         </property>
-                         <property name="statusTip">
-                          <string>select station to display setup</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="horizontalSpacer_25">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                      </layout>
-                     </item>
-                    </layout>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_stationSetupWidget"/>
             </item>
            </layout>
           </widget>
@@ -5037,486 +4522,30 @@ If you only want to run simulations you can deselect this to avoid error message
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_37" stretch="0">
         <item>
-         <widget class="QGroupBox" name="groupBox_20">
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Have a look at the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Station setup page&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;/&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and use the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;what is this?&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;mode there!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <widget class="QTabWidget" name="tabWidget_setupSources">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="title">
-           <string>source setup</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_87">
-           <item>
-            <widget class="QSplitter" name="splitter_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <widget class="QWidget" name="layoutWidget_2">
-              <layout class="QVBoxLayout" name="verticalLayout_34" stretch="1,2">
-               <item>
-                <widget class="QGroupBox" name="groupBox_27">
-                 <property name="title">
-                  <string>manipulate setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_109">
-                  <item>
-                   <layout class="QFormLayout" name="formLayout_15">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="groupLabel_3">
-                      <property name="text">
-                       <string>member</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_25">
-                      <item>
-                       <widget class="QComboBox" name="comboBox_sourceSettingMember">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                          <horstretch>2</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="toolTip">
-                         <string>select member</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select member</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_addGroupSourceSetup">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>1</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>20</width>
-                          <height>0</height>
-                         </size>
-                        </property>
-                        <property name="toolTip">
-                         <string>add new source group</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>add new source group</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>16</width>
-                          <height>16</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="parameterLabel_2">
-                      <property name="text">
-                       <string>parameter</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_33">
-                      <item>
-                       <widget class="QComboBox" name="ComboBox_parameterSource">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                          <horstretch>2</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="toolTip">
-                         <string>select parameter</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select parameter</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_parameterSource_edit">
-                        <property name="toolTip">
-                         <string>change selected parameter</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>change selected parameter</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_sourceParameter">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>1</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>20</width>
-                          <height>0</height>
-                         </size>
-                        </property>
-                        <property name="toolTip">
-                         <string>add new parameter</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>add new parameter</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="startLabel_2">
-                      <property name="text">
-                       <string>start</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_35">
-                      <item>
-                       <widget class="QDateTimeEdit" name="DateTimeEdit_startParameterSource">
-                        <property name="toolTip">
-                         <string>select start time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select start time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="timeSpec">
-                         <enum>Qt::LocalTime</enum>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="endLabel_2">
-                      <property name="text">
-                       <string>end</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_47">
-                      <item>
-                       <widget class="QDateTimeEdit" name="DateTimeEdit_endParameterSource">
-                        <property name="toolTip">
-                         <string>select end time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select end time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="timeSpec">
-                         <enum>Qt::LocalTime</enum>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="label_14">
-                      <property name="text">
-                       <string>transition</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QComboBox" name="comboBox_parameterSourceTransition">
-                      <property name="toolTip">
-                       <string>transition type</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>transition type</string>
-                      </property>
-                      <item>
-                       <property name="text">
-                        <string>hard</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>smooth</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_36">
-                    <item>
-                     <spacer name="horizontalSpacer_27">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_addSetupSource">
-                      <property name="toolTip">
-                       <string>add new setup as child of selected setup</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>add new setup as child of selected setup</string>
-                      </property>
-                      <property name="text">
-                       <string>add setup</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_34">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupBox_28">
-                 <property name="title">
-                  <string>hovered element</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_110">
-                  <item>
-                   <widget class="QTableWidget" name="tableWidget_setupSource">
-                    <property name="toolTip">
-                     <string>parameter overview</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>parameter overview</string>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <attribute name="horizontalHeaderStretchLastSection">
-                     <bool>true</bool>
-                    </attribute>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="layoutWidget_3">
-              <layout class="QVBoxLayout" name="verticalLayout_35" stretch="1,2">
-               <item>
-                <widget class="QGroupBox" name="groupBox_29">
-                 <property name="title">
-                  <string>setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_111">
-                  <item>
-                   <widget class="QTreeWidget" name="treeWidget_setupSource">
-                    <property name="mouseTracking">
-                     <bool>true</bool>
-                    </property>
-                    <property name="toolTip">
-                     <string>list of all setups</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>list of all setups</string>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <property name="alternatingRowColors">
-                     <bool>true</bool>
-                    </property>
-                    <property name="selectionMode">
-                     <enum>QAbstractItemView::SingleSelection</enum>
-                    </property>
-                    <property name="animated">
-                     <bool>false</bool>
-                    </property>
-                    <attribute name="headerStretchLastSection">
-                     <bool>false</bool>
-                    </attribute>
-                    <column>
-                     <property name="text">
-                      <string>member</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>parameter</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>start</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>end</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>transition</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>color</string>
-                     </property>
-                    </column>
-                   </widget>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_65">
-                    <item>
-                     <spacer name="horizontalSpacer_28">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_removeSetupSource">
-                      <property name="toolTip">
-                       <string>remove selected setup</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>remove selected setup</string>
-                      </property>
-                      <property name="text">
-                       <string>remove selected</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupBox_23">
-                 <property name="title">
-                  <string>visual representation of setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_90">
-                  <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_36">
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_66" stretch="1,0,1,1">
-                      <item>
-                       <spacer name="horizontalSpacer_29">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="label_16">
-                        <property name="text">
-                         <string>plot setup for source</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="comboBox_setupSource">
-                        <property name="toolTip">
-                         <string>select source to display setup</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select source to display setup</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="horizontalSpacer_30">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QWidget" name="AGN_setup">
+           <attribute name="title">
+            <string>AGN setup</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_29">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_sourceSetupWidget"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="satellite_setup">
+           <attribute name="title">
+            <string>satellite setup</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_30">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_satelliteSetupWidget"/>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -5539,441 +4568,7 @@ If you only want to run simulations you can deselect this to avoid error message
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_88">
            <item>
-            <widget class="QSplitter" name="splitter_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <widget class="QWidget" name="layoutWidget_4">
-              <layout class="QVBoxLayout" name="verticalLayout_38" stretch="1,2">
-               <item>
-                <widget class="QGroupBox" name="groupBox_30">
-                 <property name="title">
-                  <string>manipulate setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_112">
-                  <item>
-                   <layout class="QFormLayout" name="formLayout_16">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="groupLabel_5">
-                      <property name="text">
-                       <string>member</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_67">
-                      <item>
-                       <widget class="QComboBox" name="comboBox_baselineSettingMember">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                          <horstretch>2</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_addGroupBaselineSetup">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>1</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>20</width>
-                          <height>0</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/baseline_group_plus.png</normaloff>:/icons/icons/baseline_group_plus.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>16</width>
-                          <height>16</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="parameterLabel_3">
-                      <property name="text">
-                       <string>parameter</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_68">
-                      <item>
-                       <widget class="QComboBox" name="ComboBox_parameterBaseline">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                          <horstretch>2</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_parameterBaseline_edit">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>1</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>20</width>
-                          <height>0</height>
-                         </size>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton__baselineParameter">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>1</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>20</width>
-                          <height>0</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="myresources.qrc">
-                          <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="startLabel_3">
-                      <property name="text">
-                       <string>start</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_69">
-                      <item>
-                       <widget class="QDateTimeEdit" name="DateTimeEdit_startParameterBaseline">
-                        <property name="toolTip">
-                         <string>select start time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select start time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="timeSpec">
-                         <enum>Qt::LocalTime</enum>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="endLabel_3">
-                      <property name="text">
-                       <string>end</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_70">
-                      <item>
-                       <widget class="QDateTimeEdit" name="DateTimeEdit_endParameterBaseline">
-                        <property name="toolTip">
-                         <string>select end time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select end time (dd.mm.yy hh:mm)</string>
-                        </property>
-                        <property name="timeSpec">
-                         <enum>Qt::LocalTime</enum>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="label_18">
-                      <property name="text">
-                       <string>transition</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QComboBox" name="comboBox_parameterBaselineTransition">
-                      <property name="toolTip">
-                       <string>transition type</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>transition type</string>
-                      </property>
-                      <item>
-                       <property name="text">
-                        <string>hard</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>smooth</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_71">
-                    <item>
-                     <spacer name="horizontalSpacer_31">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_addSetupBaseline">
-                      <property name="toolTip">
-                       <string>add new setup as child of selected setup</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>add new setup as child of selected setup</string>
-                      </property>
-                      <property name="text">
-                       <string>add setup</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupBox_31">
-                 <property name="title">
-                  <string>hovered element</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_113">
-                  <item>
-                   <widget class="QTableWidget" name="tableWidget_setupBaseline">
-                    <property name="toolTip">
-                     <string>parameter overview</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>parameter overview</string>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <attribute name="horizontalHeaderStretchLastSection">
-                     <bool>true</bool>
-                    </attribute>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="layoutWidget_5">
-              <layout class="QVBoxLayout" name="verticalLayout_39" stretch="1,2">
-               <item>
-                <widget class="QGroupBox" name="groupBox_32">
-                 <property name="title">
-                  <string>setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_114">
-                  <item>
-                   <widget class="QTreeWidget" name="treeWidget_setupBaseline">
-                    <property name="mouseTracking">
-                     <bool>true</bool>
-                    </property>
-                    <property name="toolTip">
-                     <string>list of all setups</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>list of all setups</string>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <property name="alternatingRowColors">
-                     <bool>true</bool>
-                    </property>
-                    <property name="selectionMode">
-                     <enum>QAbstractItemView::SingleSelection</enum>
-                    </property>
-                    <property name="animated">
-                     <bool>false</bool>
-                    </property>
-                    <attribute name="headerStretchLastSection">
-                     <bool>false</bool>
-                    </attribute>
-                    <column>
-                     <property name="text">
-                      <string>member</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>parameter</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>start</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>end</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>transition</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>color</string>
-                     </property>
-                    </column>
-                   </widget>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_72">
-                    <item>
-                     <spacer name="horizontalSpacer_32">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_removeSetupBaseline">
-                      <property name="toolTip">
-                       <string>remove selected setup</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>remove selected setup</string>
-                      </property>
-                      <property name="text">
-                       <string>remove selected</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupBox_24">
-                 <property name="title">
-                  <string>visual representation of setup</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_91">
-                  <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_40">
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_73" stretch="1,0,1,1">
-                      <item>
-                       <spacer name="horizontalSpacer_33">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="label_19">
-                        <property name="text">
-                         <string>plot setup for baseline</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="comboBox_setupBaseline">
-                        <property name="toolTip">
-                         <string>select baseline to display setup</string>
-                        </property>
-                        <property name="statusTip">
-                         <string>select baseline to display setup</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="horizontalSpacer_34">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_baselineSetupWidget"/>
            </item>
           </layout>
          </widget>
@@ -12651,35 +11246,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>radioButton_markerSkymap</tabstop>
   <tabstop>horizontalSlider_markerSkymap</tabstop>
   <tabstop>checkBox_showEcliptic</tabstop>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>comboBox_stationSettingMember</tabstop>
-  <tabstop>pushButton_addGroupStationSetup</tabstop>
-  <tabstop>ComboBox_parameterStation</tabstop>
-  <tabstop>pushButton_stationParameter</tabstop>
-  <tabstop>DateTimeEdit_startParameterStation</tabstop>
-  <tabstop>DateTimeEdit_endParameterStation</tabstop>
-  <tabstop>comboBox_parameterStationTransition</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>comboBox_setupStation</tabstop>
-  <tabstop>comboBox_sourceSettingMember</tabstop>
-  <tabstop>pushButton_addGroupSourceSetup</tabstop>
-  <tabstop>ComboBox_parameterSource</tabstop>
-  <tabstop>pushButton_sourceParameter</tabstop>
-  <tabstop>DateTimeEdit_startParameterSource</tabstop>
-  <tabstop>DateTimeEdit_endParameterSource</tabstop>
-  <tabstop>comboBox_parameterSourceTransition</tabstop>
-  <tabstop>pushButton_addSetupSource</tabstop>
-  <tabstop>pushButton_removeSetupSource</tabstop>
-  <tabstop>comboBox_setupSource</tabstop>
-  <tabstop>comboBox_baselineSettingMember</tabstop>
-  <tabstop>pushButton_addGroupBaselineSetup</tabstop>
-  <tabstop>ComboBox_parameterBaseline</tabstop>
-  <tabstop>pushButton__baselineParameter</tabstop>
-  <tabstop>DateTimeEdit_startParameterBaseline</tabstop>
-  <tabstop>DateTimeEdit_endParameterBaseline</tabstop>
-  <tabstop>comboBox_parameterBaselineTransition</tabstop>
-  <tabstop>pushButton_removeSetupBaseline</tabstop>
-  <tabstop>comboBox_setupBaseline</tabstop>
+  <tabstop>tabWidget_setupStations</tabstop>
   <tabstop>checkBox_weightCoverage</tabstop>
   <tabstop>doubleSpinBox_weightSkyCoverage</tabstop>
   <tabstop>checkBox_weightNobs</tabstop>
@@ -12764,82 +11331,34 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
  </resources>
  <connections>
   <connection>
-   <sender>lineEdit_sessionPath</sender>
-   <signal>returnPressed()</signal>
-   <receiver>pushButton_parse</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>122</x>
-     <y>104</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>930</x>
-     <y>103</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>comboBox_skedObsModes</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>comboBox_skedObsModes_advanced</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>374</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>656</x>
-     <y>199</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightCoverage</sender>
+   <sender>radioButton_calibrationBlocks_predefined</sender>
    <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightSkyCoverage</receiver>
+   <receiver>groupBox_37</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>81</y>
+     <x>77</x>
+     <y>130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>81</y>
+     <x>106</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_weightNobs</sender>
+   <sender>radioButton_subnetting_allBut</sender>
    <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightNumberOfObservations</receiver>
+   <receiver>spinBox_subnetting_min_sta</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>82</y>
+     <x>53</x>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightDuration</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightDuration</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>83</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>83</y>
+     <x>59</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
@@ -12856,150 +11375,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>26</x>
      <y>86</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightAverageStations</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightAverageStations</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>86</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightAverageBaselines</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightAverageBaselines</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>87</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>87</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightIdleTime</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightIdleTime</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>84</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightIdleTime</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_idleTimeInterval</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>84</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightIdleTime</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBox_idleTimeInterval</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>84</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowDeclination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightLowDec</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>89</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowDeclination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_weightLowDecStart</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowDeclination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_weightLowDecEnd</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>90</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowDeclination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightLowDecStart</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -13022,70 +11397,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <connection>
    <sender>checkBox_weightLowElevation</sender>
    <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightLowEl</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>91</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowElevation</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_weightLowElStart</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowElevation</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_weightLowElEnd</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>92</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowElevation</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_weightLowElStart</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>26</x>
-     <y>91</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowElevation</sender>
-   <signal>toggled(bool)</signal>
    <receiver>doubleSpinBox_weightLowElEnd</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
@@ -13096,22 +11407,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>26</x>
      <y>92</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_outputSourceGroupStatFile</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>treeWidget_srcGroupForStatistics</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>51</x>
-     <y>104</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>80</x>
-     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -13132,18 +11427,18 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_calibratorTime</sender>
+   <sender>checkBox_weightDuration</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBox_calibratorTime</receiver>
+   <receiver>doubleSpinBox_weightDuration</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>161</y>
+     <x>20</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>161</y>
+     <x>26</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -13164,338 +11459,18 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>radioButton</sender>
+   <sender>checkBox_fi_apost_minRepeat</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBox_calibratorFixedScanLength</receiver>
+   <receiver>spinBox_fi_apost_minRepeat</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
+     <x>55</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
      <x>61</x>
-     <y>156</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>86</x>
-     <y>157</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_3</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tableWidget_2</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>61</x>
-     <y>157</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>87</x>
-     <y>157</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_subnetting_allBut</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBox_subnetting_min_sta</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>53</x>
-     <y>159</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>59</x>
-     <y>159</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_subnetting_percent</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_subnettingMinStations</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>53</x>
-     <y>156</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>59</x>
-     <y>156</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>dateTimeEdit_sessionStart</sender>
-   <signal>dateChanged(QDate)</signal>
-   <receiver>calendarWidget</receiver>
-   <slot>setSelectedDate(QDate)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>194</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>87</x>
-     <y>115</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_gentleSourceReduction</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBox_gentleSourceReduction</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>372</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_gentleSourceReduction</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_88</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>63</x>
-     <y>404</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_gentleSourceReduction</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_gentleSourceReductionPercentage</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>404</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_calibrationBlocks_predefined</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>groupBox_37</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>77</x>
-     <y>130</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>106</x>
-     <y>126</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_calibrationBlocksCustom</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBox_NCalibrationBlocks</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>71</x>
-     <y>120</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>99</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_calibrationBlocksCustom</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tableWidget_calibrationBlock</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>71</x>
-     <y>120</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>106</x>
-     <y>116</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightCoverage</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_wSky</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>81</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>81</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightNobs</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_wObs</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>82</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightDuration</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_wDur</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>83</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>83</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightIdleTime</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_wIdle</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>84</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightAverageSources</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_Asrc</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>86</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightAverageStations</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_Asta</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>86</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightAverageBaselines</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_Abl</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>87</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>87</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowDeclination</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_LowDec</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>89</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_weightLowElevation</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>progressBar_LowEl</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>31</x>
-     <y>91</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>calendarWidget</sender>
-   <signal>clicked(QDate)</signal>
-   <receiver>dateTimeEdit_sessionStart</receiver>
-   <slot>setDate(QDate)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>87</x>
-     <y>115</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>194</x>
-     <y>117</y>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
@@ -13516,34 +11491,306 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_idleToObservingTime_yes</sender>
+   <sender>checkBox_weightIdleTime</sender>
    <signal>toggled(bool)</signal>
-   <receiver>comboBox_idleToObserving_stations</receiver>
+   <receiver>doubleSpinBox_weightIdleTime</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>154</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>65</x>
-     <y>146</y>
+     <x>26</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_idleToObservingTime_yes</sender>
+   <sender>checkBox_gentleSourceReduction</sender>
    <signal>toggled(bool)</signal>
-   <receiver>pushButton_idleToObserving_addStationGroup</receiver>
+   <receiver>spinBox_gentleSourceReduction</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>63</x>
-     <y>154</y>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>67</x>
-     <y>146</y>
+     <x>394</x>
+     <y>372</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_weightLowElEnd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightNobs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wObs</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_LowEl</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightLowEl</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tableWidget_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightDuration</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wDur</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>calendarWidget</sender>
+   <signal>clicked(QDate)</signal>
+   <receiver>dateTimeEdit_sessionStart</receiver>
+   <slot>setDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>87</x>
+     <y>115</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>194</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_outputSourceGroupStatFile</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>treeWidget_srcGroupForStatistics</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>80</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightCoverage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wSky</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_skedObsModes</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>comboBox_skedObsModes_advanced</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>374</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>656</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_weightLowDecEnd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_subnetting_percent</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_subnettingMinStations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>59</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_sessionPath</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButton_parse</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>930</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibratorTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_calibratorTime</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightLowDecStart</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_weightLowElStart</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageSources</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Asrc</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -13564,18 +11811,338 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_fi_apost_minRepeat</sender>
+   <sender>radioButton</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBox_fi_apost_minRepeat</receiver>
+   <receiver>spinBox_calibratorFixedScanLength</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>181</y>
+     <x>61</x>
+     <y>156</y>
     </hint>
     <hint type="destinationlabel">
-     <x>61</x>
-     <y>181</y>
+     <x>86</x>
+     <y>157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageStations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightAverageStations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>86</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_idleToObservingTime_yes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBox_idleToObserving_stations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>154</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightCoverage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightSkyCoverage</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibrationBlocksCustom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_NCalibrationBlocks</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>99</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowElevation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightLowElStart</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageStations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Asta</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>86</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_LowDec</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightIdleTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_idleTimeInterval</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightNobs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightNumberOfObservations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageBaselines</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_Abl</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightIdleTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_wIdle</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>31</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightIdleTime</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_idleTimeInterval</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightAverageBaselines</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightAverageBaselines</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_weightLowDecStart</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightLowDeclination</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightLowDec</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>26</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dateTimeEdit_sessionStart</sender>
+   <signal>dateChanged(QDate)</signal>
+   <receiver>calendarWidget</receiver>
+   <slot>setSelectedDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>194</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_calibrationBlocksCustom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tableWidget_calibrationBlock</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>106</x>
+     <y>116</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_gentleSourceReduction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_gentleSourceReductionPercentage</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>369</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>394</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_idleToObservingTime_yes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>pushButton_idleToObserving_addStationGroup</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>154</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>67</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_gentleSourceReduction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_88</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>369</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>63</x>
+     <y>404</y>
     </hint>
    </hints>
   </connection>

@@ -244,17 +244,17 @@ QString MainWindow::writeXML()
 
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks);
 
-    para.setup(VieVS::ParameterSettings::Type::station,setupStationTree);
-    para.setup(VieVS::ParameterSettings::Type::source,setupSourceTree);
-    para.setup(VieVS::ParameterSettings::Type::baseline,setupBaselineTree);
+    para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
+    para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
+    para.setup(VieVS::ParameterSettings::Type::baseline, baselineSetupWidget->getSetup());
 
-    for(const auto&any:paraSta){
+    for(const auto&any: stationSetupWidget->getStationParameters()){
         para.parameters(any.first, any.second);
     }
-    for(const auto&any:paraSrc){
+    for(const auto&any: sourceSetupWidget->getSourceParameters()){
         para.parameters(any.first, any.second);
     }
-    for(const auto&any:paraBl){
+    for(const auto&any: baselineSetupWidget->getBaselineParameters()){
         para.parameters(any.first, any.second);
     }
     for(const auto&any : *groupSta){
@@ -947,8 +947,7 @@ void MainWindow::loadXML(QString path)
 
     //parameters
     {
-        paraSta.clear();
-        ui->ComboBox_parameterStation->clear();
+        stationSetupWidget->clearParameters();
         const auto &para_tree = xml.get_child("VieSchedpp.station.parameters");
         for (auto &it: para_tree) {
             std::string name = it.first;
@@ -957,15 +956,13 @@ void MainWindow::loadXML(QString path)
                 VieVS::ParameterSettings::ParametersStations PARA;
                 auto PARA_ = VieVS::ParameterSettings::ptree2parameterStation(it.second);
                 PARA = PARA_.second;
-                paraSta[PARA_.first] = PARA;
-                ui->ComboBox_parameterStation->addItem(QString::fromStdString(PARA_.first));
-
+                const std::string name = PARA_.first;
+                stationSetupWidget->addParameter(name, PARA);
             }
         }
     }
     {
-        paraSrc.clear();
-        ui->ComboBox_parameterSource->clear();
+        sourceSetupWidget->clearParameters();
         const auto &para_tree = xml.get_child("VieSchedpp.source.parameters");
         for (auto &it: para_tree) {
             std::string name = it.first;
@@ -974,15 +971,14 @@ void MainWindow::loadXML(QString path)
                 VieVS::ParameterSettings::ParametersSources PARA;
                 auto PARA_ = VieVS::ParameterSettings::ptree2parameterSource(it.second);
                 PARA = PARA_.second;
-                paraSrc[PARA_.first] = PARA;
-                ui->ComboBox_parameterSource->addItem(QString::fromStdString(PARA_.first));
+                const std::string name = PARA_.first;
+                sourceSetupWidget->addParameter(name, PARA);
 
             }
         }
     }
     {
-        paraBl.clear();
-        ui->ComboBox_parameterBaseline->clear();
+        baselineSetupWidget->clearParameters();
         const auto &para_tree = xml.get_child("VieSchedpp.baseline.parameters");
         for (auto &it: para_tree) {
             std::string name = it.first;
@@ -991,9 +987,8 @@ void MainWindow::loadXML(QString path)
                 VieVS::ParameterSettings::ParametersBaselines PARA;
                 auto PARA_ = VieVS::ParameterSettings::ptree2parameterBaseline(it.second);
                 PARA = PARA_.second;
-                paraBl[PARA_.first] = PARA;
-                ui->ComboBox_parameterBaseline->addItem(QString::fromStdString(PARA_.first));
-
+                const std::string name = PARA_.first;
+                baselineSetupWidget->addParameter(name, PARA);
             }
         }
     }
@@ -1003,11 +998,7 @@ void MainWindow::loadXML(QString path)
         auto ctree = xml.get_child("VieSchedpp.station.setup");
         for(const auto &any: ctree){
             if(any.first == "setup"){
-                ui->treeWidget_setupStation->topLevelItem(0)->child(0)->setSelected(true);
-                addSetup(ui->treeWidget_setupStation, any.second, ui->comboBox_stationSettingMember,
-                         ui->ComboBox_parameterStation, ui->DateTimeEdit_startParameterStation,
-                         ui->DateTimeEdit_endParameterStation, ui->comboBox_parameterStationTransition,
-                         ui->pushButton_3);
+                stationSetupWidget->addSetup(any.second);
             }
         }
     }
@@ -1015,11 +1006,7 @@ void MainWindow::loadXML(QString path)
         auto ctree = xml.get_child("VieSchedpp.source.setup");
         for(const auto &any: ctree){
             if(any.first == "setup"){
-                ui->treeWidget_setupSource->topLevelItem(0)->child(0)->setSelected(true);
-                addSetup(ui->treeWidget_setupSource, any.second, ui->comboBox_sourceSettingMember,
-                         ui->ComboBox_parameterSource, ui->DateTimeEdit_startParameterSource,
-                         ui->DateTimeEdit_endParameterSource, ui->comboBox_parameterSourceTransition,
-                         ui->pushButton_addSetupSource);
+                sourceSetupWidget->addSetup(any.second);
             }
         }
     }
@@ -1027,11 +1014,7 @@ void MainWindow::loadXML(QString path)
         auto ctree = xml.get_child("VieSchedpp.baseline.setup");
         for(const auto &any: ctree){
             if(any.first == "setup"){
-                ui->treeWidget_setupBaseline->topLevelItem(0)->child(0)->setSelected(true);
-                addSetup(ui->treeWidget_setupBaseline, any.second, ui->comboBox_baselineSettingMember,
-                         ui->ComboBox_parameterBaseline, ui->DateTimeEdit_startParameterBaseline,
-                         ui->DateTimeEdit_endParameterBaseline, ui->comboBox_parameterBaselineTransition,
-                         ui->pushButton_addSetupBaseline);
+                baselineSetupWidget->addSetup(any.second);
             }
         }
     }
