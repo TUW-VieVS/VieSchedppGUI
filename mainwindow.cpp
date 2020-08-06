@@ -41,6 +41,14 @@ MainWindow::MainWindow(QWidget *parent) :
     allBaselinePlusGroupModel = new QStandardItemModel();
     allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
 
+    allSatellitePlusGroupModel = new QStandardItemModel();
+    allSatellitePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/satellite.png"),"__all__"));
+
+    allSpacecraftPlusGroupModel = new QStandardItemModel();
+    allSpacecraftPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),"__all__"));
+
+
+
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setApplicationName("VieSched++ GUI");
     QCoreApplication::setApplicationVersion(GIT_COMMIT_HASH);
@@ -170,15 +178,6 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     plotSkyCoverageTemplate = false;
-    setupStation = new QChartView;
-    setupStation->setToolTip("station setup");
-    setupStation->setStatusTip("station setup");
-    setupSource = new QChartView;
-    setupSource->setToolTip("station setup");
-    setupSource->setStatusTip("station setup");
-    setupBaseline = new QChartView;
-    setupBaseline->setToolTip("station setup");
-    setupBaseline->setStatusTip("station setup");
 
     ui->statusBar->addPermanentWidget(new QLabel("no schedules started"));
 
@@ -217,19 +216,6 @@ MainWindow::MainWindow(QWidget *parent) :
     allStationModel->setHeaderData(16, Qt::Horizontal, QObject::tr("x [m]"));
     allStationModel->setHeaderData(17, Qt::Horizontal, QObject::tr("y [m]"));
     allStationModel->setHeaderData(18, Qt::Horizontal, QObject::tr("z [m]"));
-    allSourceModel = new QStandardItemModel(0,3,this);
-    allSourceModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
-    allSourceModel->setHeaderData(1, Qt::Horizontal, QObject::tr("RA [deg]"));
-    allSourceModel->setHeaderData(2, Qt::Horizontal, QObject::tr("DC [deg]"));
-    allStationProxyModel = new MultiColumnSortFilterProxyModel(this);
-    allStationProxyModel->setSourceModel(allStationModel);
-    allStationProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    allStationProxyModel->setFilterKeyColumns({0,1});
-    allSourceProxyModel = new MultiColumnSortFilterProxyModel(this);
-    allSourceProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    allSourceProxyModel->setSourceModel(allSourceModel);
-    allSourceProxyModel->setFilterKeyColumns({0});
-
 
     selectedStationModel = new QStandardItemModel(0,19,this);
     selectedStationModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
@@ -251,13 +237,130 @@ MainWindow::MainWindow(QWidget *parent) :
     selectedStationModel->setHeaderData(16, Qt::Horizontal, QObject::tr("x [m]"));
     selectedStationModel->setHeaderData(17, Qt::Horizontal, QObject::tr("y [m]"));
     selectedStationModel->setHeaderData(18, Qt::Horizontal, QObject::tr("z [m]"));
+
+    allStationProxyModel = new MultiColumnSortFilterProxyModel(this);
+    allStationProxyModel->setSourceModel(allStationModel);
+    allStationProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    allStationProxyModel->setFilterKeyColumns({0,1});
+
+    ui->treeView_allAvailabeStations->setModel(allStationProxyModel);
+    ui->treeView_allAvailabeStations->setRootIsDecorated(false);
+    ui->treeView_allAvailabeStations->setSortingEnabled(true);
+    ui->treeView_allAvailabeStations->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allAvailabeStations->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->treeView_allSelectedStations->setModel(selectedStationModel);
+    ui->treeView_allSelectedStations->setRootIsDecorated(false);
+    ui->treeView_allSelectedStations->setSortingEnabled(true);
+    ui->treeView_allSelectedStations->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allSelectedStations->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->lineEdit_allStationsFilter, &QLineEdit::textChanged, allStationProxyModel, &MultiColumnSortFilterProxyModel::addFilterFixedString);
+
+
+    // ----------------------
+
+    allSourceModel = new QStandardItemModel(0,3,this);
+    allSourceModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+    allSourceModel->setHeaderData(1, Qt::Horizontal, QObject::tr("RA [deg]"));
+    allSourceModel->setHeaderData(2, Qt::Horizontal, QObject::tr("DC [deg]"));
+
     selectedSourceModel = new QStandardItemModel(0,3,this);
     selectedSourceModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
     selectedSourceModel->setHeaderData(1, Qt::Horizontal, QObject::tr("RA [deg]"));
     selectedSourceModel->setHeaderData(2, Qt::Horizontal, QObject::tr("DC [deg]"));
+
+    allSourceProxyModel = new MultiColumnSortFilterProxyModel(this);
+    allSourceProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    allSourceProxyModel->setSourceModel(allSourceModel);
+    allSourceProxyModel->setFilterKeyColumns({0});
+
+    ui->treeView_allAvailabeSources->setModel(allSourceProxyModel);
+    ui->treeView_allAvailabeSources->setRootIsDecorated(false);
+    ui->treeView_allAvailabeSources->setSortingEnabled(true);
+    ui->treeView_allAvailabeSources->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allAvailabeSources->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->treeView_allSelectedSources->setModel(selectedSourceModel);
+    ui->treeView_allSelectedSources->setRootIsDecorated(false);
+    ui->treeView_allSelectedSources->setSortingEnabled(true);
+    ui->treeView_allSelectedSources->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allSelectedSources->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->lineEdit_allSourceFilter, &QLineEdit::textChanged, allSourceProxyModel, &MultiColumnSortFilterProxyModel::addFilterFixedString);
+
+
+    // ----------------------
+
+    allSatelliteModel = new QStandardItemModel(0,1,this);
+    allSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+
+    selectedSatelliteModel = new QStandardItemModel(0,1,this);
+    selectedSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+
+    allSatelliteProxyModel = new MultiColumnSortFilterProxyModel(this);
+    allSatelliteProxyModel->setSourceModel(allSatelliteModel);
+    allSatelliteProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    allSatelliteProxyModel->setFilterKeyColumns({0});
+
+    ui->treeView_allAvailabeSatellites->setModel(allSatelliteProxyModel);
+    ui->treeView_allAvailabeSatellites->setRootIsDecorated(false);
+    ui->treeView_allAvailabeSatellites->setSortingEnabled(true);
+    ui->treeView_allAvailabeSatellites->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allAvailabeSatellites->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->treeView_allSelectedSatellites->setModel(selectedSatelliteModel);
+    ui->treeView_allSelectedSatellites->setRootIsDecorated(false);
+    ui->treeView_allSelectedSatellites->setSortingEnabled(true);
+    ui->treeView_allSelectedSatellites->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allSelectedSatellites->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->lineEdit_allSatelliteFilter, &QLineEdit::textChanged, allSatelliteProxyModel, &MultiColumnSortFilterProxyModel::addFilterFixedString);
+
+
+    // ----------------------
+
+    allSpacecraftModel = new QStandardItemModel(0,1,this);
+    allSpacecraftModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+
+    selectedSpacecraftModel = new QStandardItemModel(0,1,this);
+    selectedSpacecraftModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+
+    allSpacecraftProxyModel = new MultiColumnSortFilterProxyModel(this);
+    allSpacecraftProxyModel->setSourceModel(allSpacecraftModel);
+    allSpacecraftProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    allSpacecraftProxyModel->setFilterKeyColumns({0});
+
+    ui->treeView_allAvailabeSpacecrafts->setModel(allSpacecraftProxyModel);
+    ui->treeView_allAvailabeSpacecrafts->setRootIsDecorated(false);
+    ui->treeView_allAvailabeSpacecrafts->setSortingEnabled(true);
+    ui->treeView_allAvailabeSpacecrafts->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allAvailabeSpacecrafts->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->treeView_allSelectedSpacecrafts->setModel(selectedSpacecraftModel);
+    ui->treeView_allSelectedSpacecrafts->setRootIsDecorated(false);
+    ui->treeView_allSelectedSpacecrafts->setSortingEnabled(true);
+    ui->treeView_allSelectedSpacecrafts->sortByColumn(0, Qt::AscendingOrder);
+    ui->treeView_allSelectedSpacecrafts->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->lineEdit_allSpacecraftFilter, &QLineEdit::textChanged, allSpacecraftProxyModel, &MultiColumnSortFilterProxyModel::addFilterFixedString);
+
+
+    // ----------------------
+
     selectedBaselineModel = new QStandardItemModel(0,2,this);
     selectedBaselineModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     selectedBaselineModel->setHeaderData(1, Qt::Horizontal, QObject::tr("distance [km]"));
+
+    ui->treeView_allSelectedBaselines->setModel(selectedBaselineModel);
+    ui->treeView_allSelectedBaselines->setRootIsDecorated(false);
+    ui->treeView_allSelectedBaselines->setSortingEnabled(true);
+    ui->treeView_allSelectedBaselines->sortByColumn(0, Qt::AscendingOrder);
+    auto hv3 = ui->treeView_allSelectedBaselines->header();
+    hv3->setSectionResizeMode(QHeaderView::ResizeToContents);
+    createBaselines = true;
+
+
 
     allSkedModesModel = new QStringListModel();
 
@@ -270,41 +373,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedBaselineModel,SIGNAL(rowsInserted(QModelIndex,int,int)),this,SLOT(baselineListChanged()));
     connect(selectedBaselineModel,SIGNAL(rowsRemoved(QModelIndex,int,int)),this,SLOT(baselineListChanged()));
 
-    ui->treeView_allAvailabeStations->setModel(allStationProxyModel);
-    ui->treeView_allAvailabeStations->setRootIsDecorated(false);
-    ui->treeView_allAvailabeStations->setSortingEnabled(true);
-    ui->treeView_allAvailabeStations->sortByColumn(0, Qt::AscendingOrder);
-    auto hv1 = ui->treeView_allAvailabeStations->header();
-    hv1->setSectionResizeMode(QHeaderView::ResizeToContents);
+    connect(selectedSatelliteModel,SIGNAL(rowsInserted(QModelIndex,int,int)),this,SLOT(satelliteListChanged()));
+    connect(selectedSatelliteModel,SIGNAL(rowsRemoved(QModelIndex,int,int)),this,SLOT(satelliteListChanged()));
 
-    ui->treeView_allAvailabeSources->setModel(allSourceProxyModel);
-    ui->treeView_allAvailabeSources->setRootIsDecorated(false);
-    ui->treeView_allAvailabeSources->setSortingEnabled(true);
-    ui->treeView_allAvailabeSources->sortByColumn(0, Qt::AscendingOrder);
-    auto hv2 = ui->treeView_allAvailabeSources->header();
-    hv2->setSectionResizeMode(QHeaderView::ResizeToContents);
+    connect(selectedSpacecraftModel,SIGNAL(rowsInserted(QModelIndex,int,int)),this,SLOT(spacecraftListChanged()));
+    connect(selectedSpacecraftModel,SIGNAL(rowsRemoved(QModelIndex,int,int)),this,SLOT(spacecraftListChanged()));
 
-    ui->treeView_allSelectedBaselines->setModel(selectedBaselineModel);
-    ui->treeView_allSelectedBaselines->setRootIsDecorated(false);
-    ui->treeView_allSelectedBaselines->setSortingEnabled(true);
-    ui->treeView_allSelectedBaselines->sortByColumn(0, Qt::AscendingOrder);
-    auto hv3 = ui->treeView_allSelectedBaselines->header();
-    hv3->setSectionResizeMode(QHeaderView::ResizeToContents);
-    createBaselines = true;
 
-    ui->treeView_allSelectedStations->setModel(selectedStationModel);
-    ui->treeView_allSelectedStations->setRootIsDecorated(false);
-    ui->treeView_allSelectedStations->setSortingEnabled(true);
-    ui->treeView_allSelectedStations->sortByColumn(0, Qt::AscendingOrder);
-    auto hv4 = ui->treeView_allSelectedStations->header();
-    hv4->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->treeView_allSelectedSources->setModel(selectedSourceModel);
-    ui->treeView_allSelectedSources->setRootIsDecorated(false);
-    ui->treeView_allSelectedSources->setSortingEnabled(true);
-    ui->treeView_allSelectedSources->sortByColumn(0, Qt::AscendingOrder);
-    auto hv5 = ui->treeView_allSelectedSources->header();
-    hv5->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->comboBox_skedObsModes->setModel(allSkedModesModel);
     ui->comboBox_skedObsModes_advanced->setModel(allSkedModesModel);
@@ -324,48 +400,120 @@ MainWindow::MainWindow(QWidget *parent) :
                                          ui->tableWidget_ModesPolicy,
                                          allStationModel,
                                          allSourceModel,
+                                         allSatelliteModel,
+                                         allSpacecraftModel,
                                          selectedStationModel,
                                          selectedSourceModel,
                                          selectedBaselineModel,
+                                         selectedSatelliteModel,
+                                         selectedSpacecraftModel,
                                          allSourcePlusGroupModel,
                                          allStationPlusGroupModel,
                                          allBaselinePlusGroupModel,
+                                         allSatellitePlusGroupModel,
+                                         allSpacecraftPlusGroupModel,
                                          groupSta,
                                          groupSrc,
-                                         groupBl);
+                                         groupBl,
+                                         groupSat,
+                                         groupSpace);
     ui->verticalLayout_stationSetupWidget->addWidget(stationSetupWidget);
 
     sourceSetupWidget = new setupWidget(setupWidget::Type::source,
                                         settings_,
-                                         ui->tableWidget_ModesPolicy,
-                                         allStationModel,
-                                         allSourceModel,
-                                         selectedStationModel,
-                                         selectedSourceModel,
-                                         selectedBaselineModel,
-                                         allSourcePlusGroupModel,
-                                         allStationPlusGroupModel,
-                                         allBaselinePlusGroupModel,
-                                         groupSta,
-                                         groupSrc,
-                                         groupBl);
+                                        ui->tableWidget_ModesPolicy,
+                                        allStationModel,
+                                        allSourceModel,
+                                        allSatelliteModel,
+                                        allSpacecraftModel,
+                                        selectedStationModel,
+                                        selectedSourceModel,
+                                        selectedBaselineModel,
+                                        selectedSatelliteModel,
+                                        selectedSpacecraftModel,
+                                        allSourcePlusGroupModel,
+                                        allStationPlusGroupModel,
+                                        allBaselinePlusGroupModel,
+                                        allSatellitePlusGroupModel,
+                                        allSpacecraftPlusGroupModel,
+                                        groupSta,
+                                        groupSrc,
+                                        groupBl,
+                                        groupSat,
+                                        groupSpace);
     ui->verticalLayout_sourceSetupWidget->addWidget(sourceSetupWidget);
 
     baselineSetupWidget = new setupWidget(setupWidget::Type::baseline,
                                           settings_,
-                                         ui->tableWidget_ModesPolicy,
-                                         allStationModel,
-                                         allSourceModel,
-                                         selectedStationModel,
-                                         selectedSourceModel,
-                                         selectedBaselineModel,
-                                         allSourcePlusGroupModel,
-                                         allStationPlusGroupModel,
-                                         allBaselinePlusGroupModel,
-                                         groupSta,
-                                         groupSrc,
-                                         groupBl);
+                                          ui->tableWidget_ModesPolicy,
+                                          allStationModel,
+                                          allSourceModel,
+                                          allSatelliteModel,
+                                          allSpacecraftModel,
+                                          selectedStationModel,
+                                          selectedSourceModel,
+                                          selectedBaselineModel,
+                                          selectedSatelliteModel,
+                                          selectedSpacecraftModel,
+                                          allSourcePlusGroupModel,
+                                          allStationPlusGroupModel,
+                                          allBaselinePlusGroupModel,
+                                          allSatellitePlusGroupModel,
+                                          allSpacecraftPlusGroupModel,
+                                          groupSta,
+                                          groupSrc,
+                                          groupBl,
+                                          groupSat,
+                                          groupSpace);
     ui->verticalLayout_baselineSetupWidget->addWidget(baselineSetupWidget);
+
+    satelliteSetupWidget = new setupWidget(setupWidget::Type::satellite,
+                                          settings_,
+                                          ui->tableWidget_ModesPolicy,
+                                          allStationModel,
+                                          allSourceModel,
+                                          allSatelliteModel,
+                                          allSpacecraftModel,
+                                          selectedStationModel,
+                                          selectedSourceModel,
+                                          selectedBaselineModel,
+                                          selectedSatelliteModel,
+                                          selectedSpacecraftModel,
+                                          allSourcePlusGroupModel,
+                                          allStationPlusGroupModel,
+                                          allBaselinePlusGroupModel,
+                                          allSatellitePlusGroupModel,
+                                          allSpacecraftPlusGroupModel,
+                                          groupSta,
+                                          groupSrc,
+                                          groupBl,
+                                          groupSat,
+                                          groupSpace);
+    ui->verticalLayout_satelliteSetupWidget->addWidget(satelliteSetupWidget);
+
+    spacecraftSetupWidget = new setupWidget(setupWidget::Type::spacecraft,
+                                          settings_,
+                                          ui->tableWidget_ModesPolicy,
+                                          allStationModel,
+                                          allSourceModel,
+                                          allSatelliteModel,
+                                          allSpacecraftModel,
+                                          selectedStationModel,
+                                          selectedSourceModel,
+                                          selectedBaselineModel,
+                                          selectedSatelliteModel,
+                                          selectedSpacecraftModel,
+                                          allSourcePlusGroupModel,
+                                          allStationPlusGroupModel,
+                                          allBaselinePlusGroupModel,
+                                          allSatellitePlusGroupModel,
+                                          allSpacecraftPlusGroupModel,
+                                          groupSta,
+                                          groupSrc,
+                                          groupBl,
+                                          groupSat,
+                                          groupSpace);
+    ui->verticalLayout_spacecraftSetupWidget->addWidget(spacecraftSetupWidget);
 
     ui->dateTimeEdit_sessionStart->setDate(QDate::currentDate());
 
@@ -374,12 +522,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(baselineSetupWidget->addGroupButton(), SIGNAL(clicked(bool)),this, SLOT(addGroupBaseline()));
 
     connect(stationSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
-    connect(stationSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(sourceSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
     connect(baselineSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(satelliteSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(spacecraftSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
 
     connect(stationSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
-    connect(stationSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(sourceSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
     connect(baselineSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(satelliteSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
+    connect(spacecraftSetupWidget->vertical_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
 
 
     connect(ui->pushButton_addGroupStationCable, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
@@ -547,15 +699,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->doubleSpinBox_weightLowEl, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
 
     updateWeightFactorSliders();
-//    connect(ui->horizontalSlider_wSky, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_wObs, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_wDur, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_wIdle, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_Asrc, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_Asta, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_Abl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_LowDec, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
-//    connect(ui->horizontalSlider_LowEl, SIGNAL(valueChanged(int)), this, SLOT(updateWeightFactorValue()));
 
 
 
@@ -1488,6 +1631,9 @@ void MainWindow::defaultParameters()
     stationSetupWidget->addParameter("default", sta);
     sourceSetupWidget->addParameter("default", src);
     baselineSetupWidget->addParameter("default", bl);
+
+    satelliteSetupWidget->addParameter("default", src);
+    spacecraftSetupWidget->addParameter("default", src);
 
     VieVS::ParameterSettings::ParametersStations down;
     down.available = false;
@@ -2618,6 +2764,21 @@ void MainWindow::on_pushButton_browseSource_clicked()
     }
 }
 
+void MainWindow::on_pushButton_browseSatellite_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSource->text());
+    if( !path.isEmpty() ){
+        ui->lineEdit_pathSatellite->setText(path);
+    }
+}
+
+void MainWindow::on_pushButton_browseSpacecraft_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSource->text());
+    if( !path.isEmpty() ){
+        ui->lineEdit_pathSpacecraft->setText(path);
+    }
+}
 
 void MainWindow::on_pushButton_browseFlux_clicked()
 {
@@ -2846,6 +3007,8 @@ void MainWindow::on_dateTimeEdit_sessionStart_dateTimeChanged(const QDateTime &d
     stationSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
     sourceSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
     baselineSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
+    satelliteSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
+    spacecraftSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
 
     bool flag = clearSetup(true,true,true);
     if(flag){
@@ -2862,6 +3025,8 @@ void MainWindow::on_doubleSpinBox_sessionDuration_valueChanged(double arg1)
     stationSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
     sourceSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
     baselineSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
+    satelliteSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
+    spacecraftSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
 
     bool flag = clearSetup(true,true,true);
     if(flag){
@@ -3196,6 +3361,8 @@ bool MainWindow::clearSetup(bool sta, bool src, bool bl)
 
     if(src){
         flag = flag | sourceSetupWidget->reset();
+        flag = flag | satelliteSetupWidget->reset();
+        flag = flag | spacecraftSetupWidget->reset();
     }
 
     if(bl){
@@ -3474,10 +3641,10 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
     ui->lineEdit_allStationsFilter->selectAll();
 }
 
-void MainWindow::on_lineEdit_allStationsFilter_textChanged(const QString &arg1)
-{
-    allStationProxyModel->addFilterFixedString(arg1);
-}
+//void MainWindow::on_lineEdit_allStationsFilter_textChanged(const QString &arg1)
+//{
+//    allStationProxyModel->addFilterFixedString(arg1);
+//}
 
 void MainWindow::on_treeView_allAvailabeStations_entered(const QModelIndex &index)
 {
@@ -4244,14 +4411,14 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
 
         allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),name));
     }
-    ui->lineEdit_allStationsFilter_3->setFocus();
-    ui->lineEdit_allStationsFilter_3->selectAll();
+    ui->lineEdit_allSourceFilter->setFocus();
+    ui->lineEdit_allSourceFilter->selectAll();
 }
 
-void MainWindow::on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1)
-{
-    allSourceProxyModel->addFilterFixedString(arg1);
-}
+//void MainWindow::on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1)
+//{
+//    allSourceProxyModel->addFilterFixedString(arg1);
+//}
 
 void MainWindow::on_treeView_allAvailabeSources_entered(const QModelIndex &index)
 {
@@ -4437,7 +4604,7 @@ void MainWindow::addGroupSource()
 
 void MainWindow::on_pushButton_13_clicked()
 {
-    ui->lineEdit_allStationsFilter_3->setText("");
+    ui->lineEdit_allSourceFilter->setText("");
     sourceSetupWidget->blockSignal(true);
     selectedSourceModel->blockSignals(true);
 
@@ -4550,6 +4717,18 @@ void MainWindow::sourceListChanged()
 {
     int size = selectedSourceModel->rowCount();
     ui->label_sourceList_selected->setText(QString("selected: %1").arg(size));
+}
+
+void MainWindow::satelliteListChanged()
+{
+    int size = selectedSatelliteModel->rowCount();
+    ui->label_satelliteList_selected->setText(QString("selected: %1").arg(size));
+}
+
+void MainWindow::spacecraftListChanged()
+{
+    int size = selectedSpacecraftModel->rowCount();
+    ui->label_spacecraftList_selected->setText(QString("selected: %1").arg(size));
 }
 
 void MainWindow::markerSkymap()
@@ -4690,26 +4869,73 @@ void MainWindow::on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1)
 void MainWindow::splitterMoved() {
   QSplitter* senderSplitter = static_cast<QSplitter*>(sender());
 
+
+
   QSplitter* receiverSplitter1;
   QSplitter* receiverSplitter2;
+  QSplitter* receiverSplitter3;
+  QSplitter* receiverSplitter4;
+
   if(senderSplitter == stationSetupWidget->horizontal_splitter()){
       receiverSplitter1 = sourceSetupWidget->horizontal_splitter();
       receiverSplitter2 = baselineSetupWidget->horizontal_splitter();
+      receiverSplitter3 = satelliteSetupWidget->horizontal_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->horizontal_splitter();
+
   }else if(senderSplitter == sourceSetupWidget->horizontal_splitter()){
       receiverSplitter1 = stationSetupWidget->horizontal_splitter();
       receiverSplitter2 = baselineSetupWidget->horizontal_splitter();
+      receiverSplitter3 = satelliteSetupWidget->horizontal_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->horizontal_splitter();
+
   }else if(senderSplitter == baselineSetupWidget->horizontal_splitter()){
       receiverSplitter1 = stationSetupWidget->horizontal_splitter();
       receiverSplitter2 = sourceSetupWidget->horizontal_splitter();
+      receiverSplitter3 = satelliteSetupWidget->horizontal_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->horizontal_splitter();
+
+  }else if(senderSplitter == satelliteSetupWidget->horizontal_splitter()){
+      receiverSplitter1 = stationSetupWidget->horizontal_splitter();
+      receiverSplitter2 = sourceSetupWidget->horizontal_splitter();
+      receiverSplitter3 = baselineSetupWidget->horizontal_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->horizontal_splitter();
+
+  }else if(senderSplitter == spacecraftSetupWidget->horizontal_splitter()){
+      receiverSplitter1 = stationSetupWidget->horizontal_splitter();
+      receiverSplitter2 = sourceSetupWidget->horizontal_splitter();
+      receiverSplitter3 = baselineSetupWidget->horizontal_splitter();
+      receiverSplitter4 = satelliteSetupWidget->horizontal_splitter();
+
   }else if(senderSplitter == stationSetupWidget->vertical_splitter()){
       receiverSplitter1 = sourceSetupWidget->vertical_splitter();
       receiverSplitter2 = baselineSetupWidget->vertical_splitter();
+      receiverSplitter3 = satelliteSetupWidget->vertical_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->vertical_splitter();
+
   }else if(senderSplitter == sourceSetupWidget->vertical_splitter()){
       receiverSplitter1 = stationSetupWidget->vertical_splitter();
       receiverSplitter2 = baselineSetupWidget->vertical_splitter();
+      receiverSplitter3 = satelliteSetupWidget->vertical_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->vertical_splitter();
+
   }else if(senderSplitter == baselineSetupWidget->vertical_splitter()){
       receiverSplitter1 = stationSetupWidget->vertical_splitter();
       receiverSplitter2 = sourceSetupWidget->vertical_splitter();
+      receiverSplitter3 = satelliteSetupWidget->vertical_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->vertical_splitter();
+
+  }else if(senderSplitter == satelliteSetupWidget->vertical_splitter()){
+      receiverSplitter1 = stationSetupWidget->vertical_splitter();
+      receiverSplitter2 = sourceSetupWidget->vertical_splitter();
+      receiverSplitter3 = baselineSetupWidget->vertical_splitter();
+      receiverSplitter4 = spacecraftSetupWidget->vertical_splitter();
+
+  }else if(senderSplitter == spacecraftSetupWidget->vertical_splitter()){
+      receiverSplitter1 = stationSetupWidget->vertical_splitter();
+      receiverSplitter2 = sourceSetupWidget->vertical_splitter();
+      receiverSplitter3 = baselineSetupWidget->vertical_splitter();
+      receiverSplitter4 = satelliteSetupWidget->vertical_splitter();
+
   }
 
   receiverSplitter1->blockSignals(true);
@@ -4719,6 +4945,14 @@ void MainWindow::splitterMoved() {
   receiverSplitter2->blockSignals(true);
   receiverSplitter2->setSizes(senderSplitter->sizes());
   receiverSplitter2->blockSignals(false);
+
+  receiverSplitter3->blockSignals(true);
+  receiverSplitter3->setSizes(senderSplitter->sizes());
+  receiverSplitter3->blockSignals(false);
+
+  receiverSplitter4->blockSignals(true);
+  receiverSplitter4->setSizes(senderSplitter->sizes());
+  receiverSplitter4->blockSignals(false);
 }
 
 void MainWindow::faqSearch()
@@ -5983,6 +6217,8 @@ void MainWindow::updateWeightFactorValue()
 
     dsb->setValue(newVal);
 }
+
+
 
 
 

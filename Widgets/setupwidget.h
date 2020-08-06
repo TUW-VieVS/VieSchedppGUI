@@ -27,7 +27,8 @@ public:
         station,
         baseline,
         source,
-        satellite
+        satellite,
+        spacecraft
     };
 
 
@@ -36,15 +37,23 @@ public:
                          QTableWidget *tableWidget_ModesPolicy,
                          QStandardItemModel *allStationModel,
                          QStandardItemModel *allSourceModel,
+                         QStandardItemModel *allSatelliteModel,
+                         QStandardItemModel *allSpacecraftModel,
                          QStandardItemModel *selectedStationModel,
                          QStandardItemModel *selectedSourceModel,
                          QStandardItemModel *selectedBaselineModel,
+                         QStandardItemModel *selectedSatelliteModel,
+                         QStandardItemModel *selectedSpacecraftModel,
                          QStandardItemModel *allSourcePlusGroupModel,
                          QStandardItemModel *allStationPlusGroupModel,
                          QStandardItemModel *allBaselinePlusGroupModel,
+                         QStandardItemModel *allSatellitePlusGroupModel,
+                         QStandardItemModel *allSpacecraftPlusGroupModel,
                          std::map<std::string, std::vector<std::string>> *groupSta,
                          std::map<std::string, std::vector<std::string>> *groupSrc,
                          std::map<std::string, std::vector<std::string>> *groupBl,
+                         std::map<std::string, std::vector<std::string>> *groupSat,
+                         std::map<std::string, std::vector<std::string>> *groupSpace,
                          QWidget *parent = nullptr);
     ~setupWidget();
 
@@ -166,19 +175,26 @@ private:
 
     QStandardItemModel *allStationModel;
     QStandardItemModel *allSourceModel;
+    QStandardItemModel *allSatelliteModel;
+    QStandardItemModel *allSpacecraftModel;
 
     QStandardItemModel *selectedStationModel;
     QStandardItemModel *selectedSourceModel;
     QStandardItemModel *selectedBaselineModel;
+    QStandardItemModel *selectedSatelliteModel;
+    QStandardItemModel *selectedSpacecraftModel;
 
     QStandardItemModel *allSourcePlusGroupModel;
     QStandardItemModel *allStationPlusGroupModel;
     QStandardItemModel *allBaselinePlusGroupModel;
+    QStandardItemModel *allSatellitePlusGroupModel;
+    QStandardItemModel *allSpacecraftPlusGroupModel;
 
     std::map<std::string, std::vector<std::string>> *groupSta;
     std::map<std::string, std::vector<std::string>> *groupSrc;
     std::map<std::string, std::vector<std::string>> *groupBl;
-
+    std::map<std::string, std::vector<std::string>> *groupSat;
+    std::map<std::string, std::vector<std::string>> *groupSpace;
 
 
     void prepareSetupPlot();

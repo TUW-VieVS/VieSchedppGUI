@@ -78,6 +78,8 @@
         <file>icons/sleep-icon.png</file>
         <file>icons/configure-3.png</file>
         <file>icons/sim.png</file>
+        <file>icons/spacecraft.png</file>
+        <file>icons/satellite.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>

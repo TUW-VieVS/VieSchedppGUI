@@ -160,7 +160,7 @@ private slots:
 
     void on_groupBox_modeCustom_toggled(bool arg1);
 
-    void on_lineEdit_allStationsFilter_textChanged(const QString &arg1);
+    // void on_lineEdit_allStationsFilter_textChanged(const QString &arg1);
 
     void on_treeView_allAvailabeStations_clicked(const QModelIndex &index);
 
@@ -300,6 +300,10 @@ private slots:
 
     void sourceListChanged();
 
+    void satelliteListChanged();
+
+    void spacecraftListChanged();
+
     void baselineListChanged();
 
     void on_actionsummary_triggered();
@@ -318,7 +322,7 @@ private slots:
 
     void on_pushButton_removeCondition_clicked();
 
-    void on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1);
+    // void on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1);
 
     void on_actionNetwork_triggered();
 
@@ -496,6 +500,10 @@ private slots:
 
     void saveMultiCoreSetup();
 
+    void on_pushButton_browseSpacecraft_clicked();
+
+    void on_pushButton_browseSatellite_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -507,17 +515,25 @@ private:
 
     QStandardItemModel *allStationModel;
     QStandardItemModel *allSourceModel;
+    QStandardItemModel *allSatelliteModel;
+    QStandardItemModel *allSpacecraftModel;
     MultiColumnSortFilterProxyModel *allStationProxyModel;
     MultiColumnSortFilterProxyModel *allSourceProxyModel;
+    MultiColumnSortFilterProxyModel *allSatelliteProxyModel;
+    MultiColumnSortFilterProxyModel *allSpacecraftProxyModel;
 
     QStandardItemModel *selectedStationModel;
     QStandardItemModel *selectedSourceModel;
     QStandardItemModel *selectedBaselineModel;
+    QStandardItemModel *selectedSatelliteModel;
+    QStandardItemModel *selectedSpacecraftModel;
     bool createBaselines;
 
     QStandardItemModel *allSourcePlusGroupModel;
     QStandardItemModel *allStationPlusGroupModel;
     QStandardItemModel *allBaselinePlusGroupModel;
+    QStandardItemModel *allSatellitePlusGroupModel;
+    QStandardItemModel *allSpacecraftPlusGroupModel;
 
     QStringListModel *allSkedModesModel;
 
@@ -525,9 +541,6 @@ private:
 
     ChartView *worldmap;
     ChartView *skymap;
-    QChartView *setupStation;
-    QChartView *setupSource;
-    QChartView *setupBaseline;
     QChartView *skyCoverageTemplateView;
     bool plotSkyCoverageTemplate;
 
@@ -548,10 +561,14 @@ private:
     std::map<std::string, std::vector<std::string>> *groupSta = new std::map<std::string, std::vector<std::string>>();
     std::map<std::string, std::vector<std::string>> *groupSrc = new std::map<std::string, std::vector<std::string>>();
     std::map<std::string, std::vector<std::string>> *groupBl = new std::map<std::string, std::vector<std::string>>();
+    std::map<std::string, std::vector<std::string>> *groupSat = new std::map<std::string, std::vector<std::string>>();
+    std::map<std::string, std::vector<std::string>> *groupSpace = new std::map<std::string, std::vector<std::string>>();
 
     setupWidget *stationSetupWidget;
     setupWidget *sourceSetupWidget;
     setupWidget *baselineSetupWidget;
+    setupWidget *satelliteSetupWidget;
+    setupWidget *spacecraftSetupWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;

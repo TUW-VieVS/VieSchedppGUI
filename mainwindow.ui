@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>7</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1199,7 +1199,7 @@ p, li { white-space: pre-wrap; }
              <x>0</x>
              <y>0</y>
              <width>932</width>
-             <height>652</height>
+             <height>714</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_102">
@@ -1410,14 +1410,37 @@ p, li { white-space: pre-wrap; }
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
                 <layout class="QGridLayout" name="gridLayout_11">
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_55">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_25">
                    <property name="text">
-                    <string>flux</string>
+                    <string>source</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="2">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>satellite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathFlux">
+                   <property name="toolTip">
+                    <string>path to skd flux catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to skd flux catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>./AUTO_DOWNLOAD_CATALOGS/flux.cat</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>path to flux.cat file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
                   <widget class="QPushButton" name="pushButton_reloadsources">
                    <property name="toolTip">
                     <string>read source catalogs</string>
@@ -1434,10 +1457,20 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_25">
+                 <item row="3" column="2">
+                  <widget class="QPushButton" name="pushButton_browseFlux">
+                   <property name="toolTip">
+                    <string>browse for skd flux catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>browse for skd flux catalog</string>
+                   </property>
                    <property name="text">
-                    <string>source</string>
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -1457,13 +1490,13 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_browseFlux">
+                 <item row="0" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSource">
                    <property name="toolTip">
-                    <string>browse for skd flux catalog</string>
+                    <string>browse for skd source catalog</string>
                    </property>
                    <property name="statusTip">
-                    <string>browse for skd flux catalog</string>
+                    <string>browse for skd source catalog</string>
                    </property>
                    <property name="text">
                     <string>browse</string>
@@ -1474,29 +1507,61 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_pathFlux">
-                   <property name="toolTip">
-                    <string>path to skd flux catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>path to skd flux catalog</string>
-                   </property>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_55">
                    <property name="text">
-                    <string>./AUTO_DOWNLOAD_CATALOGS/flux.cat</string>
-                   </property>
-                   <property name="placeholderText">
-                    <string>path to flux.cat file</string>
+                    <string>flux</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_browseSource">
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_13">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>spacecraft</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathSatellite">
                    <property name="toolTip">
-                    <string>browse for skd source catalog</string>
+                    <string>path to file containing TLE information</string>
                    </property>
                    <property name="statusTip">
-                    <string>browse for skd source catalog</string>
+                    <string>path to file containing TLE information</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>path to file containing TLE information</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathSpacecraft">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>path to file from HORIZONS ephemerides web interface</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSatellite">
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSpacecraft">
+                   <property name="enabled">
+                    <bool>false</bool>
                    </property>
                    <property name="text">
                     <string>browse</string>
@@ -3866,295 +3931,663 @@ If you only want to run simulations you can deselect this to avoid error message
        <property name="statusTip">
         <string>source list</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_58" stretch="0,0">
+       <layout class="QVBoxLayout" name="verticalLayout_58" stretch="0">
         <item>
-         <widget class="QSplitter" name="splitter_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>2</number>
           </property>
-          <widget class="QWidget" name="layoutWidget_11">
-           <layout class="QVBoxLayout" name="verticalLayout_43">
+          <widget class="QWidget" name="tab_3">
+           <attribute name="title">
+            <string>AGNs</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_33">
             <item>
-             <widget class="QLabel" name="label_30">
-              <property name="text">
-               <string>available (click to add source)</string>
+             <widget class="QSplitter" name="splitter_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTreeView" name="treeView_allAvailabeSources">
-              <property name="mouseTracking">
-               <bool>true</bool>
-              </property>
-              <property name="toolTip">
-               <string>list of all available sources - click to select sources</string>
-              </property>
-              <property name="statusTip">
-               <string>list of all available sources - click to select sources</string>
-              </property>
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;List of all &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;available sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; found in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sked catalogs&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Click&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; an item to put it to the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;list of selected sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-              <property name="dragEnabled">
-               <bool>false</bool>
-              </property>
-              <property name="alternatingRowColors">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_80">
-              <item>
-               <widget class="QLabel" name="label_34">
-                <property name="text">
-                 <string>Filter:</string>
-                </property>
+              <widget class="QWidget" name="layoutWidget_11">
+               <layout class="QVBoxLayout" name="verticalLayout_43">
+                <item>
+                 <widget class="QLabel" name="label_30">
+                  <property name="text">
+                   <string>available (click to add source)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTreeView" name="treeView_allAvailabeSources">
+                  <property name="mouseTracking">
+                   <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;List of all &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;available sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; found in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sked catalogs&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Click&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; an item to put it to the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;list of selected sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_80">
+                  <item>
+                   <widget class="QLabel" name="label_34">
+                    <property name="text">
+                     <string>Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_allSourceFilter">
+                    <property name="toolTip">
+                     <string>filter sources by name</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>filter sources by name</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QSplitter" name="splitter_b">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <widget class="QWidget" name="layoutWidget">
+                <layout class="QVBoxLayout" name="verticalLayout_42">
+                 <item>
+                  <widget class="QLabel" name="label_sourceList_selected">
+                   <property name="text">
+                    <string>selected (click to deselect source)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTreeView" name="treeView_allSelectedSources">
+                   <property name="mouseTracking">
+                    <bool>true</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="alternatingRowColors">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_82">
+                   <item>
+                    <spacer name="horizontalSpacer_16">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_13">
+                     <property name="toolTip">
+                      <string>add all sources</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>add all sources</string>
+                     </property>
+                     <property name="text">
+                      <string>all</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_15">
+                     <property name="toolTip">
+                      <string>remove all sources</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>remove all sources</string>
+                     </property>
+                     <property name="text">
+                      <string>none</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_79">
+                   <item>
+                    <spacer name="horizontalSpacer_45">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_saveSourceList">
+                     <property name="toolTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="text">
+                      <string> save</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_loadSourceList">
+                     <property name="toolTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="text">
+                      <string> load</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </widget>
-              </item>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_skymap" stretch="0">
               <item>
-               <widget class="QLineEdit" name="lineEdit_allStationsFilter_3">
-                <property name="toolTip">
-                 <string>filter sources by name</string>
+               <widget class="QGroupBox" name="groupBox_8">
+                <property name="title">
+                 <string>plot options</string>
                 </property>
-                <property name="statusTip">
-                 <string>filter sources by name</string>
-                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_59">
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_imageSkymap">
+                   <property name="toolTip">
+                    <string>show image as marker</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>show image as marker</string>
+                   </property>
+                   <property name="text">
+                    <string>show image</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_markerSkymap">
+                   <property name="toolTip">
+                    <string>show dot as marker</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>show dot as marker</string>
+                   </property>
+                   <property name="text">
+                    <string>show marker</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_markerSkymap">
+                   <property name="toolTip">
+                    <string>adjust marker size</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>adjust marker size</string>
+                   </property>
+                   <property name="minimum">
+                    <number>10</number>
+                   </property>
+                   <property name="maximum">
+                    <number>50</number>
+                   </property>
+                   <property name="value">
+                    <number>25</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="checkBox_showEcliptic">
+                   <property name="toolTip">
+                    <string>show ecliptic</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>show ecliptic</string>
+                   </property>
+                   <property name="text">
+                    <string>show ecliptic</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_15">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
           </widget>
-          <widget class="QSplitter" name="splitter_b">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QWidget" name="layoutWidget">
-            <layout class="QVBoxLayout" name="verticalLayout_42">
-             <item>
-              <widget class="QLabel" name="label_sourceList_selected">
-               <property name="text">
-                <string>selected (click to deselect source)</string>
-               </property>
+          <widget class="QWidget" name="tab_4">
+           <attribute name="title">
+            <string>satellites</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_34">
+            <item>
+             <widget class="QSplitter" name="splitter_9">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <widget class="QWidget" name="layoutWidget_12">
+               <layout class="QVBoxLayout" name="verticalLayout_44">
+                <item>
+                 <widget class="QLabel" name="label_82">
+                  <property name="text">
+                   <string>available (click to add source)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTreeView" name="treeView_allAvailabeSatellites">
+                  <property name="mouseTracking">
+                   <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;List of all &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;available sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; found in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sked catalogs&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Click&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; an item to put it to the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;list of selected sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_90">
+                  <item>
+                   <widget class="QLabel" name="label_119">
+                    <property name="text">
+                     <string>Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_allSatelliteFilter">
+                    <property name="toolTip">
+                     <string>filter sources by name</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>filter sources by name</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </widget>
-             </item>
-             <item>
-              <widget class="QTreeView" name="treeView_allSelectedSources">
-               <property name="mouseTracking">
-                <bool>true</bool>
-               </property>
-               <property name="toolTip">
-                <string>list of all selected sources - click to deselect source</string>
-               </property>
-               <property name="statusTip">
-                <string>list of all selected sources - click to deselect source</string>
-               </property>
-               <property name="editTriggers">
-                <set>QAbstractItemView::NoEditTriggers</set>
-               </property>
-               <property name="alternatingRowColors">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_82">
-               <item>
-                <widget class="QPushButton" name="pushButton_13">
-                 <property name="toolTip">
-                  <string>add all sources</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>add all sources</string>
-                 </property>
-                 <property name="text">
-                  <string>all</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_15">
-                 <property name="toolTip">
-                  <string>remove all sources</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>remove all sources</string>
-                 </property>
-                 <property name="text">
-                  <string>none</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_79">
-               <item>
-                <spacer name="horizontalSpacer_45">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_saveSourceList">
-                 <property name="toolTip">
-                  <string>save source list</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>save source list</string>
-                 </property>
-                 <property name="text">
-                  <string> save</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_loadSourceList">
-                 <property name="toolTip">
-                  <string>load source list</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>load source list</string>
-                 </property>
-                 <property name="text">
-                  <string> load</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="myresources.qrc">
-                   <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QGroupBox" name="groupBox_6">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="title">
-             <string>additional filters</string>
-            </property>
-           </widget>
-          </widget>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_skymap" stretch="0">
-          <item>
-           <widget class="QGroupBox" name="groupBox_8">
-            <property name="title">
-             <string>plot options</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_59">
-             <item>
-              <widget class="QRadioButton" name="radioButton_imageSkymap">
-               <property name="toolTip">
-                <string>show image as marker</string>
-               </property>
-               <property name="statusTip">
-                <string>show image as marker</string>
-               </property>
-               <property name="text">
-                <string>show image</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="radioButton_markerSkymap">
-               <property name="toolTip">
-                <string>show dot as marker</string>
-               </property>
-               <property name="statusTip">
-                <string>show dot as marker</string>
-               </property>
-               <property name="text">
-                <string>show marker</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="horizontalSlider_markerSkymap">
-               <property name="toolTip">
-                <string>adjust marker size</string>
-               </property>
-               <property name="statusTip">
-                <string>adjust marker size</string>
-               </property>
-               <property name="minimum">
-                <number>10</number>
-               </property>
-               <property name="maximum">
-                <number>50</number>
-               </property>
-               <property name="value">
-                <number>25</number>
-               </property>
+              <widget class="QSplitter" name="splitter_b_2">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
+               <widget class="QWidget" name="layoutWidget_2">
+                <layout class="QVBoxLayout" name="verticalLayout_48">
+                 <item>
+                  <widget class="QLabel" name="label_satelliteList_selected">
+                   <property name="text">
+                    <string>selected (click to deselect source)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTreeView" name="treeView_allSelectedSatellites">
+                   <property name="mouseTracking">
+                    <bool>true</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="alternatingRowColors">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_94">
+                   <item>
+                    <spacer name="horizontalSpacer_60">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_saveSatelliteList">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="toolTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="text">
+                      <string> save</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_loadSatelliteList">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="toolTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="text">
+                      <string> load</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
               </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_showEcliptic">
-               <property name="toolTip">
-                <string>show ecliptic</string>
-               </property>
-               <property name="statusTip">
-                <string>show ecliptic</string>
-               </property>
-               <property name="text">
-                <string>show ecliptic</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_10">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>340</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>spacecraft</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_35">
+            <item>
+             <widget class="QSplitter" name="splitter_10">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <widget class="QWidget" name="layoutWidget_13">
+               <layout class="QVBoxLayout" name="verticalLayout_49">
+                <item>
+                 <widget class="QLabel" name="label_121">
+                  <property name="text">
+                   <string>available (click to add source)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTreeView" name="treeView_allAvailabeSpacecrafts">
+                  <property name="mouseTracking">
+                   <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>list of all available sources - click to select sources</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;List of all &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;available sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; found in the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sked catalogs&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Click&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; an item to put it to the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;list of selected sources&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_98">
+                  <item>
+                   <widget class="QLabel" name="label_122">
+                    <property name="text">
+                     <string>Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_allSpacecraftFilter">
+                    <property name="toolTip">
+                     <string>filter sources by name</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>filter sources by name</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </widget>
-             </item>
-             <item>
-              <spacer name="verticalSpacer_15">
+              <widget class="QSplitter" name="splitter_b_3">
                <property name="orientation">
-                <enum>Qt::Vertical</enum>
+                <enum>Qt::Horizontal</enum>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
+               <widget class="QWidget" name="layoutWidget_3">
+                <layout class="QVBoxLayout" name="verticalLayout_72">
+                 <item>
+                  <widget class="QLabel" name="label_spacecraftList_selected">
+                   <property name="text">
+                    <string>selected (click to deselect source)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTreeView" name="treeView_allSelectedSpacecrafts">
+                   <property name="mouseTracking">
+                    <bool>true</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>list of all selected sources - click to deselect source</string>
+                   </property>
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="alternatingRowColors">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_106">
+                   <item>
+                    <spacer name="horizontalSpacer_63">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_saveSpacecraftList">
+                     <property name="toolTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>save source list</string>
+                     </property>
+                     <property name="text">
+                      <string> save</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_loadSpacecraftList">
+                     <property name="toolTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>load source list</string>
+                     </property>
+                     <property name="text">
+                      <string> load</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_24">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>373</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -4543,6 +4976,16 @@ If you only want to run simulations you can deselect this to avoid error message
            <layout class="QVBoxLayout" name="verticalLayout_30">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_satelliteSetupWidget"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_15">
+           <attribute name="title">
+            <string>spacecraft setup</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_36">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_spacecraftSetupWidget"/>
             </item>
            </layout>
           </widget>
@@ -6221,15 +6664,15 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>917</width>
-             <height>627</height>
+             <width>946</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <property name="whatsThis">
@@ -11236,7 +11679,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>horizontalSlider_markerSizeWorldmap</tabstop>
   <tabstop>checkBox_showBaselines</tabstop>
   <tabstop>treeView_allAvailabeSources</tabstop>
-  <tabstop>lineEdit_allStationsFilter_3</tabstop>
+  <tabstop>lineEdit_allSourceFilter</tabstop>
   <tabstop>treeView_allSelectedSources</tabstop>
   <tabstop>pushButton_13</tabstop>
   <tabstop>pushButton_15</tabstop>
@@ -11353,12 +11796,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>159</y>
+     <x>369</x>
+     <y>558</y>
     </hint>
     <hint type="destinationlabel">
-     <x>59</x>
-     <y>159</y>
+     <x>580</x>
+     <y>561</y>
     </hint>
    </hints>
   </connection>
@@ -11369,12 +11812,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
+     <x>41</x>
+     <y>274</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>86</y>
+     <x>298</x>
+     <y>276</y>
     </hint>
    </hints>
   </connection>
@@ -11385,12 +11828,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>90</y>
+     <x>298</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>
@@ -11401,12 +11844,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>92</y>
+     <x>298</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -11417,12 +11860,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>99</y>
+     <x>63</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>54</x>
-     <y>99</y>
+     <x>231</x>
+     <y>344</y>
     </hint>
    </hints>
   </connection>
@@ -11433,12 +11876,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>83</y>
+     <x>41</x>
+     <y>169</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>83</y>
+     <x>298</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -11465,12 +11908,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>181</y>
+     <x>111</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel">
-     <x>61</x>
-     <y>181</y>
+     <x>252</x>
+     <y>590</y>
     </hint>
    </hints>
   </connection>
@@ -11481,12 +11924,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>54</x>
-     <y>121</y>
+     <x>705</x>
+     <y>560</y>
     </hint>
     <hint type="destinationlabel">
-     <x>63</x>
-     <y>146</y>
+     <x>718</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -11497,12 +11940,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
+     <x>41</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>84</y>
+     <x>298</x>
+     <y>203</y>
     </hint>
    </hints>
   </connection>
@@ -11513,12 +11956,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
-     <y>372</y>
+     <x>54</x>
+     <y>118</y>
     </hint>
    </hints>
   </connection>
@@ -11529,12 +11972,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>92</y>
+     <x>41</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -11545,12 +11988,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>82</y>
+     <x>41</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>82</y>
+     <x>416</x>
+     <y>138</y>
     </hint>
    </hints>
   </connection>
@@ -11561,12 +12004,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>91</y>
+     <x>416</x>
+     <y>476</y>
     </hint>
    </hints>
   </connection>
@@ -11577,12 +12020,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>91</y>
+     <x>298</x>
+     <y>477</y>
     </hint>
    </hints>
   </connection>
@@ -11609,12 +12052,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>83</y>
+     <x>41</x>
+     <y>169</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>83</y>
+     <x>416</x>
+     <y>170</y>
     </hint>
    </hints>
   </connection>
@@ -11625,12 +12068,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>87</x>
-     <y>115</y>
+     <x>585</x>
+     <y>332</y>
     </hint>
     <hint type="destinationlabel">
-     <x>194</x>
-     <y>117</y>
+     <x>266</x>
+     <y>244</y>
     </hint>
    </hints>
   </connection>
@@ -11641,12 +12084,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>51</x>
-     <y>104</y>
+     <x>83</x>
+     <y>225</y>
     </hint>
     <hint type="destinationlabel">
-     <x>80</x>
-     <y>103</y>
+     <x>414</x>
+     <y>279</y>
     </hint>
    </hints>
   </connection>
@@ -11657,12 +12100,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>81</y>
+     <x>41</x>
+     <y>105</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>81</y>
+     <x>416</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>
@@ -11689,12 +12132,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>90</y>
+     <x>41</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>
@@ -11705,12 +12148,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>156</y>
+     <x>369</x>
+     <y>526</y>
     </hint>
     <hint type="destinationlabel">
-     <x>59</x>
-     <y>156</y>
+     <x>580</x>
+     <y>529</y>
     </hint>
    </hints>
   </connection>
@@ -11721,12 +12164,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>122</x>
-     <y>104</y>
+     <x>47</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
-     <x>930</x>
-     <y>103</y>
+     <x>81</x>
+     <y>80</y>
     </hint>
    </hints>
   </connection>
@@ -11753,12 +12196,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>89</y>
+     <x>298</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>
@@ -11769,12 +12212,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>509</y>
     </hint>
    </hints>
   </connection>
@@ -11785,12 +12228,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
+     <x>41</x>
+     <y>274</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>86</y>
+     <x>416</x>
+     <y>275</y>
     </hint>
    </hints>
   </connection>
@@ -11801,12 +12244,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>177</y>
+     <x>111</x>
+     <y>555</y>
     </hint>
     <hint type="destinationlabel">
-     <x>61</x>
-     <y>177</y>
+     <x>252</x>
+     <y>558</y>
     </hint>
    </hints>
   </connection>
@@ -11833,12 +12276,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
+     <x>41</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>86</y>
+     <x>298</x>
+     <y>308</y>
     </hint>
    </hints>
   </connection>
@@ -11849,12 +12292,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>154</y>
+     <x>711</x>
+     <y>494</y>
     </hint>
     <hint type="destinationlabel">
-     <x>65</x>
-     <y>146</y>
+     <x>790</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -11865,12 +12308,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>81</y>
+     <x>41</x>
+     <y>105</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>81</y>
+     <x>298</x>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
@@ -11897,12 +12340,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>91</y>
+     <x>41</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>91</y>
+     <x>298</x>
+     <y>509</y>
     </hint>
    </hints>
   </connection>
@@ -11913,12 +12356,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>86</y>
+     <x>41</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>86</y>
+     <x>416</x>
+     <y>307</y>
     </hint>
    </hints>
   </connection>
@@ -11929,12 +12372,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>89</y>
+     <x>416</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>
@@ -11945,12 +12388,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
+     <x>41</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>84</y>
+     <x>41</x>
+     <y>235</y>
     </hint>
    </hints>
   </connection>
@@ -11961,12 +12404,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>82</y>
+     <x>41</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>82</y>
+     <x>298</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -11977,12 +12420,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>87</y>
+     <x>41</x>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>87</y>
+     <x>416</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -11993,12 +12436,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
+     <x>41</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>31</x>
-     <y>84</y>
+     <x>416</x>
+     <y>202</y>
     </hint>
    </hints>
   </connection>
@@ -12009,12 +12452,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>84</y>
+     <x>41</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>84</y>
+     <x>298</x>
+     <y>235</y>
     </hint>
    </hints>
   </connection>
@@ -12025,12 +12468,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>87</y>
+     <x>41</x>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>87</y>
+     <x>298</x>
+     <y>340</y>
     </hint>
    </hints>
   </connection>
@@ -12041,12 +12484,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>
@@ -12057,12 +12500,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>89</y>
+     <x>41</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
-     <x>26</x>
-     <y>89</y>
+     <x>298</x>
+     <y>381</y>
     </hint>
    </hints>
   </connection>
@@ -12073,12 +12516,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setSelectedDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>194</x>
-     <y>117</y>
+     <x>266</x>
+     <y>244</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>115</y>
+     <x>585</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -12105,12 +12548,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
-     <y>404</y>
+     <x>54</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -12121,12 +12564,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>154</y>
+     <x>711</x>
+     <y>494</y>
     </hint>
     <hint type="destinationlabel">
-     <x>67</x>
-     <y>146</y>
+     <x>844</x>
+     <y>526</y>
     </hint>
    </hints>
   </connection>
@@ -12137,12 +12580,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>369</y>
+     <x>31</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>63</x>
-     <y>404</y>
+     <x>31</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>

@@ -6,15 +6,23 @@ setupWidget::setupWidget(Type type,
                          QTableWidget *tableWidget_ModesPolicy,
                          QStandardItemModel *allStationModel,
                          QStandardItemModel *allSourceModel,
+                         QStandardItemModel *allSatelliteModel,
+                         QStandardItemModel *allSpacecraftModel,
                          QStandardItemModel *selectedStationModel,
                          QStandardItemModel *selectedSourceModel,
                          QStandardItemModel *selectedBaselineModel,
+                         QStandardItemModel *selectedSatelliteModel,
+                         QStandardItemModel *selectedSpacecraftModel,
                          QStandardItemModel *allSourcePlusGroupModel,
                          QStandardItemModel *allStationPlusGroupModel,
                          QStandardItemModel *allBaselinePlusGroupModel,
+                         QStandardItemModel *allSatellitePlusGroupModel,
+                         QStandardItemModel *allSpacecraftPlusGroupModel,
                          std::map<std::string, std::vector<std::string>> *groupSta,
                          std::map<std::string, std::vector<std::string>> *groupSrc,
                          std::map<std::string, std::vector<std::string>> *groupBl,
+                         std::map<std::string, std::vector<std::string>> *groupSat,
+                         std::map<std::string, std::vector<std::string>> *groupSpace,
                          QWidget *parent) :
     QWidget(parent),
     type{type},
@@ -22,15 +30,23 @@ setupWidget::setupWidget(Type type,
     tableWidget_ModesPolicy{tableWidget_ModesPolicy},
     allStationModel{allStationModel},
     allSourceModel{allSourceModel},
+    allSatelliteModel{allSatelliteModel},
+    allSpacecraftModel{allSpacecraftModel},
     selectedStationModel{selectedStationModel},
     selectedSourceModel{selectedSourceModel},
     selectedBaselineModel{selectedBaselineModel},
+    selectedSatelliteModel{selectedSatelliteModel},
+    selectedSpacecraftModel{selectedSpacecraftModel},
     allSourcePlusGroupModel{allSourcePlusGroupModel},
     allStationPlusGroupModel{allStationPlusGroupModel},
     allBaselinePlusGroupModel{allBaselinePlusGroupModel},
+    allSatellitePlusGroupModel{allSatellitePlusGroupModel},
+    allSpacecraftPlusGroupModel{allSpacecraftPlusGroupModel},
     groupSta{groupSta},
     groupSrc{groupSrc},
     groupBl{groupBl},
+    groupSat{groupSat},
+    groupSpace{groupSpace},
     ui(new Ui::setupWidget)
 {
     ui->setupUi(this);
@@ -73,11 +89,29 @@ setupWidget::setupWidget(Type type,
         break;
     }
     case Type::satellite:{
-        icon_single = QIcon(":/icons/icons/source.png");
-        icon_group = QIcon(":/icons/icons/source_group.png");
-        icon_add_group = QIcon(":/icons/icons/source_group_plus.png");
+        icon_single = QIcon(":/icons/icons/satellite.png");
+        icon_group = QIcon(":/icons/icons/satellite.png");
+        icon_add_group = QIcon(":/icons/icons/satellite.png");
         ui->pushButton_IvsDownTime->setVisible(false);
         ui->pushButton_parseDownTime->setVisible(false);
+        selectedModel = selectedSatelliteModel;
+        allPlusGroupModel = allSatellitePlusGroupModel;
+        allModel = allSatelliteModel;
+        groups = groupSat;
+
+        break;
+    }
+    case Type::spacecraft:{
+        icon_single = QIcon(":/icons/icons/spacecraft.png");
+        icon_group = QIcon(":/icons/icons/spacecraft.png");
+        icon_add_group = QIcon(":/icons/icons/spacecraft.png");
+        ui->pushButton_IvsDownTime->setVisible(false);
+        ui->pushButton_parseDownTime->setVisible(false);
+        selectedModel = selectedSpacecraftModel;
+        allPlusGroupModel = allSpacecraftPlusGroupModel;
+        allModel = allSpacecraftModel;
+        groups = groupSpace;
+
         break;
     }
     }
@@ -256,6 +290,10 @@ bool setupWidget::eventFilter(QObject *watched, QEvent *event)
                 break;
             }
             case Type::satellite: {
+                displaySourceSetupParameter(name);
+                break;
+            }
+            case Type::spacecraft: {
                 displaySourceSetupParameter(name);
                 break;
             }
@@ -858,6 +896,32 @@ void setupWidget::on_pushButton_editParameter_clicked()
 
         break;
     }
+    case Type::spacecraft:{
+        sourceParametersDialog *dial = new sourceParametersDialog(settings,this);
+        QStringList bands;
+        for(int i = 0; i<tableWidget_ModesPolicy->rowCount(); ++i){
+            bands << tableWidget_ModesPolicy->verticalHeaderItem(i)->text();
+        }
+        dial->addBandNames(bands);
+
+        dial->addStationModel(allStationPlusGroupModel);
+        dial->addBaselineModel(allBaselinePlusGroupModel);
+        dial->addDefaultParameters(paraSrc["default"]);
+        dial->addSelectedParameters(paraSrc[ui->ComboBox_parameters->currentText().toStdString()],ui->ComboBox_parameters->currentText());
+
+        int result = dial->exec();
+        if(result == QDialog::Accepted){
+            std::pair<std::string, VieVS::ParameterSettings::ParametersSources> res = dial->getParameters();
+            std::string name = res.first;
+            VieVS::ParameterSettings::ParametersSources parameter = res.second;
+
+            paraSrc[name] = parameter;
+
+        }
+        delete(dial);
+
+        break;
+    }
     }
 
 
@@ -938,6 +1002,29 @@ void setupWidget::on_pushButton_addParameter_clicked()
         break;
     }
     case Type::satellite:{
+        sourceParametersDialog *dial = new sourceParametersDialog(settings,this);
+        dial->addBandNames(bands);
+
+        dial->addStationModel(allStationPlusGroupModel);
+        dial->addBaselineModel(allBaselinePlusGroupModel);
+        dial->addDefaultParameters(paraSrc["default"]);
+
+        int result = dial->exec();
+        if(result == QDialog::Accepted){
+            std::pair<std::string, VieVS::ParameterSettings::ParametersSources> res = dial->getParameters();
+            std::string name = res.first;
+            VieVS::ParameterSettings::ParametersSources parameter = res.second;
+
+            paraSrc[name] = parameter;
+
+            ui->ComboBox_parameters->addItem(QString::fromStdString(name));
+            ui->ComboBox_parameters->setCurrentIndex(ui->ComboBox_parameters->count()-1);
+        }
+        delete(dial);
+
+        break;
+    }
+    case Type::spacecraft:{
         sourceParametersDialog *dial = new sourceParametersDialog(settings,this);
         dial->addBandNames(bands);
 
@@ -1157,6 +1244,14 @@ void setupWidget::displaySetupParameterFromPlot(QPointF point, bool flag){
         displayBaselineSetupParameter(name);
         break;
     }
+    case Type::satellite:{
+        displaySourceSetupParameter(name);
+        break;
+    }
+    case Type::spacecraft:{
+        displaySourceSetupParameter(name);
+        break;
+    }
     }
 
     if(flag){
@@ -1332,6 +1427,10 @@ void setupWidget::on_treeWidget_setup_itemEntered(QTreeWidgetItem *item, int col
             displaySourceSetupParameter(item->text(column));
             break;
         }
+        case Type::spacecraft: {
+            displaySourceSetupParameter(item->text(column));
+            break;
+        }
         }
     }
 }
@@ -1487,6 +1586,10 @@ void setupWidget::on_ComboBox_parameters_currentTextChanged(const QString &arg1)
         break;
     }
     case Type::satellite: {
+        displaySourceSetupParameter(arg1);
+        break;
+    }
+    case Type::spacecraft: {
         displaySourceSetupParameter(arg1);
         break;
     }
