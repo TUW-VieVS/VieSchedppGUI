@@ -504,6 +504,14 @@ private slots:
 
     void on_pushButton_browseSatellite_clicked();
 
+    void on_treeView_allAvailabeSatellites_clicked(const QModelIndex &index);
+
+    void on_treeView_allAvailabeSpacecrafts_clicked(const QModelIndex &index);
+
+    void on_treeView_allSelectedSatellites_clicked(const QModelIndex &index);
+
+    void on_treeView_allSelectedSpacecrafts_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -579,6 +587,10 @@ private:
     void readStations();
 
     void readSources();
+
+    void readSatellites();
+
+    void readSpacecraft();
 
     void readAllSkedObsModes();
 

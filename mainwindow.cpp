@@ -292,11 +292,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // ----------------------
 
-    allSatelliteModel = new QStandardItemModel(0,1,this);
+    allSatelliteModel = new QStandardItemModel(0,3,this);
     allSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+    allSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("line 1"));
+    allSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("line 2"));
 
-    selectedSatelliteModel = new QStandardItemModel(0,1,this);
+    selectedSatelliteModel = new QStandardItemModel(0,3,this);
     selectedSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
+    selectedSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("line 1"));
+    selectedSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("line 2"));
 
     allSatelliteProxyModel = new MultiColumnSortFilterProxyModel(this);
     allSatelliteProxyModel->setSourceModel(allSatelliteModel);
@@ -2931,6 +2935,8 @@ void MainWindow::on_pushButton_reloadsources_clicked()
     selectedSources->clear();
 
     readSources();
+    readSatellites();
+    readSpacecraft();
 
     QString warnings;
 //    if(ui->treeWidget_setupSource->topLevelItem(0)->child(0)->childCount() != 0){
@@ -4308,6 +4314,66 @@ void MainWindow::readSources()
     plotSkyMap();
 }
 
+void MainWindow::readSatellites()
+{
+    satelliteSetupWidget->blockSignal(true);
+    QString pathToTle = ui->lineEdit_pathSatellite->text();
+    if(pathToTle.isEmpty()){
+        return;
+    }
+    QFile sourceFile(pathToTle);
+    if (sourceFile.open(QIODevice::ReadOnly)){
+        QTextStream in(&sourceFile);
+        QString header;
+        QString line1;
+        QString line2;
+        int flag = 0;
+        while (!in.atEnd()){
+            QString line = in.readLine();
+            line = line.simplified();
+            if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
+                continue;
+            }
+            switch ( flag ) {
+                case 0: {
+                    header = line;
+                    ++flag;
+                    break;
+                }
+                case 1: {
+                    line1 = line;
+                    ++flag;
+                    break;
+                }
+                case 2: {
+                    line2 = line;
+                    ++flag;
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+            if ( flag == 3 ) {
+                flag = 0;
+                allSatelliteModel->insertRow(allSatelliteModel->rowCount());
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1,0), header);
+                allSatelliteModel->item(allSatelliteModel->rowCount()-1,0)->setIcon(QIcon(":/icons/icons/satellite.png"));
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, 1), line1);
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, 2), line2);
+            }
+        }
+    }
+    satelliteSetupWidget->blockSignal(false);
+}
+
+void MainWindow::readSpacecraft()
+{
+    spacecraftSetupWidget->blockSignal(true);
+
+    spacecraftSetupWidget->blockSignal(false);
+}
+
 void MainWindow::on_treeView_allSelectedSources_clicked(const QModelIndex &index)
 {
     QString name = selectedSourceModel->item(index.row())->text();
@@ -4366,6 +4432,31 @@ void MainWindow::on_treeView_allSelectedSources_clicked(const QModelIndex &index
     ms->clear();
 }
 
+
+void MainWindow::on_treeView_allSelectedSatellites_clicked(const QModelIndex &index)
+{
+    QString name = selectedSatelliteModel->item(index.row())->text();
+    selectedSatelliteModel->removeRow(index.row());
+    for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
+        if (allSatellitePlusGroupModel->index(i,0).data().toString() == name) {
+            allSatellitePlusGroupModel->removeRow(i);
+            break;
+        }
+    }
+}
+
+void MainWindow::on_treeView_allSelectedSpacecrafts_clicked(const QModelIndex &index)
+{
+    QString name = selectedSpacecraftModel->item(index.row())->text();
+    selectedSpacecraftModel->removeRow(index.row());
+    for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
+        if (allSpacecraftPlusGroupModel->index(i,0).data().toString() == name) {
+            allSpacecraftPlusGroupModel->removeRow(i);
+            break;
+        }
+    }
+}
+
 void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index)
 {
     int row = index.row();
@@ -4414,6 +4505,80 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
     ui->lineEdit_allSourceFilter->setFocus();
     ui->lineEdit_allSourceFilter->selectAll();
 }
+
+void MainWindow::on_treeView_allAvailabeSatellites_clicked(const QModelIndex &index)
+{
+    int row = index.row();
+    QString name = allSatelliteProxyModel->index(row,0).data().toString();
+
+    if(selectedSatelliteModel->findItems(name).isEmpty()){
+
+        selectedSatelliteModel->insertRow(0);
+
+        int nrow = allSatelliteModel->findItems(name).at(0)->row();
+        for(int i=0; i<allSatelliteModel->columnCount(); ++i){
+            selectedSatelliteModel->setItem(0, i, allSatelliteModel->item(nrow,i)->clone() );
+        }
+
+        selectedSatelliteModel->sort(0);
+
+        int r = 0;
+        for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
+            QString txt = allSatellitePlusGroupModel->item(i)->text();
+            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+                ++r;
+                continue;
+            }
+            if(txt>name){
+                break;
+            }else{
+                ++r;
+            }
+        }
+
+        allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite.png"),name));
+    }
+    ui->lineEdit_allSatelliteFilter->setFocus();
+    ui->lineEdit_allSatelliteFilter->selectAll();
+}
+
+
+void MainWindow::on_treeView_allAvailabeSpacecrafts_clicked(const QModelIndex &index)
+{
+    int row = index.row();
+    QString name = allSpacecraftProxyModel->index(row,0).data().toString();
+
+    if(selectedSpacecraftModel->findItems(name).isEmpty()){
+
+        selectedSpacecraftModel->insertRow(0);
+
+        int nrow = allSpacecraftModel->findItems(name).at(0)->row();
+        for(int i=0; i<allSpacecraftModel->columnCount(); ++i){
+            selectedSpacecraftModel->setItem(0, i, allSpacecraftModel->item(nrow,i)->clone() );
+        }
+
+        selectedSpacecraftModel->sort(0);
+
+        int r = 0;
+        for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
+            QString txt = allSpacecraftPlusGroupModel->item(i)->text();
+            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+                ++r;
+                continue;
+            }
+            if(txt>name){
+                break;
+            }else{
+                ++r;
+            }
+        }
+
+        allSpacecraftPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),name));
+    }
+    ui->lineEdit_allSpacecraftFilter->setFocus();
+    ui->lineEdit_allSpacecraftFilter->selectAll();
+}
+
 
 //void MainWindow::on_lineEdit_allStationsFilter_3_textChanged(const QString &arg1)
 //{
@@ -6217,6 +6382,7 @@ void MainWindow::updateWeightFactorValue()
 
     dsb->setValue(newVal);
 }
+
 
 
 

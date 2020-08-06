@@ -1626,6 +1626,12 @@ void MainWindow::readSettings()
     auto cSource = settings_.get<std::string>("settings.catalog_path.source","./AUTO_DOWNLOAD_CATALOGS/source.cat.geodetic.good");
     f(ui->lineEdit_pathSource, cSource);
 
+    auto cSatellite = settings_.get<std::string>("settings.catalog_path.satellite","");
+    f(ui->lineEdit_pathSatellite, cSatellite);
+
+    auto cSpacecraft = settings_.get<std::string>("settings.catalog_path.spacecraft","");
+    f(ui->lineEdit_pathSpacecraft, cSpacecraft);
+
     auto cFlux = settings_.get<std::string>("settings.catalog_path.flux","./AUTO_DOWNLOAD_CATALOGS/flux.cat");
     f(ui->lineEdit_pathFlux, cFlux);
 
@@ -1802,6 +1808,8 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
     settings_.put("settings.catalog_path.position",ui->lineEdit_pathPosition->text().toStdString());
     settings_.put("settings.catalog_path.mask",ui->lineEdit_pathMask->text().toStdString());
     settings_.put("settings.catalog_path.source",ui->lineEdit_pathSource->text().toStdString());
+    settings_.put("settings.catalog_path.satellite",ui->lineEdit_pathSatellite->text().toStdString());
+    settings_.put("settings.catalog_path.spacecraft",ui->lineEdit_pathSpacecraft->text().toStdString());
     settings_.put("settings.catalog_path.flux",ui->lineEdit_pathFlux->text().toStdString());
     settings_.put("settings.catalog_path.modes",ui->lineEdit_pathModes->text().toStdString());
     settings_.put("settings.catalog_path.freq",ui->lineEdit_pathFreq->text().toStdString());
