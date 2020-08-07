@@ -1169,7 +1169,7 @@ void MainWindow::loadXML(QString path)
             }else if(any.first == "minNumberOfSourcesToReduce"){
                 ui->spinBox_minNumberOfReducedSources->setValue(any.second.get_value<unsigned int>());
             }else if(any.first == "percentageGentleSourceReduction"){
-                ui->spinBox_gentleSourceReduction->setValue(any.second.get_value<double>());
+                ui->doubleSpinBox_gentleSourceReductionPercentage->setValue(any.second.get_value<double>());
             }else if(any.first == "condition"){
                 std::string member = any.second.get<std::string>("members");
                 auto scans = any.second.get<unsigned int>("minScans");
