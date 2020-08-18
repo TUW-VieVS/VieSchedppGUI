@@ -115,6 +115,11 @@ QString MainWindow::writeXML()
     for(int i=0; i<selectedSourceModel->rowCount(); ++i){
         srcNames.push_back(selectedSourceModel->item(i)->text().toStdString());
     }
+    std::vector<std::string> satellite_names;
+    for(int i=0; i<selectedSatelliteModel->rowCount(); ++i){
+        satellite_names.push_back(selectedSatelliteModel->item(i)->text().toStdString());
+    }
+    std::vector<std::string> spacecraft_names;
 
     int selSrc = selectedSourceModel->rowCount();
     int allSrc = allSourceModel->rowCount();
@@ -175,12 +180,12 @@ QString MainWindow::writeXML()
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     srcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
+                     srcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     ignoreSrcNames, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
+                     ignoreSrcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
     }
 
 
@@ -241,8 +246,9 @@ QString MainWindow::writeXML()
     std::string rx = ui->lineEdit_pathRx->text().toStdString();
     std::string source = ui->lineEdit_pathSource->text().toStdString();
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
+    std::string satellites = ui->lineEdit_pathSatellite->text().toStdString();
 
-    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks);
+    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites);
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
@@ -265,6 +271,25 @@ QString MainWindow::writeXML()
     }
     for(const auto&any : *groupBl){
         para.group(VieVS::ParameterSettings::Type::baseline,VieVS::ParameterGroup(any.first,any.second));
+    }
+
+    if(!satellite_names.empty()){
+        para.setup(VieVS::ParameterSettings::Type::satellite, satelliteSetupWidget->getSetup());
+        for(const auto&any: satelliteSetupWidget->getSourceParameters()){
+            para.parameters(any.first, any.second, VieVS::ParameterSettings::Type::satellite);
+        }
+        for(const auto&any : *groupSat){
+            para.group(VieVS::ParameterSettings::Type::source, VieVS::ParameterGroup(any.first,any.second));
+        }
+    }
+    if(!spacecraft_names.empty()){
+        para.setup(VieVS::ParameterSettings::Type::spacecraft, spacecraftSetupWidget->getSetup());
+        for(const auto&any: spacecraftSetupWidget->getSourceParameters()){
+            para.parameters(any.first, any.second, VieVS::ParameterSettings::Type::spacecraft);
+        }
+        for(const auto&any : *groupSpace){
+            para.group(VieVS::ParameterSettings::Type::spacecraft, VieVS::ParameterGroup(any.first,any.second));
+        }
     }
 
     for(int i=0; i<ui->treeWidget_setupStationAxis->topLevelItemCount(); ++i){
