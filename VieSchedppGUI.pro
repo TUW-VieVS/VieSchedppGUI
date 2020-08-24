@@ -198,6 +198,12 @@ SOURCES += \
     secondaryGUIs/skedcataloginfo.cpp \
     secondaryGUIs/textfileviewer.cpp \
     secondaryGUIs/vieschedpp_analyser.cpp \
+    SatelliteGUI/SatelliteForGUI.cpp \
+    SatelliteGUI/SatelliteMain.cpp \
+    SatelliteGUI/SatelliteObs.cpp \
+    SatelliteGUI/SatelliteOutput.cpp \
+    SatelliteGUI/satellitescheduling.cpp \
+    SatelliteGUI/setTimes.cpp \
     Utility/callout.cpp \
     Utility/chartview.cpp \
     Utility/multicolumnsortfilterproxymodel.cpp \
@@ -319,6 +325,12 @@ HEADERS += \
     secondaryGUIs/skedcataloginfo.h \
     secondaryGUIs/textfileviewer.h \
     secondaryGUIs/vieschedpp_analyser.h \
+    SatelliteGUI/SatelliteForGUI.h \
+    SatelliteGUI/SatelliteMain.h \
+    SatelliteGUI/SatelliteObs.h \
+    SatelliteGUI/SatelliteOutput.h \
+    SatelliteGUI/satellitescheduling.h \
+    SatelliteGUI/setTimes.h \
     Utility/callout.h \
     Utility/chartview.h \
     Utility/multicolumnsortfilterproxymodel.h \
@@ -351,7 +363,9 @@ FORMS += \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
     secondaryGUIs/vieschedpp_analyser.ui \
-    secondaryGUIs/rendersetup.ui
+    secondaryGUIs/rendersetup.ui \
+    SatelliteGUI/satellitescheduling.ui \
+    SatelliteGUI/setTimes.ui
 
 RESOURCES += \
         myresources.qrc

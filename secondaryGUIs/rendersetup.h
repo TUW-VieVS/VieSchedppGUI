@@ -33,6 +33,8 @@ public:
 
     void setDefaultFormat(int w, int h);
 
+    void timeseriesUncheckable();
+
 private slots:
 
     void on_checkBox_fixRatio_toggled(bool checked);

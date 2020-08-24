@@ -79,6 +79,11 @@ void RenderSetup::setDefaultFormat(int w, int h)
     ui->checkBox_fixRatio->setCheckState(status);
 }
 
+void RenderSetup::timeseriesUncheckable()
+{
+    ui->groupBox_timeSeries->setEnabled(false);
+}
+
 void RenderSetup::on_checkBox_fixRatio_toggled(bool checked)
 {
     if(checked){

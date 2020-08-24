@@ -1198,7 +1198,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>263</width>
              <height>714</height>
             </rect>
            </property>
@@ -3935,7 +3935,7 @@ If you only want to run simulations you can deselect this to avoid error message
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -7584,6 +7584,97 @@ p, li { white-space: pre-wrap; }
                    <size>
                     <width>447</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_16">
+               <attribute name="icon">
+                <iconset resource="myresources.qrc">
+                 <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+               </attribute>
+               <attribute name="title">
+                <string>a priori scans</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_39">
+                <item>
+                 <widget class="QGroupBox" name="groupBox_6">
+                  <property name="title">
+                   <string>select a priori scans</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_38">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_10">
+                     <item>
+                      <widget class="QLabel" name="label_14">
+                       <property name="text">
+                        <string>satellite scans</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_3">
+                       <property name="text">
+                        <string>start satellite scan selection</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="myresources.qrc">
+                         <normaloff>:/icons/icons/satellite.png</normaloff>:/icons/icons/satellite.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_17">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_16">
+                       <property name="text">
+                        <string>number of selected scans:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QSpinBox" name="spinBox">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                       <property name="buttonSymbols">
+                        <enum>QAbstractSpinBox::NoButtons</enum>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_25">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
                    </size>
                   </property>
                  </spacer>
@@ -11780,12 +11871,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
-     <y>130</y>
+     <x>110</x>
+     <y>182</y>
     </hint>
     <hint type="destinationlabel">
-     <x>106</x>
-     <y>126</y>
+     <x>138</x>
+     <y>298</y>
     </hint>
    </hints>
   </connection>
@@ -11796,12 +11887,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>558</y>
+     <x>53</x>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
-     <x>580</x>
-     <y>561</y>
+     <x>59</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
@@ -11892,12 +11983,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>165</y>
+     <x>106</x>
+     <y>246</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>165</y>
+     <x>262</x>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
@@ -11908,12 +11999,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>587</y>
+     <x>55</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>252</x>
-     <y>590</y>
+     <x>61</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
@@ -11924,12 +12015,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>705</x>
-     <y>560</y>
+     <x>54</x>
+     <y>121</y>
     </hint>
     <hint type="destinationlabel">
-     <x>718</x>
-     <y>527</y>
+     <x>63</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -12036,12 +12127,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>157</y>
+     <x>106</x>
+     <y>461</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>157</y>
+     <x>327</x>
+     <y>562</y>
     </hint>
    </hints>
   </connection>
@@ -12068,12 +12159,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>585</x>
-     <y>332</y>
+     <x>87</x>
+     <y>115</y>
     </hint>
     <hint type="destinationlabel">
-     <x>266</x>
-     <y>244</y>
+     <x>194</x>
+     <y>117</y>
     </hint>
    </hints>
   </connection>
@@ -12116,12 +12207,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>374</x>
-     <y>127</y>
+     <x>219</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>656</x>
-     <y>199</y>
+     <x>247</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -12148,12 +12239,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>526</y>
+     <x>53</x>
+     <y>156</y>
     </hint>
     <hint type="destinationlabel">
-     <x>580</x>
-     <y>529</y>
+     <x>59</x>
+     <y>156</y>
     </hint>
    </hints>
   </connection>
@@ -12180,12 +12271,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>161</y>
+     <x>106</x>
+     <y>214</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>161</y>
+     <x>262</x>
+     <y>217</y>
     </hint>
    </hints>
   </connection>
@@ -12244,12 +12335,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>555</y>
+     <x>55</x>
+     <y>177</y>
     </hint>
     <hint type="destinationlabel">
-     <x>252</x>
-     <y>558</y>
+     <x>61</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -12260,12 +12351,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>156</y>
+     <x>106</x>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
-     <x>86</x>
-     <y>157</y>
+     <x>327</x>
+     <y>431</y>
     </hint>
    </hints>
   </connection>
@@ -12292,12 +12383,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>711</x>
-     <y>494</y>
+     <x>63</x>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
-     <x>790</x>
-     <y>527</y>
+     <x>65</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -12324,12 +12415,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>120</y>
+     <x>104</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>99</x>
-     <y>120</y>
+     <x>174</x>
+     <y>408</y>
     </hint>
    </hints>
   </connection>
@@ -12516,12 +12607,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setSelectedDate(QDate)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>266</x>
-     <y>244</y>
+     <x>194</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>585</x>
-     <y>332</y>
+     <x>87</x>
+     <y>115</y>
     </hint>
    </hints>
   </connection>
@@ -12532,12 +12623,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>120</y>
+     <x>104</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>106</x>
-     <y>116</y>
+     <x>138</x>
+     <y>513</y>
     </hint>
    </hints>
   </connection>
@@ -12564,12 +12655,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>711</x>
-     <y>494</y>
+     <x>63</x>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
-     <x>844</x>
-     <y>526</y>
+     <x>67</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>

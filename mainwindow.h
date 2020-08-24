@@ -66,6 +66,7 @@
 #include "secondaryGUIs/addbanddialog.h"
 #include "secondaryGUIs/savetosettingsdialog.h"
 #include "../VieSchedpp/VieSchedpp.h"
+#include "SatelliteGUI/satellitescheduling.h"
 #include "secondaryGUIs/textfileviewer.h"
 #include "secondaryGUIs/vieschedpp_analyser.h"
 #include "../VieSchedpp/Input/SkdParser.h"
@@ -511,6 +512,10 @@ private slots:
     void on_treeView_allSelectedSatellites_clicked(const QModelIndex &index);
 
     void on_treeView_allSelectedSpacecrafts_clicked(const QModelIndex &index);
+
+    void on_groupBox_6_toggled(bool arg1);
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;

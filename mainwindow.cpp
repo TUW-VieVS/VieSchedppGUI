@@ -571,6 +571,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addStations()));
 
     readSources();
+    readSatellites();
     readStations();
 
     createModesPolicyTable();
@@ -4525,7 +4526,7 @@ void MainWindow::on_treeView_allAvailabeSatellites_clicked(const QModelIndex &in
         int r = 0;
         for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
             QString txt = allSatellitePlusGroupModel->item(i)->text();
-            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+            if(groupSat->find(txt.toStdString()) != groupSat->end() || txt == "__all__"){
                 ++r;
                 continue;
             }
@@ -4562,7 +4563,7 @@ void MainWindow::on_treeView_allAvailabeSpacecrafts_clicked(const QModelIndex &i
         int r = 0;
         for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
             QString txt = allSpacecraftPlusGroupModel->item(i)->text();
-            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+            if(groupSpace->find(txt.toStdString()) != groupSpace->end() || txt == "__all__"){
                 ++r;
                 continue;
             }
@@ -5916,8 +5917,6 @@ void MainWindow::on_groupBox_34_toggled(bool arg1)
     }
 }
 
-
-
 void MainWindow::on_groupBox_scanSequence_toggled(bool arg1)
 {
     if(!arg1){
@@ -5927,7 +5926,7 @@ void MainWindow::on_groupBox_scanSequence_toggled(bool arg1)
     }
 }
 
-void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
+void MainWindow::on_groupBox_6_toggled(bool arg1)
 {
     if(!arg1){
         ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/edit-delete-6.png"));
@@ -5936,12 +5935,21 @@ void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
     }
 }
 
-void MainWindow::on_groupBox_highImpactAzEl_toggled(bool arg1)
+void MainWindow::on_groupBox_CalibratorBlock_toggled(bool arg1)
 {
     if(!arg1){
         ui->tabWidget_4->setTabIcon(4,QIcon(":/icons/icons/edit-delete-6.png"));
     }else{
         ui->tabWidget_4->setTabIcon(4,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
+
+void MainWindow::on_groupBox_highImpactAzEl_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(5,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(5,QIcon(":/icons/icons/dialog-ok-2.png"));
     }
 }
 
@@ -6386,5 +6394,31 @@ void MainWindow::updateWeightFactorValue()
 
 
 
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString pathAntenna = ui->lineEdit_pathAntenna->text();
+    QString pathEquip = ui->lineEdit_pathEquip->text();
+    QString pathPosition = ui->lineEdit_pathPosition->text();
+    QString pathMask = ui->lineEdit_pathMask->text();
+    QString pathSat = ui->lineEdit_pathSatellite->text();
 
+    QDateTime startTime = ui->dateTimeEdit_sessionStart->dateTime();
+    double dur = ui->doubleSpinBox_sessionDuration->value();
+    int sec = dur*3600;
+    QDateTime endTime = startTime.addSecs(sec);
 
+    QStringList stations;
+    for(int i=0; i<selectedStationModel->rowCount(); ++i){
+        QString txt = selectedStationModel->index(i,0).data().toString();
+        stations.append(txt);
+    }
+    if (stations.isEmpty()){
+        QMessageBox::information(this,"select stations first","Please select your station network before your start with satellite observations");
+    }else{
+        SatelliteScheduling *sat = new SatelliteScheduling(pathAntenna, pathEquip, pathPosition, pathMask, pathSat,
+                                                           selectedSatelliteModel, allSatelliteModel, allSatellitePlusGroupModel, groupSat,
+                                                           startTime, endTime, stations, &settings_, this);
+        sat->show();
+    }
+
+}
