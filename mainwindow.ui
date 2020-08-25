@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>6</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -6672,7 +6672,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>0</number>
+               <number>3</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <property name="whatsThis">
@@ -7600,9 +7600,9 @@ p, li { white-space: pre-wrap; }
                </attribute>
                <layout class="QVBoxLayout" name="verticalLayout_39">
                 <item>
-                 <widget class="QGroupBox" name="groupBox_6">
+                 <widget class="QGroupBox" name="groupBox_a_priori_satellite_scans">
                   <property name="title">
-                   <string>select a priori scans</string>
+                   <string>select a priori satellite scans</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -7652,7 +7652,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="spinBox">
+                      <widget class="QSpinBox" name="spinBox_a_priori_satellite_scans">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>

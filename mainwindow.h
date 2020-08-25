@@ -587,6 +587,8 @@ private:
     boost::optional<VieVS::Scheduler> parsedSchedule;
     std::map<std::string, std::vector<double>> parsedFreq;
 
+    boost::property_tree::ptree a_priori_satellite_scans;
+
     void readSkedCatalogs();
 
     void readStations();

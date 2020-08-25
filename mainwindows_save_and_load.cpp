@@ -587,6 +587,10 @@ QString MainWindow::writeXML()
         para.priorities(priorities->toXML());
     }
 
+    if(ui->groupBox_a_priori_satellite_scans->isChecked()){
+        para.addAPrioriScans(a_priori_satellite_scans, "a_priori_satellite_scans");
+    }
+
 
     path.append("VieSchedpp.xml");
     para.write(path.toStdString());

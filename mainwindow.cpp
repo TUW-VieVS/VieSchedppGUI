@@ -6419,6 +6419,13 @@ void MainWindow::on_pushButton_3_clicked()
                                                            selectedSatelliteModel, allSatelliteModel, allSatellitePlusGroupModel, groupSat,
                                                            startTime, endTime, stations, &settings_, this);
         sat->show();
-    }
 
+        connect(sat, &SatelliteScheduling::finished, [this, sat](){
+            unsigned long nscans = sat->getNumberOfScans();
+            ui->spinBox_a_priori_satellite_scans->setValue(nscans);
+
+            a_priori_satellite_scans = sat->toPropertyTree();
+            delete sat;
+        });
+    }
 }
