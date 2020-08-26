@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SatelliteScheduling</class>
+ <widget class="QMainWindow" name="SatelliteScheduling">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_13">
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>5</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,3,0">
+        <item>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>Available</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTreeView" name="treeView_available">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Filter:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_availableFilter"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="title">
+            <string>Selected</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QTreeView" name="treeView_selected">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_saveList">
+                <property name="text">
+                 <string> save</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_loadList">
+                <property name="text">
+                 <string> load</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_map">
+          <item>
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>plot options</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QCheckBox" name="checkBox_showTracks">
+               <property name="text">
+                <string>show tracks</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox_showStations">
+               <property name="text">
+                <string>show stations</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="horizontalSlider_adjustTime">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateTimeEdit" name="dateTimeEdit_showTime"/>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QPushButton" name="pushButton_screenshot_worldmap">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_showConstant">
+            <property name="text">
+             <string>show constant times</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_process">
+            <property name="text">
+             <string>process</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/arrow-right-3.png</normaloff>:/icons/icons/arrow-right-3.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>Select template</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QTreeWidget" name="treeWidget_template">
+             <column>
+              <property name="text">
+               <string>satellite</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>start</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>end</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>duration</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>station(s)</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>Adjust</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Scan to satellite</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_adjustSatName">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tableWidget_adjust">
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string/>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>station</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>start</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>end</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>dur</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_numScans">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>scans selected</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_adjustStart">
+            <property name="text">
+             <string>adjust start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_checkAndSave">
+            <property name="text">
+             <string>check and save</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../myresources.qrc">
+              <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QGroupBox" name="groupBox_6">
+            <property name="title">
+             <string>general information</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>session start time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QDateTimeEdit" name="dateTimeEdit_sessionStart">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>session end time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDateTimeEdit" name="dateTimeEdit_sessionEnd">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>list of stations</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QListWidget" name="listWidget_listOfStations"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_8">
+            <property name="title">
+             <string>constant times</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout_2">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>field system</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinBox_fs">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="value">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>preob</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox_preob">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="value">
+                <number>10</number>
+               </property>
+               <property name="displayIntegerBase">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>selected scans</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QTreeWidget" name="treeWidget_listOfSelectedScans">
+             <column>
+              <property name="text">
+               <string>satellite</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>start</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>end</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>duration</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>station(s)</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="spacing">
+              <number>6</number>
+             </property>
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_removeScan">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>Remove</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../myresources.qrc">
+                 <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <layout class="QVBoxLayout" name="verticalLayout_21">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QSplitter" name="splitter_ScanPlots_horizontal">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="QTreeWidget" name="treeWidget_selectedScanPlots">
+             <column>
+              <property name="text">
+               <string>satellite</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>start</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>end</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>duration</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>station(s)</string>
+              </property>
+             </column>
+            </widget>
+            <widget class="QSplitter" name="splitter_ScanPlots_vertical">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QWidget" name="horizontalLayoutWidget">
+              <layout class="QHBoxLayout" name="SkyPlot_Scan"/>
+             </widget>
+             <widget class="QWidget" name="horizontalLayoutWidget_2">
+              <layout class="QHBoxLayout" name="ElevationPlot_Scan"/>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QPushButton" name="pushButton_screenshot_SkyPlotScan">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>37</width>
+                <height>17</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_screenshot_ElevationPlotScan">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../myresources.qrc">
+                <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_20"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_elevation">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <widget class="QSplitter" name="splitter_satelliteElevation">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Satellites</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_screenshot_ElevationPlot">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTreeView" name="treeView_satellites">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_satelliteElevation"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="horizontalLayoutWidget_3">
+           <layout class="QHBoxLayout" name="ElevationPlot"/>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_7">
+       <layout class="QHBoxLayout" name="horizontalLayout_15"/>
+      </widget>
+      <widget class="QWidget" name="page_statistics">
+       <layout class="QVBoxLayout" name="verticalLayout_14">
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="table">
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <attribute name="title">
+            <string>Table</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_18">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_11"/>
+              </item>
+              <item>
+               <widget class="QTreeView" name="treeView_satelliteListStatistics_table">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_satelliteStatistics_table">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="singlePlot">
+           <attribute name="title">
+            <string>Plots</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QSplitter" name="splitter_satelliteStatistics">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <widget class="QWidget" name="layoutWidget">
+               <layout class="QVBoxLayout" name="verticalLayout_satelliteStatistics">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_14">
+                  <item>
+                   <spacer name="horizontalSpacer_10">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_12">
+                    <property name="text">
+                     <string>Satellites</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_12">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_screenshot_BarPlotVisibilitySingle">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../myresources.qrc">
+                      <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QTreeView" name="treeView_satelliteListStatistics">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_satelliteStatistics"/>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="horizontalLayoutWidget_6">
+               <layout class="QHBoxLayout" name="BarPlotVisibilitySingle"/>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="stackedPlot">
+           <attribute name="title">
+            <string>Stacked Plot</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_17">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <spacer name="horizontalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_screenshot_BarPlotVisibilityStacked">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../myresources.qrc">
+                  <normaloff>:/icons/icons/camera.png</normaloff>:/icons/icons/camera.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="BarPlotVisibilityStacked"/>
+            </item>
+            <item>
+             <widget class="QScrollBar" name="horizontalScrollBar_stackedPlot">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSelect">
+    <property name="title">
+     <string>info</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionInfo"/>
+    <addaction name="separator"/>
+    <addaction name="actionStatistic"/>
+   </widget>
+   <addaction name="menuSelect"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSatellite"/>
+   <addaction name="actionScan"/>
+   <addaction name="actionInfo"/>
+   <addaction name="actionSkyPlots"/>
+   <addaction name="actionFinish"/>
+   <addaction name="separator"/>
+   <addaction name="actionElevation"/>
+   <addaction name="actionStatistic"/>
+  </widget>
+  <action name="actionSatellite">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/satellite.png</normaloff>:/icons/icons/satellite.png</iconset>
+   </property>
+   <property name="text">
+    <string>Satellite</string>
+   </property>
+  </action>
+  <action name="actionScan">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/draw-line-2.png</normaloff>:/icons/icons/draw-line-2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scan</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/documentation.png</normaloff>:/icons/icons/documentation.png</iconset>
+   </property>
+   <property name="text">
+    <string>Summary</string>
+   </property>
+  </action>
+  <action name="actionStatistic">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/office-chart-bar.png</normaloff>:/icons/icons/office-chart-bar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Statistic</string>
+   </property>
+   <property name="toolTip">
+    <string>statistic</string>
+   </property>
+  </action>
+  <action name="actionSatellite_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/icons/onlySatellite30.png</normaloff>:/icons/icons/onlySatellite30.png</iconset>
+   </property>
+   <property name="text">
+    <string>Satellite</string>
+   </property>
+  </action>
+  <action name="actionElevation">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/station_white.png</normaloff>:/icons/icons/station_white.png</iconset>
+   </property>
+   <property name="text">
+    <string>elevation</string>
+   </property>
+  </action>
+  <action name="actionSkyPlots">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/sky_coverage.png</normaloff>:/icons/icons/sky_coverage.png</iconset>
+   </property>
+   <property name="text">
+    <string>SkyPlots</string>
+   </property>
+  </action>
+  <action name="actionFinish">
+   <property name="icon">
+    <iconset resource="../myresources.qrc">
+     <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Finish</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../myresources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
