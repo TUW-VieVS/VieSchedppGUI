@@ -30,7 +30,7 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Estimate source coordinates. &lt;/p&gt;&lt;p&gt;Be careful when using this option. It is often not advisable to estimate sources from single sessions. Be especially carful with how to define the datum. Do not add sources into the datum if they have too few observations! &lt;/p&gt;&lt;p&gt;It might be that VieSched++ does remove some sources from the datum. For example: this is the case if you a source is only observed by single-baseline scans. &lt;/p&gt;&lt;p&gt;Simillarly, observations to sources might be removed completely from the estimation process in case there are to few scans or observations. &lt;/p&gt;&lt;p&gt;If you want to estimate sources it is recommended to define a minimum of three stations per scan in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="EOP">
           <property name="toolTip">
@@ -42,6 +42,10 @@
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Earth orientation parameters (&lt;span style=&quot; font-weight:600;&quot;&gt;EOP&lt;/span&gt;) will be estimated using piecewise-linear offsets.&lt;/p&gt;&lt;p&gt;Define EOP estimation interval and constraints. &lt;/p&gt;&lt;p&gt;The default constraints are tight constraints --&amp;gt; EOPs are estimated as one offset over the full session&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date.&lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
+          <attribute name="icon">
+           <iconset resource="../myresources.qrc">
+            <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
+          </attribute>
           <attribute name="title">
            <string>EOP</string>
           </attribute>
@@ -321,6 +325,10 @@
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define estimation parameters for station-based parameters.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PWL&lt;/span&gt; stands for piecewise-linear. &lt;/p&gt;&lt;p&gt;For PWL parameters you have to define their estimation interval and rate. &lt;/p&gt;&lt;p&gt;The default constraints are loose constraints. &lt;/p&gt;&lt;p&gt;The reference clock (&amp;quot;ref clock&amp;quot;) is not estimated.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The interval will always starts counting at 0UT of the session start date. &lt;/p&gt;&lt;p&gt;e.g.: if you session starts at 5am and you set a interval of 2h you will estimate your parameters at 4am, 6am, 8am... &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
+          <attribute name="icon">
+           <iconset resource="../myresources.qrc">
+            <normaloff>:/icons/icons/station_white.png</normaloff>:/icons/icons/station_white.png</iconset>
+          </attribute>
           <attribute name="title">
            <string>Stations</string>
           </attribute>
@@ -612,6 +620,10 @@
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define estimation parameters for source-based parameters.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Source coordinates are only estimated if the minimum number of scans and minimum number of observations is reached. &lt;/p&gt;&lt;p&gt;If they are not reached and the coordinates of the source should be estimated, all observations to this source are instead removed.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Be careful with your datum definition. Sources are only added to the datum if they reach a minimum number of observations. Under certain circumstances, sources are removed from the datum e.g.: if they are only observed by single baseline scans. &lt;/p&gt;&lt;p&gt;If you really want to estimate source coordinates from a single session, consider using a minimum of three stations per scan.&lt;/p&gt;&lt;p&gt;Use the &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;datum: ICRF3 defining&amp;quot;&lt;/span&gt; buttom to only use ICRF3 defining sources for the datum definition. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
+          <attribute name="icon">
+           <iconset resource="../myresources.qrc">
+            <normaloff>:/icons/icons/source.png</normaloff>:/icons/icons/source.png</iconset>
+          </attribute>
           <attribute name="title">
            <string>Sources</string>
           </attribute>
@@ -768,6 +780,217 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="tab">
+          <attribute name="icon">
+           <iconset resource="../myresources.qrc">
+            <normaloff>:/icons/icons/system-run-3.png</normaloff>:/icons/icons/system-run-3.png</iconset>
+          </attribute>
+          <attribute name="title">
+           <string>Preferences</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>solver:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_solver">
+               <item>
+                <property name="text">
+                 <string>complete orthogonal decomposition (default)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Householder QR decomposition</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>robust Cholesky decomposition with pivoting (LDLT)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>LU decomposition with partial pivoting</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>comparison of the different solvers:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tableWidget_solver">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <row>
+              <property name="text">
+               <string>complete orthogonal decomposition (default)</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>Householder QR decomposition</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>robust Cholesky decomposition with pivoting (LDLT)</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>LU decomposition with partial pivoting</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>speed(small - medium)</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>speed (large)</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>accuracy</string>
+              </property>
+             </column>
+             <item row="0" column="0">
+              <property name="text">
+               <string>+</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="0" column="1">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="0" column="2">
+              <property name="text">
+               <string>+++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="1" column="0">
+              <property name="text">
+               <string>++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="1" column="1">
+              <property name="text">
+               <string>++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="1" column="2">
+              <property name="text">
+               <string>+</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="2" column="0">
+              <property name="text">
+               <string>+++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="2" column="1">
+              <property name="text">
+               <string>+</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="2" column="2">
+              <property name="text">
+               <string>++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="3" column="0">
+              <property name="text">
+               <string>++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="3" column="1">
+              <property name="text">
+               <string>++</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+             <item row="3" column="2">
+              <property name="text">
+               <string>+</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -776,7 +999,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../myresources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>checkBox_XPO</sender>

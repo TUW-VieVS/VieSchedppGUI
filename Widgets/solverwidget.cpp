@@ -27,6 +27,8 @@ SolverWidget::SolverWidget(QStandardItemModel *station_model, QStandardItemModel
     hv4->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->treeWidget_src_coord->setSelectionMode(QAbstractItemView::NoSelection);
 
+    ui->tableWidget_solver->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
     connect(ui->treeWidget_sta_coord,
             SIGNAL(itemChanged(QTreeWidgetItem*, int)),
             this,
@@ -258,11 +260,38 @@ boost::property_tree::ptree SolverWidget::toXML()
             tree.add_child("solver.source.datum.name", srcTree.get_child("name"));
         }
     }
+    if(ui->comboBox_solver->currentText() != "complete orthogonal decomposition (default)"){
+        std::string s;
+        if(ui->comboBox_solver->currentText() == "Householder QR decomposition"){
+            s = "householderQr";
+        }else if(ui->comboBox_solver->currentText() == "robust Cholesky decomposition with pivoting (LDLT)"){
+            s = "ldlt";
+        }else if(ui->comboBox_solver->currentText() == "LU decomposition with partial pivoting"){
+            s = "partialPivLu";
+        }
+        tree.add("solver.algorithm", s);
+    }
     return tree;
 }
 
 void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
 {
+    std::string solver = tree.get("algorithm","");
+    if( !solver.empty() ){
+        if(solver == "householderQr"){
+            ui->comboBox_solver->setCurrentText("Householder QR decomposition");
+        } else if(solver == "ldlt"){
+            ui->comboBox_solver->setCurrentText("robust Cholesky decomposition with pivoting (LDLT)");
+        } else if(solver == "partialPivLu"){
+            ui->comboBox_solver->setCurrentText("LU decomposition with partial pivoting");
+        }else{
+            ui->comboBox_solver->setCurrentText("complete orthogonal decomposition (default)");
+        }
+    }else{
+        ui->comboBox_solver->setCurrentText("complete orthogonal decomposition (default)");
+    }
+
+
     // read EOP
     double xpo = tree.get("EOP.XPO.interval",-1.0);
     if(xpo != -1){
