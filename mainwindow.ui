@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>10</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1180,6 +1180,35 @@ p, li { white-space: pre-wrap; }
             <property name="icon">
              <iconset resource="myresources.qrc">
               <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_53">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="checkBox_resolvePathes">
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>convert relative path to absollut path</string>
+            </property>
+            <property name="statusTip">
+             <string>convert relative path to absollut path</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;convert relative path to absollut path&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g.: &lt;/p&gt;&lt;p&gt;./AUTO_DOWNLOAD_CATALOGS/antenna.cat &lt;/p&gt;&lt;p&gt;--&amp;gt;&lt;/p&gt;&lt;p&gt;/home/mschartn/VieSchedpp/bin/AUTO_DOWNLOAD_CATALOGS/antenna.cat&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>resolve pathes</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
