@@ -6791,7 +6791,7 @@ void MainWindow::on_pushButton_outputNgsFild_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeNGS();
             QString message = QString("NGS file has been written to:\n").append(path);
             QMessageBox mb;
@@ -6825,7 +6825,7 @@ void MainWindow::on_pushButton_outputSnrTable_2_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeOperationsNotes();
             QString message = QString("Operation notes file has been written to:\n").append(path);
             QMessageBox mb;
@@ -6860,7 +6860,7 @@ void MainWindow::on_pushButton_outputSnrTable_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeSnrTable();
             QString message = QString("SNR table has been written to:\n").append(path);
 

@@ -144,7 +144,8 @@ void VieSchedpp_Analyser::on_actionper_baseline_triggered()
 
 void VieSchedpp_Analyser::setup()
 {
-    ui->label_fileName->setText(QString::fromStdString(schedule_.getName()));
+    QString file = QString::fromStdString(schedule_.getPath()).append(QString::fromStdString(schedule_.getName())).append(".skd");
+    ui->label_fileName->setText(file);
 
     srcModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     srcModel->setHeaderData(1, Qt::Horizontal, QObject::tr("2nd name"));
