@@ -97,6 +97,9 @@ boost::property_tree::ptree SolverWidget::toXML()
         tree.add("solver.EOP.NUTY.interval",ui->doubleSpinBox_nuty_int->value());
         tree.add("solver.EOP.NUTY.constraint",ui->doubleSpinBox_nuty_const->value());
     }
+    if(ui->checkBox_scale->checkState() == Qt::Checked){
+        tree.add("solver.EOP.scale","true");
+    }
 
     if (ui->radioButton_force_ref_clock->isChecked()){
         std::string refClock = ui->comboBox_ref_clock->currentText().toStdString();
@@ -332,6 +335,12 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
         ui->doubleSpinBox_nuty_const->setValue(tree.get("EOP.NUTY.constraint",.0001));
     }else{
         ui->checkBox_NUTY->setChecked(false);
+    }
+    bool scale = tree.get("EOP.scale",false);
+    if(scale){
+        ui->checkBox_scale->setChecked(true);
+    }else{
+        ui->checkBox_scale->setChecked(false);
     }
 
     for(const auto &any : tree){

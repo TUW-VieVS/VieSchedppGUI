@@ -30,7 +30,7 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Estimate source coordinates. &lt;/p&gt;&lt;p&gt;Be careful when using this option. It is often not advisable to estimate sources from single sessions. Be especially carful with how to define the datum. Do not add sources into the datum if they have too few observations! &lt;/p&gt;&lt;p&gt;It might be that VieSched++ does remove some sources from the datum. For example: this is the case if you a source is only observed by single-baseline scans. &lt;/p&gt;&lt;p&gt;Simillarly, observations to sources might be removed completely from the estimation process in case there are to few scans or observations. &lt;/p&gt;&lt;p&gt;If you want to estimate sources it is recommended to define a minimum of three stations per scan in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="EOP">
           <property name="toolTip">
@@ -47,7 +47,7 @@
             <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
           </attribute>
           <attribute name="title">
-           <string>EOP</string>
+           <string>EOP/scale</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
@@ -281,6 +281,13 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="5" column="0">
+                  <widget class="QCheckBox" name="checkBox_scale">
+                   <property name="text">
+                    <string>scale*</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
                <item>
@@ -297,6 +304,13 @@
                 </spacer>
                </item>
               </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>*make sure that you do not estimate station coordinates to estimate scale based on a priori coordinates</string>
+               </property>
+              </widget>
              </item>
              <item>
               <spacer name="verticalSpacer">
