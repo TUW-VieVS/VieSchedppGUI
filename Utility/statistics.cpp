@@ -551,7 +551,7 @@ void Statistics::reload()
         }
 
         QStringList simPara;
-        simPara << "#sim" << "dUT1 [mus]" << "x pol [muas]" << "y pol [muas]" << "x nut [muas]" << "y nut [muas]";
+        simPara << "#sim" << "dUT1 [mus]" << "x pol [muas]" << "y pol [muas]" << "x nut [muas]" << "y nut [muas]" << "scale [ppb]";
 
         for(int i=0; i<2; ++i){
             const auto &itm = sim->child(i);
@@ -689,9 +689,9 @@ void Statistics::plotStatistics(bool animation)
     const auto &skyCov_a37m60 = itemlist->topLevelItem(7)->child(6);
 
     const auto &simMeanFormalError = itemlist->topLevelItem(8)->child(0);
-    const auto &simMeanFormalError_station = simMeanFormalError->child(7);
+    const auto &simMeanFormalError_station = simMeanFormalError->child(8);
     const auto &simRepeatability = itemlist->topLevelItem(8)->child(1);
-    const auto &simRepeatability_station = simRepeatability->child(7);
+    const auto &simRepeatability_station = simRepeatability->child(8);
 
     int offset = 1;
     for(int i=0; i<gen->childCount(); ++i){

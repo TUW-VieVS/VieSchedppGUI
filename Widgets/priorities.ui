@@ -206,7 +206,7 @@
        <string>#obs</string>
       </property>
       <property name="icon">
-       <iconset resource="../myresources.qrc">
+       <iconset>
         <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
       </property>
       <property name="text">
@@ -221,7 +221,7 @@
        <string>EOP</string>
       </property>
       <property name="icon">
-       <iconset resource="../myresources.qrc">
+       <iconset>
         <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
       </property>
       <property name="text">
@@ -235,7 +235,7 @@
         <string>XPO</string>
        </property>
        <property name="icon">
-        <iconset resource="../myresources.qrc">
+        <iconset>
          <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
        </property>
        <property name="text">
@@ -250,7 +250,7 @@
         <string>YPO</string>
        </property>
        <property name="icon">
-        <iconset resource="../myresources.qrc">
+        <iconset>
          <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
        </property>
        <property name="text">
@@ -265,7 +265,7 @@
         <string>dUT1</string>
        </property>
        <property name="icon">
-        <iconset resource="../myresources.qrc">
+        <iconset>
          <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
        </property>
        <property name="text">
@@ -280,7 +280,7 @@
         <string>NUTX</string>
        </property>
        <property name="icon">
-        <iconset resource="../myresources.qrc">
+        <iconset>
          <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
        </property>
        <property name="text">
@@ -295,7 +295,7 @@
         <string>NUTY</string>
        </property>
        <property name="icon">
-        <iconset resource="../myresources.qrc">
+        <iconset>
          <normaloff>:/icons/icons/applications-internet-2.png</normaloff>:/icons/icons/applications-internet-2.png</iconset>
        </property>
        <property name="text">
@@ -317,12 +317,15 @@
        <string/>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>New Item</string>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../myresources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -57,6 +57,13 @@ boost::property_tree::ptree Priorities::toXML()
         tree.add_child("priorities.variable",t2.get_child("variable"));
     }
 
+    QTreeWidgetItem *itm_scale = t->topLevelItem(3);
+    auto *dsp_scale = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_scale,1));
+    boost::property_tree::ptree t_scale;
+    t_scale.add("variable", dsp_scale->value());
+    t_scale.add("variable.<xmlattr>.name", itm_scale->text(0).toStdString());
+    tree.add_child("priorities.variable",t_scale.get_child("variable"));
+
     return tree;
 }
 
@@ -126,6 +133,9 @@ void Priorities::setup()
         QTreeWidgetItem *itm_tl = t->topLevelItem(tli);
         QDoubleSpinBox *a = new QDoubleSpinBox();
         a->setValue(1);
+        if(tli == 3){
+            a->setValue(0);
+        }
         a->setRange(0,100);
         a->setSingleStep(.25);
         t->setItemWidget(itm_tl, 1, a);
@@ -138,7 +148,10 @@ void Priorities::setup()
         if(tli == 2){
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::averageSta);
         }
-
+        if(tli == 3){
+            connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
+            itm_tl->setText(0,"scale");
+        }
         QProgressBar *b = new QProgressBar();
         b->setOrientation(Qt::Horizontal);
         b->setRange(0,100);
@@ -154,6 +167,8 @@ void Priorities::setup()
             if(tli == 2){
                 a->setValue(1./model_->rowCount());
             }
+
+
             a->setRange(0,100);
             a->setSingleStep(.25);
             t->setItemWidget(itm_c, 1, a);
@@ -239,6 +254,11 @@ void Priorities::paintBars()
     auto *dsp_nobs = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_nobs,1));
     double v_nobs = dsp_nobs->value();
     total += v_nobs;
+
+    QTreeWidgetItem *itm_scale = t->topLevelItem(3);
+    auto *dsp_scale = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_scale,1));
+    double v_scale = dsp_scale->value();
+    total += v_scale;
 
 
     QTreeWidgetItem *itm_eop = t->topLevelItem(1);
