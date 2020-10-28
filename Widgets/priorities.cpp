@@ -137,7 +137,8 @@ void Priorities::setup()
             a->setValue(0);
         }
         a->setRange(0,100);
-        a->setSingleStep(.25);
+        a->setDecimals(4);
+        a->setSingleStep(.1);
         t->setItemWidget(itm_tl, 1, a);
         if(tli == 0){
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
@@ -170,7 +171,8 @@ void Priorities::setup()
 
 
             a->setRange(0,100);
-            a->setSingleStep(.25);
+            a->setDecimals(4);
+            a->setSingleStep(.1);
             t->setItemWidget(itm_c, 1, a);
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
 
