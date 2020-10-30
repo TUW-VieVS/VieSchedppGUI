@@ -92,7 +92,7 @@ void MulitSchedulingWidget::on_pushButton_ms_pick_random_toggled(bool checked)
     if(checked){
         ui->comboBox_multiSched_maxNumber->setEnabled(false);
         ui->spinBox_multiSched_maxNumber->setEnabled(true);
-        ui->spinBox_multiSched_maxNumber->setValue(32);
+        ui->spinBox_multiSched_maxNumber->setValue(256);
     }else{
         ui->comboBox_multiSched_maxNumber->setEnabled(true);
         if(ui->comboBox_multiSched_maxNumber->currentText() == "all"){
@@ -1174,13 +1174,23 @@ void MulitSchedulingWidget::resetSourceParameters(bool &mssrc)
 
 void MulitSchedulingWidget::clear()
 {
-    ui->treeWidget_multiSchedSelected->clear();
+    int i = 0;
+    while( i < ui->treeWidget_multiSchedSelected->topLevelItemCount()){
+        QTreeWidgetItem *itm = ui->treeWidget_multiSchedSelected->topLevelItem(i);
+        if(itm->text(1) == "global" || itm->text(1) == "__all__"){
+            ++i;
+        } else {
+            delete itm;
+        }
+    }
+
     for(int i=0; i<ui->treeWidget_multiSched->topLevelItemCount(); ++i){
         ui->treeWidget_multiSched->topLevelItem(i)->setDisabled(false);
         for (int j=0; j<ui->treeWidget_multiSched->topLevelItem(i)->childCount(); ++j){
             ui->treeWidget_multiSched->topLevelItem(i)->child(j)->setDisabled(false);
         }
     }
+    // ui->treeWidget_multiSchedSelected->clear();
 }
 
 void MulitSchedulingWidget::defaultIntensive()

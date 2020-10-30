@@ -795,7 +795,7 @@
                    <number>8</number>
                   </property>
                   <property name="value">
-                   <number>32</number>
+                   <number>128</number>
                   </property>
                  </widget>
                 </item>
@@ -817,7 +817,7 @@
                    <double>50.000000000000000</double>
                   </property>
                   <property name="value">
-                   <double>10.000000000000000</double>
+                   <double>20.000000000000000</double>
                   </property>
                  </widget>
                 </item>
@@ -842,7 +842,7 @@
                    <double>0.500000000000000</double>
                   </property>
                   <property name="value">
-                   <double>2.500000000000000</double>
+                   <double>5.000000000000000</double>
                   </property>
                  </widget>
                 </item>
@@ -861,7 +861,7 @@
                    <double>0.100000000000000</double>
                   </property>
                   <property name="value">
-                   <double>0.500000000000000</double>
+                   <double>0.400000000000000</double>
                   </property>
                  </widget>
                 </item>
@@ -916,7 +916,7 @@
                    <double>5.000000000000000</double>
                   </property>
                   <property name="value">
-                   <double>10.000000000000000</double>
+                   <double>5.000000000000000</double>
                   </property>
                  </widget>
                 </item>
@@ -1199,5 +1199,22 @@
  <resources>
   <include location="../myresources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_ms_pick_random</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>comboBox_multiSched_seed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>685</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>104</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
