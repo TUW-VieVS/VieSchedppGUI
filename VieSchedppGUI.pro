@@ -58,26 +58,59 @@ INCLUDEPATH += ../VieSchedpp/EIGEN/Dense
 unix {
     IAU_SOFA_PATH=$${IAU_SOFA}
     isEmpty(IAU_SOFA_PATH) {
-        LIBS += ../IAU_SOFA/Release/libsofa_c.a
+        exists( ../IAU_SOFA/Release/libsofa_c.a ){
+            LIBS += ../IAU_SOFA/Release/libsofa_c.a
+            message(IAU SOFA found at ../IAU_SOFA/Release/libsofa_c.a)
+        }else{
+            message(IAU SOFA not found at ../IAU_SOFA/Release/libsofa_c.a)
+        }
     } else {
-        LIBS += $${IAU_SOFA_PATH}
+        exists( $${IAU_SOFA_PATH} ){
+            LIBS += $${IAU_SOFA_PATH}
+            message(IAU SOFA found at $${IAU_SOFA_PATH})
+        }else{
+            message(IAU SOFA not found at $${IAU_SOFA_PATH})
+        }
     }
 }
 
 # for my windows builds
 win32{
+
+    QMAKE_CXXFLAGS += -Wa,-mbig-obj
+
     BOOST_PATH=$${BOOST}
     isEmpty(BOOST_PATH) {
-        INCLUDEPATH += ../boost_1_72_0
+        exists( ../boost_1_74_0 ){
+            INCLUDEPATH += ../boost_1_74_0
+            message(BOOST found at ../boost_1_74_0)
+        }else{
+            message(BOOST not found at ../boost_1_74_0)
+        }
     } else {
-        INCLUDEPATH += $${BOOST_PATH}
+        exists( $${BOOST_PATH} ){
+            INCLUDEPATH += $${BOOST_PATH}
+            message(BOOST found at $${BOOST_PATH})
+        }else{
+            message(BOOST not found at $${BOOST_PATH})
+        }
     }
 
     IAU_SOFA_PATH=$${IAU_SOFA}
     isEmpty(IAU_SOFA_PATH) {
-        LIBS += ../IAU_SOFA/Release/sofa_c.lib
+        exists( ../IAU_SOFA/Release/libsofa_c.a ){
+            LIBS += ../IAU_SOFA/Release/libsofa_c.a
+            message(IAU SOFA found at ../IAU_SOFA/Release/libsofa_c.a)
+        }else{
+            message(IAU SOFA not found at ../IAU_SOFA/Release/libsofa_c.a)
+        }
     } else {
-        LIBS += $${IAU_SOFA_PATH}
+        exists( $${IAU_SOFA_PATH} ){
+            LIBS += $${IAU_SOFA_PATH}
+            message(IAU SOFA found at $${IAU_SOFA_PATH})
+        }else{
+            message(IAU SOFA not found at $${IAU_SOFA_PATH})
+        }
     }
 }
 
@@ -328,6 +361,9 @@ DISTFILES += \
         VLBI_Scheduler/libsofa_c.a \
         VLBI_Scheduler/CMakeLists.txt
 
+DEFINES += BOOST_ALL_NO_LIB
+
+message(looking for VieSched++ GUI commit hash)
 #exists( $$PWD/.git) {
 exists( .git) {
     GIT_COMMIT_HASH = $$system(git log -1 --format=%H)
@@ -335,12 +371,12 @@ exists( .git) {
     GIT_COMMIT_HASH = "unknown"
 }
 
+message(looking for VieSched++ commit hash)
 exists( ../VieSchedpp/.git){
     GIT_SCHEDULER_COMMIT_HASH = $$system(cd ../VieSchedpp; git log -1 --format=%H)
 }else{
     GIT_SCHEDULER_COMMIT_HASH = "unknown"
 }
-DEFINES += BOOST_ALL_NO_LIB
 
 message(VieSched++ GUI version $$GIT_COMMIT_HASH)
 message(VieSched++ version $$GIT_SCHEDULER_COMMIT_HASH)
