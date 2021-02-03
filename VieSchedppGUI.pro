@@ -77,7 +77,7 @@ unix {
 # for my windows builds
 win32{
 
-    QMAKE_CXXFLAGS += -Wa,-mbig-obj
+#    QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
     BOOST_PATH=$${BOOST}
     isEmpty(BOOST_PATH) {

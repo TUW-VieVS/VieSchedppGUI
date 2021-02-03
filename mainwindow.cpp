@@ -7186,19 +7186,19 @@ void MainWindow::masterDownloadFinished(){
     }
 
     QStringList files;
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/antenna.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/equip.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/flux.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/freq.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/hdpos.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/loif.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/mask.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/modes.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/position.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rec.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rx.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/antenna.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/equip.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/flux.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/freq.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/hdpos.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/loif.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/mask.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/modes.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/position.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rec.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rx.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/source.cat.geodetic.good";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/tracks.cat";
     files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
