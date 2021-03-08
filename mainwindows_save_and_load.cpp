@@ -249,6 +249,21 @@ QString MainWindow::writeXML()
     std::string satellites = ui->lineEdit_pathSatellite->text().toStdString();
 
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites);
+    if(ui->checkBox_resolvePathes->isChecked()){
+        antenna = QFileInfo(ui->lineEdit_pathAntenna->text()).absoluteFilePath().toStdString();
+        equip = QFileInfo(ui->lineEdit_pathEquip->text()).absoluteFilePath().toStdString();
+        flux = QFileInfo(ui->lineEdit_pathFlux->text()).absoluteFilePath().toStdString();
+        freq = QFileInfo(ui->lineEdit_pathFreq->text()).absoluteFilePath().toStdString();
+        hdpos = QFileInfo(ui->lineEdit_pathHdpos->text()).absoluteFilePath().toStdString();
+        loif = QFileInfo(ui->lineEdit_pathLoif->text()).absoluteFilePath().toStdString();
+        mask = QFileInfo(ui->lineEdit_pathMask->text()).absoluteFilePath().toStdString();
+        modes = QFileInfo(ui->lineEdit_pathModes->text()).absoluteFilePath().toStdString();
+        position = QFileInfo(ui->lineEdit_pathPosition->text()).absoluteFilePath().toStdString();
+        rec = QFileInfo(ui->lineEdit_pathRec->text()).absoluteFilePath().toStdString();
+        rx = QFileInfo(ui->lineEdit_pathRx->text()).absoluteFilePath().toStdString();
+        source = QFileInfo(ui->lineEdit_pathSource->text()).absoluteFilePath().toStdString();
+        tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
+    }
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());

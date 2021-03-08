@@ -8,6 +8,7 @@ Priorities::Priorities(QStandardItemModel *model, QWidget *parent) :
 {
     ui->setupUi(this);
     setup();
+
 }
 
 Priorities::~Priorities()
@@ -21,7 +22,7 @@ boost::property_tree::ptree Priorities::toXML()
 
     boost::property_tree::ptree tree;
     int v = ui->horizontalSlider_recom->value();
-    tree.add("priorities.type.fraction", v*10);
+    tree.add("priorities.fraction", v*10);
     tree.add("priorities.percentile",ui->doubleSpinBox_quantile->value());
 
 
@@ -56,12 +57,19 @@ boost::property_tree::ptree Priorities::toXML()
         tree.add_child("priorities.variable",t2.get_child("variable"));
     }
 
+    QTreeWidgetItem *itm_scale = t->topLevelItem(3);
+    auto *dsp_scale = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_scale,1));
+    boost::property_tree::ptree t_scale;
+    t_scale.add("variable", dsp_scale->value());
+    t_scale.add("variable.<xmlattr>.name", itm_scale->text(0).toStdString());
+    tree.add_child("priorities.variable",t_scale.get_child("variable"));
+
     return tree;
 }
 
 void Priorities::fromXML(const boost::property_tree::ptree &tree)
 {
-    int v = tree.get("priorities.type.fraction", 70);
+    int v = tree.get("priorities.fraction", 70);
     ui->horizontalSlider_recom->setValue(v/10);
 
     ui->doubleSpinBox_quantile->setValue(tree.get("priorities.percentile",0.75));
@@ -107,6 +115,7 @@ void Priorities::addStations(QStandardItem *)
 
 void Priorities::setup()
 {
+    ui->treeWidget_params->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     auto *t = ui->treeWidget_params;
 
     auto *sta = t->topLevelItem(2);
@@ -114,15 +123,22 @@ void Priorities::setup()
 
     for( int i = 0; i<model_->rowCount(); ++i){
         QString name = model_->item(i,0)->text();
-        sta->addChild(new QTreeWidgetItem(QStringList() << name));
+        QTreeWidgetItem *itm = new QTreeWidgetItem(QStringList() << name);
+        itm->setIcon(0, QIcon(":/icons/icons/station.png"));
+        sta->addChild(itm);
+        sta->setIcon(0, QIcon(":/icons/icons/station_group.png"));
     }
 
     for(int tli = 0; tli<t->topLevelItemCount(); ++tli){
         QTreeWidgetItem *itm_tl = t->topLevelItem(tli);
         QDoubleSpinBox *a = new QDoubleSpinBox();
         a->setValue(1);
+        if(tli == 3){
+            a->setValue(0);
+        }
         a->setRange(0,100);
-        a->setSingleStep(.25);
+        a->setDecimals(4);
+        a->setSingleStep(.1);
         t->setItemWidget(itm_tl, 1, a);
         if(tli == 0){
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
@@ -133,7 +149,10 @@ void Priorities::setup()
         if(tli == 2){
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::averageSta);
         }
-
+        if(tli == 3){
+            connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
+            itm_tl->setText(0,"scale");
+        }
         QProgressBar *b = new QProgressBar();
         b->setOrientation(Qt::Horizontal);
         b->setRange(0,100);
@@ -149,8 +168,11 @@ void Priorities::setup()
             if(tli == 2){
                 a->setValue(1./model_->rowCount());
             }
+
+
             a->setRange(0,100);
-            a->setSingleStep(.25);
+            a->setDecimals(4);
+            a->setSingleStep(.1);
             t->setItemWidget(itm_c, 1, a);
             connect(a, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Priorities::paintBars);
 
@@ -181,9 +203,13 @@ void Priorities::averageEOP()
     for(int i = 0; i<itm->childCount(); ++i){
         QTreeWidgetItem *itm_c = itm->child(i);
         auto dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_c,1));
-        double v_c = dsp->value();
-        v_c = v_c/total;
-        dsp->setValue(v*v_c);
+        if( total == 0){
+            dsp->setValue(v/itm->childCount());
+        } else{
+            double v_c = dsp->value();
+            v_c = v_c/total;
+            dsp->setValue(v*v_c);
+        }
     }
     blockPaint = false;
     paintBars();
@@ -205,9 +231,13 @@ void Priorities::averageSta()
     for(int i = 0; i<itm->childCount(); ++i){
         QTreeWidgetItem *itm_c = itm->child(i);
         auto dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_c,1));
-        double v_c = dsp->value();
-        v_c = v_c/total;
-        dsp->setValue(v*v_c);
+        if( total == 0){
+            dsp->setValue(v/itm->childCount());
+        } else{
+            double v_c = dsp->value();
+            v_c = v_c/total;
+            dsp->setValue(v*v_c);
+        }
     }
     blockPaint = false;
     paintBars();
@@ -226,6 +256,11 @@ void Priorities::paintBars()
     auto *dsp_nobs = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_nobs,1));
     double v_nobs = dsp_nobs->value();
     total += v_nobs;
+
+    QTreeWidgetItem *itm_scale = t->topLevelItem(3);
+    auto *dsp_scale = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_scale,1));
+    double v_scale = dsp_scale->value();
+    total += v_scale;
 
 
     QTreeWidgetItem *itm_eop = t->topLevelItem(1);

@@ -144,7 +144,8 @@ void VieSchedpp_Analyser::on_actionper_baseline_triggered()
 
 void VieSchedpp_Analyser::setup()
 {
-    ui->label_fileName->setText(QString::fromStdString(schedule_.getName()));
+    QString file = QString::fromStdString(schedule_.getPath()).append(QString::fromStdString(schedule_.getName())).append(".skd");
+    ui->label_fileName->setText(file);
 
     srcModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     srcModel->setHeaderData(1, Qt::Horizontal, QObject::tr("2nd name"));
@@ -2580,8 +2581,8 @@ void VieSchedpp_Analyser::statisticsSourceSetup()
 
     ui->horizontalLayout_statistics_source->insertWidget(0,chartView,1);
 
-    connect(ui->treeView_statistics_source->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(updateStatisticsSource()));
     ui->treeView_statistics_source->setCurrentIndex(ui->treeView_statistics_source->model()->index(0,0));
+    connect(ui->treeView_statistics_source->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(updateStatisticsSource()));
 
 }
 
@@ -2590,6 +2591,7 @@ void VieSchedpp_Analyser::updateStatisticsSource()
     QChartView *chartView = qobject_cast<QChartView *>(ui->horizontalLayout_statistics_source->itemAt(0)->widget());
     QChart *chart = chartView->chart();
     QDateTimeAxis *axisX = qobject_cast<QDateTimeAxis *>(chart->axisX());
+    QValueAxis *axisY = qobject_cast<QValueAxis *>(chart->axisY());
 
     QModelIndexList sel = ui->treeView_statistics_source->selectionModel()->selectedRows();
 
@@ -2657,11 +2659,12 @@ void VieSchedpp_Analyser::updateStatisticsSource()
                 int staid = scan.getStationId(i);
                 QString name = QString::fromStdString(stations.at(staid).getName());
                 series->setName("obs_" + name);
-                chart->addSeries(series);
                 series->attachAxis(axisX);
-                series->attachAxis(chart->axisY());
+                series->attachAxis(axisY);
                 series->setPen(QPen(QBrush(Qt::black),4,Qt::SolidLine));
-                chart->legend()->markers(series).at(0)->setVisible(false);
+                // TODO: why is this not working?
+                //chart->addSeries(series);
+                //chart->legend()->markers(series).at(0)->setVisible(false);
 
                 VieVS::PointingVector s = scan.getPointingVector(i,VieVS::Timestamp::start);
                 VieVS::PointingVector e = scan.getPointingVector(i,VieVS::Timestamp::end);

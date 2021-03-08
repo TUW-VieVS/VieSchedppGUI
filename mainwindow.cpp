@@ -1649,19 +1649,19 @@ void MainWindow::defaultParameters()
 
     boost::optional<double> ax1low = settings_.get_optional<double>("settings.station.cableWrapBuffers.axis1LowOffset");
     if(ax1low.is_initialized()){
-        ui->DoubleSpinBox_axis1low->setValue(*ax1low);
+//        ui->DoubleSpinBox_axis1low->setValue(*ax1low);
     }
     boost::optional<double> ax1up = settings_.get_optional<double>("settings.station.cableWrapBuffers.axis1UpOffset");
     if(ax1up.is_initialized()){
-        ui->DoubleSpinBox_axis1up->setValue(*ax1up);
+//        ui->DoubleSpinBox_axis1up->setValue(*ax1up);
     }
     boost::optional<double> ax2low = settings_.get_optional<double>("settings.station.cableWrapBuffers.axis2LowOffset");
     if(ax2low.is_initialized()){
-        ui->DoubleSpinBox_axis2low->setValue(*ax2low);
+//        ui->DoubleSpinBox_axis2low->setValue(*ax2low);
     }
     boost::optional<double> ax2up = settings_.get_optional<double>("settings.station.cableWrapBuffers.axis2UpOffset");
     if(ax2up.is_initialized()){
-        ui->DoubleSpinBox_axis2up->setValue(*ax2up);
+//        ui->DoubleSpinBox_axis2up->setValue(*ax2up);
     }
 
     boost::optional<std::string> skdMode = settings_.get_optional<std::string>("settings.mode.skdMode");
@@ -5661,7 +5661,7 @@ void MainWindow::on_pushButton_outputNgsFild_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeNGS();
             QString message = QString("NGS file has been written to:\n").append(path);
             QMessageBox mb;
@@ -5695,7 +5695,7 @@ void MainWindow::on_pushButton_outputSnrTable_2_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeOperationsNotes();
             QString message = QString("Operation notes file has been written to:\n").append(path);
             QMessageBox mb;
@@ -5730,7 +5730,7 @@ void MainWindow::on_pushButton_outputSnrTable_clicked()
             std::size_t dot = fname.find_last_of( "." );
             fname = fname.substr( 0, dot );
 
-            VieVS::Output out(copy, path.toStdString(), fname, 0);
+            VieVS::Output out(copy);
             out.writeSnrTable();
             QString message = QString("SNR table has been written to:\n").append(path);
 
@@ -5977,29 +5977,29 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
-    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
-//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
+    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
+    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
+//    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
 
     if (now.date().month() >=11){
-        files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-        files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
+        files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+        files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
     }
-//    files << QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
+//    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
     // legacy SX
     for (int i = 79; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(i);
             files << z;
         }
     }
     for (int i = 00; i<=year-1-2000; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
@@ -6008,14 +6008,14 @@ void MainWindow::download(){
     for (int i = 92; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
+            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
             files << z;
         }
     }
     for (int i = 00; i<=year-1-2000; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
@@ -6023,13 +6023,13 @@ void MainWindow::download(){
     // vgos
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://cddis.gsfc.nasa.gov/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
@@ -6063,19 +6063,19 @@ void MainWindow::masterDownloadFinished(){
     }
 
     QStringList files;
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/antenna.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/equip.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/flux.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/freq.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/hdpos.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/loif.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/mask.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/modes.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/position.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rec.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/rx.cat";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/source.cat.geodetic.good";
-    files << "https://ivscc.gsfc.nasa.gov/IVS_AC/sked_cat/tracks.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/antenna.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/equip.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/flux.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/freq.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/hdpos.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/loif.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/mask.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/modes.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/position.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rec.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rx.cat";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/source.cat.geodetic.good";
+    files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/tracks.cat";
     files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
