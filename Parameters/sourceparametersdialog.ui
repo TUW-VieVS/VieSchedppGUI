@@ -117,8 +117,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>317</width>
-          <height>1101</height>
+          <width>323</width>
+          <height>1129</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -267,8 +267,11 @@
               <property name="whatsThis">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a source &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans to this source&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
               <property name="singleStep">
-               <double>0.100000000000000</double>
+               <double>0.250000000000000</double>
               </property>
               <property name="value">
                <double>1.000000000000000</double>

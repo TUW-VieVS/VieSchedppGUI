@@ -35,7 +35,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
        </property>
       </widget>
@@ -68,7 +68,7 @@
         <string> load</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
        </property>
       </widget>
@@ -88,7 +88,7 @@
         <string> save</string>
        </property>
        <property name="icon">
-        <iconset resource="myresources.qrc">
+        <iconset resource="../myresources.qrc">
          <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
        </property>
       </widget>
@@ -163,8 +163,11 @@
         <property name="whatsThis">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a baseline &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans when there is an observation on this baseline&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
+        <property name="maximum">
+         <double>999.000000000000000</double>
+        </property>
         <property name="singleStep">
-         <double>0.100000000000000</double>
+         <double>0.250000000000000</double>
         </property>
         <property name="value">
          <double>1.000000000000000</double>
@@ -345,7 +348,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="myresources.qrc"/>
+  <include location="../myresources.qrc"/>
  </resources>
  <connections>
   <connection>

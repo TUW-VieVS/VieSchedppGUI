@@ -248,7 +248,6 @@ QString MainWindow::writeXML()
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
     std::string satellites = ui->lineEdit_pathSatellite->text().toStdString();
 
-    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites);
     if(ui->checkBox_resolvePathes->isChecked()){
         antenna = QFileInfo(ui->lineEdit_pathAntenna->text()).absoluteFilePath().toStdString();
         equip = QFileInfo(ui->lineEdit_pathEquip->text()).absoluteFilePath().toStdString();
@@ -262,8 +261,10 @@ QString MainWindow::writeXML()
         rec = QFileInfo(ui->lineEdit_pathRec->text()).absoluteFilePath().toStdString();
         rx = QFileInfo(ui->lineEdit_pathRx->text()).absoluteFilePath().toStdString();
         source = QFileInfo(ui->lineEdit_pathSource->text()).absoluteFilePath().toStdString();
+        satellites = QFileInfo(ui->lineEdit_pathSatellite->text()).absoluteFilePath().toStdString();
         tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
     }
+    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites);
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
