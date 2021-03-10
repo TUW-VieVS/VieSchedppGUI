@@ -41,6 +41,8 @@ public:
         station,
         source,
         baseline,
+        satellite,
+        spacecraft,
     };
 
     explicit AddGroupDialog(boost::property_tree::ptree &settings_, Type type, QWidget *parent = 0);

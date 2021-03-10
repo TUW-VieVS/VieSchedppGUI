@@ -32,6 +32,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->main_stacked->setCurrentIndex(0);
 
 
+    allSourcePlusGroupModel_combined = new QStandardItemModel();
+    allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/all_source_types.png"),"__all__"));
+    allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__AGNs__"));
+    allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),"__satellites__"));
+    allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),"__spacecrafts__"));
+
+
+
     allSourcePlusGroupModel = new QStandardItemModel();
     allSourcePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__all__"));
 
@@ -42,10 +50,10 @@ MainWindow::MainWindow(QWidget *parent) :
     allBaselinePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/baseline_group.png"),"__all__"));
 
     allSatellitePlusGroupModel = new QStandardItemModel();
-    allSatellitePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/satellite.png"),"__all__"));
+    allSatellitePlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),"__all__"));
 
     allSpacecraftPlusGroupModel = new QStandardItemModel();
-    allSpacecraftPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),"__all__"));
+    allSpacecraftPlusGroupModel->appendRow(new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),"__all__"));
 
 
 
@@ -524,6 +532,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(stationSetupWidget->addGroupButton(),  SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
     connect(sourceSetupWidget->addGroupButton(),   SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(baselineSetupWidget->addGroupButton(), SIGNAL(clicked(bool)),this, SLOT(addGroupBaseline()));
+    connect(satelliteSetupWidget->addGroupButton(), SIGNAL(clicked(bool)),this, SLOT(addGroupSatellite()));
+    connect(spacecraftSetupWidget->addGroupButton(), SIGNAL(clicked(bool)),this, SLOT(addGroupSpacecraft()));
+
 
     connect(stationSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
     connect(sourceSetupWidget->horizontal_splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(splitterMoved()));
@@ -542,6 +553,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton_addSourceGroup_Calibrator,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addSourceGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(ui->pushButton_addSatelliteGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
+    connect(ui->pushButton_addSpacecraftGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSpacecraft()));
     connect(ui->pushButton_calibration_addSrcGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
 
 
@@ -2932,6 +2945,12 @@ void MainWindow::on_pushButton_reloadsources_clicked()
     allSourcePlusGroupModel->removeRows(0,allSourcePlusGroupModel->rowCount());
     allSourcePlusGroupModel->insertRow(0,new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__all__"));
 
+    allSourcePlusGroupModel_combined->removeRows(0,allSourcePlusGroupModel_combined->rowCount());
+    allSourcePlusGroupModel_combined->insertRow(0,new QStandardItem(QIcon(":/icons/icons/all_source_types.png"),"__all__"));
+    allSourcePlusGroupModel_combined->insertRow(1,new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__AGNs__"));
+    allSourcePlusGroupModel_combined->insertRow(2,new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),"__satellites__"));
+    allSourcePlusGroupModel_combined->insertRow(3,new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),"__spacecrafts__"));
+
     availableSources->clear();
     selectedSources->clear();
 
@@ -4285,22 +4304,44 @@ void MainWindow::readSources()
             sourceSetupWidget->blockSignal(false);
             sourceSetupWidget->setupComboBox()->setCurrentIndex(0);
 
-
-            int r = 0;
-            for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
-                QString txt = allSourcePlusGroupModel->item(i)->text();
-                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
-                    ++r;
-                    continue;
+            {
+                int r = 0;
+                for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
+                    QString txt = allSourcePlusGroupModel->item(i)->text();
+                    if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+                        ++r;
+                        continue;
+                    }
+                    if(txt>sourceName){
+                        break;
+                    }else{
+                        ++r;
+                    }
                 }
-                if(txt>sourceName){
-                    break;
-                }else{
-                    ++r;
-                }
+                allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),sourceName));
             }
 
-            allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),sourceName));
+            {
+                int r = 0;
+                for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                    QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                    if(groupSrc->find(txt.toStdString()) != groupSrc->end() || groupSat->find(txt.toStdString()) != groupSat->end() || groupSpace->find(txt.toStdString()) != groupSpace->end() ){
+                        ++r;
+                        continue;
+                    }
+                    if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                        ++r;
+                        continue;
+                    }
+                    if(txt>sourceName){
+                        break;
+                    }else{
+                        ++r;
+                    }
+                }
+                allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),sourceName));
+            }
+
         }
         sourceFile.close();
     }
@@ -4428,6 +4469,12 @@ void MainWindow::on_treeView_allSelectedSources_clicked(const QModelIndex &index
             break;
         }
     }
+    for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+        if (allSourcePlusGroupModel_combined->index(i,0).data().toString() == name) {
+            allSourcePlusGroupModel_combined->removeRow(i);
+            break;
+        }
+    }
     auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
     MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
     ms->clear();
@@ -4487,21 +4534,44 @@ void MainWindow::on_treeView_allAvailabeSources_clicked(const QModelIndex &index
         double y = (qSqrt(2) *qSin(phi) ) / hn;
         selectedSources->append(x,y);
 
-        int r = 0;
-        for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
-            QString txt = allSourcePlusGroupModel->item(i)->text();
-            if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
-                ++r;
-                continue;
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel->item(i)->text();
+                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || txt == "__all__"){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
             }
-            if(txt>name){
-                break;
-            }else{
-                ++r;
-            }
+
+            allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),name));
         }
 
-        allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),name));
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || groupSat->find(txt.toStdString()) != groupSat->end() || groupSpace->find(txt.toStdString()) != groupSpace->end() ){
+                    ++r;
+                    continue;
+                }
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source.png"),name));
+        }
     }
     ui->lineEdit_allSourceFilter->setFocus();
     ui->lineEdit_allSourceFilter->selectAll();
@@ -4523,21 +4593,44 @@ void MainWindow::on_treeView_allAvailabeSatellites_clicked(const QModelIndex &in
 
         selectedSatelliteModel->sort(0);
 
-        int r = 0;
-        for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
-            QString txt = allSatellitePlusGroupModel->item(i)->text();
-            if(groupSat->find(txt.toStdString()) != groupSat->end() || txt == "__all__"){
-                ++r;
-                continue;
+        {
+            int r = 0;
+            for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
+                QString txt = allSatellitePlusGroupModel->item(i)->text();
+                if(groupSat->find(txt.toStdString()) != groupSat->end() || txt == "__all__"){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
             }
-            if(txt>name){
-                break;
-            }else{
-                ++r;
-            }
+            allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite.png"),name));
         }
 
-        allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite.png"),name));
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || groupSat->find(txt.toStdString()) != groupSat->end() || groupSpace->find(txt.toStdString()) != groupSpace->end() ){
+                    ++r;
+                    continue;
+                }
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite.png"),name));
+        }
+
     }
     ui->lineEdit_allSatelliteFilter->setFocus();
     ui->lineEdit_allSatelliteFilter->selectAll();
@@ -4560,21 +4653,44 @@ void MainWindow::on_treeView_allAvailabeSpacecrafts_clicked(const QModelIndex &i
 
         selectedSpacecraftModel->sort(0);
 
-        int r = 0;
-        for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
-            QString txt = allSpacecraftPlusGroupModel->item(i)->text();
-            if(groupSpace->find(txt.toStdString()) != groupSpace->end() || txt == "__all__"){
-                ++r;
-                continue;
+        {
+            int r = 0;
+            for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
+                QString txt = allSpacecraftPlusGroupModel->item(i)->text();
+                if(groupSpace->find(txt.toStdString()) != groupSpace->end() || txt == "__all__"){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
             }
-            if(txt>name){
-                break;
-            }else{
-                ++r;
-            }
+            allSpacecraftPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),name));
         }
 
-        allSpacecraftPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),name));
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(groupSrc->find(txt.toStdString()) != groupSrc->end() || groupSat->find(txt.toStdString()) != groupSat->end() || groupSpace->find(txt.toStdString()) != groupSpace->end() ){
+                    ++r;
+                    continue;
+                }
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(txt>name){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft.png"),name));
+        }
+
     }
     ui->lineEdit_allSpacecraftFilter->setFocus();
     ui->lineEdit_allSpacecraftFilter->selectAll();
@@ -4734,14 +4850,79 @@ void MainWindow::addGroupSource()
         std::string stdname = dial->getGroupName();
         VieVS::ParameterGroup newGroup(stdname, stdlist);
 
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel->item(i)->text();
+                if(txt == "__all__"){
+                    ++r;
+                    continue;
+                }
+                if(groupSrc->find(txt.toStdString()) == groupSrc->end()){
+                    break;
+                }
+                if(txt>QString::fromStdString(stdname)){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            (*groupSrc)[stdname] = stdlist;
+
+            allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname) ));
+            if(sender() == sourceSetupWidget->addGroupButton()){
+                sourceSetupWidget->memberComboBox()->setCurrentIndex(r);
+            }
+            if(sender() == ui->pushButton_addSourceGroup_Calibrator){
+                ui->comboBox_calibratorBlock_calibratorSources->setCurrentIndex(r);
+            }
+        }
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                    break;
+                }
+                if(txt>QString::fromStdString(stdname)){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname)));
+        }
+
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0,QString::fromStdString(stdname));
+        itm->setCheckState(0,Qt::Unchecked);
+        ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+    }
+    delete(dial);
+}
+
+void MainWindow::addGroupSatellite()
+{
+    AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::satellite,this);
+    dial->addModel(selectedSatelliteModel, *groupSat);
+    int result = dial->exec();
+    if(result == QDialog::Accepted){
+        std::vector<std::string> stdlist = dial->getSelection();
+        std::string stdname = dial->getGroupName();
+        VieVS::ParameterGroup newGroup(stdname, stdlist);
+
         int r = 0;
-        for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
-            QString txt = allSourcePlusGroupModel->item(i)->text();
+        for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
+            QString txt = allSatellitePlusGroupModel->item(i)->text();
             if(txt == "__all__"){
                 ++r;
                 continue;
             }
-            if(groupSrc->find(txt.toStdString()) == groupSrc->end()){
+            if(groupSat->find(txt.toStdString()) == groupSat->end()){
                 break;
             }
             if(txt>QString::fromStdString(stdname)){
@@ -4751,19 +4932,97 @@ void MainWindow::addGroupSource()
             }
         }
 
-        (*groupSrc)[stdname] = stdlist;
+        (*groupSat)[stdname] = stdlist;
 
-        allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname) ));
-        if(sender() == sourceSetupWidget->addGroupButton()){
-            sourceSetupWidget->memberComboBox()->setCurrentIndex(r);
-        }
-        if(sender() == ui->pushButton_addSourceGroup_Calibrator){
-            ui->comboBox_calibratorBlock_calibratorSources->setCurrentIndex(r);
+        allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),QString::fromStdString(stdname) ));
+        if(sender() == satelliteSetupWidget->addGroupButton()){
+            satelliteSetupWidget->memberComboBox()->setCurrentIndex(r);
         }
         QTreeWidgetItem *itm = new QTreeWidgetItem();
         itm->setText(0,QString::fromStdString(stdname));
         itm->setCheckState(0,Qt::Unchecked);
         ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                    break;
+                }
+                if(txt>QString::fromStdString(stdname)){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),QString::fromStdString(stdname)));
+        }
+    }
+    delete(dial);
+}
+
+void MainWindow::addGroupSpacecraft()
+{
+    AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::spacecraft,this);
+    dial->addModel(selectedSpacecraftModel, *groupSrc);
+    int result = dial->exec();
+    if(result == QDialog::Accepted){
+        std::vector<std::string> stdlist = dial->getSelection();
+        std::string stdname = dial->getGroupName();
+        VieVS::ParameterGroup newGroup(stdname, stdlist);
+
+        {
+            int r = 0;
+            for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
+                QString txt = allSpacecraftPlusGroupModel->item(i)->text();
+                if(txt == "__all__"){
+                    ++r;
+                    continue;
+                }
+                if(groupSpace->find(txt.toStdString()) == groupSpace->end()){
+                    break;
+                }
+                if(txt>QString::fromStdString(stdname)){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+
+            (*groupSpace)[stdname] = stdlist;
+
+            allSpacecraftPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),QString::fromStdString(stdname) ));
+            if(sender() == spacecraftSetupWidget->addGroupButton()){
+                spacecraftSetupWidget->memberComboBox()->setCurrentIndex(r);
+            }
+        }
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
+        itm->setText(0,QString::fromStdString(stdname));
+        itm->setCheckState(0,Qt::Unchecked);
+        ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+        {
+            int r = 0;
+            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                    ++r;
+                    continue;
+                }
+                if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                    break;
+                }
+                if(txt>QString::fromStdString(stdname)){
+                    break;
+                }else{
+                    ++r;
+                }
+            }
+            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),QString::fromStdString(stdname)));
+        }
     }
     delete(dial);
 }
@@ -4774,12 +5033,13 @@ void MainWindow::on_pushButton_13_clicked()
     sourceSetupWidget->blockSignal(true);
     selectedSourceModel->blockSignals(true);
 
-    for(int i=0; i<allSourceModel->rowCount(); ++i){
+    for(int i=0; i<allSourceModel->rowCount()-1; ++i){
         on_treeView_allAvailabeSources_clicked(allSourceModel->index(i,0));
     }
 
     selectedSourceModel->blockSignals(false);
     sourceSetupWidget->blockSignal(false);
+    on_treeView_allAvailabeSources_clicked(allSourceModel->index(allSourceModel->rowCount()-1,0));
     sourceSetupWidget->setupComboBox()->setCurrentIndex(0);
     sourceListChanged();
     auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
@@ -4792,13 +5052,28 @@ void MainWindow::on_pushButton_15_clicked()
 {
     selectedSourceModel->removeRows(0, selectedSourceModel->rowCount());
     selectedSources->clear();
-    int i = 0;
-    while(i<allSourcePlusGroupModel->rowCount()){
-        QString name = allSourcePlusGroupModel->item(i)->text();
-        if(name != "__all__" && groupSrc->find(name.toStdString()) == groupSrc->end()){
-            allSourcePlusGroupModel->removeRow(i);
-        }else{
-            ++i;
+    {
+        int i = 0;
+        while(i<allSourcePlusGroupModel->rowCount()){
+            QString name = allSourcePlusGroupModel->item(i)->text();
+            if(name != "__all__" && groupSrc->find(name.toStdString()) == groupSrc->end()){
+                allSourcePlusGroupModel->removeRow(i);
+            }else{
+                ++i;
+            }
+        }
+    }
+    {
+        int i = 0;
+        while(i<allSourcePlusGroupModel_combined->rowCount()){
+            QString name = allSourcePlusGroupModel_combined->item(i)->text();
+            if(groupSrc->find(name.toStdString()) != groupSrc->end() || groupSat->find(name.toStdString()) != groupSat->end() || groupSpace->find(name.toStdString()) != groupSpace->end()){
+                allSourcePlusGroupModel_combined->removeRow(i);
+            }else if(name == "__all__" || name == "__AGNs__" || name == "__satellites__" || name == "__spacecrafts__" ){
+                ++i;
+            }else{
+                ++i;
+            }
         }
     }
     auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
@@ -4995,7 +5270,7 @@ void MainWindow::on_spinBox_scanSequenceCadence_valueChanged(int arg1)
         while(ui->tableWidget_scanSequence->rowCount()<arg1){
             ui->tableWidget_scanSequence->insertRow(ui->tableWidget_scanSequence->rowCount());
             QComboBox *cBox = new QComboBox(this);
-            cBox->setModel(allSourcePlusGroupModel);
+            cBox->setModel(allSourcePlusGroupModel_combined);
             ui->tableWidget_scanSequence->setCellWidget(ui->tableWidget_scanSequence->rowCount()-1,0, cBox);
         }
     }
@@ -6428,4 +6703,36 @@ void MainWindow::on_pushButton_3_clicked()
             delete sat;
         });
     }
+}
+
+void MainWindow::on_pushButton_satellite_select_all_clicked()
+{
+    ui->lineEdit_allSatelliteFilter->setText("");
+    satelliteSetupWidget->blockSignal(true);
+    selectedSatelliteModel->blockSignals(true);
+
+    for(int i=0; i<allSatelliteModel->rowCount()-1; ++i){
+        on_treeView_allAvailabeSatellites_clicked(allSatelliteModel->index(i,0));
+    }
+
+    selectedSatelliteModel->blockSignals(false);
+    satelliteSetupWidget->blockSignal(false);
+    on_treeView_allAvailabeSatellites_clicked(allSatelliteModel->index(allSatelliteModel->rowCount()-1,0));
+    satelliteSetupWidget->setupComboBox()->setCurrentIndex(0);
+    satelliteListChanged();
+}
+
+void MainWindow::on_pushButton_satellite_select_none_clicked()
+{
+    selectedSatelliteModel->removeRows(0, selectedSatelliteModel->rowCount());
+    int i = 0;
+    while(i<allSatellitePlusGroupModel->rowCount()){
+        QString name = allSatellitePlusGroupModel->item(i)->text();
+        if(name != "__all__" && groupSrc->find(name.toStdString()) == groupSrc->end()){
+            allSatellitePlusGroupModel->removeRow(i);
+        }else{
+            ++i;
+        }
+    }
+    ui->label_sourceList_selected->setText("selected: ");
 }

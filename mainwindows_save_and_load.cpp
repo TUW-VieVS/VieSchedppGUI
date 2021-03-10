@@ -285,6 +285,12 @@ QString MainWindow::writeXML()
     for(const auto&any : *groupSrc){
         para.group(VieVS::ParameterSettings::Type::source,VieVS::ParameterGroup(any.first,any.second));
     }
+    for(const auto&any : *groupSat){
+        para.group(VieVS::ParameterSettings::Type::satellite,VieVS::ParameterGroup(any.first,any.second));
+    }
+    for(const auto&any : *groupSpace){
+        para.group(VieVS::ParameterSettings::Type::spacecraft,VieVS::ParameterGroup(any.first,any.second));
+    }
     for(const auto&any : *groupBl){
         para.group(VieVS::ParameterSettings::Type::baseline,VieVS::ParameterGroup(any.first,any.second));
     }

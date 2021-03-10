@@ -6,7 +6,6 @@
         <file>icons/station_group.png</file>
         <file>icons/station.png</file>
         <file>icons/station_p.png</file>
-        <file>icons/station_group_2.png</file>
         <file>icons/source.png</file>
         <file>icons/source_group.png</file>
         <file>icons/source_p.png</file>
@@ -80,11 +79,19 @@
         <file>icons/sim.png</file>
         <file>icons/spacecraft.png</file>
         <file>icons/satellite.png</file>
+        <file>icons/spacecraft_group.png</file>
+        <file>icons/spacecraft_group_plus.png</file>
+        <file>icons/spacecraft_p.png</file>
+        <file>icons/satellite_group.png</file>
+        <file>icons/satellite_group_plus.png</file>
+        <file>icons/satellite_p.png</file>
+        <file>icons/all_source_types.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>
         <file>images/setup_example.PNG</file>
         <file>images/weight_function.png</file>
         <file>images/setup_manual.png</file>
+        <file>images/cat_eye.png</file>
     </qresource>
 </RCC>

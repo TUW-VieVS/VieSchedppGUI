@@ -221,6 +221,10 @@ private slots:
 
     void addGroupSource();
 
+    void addGroupSatellite();
+
+    void addGroupSpacecraft();
+
     void addGroupBaseline();
 
     void on_dateTimeEdit_sessionStart_dateTimeChanged(const QDateTime &dateTime);
@@ -517,6 +521,10 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_satellite_select_all_clicked();
+
+    void on_pushButton_satellite_select_none_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -542,6 +550,7 @@ private:
     QStandardItemModel *selectedSpacecraftModel;
     bool createBaselines;
 
+    QStandardItemModel *allSourcePlusGroupModel_combined;
     QStandardItemModel *allSourcePlusGroupModel;
     QStandardItemModel *allStationPlusGroupModel;
     QStandardItemModel *allBaselinePlusGroupModel;

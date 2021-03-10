@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>2</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -3967,8 +3967,12 @@ If you only want to run simulations you can deselect this to avoid error message
            <number>0</number>
           </property>
           <widget class="QWidget" name="tab_3">
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/source.png</normaloff>:/icons/icons/source.png</iconset>
+           </attribute>
            <attribute name="title">
-            <string>AGNs</string>
+            <string>AGN</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_33">
             <item>
@@ -4268,16 +4272,17 @@ If you only want to run simulations you can deselect this to avoid error message
            </layout>
           </widget>
           <widget class="QWidget" name="tab_4">
-           <attribute name="title">
-            <string>satellites</string>
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/satellite.png</normaloff>:/icons/icons/satellite.png</iconset>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_34">
+           <attribute name="title">
+            <string>satellite</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_48">
             <item>
-             <widget class="QSplitter" name="splitter_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <widget class="QWidget" name="layoutWidget_12">
+             <layout class="QHBoxLayout" name="horizontalLayout_22">
+              <item>
                <layout class="QVBoxLayout" name="verticalLayout_44">
                 <item>
                  <widget class="QLabel" name="label_82">
@@ -4333,100 +4338,146 @@ If you only want to run simulations you can deselect this to avoid error message
                  </layout>
                 </item>
                </layout>
-              </widget>
-              <widget class="QSplitter" name="splitter_b_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <widget class="QWidget" name="layoutWidget_2">
-                <layout class="QVBoxLayout" name="verticalLayout_48">
-                 <item>
-                  <widget class="QLabel" name="label_satelliteList_selected">
-                   <property name="text">
-                    <string>selected (click to deselect source)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QTreeView" name="treeView_allSelectedSatellites">
-                   <property name="mouseTracking">
-                    <bool>true</bool>
-                   </property>
-                   <property name="toolTip">
-                    <string>list of all selected sources - click to deselect source</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>list of all selected sources - click to deselect source</string>
-                   </property>
-                   <property name="editTriggers">
-                    <set>QAbstractItemView::NoEditTriggers</set>
-                   </property>
-                   <property name="alternatingRowColors">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_94">
-                   <item>
-                    <spacer name="horizontalSpacer_60">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_saveSatelliteList">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="toolTip">
-                      <string>save source list</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>save source list</string>
-                     </property>
-                     <property name="text">
-                      <string> save</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="myresources.qrc">
-                       <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_loadSatelliteList">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="toolTip">
-                      <string>load source list</string>
-                     </property>
-                     <property name="statusTip">
-                      <string>load source list</string>
-                     </property>
-                     <property name="text">
-                      <string> load</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="myresources.qrc">
-                       <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                </layout>
-               </widget>
-              </widget>
-             </widget>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_34">
+                <item>
+                 <widget class="QLabel" name="label_satelliteList_selected">
+                  <property name="text">
+                   <string>selected (click to deselect source)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTreeView" name="treeView_allSelectedSatellites">
+                  <property name="mouseTracking">
+                   <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>list of all selected sources - click to deselect source</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>list of all selected sources - click to deselect source</string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_91">
+                  <item>
+                   <spacer name="horizontalSpacer_25">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_satellite_select_all">
+                    <property name="toolTip">
+                     <string>add all sources</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>add all sources</string>
+                    </property>
+                    <property name="text">
+                     <string>all</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/edit-add.png</normaloff>:/icons/icons/edit-add.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_satellite_select_none">
+                    <property name="toolTip">
+                     <string>remove all sources</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>remove all sources</string>
+                    </property>
+                    <property name="text">
+                     <string>none</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_94">
+                  <item>
+                   <spacer name="horizontalSpacer_60">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_saveSatelliteList">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>save source list</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>save source list</string>
+                    </property>
+                    <property name="text">
+                     <string> save</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_loadSatelliteList">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>load source list</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>load source list</string>
+                    </property>
+                    <property name="text">
+                     <string> load</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="myresources.qrc">
+                      <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
             <item>
              <spacer name="verticalSpacer_10">
@@ -4444,6 +4495,10 @@ If you only want to run simulations you can deselect this to avoid error message
            </layout>
           </widget>
           <widget class="QWidget" name="tab_12">
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/spacecraft.png</normaloff>:/icons/icons/spacecraft.png</iconset>
+           </attribute>
            <attribute name="title">
             <string>spacecraft</string>
            </attribute>
@@ -4633,6 +4688,10 @@ If you only want to run simulations you can deselect this to avoid error message
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Most of the times you &lt;span style=&quot; font-weight:600;&quot;&gt;do not have to use this options at all&lt;/span&gt;, because you want to use the &lt;span style=&quot; font-weight:600;&quot;&gt;same parameters for all stations&lt;/span&gt; and for the &lt;span style=&quot; font-weight:600;&quot;&gt;whole timespan&lt;/span&gt;. It is then sufficient to simply &lt;span style=&quot; font-weight:600;&quot;&gt;change the default parameters&lt;/span&gt; using the &lt;img src=&quot;:/icons/icons/edit-undo-7.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;The only &lt;span style=&quot; font-weight:600;&quot;&gt;exception is antenna down time&lt;/span&gt; (for example when there is an &lt;span style=&quot; font-weight:600;&quot;&gt;intensive session&lt;/span&gt; during your 24h experiment) &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;However, using this option might bring some benefit and &lt;span style=&quot; font-weight:600;&quot;&gt;might increase the quality of the schedule&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Here is a &lt;span style=&quot; font-weight:600;&quot;&gt;step by step example&lt;/span&gt; of how to &lt;span style=&quot; font-weight:600;&quot;&gt;insert a new child &lt;/span&gt;at the tree-based parameterization. If you have general questions about the tree-based parametrization have a look at the &lt;span style=&quot; font-weight:600;&quot;&gt;FAQ page&lt;/span&gt;&lt;img src=&quot;:/icons/icons/documentation.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/setup_manual.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;The first thing you have to do is to &lt;span style=&quot; font-weight:600;&quot;&gt;select the member&lt;/span&gt; whos parameter you want to change. Select it using the combobox. &lt;/p&gt;&lt;p&gt;Then &lt;span style=&quot; font-weight:600;&quot;&gt;select the parameter&lt;/span&gt; you want to add using the combobox. You can add &lt;span style=&quot; font-weight:600;&quot;&gt;new parameters&lt;/span&gt; using the &lt;img src=&quot;:/icons/icons/edit-add.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; button. &lt;/p&gt;&lt;p&gt;If these parameters should only be used during a &lt;span style=&quot; font-weight:600;&quot;&gt;certain time period&lt;/span&gt; select this period at using the forms. In case you want to use these parameters for the full timespan you do not have to change anything here. &lt;/p&gt;&lt;p&gt;Set the &lt;span style=&quot; font-weight:600;&quot;&gt;transition type&lt;/span&gt; of your parameter change using the combobox. This option is only necessary if you are using a certain timespan for your parameter. Look at the &lt;span style=&quot; font-weight:600;&quot;&gt;FAQ&lt;/span&gt; for further details. As a &lt;span style=&quot; font-weight:600;&quot;&gt;rule of thumb&lt;/span&gt;: you can always use the transition &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;hard&amp;quot;&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;Finally, click the &lt;span style=&quot; font-weight:600;&quot;&gt;add setup button&lt;/span&gt;&lt;img src=&quot;:/icons/icons/edit-add.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; marked with . &lt;/p&gt;&lt;p&gt;The new parameters should now appear in the tree-based list on the left as well as in the visual representation. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;If you get an error message, make sure that there are no ambigurities within your setup (e.g. make sure that the groups/times do not overlap in a wired way)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/station_p.png</normaloff>:/icons/icons/station_p.png</iconset>
+           </attribute>
            <attribute name="title">
             <string>station setup</string>
            </attribute>
@@ -4938,10 +4997,17 @@ If you only want to run simulations you can deselect this to avoid error message
        <layout class="QVBoxLayout" name="verticalLayout_37" stretch="0">
         <item>
          <widget class="QTabWidget" name="tabWidget_setupSources">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
           <widget class="QWidget" name="AGN_setup">
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/source_p.png</normaloff>:/icons/icons/source_p.png</iconset>
+           </attribute>
            <attribute name="title">
             <string>AGN setup</string>
            </attribute>
@@ -4952,6 +5018,10 @@ If you only want to run simulations you can deselect this to avoid error message
            </layout>
           </widget>
           <widget class="QWidget" name="satellite_setup">
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/satellite_p.png</normaloff>:/icons/icons/satellite_p.png</iconset>
+           </attribute>
            <attribute name="title">
             <string>satellite setup</string>
            </attribute>
@@ -4962,6 +5032,13 @@ If you only want to run simulations you can deselect this to avoid error message
            </layout>
           </widget>
           <widget class="QWidget" name="tab_15">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/spacecraft_p.png</normaloff>:/icons/icons/spacecraft_p.png</iconset>
+           </attribute>
            <attribute name="title">
             <string>spacecraft setup</string>
            </attribute>
@@ -6646,15 +6723,15 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>873</width>
-             <height>601</height>
+             <width>946</width>
+             <height>681</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>0</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <property name="whatsThis">
@@ -7152,6 +7229,19 @@ p, li { white-space: pre-wrap; }
                   </layout>
                  </widget>
                 </item>
+                <item>
+                 <spacer name="horizontalSpacer_22">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
                </layout>
               </widget>
               <widget class="QWidget" name="tab_intensives">
@@ -7163,9 +7253,9 @@ p, li { white-space: pre-wrap; }
                  <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
                </attribute>
                <attribute name="title">
-                <string>intensive</string>
+                <string>cat-eye optimization</string>
                </attribute>
-               <layout class="QHBoxLayout" name="horizontalLayout_129">
+               <layout class="QHBoxLayout" name="horizontalLayout_129" stretch="0,1">
                 <item>
                  <widget class="QGroupBox" name="groupBox_34">
                   <property name="toolTip">
@@ -7411,17 +7501,57 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_64">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                 <layout class="QVBoxLayout" name="verticalLayout_40">
+                  <property name="leftMargin">
+                   <number>0</number>
                   </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>447</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
+                  <item>
+                   <widget class="QTextEdit" name="textEdit">
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
+                    <property name="html">
+                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The cat-eye optimization is used for &lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;Intensive&lt;/span&gt; sessions&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The network gets split in three groups of &lt;span style=&quot; color:#0000ff;&quot;&gt;eastern&lt;/span&gt; (&lt;span style=&quot; color:#0000ff;&quot;&gt;blue&lt;/span&gt;), &lt;span style=&quot; color:#ff0000;&quot;&gt;western&lt;/span&gt; (&lt;span style=&quot; color:#ff0000;&quot;&gt;red&lt;/span&gt;), and neutral stations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Based on the &lt;span style=&quot; color:#0000ff;&quot;&gt;eastern&lt;/span&gt; and &lt;span style=&quot; color:#ff0000;&quot;&gt;western&lt;/span&gt; stations, the corners of the commonly visible sky are identified. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Neutral stations are ignored.  &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/images/images/cat_eye.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a) Example of a station grouping for a five station INT3 session. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The circles represent the catchment areas of the grouping based on the longest baseline on the xy-plane (&lt;span style=&quot; color:#ff0000;&quot;&gt;Wz&lt;/span&gt;-&lt;span style=&quot; color:#0000ff;&quot;&gt;Is&lt;/span&gt; in this case). &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &lt;span style=&quot; color:#0000ff;&quot;&gt;eastern&lt;/span&gt; stations would be &lt;span style=&quot; color:#0000ff;&quot;&gt;Is&lt;/span&gt; and &lt;span style=&quot; color:#0000ff;&quot;&gt;Sh&lt;/span&gt; while the &lt;span style=&quot; color:#ff0000;&quot;&gt;western&lt;/span&gt; stations would be &lt;span style=&quot; color:#ff0000;&quot;&gt;Wz&lt;/span&gt; and &lt;span style=&quot; color:#ff0000;&quot;&gt;Wn&lt;/span&gt;. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Station Ny would be part of the neutral group. &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;b) Visible sky as seen from the central point of baseline &lt;span style=&quot; color:#ff0000;&quot;&gt;Wz&lt;/span&gt;-&lt;span style=&quot; color:#0000ff;&quot;&gt;Is&lt;/span&gt; in a stereographic projection. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Gray areas are not visible by both stations simultaneously.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Low elevation areas are color-coded -- &lt;span style=&quot; color:#ff0000;&quot;&gt;red for Wz&lt;/span&gt;, &lt;span style=&quot; color:#0000ff;&quot;&gt;blue for Is&lt;/span&gt;. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The corners of the commonly visible sky correspond with the areas of low elevation for both stations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sources within these corners gain a special focus during scheduling since they are most important for determining dUT1. &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;See &lt;span style=&quot; font-weight:600;&quot;&gt;Schartner et al. 2021, submitted to JOGE&lt;/span&gt; for more information. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_20">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </widget>
@@ -7482,6 +7612,23 @@ p, li { white-space: pre-wrap; }
                          </property>
                         </widget>
                        </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_14">
+                       <item>
+                        <spacer name="horizontalSpacer_19">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_addSourceGroup_Sequence">
                          <property name="toolTip">
@@ -7499,22 +7646,27 @@ p, li { white-space: pre-wrap; }
                          </property>
                         </widget>
                        </item>
-                      </layout>
-                     </item>
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_14">
                        <item>
-                        <spacer name="horizontalSpacer_19">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                        <widget class="QPushButton" name="pushButton_addSatelliteGroup_Sequence">
+                         <property name="text">
+                          <string/>
                          </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
+                         <property name="icon">
+                          <iconset resource="myresources.qrc">
+                           <normaloff>:/icons/icons/satellite_group_plus.png</normaloff>:/icons/icons/satellite_group_plus.png</iconset>
                          </property>
-                        </spacer>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButton_addSpacecraftGroup_Sequence">
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="myresources.qrc">
+                           <normaloff>:/icons/icons/spacecraft_group_plus.png</normaloff>:/icons/icons/spacecraft_group_plus.png</iconset>
+                         </property>
+                        </widget>
                        </item>
                       </layout>
                      </item>
@@ -11786,7 +11938,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>treeWidget_setupStationAxis</tabstop>
   <tabstop>scrollArea_2</tabstop>
   <tabstop>spinBox_scanSequenceCadence</tabstop>
-  <tabstop>pushButton_addSourceGroup_Sequence</tabstop>
   <tabstop>tableWidget_scanSequence</tabstop>
   <tabstop>radioButton_calibratorTime</tabstop>
   <tabstop>spinBox_calibratorTime</tabstop>

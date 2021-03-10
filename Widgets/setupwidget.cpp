@@ -90,8 +90,8 @@ setupWidget::setupWidget(Type type,
     }
     case Type::satellite:{
         icon_single = QIcon(":/icons/icons/satellite.png");
-        icon_group = QIcon(":/icons/icons/satellite.png");
-        icon_add_group = QIcon(":/icons/icons/satellite.png");
+        icon_group = QIcon(":/icons/icons/satellite_group.png");
+        icon_add_group = QIcon(":/icons/icons/satellite_group_plus.png");
         ui->pushButton_IvsDownTime->setVisible(false);
         ui->pushButton_parseDownTime->setVisible(false);
         selectedModel = selectedSatelliteModel;
@@ -103,8 +103,8 @@ setupWidget::setupWidget(Type type,
     }
     case Type::spacecraft:{
         icon_single = QIcon(":/icons/icons/spacecraft.png");
-        icon_group = QIcon(":/icons/icons/spacecraft.png");
-        icon_add_group = QIcon(":/icons/icons/spacecraft.png");
+        icon_group = QIcon(":/icons/icons/spacecraft_group.png");
+        icon_add_group = QIcon(":/icons/icons/spacecraft_group_plus.png");
         ui->pushButton_IvsDownTime->setVisible(false);
         ui->pushButton_parseDownTime->setVisible(false);
         selectedModel = selectedSpacecraftModel;

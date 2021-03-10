@@ -71,6 +71,8 @@ void AddGroupDialog::addModel(QStandardItemModel *model, std::map<std::string, s
         case Type::source: icn = QIcon(":/icons/icons/source_group.png"); break;
         case Type::station: icn = QIcon(":/icons/icons/station_group.png"); break;
         case Type::baseline: icn = QIcon(":/icons/icons/baseline_group.png"); break;
+        case Type::satellite: icn = QIcon(":/icons/icons/satellite_group.png"); break;
+        case Type::spacecraft: icn = QIcon(":/icons/icons/spacecraft_group.png"); break;
         }
         groups->appendRow(new QStandardItem(icn, name));
     }
@@ -201,6 +203,14 @@ void AddGroupDialog::on_pushButton_Save_clicked()
                 settings.add_child("settings.baseline.groups.group", pt_group.get_child("group"));
                 break;
             }
+            case Type::satellite:{
+                settings.add_child("settings.satellite.groups.group", pt_group.get_child("group"));
+                break;
+            }
+            case Type::spacecraft:{
+                settings.add_child("settings.spacecraft.groups.group", pt_group.get_child("group"));
+                break;
+            }
             default:
                 break;
             }
@@ -221,6 +231,8 @@ void AddGroupDialog::on_pushButton_Load_clicked()
         case Type::station:{ groupstree = settings.get_child_optional("settings.station.groups"); break; }
         case Type::source:{ groupstree = settings.get_child_optional("settings.source.groups"); break; }
         case Type::baseline:{ groupstree = settings.get_child_optional("settings.baseline.groups"); break; }
+        case Type::satellite:{ groupstree = settings.get_child_optional("settings.satellite.groups"); break; }
+        case Type::spacecraft:{ groupstree = settings.get_child_optional("settings.spacecraft.groups"); break; }
         default:{ break; }
     }
 
