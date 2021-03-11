@@ -2025,11 +2025,432 @@ void MainWindow::createDefaultParameterSettings()
     settings_.add("settings.output.directory", "../out/");
     settings_.add("settings.output.NGS_directory", "../out/");
 
+    {
+        boost::property_tree::ptree vgos16Gbps;
+        vgos16Gbps.add("mode.<xmlattr>.name", "VGOS_16_Gbps");
+        vgos16Gbps.add("mode.bits", 2);
+        vgos16Gbps.add("mode.sampleRate", 1024);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","A");
+        a.add("band.frequency",3.2564);
+        a.add("band.channels",1);
+        vgos16Gbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","B");
+        b.add("band.frequency",5.4964);
+        b.add("band.channels",1);
+        vgos16Gbps.add_child("mode.band", b.get_child("band"));
+        boost::property_tree::ptree c;
+        c.add("band.<xmlattr>.name","C");
+        c.add("band.frequency",6.6164);
+        c.add("band.channels",1);
+        vgos16Gbps.add_child("mode.band", c.get_child("band"));
+        boost::property_tree::ptree d;
+        d.add("band.<xmlattr>.name","D");
+        d.add("band.frequency",10.4564);
+        d.add("band.channels",1);
+        vgos16Gbps.add_child("mode.band", d.get_child("band"));
+        settings_.add_child("settings.modes.mode", vgos16Gbps.get_child("mode"));
+    }
+    {
+        boost::property_tree::ptree vgos32Gbps;
+        vgos32Gbps.add("mode.<xmlattr>.name", "VGOS_32_Gbps");
+        vgos32Gbps.add("mode.bits", 2);
+        vgos32Gbps.add("mode.sampleRate", 2048);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","A");
+        a.add("band.frequency",3.2564);
+        a.add("band.channels",1);
+        vgos32Gbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","B");
+        b.add("band.frequency",5.4964);
+        b.add("band.channels",1);
+        vgos32Gbps.add_child("mode.band", b.get_child("band"));
+        boost::property_tree::ptree c;
+        c.add("band.<xmlattr>.name","C");
+        c.add("band.frequency",6.6164);
+        c.add("band.channels",1);
+        vgos32Gbps.add_child("mode.band", c.get_child("band"));
+        boost::property_tree::ptree d;
+        d.add("band.<xmlattr>.name","D");
+        d.add("band.frequency",10.4564);
+        d.add("band.channels",1);
+        vgos32Gbps.add_child("mode.band", d.get_child("band"));
+        settings_.add_child("settings.modes.mode", vgos32Gbps.get_child("mode"));
+    }
+    {
+        boost::property_tree::ptree sx1Gbps;
+        sx1Gbps.add("mode.<xmlattr>.name", "SX_1_Gbps");
+        sx1Gbps.add("mode.bits", 2);
+        sx1Gbps.add("mode.sampleRate", 32);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","S");
+        a.add("band.frequency",2.4);
+        a.add("band.channels",6);
+        sx1Gbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","X");
+        b.add("band.frequency",8.5);
+        b.add("band.channels",10);
+        sx1Gbps.add_child("mode.band", b.get_child("band"));
+
+        settings_.add_child("settings.modes.mode", sx1Gbps.get_child("mode"));
+    }
+    {
+        boost::property_tree::ptree sx512Mbps;
+        sx512Mbps.add("mode.<xmlattr>.name", "SX_512_Mbps");
+        sx512Mbps.add("mode.bits", 2);
+        sx512Mbps.add("mode.sampleRate", 16);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","S");
+        a.add("band.frequency",2.4);
+        a.add("band.channels",6);
+        sx512Mbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","X");
+        b.add("band.frequency",8.5);
+        b.add("band.channels",10);
+        sx512Mbps.add_child("mode.band", b.get_child("band"));
+
+        settings_.add_child("settings.modes.mode", sx512Mbps.get_child("mode"));
+    }
+    {
+        boost::property_tree::ptree sx256Mbps;
+        sx256Mbps.add("mode.<xmlattr>.name", "SX_256_Mbps");
+        sx256Mbps.add("mode.bits", 2);
+        sx256Mbps.add("mode.sampleRate", 8);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","S");
+        a.add("band.frequency",2.4);
+        a.add("band.channels",6);
+        sx256Mbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","X");
+        b.add("band.frequency",8.5);
+        b.add("band.channels",10);
+        sx256Mbps.add_child("mode.band", b.get_child("band"));
+
+        settings_.add_child("settings.modes.mode", sx256Mbps.get_child("mode"));
+    }
+    {
+        boost::property_tree::ptree sx128Mbps;
+        sx128Mbps.add("mode.<xmlattr>.name", "SX_128_Mbps");
+        sx128Mbps.add("mode.bits", 1);
+        sx128Mbps.add("mode.sampleRate", 8);
+        boost::property_tree::ptree a;
+        a.add("band.<xmlattr>.name","S");
+        a.add("band.frequency",2.4);
+        a.add("band.channels",6);
+        sx128Mbps.add_child("mode.band", a.get_child("band"));
+        boost::property_tree::ptree b;
+        b.add("band.<xmlattr>.name","X");
+        b.add("band.frequency",8.5);
+        b.add("band.channels",10);
+        sx128Mbps.add_child("mode.band", b.get_child("band"));
+
+        settings_.add_child("settings.modes.mode", sx128Mbps.get_child("mode"));
+    }
+
+
+
+
     std::ofstream os;
     os.open("settings.xml");
     boost::property_tree::xml_parser::write_xml(os, settings_,
                                                 boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
     os.close();
+
+
+    std::string str = "  <simulator_templates>\n"
+                      "    <24_hour_SX>\n"
+                      "      <simulator>\n"
+                      "        <number_of_simulations>1000</number_of_simulations>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <wn>17.68</wn>\n"
+                      "          <clockASD>1</clockASD>\n"
+                      "          <clockDur>50</clockDur>\n"
+                      "          <tropo_Cn>1.8</tropo_Cn>\n"
+                      "          <tropo_H>2000</tropo_H>\n"
+                      "          <tropo_dH>200</tropo_dH>\n"
+                      "          <tropo_dHseg>2</tropo_dHseg>\n"
+                      "          <tropo_ve>8</tropo_ve>\n"
+                      "          <tropo_vn>0</tropo_vn>\n"
+                      "          <tropo_wzd0>150</tropo_wzd0>\n"
+                      "        </station>\n"
+                      "      </simulator>\n"
+                      "      <solver>\n"
+                      "        <EOP>\n"
+                      "          <XPO>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </XPO>\n"
+                      "          <YPO>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </YPO>\n"
+                      "          <dUT1>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </dUT1>\n"
+                      "          <NUTX>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </NUTX>\n"
+                      "          <NUTY>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </NUTY>\n"
+                      "        </EOP>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <coordinates>true</coordinates>\n"
+                      "          <datum>true</datum>\n"
+                      "          <linear_clock>true</linear_clock>\n"
+                      "          <quadratic_clock>true</quadratic_clock>\n"
+                      "          <PWL_clock>\n"
+                      "            <interval>60</interval>\n"
+                      "            <constraint>1.3</constraint>\n"
+                      "          </PWL_clock>\n"
+                      "          <PWL_ZWD>\n"
+                      "            <interval>30</interval>\n"
+                      "            <constraint>1.5</constraint>\n"
+                      "          </PWL_ZWD>\n"
+                      "          <PWL_NGR>\n"
+                      "            <interval>180</interval>\n"
+                      "            <constraint>0.050000000000000003</constraint>\n"
+                      "          </PWL_NGR>\n"
+                      "          <PWL_EGR>\n"
+                      "            <interval>180</interval>\n"
+                      "            <constraint>0.050000000000000003</constraint>\n"
+                      "          </PWL_EGR>\n"
+                      "        </station>\n"
+                      "        <source>\n"
+                      "          <minScans>3</minScans>\n"
+                      "          <minObs>5</minObs>\n"
+                      "          <minObs_datum>25</minObs_datum>\n"
+                      "          <estimate>__none__</estimate>\n"
+                      "          <datum>__all__</datum>\n"
+                      "        </source>\n"
+                      "      </solver>\n"
+                      "      <priorities>\n"
+                      "        <fraction>70</fraction>\n"
+                      "        <percentile>0.75</percentile>\n"
+                      "        <variable name=\"#obs\">1</variable>\n"
+                      "        <variable name=\"XPO\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"YPO\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"dUT1\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"NUTX\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"NUTY\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"scale\">0</variable>\n"
+                      "      </priorities>\n"
+                      "    </24_hour_SX>\n"
+                      "    <1h_intensive_SX>\n"
+                      "      <simulator>\n"
+                      "        <number_of_simulations>1000</number_of_simulations>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <wn>17.68</wn>\n"
+                      "          <clockASD>1</clockASD>\n"
+                      "          <clockDur>50</clockDur>\n"
+                      "          <tropo_Cn>1.8</tropo_Cn>\n"
+                      "          <tropo_H>2000</tropo_H>\n"
+                      "          <tropo_dH>200</tropo_dH>\n"
+                      "          <tropo_dHseg>2</tropo_dHseg>\n"
+                      "          <tropo_ve>8</tropo_ve>\n"
+                      "          <tropo_vn>0</tropo_vn>\n"
+                      "          <tropo_wzd0>150</tropo_wzd0>\n"
+                      "        </station>\n"
+                      "      </simulator>\n"
+                      "      <solver>\n"
+                      "        <EOP>\n"
+                      "          <dUT1>\n"
+                      "            <interval>1</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </dUT1>\n"
+                      "        </EOP>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <coordinates>false</coordinates>\n"
+                      "          <datum>false</datum>\n"
+                      "          <linear_clock>true</linear_clock>\n"
+                      "          <quadratic_clock>false</quadratic_clock>\n"
+                      "          <PWL_ZWD>\n"
+                      "            <interval>60</interval>\n"
+                      "            <constraint>1.5</constraint>\n"
+                      "          </PWL_ZWD>\n"
+                      "        </station>\n"
+                      "        <source>\n"
+                      "          <minScans>3</minScans>\n"
+                      "          <minObs>5</minObs>\n"
+                      "          <minObs_datum>25</minObs_datum>\n"
+                      "          <estimate>__none__</estimate>\n"
+                      "          <datum>__all__</datum>\n"
+                      "        </source>\n"
+                      "      </solver>\n"
+                      "      <priorities>\n"
+                      "        <fraction>70</fraction>\n"
+                      "        <percentile>0.75</percentile>\n"
+                      "        <variable name=\"#obs\">0.5</variable>\n"
+                      "        <variable name=\"XPO\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"YPO\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"dUT1\">1.00000000000000001</variable>\n"
+                      "        <variable name=\"NUTX\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"NUTY\">0.00000000000000001</variable>\n"
+                      "	      <variable name=\"scale\">0</variable>\n"
+                      "	    </priorities>\n"
+                      "	  </1h_intensive_SX>\n"
+                      "    <24_hour_VGOS>\n"
+                      "      <simulator>\n"
+                      "        <number_of_simulations>1000</number_of_simulations>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <wn>2.83</wn>\n"
+                      "          <clockASD>1</clockASD>\n"
+                      "          <clockDur>50</clockDur>\n"
+                      "          <tropo_Cn>1.8</tropo_Cn>\n"
+                      "          <tropo_H>2000</tropo_H>\n"
+                      "          <tropo_dH>200</tropo_dH>\n"
+                      "          <tropo_dHseg>2</tropo_dHseg>\n"
+                      "          <tropo_ve>8</tropo_ve>\n"
+                      "          <tropo_vn>0</tropo_vn>\n"
+                      "          <tropo_wzd0>150</tropo_wzd0>\n"
+                      "        </station>\n"
+                      "      </simulator>\n"
+                      "      <solver>\n"
+                      "        <EOP>\n"
+                      "          <XPO>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </XPO>\n"
+                      "          <YPO>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </YPO>\n"
+                      "          <dUT1>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </dUT1>\n"
+                      "          <NUTX>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </NUTX>\n"
+                      "          <NUTY>\n"
+                      "            <interval>24</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </NUTY>\n"
+                      "        </EOP>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <coordinates>true</coordinates>\n"
+                      "          <datum>true</datum>\n"
+                      "          <linear_clock>true</linear_clock>\n"
+                      "          <quadratic_clock>true</quadratic_clock>\n"
+                      "          <PWL_clock>\n"
+                      "            <interval>60</interval>\n"
+                      "            <constraint>1.3</constraint>\n"
+                      "          </PWL_clock>\n"
+                      "          <PWL_ZWD>\n"
+                      "            <interval>30</interval>\n"
+                      "            <constraint>1.5</constraint>\n"
+                      "          </PWL_ZWD>\n"
+                      "          <PWL_NGR>\n"
+                      "            <interval>180</interval>\n"
+                      "            <constraint>0.050000000000000003</constraint>\n"
+                      "          </PWL_NGR>\n"
+                      "          <PWL_EGR>\n"
+                      "            <interval>180</interval>\n"
+                      "            <constraint>0.050000000000000003</constraint>\n"
+                      "          </PWL_EGR>\n"
+                      "        </station>\n"
+                      "        <source>\n"
+                      "          <minScans>3</minScans>\n"
+                      "          <minObs>5</minObs>\n"
+                      "          <minObs_datum>25</minObs_datum>\n"
+                      "          <estimate>__none__</estimate>\n"
+                      "          <datum>__all__</datum>\n"
+                      "        </source>\n"
+                      "      </solver>\n"
+                      "      <priorities>\n"
+                      "        <fraction>70</fraction>\n"
+                      "        <percentile>0.75</percentile>\n"
+                      "        <variable name=\"#obs\">1</variable>\n"
+                      "        <variable name=\"XPO\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"YPO\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"dUT1\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"NUTX\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"NUTY\">0.20000000000000001</variable>\n"
+                      "        <variable name=\"scale\">0</variable>\n"
+                      "      </priorities>\n"
+                      "    </24_hour_VGOS>\n"
+                      "    <1h_intensive_VGOS>\n"
+                      "      <simulator>\n"
+                      "        <number_of_simulations>1000</number_of_simulations>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <wn>2.83</wn>\n"
+                      "          <clockASD>1</clockASD>\n"
+                      "          <clockDur>50</clockDur>\n"
+                      "          <tropo_Cn>1.8</tropo_Cn>\n"
+                      "          <tropo_H>2000</tropo_H>\n"
+                      "          <tropo_dH>200</tropo_dH>\n"
+                      "          <tropo_dHseg>2</tropo_dHseg>\n"
+                      "          <tropo_ve>8</tropo_ve>\n"
+                      "          <tropo_vn>0</tropo_vn>\n"
+                      "          <tropo_wzd0>150</tropo_wzd0>\n"
+                      "        </station>\n"
+                      "      </simulator>\n"
+                      "      <solver>\n"
+                      "        <EOP>\n"
+                      "          <dUT1>\n"
+                      "            <interval>1</interval>\n"
+                      "            <constraint>0.0001</constraint>\n"
+                      "          </dUT1>\n"
+                      "        </EOP>\n"
+                      "        <station name=\"__all__\">\n"
+                      "          <coordinates>false</coordinates>\n"
+                      "          <datum>false</datum>\n"
+                      "          <linear_clock>true</linear_clock>\n"
+                      "          <quadratic_clock>false</quadratic_clock>\n"
+                      "          <PWL_ZWD>\n"
+                      "            <interval>60</interval>\n"
+                      "            <constraint>1.5</constraint>\n"
+                      "          </PWL_ZWD>\n"
+                      "        </station>\n"
+                      "        <source>\n"
+                      "          <minScans>3</minScans>\n"
+                      "          <minObs>5</minObs>\n"
+                      "          <minObs_datum>25</minObs_datum>\n"
+                      "          <estimate>__none__</estimate>\n"
+                      "          <datum>__all__</datum>\n"
+                      "        </source>\n"
+                      "      </solver>\n"
+                      "      <priorities>\n"
+                      "        <fraction>70</fraction>\n"
+                      "        <percentile>0.75</percentile>\n"
+                      "        <variable name=\"#obs\">0.5</variable>\n"
+                      "        <variable name=\"XPO\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"YPO\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"dUT1\">1.00000000000000001</variable>\n"
+                      "        <variable name=\"NUTX\">0.00000000000000001</variable>\n"
+                      "        <variable name=\"NUTY\">0.00000000000000001</variable>\n"
+                      "	      <variable name=\"scale\">0</variable>\n"
+                      "	    </priorities>\n"
+                      "	  </1h_intensive_VGOS>\n"
+                      "	</simulator_templates>\n"
+          "</settings>\n";
+
+    std::string file;
+    std::ifstream is("settings.xml");
+    is.seekg(0, std::ios::end);
+    file.reserve(is.tellg());
+    is.seekg(0, std::ios::beg);
+
+    file.assign((std::istreambuf_iterator<char>(is)),
+                std::istreambuf_iterator<char>());
+    is.close();
+    file = file.substr(0, file.size()-12);
+
+    file.append(str);
+
+    std::ofstream of;
+    of.open("settings.xml");
+    of << file;
+    of.close();
 
 }
 
