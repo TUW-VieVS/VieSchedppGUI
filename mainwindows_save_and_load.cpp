@@ -1474,6 +1474,16 @@ void MainWindow::loadXML(QString path)
             QString mode = QString::fromStdString(xml.get<std::string>("VieSchedpp.mode.skdMode"));
             ui->groupBox_modeSked->setChecked(true);
             ui->comboBox_skedObsModes->setCurrentText(mode);
+            while(ui->tableWidget_modeCustonBand->rowCount() >0){
+                ui->tableWidget_modeCustonBand->removeRow(0);
+            }
+            ui->tableWidget_modeCustonBand->setRowCount(0);
+
+            while(ui->tableWidget_ModesPolicy->rowCount() >0){
+                ui->tableWidget_ModesPolicy->removeRow(0);
+            }
+            ui->tableWidget_ModesPolicy->setRowCount(0);
+
             addModesCustomTable("X",8.590,10);
             addModesCustomTable("S",2.260,6);
         }
@@ -1482,6 +1492,12 @@ void MainWindow::loadXML(QString path)
                 ui->tableWidget_modeCustonBand->removeRow(0);
             }
             ui->tableWidget_modeCustonBand->setRowCount(0);
+
+            while(ui->tableWidget_ModesPolicy->rowCount() >0){
+                ui->tableWidget_ModesPolicy->removeRow(0);
+            }
+            ui->tableWidget_ModesPolicy->setRowCount(0);
+
             ui->sampleRateDoubleSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.sampleRate"));
             ui->sampleBitsSpinBox->setValue(xml.get<double>("VieSchedpp.mode.simple.bits"));
             ui->groupBox_modeCustom->setChecked(true);

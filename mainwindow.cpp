@@ -1828,6 +1828,15 @@ void MainWindow::defaultParameters()
 //        ui->label_weightLowElEnd->setEnabled(*weightLowElevationChecked);
     }
 
+    double axis1LowOffset = settings_.get("settings.station.cableWrapBuffers.axis1LowOffset",5.0);
+    double axis1UpOffset = settings_.get("settings.station.cableWrapBuffers.axis1UpOffset",5.0);
+    double axis2LowOffset = settings_.get("settings.station.cableWrapBuffers.axis2LowOffset",0.0);
+    double axis2UpOffset = settings_.get("settings.station.cableWrapBuffers.axis2UpOffset",0.0);
+    ui->DoubleSpinBox_axis1low->setValue(axis1LowOffset);
+    ui->DoubleSpinBox_axis1up->setValue(axis1UpOffset);
+    ui->DoubleSpinBox_axis2low->setValue(axis2LowOffset);
+    ui->DoubleSpinBox_axis2up->setValue(axis2UpOffset);
+
     boost::optional<double> skyCoverage = settings_.get_optional<double>("settings.weightFactor.skyCoverage");
     if(skyCoverage.is_initialized()){
         ui->doubleSpinBox_weightSkyCoverage->setValue(*skyCoverage);
@@ -2085,6 +2094,7 @@ void MainWindow::addModesCustomTable(QString name, double freq, int nChannel){
     for(int i = 0; i<ui->tableWidget_modeCustonBand->rowCount(); ++i ){
         QString tmp = ui->tableWidget_modeCustonBand->verticalHeaderItem(i)->text();
         if(name == tmp ){
+            ui->tableWidget_modeCustonBand->removeRow(i);
             QMessageBox warning;
             warning.warning(this,"already used band name","Band name " + tmp + " is already used!");
             return;

@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>3</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1231,7 +1231,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>932</width>
+             <width>259</width>
              <height>694</height>
             </rect>
            </property>
@@ -4725,7 +4725,7 @@ If you only want to run simulations you can deselect this to avoid error message
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabWidgetPage1">
            <property name="whatsThis">
@@ -4979,7 +4979,7 @@ If you only want to run simulations you can deselect this to avoid error message
                        <double>0.500000000000000</double>
                       </property>
                       <property name="value">
-                       <double>5.000000000000000</double>
+                       <double>0.000000000000000</double>
                       </property>
                      </widget>
                     </item>
@@ -4992,7 +4992,7 @@ If you only want to run simulations you can deselect this to avoid error message
                        <double>0.500000000000000</double>
                       </property>
                       <property name="value">
-                       <double>5.000000000000000</double>
+                       <double>0.000000000000000</double>
                       </property>
                      </widget>
                     </item>
@@ -6766,8 +6766,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>681</height>
+             <width>879</width>
+             <height>601</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
