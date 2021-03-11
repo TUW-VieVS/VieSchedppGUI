@@ -285,12 +285,6 @@ QString MainWindow::writeXML()
     for(const auto&any : *groupSrc){
         para.group(VieVS::ParameterSettings::Type::source,VieVS::ParameterGroup(any.first,any.second));
     }
-    for(const auto&any : *groupSat){
-        para.group(VieVS::ParameterSettings::Type::satellite,VieVS::ParameterGroup(any.first,any.second));
-    }
-    for(const auto&any : *groupSpace){
-        para.group(VieVS::ParameterSettings::Type::spacecraft,VieVS::ParameterGroup(any.first,any.second));
-    }
     for(const auto&any : *groupBl){
         para.group(VieVS::ParameterSettings::Type::baseline,VieVS::ParameterGroup(any.first,any.second));
     }
@@ -301,7 +295,7 @@ QString MainWindow::writeXML()
             para.parameters(any.first, any.second, VieVS::ParameterSettings::Type::satellite);
         }
         for(const auto&any : *groupSat){
-            para.group(VieVS::ParameterSettings::Type::source, VieVS::ParameterGroup(any.first,any.second));
+            para.group(VieVS::ParameterSettings::Type::satellite, VieVS::ParameterGroup(any.first,any.second));
         }
     }
     if(!spacecraft_names.empty()){
@@ -657,6 +651,14 @@ void MainWindow::loadXML(QString path)
         if(!source.empty()){
             ui->lineEdit_pathSource->setText(QString::fromStdString(source));
         }
+        std::string tle = xml.get("VieSchedpp.catalogs.satellite","");
+        if(!tle.empty()){
+            ui->lineEdit_pathSatellite->setText(QString::fromStdString(tle));
+        }
+        std::string spacecraft = xml.get("VieSchedpp.catalogs.spacecraft","");
+        if(!spacecraft.empty()){
+            ui->lineEdit_pathSpacecraft->setText(QString::fromStdString(spacecraft));
+        }
         std::string flux = xml.get("VieSchedpp.catalogs.flux","");
         if(!flux.empty()){
             ui->lineEdit_pathFlux->setText(QString::fromStdString(flux));
@@ -795,6 +797,30 @@ void MainWindow::loadXML(QString path)
             }
         }
 
+        std::vector<std::string> sel_satellites;
+        const auto &satellites = xml.get_child_optional("VieSchedpp.general.satellites");
+        if(satellites.is_initialized()){
+            auto it = satellites->begin();
+            while (it != satellites->end()) {
+                auto item = it->second.data();
+                sel_satellites.push_back(item);
+                ++it;
+            }
+            for(const auto &satellite : sel_satellites){
+                bool found = false;
+                for(int i=0; i<allSatelliteProxyModel->rowCount(); ++i){
+                    if(allSatelliteProxyModel->index(i,0).data().toString() == QString::fromStdString(satellite)){
+                        on_treeView_allAvailabeSatellites_clicked(allSatelliteProxyModel->index(i,0));
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    warning.append("Satellite "+QString::fromStdString(satellite)+" not found!");
+                }
+            }
+        }
+
 
         std::vector<std::string> sel_sources;
         const auto &ptree_useSources = xml.get_child_optional("VieSchedpp.general.onlyUseListedSources");
@@ -911,9 +937,9 @@ void MainWindow::loadXML(QString path)
             }
         }
     }
+    ui->treeWidget_srcGroupForStatistics->clear();
     {
         groupSrc->clear();
-        ui->treeWidget_srcGroupForStatistics->clear();
         auto groupTree = xml.get_child_optional("VieSchedpp.source.groups");
         if(groupTree.is_initialized()){
             for (auto &it: *groupTree) {
@@ -951,7 +977,150 @@ void MainWindow::loadXML(QString path)
                     itm->setText(0,QString::fromStdString(groupName));
                     itm->setCheckState(0,Qt::Unchecked);
                     ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+                    {
+                        int r = 0;
+                        for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                            QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                            if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                                ++r;
+                                continue;
+                            }
+                            if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                                break;
+                            }
+                            if(txt>QString::fromStdString(groupName)){
+                                break;
+                            }else{
+                                ++r;
+                            }
+                        }
+                        allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(groupName)));
+                    }
 
+                }
+            }
+        }
+    }
+    {
+        groupSat->clear();
+        auto groupTree = xml.get_child_optional("VieSchedpp.satellite.groups");
+        if(groupTree.is_initialized()){
+            for (auto &it: *groupTree) {
+                std::string name = it.first;
+                if (name == "group") {
+                    std::string groupName = it.second.get_child("<xmlattr>.name").data();
+                    std::vector<std::string> members;
+                    for (auto &it2: it.second) {
+                        if (it2.first == "member") {
+                            members.push_back(it2.second.data());
+                        }
+                    }
+
+                    int r = 0;
+                    for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
+                        QString txt = allSatellitePlusGroupModel->item(i)->text();
+                        if(txt == "__all__"){
+                            ++r;
+                            continue;
+                        }
+                        if(groupSat->find(txt.toStdString()) == groupSat->end()){
+                            break;
+                        }
+                        if(txt>QString::fromStdString(groupName)){
+                            break;
+                        }else{
+                            ++r;
+                        }
+                    }
+
+                    (*groupSat)[groupName] = members;
+                    allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),
+                                                                            QString::fromStdString(groupName) ));
+                    QTreeWidgetItem *itm = new QTreeWidgetItem();
+                    itm->setText(0,QString::fromStdString(groupName));
+                    itm->setCheckState(0,Qt::Unchecked);
+                    ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+                    {
+                        int r = 0;
+                        for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                            QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                            if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                                ++r;
+                                continue;
+                            }
+                            if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                                break;
+                            }
+                            if(txt>QString::fromStdString(groupName)){
+                                break;
+                            }else{
+                                ++r;
+                            }
+                        }
+                        allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite_group.png"),QString::fromStdString(groupName)));
+                    }
+                }
+            }
+        }
+    }
+    {
+        groupSpace->clear();
+        auto groupTree = xml.get_child_optional("VieSchedpp.spacecraft.groups");
+        if(groupTree.is_initialized()){
+            for (auto &it: *groupTree) {
+                std::string name = it.first;
+                if (name == "group") {
+                    std::string groupName = it.second.get_child("<xmlattr>.name").data();
+                    std::vector<std::string> members;
+                    for (auto &it2: it.second) {
+                        if (it2.first == "member") {
+                            members.push_back(it2.second.data());
+                        }
+                    }
+
+                    int r = 0;
+                    for(int i = 0; i<allSpacecraftPlusGroupModel->rowCount(); ++i){
+                        QString txt = allSpacecraftPlusGroupModel->item(i)->text();
+                        if(txt == "__all__"){
+                            ++r;
+                            continue;
+                        }
+                        if(groupSpace->find(txt.toStdString()) == groupSpace->end()){
+                            break;
+                        }
+                        if(txt>QString::fromStdString(groupName)){
+                            break;
+                        }else{
+                            ++r;
+                        }
+                    }
+
+                    (*groupSpace)[groupName] = members;
+                    allSpacecraftPlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),
+                                                                            QString::fromStdString(groupName) ));
+                    QTreeWidgetItem *itm = new QTreeWidgetItem();
+                    itm->setText(0,QString::fromStdString(groupName));
+                    itm->setCheckState(0,Qt::Unchecked);
+                    ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+                    {
+                        int r = 0;
+                        for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
+                            QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+                            if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
+                                ++r;
+                                continue;
+                            }
+                            if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
+                                break;
+                            }
+                            if(txt>QString::fromStdString(groupName)){
+                                break;
+                            }else{
+                                ++r;
+                            }
+                        }
+                        allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/spacecraft_group.png"),QString::fromStdString(groupName)));
+                    }
                 }
             }
         }
@@ -1029,6 +1198,42 @@ void MainWindow::loadXML(QString path)
         }
     }
     {
+        satelliteSetupWidget->clearParameters();
+        const auto &para_tree_o = xml.get_child_optional("VieSchedpp.satellite.parameters");
+        if (para_tree_o.is_initialized()){
+            for (auto &it: *para_tree_o) {
+                std::string name = it.first;
+                if (name == "parameter") {
+
+                    VieVS::ParameterSettings::ParametersSources PARA;
+                    auto PARA_ = VieVS::ParameterSettings::ptree2parameterSource(it.second);
+                    PARA = PARA_.second;
+                    const std::string name = PARA_.first;
+                    satelliteSetupWidget->addParameter(name, PARA);
+
+                }
+            }
+        }
+    }
+    {
+        spacecraftSetupWidget->clearParameters();
+        const auto &para_tree_o = xml.get_child_optional("VieSchedpp.spacecraft.parameters");
+        if (para_tree_o.is_initialized()){
+            for (auto &it: *para_tree_o) {
+                std::string name = it.first;
+                if (name == "parameter") {
+
+                    VieVS::ParameterSettings::ParametersSources PARA;
+                    auto PARA_ = VieVS::ParameterSettings::ptree2parameterSource(it.second);
+                    PARA = PARA_.second;
+                    const std::string name = PARA_.first;
+                    spacecraftSetupWidget->addParameter(name, PARA);
+
+                }
+            }
+        }
+    }
+    {
         baselineSetupWidget->clearParameters();
         const auto &para_tree = xml.get_child("VieSchedpp.baseline.parameters");
         for (auto &it: para_tree) {
@@ -1058,6 +1263,26 @@ void MainWindow::loadXML(QString path)
         for(const auto &any: ctree){
             if(any.first == "setup"){
                 sourceSetupWidget->addSetup(any.second);
+            }
+        }
+    }
+    {
+        auto ctree_o = xml.get_child_optional("VieSchedpp.satellite.setup");
+        if (ctree_o.is_initialized()){
+            for(const auto &any: *ctree_o){
+                if(any.first == "setup"){
+                    satelliteSetupWidget->addSetup(any.second);
+                }
+            }
+        }
+    }
+    {
+        auto ctree_o = xml.get_child_optional("VieSchedpp.spacecraft.setup");
+        if (ctree_o.is_initialized()){
+            for(const auto &any: *ctree_o){
+                if(any.first == "setup"){
+                    spacecraftSetupWidget->addSetup(any.second);
+                }
             }
         }
     }

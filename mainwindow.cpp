@@ -2070,7 +2070,7 @@ void MainWindow::gbps()
         channels += qobject_cast<QSpinBox *>(ui->tableWidget_modeCustonBand->cellWidget(i,1))->value();
     }
     double mb = bits * mhz * channels;
-    ui->label_gbps->setText(QString("%1 [Mbps]").arg(mb));
+    ui->label_gbps->setText(QString("total recording rate: %1 [Mbps]").arg(mb));
 }
 
 
@@ -4968,7 +4968,7 @@ void MainWindow::addGroupSatellite()
 void MainWindow::addGroupSpacecraft()
 {
     AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::spacecraft,this);
-    dial->addModel(selectedSpacecraftModel, *groupSrc);
+    dial->addModel(selectedSpacecraftModel, *groupSpace);
     int result = dial->exec();
     if(result == QDialog::Accepted){
         std::vector<std::string> stdlist = dial->getSelection();
