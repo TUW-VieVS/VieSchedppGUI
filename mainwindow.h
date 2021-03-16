@@ -606,6 +606,8 @@ private:
 
     void readSatellites();
 
+    void highlightSatelliteEpoch();
+
     void readSpacecraft();
 
     void readAllSkedObsModes();

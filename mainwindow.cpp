@@ -300,15 +300,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // ----------------------
 
-    allSatelliteModel = new QStandardItemModel(0,3,this);
-    allSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
-    allSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("line 1"));
-    allSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("line 2"));
+    allSatelliteModel = new QStandardItemModel(0,9,this);
+    allSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
+    allSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("number"));
+    allSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("epoch"));
 
-    selectedSatelliteModel = new QStandardItemModel(0,3,this);
-    selectedSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Name"));
-    selectedSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("line 1"));
-    selectedSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("line 2"));
+    allSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination"));
+    allSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node"));
+    allSatelliteModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Eccentricity"));
+    allSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee"));
+    allSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly"));
+    allSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion"));
+
+    selectedSatelliteModel = new QStandardItemModel(0,9,this);
+    selectedSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
+    selectedSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("number"));
+    selectedSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("epoch"));
+
+    selectedSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination"));
+    selectedSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node"));
+    selectedSatelliteModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Eccentricity"));
+    selectedSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee"));
+    selectedSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly"));
+    selectedSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion"));
 
     allSatelliteProxyModel = new MultiColumnSortFilterProxyModel(this);
     allSatelliteProxyModel->setSourceModel(allSatelliteModel);
@@ -3052,7 +3066,7 @@ void MainWindow::on_dateTimeEdit_sessionStart_dateTimeChanged(const QDateTime &d
     if(flag){
         QMessageBox::warning(this,"Setup deleted!","Setup was deleted due to session time change!");
     }
-
+    highlightSatelliteEpoch();
 }
 
 void MainWindow::on_doubleSpinBox_sessionDuration_valueChanged(double arg1)
@@ -4411,14 +4425,88 @@ void MainWindow::readSatellites()
             if ( flag == 3 ) {
                 flag = 0;
                 allSatelliteModel->insertRow(allSatelliteModel->rowCount());
-                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1,0), header);
+                int c = 0;
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1,c++), header);
                 allSatelliteModel->item(allSatelliteModel->rowCount()-1,0)->setIcon(QIcon(":/icons/icons/satellite.png"));
-                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, 1), line1);
-                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, 2), line2);
+
+                QStringList tmp = line1.split(" ");
+                QString number = tmp[1];
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), number);
+                double year = 2000+tmp[3].left(2).toDouble();
+                double doy = tmp[3].mid(2).toDouble();
+                QDateTime epoch(QDate(year,1,1));
+                double sec = doy*86400-86400;
+                epoch = epoch.addSecs(sec);
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), epoch.toString("yyyy.MM.dd HH:mm:ss"));
+
+                QStringList tmp2 = line2.split(" ");
+                double inc = tmp2[2].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), inc);
+
+                double ra = tmp2[3].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), ra);
+
+                double acc = tmp2[4].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), acc);
+
+                double perigee = tmp2[5].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), perigee);
+
+                double mano = tmp2[6].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), mano);
+
+                double mmot = tmp2[7].toDouble();
+                allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), mmot);
+
+
             }
         }
     }
     satelliteSetupWidget->blockSignal(false);
+    highlightSatelliteEpoch();
+}
+
+void MainWindow::highlightSatelliteEpoch(){
+    QDateTime session_start = ui->dateTimeEdit_sessionStart->dateTime();
+    for (int i =0; i<allSatelliteModel->rowCount();++i){
+        QString txt = allSatelliteModel->index(i,2).data().toString();
+        QDateTime ep = QDateTime::fromString(txt,"yyyy.MM.dd HH:mm:ss");
+        int diff = abs(session_start.secsTo(ep));
+        QColor c;
+        if (diff < 5*86400){
+            c = QColor(26,150,65,128);
+        }else if (diff < 5*86400){
+            c = QColor(166,217,106,128);
+        }else if (diff < 7*86400){
+            c = QColor(255,255,191,128);
+        }else if (diff < 14*86400){
+            c = QColor(253,174,97,128);
+        }else{
+            c = QColor(215,25,28,128);
+        }
+        QStandardItem *itm = allSatelliteModel->item(i,2);
+        itm->setBackground(c);
+    }
+    for (int i =0; i<selectedSatelliteModel->rowCount();++i){
+        QString txt = selectedSatelliteModel->index(i,2).data().toString();
+        QDateTime ep = QDateTime::fromString(txt,"yyyy.MM.dd HH:mm:ss");
+        int diff = abs(session_start.secsTo(ep));
+        QColor c;
+        if (diff < 5*86400){
+            c = QColor(26,150,65);
+        }else if (diff < 5*86400){
+            c = QColor(166,217,106);
+        }else if (diff < 7*86400){
+            c = QColor(255,255,191);
+        }else if (diff < 14*86400){
+            c = QColor(253,174,97);
+        }else{
+            c = QColor(215,25,28);
+        }
+        QStandardItem *itm = selectedSatelliteModel->item(i,2);
+        itm->setBackground(c);
+    }
+
 }
 
 void MainWindow::readSpacecraft()
