@@ -642,8 +642,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_calibration_sources->setModel(allSourcePlusGroupModel);
     ui->comboBox_calibration_sources2->setModel(allSourcePlusGroupModel);
     ui->comboBox_calibration_sources3->setModel(allSourcePlusGroupModel);
-    ui->comboBox_conditions_members->setModel(allSourcePlusGroupModel);
+    ui->comboBox_conditions_members->setModel(allSourcePlusGroupModel_combined);
     connect(ui->pushButton_addSourceGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(ui->pushButton_addSatGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
+    connect(ui->pushButton_addSpaceGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSpacecraft()));
 
     ui->comboBox_highImpactStation->setModel(allStationPlusGroupModel);
     connect(ui->pushButton_addGroupStationHighImpactAzEl,SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
@@ -5732,13 +5734,8 @@ void MainWindow::on_pushButton_addCondition_clicked()
     int scans = ui->spinBox_condtionsMinNumScans->value();
     int bls = ui->spinBox_conditionsMinNumBaselines->value();
 
-    QIcon ic;
+    QIcon ic = ui->comboBox_conditions_members->itemIcon(ui->comboBox_conditions_members->currentIndex());
     QTreeWidgetItem *c = new QTreeWidgetItem();
-    if(isGroup || members == "__all__"){
-        ic = QIcon(":/icons/icons/source_group.png");
-    }else{
-        ic = QIcon(":/icons/icons/source.png");
-    }
 
     c->setText(0,QString("%1").arg(ui->treeWidget_conditions->topLevelItemCount()));
     c->setIcon(1,ic);
@@ -5747,6 +5744,7 @@ void MainWindow::on_pushButton_addCondition_clicked()
     c->setText(3,QString("%1").arg(bls));
 
     ui->treeWidget_conditions->addTopLevelItem(c);
+    ui->treeWidget_conditions->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 }
 

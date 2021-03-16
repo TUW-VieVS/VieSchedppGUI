@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>0</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -6766,8 +6766,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>879</width>
-             <height>601</height>
+             <width>946</width>
+             <height>681</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -7577,7 +7577,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The corners of the commonly visible sky correspond with the areas of low elevation for both stations.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sources within these corners gain a special focus during scheduling since they are most important for determining dUT1. &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;See &lt;span style=&quot; font-weight:600;&quot;&gt;Schartner et al. 2021, submitted to JOGE&lt;/span&gt; for more information. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;See &lt;span style=&quot; font-weight:600;&quot;&gt;Schartner et al. 2021 (Appendix A), submitted to JOGE&lt;/span&gt; for more information. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                    </widget>
                   </item>
@@ -9243,7 +9243,7 @@ p, li { white-space: pre-wrap; }
                 </widget>
                </item>
                <item row="0" column="1">
-                <layout class="QHBoxLayout" name="horizontalLayout_64" stretch="1,0">
+                <layout class="QHBoxLayout" name="horizontalLayout_64" stretch="1,0,0,0">
                  <item>
                   <widget class="QComboBox" name="comboBox_conditions_members">
                    <property name="toolTip">
@@ -9268,6 +9268,40 @@ p, li { white-space: pre-wrap; }
                    <property name="icon">
                     <iconset resource="myresources.qrc">
                      <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_addSatGroup_conditions">
+                   <property name="toolTip">
+                    <string>add new satellite group</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>add new satellite group</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/satellite_group_plus.png</normaloff>:/icons/icons/satellite_group_plus.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_addSpaceGroup_conditions">
+                   <property name="toolTip">
+                    <string>add new spacecraft group</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>add new spacecraft group</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/spacecraft_group_plus.png</normaloff>:/icons/icons/spacecraft_group_plus.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -12022,7 +12056,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
   <tabstop>horizontalSlider_skyCoverageColorResultion</tabstop>
   <tabstop>pushButton_skyCoverageTemplateRandom</tabstop>
   <tabstop>comboBox_conditions_members</tabstop>
-  <tabstop>pushButton_addSourceGroup_conditions</tabstop>
   <tabstop>spinBox_condtionsMinNumScans</tabstop>
   <tabstop>spinBox_conditionsMinNumBaselines</tabstop>
   <tabstop>pushButton_addCondition</tabstop>
