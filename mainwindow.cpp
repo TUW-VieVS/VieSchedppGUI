@@ -303,26 +303,26 @@ MainWindow::MainWindow(QWidget *parent) :
     allSatelliteModel = new QStandardItemModel(0,9,this);
     allSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     allSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("number"));
-    allSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("epoch"));
+    allSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("reference epoch"));
 
-    allSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination"));
-    allSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node"));
+    allSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination [deg]"));
+    allSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node [deg]"));
     allSatelliteModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Eccentricity"));
-    allSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee"));
-    allSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly"));
-    allSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion"));
+    allSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee [deg]"));
+    allSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly [deg]"));
+    allSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion [rev/day]"));
 
     selectedSatelliteModel = new QStandardItemModel(0,9,this);
     selectedSatelliteModel->setHeaderData(0, Qt::Horizontal, QObject::tr("name"));
     selectedSatelliteModel->setHeaderData(1, Qt::Horizontal, QObject::tr("number"));
-    selectedSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("epoch"));
+    selectedSatelliteModel->setHeaderData(2, Qt::Horizontal, QObject::tr("reference epoch"));
 
-    selectedSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination"));
-    selectedSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node"));
+    selectedSatelliteModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Inclination [deg]"));
+    selectedSatelliteModel->setHeaderData(4, Qt::Horizontal, QObject::tr("RA of the Ascending Node [deg]"));
     selectedSatelliteModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Eccentricity"));
-    selectedSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee"));
-    selectedSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly"));
-    selectedSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion"));
+    selectedSatelliteModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Argument of Perigee [deg]"));
+    selectedSatelliteModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Mean Anomaly [deg]"));
+    selectedSatelliteModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Mean Motion [rev/day]"));
 
     allSatelliteProxyModel = new MultiColumnSortFilterProxyModel(this);
     allSatelliteProxyModel->setSourceModel(allSatelliteModel);
@@ -4446,7 +4446,7 @@ void MainWindow::readSatellites()
                 double ra = tmp2[3].toDouble();
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), ra);
 
-                double acc = tmp2[4].toDouble();
+                double acc = (QString(".")+tmp2[4]).toDouble();
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), acc);
 
                 double perigee = tmp2[5].toDouble();
