@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1598,7 +1598,7 @@ p, li { white-space: pre-wrap; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_4">
+                    <widget class="QPushButton" name="pushButton_tle_info">
                      <property name="text">
                       <string/>
                      </property>
@@ -1623,7 +1623,7 @@ p, li { white-space: pre-wrap; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_14">
+                    <widget class="QPushButton" name="pushButton_spacecraft_file_info">
                      <property name="enabled">
                       <bool>false</bool>
                      </property>
@@ -6766,8 +6766,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>946</width>
-             <height>681</height>
+             <width>879</width>
+             <height>601</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">

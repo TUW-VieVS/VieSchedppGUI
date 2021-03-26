@@ -31,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->main_stacked->setCurrentIndex(0);
 
-
     allSourcePlusGroupModel_combined = new QStandardItemModel();
     allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/all_source_types.png"),"__all__"));
     allSourcePlusGroupModel_combined->appendRow(new QStandardItem(QIcon(":/icons/icons/source_group.png"),"__AGNs__"));
@@ -6831,4 +6830,10 @@ void MainWindow::on_pushButton_satellite_select_none_clicked()
         }
     }
     ui->label_sourceList_selected->setText("selected: ");
+}
+
+void MainWindow::on_pushButton_tle_info_clicked()
+{
+    TleFormat *dial = new TleFormat(this);
+    dial->show();
 }

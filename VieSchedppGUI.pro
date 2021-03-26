@@ -231,6 +231,7 @@ SOURCES += \
     secondaryGUIs/settingsloadwindow.cpp \
     secondaryGUIs/skedcataloginfo.cpp \
     secondaryGUIs/textfileviewer.cpp \
+    secondaryGUIs/tleformat.cpp \
     secondaryGUIs/vieschedpp_analyser.cpp \
     SatelliteGUI/SatelliteForGUI.cpp \
     SatelliteGUI/SatelliteMain.cpp \
@@ -359,6 +360,7 @@ HEADERS += \
     secondaryGUIs/settingsloadwindow.h \
     secondaryGUIs/skedcataloginfo.h \
     secondaryGUIs/textfileviewer.h \
+    secondaryGUIs/tleformat.h \
     secondaryGUIs/vieschedpp_analyser.h \
     SatelliteGUI/SatelliteForGUI.h \
     SatelliteGUI/SatelliteMain.h \
@@ -397,6 +399,7 @@ FORMS += \
     secondaryGUIs/settingsloadwindow.ui \
     secondaryGUIs/skedcataloginfo.ui \
     secondaryGUIs/textfileviewer.ui \
+    secondaryGUIs/tleformat.ui \
     secondaryGUIs/vieschedpp_analyser.ui \
     secondaryGUIs/rendersetup.ui \
     SatelliteGUI/satellitescheduling.ui \

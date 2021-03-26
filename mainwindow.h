@@ -77,6 +77,7 @@
 #include "Utility/statistics.h"
 #include "secondaryGUIs/mastersessionviewer.h"
 #include "secondaryGUIs/parsedowntimes.h"
+#include "secondaryGUIs/tleformat.h"
 #include "Widgets/simulatorwidget.h"
 #include "Widgets/solverwidget.h"
 #include "Widgets/priorities.h"
@@ -524,6 +525,8 @@ private slots:
     void on_pushButton_satellite_select_all_clicked();
 
     void on_pushButton_satellite_select_none_clicked();
+
+    void on_pushButton_tle_info_clicked();
 
 private:
     Ui::MainWindow *ui;
