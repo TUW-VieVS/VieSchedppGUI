@@ -152,7 +152,7 @@ vector<VieVS::Scan> SatelliteMain::generateScanList ( const vector<SatelliteForG
 
 
     vector<VieVS::Scan> list;
-    for( int i=0; i< satellites.size(); ++i){
+    for( size_t i=0; i< satellites.size(); ++i){
         auto scanList = SatelliteObs::createScanList( passLists[i], network_, satellites[i], startDate_ );
         list.insert(list.end(), scanList.begin(), scanList.end());
     }
@@ -172,7 +172,7 @@ VieVS::Scan SatelliteMain::createAdjustedScan(SatelliteForGUI sat,std::vector<un
     vector<unsigned int> preobTimes( nsta, 0 );
     vector<unsigned int> pvStartTimes( nsta, 0 );
 
-    for(int i=0;i<nsta; i++)
+    for(size_t i=0;i<nsta; i++)
     {
         VieVS::Station station = network_.getStation(selectedStationIds.at(i));
         SatelliteObs::TimePoint tstart;

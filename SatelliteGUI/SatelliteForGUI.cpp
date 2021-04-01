@@ -30,8 +30,8 @@ unsigned long SatelliteForGUI::nextId = 0;
 
 SatelliteForGUI::SatelliteForGUI()
     : header_( "" ), line1_( "" ), line2_( "" ), VieVS_NamedObject::VieVS_NamedObject( "", "", nextId++ ) {
-    pTleData_ = NULL;
-    pSGP4Data_ = NULL;
+    pTleData_ = nullptr;
+    pSGP4Data_ = nullptr;
 }
 
 
@@ -65,16 +65,25 @@ void SatelliteForGUI::calcRaDeHa( DateTime current_time, DateTime start_time, Ec
     Vector x_sat = eci.Position();
     Vector x_stat = stat.Position();
     Vector xd = x_sat - x_stat;
+    Vector vd = eci.Velocity() - stat.Velocity();
+
 
     // calculation of right ascension and declination for satellite
     double r = sqrt( xd.x * xd.x + xd.y * xd.y + xd.z * xd.z );
     double dec = asin( xd.z / r );
     double ra;
-    if ( eci.Position().y / r > 0 ) {
-        ra = acos( xd.x / r * 1 / cos( dec ) );
-    } else {
-        ra = 2 * pi - acos( xd.x / r * 1 / cos( dec ) );
+    if(sqrt(xd.x*xd.x + xd.y*xd.y) < 0.00000001) {
+        ra = atan2(vd.y,vd.x);
     }
+    else {
+        ra = atan2(xd.y,xd.x);
+    }
+
+    //if ( eci.Position().y / r > 0 ) {
+    //    ra = acos( xd.x / r * 1 / cos( dec ) );
+    //} else {
+    //    ra = 2 * pi - acos( xd.x / r * 1 / cos( dec ) );
+    //}
 
     pv->setTime(
         round( ( ( current_time.ToJ2000() - start_time.ToJ2000() ) * 86400 ) ) );  // seconds since session start
@@ -95,7 +104,6 @@ void SatelliteForGUI::calcRaDeHa( DateTime current_time, DateTime start_time, Ec
 double SatelliteForGUI::getSunDistance(DateTime current_time, VieVS::Station station, std::vector<std::vector<double>> AzElSun, DateTime sessionStartTime) const
 {
     double seconds = (current_time - sessionStartTime).TotalSeconds();
-    //std::vector<double> it = AzElSun.at(0);
     int i =0;
     for(i; i< AzElSun.size();i++) {
         std::vector<double> it = AzElSun.at(i);
@@ -458,8 +466,6 @@ std::vector<std::vector<SatelliteForGUI::SatPass>> SatelliteForGUI::generatePass
         //std::cout << station.getName() << std::endl ;
         while ( current_time < end_time ) {
             bool end_of_pass = false;
-            //std::cout << current_time << " ";
-            //this->getSunDistance(current_time,station, AzElSun,start_time);
             /*
              * calculate satellite position
              */
@@ -506,16 +512,15 @@ std::vector<std::vector<SatelliteForGUI::SatPass>> SatelliteForGUI::generatePass
                 pd.stationID = station.getId();
                 pd.satelliteID = this->getId();
 
-                std::cout << "Found Satellite Pass " << station.getName() << " " <<  this->getName() <<  std::endl;
-                std::cout << "start: " << pd.start << std::endl;
-                std::cout << "end: " << pd.end << std::endl << std::endl;
+                //std::cout << "Found Satellite Pass " << station.getName() << " " <<  this->getName() <<  std::endl;
+                //std::cout << "start: " << pd.start << std::endl;
+                //std::cout << "end: " << pd.end << std::endl << std::endl;
 
                 std::vector<SatelliteForGUI::SatPass> checkedSatPasses = this->checkSatPass(pd,start_time,*sgp4,station, azelSun);
-                std::cout << "Checked Satellite Passes " << station.getName() << " " <<  this->getName() <<  std::endl;
-                for(auto const &satPass:checkedSatPasses)
-                {
-                    std::cout << "start: " << satPass.start << std::endl;
-                    std::cout << "end: " << satPass.end << std::endl << std::endl;
+                //std::cout << "Checked Satellite Passes " << station.getName() << " " <<  this->getName() <<  std::endl;
+                for(auto const &satPass:checkedSatPasses){
+                    //std::cout << "start: " << satPass.start << std::endl;
+                    //std::cout << "end: " << satPass.end << std::endl << std::endl;
                     satellitePasses.push_back( satPass );
                 }
                // satellitePasses.push_back( pd );
@@ -547,7 +552,7 @@ std::vector<std::vector<SatelliteForGUI::SatPass>> SatelliteForGUI::generatePass
                  */
                 current_time = end_time;
             }
-        };
+        }
 
         if ( found_aos ) {
             /*
@@ -564,7 +569,6 @@ std::vector<std::vector<SatelliteForGUI::SatPass>> SatelliteForGUI::generatePass
             for(auto const &satPass:checkedSatPasses) {
                 satellitePasses.push_back( satPass );
             }
-            //satellitePasses.push_back( pd );
         }
         passList.push_back( satellitePasses );
     }
@@ -586,8 +590,6 @@ DateTime SatelliteForGUI::findCrossingPoint( const VieVS::Station& station, cons
     DateTime middle_time;
 
     bool running = true;
-    // int cnt = 0;
-    // while (running && cnt++ < 16)
     while ( running ) {
         middle_time = time1.AddSeconds( ( time2 - time1 ).TotalSeconds() / 2.0 );
         /*
@@ -629,7 +631,6 @@ vector<SatelliteForGUI> SatelliteForGUI::readSatelliteFile( std::string filename
     vector<SatelliteForGUI> satellites;
     try {
         std::ifstream fid( filename );
-        // fid.exceptions ( ifstream::eofbit | ifstream::failbit | ifstream::badbit );
         std::string line;
         std::string hdr;
         std::string line1;
@@ -683,7 +684,6 @@ vector<SatelliteForGUI> SatelliteForGUI::readSatelliteFile( std::string filename
             fid.close();
         }
         else {
-            //std::cout << "[error] unable to open " << filename;
             throw "There was an error opening the file!";
         }
     } catch ( std::exception const& e ) {
@@ -999,5 +999,3 @@ CoordGeodetic SatelliteForGUI::getPosition(DateTime time)
     //std::cout << " X: " << x*180/pi << " Y: " << y*180/pi << " X Rate: " <<x_rate*180/pi << " Y Rate: " << y_rate*180/pi << std::endl;
     return XYRates;
 }*/
-
-

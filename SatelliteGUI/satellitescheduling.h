@@ -32,6 +32,7 @@
 
 #include "SatelliteMain.h"
 #include "setTimes.h"
+#include <QElapsedTimer>
 
 namespace Ui {
 class SatelliteScheduling;
@@ -82,7 +83,6 @@ private slots:
     void on_horizontalSlider_adjustTime_valueChanged(int value);
 
     void worldmap_hovered(QPointF point, bool state);
-
     void sattrack_hovered(QPointF point,bool state);
 
     void on_pushButton_process_clicked();
@@ -91,7 +91,7 @@ private slots:
 
     void on_pushButton_showConstant_clicked();
 
-    void on_treeWidget_template_itemClicked(QTreeWidgetItem *item, int column);
+    void on_treeWidget_template_itemClicked(QTreeWidgetItem *item); //, int column);
 
     void on_pushButton_checkAndSave_clicked();
     bool checkScan(VieVS::Scan scan);
@@ -102,21 +102,18 @@ private slots:
 
     void ElevationSetup();
     void updateElevation();
-
     void satelliteStatisticsSetup();
     void updateSatelliteStatistics();
 
-    void createTableVisibility();
-
+    //void createTableVisibility();
     void StackedBarPlotSetup();
-    void createBarPlotVisibilityStacked();
+    //void createBarPlotVisibilityStacked();
+    void createBarPlotStackedTableVisibility();
 
     void on_lineEdit_satelliteStatistics_textChanged(const QString &arg1);
     void on_lineEdit_satelliteElevation_textChanged(const QString &arg1);
     void on_lineEdit_satelliteStatistics_table_textChanged(const QString &arg1);
-
     void on_treeView_satelliteListStatistics_clicked(const QModelIndex &index);
-
     void on_horizontalScrollBar_stackedPlot_valueChanged(int value);
 
     //create SkyPlots and ElevationPlot for scan
@@ -138,6 +135,7 @@ private slots:
     void createXMLOutput(std::vector<VieVS::Scan> scanList,VieVS::Network network, std::vector<SatelliteForGUI>);
 
     void on_treeView_selected_clicked(const QModelIndex &index);
+    void on_pushButton_selectAll_clicked();
 
 private:
     Ui::SatelliteScheduling *ui;

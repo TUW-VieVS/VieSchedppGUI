@@ -1,6 +1,6 @@
 #include "satellitescheduling.h"
 #include "ui_satellitescheduling.h"
-
+#include <limits>
 SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QString &pathEquip,
                                          const QString &pathPosition, const QString &pathMask,
                                          const QString &pathSat,
@@ -13,11 +13,11 @@ SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QStri
                                          boost::property_tree::ptree *settings,
                                          QWidget *parent) :
     QMainWindow(parent),
-    selectedSatelliteModel{selectedSatelliteModel},
+    ui(new Ui::SatelliteScheduling),
     allSatelliteModel{allSatelliteModel},
-    allSatellitePlusGroupModel{allSatellitePlusGroupModel},
-    groupSat{groupSat},
-    ui(new Ui::SatelliteScheduling)
+    selectedSatelliteModel{selectedSatelliteModel},
+    allSatellitePlusGroupModel{allSatellitePlusGroupModel},  
+    groupSat{groupSat}
 {
     ui->setupUi(this);
     settings_ = settings;
@@ -33,8 +33,6 @@ SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QStri
         QMessageBox::warning(this,"No satellites found!","There was no satellite information provided within the selected file!");
         return;
     }
-
-
     ui->stackedWidget->setCurrentIndex(0);
     ui->dateTimeEdit_sessionStart->setDateTime(startTime);
     ui->dateTimeEdit_sessionEnd->setDateTime(endTime);
@@ -111,8 +109,8 @@ SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QStri
         selectedStations->append(lon,lat);
     }
 
-    selectedStations->attachAxis(worldChart->axisX());
-    selectedStations->attachAxis(worldChart->axisY());
+    selectedStations->attachAxis(worldChart->axes(Qt::Horizontal).back());
+    selectedStations->attachAxis(worldChart->axes(Qt::Vertical).back());
 
     ui->dateTimeEdit_showTime->setDateTime(startTime);
     ui->dateTimeEdit_showTime->setDisplayFormat("dd.MM.yyyy HH:mm");
@@ -124,7 +122,6 @@ SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QStri
     ui->treeWidget_template->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->treeWidget_selectedScanPlots->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->treeWidget_listOfSelectedScans->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
 }
 
 SatelliteScheduling::~SatelliteScheduling()
@@ -176,7 +173,6 @@ void SatelliteScheduling::on_treeView_available_clicked(const QModelIndex &index
         }
     }
 
-
     if( selectedSatelliteModel->findItems(name,Qt::MatchExactly).isEmpty()){
 
         selectedSatelliteModel->insertRow(0);
@@ -191,25 +187,22 @@ void SatelliteScheduling::on_treeView_available_clicked(const QModelIndex &index
         int r = 0;
         for(int i = 0; i<allSatellitePlusGroupModel->rowCount(); ++i){
             QString txt = allSatellitePlusGroupModel->item(i)->text();
-            if(groupSat->find(txt.toStdString()) != groupSat->end() || txt == "__all__"){
+            if(groupSat->find(txt.toStdString()) != groupSat->end() || txt == "__all__") {
                 ++r;
                 continue;
             }
-            if(txt>name){
+            if(txt>name) {
                 break;
-            }else{
+            } else {
                 ++r;
             }
         }
-
         allSatellitePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/satellite.png"),name));
     }
-
     ui->lineEdit_availableFilter->setFocus();
     ui->lineEdit_availableFilter->selectAll();
 
-    if(ui->checkBox_showTracks->isChecked())
-    {
+    if(ui->checkBox_showTracks->isChecked()) {
         on_checkBox_showTracks_clicked(true);
     }
 }
@@ -224,10 +217,8 @@ void SatelliteScheduling::on_treeView_selected_clicked(const QModelIndex &index)
     {
         QString name = series.at(i)->name();
         name.remove(0, 3);
-        if(Satname == name)
-        {
+        if(Satname == name) {
            worldmap->chart()->removeSeries(series.at(i));
-           //series.at(i)->setVisible(false);
         }
     }
     selectedSatelliteModel->removeRow(row);
@@ -273,15 +264,13 @@ void SatelliteScheduling::on_horizontalSlider_adjustTime_valueChanged(int value)
                satelliteMarker->setMarkerSize(40);
                satelliteMarker->setPen(QColor(Qt::transparent));
                worldmap->chart()->addSeries(satelliteMarker);
-               satelliteMarker->attachAxis(worldmap->chart()->axisX());
-               satelliteMarker->attachAxis(worldmap->chart()->axisY());
+               satelliteMarker->attachAxis(worldmap->chart()->axes(Qt::Horizontal).back());
+               satelliteMarker->attachAxis(worldmap->chart()->axes(Qt::Vertical).back());
                worldmap->chart()->removeSeries(series.at(i));
                name =name.remove(0,3);
-               for(SatelliteForGUI &sat : satellites)
-               {
+               for(SatelliteForGUI &sat : satellites) {
                    QString Satname = QString::fromStdString(sat.getName());
-                   if(Satname == name)
-                   {
+                   if(Satname == name) {
                       satelliteMarker->setName("mrk" + name);
                       CoordGeodetic pos = sat.getPosition(t.AddMinutes(scanDur/60));
                       satelliteMarker->append(pos.longitude*180/3.141592653589793,pos.latitude*180/3.141592653589793);
@@ -291,7 +280,6 @@ void SatelliteScheduling::on_horizontalSlider_adjustTime_valueChanged(int value)
                connect(satelliteMarker,SIGNAL(hovered(QPointF,bool)),this,SLOT(sattrack_hovered(QPointF,bool)));
             }
         }
-        // connect(satelliteMarker,SIGNAL(hovered(QPointF,bool)),this,SLOT(sattrack_hovered(QPointF,bool)));
     }
 }
 
@@ -300,9 +288,7 @@ void SatelliteScheduling::worldmap_hovered(QPointF point, bool state)
     if (state)
     {
         QString sta;
-        int scans;
-        int obs;
-        for(int i = 0; i<satelliteScheduler.refNetwork().refStations().size();++i){
+        for(size_t i = 0; i<satelliteScheduler.refNetwork().refStations().size();++i){
             double x = satelliteScheduler.refNetwork().refStations().at(i).getPosition()->getLon()*180/3.141592653589793;
             double y = satelliteScheduler.refNetwork().refStations().at(i).getPosition()->getLat()*180/3.141592653589793;
             QString name = QString::fromStdString(satelliteScheduler.refNetwork().refStations().at(i).getName());
@@ -310,10 +296,10 @@ void SatelliteScheduling::worldmap_hovered(QPointF point, bool state)
 
             auto dx = x-point.x();
             auto dy = y-point.y();
-            if(dx*dx+dy*dy < 1e-3){
-                if(sta.size()==0){
+            if(dx*dx+dy*dy < 1e-3) {
+                if(sta.size()==0) {
                     sta.append(QString("%1 (%2)").arg(name).arg(id));
-                }else{
+                } else {
                     sta.append(",").append(QString("%1 (%2)").arg(name).arg(id));
                 }
             }
@@ -339,13 +325,11 @@ void SatelliteScheduling::sattrack_hovered(QPointF point,bool state)
     if(state) {
         QObject *obj = sender();
         QScatterSeries *series = static_cast<QScatterSeries *>(obj);
-
-        QChart *chart = qobject_cast<QChart *>(obj->parent()->parent());
+        //QChart *chart = qobject_cast<QChart *>(obj->parent()->parent());
         QString name = series->name();
         name = name.remove(0, 3);
         QString lon = QString().sprintf("lon: %.2f [deg]\n", point.x());
         QString lat = QString().sprintf("lat: %.2f [deg]", point.y());
-
         QString txt;
         txt.append(name + "\n").append(lon).append(lat);
         worldMapCallout->setText(txt);
@@ -382,18 +366,16 @@ void SatelliteScheduling::on_pushButton_process_clicked()
     }
 
     for (auto &any : satelliteScheduler.refNetwork().refStations()) {
-        auto preob = ui->spinBox_preob->value();
-        auto fieldSystem = ui->spinBox_fs->value();
+        int preob = ui->spinBox_preob->value();
+        int fieldSystem = ui->spinBox_fs->value();
         any.referencePARA().preob = preob;
         any.referencePARA().systemDelay = fieldSystem;
     }
 
     auto scans = satelliteScheduler.generateScanList(selectedSatellites);
 
-    for (const auto &scan : scans){
-
+    for (const auto &scan : scans) {
         QTreeWidgetItem *twi = new QTreeWidgetItem();
-
         QString srcname;
         for(const auto &sat : selectedSatellites){
             if(sat.getId() == scan.getSourceId()){
@@ -440,8 +422,7 @@ void SatelliteScheduling::writeLists()
     ui->treeWidget_listOfSelectedScans->clear();
     ui->treeWidget_selectedScanPlots->clear();
 
-    for (const auto &scan : scheduledScans)
-    {
+    for (const auto &scan : scheduledScans) {
         QTreeWidgetItem *twi = new QTreeWidgetItem();
         QString srcname;
         for(const auto &sat : satellites){
@@ -463,8 +444,7 @@ void SatelliteScheduling::writeLists()
         twi->setTextAlignment(3,Qt::AlignRight);
 
         std::string stations;
-        for(int i = 0; i<scan.getNSta(); ++i)
-        {
+        for(int i = 0; i<scan.getNSta(); ++i) {
             auto staid = scan.getPointingVector(i).getStaid();
             stations.append(satelliteScheduler.refNetwork().getStation(staid).getAlternativeName());
             stations.append(" ");
@@ -477,7 +457,6 @@ void SatelliteScheduling::writeLists()
             twi->addChild(new QTreeWidgetItem( QStringList() << "" << staStart.toString("dd.MM.yyyy hh:mm:ss") << staEnd.toString("dd.MM.yyyy hh:mm:ss") << QString::number(staDur) << staName ));
             twi->child(twi->childCount()-1)->setTextAlignment(3,Qt::AlignRight);
             twi->child(twi->childCount()-1)->setIcon(4,QIcon(":/icons/icons/station.png"));
-            //twi->child(twi->childCount()-1)->setFlags(!Qt::ItemIsSelectable);
         }
         twi->setText(4,QString::fromStdString(stations));
         twi->setExpanded(false);
@@ -487,7 +466,6 @@ void SatelliteScheduling::writeLists()
         ui->treeWidget_selectedScanPlots->addTopLevelItem(twiClone);
     }
 }
-
 
 void SatelliteScheduling::on_actionInfo_triggered()
 {
@@ -500,8 +478,7 @@ void SatelliteScheduling::on_pushButton_showConstant_clicked()
     setTimes *dialog = new setTimes(this, ui->spinBox_fs->value(), ui->spinBox_preob->value());
     int result = dialog->exec();
 
-    if(result == QDialog::Accepted)
-    {
+    if(result == QDialog::Accepted) {
         int fs = dialog->getValues().at(0);
         int preob = dialog->getValues().at(1);
         ui->spinBox_fs->setValue(fs);
@@ -510,9 +487,9 @@ void SatelliteScheduling::on_pushButton_showConstant_clicked()
     delete(dialog);
 }
 
-void SatelliteScheduling::on_treeWidget_template_itemClicked(QTreeWidgetItem *item, int column)
+void SatelliteScheduling::on_treeWidget_template_itemClicked(QTreeWidgetItem *item)//, int column)
 {
-    if(item->parent()){
+    if(item->parent()) {
         item = item->parent();
     }
 
@@ -554,11 +531,7 @@ void SatelliteScheduling::on_treeWidget_template_itemClicked(QTreeWidgetItem *it
         start->setDisplayFormat("dd.MM.yyyy hh:mm:ss");
         end->setDisplayFormat("dd.MM.yyyy hh:mm:ss");
         start->setDateTime(min);
-//        start->setMinimumDateTime(min);
-//        start->setMaximumDateTime(max);
         end->setDateTime(max);
-//        end->setMinimumDateTime(min);
-//        end->setMaximumDateTime(max);
         t->setCellWidget(i,2,start);
         t->setCellWidget(i,3,end);
 
@@ -698,18 +671,18 @@ void SatelliteScheduling::on_pushButton_checkAndSave_clicked()
         unsigned long staid = satelliteScheduler.refNetwork().getStation(Vstation).getId();
 
         QDateTime start = qobject_cast<QDateTimeEdit *>(tw->cellWidget(i,2))->dateTime();
-        unsigned int Vstart = ui->dateTimeEdit_sessionStart->dateTime().secsTo(start);
+        unsigned long Vstart = ui->dateTimeEdit_sessionStart->dateTime().secsTo(start);
 
         QDateTime end = qobject_cast<QDateTimeEdit *>(tw->cellWidget(i,3))->dateTime();
-        unsigned int Vend = ui->dateTimeEdit_sessionStart->dateTime().secsTo(end);
+        unsigned long Vend = ui->dateTimeEdit_sessionStart->dateTime().secsTo(end);
         if(Vstart >= Vend){
             continue;
         }
         selectedStationIds.push_back(staid);
         startTimes.push_back(Vstart);
         endTimes.push_back(Vend);
-        int fieldSystem = ui->spinBox_fs->value();
-        int preob = ui->spinBox_preob->value();
+        //int fieldSystem = ui->spinBox_fs->value();
+        //int preob = ui->spinBox_preob->value();
 
         for (const auto &sat : satellites) {
             if (sat.hasName(ui->label_adjustSatName->text().toStdString())){
@@ -721,7 +694,7 @@ void SatelliteScheduling::on_pushButton_checkAndSave_clicked()
     DateTime start = DateTime(sessionStart_.date().year(),sessionStart_.date().month(),sessionStart_.date().day(),sessionStart_.time().hour(),sessionStart_.time().minute(),sessionStart_.time().second());
     std::vector<bool> isobs(selectedStationIds.size(),false);
     std::vector<SatelliteObs::TimePoint> timePoints;
-    for(int i=0;i<selectedStationIds.size(); i++) {
+    for(size_t i=0;i<selectedStationIds.size(); i++) {
         VieVS::Station station = satelliteScheduler.refNetwork().getStation(selectedStationIds.at(i));
         SatelliteObs::TimePoint tstart;
         tstart.ts = VieVS::Timestamp ::start;
@@ -743,17 +716,17 @@ void SatelliteScheduling::on_pushButton_checkAndSave_clicked()
        return;
     }
     if(timePoints.at(0).time == timePoints.at(1).time) {
-       int staID_0 = timePoints.at(0).stationID;
+       unsigned long staID_0 = timePoints.at(0).stationID;
        isobs.at(staID_0) = true;
-       int staID_1 = timePoints.at(1).stationID;
+       unsigned long staID_1 = timePoints.at(1).stationID;
        isobs.at(staID_1) = true;
     }
     else {
         QMessageBox::information(this,"no valid scan","There is a station observing alone!");
         return;
     }
-    for(int i =2; i<timePoints.size();i++) {
-        int staID = timePoints.at(i).stationID;
+    for(size_t i =2; i<timePoints.size();i++) {
+        unsigned long staID = timePoints.at(i).stationID;
         if(timePoints.at(i).ts == VieVS::Timestamp::start)
         {
             isobs.at(staID) = true;
@@ -775,6 +748,7 @@ void SatelliteScheduling::on_pushButton_checkAndSave_clicked()
     if(checkScan(scan))
     {
        scheduledScans.push_back(scan);
+       QMessageBox::information(this,"Scan added","The scan was successfully added to the schedule!");
     }
     else
     {
@@ -789,19 +763,16 @@ bool SatelliteScheduling::checkScan(VieVS::Scan scan)
     bool ret = true;
     for(VieVS::Scan scheduledScan : scheduledScans)
     {
-        int nSta = scheduledScan.getNSta();
+        unsigned long nSta = scheduledScan.getNSta();
         for(int i =0 ; i<nSta; i++)
         {
             VieVS::PointingVector pvSchedScanStart = scheduledScan.getPointingVector(i,VieVS::Timestamp::start);
             VieVS::PointingVector pvSchedScanEnd = scheduledScan.getPointingVector(i,VieVS::Timestamp::end);
-            for(int k = 0; k<scan.getNSta();k++)
-            {
+            for(int k = 0; k<scan.getNSta();k++) {
                 VieVS::PointingVector pvScanStart = scan.getPointingVector(k,VieVS::Timestamp::start);
                 VieVS::PointingVector pvScanEnd = scan.getPointingVector(k,VieVS::Timestamp::end);
-                if(pvSchedScanStart.getStaid() == pvScanStart.getStaid())
-                {
-                    if(pvScanEnd.getTime() < pvSchedScanStart.getTime() || pvScanStart.getTime() > pvSchedScanEnd.getTime())
-                    {
+                if(pvSchedScanStart.getStaid() == pvScanStart.getStaid()) {
+                    if(pvScanEnd.getTime() < pvSchedScanStart.getTime() || pvScanStart.getTime() > pvSchedScanEnd.getTime()) {
                        continue;
                     }
                     else {
@@ -818,7 +789,6 @@ bool SatelliteScheduling::checkScan(VieVS::Scan scan)
     return ret;
 }
 
-
 void SatelliteScheduling::on_pushButton_removeScan_clicked()
 {
     auto list = ui->treeWidget_listOfSelectedScans->selectedItems();
@@ -829,16 +799,13 @@ void SatelliteScheduling::on_pushButton_removeScan_clicked()
         }
 }
 
-
 void SatelliteScheduling::on_checkBox_showTracks_clicked(bool checked)
 {
     QChart *worldChart = worldmap->chart();
     auto series = worldChart->series();
-    for(int i =0; i<series.size();i++)
-    {
+    for(int i =0; i<series.size();i++) {
         QString name = series.at(i)->name();
-        if(name.left(3)=="mrk" || name.left(3)=="sat")
-        {
+        if(name.left(3)=="mrk" || name.left(3)=="sat") {
              worldChart->removeSeries(series.at(i));
         }
     }
@@ -867,43 +834,39 @@ void SatelliteScheduling::on_checkBox_showTracks_clicked(bool checked)
             for(SatelliteForGUI &sat : satellites)
             {
                 QString Satname = QString::fromStdString(sat.getName());
-                if(Satname == name)
-                {
+                if(Satname == name) {
                    int scanDur = sessionStart_.secsTo(ui->dateTimeEdit_showTime->dateTime());
                    DateTime t = DateTime(sessionStart_.date().year(),sessionStart_.date().month(),sessionStart_.date().day(),sessionStart_.time().hour(),sessionStart_.time().minute(),sessionStart_.time().second());
                    CoordGeodetic pos = sat.getPosition(t);
                    for(int i = 0;i<sessionDur/60; i++) //each Minute
                    {
                        pos = sat.getPosition(t.AddMinutes(i));
-                       satelliteTrack->append(pos.longitude*180/3.141592653589793,pos.latitude*180/3.141592653589793);
+                       satelliteTrack->append(pos.longitude*180/pi,pos.latitude*180/pi);
                    }
                    pos = sat.getPosition(t.AddMinutes(scanDur/60));
-                   satelliteMarker->append(pos.longitude*180/3.141592653589793,pos.latitude*180/3.141592653589793);
+                   satelliteMarker->append(pos.longitude*180/pi,pos.latitude*180/pi);
 
                    connect(satelliteMarker,SIGNAL(hovered(QPointF,bool)),this,SLOT(sattrack_hovered(QPointF,bool)));
                 }
             }
             worldChart->addSeries(satelliteTrack);
             worldChart->addSeries(satelliteMarker);
-            satelliteTrack->attachAxis(worldChart->axisX());
-            satelliteTrack->attachAxis(worldChart->axisY());
-            satelliteMarker->attachAxis(worldChart->axisX());
-            satelliteMarker->attachAxis(worldChart->axisY());
+            satelliteTrack->attachAxis(worldChart->axes(Qt::Horizontal).back());
+            satelliteTrack->attachAxis(worldChart->axes(Qt::Vertical).back());
+            satelliteMarker->attachAxis(worldChart->axes(Qt::Horizontal).back());
+            satelliteMarker->attachAxis(worldChart->axes(Qt::Vertical).back());
         }
         worldmap->setChart(worldChart);
    }
    else
    {
         auto series = worldmap->chart()->series();
-        for(int i=0; i<series.count();++i)
-        {
+        for(int i=0; i<series.count();++i)  {
             QString name = series.at(i)->name();
             name.remove(0, 3);
-            for(SatelliteForGUI &sat : satellites)
-            {
+            for(SatelliteForGUI &sat : satellites) {
                 QString Satname = QString::fromStdString(sat.getName());
-                if(Satname == name)
-                {
+                if(Satname == name) {
                    series.at(i)->setVisible(false);
                 }
             }
@@ -927,20 +890,17 @@ int SatelliteScheduling::getIndexTopLevelItem()
     QTreeWidgetItem *itm;
     int idxTopLevelItem;
     int childIndex;
-    if(itms.at(0)->childCount() == 0)
-    {
+    if(itms.at(0)->childCount() == 0) {
         itm = itms.at(0)->parent();
         childIndex = ui->treeWidget_selectedScanPlots->selectionModel()->currentIndex().row();
     }
-    else
-    {
+    else {
         itm = itms.at(0);
         childIndex = NULL;
     }
 
     idxTopLevelItem = ui->treeWidget_selectedScanPlots->indexOfTopLevelItem(itm);
     return idxTopLevelItem;
-
 }
 
 void SatelliteScheduling::SetupPlotsScan()
@@ -968,9 +928,9 @@ void SatelliteScheduling::createSkyPlotScan(int idxTopLevelItem)
     QVBoxLayout *layout = new QVBoxLayout();
     QComboBox *c1 = new QComboBox();
     c1->addItem(QIcon(":/icons/icons/station_group.png"),"all");
-    for(int i=0; i<scheduledScans.at(idxTopLevelItem).getNSta();i++)
+    for(size_t i=0; i<scheduledScans.at(idxTopLevelItem).getNSta();i++)
     {
-        int idx = scheduledScans.at(idxTopLevelItem).getStationId(i);
+        size_t idx = scheduledScans.at(idxTopLevelItem).getStationId(i);
         std::string name = network.getStation(idx).getName();
         c1->addItem(QIcon(":/icons/icons/station.png"),QString::fromStdString(name));
     }
@@ -997,8 +957,6 @@ void SatelliteScheduling::createSkyPlotScan(int idxTopLevelItem)
 
     QFont labelsFont;
     labelsFont.setPixelSize(15);
-    //angularAxis->setLabelsFont(labelsFont);
-
     chart->addAxis(angularAxis, QPolarChart::PolarOrientationAngular);
 
     QValueAxis *radialAxis = new QValueAxis();
@@ -1006,7 +964,6 @@ void SatelliteScheduling::createSkyPlotScan(int idxTopLevelItem)
     radialAxis->setRange(0,90);
     radialAxis->setLabelFormat(" ");
     chart->addAxis(radialAxis, QPolarChart::PolarOrientationRadial);
-
     chartView->setRenderHint(QPainter::Antialiasing);
     layout->addWidget(chartView);
     qw->setLayout(layout);
@@ -1020,8 +977,7 @@ void SatelliteScheduling::createSkyPlotScan(int idxTopLevelItem)
 
 void SatelliteScheduling::updateSkyPlotScan(QString name)
 {
-    if(name.isEmpty())
-    {
+    if(name.isEmpty()) {
         return;
     }
     QWidget *qw = qobject_cast<QWidget*>(ui->SkyPlot_Scan->itemAt(0)->widget());
@@ -1032,7 +988,7 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
     QTreeWidgetItem *itm = ui->treeWidget_selectedScanPlots->topLevelItem(idxTopLevelItem);
     QString Satellitename = itm->data(0,0).toString();
 
-    SGP4 *sgp4 = NULL ;
+    SGP4 *sgp4 = nullptr;
     for(SatelliteForGUI &sat : satellites) {
         QString Satname = QString::fromStdString(sat.getName());
         if(Satellitename == Satname) {
@@ -1051,7 +1007,7 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
         const std::vector<double> &el = mask.second;
 
         QLineSeries *hmaskUp = new QLineSeries();
-        for(int i=0; i<az.size(); ++i){
+        for(size_t i=0; i<az.size(); ++i){
             hmaskUp->append(az[i]*rad2deg,90-el[i]*rad2deg);
         }
         if(hmaskUp->count() == 0){
@@ -1070,8 +1026,8 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
         hmask->setBrush(Qt::gray);
         hmask->setOpacity(0.5);
         chart->addSeries(hmask);
-        hmask->attachAxis(chart->axisX());
-        hmask->attachAxis(chart->axisY());
+        hmask->attachAxis(chart->axes(Qt::Horizontal).back());
+        hmask->attachAxis(chart->axes(Qt::Vertical).back());
     }
     QList<QColor> c;
     c.append(QColor(228,26,28));
@@ -1096,16 +1052,16 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
             if(nc == 0){
                 data->setBrush(c.at(cc));
                 data->setBorderColor(c.at(cc));
-            }else if(nc == 1){
+            } else if(nc == 1){
                 data->setBrush(c.at(cc));
                 data->setBorderColor(Qt::white);
-            }else if(nc == 2){
+            } else if(nc == 2){
                 data->setBrush(c.at(cc));
                 data->setBorderColor(Qt::black);
-            }else if(nc == 3){
+            } else if(nc == 3){
                 data->setBrush(c.at(cc));
                 data->setBorderColor(Qt::red);
-            }else if(nc == 4){
+            } else if(nc == 4){
                 data->setBrush(c.at(cc));
                 data->setBorderColor(Qt::blue);
             }
@@ -1125,8 +1081,6 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
                DateTime tp = t.AddSeconds(j);
                Eci eci = sgp4->FindPosition(tp);
                CoordTopocentric topo = obs.GetLookAngle(eci);
-               double taz = topo.azimuth*rad2deg;
-               double tel = topo.elevation*rad2deg;
                data->append(topo.azimuth*rad2deg,90-(topo.elevation*rad2deg));
                j = j+10;
             }
@@ -1135,8 +1089,8 @@ void SatelliteScheduling::updateSkyPlotScan(QString name)
             data->append(topo.azimuth*rad2deg,90-(topo.elevation*rad2deg));
             data->setName(station);
             chart->addSeries(data);
-            data->attachAxis(chart->axisX());
-            data->attachAxis(chart->axisY());
+            data->attachAxis(chart->axes(Qt::Horizontal).back());
+            data->attachAxis(chart->axes(Qt::Vertical).back());
         }
     }
 }
@@ -1149,12 +1103,11 @@ void SatelliteScheduling::on_pushButton_adjustStart_clicked()
             QMessageBox::information(this,"no selection","Please select scan first");
             return;
     }
-     for(int i = 0; i<tw->rowCount(); ++i){
+     for(int i = 0; i<tw->rowCount(); ++i) {
          QWidget *checkBoxWidget = tw->cellWidget(i,0);
          auto l = checkBoxWidget->layout();
          QCheckBox *cb = qobject_cast<QCheckBox *>(l->itemAt(0)->widget());
-         if(cb->checkState() != Qt::Checked)
-         {
+         if(cb->checkState() != Qt::Checked) {
               continue;
          }
          QDateTime start = qobject_cast<QDateTimeEdit *>(tw->cellWidget(i,2))->dateTime();
@@ -1162,26 +1115,23 @@ void SatelliteScheduling::on_pushButton_adjustStart_clicked()
      }
      QDateTime maxStart = *std::max_element(startTimes.begin(),startTimes.end());
 
-     for(int i = 0; i<tw->rowCount(); ++i){
+     for(int i = 0; i<tw->rowCount(); ++i) {
          qobject_cast<QDateTimeEdit *>(tw->cellWidget(i,2))->setDateTime(maxStart);
      }
 }
 
 void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
 {
-    //QFont backupFontX = worldmap->chart()->axisX()->labelsFont();
     int count = ui->ElevationPlot_Scan->layout()->count();
 
     QFont labelsFont;
     labelsFont.setPixelSize(15);
 
-    for(int i =0;i<count;i++)
-    {
+    for(int i =0;i<count;i++) {
         QLayoutItem *qw = ui->ElevationPlot_Scan->itemAt(0);
         ui->ElevationPlot_Scan->removeItem(qw);
     }
     QChart *chart = new QChart();
-    //chart->createDefaultAxes();
     int sessionDur = sessionStart_.secsTo(sessionEnd_);
     QDateTimeAxis *axisX = new QDateTimeAxis;
     axisX->setTickCount(10);
@@ -1189,14 +1139,9 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
     axisX->setRange(sessionStart_,sessionEnd_);
     chart->addAxis(axisX, Qt::AlignBottom);
 
-    //axisX->setLabelsFont(labelsFont);
-
     QValueAxis *axisY = new QValueAxis;
     axisY->setRange(0,90);
     axisY->setTitleText("elevation [°]");
-
-    //axisY->setLabelsFont(labelsFont);
-    //axisY->setTitleFont(labelsFont);
     chart->addAxis(axisY, Qt::AlignLeft);
 
     QChartView *chartView = new QChartView(chart);
@@ -1216,12 +1161,10 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
     QTreeWidgetItem *a = ui->treeWidget_selectedScanPlots->topLevelItem(idxTopLevelItem);
     QString Satellitename = a->data(0,0).toString();
     chartView->chart()->setTitle(Satellitename);
-    SGP4 *sgp4 = NULL ;
-    for(SatelliteForGUI &sat : satellites)
-    {
+    SGP4 *sgp4 = nullptr;
+    for(SatelliteForGUI &sat : satellites) {
         QString Satname = QString::fromStdString(sat.getName());
-        if(Satellitename == Satname)
-        {
+        if(Satellitename == Satname) {
             sgp4 = sat.getSGP4Data();
         }
     }
@@ -1236,15 +1179,15 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
         series->attachAxis(axisY);
         int nc = i/9;
         int cc = i%9;
-        if(nc == 0){
+        if(nc == 0) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::SolidLine));
-        }else if(nc == 1){
+        } else if(nc == 1) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashLine));
-        }else if(nc == 2){
+        } else if(nc == 2) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DotLine));
-        }else if(nc == 3){
+        } else if(nc == 3) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashDotLine));
-        }else if(nc == 4){
+        } else if(nc == 4) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashDotDotLine));
         }
 
@@ -1254,27 +1197,12 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
         obsSeries->attachAxis(axisX);
         obsSeries->attachAxis(axisY);
         obsSeries->setPen(QPen(QBrush(Qt::black),4,Qt::SolidLine));
-
-        //connect(series,SIGNAL(hovered(QPointF,bool)),this,SLOT(statisticsSourceHovered(QPointF, bool)));
     }
-    /*QScatterSeries *obsSeries = new QScatterSeries();
-    obsSeries->setName("obs" );
-    obsSeries->setMarkerSize(4);
-    chart->addSeries(obsSeries);
-    obsSeries->attachAxis(axisX);
-    obsSeries->attachAxis(axisY);
-    obsSeries->setBrush(QBrush(Qt::transparent,Qt::SolidPattern));
-    obsSeries->setMarkerSize(1.5);
-    obsSeries->setPen(QColor(Qt::black));*/
-    //obsSeries->setPen(QPen(QBrush(Qt::black),4,Qt::SolidLine));
-
     auto stationSeries = chart->series();
     QLineSeries *serie;
-    //bool LegendObserved = false;
     for(int i = 0; i<a->childCount();i++)
     {
         QString staName = a->child(i)->data(4,0).toString();
-        //QScatterSeries *serieS;
         const VieVS::Station &thisSta = network.getStation(staName.toStdString());
         CoordGeodetic stat = CoordGeodetic(thisSta.getPosition()->getLat(),thisSta.getPosition()->getLon(),thisSta.getPosition()->getAltitude()/1000,true);
         Observer obs( stat );
@@ -1296,10 +1224,8 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
                     serie->append(ts.toMSecsSinceEpoch(),topo.elevation*rad2deg);
                     counter=counter+600;
                 }
-                //break;
             }
             else if(name.remove(0,3).toStdString() == staName.toStdString())
-            //else if (name == "obs")
             {
                 //observed series
                 serie = qobject_cast<QLineSeries *>(any);
@@ -1327,15 +1253,10 @@ void SatelliteScheduling::createElevationPlotScan(int idxTopLevelItem)
     chart->legend()->markers(serie).at(0)->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
     chart->legend()->setMarkerShape(QLegend::MarkerShapeFromSeries);
-
     chart->setAcceptHoverEvents(true);
     Callout *callout = new Callout(chart);
     callout->hide();
-
     ui->ElevationPlot_Scan->insertWidget(0,chartView,1);
-
-    //connect(ui->treeView_statistics_source->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(updateStatisticsSource()));
-    //ui->treeView_statistics_source->setCurrentIndex(ui->treeView_statistics_source->model()->index(0,0));
 }
 
 void SatelliteScheduling::ElevationSetup()
@@ -1358,14 +1279,13 @@ void SatelliteScheduling::ElevationSetup()
     chart->addAxis(axisY, Qt::AlignLeft);
 
     QFont labelsFont;
-    labelsFont.setPixelSize(14);
+    labelsFont.setPixelSize(15);
 
     QFont titleFont;
     titleFont.setPixelSize(15);
     titleFont.setBold(true);
-    //axisY->setLabelsFont(labelsFont);
-    //axisX->setLabelsFont(labelsFont);
-    //axisY->setTitleFont(titleFont);
+    axisY->setLabelsFont(labelsFont);
+    axisX->setLabelsFont(labelsFont);
 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -1391,15 +1311,15 @@ void SatelliteScheduling::ElevationSetup()
         series->attachAxis(axisY);
         int nc = i/9;
         int cc = i%9;
-        if(nc == 0){
+        if(nc == 0) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::SolidLine));
-        }else if(nc == 1){
+        } else if(nc == 1) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashLine));
-        }else if(nc == 2){
+        } else if(nc == 2) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DotLine));
-        }else if(nc == 3){
+        } else if(nc == 3) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashDotLine));
-        }else if(nc == 4){
+        } else if(nc == 4) {
             series->setPen(QPen(QBrush(c.at(cc)),1.5,Qt::DashDotDotLine));
         }
         //connect(series,SIGNAL(hovered(QPointF,bool)),this,SLOT(statisticsSourceHovered(QPointF, bool)));
@@ -1418,15 +1338,9 @@ void SatelliteScheduling::updateElevation()
 {
     QChartView *chartView = qobject_cast<QChartView *>(ui->ElevationPlot->itemAt(0)->widget());
     QChart *chart = chartView->chart();
-    QDateTimeAxis *axisX = qobject_cast<QDateTimeAxis *>(chart->axisX());
 
     //get seleted item
     QModelIndexList sel = ui->treeView_satellites->selectionModel()->selectedRows();
-    /*if(sel.empty())
-    {
-        ui->treeView_satellites->setCurrentIndex(ui->treeView_satellites->model()->index(0,0));
-    }
-    sel = ui->treeView_satellites->selectionModel()->selectedRows();*/
     QString name = ui->treeView_satellites->model()->data(sel.at(0)).toString();
 
     int idx = allSatelliteModel->findItems(name).at(0)->row();
@@ -1439,8 +1353,7 @@ void SatelliteScheduling::updateElevation()
     int scanDur = sessionStart_.secsTo(sessionEnd_);
     auto series = chart->series();
 
-    for(VieVS::Station &sta : stations)
-    {
+    for(VieVS::Station &sta : stations) {
         QLineSeries *serie;
         for(const auto &any:series){
             if(any->name() == QString::fromStdString(sta.getName())){
@@ -1454,8 +1367,7 @@ void SatelliteScheduling::updateElevation()
         Observer obs( stat );
         DateTime t = DateTime(sessionStart_.date().year(),sessionStart_.date().month(),sessionStart_.date().day(),sessionStart_.time().hour(),sessionStart_.time().minute(),sessionStart_.time().second());
         int counter = 0;
-        while(counter<scanDur)
-        {
+        while(counter<scanDur) {
             QDateTime ts = sessionStart_.addSecs(counter);
             Eci eci = sgp4->FindPosition(t.AddSeconds(counter));
             CoordTopocentric topo = obs.GetLookAngle(eci);
@@ -1468,51 +1380,33 @@ void SatelliteScheduling::updateElevation()
 
 void SatelliteScheduling::StackedBarPlotSetup()
 {
-        QStackedBarSeries *StackedBarSeries = new QStackedBarSeries();
-        StackedBarSeries->clear();
-        QChart *StackedBarChart = new QChart();
-        StackedBarChart->legend()->setAlignment(Qt::AlignBottom);
-        //StackedBarChart->legend()->setAlignment(Qt::AlignRight);
-        StackedBarChart->legend()->setMarkerShape(QLegend::MarkerShapeRectangle);
-        StackedBarChart->legend()->setBorderColor(QColor(0,0,0,1));
-        StackedBarChart->setAnimationOptions(QChart::NoAnimation);
-        StackedBarChart->addSeries(StackedBarSeries);
+    QStackedBarSeries *StackedBarSeries = new QStackedBarSeries();
+    StackedBarSeries->clear();
+    QChart *StackedBarChart = new QChart();
+    StackedBarChart->legend()->setAlignment(Qt::AlignBottom);
+    StackedBarChart->legend()->setMarkerShape(QLegend::MarkerShapeRectangle);
+    StackedBarChart->legend()->setBorderColor(QColor(0,0,0,1));
+    StackedBarChart->legend()->setAlignment(Qt::Alignment(Qt::AlignRight));
+    StackedBarChart->setAnimationOptions(QChart::NoAnimation);
+    StackedBarChart->addSeries(StackedBarSeries);
 
-        QBarCategoryAxis *axisX = new QBarCategoryAxis();
-        QValueAxis *axisY = new QValueAxis;
-        //axisX->setTitleText("number of stations");
+    QBarCategoryAxis *axisX = new QBarCategoryAxis();
+    QValueAxis *axisY = new QValueAxis;
+    VieVS::Network &network = satelliteScheduler.refNetwork();
+    for(int k =0; k<network.getNSta()+1;k++)
+    {
+        QBarSet *barSet = new QBarSet(QString("%0").arg(k) + " stations");
+        StackedBarSeries->append(barSet);
+    }
+    axisY->setTitleText("% obs dur");
 
-        VieVS::Network &network = satelliteScheduler.refNetwork();
-        for(int k =0; k<network.getNSta()+1;k++)
-        {
-            QBarSet *barSet = new QBarSet(QString("%0").arg(k) + " stations");
-            StackedBarSeries->append(barSet);
-        }
-        axisY->setTitleText("% obs dur");
-
-        QFont labelsFont;
-        labelsFont.setPixelSize(15);
-        //axisY->setLabelsFont(labelsFont);
-        //axisX->setLabelsFont(labelsFont);
-
-        StackedBarChart->setAxisY(axisY, StackedBarSeries);
-        StackedBarChart->setAxisX(axisX, StackedBarSeries);
-        //nStaChart->setTitle("satellites");
-        QChartView *obsDurChartView = new QChartView(StackedBarChart,this);
-        obsDurChartView->setRenderHint(QPainter::Antialiasing);
-        ui->BarPlotVisibilityStacked->insertWidget(0,obsDurChartView,1);
-
-       /*QStringList labels;
-       for(int i =0; i<satellites.size(); i++)
-       {
-           VieVS::Satellite sat = satellites.at(i);
-           QString name = QString::fromStdString(sat.getName());
-           labels << name;
-           QBarSet *barSet = new QBarSet(QString("%0").arg(i) + " stations");
-           StackedBarSeries->append(barSet);
-      }
-       axisX->setCategories(labels);
-       axisX->setLabelsAngle(-45);*/
+    QFont labelsFont;
+    labelsFont.setPixelSize(15);
+    StackedBarChart->setAxisY(axisY, StackedBarSeries);
+    StackedBarChart->setAxisX(axisX, StackedBarSeries);
+    QChartView *obsDurChartView = new QChartView(StackedBarChart,this);
+    obsDurChartView->setRenderHint(QPainter::Antialiasing);
+    ui->BarPlotVisibilityStacked->insertWidget(0,obsDurChartView,1);
 }
 
 
@@ -1538,9 +1432,6 @@ void SatelliteScheduling::satelliteStatisticsSetup()
 
     QFont labelsFont;
     labelsFont.setPixelSize(15);
-    //axisY->setLabelsFont(labelsFont);
-    //axisX->setLabelsFont(labelsFont);
-
     nStaChart->setAxisY(axisY, barSeries);
     nStaChart->setAxisX(axisX, barSeries);
     nStaChart->setTitle("number of stations");
@@ -1548,54 +1439,16 @@ void SatelliteScheduling::satelliteStatisticsSetup()
     obsDurChartView->setRenderHint(QPainter::Antialiasing);
     ui->BarPlotVisibilitySingle->insertWidget(0,obsDurChartView,1);
 
-
-   QStringList labels;
-   int nSta = satelliteScheduler.refNetwork().getNSta();
-   for(int i =0; i<=nSta; i++)
-   {
+    QStringList labels;
+    int nSta = satelliteScheduler.refNetwork().getNSta();
+    for(int i =0; i<=nSta; i++) {
      labels << QString("%0").arg(i);
-   }
-   axisX->append(labels);
-   //connect(ui->treeView_satelliteListStatistics,SIGNAL(clicked(QModelIndex)),this,SLOT(updateSatelliteStatistics()));
-   connect(ui->treeView_satelliteListStatistics->selectionModel(),SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),this,SLOT(updateSatelliteStatistics()));
-   //connect(barSeries,SIGNAL(hovered(bool,int)),this,SLOT(ObsTimeHovered(bool,int)));
+    }
+    axisX->append(labels);
+    connect(ui->treeView_satelliteListStatistics->selectionModel(),SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),this,SLOT(updateSatelliteStatistics()));
 }
 
-/*void SatelliteScheduling::ObsTimeHovered(bool state, int idx)
-{
-    if(state)
-        {
-            QGraphicsRectItem hoverItem;
-            hoverItem.setBrush(QBrush(Qt::red));
-            hoverItem.setPen(Qt::NoPen);
-            QObject *obj = sender();
-            QBarSeries *series = static_cast<QBarSeries *>(obj);
-
-            QChart *chart = qobject_cast<QChart *>(obj->parent()->parent());
-            QChartView *chartView = new QChartView(chart);
-
-
-          //worldMapCallout = new Callout(worldmap->chart());
-            //QBarSet barset = series->
-            //QString name = series->name();
-            //name = name.remove(0, 3);
-            //QString lon = QString().sprintf("lon: %.2f [deg]\n", point.x());
-            //QString lat = QString().sprintf("lat: %.2f [deg]", point.y());
-
-            //QString txt;
-            //txt.append(name + "\n").append(lon).append(lat);
-            //worldMapCallout->setText(txt);
-            //worldMapCallout->setAnchor(point);
-            //worldMapCallout->setZValue(11);
-            //worldMapCallout->updateGeometry();
-            //worldMapCallout->show();
-        }
-        else
-        {
-          // worldMapCallout->hide();
-        }
-}*/
-void SatelliteScheduling::createTableVisibility()
+/*void SatelliteScheduling::createTableVisibility()
 {
     VieVS::Network &network = satelliteScheduler.refNetwork();
     int nSta = network.getNSta();
@@ -1604,8 +1457,7 @@ void SatelliteScheduling::createTableVisibility()
     satelliteTable->setHeaderData(0, Qt::Horizontal, QObject::tr("satellite"));
     satelliteTable->setHeaderData(1, Qt::Horizontal, QObject::tr("epoche"));
 
-    for(int i =0; i<=nSta; i++)
-    {
+    for(int i =0; i<=nSta; i++) {
         QString s = QString("%1 stations").arg(i);
         satelliteTable->setHeaderData(i+2, Qt::Horizontal, s);
     }
@@ -1615,7 +1467,7 @@ void SatelliteScheduling::createTableVisibility()
     satelliteProxyTable->sort(0);
     ui->treeView_satelliteListStatistics_table->setModel(satelliteProxyTable);
 
-    for(int i =0; i<satellites.size();i++){
+    for(size_t i =0; i<satellites.size();i++){
         SatelliteForGUI sat = satellites.at(i);
         QString name = QString::fromStdString(sat.getName());
         DateTime ti = sat.getTleData()->Epoch();
@@ -1634,8 +1486,7 @@ void SatelliteScheduling::createTableVisibility()
         std::vector<SatelliteObs> overlaps = SatelliteObs::passList2Overlap( passList );
         QVector<double> timesPerNSta(network.getNSta()+1,0);
         double obsTime =0;
-        for(int i =0; i<overlaps.size();i++)
-        {
+        for(size_t i =0; i<overlaps.size();i++) {
             DateTime ovStart = overlaps.at(i).getStart();
             DateTime ovEnd = overlaps.at(i).getEnd();
             TimeSpan ts = ovEnd - ovStart;
@@ -1646,27 +1497,147 @@ void SatelliteScheduling::createTableVisibility()
         }
         timesPerNSta[0]= totalObsTime - obsTime;
 
-        for(int j = 0; j<=nSta; j++)
-        {
+        for(int j = 0; j<=nSta; j++) {
            QString s = QString().sprintf("%.2f %", timesPerNSta.at(j)*100/totalObsTime);
            QStandardItem * item = new QStandardItem(s);
            item->setTextAlignment(Qt::AlignLeft);
            list.append(item);
         }
-        //QStandardItem * item = new QStandardItem(QIcon(":/icons/icons/satellite.png"),name);
-        for (int i=0; i< ui->treeView_satelliteListStatistics_table->model()->columnCount(); ++i){
+        for(int i=0; i< ui->treeView_satelliteListStatistics_table->model()->columnCount(); ++i) {
             ui->treeView_satelliteListStatistics_table->resizeColumnToContents(i);
             int width = ui->treeView_satelliteListStatistics_table->columnWidth(i);
             ui->treeView_satelliteListStatistics_table->setColumnWidth(i,width+10);
         }
         satelliteTable->appendRow(list);
+   }
+}*/
+
+
+void SatelliteScheduling::createBarPlotStackedTableVisibility()
+{
+    //general
+    VieVS::Network &network = satelliteScheduler.refNetwork();
+    int nSta = network.getNSta();
+    DateTime start = DateTime(sessionStart_.date().year(),sessionStart_.date().month(),sessionStart_.date().day(),sessionStart_.time().hour(),sessionStart_.time().minute(),sessionStart_.time().second());
+    DateTime end = DateTime(sessionEnd_.date().year(),sessionEnd_.date().month(),sessionEnd_.date().day(),sessionEnd_.time().hour(),sessionEnd_.time().minute(),sessionEnd_.time().second());
+    double totalObsTime =(end-start).TotalSeconds();
+
+    //BarPlot
+    QChartView *barChartView = qobject_cast<QChartView *>(ui->BarPlotVisibilityStacked->itemAt(0)->widget());
+    QChart *barChart = barChartView->chart();
+    QStackedBarSeries *barSeries= qobject_cast<QStackedBarSeries *>(barChart->series().at(0));
+    QValueAxis *axisY = qobject_cast<QValueAxis *>(barChart->axisY());
+    QBarCategoryAxis *axisX = qobject_cast<QBarCategoryAxis *>(barChart->axisX());
+    QStringList labels;
+    for(int i =0; i<satellites.size(); i++)
+    {
+        SatelliteForGUI sat = satellites.at(i);
+        QString name = QString::fromStdString(sat.getName());
+        labels << name;
+   }
+    axisX->setCategories(labels);
+    axisX->setLabelsAngle(-45);
+    QVector<QVector<double>> BarSets;
+    BarSets.clear();
+
+
+    //Table
+    MultiColumnSortFilterProxyModel *satelliteProxyTable = new MultiColumnSortFilterProxyModel(this);
+    QStandardItemModel *satelliteTable = new QStandardItemModel(0,3+nSta,this);
+    satelliteTable->setHeaderData(0, Qt::Horizontal, QObject::tr("satellite"));
+    satelliteTable->setHeaderData(1, Qt::Horizontal, QObject::tr("epoche"));
+
+    for(int i =0; i<=nSta; i++) {
+        QString s = QString("%1 stations").arg(i);
+        satelliteTable->setHeaderData(i+2, Qt::Horizontal, s);
+    }
+    satelliteProxyTable->setSourceModel(satelliteTable);
+    satelliteProxyTable->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    satelliteProxyTable->setFilterKeyColumns({0});
+    satelliteProxyTable->sort(0);
+    ui->treeView_satelliteListStatistics_table->setModel(satelliteProxyTable);
+
+    for(size_t i =0; i<satellites.size();i++){
+        SatelliteForGUI sat = satellites.at(i);
+        QString name = QString::fromStdString(sat.getName());
+        DateTime ti = sat.getTleData()->Epoch();
+        QDateTime satEpoch = QDateTime(QDate(ti.Year(),ti.Month(),ti.Day()), QTime(ti.Hour(),ti.Minute(),ti.Second()));
+        QStandardItem * nameItem = new QStandardItem(QIcon(":/icons/icons/satellite.png"),name);
+        QStandardItem * satEpochItem = new QStandardItem(satEpoch.toString("dd.MM.yyyy hh:mm:ss"));
+        QList<QStandardItem *> list;
+        list.clear();
+        list.append(nameItem);
+        list.append(satEpochItem);
+        std::vector<std::vector<SatelliteForGUI::SatPass>> passList = sat.generatePassList(network, start,end,60);
+        std::vector<SatelliteObs> overlaps = SatelliteObs::passList2Overlap( passList );
+        QVector<double> timesPerNSta(network.getNSta()+1,0);
+        double obsTime =0;
+        for(size_t i =0; i<overlaps.size();i++) {
+            DateTime ovStart = overlaps.at(i).getStart();
+            DateTime ovEnd = overlaps.at(i).getEnd();
+            TimeSpan ts = ovEnd - ovStart;
+            double scanDur = ts.TotalSeconds();
+            int nSta = overlaps.at(i).getNumberofStations();
+            timesPerNSta[nSta] =  timesPerNSta[nSta] +scanDur;
+            obsTime = obsTime +scanDur;
         }
+        timesPerNSta[0]= totalObsTime - obsTime;
+        BarSets.append(timesPerNSta);
+
+        for(int j = 0; j<=nSta; j++) {
+           QString s = QString().sprintf("%.2f %", timesPerNSta.at(j)*100/totalObsTime);
+           QStandardItem * item = new QStandardItem(s);
+           item->setTextAlignment(Qt::AlignLeft);
+           list.append(item);
+        }
+        for(int i=0; i< ui->treeView_satelliteListStatistics_table->model()->columnCount(); ++i) {
+            ui->treeView_satelliteListStatistics_table->resizeColumnToContents(i);
+            int width = ui->treeView_satelliteListStatistics_table->columnWidth(i);
+            ui->treeView_satelliteListStatistics_table->setColumnWidth(i,width+10);
+        }
+        satelliteTable->appendRow(list);
+
+    }
+    float a = 1.5 ;
+    for(int k=0; k<=network.getNSta();k++)
+    {
+        QBarSet *barSet = barSeries->barSets().at(k);
+        barSet->remove(0,barSet->count());
+        for(int i = 0; i<satellites.size();i++)
+        {
+            *barSet << BarSets.at(i).at(k)*100/totalObsTime;
+            a = BarSets.at(i).at(k)*100/totalObsTime;
+        }
+    }
+    axisY->setRange(0, 100);
+    int show = 5;
+    auto categories = axisX->categories();
+    if(BarSets.size() !=0) {
+        QString minlabel = categories.at(0);
+        QString maxlabel;
+        if(BarSets.size()>show) {
+            maxlabel = categories.at(show-1);
+        }
+        else {
+            maxlabel = categories.at(categories.size()-1);
+        }
+        axisX->setMax(minlabel);
+        axisX->setMax(maxlabel);
+    }
+    if(BarSets.size()>show) {
+        ui->horizontalScrollBar_stackedPlot->setRange(0,BarSets.size()-show);
+        ui->horizontalScrollBar_stackedPlot->setSingleStep(1);
+    }
+    else {
+        ui->horizontalScrollBar_stackedPlot->setRange(0,0);
+        ui->horizontalScrollBar_stackedPlot->setSingleStep(1);
+    }
 }
 
-void SatelliteScheduling::createBarPlotVisibilityStacked()
+
+/*void SatelliteScheduling::createBarPlotVisibilityStacked()
 {
     QChartView *barChartView = qobject_cast<QChartView *>(ui->BarPlotVisibilityStacked->itemAt(0)->widget());
-
     QChart *barChart = barChartView->chart();
     QStackedBarSeries *barSeries= qobject_cast<QStackedBarSeries *>(barChart->series().at(0));
 
@@ -1697,7 +1668,7 @@ void SatelliteScheduling::createBarPlotVisibilityStacked()
         std::vector<SatelliteObs> overlaps = SatelliteObs::passList2Overlap( passList );
         QVector<double> timesPerNSta(network.getNSta()+1,0);
         double obsTime =0;
-        for(int i =0; i<overlaps.size();i++)
+        for(size_t i =0; i<overlaps.size();i++)
         {
            DateTime ovStart = overlaps.at(i).getStart();
            DateTime ovEnd = overlaps.at(i).getEnd();
@@ -1723,10 +1694,8 @@ void SatelliteScheduling::createBarPlotVisibilityStacked()
     }
     axisY->setRange(0, 100);
     int show = 5;
-    int size = BarSets.size();
     auto categories = axisX->categories();
-    if(BarSets.size() !=0)
-    {
+    if(BarSets.size() !=0) {
         QString minlabel = categories.at(0);
         QString maxlabel;
         if(BarSets.size()>show) {
@@ -1738,17 +1707,15 @@ void SatelliteScheduling::createBarPlotVisibilityStacked()
         axisX->setMax(minlabel);
         axisX->setMax(maxlabel);
     }
-    if(BarSets.size()>show)
-    {
+    if(BarSets.size()>show) {
         ui->horizontalScrollBar_stackedPlot->setRange(0,BarSets.size()-show);
         ui->horizontalScrollBar_stackedPlot->setSingleStep(1);
     }
-    else
-    {
+    else {
         ui->horizontalScrollBar_stackedPlot->setRange(0,0);
         ui->horizontalScrollBar_stackedPlot->setSingleStep(1);
     }
-}
+}*/
 
 void SatelliteScheduling::updateSatelliteStatistics()
 {
@@ -1758,7 +1725,7 @@ void SatelliteScheduling::updateSatelliteStatistics()
     QBarSet *barSet = barSeries->barSets().at(0);
     barSet->remove(0,barSet->count());
 
-    QValueAxis *axisY = qobject_cast<QValueAxis *>(barChart->axisY());
+    QValueAxis *axisY = qobject_cast<QValueAxis *>(barChart->axes(Qt::Vertical).back());
     QModelIndexList sel = ui->treeView_satelliteListStatistics->selectionModel()->selectedRows();
     QString name = ui->treeView_satelliteListStatistics->model()->data(sel.at(0)).toString();
     int idx = allSatelliteModel->findItems(name).at(0)->row();
@@ -1773,27 +1740,24 @@ void SatelliteScheduling::updateSatelliteStatistics()
     std::vector<SatelliteObs> overlaps = SatelliteObs::passList2Overlap( passList );
     QVector<int> timesPerNSta(network.getNSta()+1,0);
     int obsTime =0;
-    for(int i =0; i<overlaps.size();i++)
+    for(size_t i =0; i<overlaps.size();i++)
     {
         DateTime ovStart = overlaps.at(i).getStart();
         DateTime ovEnd = overlaps.at(i).getEnd();
         TimeSpan ts = ovEnd - ovStart;
         int scanDur = ts.TotalSeconds();
         int nSta = overlaps.at(i).getNumberofStations();
-        timesPerNSta[nSta] =  timesPerNSta[nSta] +scanDur;
-        obsTime = obsTime +scanDur;
+        timesPerNSta[nSta] =  timesPerNSta[nSta] + scanDur;
+        obsTime = obsTime + scanDur;
     }
     timesPerNSta[0]= totalObsTime - obsTime;
 
-    for(int any: timesPerNSta)
-    {
+    for(int any: timesPerNSta) {
         barSet->append(any*100/totalObsTime);
     }
     double max = *std::max_element(timesPerNSta.begin(), timesPerNSta.end());
     barSeries->append(barSet);
     barChart->setTitle(name);
-    //barChart->addSeries(barSeries);
-    //axisY->setRange(0, *std::max_element(hist.begin(),hist.end())/10*10+10);
     axisY->setRange(0, ceil((max*100/totalObsTime)/10)*10);
 }
 
@@ -1802,20 +1766,20 @@ void SatelliteScheduling::on_actionStatistic_triggered()
     ui->stackedWidget->setCurrentIndex(6);
     ui->tabWidget->setCurrentIndex(1);
     QModelIndexList sel = ui->treeView_satelliteListStatistics->selectionModel()->selectedRows();
-    if(sel.empty())
-    {
+    if(sel.empty()) {
         ui->treeView_satelliteListStatistics->setCurrentIndex(ui->treeView_satelliteListStatistics->model()->index(0,0));
     }
     updateSatelliteStatistics();
-    createTableVisibility();
-    createBarPlotVisibilityStacked();
+    QElapsedTimer timer;
+    //createTableVisibility();
+    //createBarPlotVisibilityStacked();
+    createBarPlotStackedTableVisibility();
 }
 
 void SatelliteScheduling::on_actionElevation_triggered()
 {
     QModelIndexList sel = ui->treeView_satellites->selectionModel()->selectedRows();
-    if(sel.empty())
-    {
+    if(sel.empty()) {
         ui->treeView_satellites->setCurrentIndex(ui->treeView_satellites->model()->index(0,0));
     }
     ui->stackedWidget->setCurrentIndex(4);
@@ -1825,12 +1789,10 @@ void SatelliteScheduling::on_actionElevation_triggered()
 void SatelliteScheduling::on_actionSkyPlots_triggered()
 {
     writeLists();
-    if(scheduledScans.empty())
-    {
+    if(scheduledScans.empty()) {
         QMessageBox::information(this,"select scan first","Please select a Scan first!");
     }
-    else
-    {
+    else {
         ui->treeWidget_selectedScanPlots->setCurrentIndex(ui->treeWidget_selectedScanPlots->model()->index(0,0));
         ui->stackedWidget->setCurrentIndex(3);
         connect(ui->treeWidget_selectedScanPlots,SIGNAL(clicked(QModelIndex)),this,SLOT(SetupPlotsScan()));
@@ -1849,7 +1811,7 @@ void SatelliteScheduling::on_horizontalScrollBar_stackedPlot_valueChanged(int va
     auto axisX = qobject_cast<QBarCategoryAxis*>(barChartView->chart()->axisX());
     auto categories = axisX->categories();
     int show = 5;
-    if(!categories.isEmpty()){
+    if(!categories.isEmpty()) {
         QString min = categories.at(value);
         QString max = categories.at(value+show-1);
         axisX->setMin(min);
@@ -1877,8 +1839,6 @@ void SatelliteScheduling::on_lineEdit_satelliteStatistics_table_textChanged(cons
    proxy->addFilterFixedString(arg1);
 }
 
-
-
 //PLOTS
 void SatelliteScheduling::on_pushButton_screenshot_SkyPlotScan_clicked()
 {
@@ -1895,43 +1855,45 @@ void SatelliteScheduling::on_pushButton_screenshot_SkyPlotScan_clicked()
     QComboBox *c1 = qobject_cast<QComboBox*>(qw->layout()->itemAt(0)->widget());
     QString name = c1->currentText();
     QSize backupsize = chartView->size();
-    QFont backupFontX = chartView->chart()->axisX()->labelsFont();
-    QFont backupFontY = chartView->chart()->axisY()->labelsFont();
+    QFont backupFontX = chartView->chart()->axes(Qt::Horizontal).back()->labelsFont();
+    QFont backupFontY = chartView->chart()->axes(Qt::Vertical).back()->labelsFont();
     QFont backupFontTitle = chartView->chart()->titleFont();
     QFont backupFontLegend = chartView->chart()->legend()->font();
 
-    QFont fontLegend;
-    fontLegend.setPixelSize(15);
-
-    chartView->resize(900,600);
-    //chartView->chart()->legend()->setFont(fontLegend);
-    /*if(name != "all")
-    {
-        chartView->chart()->setTitle(name);
-    }*/
+    chartView->resize(1000,700);
     QString satname = chartView->chart()->title();
-    chartView->setRenderHint(QPainter::Antialiasing);
-    qApp->processEvents(QEventLoop::AllEvents);
+
     QString fpath = "../out/SatellitePlots/";
     QString fpathcopy = fpath;
     QDir out(fpathcopy);
     if(!out.exists()){
         QDir().mkpath(fpathcopy);
     }
+
     QFont fontTitle;
-    fontTitle.setPixelSize(18);
+    fontTitle.setPixelSize(15);
     fontTitle.setBold(true);
+    chartView->chart()->setTitleFont(fontTitle);
 
+    QFont fontLegend;
+    fontLegend.setPixelSize(15);
+    chartView->chart()->legend()->setFont(fontLegend);
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+    chartView->chart()->legend()->setAlignment(Qt::AlignRight);
+    chartView->chart()->legend()->setFont(fontLegend);
 
-    //chartView->chart()->setTitleFont(fontTitle);
-    //chartView->chart()->legend()->setFont(fontLegend);
-    //chartView->chart()->legend()->setAlignment(Qt::AlignRight);
-
+    chartView->setRenderHint(QPainter::Antialiasing);
+    qApp->processEvents(QEventLoop::AllEvents);
     fpath.append(QString("skyplot_%1_%2_%3_%4.png").arg(satname).arg(name).arg(start.toString("yyyyMMddhhmmss")).arg(end.toString("yyyyMMddhhmmss")));
     chartView->grab().toImage().save(fpath);
+
     chartView->resize(backupsize);
     chartView->chart()->legend()->setFont(backupFontLegend);
-    //chartView->chart()->legend()->setAlignment(Qt::AlignBottom);
+    chartView->chart()->legend()->setAlignment(Qt::AlignBottom);
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+    chartView->chart()->setTitleFont(backupFontTitle);
 }
 
 void SatelliteScheduling::on_pushButton_screenshot_ElevationPlotScan_clicked()
@@ -1945,19 +1907,30 @@ void SatelliteScheduling::on_pushButton_screenshot_ElevationPlotScan_clicked()
 
     QChartView *chartView = qobject_cast<QChartView *>(ui->ElevationPlot_Scan->itemAt(0)->widget());
     QSize backupsize = chartView->size();
-    QFont backupFontX = chartView->chart()->axisX()->labelsFont();
-    QFont backupFontY = chartView->chart()->axisY()->labelsFont();
+    QFont backupFontX = chartView->chart()->axes(Qt::Horizontal).back()->labelsFont();
+    QFont backupFontY = chartView->chart()->axes(Qt::Vertical).back()->labelsFont();
+    QFont backupFontYtitle = chartView->chart()->axes(Qt::Vertical).back()->titleFont();
     QFont backupFontTitle = chartView->chart()->titleFont();
     QFont backupFontLegend = chartView->chart()->legend()->font();
-
     chartView->resize(1200,550);
 
     QFont fontTitle;
-    fontTitle.setPixelSize(18);
+    fontTitle.setPixelSize(22);
     fontTitle.setBold(true);
+    chartView->chart()->setTitleFont(fontTitle);
 
     QFont fontLegend;
-    fontLegend.setPixelSize(18);
+    fontLegend.setPixelSize(17);
+    chartView->chart()->legend()->setFont(fontLegend);
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+
+    QFont fontAxis;
+    fontAxis.setPixelSize(17);
+    fontAxis.setBold(true);
+    chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(fontAxis);
+    chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(fontAxis);
+    chartView->chart()->legend()->setAlignment(Qt::Alignment(Qt::AlignRight));
 
     chartView->setRenderHint(QPainter::Antialiasing);
     qApp->processEvents(QEventLoop::AllEvents);
@@ -1967,19 +1940,18 @@ void SatelliteScheduling::on_pushButton_screenshot_ElevationPlotScan_clicked()
     if(!out.exists()){
         QDir().mkpath(fpathcopy);
     }
-    //chartView->chart()->setTitleFont(fontTitle);
-    //chartView->chart()->legend()->setFont(fontLegend);
+
     QString name = chartView->chart()->title();
     fpath.append(QString("ScanElevation_%1_%2_%3.png").arg(name).arg(start.toString("yyyyMMddhhmmss")).arg(end.toString("yyyyMMddhhmmss")));
-    //fpath.append(start.toString("yyyyMMddhhmmss"));
     chartView->grab().toImage().save(fpath);
     chartView->resize(backupsize);
     chartView->chart()->setTitleFont(backupFontTitle);
     chartView->chart()->legend()->setFont(backupFontLegend);
-    chartView->chart()->axisX()->setLabelsFont(backupFontX);
-    chartView->chart()->axisY()->setLabelsFont(backupFontY);
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+    chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(backupFontYtitle);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+    chartView->chart()->legend()->setAlignment(Qt::Alignment(Qt::AlignBottom));
 }
-
 
 void SatelliteScheduling::on_pushButton_screenshot_BarPlotVisibilitySingle_clicked()
 {
@@ -2009,23 +1981,31 @@ void SatelliteScheduling::on_pushButton_screenshot_BarPlotVisibilitySingle_click
         }
         QPair<int, int> res = render.resolution();
         QChartView *chartView = qobject_cast<QChartView *>(ui->BarPlotVisibilitySingle->itemAt(0)->widget());
-        QSize backupSize = chartView->size();
-        chartView->resize(res.first,res.second);
-        QFont backupFontX = chartView->chart()->axisX()->labelsFont();
-        QFont backupFontY = chartView->chart()->axisY()->labelsFont();
+        QFont backupFontX = chartView->chart()->axes(Qt::Horizontal).back()->labelsFont();
+        QFont backupFontY = chartView->chart()->axes(Qt::Vertical).back()->labelsFont();
+        QFont backupFontXtitle = chartView->chart()->axes(Qt::Horizontal).back()->titleFont();
+        QFont backupFontYtitle = chartView->chart()->axes(Qt::Vertical).back()->titleFont();
         QFont backupFontTitle = chartView->chart()->titleFont();
         QFont backupFontLegend = chartView->chart()->legend()->font();
+        QSize backupSize = chartView->size();
+        chartView->resize(res.first,res.second);
         QModelIndexList backupSelection = ui->treeView_satelliteListStatistics->selectionModel()->selectedRows();
 
-
         QFont fontTitle;
-        fontTitle.setPixelSize(16);
+        fontTitle.setPixelSize(22);
         fontTitle.setBold(true);
-        //chartView->chart()->setTitleFont(fontTitle);
+        chartView->chart()->setTitleFont(fontTitle);
 
-        //QFont fontLegend;
-        //fontLegend.setPixelSize(18);
-        //chartView->chart()->legend()->setFont(fontLegend);
+        QFont fontLegend;
+        fontLegend.setPixelSize(17);
+        chartView->chart()->legend()->setFont(fontLegend);
+        chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+        chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+        QFont fontAxis;
+        fontAxis.setPixelSize(17);
+        fontAxis.setBold(true);
+        chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(fontAxis);
+        chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(fontAxis);
 
         for(auto idx : selected)
         {
@@ -2045,74 +2025,57 @@ void SatelliteScheduling::on_pushButton_screenshot_BarPlotVisibilitySingle_click
         chartView->resize(backupSize);
         chartView->chart()->setTitleFont(backupFontTitle);
         chartView->chart()->legend()->setFont(backupFontLegend);
-        chartView->chart()->axisX()->setLabelsFont(backupFontX);
-        chartView->chart()->axisY()->setLabelsFont(backupFontY);
+        chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+        chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+        chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(backupFontXtitle);
+        chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(backupFontYtitle);
         ui->treeView_satelliteListStatistics->selectionModel()->select(backupSelection.at(0),QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-
-    }
-
-
-/*
-    QChartView *chartView = qobject_cast<QChartView *>(ui->BarPlotVisibilitySingle->itemAt(0)->widget());
-    QSize backupsize = chartView->size();
-    chartView->resize(1024,550);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    qApp->processEvents(QEventLoop::AllEvents);
-    QString fpath = "/home/hwolf/programming/VieSchedpp_Satellite/out/SatellitePlots/";
-    QString fpathcopy = fpath;
-    QDir out(fpathcopy);
-    if(!out.exists()){
-        QDir().mkpath(fpathcopy);
-    }
-    QFont fontTitle;
-    fontTitle.setPixelSize(18);
-    fontTitle.setBold(true);
-
-    QFont fontLegend;
-    fontLegend.setPixelSize(18);
-
-    chartView->chart()->setTitleFont(fontTitle);
-    chartView->chart()->legend()->setFont(fontLegend);
-
-    QString name = chartView->chart()->title();
-    fpath.append(QString("obsDuration_%1.png").arg(name));
-    chartView->grab().toImage().save(fpath);
-    chartView->resize(backupsize);*/
+     }
 }
 
 void SatelliteScheduling::on_pushButton_screenshot_BarPlotVisibilityStacked_clicked()
 {
     QChartView *chartView = qobject_cast<QChartView *>(ui->BarPlotVisibilityStacked->itemAt(0)->widget());
     QSize backupsize = chartView->size();
-    QFont backupFontX = chartView->chart()->axisX()->labelsFont();
-    QFont backupFontY = chartView->chart()->axisY()->labelsFont();
+    QFont backupFontX = chartView->chart()->axes(Qt::Horizontal).back()->labelsFont();
+    QFont backupFontY = chartView->chart()->axes(Qt::Vertical).back()->labelsFont();
+    QFont backupFontXtitle = chartView->chart()->axes(Qt::Horizontal).back()->titleFont();
+    QFont backupFontYtitle = chartView->chart()->axes(Qt::Vertical).back()->titleFont();
     QFont backupFontTitle = chartView->chart()->titleFont();
     QFont backupFontLegend = chartView->chart()->legend()->font();
-    chartView->resize(1200,550);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    qApp->processEvents(QEventLoop::AllEvents);
-    QString fpath = "/home/hwolf/programming/VieSchedpp_Satellite/out/SatellitePlots/";
+    chartView->resize(1200,800);
+    QString fpath = "../out/SatellitePlots/";
     QString fpathcopy = fpath;
     QDir out(fpathcopy);
     if(!out.exists()){
         QDir().mkpath(fpathcopy);
     }
-    QFont fontTitle;
-    fontTitle.setPixelSize(18);
-    fontTitle.setBold(true);
-
     QFont fontLegend;
-    fontLegend.setPixelSize(18);
+    fontLegend.setPixelSize(15);
 
-    chartView->chart()->setTitleFont(fontTitle);
     chartView->chart()->legend()->setFont(fontLegend);
+    chartView->chart()->legend()->setAlignment(Qt::Alignment(Qt::AlignRight));
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+
+    QFont fontAxis;
+    fontAxis.setPixelSize(15);
+    fontAxis.setBold(true);
+    chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(fontAxis);
 
     QString name = chartView->chart()->title();
-    fpath.append(QString("obsDurationStacked_%1.png").arg(name));
-    chartView->grab().toImage().save(fpath);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    qApp->processEvents(QEventLoop::AllEvents);
+    QString totalPath = fpath + QString("obsDurationStacked.png");
+    chartView->grab().toImage().save(totalPath);
+
     chartView->resize(backupsize);
     chartView->chart()->setTitleFont(backupFontTitle);
     chartView->chart()->legend()->setFont(backupFontLegend);
+    chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+    chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+    chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(backupFontXtitle);
+    chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(backupFontYtitle);
 }
 
 void SatelliteScheduling::on_pushButton_screenshot_ElevationPlot_clicked()
@@ -2145,21 +2108,30 @@ void SatelliteScheduling::on_pushButton_screenshot_ElevationPlot_clicked()
         QChartView *chartView = qobject_cast<QChartView *>(ui->ElevationPlot->itemAt(0)->widget());
         QSize backupSize = chartView->size();
         chartView->resize(res.first,res.second);
-        QFont backupFontX = chartView->chart()->axisX()->labelsFont();
-        QFont backupFontY = chartView->chart()->axisY()->labelsFont();
+        QFont backupFontX = chartView->chart()->axes(Qt::Horizontal).back()->labelsFont();
+        QFont backupFontY = chartView->chart()->axes(Qt::Vertical).back()->labelsFont();
+        QFont backupFontXtitle = chartView->chart()->axes(Qt::Horizontal).back()->titleFont();
+        QFont backupFontYtitle = chartView->chart()->axes(Qt::Vertical).back()->titleFont();
         QFont backupFontTitle = chartView->chart()->titleFont();
         QFont backupFontLegend = chartView->chart()->legend()->font();
         QModelIndexList backupSelection = ui->treeView_satellites->selectionModel()->selectedRows();
 
-
         QFont fontTitle;
-        fontTitle.setPixelSize(16);
+        fontTitle.setPixelSize(22);
         fontTitle.setBold(true);
         chartView->chart()->setTitleFont(fontTitle);
 
-        //QFont fontLegend;
-        //fontLegend.setPixelSize(18);
-        //chartView->chart()->legend()->setFont(fontLegend);
+        QFont fontLegend;
+        fontLegend.setPixelSize(17);
+        QFont fontAxis;
+        fontAxis.setPixelSize(17);
+        fontAxis.setBold(true);
+        chartView->chart()->legend()->setFont(fontLegend);
+        chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+        chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+        chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(fontAxis);
+        chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(fontAxis);
+        chartView->chart()->legend()->setAlignment(Qt::Alignment(Qt::AlignRight));
 
         for(auto idx : selected)
         {
@@ -2177,25 +2149,19 @@ void SatelliteScheduling::on_pushButton_screenshot_ElevationPlot_clicked()
         chartView->resize(backupSize);
         chartView->chart()->setTitleFont(backupFontTitle);
         chartView->chart()->legend()->setFont(backupFontLegend);
-        chartView->chart()->axisX()->setLabelsFont(backupFontX);
-        chartView->chart()->axisY()->setLabelsFont(backupFontY);
+        chartView->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+        chartView->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+        chartView->chart()->axes(Qt::Horizontal).back()->setTitleFont(backupFontXtitle);
+        chartView->chart()->axes(Qt::Vertical).back()->setTitleFont(backupFontYtitle);
         ui->treeView_satellites->selectionModel()->select(backupSelection.at(0),QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-
+        chartView->chart()->legend()->setAlignment(Qt::Alignment(Qt::AlignBottom));
     }
 }
-
-
 
 void SatelliteScheduling::on_pushButton_screenshot_worldmap_clicked()
 {
     RenderSetup render(this);
     render.timeseriesUncheckable();
-    QStandardItemModel *allSatelliteModel = new QStandardItemModel(0,1,this);
-    for(int i=0; i<allSatelliteModel->rowCount();i++)
-    {
-        QStandardItem *item = new QStandardItem(allSatelliteModel->item(i)->text());
-        allSatelliteModel->appendRow(item);
-    }
     render.addList(allSatelliteModel);
     int duration = sessionStart_.secsTo(sessionEnd_);
     render.addTimes(duration);
@@ -2222,25 +2188,36 @@ void SatelliteScheduling::on_pushButton_screenshot_worldmap_clicked()
         QPair<int, int> res = render.resolution();
 
         QSize backupSize = worldmap->size();
-        QFont backupFontX = worldmap->chart()->axisX()->labelsFont();
-        backupFontX.setPixelSize(15);
-        int pix = backupFontX.pixelSize();
-        QFont backupFontY = worldmap->chart()->axisY()->labelsFont();
+        QFont backupFontX = worldmap->chart()->axes(Qt::Horizontal).back()->labelsFont();
+        QFont backupFontY = worldmap->chart()->axes(Qt::Vertical).back()->labelsFont();
         worldmap->resize(res.first,res.second);
 
         QFont fontTitle;
-        fontTitle.setPixelSize(16);
+        fontTitle.setPixelSize(22);
         fontTitle.setBold(true);
+        worldmap->chart()->setTitleFont(fontTitle);
 
-        //QFont labelsFont;
-        //labelsFont.setPixelSize(15);
+        QFont fontLegend;
+        fontLegend.setPixelSize(17);
+        QFont fontAxis;
+        fontAxis.setPixelSize(17);
+        fontAxis.setBold(true);
+        worldmap->chart()->axes(Qt::Horizontal).back()->setLabelsFont(fontLegend);
+        worldmap->chart()->axes(Qt::Vertical).back()->setLabelsFont(fontLegend);
+        worldmap->chart()->axes(Qt::Horizontal).back()->setTitleFont(fontAxis);
+        worldmap->chart()->axes(Qt::Vertical).back()->setTitleFont(fontAxis);
 
         for(auto idx : selected){
+            QString name = allSatelliteModel->item(idx)->data(0).toString();
+            QModelIndex index = allSatelliteModel->findItems(name).at(0)->index();
+            on_treeView_available_clicked(index);
+            QModelIndex index_sel = selectedSatelliteModel->findItems(name).at(0)->index();
+
             on_checkBox_showTracks_clicked(true);
             auto series = worldmap->chart()->series();
             QString satelliteName = allSatelliteModel->item(idx)->data(0).toString();
             worldmap->chart()->setTitle(satelliteName);
-             for(int i=0; i<series.count();++i)
+            for(int i=0; i<series.count();++i)
              {
                  QString name = series.at(i)->name();
                  if((name.left(3)=="sat" || name.left(3)=="mrk") && name.right(name.size()-3) != satelliteName)
@@ -2248,39 +2225,35 @@ void SatelliteScheduling::on_pushButton_screenshot_worldmap_clicked()
                      series.at(i)->setVisible(false);
                  }
              }
-            //worldmap->chart()->axisX()->setLabelsFont(labelsFont);
-            //worldmap->chart()->axisY()->setLabelsFont(labelsFont);
-            worldmap->chart()->axisX()->setTitleText("Longitude [deg]");
-            worldmap->chart()->axisY()->setTitleText("Latitude [deg]");
-            //worldmap->chart()->axisX()->setTitleFont(labelsFont);
-            //worldmap->chart()->axisY()->setTitleFont(labelsFont);
+
+            worldmap->chart()->axes(Qt::Horizontal).back()->setTitleText("longitude [°]");
+            worldmap->chart()->axes(Qt::Vertical).back()->setTitleText("latitude [°]");
             worldmap->chart()->setTitleFont(fontTitle);
 
             qApp->processEvents(QEventLoop::AllEvents);
             worldmap->setRenderHint(QPainter::Antialiasing);
 
             QString totalPath = fpath + QString("sattrack_%1.png").arg(satelliteName);
-            worldmap->grab().toImage().save(totalPath);
+            worldmap->grab().toImage().save(totalPath);  
+            selectedSatelliteModel->removeRow(index_sel.row());
         }
         on_checkBox_showTracks_clicked(true);
-        auto series = worldmap->chart()->series();
-        for(int i=0; i<series.count();++i)
+        auto backupSeries = worldmap->chart()->series();
+        for(int i=0; i<backupSeries.count();++i)
         {
-            series.at(i)->setVisible(true);
+            backupSeries.at(i)->setVisible(true);
         }
         worldmap->resize(backupSize);
         worldmap->chart()->setTitle("");
-        worldmap->chart()->axisX()->setLabelsFont(backupFontX);
-        worldmap->chart()->axisY()->setLabelsFont(backupFontY);
-        worldmap->chart()->axisX()->setTitleText("");
-        worldmap->chart()->axisY()->setTitleText("");
+        worldmap->chart()->axes(Qt::Horizontal).back()->setLabelsFont(backupFontX);
+        worldmap->chart()->axes(Qt::Vertical).back()->setLabelsFont(backupFontY);
+        worldmap->chart()->axes(Qt::Horizontal).back()->setTitleText("");
+        worldmap->chart()->axes(Qt::Vertical).back()->setTitleText("");
     }
-    if(ui->checkBox_showTracks->isChecked())
-    {
+    if(ui->checkBox_showTracks->isChecked()) {
         on_checkBox_showTracks_clicked(true);
     }
-    else
-    {
+    else {
         on_checkBox_showTracks_clicked(false);
     }
 }
@@ -2294,7 +2267,6 @@ void SatelliteScheduling::on_actionFinish_triggered()
 
 void SatelliteScheduling::createXMLOutput(std::vector<VieVS::Scan> scanList,VieVS::Network network, std::vector<SatelliteForGUI> satellites)
 {
-
     //Printing the Scans
     for ( unsigned long i = 0; i < scanList.size(); i++ ) {
         std::cout << ".------------------------------------------------------------------------------------------------"
@@ -2322,14 +2294,11 @@ void SatelliteScheduling::createXMLOutput(std::vector<VieVS::Scan> scanList,VieV
     for(const auto &scan : scanList) {
         unsigned int satelliteId = scan.getPointingVector(0,VieVS::Timestamp::start).getSrcid();
         std::string satelliteName;
-        for(SatelliteForGUI sat:satellites)
-        {
-            if(sat.getId() == satelliteId)
-            {
+        for(SatelliteForGUI sat:satellites) {
+            if(sat.getId() == satelliteId) {
                 satelliteName = sat.getName();
             }
         }
-
         ptScan.add("scan.<xmlattr>.name", satelliteName);
         ptScan.add("scan.<xmlattr>.id", satelliteId);
         for (int i = 0; i < scan.getNSta(); i++) {
@@ -2381,4 +2350,13 @@ void SatelliteScheduling::createXMLOutput(std::vector<VieVS::Scan> scanList,VieV
     of.close();
 }
 
-
+void SatelliteScheduling::on_pushButton_selectAll_clicked()
+{
+    MultiColumnSortFilterProxyModel *proxy = qobject_cast<MultiColumnSortFilterProxyModel *>(ui->treeView_available->model());
+    for(int j=proxy->rowCount()-1; j>=0;j--) {
+        selectedSatelliteModel->insertRow(0);
+        for(int i=0; i<allSatelliteModel->columnCount(); ++i){
+                selectedSatelliteModel->setItem(0, i, allSatelliteModel->item(j,i)->clone() );
+            }
+    }
+}

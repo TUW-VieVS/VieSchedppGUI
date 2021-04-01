@@ -345,6 +345,7 @@ boost::property_tree::ptree SimulatorWidget::toXML()
             tree.add_child("simulator.station",staTree.get_child("station"));
         }
     }
+    tree.add("simulator.output.obs_minus_comp", ui->checkBox_obs_minus_comp->isChecked());
     return tree;
 }
 
@@ -435,6 +436,9 @@ void SimulatorWidget::fromXML(const boost::property_tree::ptree &tree)
             }
         }
     }
+
+    ui->checkBox_obs_minus_comp->setChecked(tree.get("output.obs_minus_comp", false));
+
 }
 
 void SimulatorWidget::toggleAll(QTreeWidgetItem *item, int column)

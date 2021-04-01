@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>2</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -6766,8 +6766,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>879</width>
-             <height>601</height>
+             <width>946</width>
+             <height>681</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">

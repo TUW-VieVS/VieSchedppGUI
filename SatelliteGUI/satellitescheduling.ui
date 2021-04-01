@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>5</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,3,0">
@@ -53,6 +53,13 @@
               </item>
               <item>
                <widget class="QLineEdit" name="lineEdit_availableFilter"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_selectAll">
+                <property name="text">
+                 <string>select all</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -754,7 +761,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="table">
            <property name="contextMenuPolicy">
@@ -932,7 +939,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSelect">

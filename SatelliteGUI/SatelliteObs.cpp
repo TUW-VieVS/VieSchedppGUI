@@ -142,7 +142,7 @@ std::vector<std::vector<std::vector<VieVS::PointingVector>>> SatelliteObs::passL
     for ( unsigned long i = 0; i < passList.size(); i++ )  // i Station
     {
         pvList.clear();
-        for ( int j = 0; j < passList.at( i ).size(); j++ ) {
+        for ( size_t j = 0; j < passList.at( i ).size(); j++ ) {
             pvVec.clear();
             VieVS::PointingVector pv = VieVS::PointingVector( stations.at( i ).getId(), sat.getId() );
             Observer obs( stations.at( i ).getPosition()->getLat() * 180 / pi,
@@ -252,7 +252,6 @@ void SatelliteObs::calcObservations( VieVS::Scan *scan, VieVS::Network &network,
                                            scan->getTimes().getObservingTime( j, VieVS::Timestamp::start )} );
 
             obs.emplace_back( blid, staid1, staid2, srcid, startTime );
-
             unsigned int observingTime = scan->referenceTime().getObservingDuration( i, j );
             obs[obs.size() - 1].setObservingTime( observingTime );
             // valid = true;
@@ -364,6 +363,7 @@ std::vector<VieVS::Scan> SatelliteObs::createScanList( std::vector<std::vector<S
     std::vector<bool> isobs( nSta, false );
     std::vector<int> ignoreNow( nSta, 0 );
     std::vector<int> ignoreNext( nSta, 0 );
+
     std::vector<int> isDone( nSta, 0 );
     std::vector<int> ignoreNowCOPY( nSta, 0 );
     vector<VieVS::PointingVector> pointingVectorsStart;

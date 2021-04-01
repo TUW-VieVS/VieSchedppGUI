@@ -274,6 +274,10 @@ boost::property_tree::ptree SolverWidget::toXML()
         }
         tree.add("solver.algorithm", s);
     }
+
+    tree.add("solver.output.A",ui->checkBox_A->isChecked());
+    tree.add("solver.output.P",ui->checkBox_P->isChecked());
+    tree.add("solver.output.l",ui->checkBox_l->isChecked());
     return tree;
 }
 
@@ -553,6 +557,11 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
             }
         }
     }
+
+    ui->checkBox_A->setChecked(tree.get("output.A", false));
+    ui->checkBox_P->setChecked(tree.get("output.P", false));
+    ui->checkBox_l->setChecked(tree.get("output.l", false));
+
 }
 
 void SolverWidget::addStations(QStandardItem *dummy)
