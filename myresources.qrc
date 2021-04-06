@@ -93,5 +93,6 @@
         <file>images/weight_function.png</file>
         <file>images/setup_manual.png</file>
         <file>images/cat_eye.png</file>
+        <file>images/eth_logo.png</file>
     </qresource>
 </RCC>
