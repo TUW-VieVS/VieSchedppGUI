@@ -2352,6 +2352,9 @@ void SatelliteScheduling::createXMLOutput(std::vector<VieVS::Scan> scanList,VieV
 
 void SatelliteScheduling::on_pushButton_selectAll_clicked()
 {
+    if(selectedSatelliteModel->hasChildren()) {
+        selectedSatelliteModel->removeRows(0, selectedSatelliteModel->rowCount());
+    }
     MultiColumnSortFilterProxyModel *proxy = qobject_cast<MultiColumnSortFilterProxyModel *>(ui->treeView_available->model());
     for(int j=proxy->rowCount()-1; j>=0;j--) {
         selectedSatelliteModel->insertRow(0);
