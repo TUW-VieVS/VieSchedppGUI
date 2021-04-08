@@ -75,9 +75,19 @@ unix {
 
     PATH_SGP4=$${SGP4}
     isEmpty(PATH_SGP4) {
-        LIBS += ..//sgp4/Release/libsgp4/libsgp4.a
+        exists( ../sgp4/Release/libsgp4/libsgp4.a ){
+            LIBS += ../sgp4/Release/libsgp4/libsgp4.a
+            message(SGP4 found at ../sgp4/Release/libsgp4/libsgp4.a)
+        }else{
+            message(SGP4 not found at ../sgp4/Release/libsgp4/libsgp4.a)
+        }
     } else {
-        LIBS += $${PATH_SGP4}
+        exists( $${PATH_SGP4} ){
+            LIBS += $${PATH_SGP4}
+            message(SGP4 found at $${PATH_SGP4})
+        }else{
+            message(SGP4 not found at $${PATH_SGP4})
+        }
     }
 }
 
@@ -122,11 +132,20 @@ win32{
 
     PATH_SGP4=$${SGP4}
     isEmpty(PATH_SGP4) {
-        LIBS += ..//sgp4/Release/libsgp4/libsgp4.lib
+        exists( ../sgp4/Release/libsgp4/sgp4.lib ){
+            LIBS += ../sgp4/Release/libsgp4/sgp4.lib
+            message(SGP4 found at ../sgp4/Release/libsgp4/sgp4.lib)
+        }else{
+            message(SGP4 not found at ../sgp4/Release/libsgp4/sgp4.lib)
+        }
     } else {
-        LIBS += $${PATH_SGP4}
+        exists( $${PATH_SGP4} ){
+            LIBS += $${PATH_SGP4}
+            message(SGP4 found at $${PATH_SGP4})
+        }else{
+            message(SGP4 not found at $${PATH_SGP4})
+        }
     }
-
 }
 
 SOURCES += \
