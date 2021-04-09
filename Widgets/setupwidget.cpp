@@ -1063,13 +1063,12 @@ void setupWidget::on_pushButton_addSetup_clicked()
         trans = VieVS::ParameterSetup::Transition::hard;
     }
 
-    std::map<std::string, std::vector<std::string>> groups;
 
-    bool isGroup = groups.find(ui->comboBox_members->currentText().toStdString() ) != groups.end();
+    bool isGroup = groups->find(ui->comboBox_members->currentText().toStdString() ) != groups->end();
     if(isGroup){
         std::string parameterName = ui->ComboBox_parameters->currentText().toStdString();
         std::string groupName = ui->comboBox_members->currentText().toStdString();
-        std::vector<std::string> groupMembers = groups.at(ui->comboBox_members->currentText().toStdString());
+        std::vector<std::string> groupMembers = groups->at(ui->comboBox_members->currentText().toStdString());
         ps = VieVS::ParameterSetup(parameterName,
                                       groupName,
                                       groupMembers,
