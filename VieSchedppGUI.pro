@@ -60,7 +60,7 @@ unix {
     isEmpty(IAU_SOFA_PATH) {
         exists( ../IAU_SOFA/Release/libsofa_c.a ){
             LIBS += ../IAU_SOFA/Release/libsofa_c.a
-            message(IAU SOFA found at ../IAU_SOFA/Release/libsofa_c.a!)
+            message(IAU SOFA found at ../IAU_SOFA/Release/libsofa_c.a)
         }else{
             message(IAU SOFA not found at ../IAU_SOFA/Release/libsofa_c.a)
         }
