@@ -2967,10 +2967,11 @@ void MainWindow::on_pushButton_simulator_load_clicked()
 
     if(items.isEmpty()){
         QMessageBox::information(this,"No simulation settings found","No simulation settings found!");
+        return;
     }
 
     bool ok;
-    QString text = QInputDialog::getItem(this, tr("QInputDialog::getItem()"),
+    QString text = QInputDialog::getItem(this, tr("load setup"),
                                          "Select parameter:", items, 0, false, &ok);
     if (ok && !text.isEmpty()){
         std::string path = "settings.simulator_templates.";
