@@ -5935,7 +5935,14 @@ void MainWindow::on_pushButton_parse_clicked()
         if(path.right(4) == ".skd"){
             try{
                 VieVS::SkdParser mySkdParser(path.toStdString());
-                mySkdParser.read();
+                try {
+                    mySkdParser.read();
+                }catch(...){
+                    QString message = QString("Error reading session:\n").append(path);
+                    QMessageBox::critical(this, "error reading session", message);
+                    return;
+                }
+
                 parsedSchedule = mySkdParser.createScheduler();
                 parsedFreq = mySkdParser.getFrequencies();
                 std::string start = VieVS::TimeSystem::time2string(VieVS::TimeSystem::startTime);

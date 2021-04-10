@@ -483,7 +483,7 @@ void ObsModeDialog::rename()
         }else if(s == ui->pushButton_renameTrackFrameFormat){
             QComboBox *comboBox = ui->comboBox_selectTrackFrameFormat;
             int idx = comboBox->currentIndex();
-            trackFrameFormats_[idx] = std::make_shared<std::string>(name.toStdString());
+            *trackFrameFormats_[idx] = name.toStdString();
             QStringList tmp = trackFrameFormatNames_->stringList();
             tmp[idx] = name;
             trackFrameFormatNames_->setStringList(tmp);
