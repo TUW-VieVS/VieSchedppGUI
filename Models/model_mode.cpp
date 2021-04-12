@@ -101,7 +101,11 @@ QVariant Model_Mode::data(const QModelIndex &index, int role) const
             return "Standard";
         case 6:
             if(data_->getTrackFrameFormat(row).is_initialized()){
-                return QString::fromStdString(*data_->getTrackFrameFormat(row).get());
+                try {
+                    return QString::fromStdString(*data_->getTrackFrameFormat(row).get());
+                } catch (...) {
+                    return "undefined";
+                }
             }else{
                 return "undefined";
             }

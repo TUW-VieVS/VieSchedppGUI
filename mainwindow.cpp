@@ -2223,11 +2223,13 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
     ObsModeDialog *obsModeDial = new ObsModeDialog(obsModeStart, this);
     int result = obsModeDial->exec();
     if(result == QDialog::Accepted){
-        advancedObservingMode_ = obsModeDial->getObservingMode();
-        updateAdvancedObservingMode();
-
+        try{
+            advancedObservingMode_ = obsModeDial->getObservingMode();
+            updateAdvancedObservingMode();
+        }catch(...){
+            QMessageBox::critical(this, "error using advanced observing mode", "error using advanced observing mode - please check catalogs and entries.");
+        }
     }
-
     delete(obsModeDial);
 }
 
