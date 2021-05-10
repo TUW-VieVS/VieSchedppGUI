@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>12</number>
+       <number>18</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -5162,232 +5162,7 @@ If you only want to run simulations you can deselect this to avoid error message
            <layout class="QHBoxLayout" name="horizontalLayout_45">
             <item>
              <layout class="QGridLayout" name="gridLayout_14">
-              <item row="11" column="0">
-               <widget class="QLabel" name="label_weightLowDecStart">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>      low declination begin weight</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QCheckBox" name="checkBox_weightAverageBaselines">
-                <property name="toolTip">
-                 <string>prefer scans with baselines with low number of scans</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with baselines with low number of scans</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with baselines which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for each baseline which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a baseline is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each baseline and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 baselines with the following number of observations: [100, 125, 200, 175, 150] and three scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with baseline 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with baseline 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with baseline 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per baseline is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is [1.5, 0.5, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>average baselines</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="checkBox_weightAverageSources">
-                <property name="toolTip">
-                 <string>prefer scans to sources with low number of scans</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans to sources with low number of scans</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans to sources which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any source which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to this source is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied by the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 scans to sources with the following number of observations: [100, 125, 200, 175, 150].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is then multiplied with the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>average sources</string>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowElEnd">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>minimum elevation for full weight in degrees</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum elevation for full weight in degrees</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-                <property name="maximum">
-                 <double>90.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>5.000000000000000</double>
-                </property>
-                <property name="value">
-                 <double>20.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageSources">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>weight</string>
-                </property>
-                <property name="statusTip">
-                 <string>weight</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans to sources which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any source which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to this source is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied by the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 scans to sources with the following number of observations: [100, 125, 200, 175, 150].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is then multiplied with the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightDuration">
-                <property name="toolTip">
-                 <string>weight</string>
-                </property>
-                <property name="statusTip">
-                 <string>weight</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; duration&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of this scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;comparing the duration of this scan &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;to the duration of the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fastest&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; next possible scan and the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;slowest&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; next possible scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;linear interpolation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; between those values is used to get the score. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The duration includes the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;whole time span &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;end of the last scan &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;to the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; end of this scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that this is the fasted possible next scan.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that this is the slowest possible next scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0.25 would be calculated if this scan would take 200 seconds, the fastest possible scan would take 100 seconds and the slowest possible scan would take 500 seconds. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QCheckBox" name="checkBox_weightCoverage">
-                <property name="toolTip">
-                 <string>prefer scans with good sky coverage</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with good sky coverage</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky-coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky-coverage at this position is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>sky-coverage</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QCheckBox" name="checkBox_weightNobs">
-                <property name="toolTip">
-                 <string>prefer scans with high number of observations</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with high number of observations</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; number of observations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dividing the number of observations in this scan by the total number of observations possible&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The total number of observations is calculated using the total number of stations participating in this session.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all observations are valid. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>number of observations</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="1">
-               <widget class="Line" name="line_15">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="2">
-               <widget class="Line" name="line_16">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageBaselines">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>prefer scans with baselines with low number of scans</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with baselines with low number of scans</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with baselines which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for each baseline which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a baseline is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each baseline and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 baselines with the following number of observations: [100, 125, 200, 175, 150] and three scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with baseline 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with baseline 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with baseline 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per baseline is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is [1.5, 0.5, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
               <item row="14" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowElStart">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>minimum elevation for extra weight in degrees</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum elevation for extra weight in degrees</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-                <property name="maximum">
-                 <double>90.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>5.000000000000000</double>
-                </property>
-                <property name="value">
-                 <double>30.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="11" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowDecStart">
                 <property name="enabled">
                  <bool>false</bool>
@@ -5415,13 +5190,67 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="15" column="0">
-               <widget class="QLabel" name="label_weightLowElEnd">
+              <item row="1" column="2">
+               <widget class="QProgressBar" name="progressBar_wObs">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="2">
+               <widget class="QProgressBar" name="progressBar_Abl">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="2">
+               <widget class="Line" name="line_16">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_idleTimeInterval">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="text">
-                 <string>      low elevation full weight</string>
+                 <string>      interval</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_124">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight based on &lt;span style=&quot; font-weight:600;&quot;&gt;combined number of closure phases and closure amplitudes&lt;/span&gt; = (n-1)*(n-2)/2 + n*(n-3)/2 with n beeing number of stations in this scan. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Scans with a high number of stations get significantly more weight and thus are more likely to be scheduled&lt;/p&gt;&lt;p&gt;There is a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum limit&lt;/span&gt; until adding more closures is assumed to be significant. &lt;/p&gt;&lt;p&gt;As soon as this number is reached for a given source, further scans to this source do not gain additional weight based on this criteria. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>significant until</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="Line" name="line_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QCheckBox" name="checkBox_weightClosures">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight based on &lt;span style=&quot; font-weight:600;&quot;&gt;combined number of closure phases and closure amplitudes&lt;/span&gt; = (n-1)*(n-2)/2 + n*(n-3)/2 with n beeing number of stations in this scan. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Scans with a high number of stations get significantly more weight and thus are more likely to be scheduled&lt;/p&gt;&lt;p&gt;There is a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum limit&lt;/span&gt; until adding more closures is assumed to be significant. &lt;/p&gt;&lt;p&gt;As soon as this number is reached for a given source, further scans to this source do not gain additional weight based on this criteria. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>closure phase and amp. (combined)</string>
                 </property>
                </widget>
               </item>
@@ -5450,14 +5279,262 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
-               <widget class="Line" name="line_8">
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightSkyCoverage">
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky-coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky-coverage at this position is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QCheckBox" name="checkBox_weightLowDeclination">
+                <property name="toolTip">
+                 <string>prefer scans to sources with low declination</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans to sources with low declination</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low declination&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a source declination is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees declination and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and -90 degrees declination extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>low declination</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageBaselines">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>prefer scans with baselines with low number of scans</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans with baselines with low number of scans</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with baselines which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for each baseline which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a baseline is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each baseline and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 baselines with the following number of observations: [100, 125, 200, 175, 150] and three scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with baseline 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with baseline 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with baseline 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per baseline is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is [1.5, 0.5, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowElStart">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>minimum elevation for extra weight in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum elevation for extra weight in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="maximum">
+                 <double>90.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>5.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>30.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="14" column="0">
+               <widget class="QLabel" name="label_weightLowDecStart">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>      low declination begin weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QCheckBox" name="checkBox_weightAverageSources">
+                <property name="toolTip">
+                 <string>prefer scans to sources with low number of scans</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans to sources with low number of scans</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans to sources which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any source which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to this source is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied by the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 scans to sources with the following number of observations: [100, 125, 200, 175, 150].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is then multiplied with the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>average sources</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="16" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowEl">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="Line" name="line_7">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
+              <item row="2" column="2">
+               <widget class="QProgressBar" name="progressBar_wDur">
+                <property name="value">
+                 <number>25</number>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightClosures">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight based on &lt;span style=&quot; font-weight:600;&quot;&gt;combined number of closure phases and closure amplitudes&lt;/span&gt; = (n-1)*(n-2)/2 + n*(n-3)/2 with n beeing number of stations in this scan. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Scans with a high number of stations get significantly more weight and thus are more likely to be scheduled&lt;/p&gt;&lt;p&gt;There is a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum limit&lt;/span&gt; until adding more closures is assumed to be significant. &lt;/p&gt;&lt;p&gt;As soon as this number is reached for a given source, further scans to this source do not gain additional weight based on this criteria. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="Line" name="line_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="0">
+               <widget class="QLabel" name="label_weightLowElStart">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>      low elevation begin weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="2">
+               <widget class="QProgressBar" name="progressBar_Asta">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
               <item row="10" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageStations">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with stations which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any station which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a station is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied with the number of observations with this station divided by the maximum number of possible observations with this station for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each station and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 stations with the following number of observations: [100, 125, 200, 175, 150] and you have 3 scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with station 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with station 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with station 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per station is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;There are 4 possible observations with each station (e.g.: station 1: 1-2, 1-3, 1-4, 1-5). In our example always 2 are scheduled (e.g.: scan 1 station 1: 1-2, 1-3). &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score for the first scan would be: 1 * 2/4 + 0.5 * 2/4 + 0 = 0.75. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is in the end [0.75, 0.25, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageSources">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans to sources which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any source which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to this source is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied by the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 scans to sources with the following number of observations: [100, 125, 200, 175, 150].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is then multiplied with the number of observations in this scan divided by the maximum number of possible observations for your network. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="1">
                <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowDec">
                 <property name="enabled">
                  <bool>false</bool>
@@ -5482,74 +5559,78 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="Line" name="line_7">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowDecEnd">
+              <item row="16" column="2">
+               <widget class="QProgressBar" name="progressBar_LowEl">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
-                <property name="toolTip">
-                 <string>minimum declination for full weight in degrees</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum declination for full weight in degrees</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low declination&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a source declination is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees declination and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and -90 degrees declination extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-                <property name="minimum">
-                 <double>-90.000000000000000</double>
-                </property>
-                <property name="maximum">
-                 <double>90.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>5.000000000000000</double>
-                </property>
                 <property name="value">
-                 <double>-45.000000000000000</double>
+                 <number>0</number>
                 </property>
                </widget>
               </item>
-              <item row="5" column="2">
-               <widget class="Line" name="line_10">
+              <item row="16" column="0">
+               <widget class="QCheckBox" name="checkBox_weightLowElevation">
+                <property name="acceptDrops">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>prefer scans to sources with low elevation</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans to sources with low elevation</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>low elevation</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="Line" name="line_8">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightSkyCoverage">
+              <item row="11" column="0">
+               <widget class="QCheckBox" name="checkBox_weightAverageBaselines">
                 <property name="toolTip">
-                 <string>weight</string>
+                 <string>prefer scans with baselines with low number of scans</string>
                 </property>
                 <property name="statusTip">
-                 <string>weight</string>
+                 <string>prefer scans with baselines with low number of scans</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with baselines which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for each baseline which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a baseline is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each baseline and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 baselines with the following number of observations: [100, 125, 200, 175, 150] and three scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with baseline 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with baseline 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with baseline 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per baseline is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is [1.5, 0.5, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>average baselines</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBox_weightCoverage">
+                <property name="toolTip">
+                 <string>prefer scans with good sky coverage</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans with good sky coverage</string>
                 </property>
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; sky-coverage improvement&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated using the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;parameters&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; model &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The improvement is calculated for each &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;participating station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by subtracting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;current saturation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; at the point of the new observation from 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score is the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;sum of all improvements divided by the total number of stations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; selected in this schedule. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all stations would observe in an area which is far from all other recent observations. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that the sky-coverage at this position is already fully saturated for all stations. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
+                <property name="text">
+                 <string>sky-coverage</string>
                 </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="15" column="0">
                <widget class="QLabel" name="label_weightLowDecEnd">
                 <property name="enabled">
                  <bool>false</bool>
@@ -5559,67 +5640,10 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
-               <widget class="QCheckBox" name="checkBox_weightLowDeclination">
-                <property name="toolTip">
-                 <string>prefer scans to sources with low declination</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans to sources with low declination</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low declination&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a source declination is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees declination and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and -90 degrees declination extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>low declination</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBox_weightIdleTime">
-                <property name="toolTip">
-                 <string>prefer scans with stations which had long idle times</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with stations which had long idle times</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;idle&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for a certain time period scans with this station get some extra weight. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Linear &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;inter- and extrapolation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used to calculate the score. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;calculated for each station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;summed up&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for the number of seconds set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;interval&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;it gets a score of 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for half the number of seconds set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;interval&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets a score of 0.5. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for twice the number of seconds set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;interval&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;it gets a score of 2. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>extra weight after long idle time</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="0">
-               <widget class="QLabel" name="label_weightLowElStart">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>      low elevation begin weight</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QCheckBox" name="checkBox_weightAverageStations">
-                <property name="toolTip">
-                 <string>prefer scans with stations with low number of scans</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans with stations with low number of scans</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with stations which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any station which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a station is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied with the number of observations with this station divided by the maximum number of possible observations with this station for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each station and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 stations with the following number of observations: [100, 125, 200, 175, 150] and you have 3 scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with station 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with station 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with station 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per station is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;There are 4 possible observations with each station (e.g.: station 1: 1-2, 1-3, 1-4, 1-5). In our example always 2 are scheduled (e.g.: scan 1 station 1: 1-2, 1-3). &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score for the first scan would be: 1 * 2/4 + 0.5 * 2/4 + 0 = 0.75. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is in the end [0.75, 0.25, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>average stations</string>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
+              <item row="0" column="2">
+               <widget class="QProgressBar" name="progressBar_wSky">
+                <property name="value">
+                 <number>25</number>
                 </property>
                </widget>
               </item>
@@ -5654,35 +5678,29 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightNumberOfObservations">
-                <property name="toolTip">
-                 <string>weight</string>
-                </property>
-                <property name="statusTip">
-                 <string>weight</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; number of observations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dividing the number of observations in this scan by the total number of observations possible&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The total number of observations is calculated using the total number of stations participating in this session.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all observations are valid. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
+              <item row="12" column="1">
+               <widget class="Line" name="line_15">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_idleTimeInterval">
-                <property name="enabled">
-                 <bool>true</bool>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBox_weightIdleTime">
+                <property name="toolTip">
+                 <string>prefer scans with stations which had long idle times</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans with stations which had long idle times</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;idle&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; for a certain time period scans with this station get some extra weight. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Linear &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;inter- and extrapolation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is used to calculate the score. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;calculated for each station&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;summed up&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for the number of seconds set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;interval&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;it gets a score of 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for half the number of seconds set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;interval&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets a score of 0.5. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a station is idling for twice the number of seconds set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;interval&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;it gets a score of 2. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>      interval</string>
+                 <string>extra weight after long idle time</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -5705,100 +5723,41 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
-               <widget class="Line" name="line_11">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightAverageStations">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
+              <item row="10" column="0">
+               <widget class="QCheckBox" name="checkBox_weightAverageStations">
                 <property name="toolTip">
-                 <string>weight</string>
+                 <string>prefer scans with stations with low number of scans</string>
                 </property>
                 <property name="statusTip">
-                 <string>weight</string>
+                 <string>prefer scans with stations with low number of scans</string>
                 </property>
                 <property name="whatsThis">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;scans with stations which are not scheduled very often so far&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;First, the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to any station which is scheduled so far is calculated.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Then the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is calculated as well as the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;minimum&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total number of observations&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; to for a station is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;less then the average&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;extra score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;otherwise zero&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated using its difference between the average minus the number of observations divided by the maximum difference which is the average minus the minimum. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Finally, this score is then multiplied with the number of observations with this station divided by the maximum number of possible observations with this station for your network. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is done for each station and summed up to get the final score. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have 5 stations with the following number of observations: [100, 125, 200, 175, 150] and you have 3 scans.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The first scan is with station 1, 2 and 3. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The second scan is with station 2, 3 and 4.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The third scan is with station 3, 4, and 5.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your average is 150 and your minimum is 100 and therefore the maximum difference is 50. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per station is then [1, 0.5, 0, 0, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;There are 4 possible observations with each station (e.g.: station 1: 1-2, 1-3, 1-4, 1-5). In our example always 2 are scheduled (e.g.: scan 1 station 1: 1-2, 1-3). &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score for the first scan would be: 1 * 2/4 + 0.5 * 2/4 + 0 = 0.75. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Your score per scan is in the end [0.75, 0.25, 0].&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
-                <property name="maximum">
-                 <double>99999.990000000005239</double>
+                <property name="text">
+                 <string>average stations</string>
                 </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
+                <property name="checked">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="13" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowEl">
+              <item row="7" column="1">
+               <widget class="QSpinBox" name="spinBox_maxClosures">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
-                <property name="toolTip">
-                 <string>weight</string>
-                </property>
-                <property name="statusTip">
-                 <string>weight</string>
-                </property>
                 <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight based on &lt;span style=&quot; font-weight:600;&quot;&gt;combined number of closure phases and closure amplitudes&lt;/span&gt; = (n-1)*(n-2)/2 + n*(n-3)/2 with n beeing number of stations in this scan. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Scans with a high number of stations get significantly more weight and thus are more likely to be scheduled&lt;/p&gt;&lt;p&gt;There is a &lt;span style=&quot; font-weight:600;&quot;&gt;maximum limit&lt;/span&gt; until adding more closures is assumed to be significant. &lt;/p&gt;&lt;p&gt;As soon as this number is reached for a given source, further scans to this source do not gain additional weight based on this criteria. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="maximum">
-                 <double>99999.990000000005239</double>
+                 <number>10000</number>
                 </property>
                 <property name="singleStep">
-                 <double>0.250000000000000</double>
+                 <number>100</number>
                 </property>
                 <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="0">
-               <widget class="QCheckBox" name="checkBox_weightLowElevation">
-                <property name="acceptDrops">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>prefer scans to sources with low elevation</string>
-                </property>
-                <property name="statusTip">
-                 <string>prefer scans to sources with low elevation</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>low elevation</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QProgressBar" name="progressBar_wSky">
-                <property name="value">
-                 <number>25</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QProgressBar" name="progressBar_wObs">
-                <property name="value">
-                 <number>25</number>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QProgressBar" name="progressBar_wDur">
-                <property name="value">
-                 <number>25</number>
+                 <number>500</number>
                 </property>
                </widget>
               </item>
@@ -5809,8 +5768,30 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightNumberOfObservations">
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; number of observations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dividing the number of observations in this scan by the total number of observations possible&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The total number of observations is calculated using the total number of stations participating in this session.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all observations are valid. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
               <item row="6" column="2">
-               <widget class="QProgressBar" name="progressBar_Asrc">
+               <widget class="QProgressBar" name="progressBar_closures">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -5819,27 +5800,76 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="7" column="2">
-               <widget class="QProgressBar" name="progressBar_Asta">
+              <item row="18" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowElEnd">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="toolTip">
+                 <string>minimum elevation for full weight in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum elevation for full weight in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low elevation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If the elevation at a station is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; this scan gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees elevation and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and 0 degrees elevation extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low elevation full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="maximum">
+                 <double>90.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>5.000000000000000</double>
+                </property>
                 <property name="value">
-                 <number>0</number>
+                 <double>20.000000000000000</double>
                 </property>
                </widget>
               </item>
-              <item row="8" column="2">
-               <widget class="QProgressBar" name="progressBar_Abl">
+              <item row="15" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightLowDecEnd">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="toolTip">
+                 <string>minimum declination for full weight in degrees</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum declination for full weight in degrees</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Extra weight for sources at &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;low declination&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If a source declination is lower then &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets some extra weight.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If it is below &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; it gets the full extra weight set in &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/weight_function.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between 90 degrees declination and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;no extra weight is gained.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and -90 degrees declination extra weight set in&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is gained. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Between &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination begin weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;and &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;low declination full weight&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;linear interpolation is used. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [deg]</string>
+                </property>
+                <property name="minimum">
+                 <double>-90.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>90.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>5.000000000000000</double>
+                </property>
                 <property name="value">
-                 <number>0</number>
+                 <double>-45.000000000000000</double>
                 </property>
                </widget>
               </item>
-              <item row="10" column="2">
+              <item row="18" column="0">
+               <widget class="QLabel" name="label_weightLowElEnd">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>      low elevation full weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="2">
                <widget class="QProgressBar" name="progressBar_LowDec">
                 <property name="enabled">
                  <bool>false</bool>
@@ -5849,13 +5879,75 @@ If you only want to run simulations you can deselect this to avoid error message
                 </property>
                </widget>
               </item>
-              <item row="13" column="2">
-               <widget class="QProgressBar" name="progressBar_LowEl">
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="checkBox_weightNobs">
+                <property name="toolTip">
+                 <string>prefer scans with high number of observations</string>
+                </property>
+                <property name="statusTip">
+                 <string>prefer scans with high number of observations</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; number of observations &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;dividing the number of observations in this scan by the total number of observations possible&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The total number of observations is calculated using the total number of stations participating in this session.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that all stations are participating in this scan and all observations are valid. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>number of observations</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="2">
+               <widget class="QProgressBar" name="progressBar_Asrc">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
                 <property name="value">
                  <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_weightDuration">
+                <property name="toolTip">
+                 <string>weight</string>
+                </property>
+                <property name="statusTip">
+                 <string>weight</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The score for the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; duration&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; of this scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is calculated by &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;comparing the duration of this scan &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;to the duration of the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;fastest&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; next possible scan and the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;slowest&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; next possible scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;linear interpolation&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; between those values is used to get the score. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The duration includes the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;whole time span &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;from the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;end of the last scan &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;to the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt; end of this scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This score is multiplied by the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;weight factor&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; you set here to calculate the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;total score of a scan&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;maximum score&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; that can be reached is 1. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 1 would mean that this is the fasted possible next scan.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0 would mean that this is the slowest possible next scan. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;A score of 0.25 would be calculated if this scan would take 200 seconds, the fastest possible scan would take 100 seconds and the slowest possible scan would take 500 seconds. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <double>99999.990000000005239</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="Line" name="line_17">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="Line" name="line_18">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="2">
+               <widget class="Line" name="line_19">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -12176,12 +12268,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>260</y>
+     <x>83</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>262</y>
+     <x>374</x>
+     <y>322</y>
     </hint>
    </hints>
   </connection>
@@ -12192,12 +12284,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>421</y>
+     <x>374</x>
+     <y>481</y>
     </hint>
    </hints>
   </connection>
@@ -12208,12 +12300,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>511</y>
+     <x>374</x>
+     <y>571</y>
     </hint>
    </hints>
   </connection>
@@ -12336,12 +12428,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>62</x>
-     <y>511</y>
+     <x>83</x>
+     <y>571</y>
     </hint>
    </hints>
   </connection>
@@ -12368,12 +12460,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>453</x>
-     <y>450</y>
+     <x>475</x>
+     <y>510</y>
     </hint>
    </hints>
   </connection>
@@ -12384,12 +12476,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>451</y>
+     <x>374</x>
+     <y>511</y>
     </hint>
    </hints>
   </connection>
@@ -12484,7 +12576,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
      <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>660</x>
+     <x>659</x>
      <y>202</y>
     </hint>
    </hints>
@@ -12496,12 +12588,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>62</x>
-     <y>421</y>
+     <x>83</x>
+     <y>481</y>
     </hint>
    </hints>
   </connection>
@@ -12560,12 +12652,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>391</y>
+     <x>374</x>
+     <y>451</y>
     </hint>
    </hints>
   </connection>
@@ -12576,12 +12668,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>62</x>
-     <y>481</y>
+     <x>83</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -12592,12 +12684,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>260</y>
+     <x>83</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
-     <x>453</x>
-     <y>261</y>
+     <x>475</x>
+     <y>321</y>
     </hint>
    </hints>
   </connection>
@@ -12640,12 +12732,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>290</y>
+     <x>83</x>
+     <y>350</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>292</y>
+     <x>374</x>
+     <y>352</y>
     </hint>
    </hints>
   </connection>
@@ -12704,12 +12796,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>449</y>
+     <x>83</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>481</y>
+     <x>374</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -12720,12 +12812,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>290</y>
+     <x>83</x>
+     <y>350</y>
     </hint>
     <hint type="destinationlabel">
-     <x>453</x>
-     <y>291</y>
+     <x>475</x>
+     <y>351</y>
     </hint>
    </hints>
   </connection>
@@ -12736,12 +12828,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>453</x>
-     <y>360</y>
+     <x>475</x>
+     <y>420</y>
     </hint>
    </hints>
   </connection>
@@ -12784,12 +12876,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>320</y>
+     <x>83</x>
+     <y>380</y>
     </hint>
     <hint type="destinationlabel">
-     <x>453</x>
-     <y>321</y>
+     <x>475</x>
+     <y>381</y>
     </hint>
    </hints>
   </connection>
@@ -12832,12 +12924,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>320</y>
+     <x>83</x>
+     <y>380</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>322</y>
+     <x>374</x>
+     <y>382</y>
     </hint>
    </hints>
   </connection>
@@ -12848,12 +12940,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>62</x>
-     <y>391</y>
+     <x>83</x>
+     <y>451</y>
     </hint>
    </hints>
   </connection>
@@ -12864,12 +12956,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>359</y>
+     <x>83</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>352</x>
-     <y>361</y>
+     <x>374</x>
+     <y>421</y>
     </hint>
    </hints>
   </connection>
@@ -12950,6 +13042,70 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>63</x>
      <y>384</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightClosures</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_124</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>134</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightClosures</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_weightClosures</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightClosures</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>progressBar_closures</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>162</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_weightClosures</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_maxClosures</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>147</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>309</x>
+     <y>279</y>
     </hint>
    </hints>
   </connection>

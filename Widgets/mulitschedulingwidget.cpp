@@ -18,6 +18,8 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
                                              QDoubleSpinBox *doubleSpinBox_weightAverageBaselines,
                                              QCheckBox *checkBox_weightIdleTime,
                                              QDoubleSpinBox *doubleSpinBox_weightIdleTime,
+                                             QCheckBox *checkBox_weightClosures,
+                                             QDoubleSpinBox *doubleSpinBox_weightClosures,
                                              QCheckBox *checkBox_weightLowDeclination,
                                              QDoubleSpinBox *doubleSpinBox_weightLowDec,
                                              QCheckBox *checkBox_weightLowElevation,
@@ -47,6 +49,8 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
     doubleSpinBox_weightAverageBaselines{doubleSpinBox_weightAverageBaselines},
     checkBox_weightIdleTime{checkBox_weightIdleTime},
     doubleSpinBox_weightIdleTime{doubleSpinBox_weightIdleTime},
+    checkBox_weightClosures{checkBox_weightClosures},
+    doubleSpinBox_weightClosures{doubleSpinBox_weightClosures},
     checkBox_weightLowDeclination{checkBox_weightLowDeclination},
     doubleSpinBox_weightLowDec{doubleSpinBox_weightLowDec},
     checkBox_weightLowElevation{checkBox_weightLowElevation},
@@ -154,6 +158,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                                        "min number of stations",
                                        "min repeat time",
                                        "idle time interval",
+                                       "max closures",
                                        "influence time",
                                        "max number of scans",
                                        "focus corner switch cadence"};
@@ -167,6 +172,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                                           "average sources",
                                           "average baselines",
                                           "idle time",
+                                          "closures",
                                           "low declination",
                                           "low declination begin",
                                           "low declination full",
@@ -190,6 +196,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["min number of stations"] = {2, 3, 4};
             defaultValues["min repeat time"       ] = {1200, 1800};
             defaultValues["idle time interval"    ] = {120, 180, 240, 300};
+            defaultValues["max closures"          ] = {300, 400, 500, 600};
             defaultValues["influence time"        ] = {900, 1200, 1800, 3600};
             defaultValues["max number of scans"   ] = {10, 25, 999};
             defaultValues["focus corner switch cadence"] = {600, 750, 900};
@@ -203,6 +210,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["average sources"                      ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["average baselines"                    ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["idle time"                            ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["closures"                             ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["low declination"                      ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["low declination begin"                ] = {0, -22.5, -45};
             defaultValues["low declination full"                 ] = {-75, -90};
@@ -390,18 +398,22 @@ void MulitSchedulingWidget::on_pushButton_25_clicked()
                 ui->treeWidget_multiSched->topLevelItem(1)->child(6)->setDisabled(false);
             }else if(any->text(0) == "idle time interval"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(7)->setDisabled(false);
-            }else if(any->text(0) == "low declination"){
+            }else if(any->text(0) == "closures"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(8)->setDisabled(false);
-            }else if(any->text(0) == "low declination begin"){
+            }else if(any->text(0) == "max closures"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(9)->setDisabled(false);
-            }else if(any->text(0) == "low declination full"){
+            }else if(any->text(0) == "low declination"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(10)->setDisabled(false);
-            }else if(any->text(0) == "low elevation"){
+            }else if(any->text(0) == "low declination begin"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(11)->setDisabled(false);
-            }else if(any->text(0) == "low elevation begin"){
+            }else if(any->text(0) == "low declination full"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(12)->setDisabled(false);
-            }else if(any->text(0) == "low elevation full"){
+            }else if(any->text(0) == "low elevation"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(13)->setDisabled(false);
+            }else if(any->text(0) == "low elevation begin"){
+                ui->treeWidget_multiSched->topLevelItem(1)->child(14)->setDisabled(false);
+            }else if(any->text(0) == "low elevation full"){
+                ui->treeWidget_multiSched->topLevelItem(1)->child(15)->setDisabled(false);
 
             }else if(any->text(0) == "influence distance"){
                 ui->treeWidget_multiSched->topLevelItem(2)->child(0)->setDisabled(false);
@@ -497,6 +509,10 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
         if(checkBox_weightIdleTime->isChecked()){
             widle_ = doubleSpinBox_weightIdleTime->value();
         }
+        double wclosures_ = 0;
+        if(checkBox_weightClosures->isChecked()){
+            wclosures_ = doubleSpinBox_weightClosures->value();
+        }
         double wdec_ = 0;
         if(checkBox_weightLowDeclination->isChecked()){
             wdec_ = doubleSpinBox_weightLowDec->value();
@@ -514,6 +530,7 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                                                         {"weight_factor_average_stations",std::vector<double>{wasta_}},
                                                         {"weight_factor_average_baselines",std::vector<double>{wabls_}},
                                                         {"weight_factor_idle_time",std::vector<double>{widle_}},
+                                                        {"weight_factor_closures",std::vector<double>{wclosures_}},
                                                         {"weight_factor_low_declination",std::vector<double>{wdec_}},
                                                         {"weight_factor_low_elevation",std::vector<double>{wel_}}};
 
@@ -575,6 +592,14 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                 }
                 weightFactors["weight_factor_idle_time"] = values;
                 weigthFactorFound = true;
+            }else if(t->topLevelItem(i)->text(0) == "closures"){
+                QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
+                std::vector<double> values;
+                for(int ilist = 0; ilist<list->count(); ++ilist){
+                    values.push_back( QString(list->itemText(ilist)).toDouble());
+                }
+                weightFactors["weight_factor_closures"] = values;
+                weigthFactorFound = true;
             }else if(t->topLevelItem(i)->text(0) == "low declination"){
                 QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
                 std::vector<double> values;
@@ -603,18 +628,20 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                             for (double wasta: weightFactors["weight_factor_average_stations"]) {
                                 for (double wabls: weightFactors["weight_factor_average_baselines"]) {
                                     for (double widle: weightFactors["weight_factor_idle_time"]) {
-                                        for (double wdec: weightFactors["weight_factor_low_declination"]) {
-                                            for (double wel: weightFactors["weight_factor_low_elevation"]) {
+                                        for (double wclosures: weightFactors["weight_factor_closures"]) {
+                                            for (double wdec: weightFactors["weight_factor_low_declination"]) {
+                                                for (double wel: weightFactors["weight_factor_low_elevation"]) {
 
-                                                double sum = wsky + wobs + wdur + wasrc + wasta + wabls + widle + wdec + wel;
+                                                    double sum = wsky + wobs + wdur + wasrc + wasta + wabls + widle + wclosures + wdec + wel;
 
-                                                if (sum == 0) {
-                                                    continue;
+                                                    if (sum == 0) {
+                                                        continue;
+                                                    }
+
+                                                    std::vector<double> wf{wsky/sum, wobs/sum, wdur/sum, wasrc/sum, wasta/sum,
+                                                                           wabls/sum, widle/sum, wclosures/sum, wdec/sum, wel/sum};
+                                                    weightFactorValues.push_back(std::move(wf));
                                                 }
-
-                                                std::vector<double> wf{wsky/sum, wobs/sum, wdur/sum, wasrc/sum, wasta/sum,
-                                                                       wabls/sum, widle/sum, wdec/sum, wel/sum};
-                                                weightFactorValues.push_back(std::move(wf));
                                             }
                                         }
                                     }
@@ -660,6 +687,7 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                                       "average sources",
                                       "average baselines",
                                       "idle time",
+                                      "closures",
                                       "low declination",
                                       "low elevation"};
 
@@ -766,6 +794,9 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                                        "average baselines",
                                        "average sources",
                                        "idle time",
+                                       "idle time interval",
+                                       "closures",
+                                       "max closures",
                                        "low declination",
                                        "low declination begin",
                                        "low declination full",
@@ -893,6 +924,10 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
              }else if(parameter == "idle time"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "idle time interval"){
+                 ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+             }else if(parameter == "closures"){
+                 ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+             }else if(parameter == "max closures"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "low declination"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);

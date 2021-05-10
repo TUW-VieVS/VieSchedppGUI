@@ -127,6 +127,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                                                  ui->doubleSpinBox_weightAverageBaselines,
                                                                  ui->checkBox_weightIdleTime,
                                                                  ui->doubleSpinBox_weightIdleTime,
+                                                                 ui->checkBox_weightClosures,
+                                                                 ui->doubleSpinBox_weightClosures,
                                                                  ui->checkBox_weightLowDeclination,
                                                                  ui->doubleSpinBox_weightLowDec,
                                                                  ui->checkBox_weightLowElevation,
@@ -712,6 +714,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->checkBox_weightCoverage, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->checkBox_weightNobs, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
+    connect(ui->checkBox_weightClosures, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->checkBox_weightDuration, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->checkBox_weightAverageSources, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->checkBox_weightAverageStations, SIGNAL(stateChanged(int)), this, SLOT(updateWeightFactorSliders()));
@@ -723,6 +726,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->doubleSpinBox_weightSkyCoverage, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->doubleSpinBox_weightNumberOfObservations, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
+    connect(ui->doubleSpinBox_weightClosures, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->doubleSpinBox_weightDuration, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->doubleSpinBox_weightAverageSources, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
     connect(ui->doubleSpinBox_weightAverageStations, SIGNAL(valueChanged(double)), this, SLOT(updateWeightFactorSliders()));
@@ -1804,6 +1808,11 @@ void MainWindow::defaultParameters()
     if(numberOfObservationsChecked.is_initialized()){
         ui->checkBox_weightNobs->setChecked(*numberOfObservationsChecked);
 //        ui->doubleSpinBox_weightNumberOfObservations->setEnabled(*numberOfObservationsChecked);
+    }
+    boost::optional<bool> closuresChecked = settings_.get_optional<bool>("settings.weightFactor.closuresChecked");
+    if(closuresChecked.is_initialized()){
+        ui->checkBox_weightClosures->setChecked(*closuresChecked);
+//        ui->doubleSpinBox_weightDuration->setEnabled(*durationChecked);
     }
     boost::optional<bool> durationChecked = settings_.get_optional<bool>("settings.weightFactor.durationChecked");
     if(durationChecked.is_initialized()){
@@ -6232,6 +6241,7 @@ void MainWindow::on_pushButton_contact_load_clicked()
 void MainWindow::on_pushButton_autoSetupIntensive_weightFactor_clicked()
 {
     ui->checkBox_weightNobs->setCheckState(Qt::Unchecked);
+    ui->checkBox_weightClosures->setCheckState(Qt::Unchecked);
     ui->checkBox_weightCoverage->setCheckState(Qt::Checked);
     ui->doubleSpinBox_weightSkyCoverage->setValue(0.02);
     ui->checkBox_weightDuration->setCheckState(Qt::Checked);
@@ -6626,6 +6636,10 @@ void MainWindow::updateWeightFactorSliders()
     if(ui->checkBox_weightNobs->isChecked()){
         weightNumberOfObservations = ui->doubleSpinBox_weightNumberOfObservations->value();
     }
+    double weightClosures = 0;
+    if(ui->checkBox_weightClosures->isChecked()){
+        weightClosures = ui->doubleSpinBox_weightClosures->value();
+    }
     double weightDuration = 0;
     if(ui->checkBox_weightDuration->isChecked()){
         weightDuration = ui->doubleSpinBox_weightDuration->value();
@@ -6654,12 +6668,13 @@ void MainWindow::updateWeightFactorSliders()
     if(ui->checkBox_weightLowElevation->isChecked()){
         weightElevation = ui->doubleSpinBox_weightLowEl->value();
     }
-    double sum = weightSkyCoverage + weightNumberOfObservations + weightDuration + weightAverageSources + weightAverageStations + weightAverageBaselines + weightIdleTime + weightDeclination + weightElevation;
+    double sum = weightSkyCoverage + weightNumberOfObservations + weightClosures + weightDuration + weightAverageSources + weightAverageStations + weightAverageBaselines + weightIdleTime + weightDeclination + weightElevation;
 //    double sum = std::max({weightSkyCoverage, weightNumberOfObservations, weightDuration, weightAverageSources, weightAverageStations, weightAverageBaselines, weightIdleTime, weightDeclination, weightElevation});
 
     if(sum == 0){
         ui->progressBar_wSky->setValue(0);
         ui->progressBar_wObs->setValue(0);
+        ui->progressBar_closures->setValue(0);
         ui->progressBar_wDur->setValue(0);
         ui->progressBar_wIdle->setValue(0);
         ui->progressBar_Asrc->setValue(0);
@@ -6672,6 +6687,7 @@ void MainWindow::updateWeightFactorSliders()
 
     weightSkyCoverage /= sum;
     weightNumberOfObservations /= sum;
+    weightClosures /= sum;
     weightDuration /= sum;
     weightAverageSources /= sum;
     weightAverageStations /= sum;
@@ -6693,6 +6709,7 @@ void MainWindow::updateWeightFactorSliders()
 
     ui->progressBar_wSky->setValue(weightSkyCoverage*100);
     ui->progressBar_wObs->setValue(weightNumberOfObservations*100);
+    ui->progressBar_closures->setValue(weightClosures*100);
     ui->progressBar_wDur->setValue(weightDuration*100);
     ui->progressBar_wIdle->setValue(weightIdleTime*100);
     ui->progressBar_Asrc->setValue(weightAverageSources*100);
@@ -6723,6 +6740,9 @@ void MainWindow::updateWeightFactorValue()
     if(s == ui->progressBar_wObs){
         dsb = ui->doubleSpinBox_weightNumberOfObservations;
     }
+    if(s == ui->progressBar_closures){
+        dsb = ui->doubleSpinBox_weightClosures;
+    }
     if(s == ui->progressBar_wDur){
         dsb = ui->doubleSpinBox_weightDuration;
     }
@@ -6750,6 +6770,8 @@ void MainWindow::updateWeightFactorValue()
         point2val = ui->doubleSpinBox_weightSkyCoverage->value() / ui->progressBar_wSky->value();
     } else  if(s != ui->progressBar_wObs && ui->progressBar_wObs->value() > 0){
         point2val = ui->doubleSpinBox_weightNumberOfObservations->value() / ui->progressBar_wObs->value();
+    } else  if(s != ui->progressBar_closures && ui->progressBar_closures->value() > 0){
+        point2val = ui->doubleSpinBox_weightClosures->value() / ui->progressBar_closures->value();
     } else  if(s != ui->progressBar_wDur && ui->progressBar_wDur->value() > 0){
         point2val = ui->doubleSpinBox_weightDuration->value() / ui->progressBar_wDur->value();
     } else  if(s != ui->progressBar_wIdle && ui->progressBar_wIdle->value() > 0){

@@ -333,6 +333,12 @@ QString MainWindow::writeXML()
     if(ui->checkBox_weightNobs->isChecked()){
         weightNumberOfObservations = ui->doubleSpinBox_weightNumberOfObservations->value();
     }
+    double weightClosures = 0;
+    unsigned int weightClosures_max = 0;
+    if(ui->checkBox_weightClosures->isChecked()){
+        weightClosures = ui->doubleSpinBox_weightClosures->value();
+        weightClosures_max = ui->spinBox_maxClosures->value();
+    }
     double weightDuration = 0;
     if(ui->checkBox_weightDuration->isChecked()){
         weightDuration = ui->doubleSpinBox_weightDuration->value();
@@ -372,6 +378,7 @@ QString MainWindow::writeXML()
         weightElevationSlopeEnd = ui->doubleSpinBox_weightLowElEnd->value();
     }
     para.weightFactor(weightSkyCoverage, weightNumberOfObservations, weightDuration, weightAverageSources,
+                      weightClosures, weightClosures_max,
                       weightAverageStations, weightAverageBaselines, weightIdleTime, intervalIdleTime, weightDeclination,
                       weightDeclinationSlopeStart, weightDeclinationSlopeEnd,
                       weightElevation, weightElevationSlopeStart, weightElevationSlopeEnd);
@@ -1368,6 +1375,15 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_weightDuration->setChecked(true);
             ui->doubleSpinBox_weightDuration->setValue(weightFactor_duration);
+        }
+        double weightFactor_closures = xml.get("VieSchedpp.weightFactor.closures",0.0);
+        int weightFactor_closures_max = xml.get("VieSchedpp.weightFactor.closures_max",500);
+        if(weightFactor_closures == 0){
+            ui->checkBox_weightClosures->setChecked(false);
+        }else{
+            ui->checkBox_weightClosures->setChecked(true);
+            ui->doubleSpinBox_weightClosures->setValue(weightFactor_closures);
+            ui->spinBox_maxClosures->setValue(weightFactor_closures_max);
         }
         double weightFactor_averageSources = xml.get("VieSchedpp.weightFactor.averageSources",0.0);
         if(weightFactor_averageSources == 0){
@@ -2744,6 +2760,20 @@ void MainWindow::on_pushButton_9_clicked()
     }
     path << "settings.weightFactor.duration";
     value << QString("%1").arg(ui->doubleSpinBox_weightDuration->value());
+
+
+    path << "settings.weightFactor.closuresChecked";
+    if(ui->checkBox_weightClosures->isChecked()){
+        value << "true";
+    }else{
+        value << "false";
+    }
+    path << "settings.weightFactor.closures";
+    value << QString("%1").arg(ui->doubleSpinBox_weightClosures->value());
+    path << "settings.weightFactor.closures_max";
+    value << QString("%1").arg(ui->spinBox_maxClosures->value());
+
+
 
     path << "settings.weightFactor.averageSourcesChecked";
     if(ui->checkBox_weightAverageSources->isChecked()){

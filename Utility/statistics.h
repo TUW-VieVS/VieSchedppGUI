@@ -70,6 +70,7 @@ private:
     QChartView *statisticsView;
 
     QStringList general;
+    QStringList stations_scans;
     QStringList weightFactors;
     QStringList stations;
     QStringList baselines;

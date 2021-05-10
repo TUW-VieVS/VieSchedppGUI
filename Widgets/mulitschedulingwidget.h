@@ -40,6 +40,8 @@ public:
             QDoubleSpinBox *doubleSpinBox_weightAverageBaselines,
             QCheckBox *checkBox_weightIdleTime,
             QDoubleSpinBox *doubleSpinBox_weightIdleTime,
+            QCheckBox *checkBox_weightClosures,
+            QDoubleSpinBox *doubleSpinBox_weightClosures,
             QCheckBox *checkBox_weightLowDeclination,
             QDoubleSpinBox *doubleSpinBox_weightLowDec,
             QCheckBox *checkBox_weightLowElevation,
@@ -116,6 +118,8 @@ private:
     QDoubleSpinBox *doubleSpinBox_weightAverageBaselines;
     QCheckBox *checkBox_weightIdleTime;
     QDoubleSpinBox *doubleSpinBox_weightIdleTime;
+    QCheckBox *checkBox_weightClosures;
+    QDoubleSpinBox *doubleSpinBox_weightClosures;
     QCheckBox *checkBox_weightLowDeclination;
     QDoubleSpinBox *doubleSpinBox_weightLowDec;
     QCheckBox *checkBox_weightLowElevation;

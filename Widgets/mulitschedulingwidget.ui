@@ -308,6 +308,16 @@
               </item>
               <item>
                <property name="text">
+                <string>closures</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max closures</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
                 <string>low declination</string>
                </property>
               </item>
