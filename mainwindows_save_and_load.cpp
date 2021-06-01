@@ -175,17 +175,20 @@ QString MainWindow::writeXML()
     bool doNotObserveSourcesWithinMinRepeat = ui->radioButton_sourcesMinRepeat_doNotObserve->isChecked();
 
     int versionOffset = ui->spinBox_startVersion->value();
+    bool successive_scans_same_src = ui->checkBox_successive_scans_same_src->isChecked();
 
     if(useSourcesFromParameter_otherwiseIgnore){
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     srcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
+                     srcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset,
+                     successive_scans_same_src);
     }else{
         para.general(experimentName, start, end, subnetting, subnettingAngle, useSubnettingPercent_otherwiseAllBut, subnettingNumber,
                      fillinModeInfluence, fillinModeDuringScan, fillinModeAPosteriori, fiapost_minSta, fiapost_minRepeat,
                      idleToObservingTime, idleToObservingTimeGroup, station_names, useSourcesFromParameter_otherwiseIgnore,
-                     ignoreSrcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset);
+                     ignoreSrcNames, satellite_names, scanAlignment, logConsole, logFile, doNotObserveSourcesWithinMinRepeat, versionOffset,
+                     successive_scans_same_src);
     }
 
 
@@ -769,6 +772,11 @@ void MainWindow::loadXML(QString path)
             ui->radioButton_sourcesMinRepeat_reduceWeight->setChecked(true);
         }
 
+        if(xml.get("VieSchedpp.general.ignore_successive_scans_same_source",true)){
+            ui->checkBox_successive_scans_same_src->setChecked(true);
+        }else{
+            ui->checkBox_successive_scans_same_src->setChecked(false);
+        }
 
         bool idleToObservingTime = xml.get("VieSchedpp.general.idleToObservingTime",false);
         QString idleToObservingTimeGroup = QString::fromStdString(xml.get("VieSchedpp.general.idleToObservingTimeGroup","__all__"));
@@ -2722,6 +2730,15 @@ void MainWindow::on_pushButton_11_clicked()
         value << "false";
     }
     path << "settings.general.versionOffset";
+    value << QString::number(ui->spinBox_startVersion->value());
+
+    path << "settings.general.ignore_successive_scans_same_source";
+    if( ui->checkBox_successive_scans_same_src->isChecked() ){
+        value << "true";
+    }else{
+        value << "false";
+    }
+
     value << QString::number(ui->spinBox_startVersion->value());
 
     QString name = "Default advanced settings changed!";
