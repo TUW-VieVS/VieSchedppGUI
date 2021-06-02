@@ -116,9 +116,9 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
-          <width>323</width>
-          <height>1129</height>
+          <y>-558</y>
+          <width>329</width>
+          <height>1246</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -648,6 +648,86 @@
               </property>
               <property name="value">
                <number>300</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_jet_angle">
+           <property name="title">
+            <string>exclude observations aligned with jet angle</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_6">
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_buffer">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="suffix">
+               <string> [deg]</string>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>5.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="radioButton_jet_angle_buffer">
+              <property name="text">
+               <string>fixed buffer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="radioButton_jet_angle_factor">
+              <property name="text">
+               <string>based on uncertainty</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_factor">
+              <property name="prefix">
+               <string>factor: </string>
+              </property>
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="minimum">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -1350,12 +1430,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>212</y>
+     <x>97</x>
+     <y>-310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>215</y>
+     <x>318</x>
+     <y>-307</y>
     </hint>
    </hints>
   </connection>
@@ -1366,12 +1446,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>238</y>
+     <x>165</x>
+     <y>-280</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>241</y>
+     <x>318</x>
+     <y>-277</y>
     </hint>
    </hints>
   </connection>
@@ -1382,12 +1462,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>290</y>
+     <x>130</x>
+     <y>-220</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>293</y>
+     <x>318</x>
+     <y>-217</y>
     </hint>
    </hints>
   </connection>
@@ -1398,12 +1478,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>114</x>
-     <y>316</y>
+     <x>136</x>
+     <y>-190</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>319</y>
+     <x>318</x>
+     <y>-187</y>
     </hint>
    </hints>
   </connection>
@@ -1414,12 +1494,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>264</y>
+     <x>105</x>
+     <y>-250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>267</y>
+     <x>318</x>
+     <y>-247</y>
     </hint>
    </hints>
   </connection>
@@ -1430,12 +1510,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>331</y>
+     <x>127</x>
+     <y>-160</y>
     </hint>
     <hint type="destinationlabel">
-     <x>230</x>
-     <y>335</y>
+     <x>318</x>
+     <y>-157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_jet_angle_buffer</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_jet_angle_buffer</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>213</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_jet_angle_factor</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_jet_angle_factor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>228</x>
+     <y>302</y>
     </hint>
    </hints>
   </connection>

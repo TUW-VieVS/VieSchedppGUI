@@ -239,6 +239,23 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
     }
 
 
+    if(sp.jetAngleBuffer.is_initialized()){
+        ui->doubleSpinBox_jet_angle_buffer->setValue(*sp.jetAngleBuffer);
+        ui->radioButton_jet_angle_buffer->setChecked(true);
+        ui->groupBox_jet_angle->setChecked(true);
+    }else{
+        ui->groupBox_jet_angle->setChecked(false);
+    }
+
+    if(sp.jetAngleFactor.is_initialized()){
+        ui->doubleSpinBox_jet_angle_factor->setValue(*sp.jetAngleFactor);
+        ui->radioButton_jet_angle_factor->setChecked(true);
+        ui->groupBox_jet_angle->setChecked(true);
+    }else{
+        ui->groupBox_jet_angle->setChecked(false);
+    }
+
+
     if(sp.minRepeat.is_initialized()){
         ui->spinBox_minRepeatTime->setValue(*sp.minRepeat);
         ui->groupBox_10->setChecked(true);
@@ -519,6 +536,15 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersSources> sourceParame
     }
     if(ui->groupBox_10->isChecked() || !ui->groupBox_10->isCheckable()){
         para.minRepeat = ui->spinBox_minRepeatTime->value();
+    }
+
+    if(ui->groupBox_jet_angle->isChecked()){
+        if(ui->radioButton_jet_angle_buffer->isChecked()){
+            para.jetAngleBuffer = ui->doubleSpinBox_jet_angle_buffer->value();
+        }
+        if(ui->radioButton_jet_angle_factor->isChecked()){
+            para.jetAngleFactor = ui->doubleSpinBox_jet_angle_factor->value();
+        }
     }
 
 

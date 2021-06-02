@@ -637,7 +637,19 @@ void setupWidget::displaySourceSetupParameter(QString name)
     if(para.fixedScanDuration.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.fixedScanDuration)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("fixed scan duration"));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("fixed scan duration [deg]"));
+        ++r;
+    }
+    if(para.jetAngleBuffer.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.jetAngleBuffer)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("jet angle buffer [x*std]"));
+        ++r;
+    }
+    if(para.jetAngleFactor.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.jetAngleFactor)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("jet angle factor"));
         ++r;
     }
     if(para.tryToFocusIfObservedOnce.is_initialized()){
