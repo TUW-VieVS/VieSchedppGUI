@@ -761,10 +761,10 @@ void MainWindow::loadXML(QString path)
             }
         }
 
-        bool fillinmodeDuringScan = xml.get("VieSchedpp.general.fillinmodeDuringScan",false);
+        bool fillinmodeDuringScan = xml.get("VieSchedpp.general.fillinmodeDuringScanSelection",false);
         ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeDuringScan);
         bool fillinmodeInfluenceOnSchedule = xml.get("VieSchedpp.general.fillinmodeInfluenceOnSchedule",false);
-        ui->checkBox_fillinmode_duringscan->setChecked(fillinmodeInfluenceOnSchedule);
+        ui->checkBox_fillinModeInfluence->setChecked(fillinmodeInfluenceOnSchedule);
 
         if(xml.get("VieSchedpp.general.doNotObserveSourcesWithinMinRepeat",true)){
             ui->radioButton_sourcesMinRepeat_doNotObserve->setChecked(true);
@@ -1810,7 +1810,15 @@ void MainWindow::loadXML(QString path)
             ui->groupBox_35->setChecked(true);
             ui->radioButton_calibrationBlocksCustom->setChecked(true);
 
-            int i=1;
+            int i=0;
+            for(const auto &any : *ctree) {
+                if(any.first == "block"){
+                    ++i;
+                }
+            }
+            ui->spinBox_NCalibrationBlocks->setValue(i);
+
+            i = 0;
             for(const auto &any : *ctree) {
                 if(any.first == "block"){
                     unsigned int time = any.second.get( "startTime", 0 );
@@ -1818,12 +1826,11 @@ void MainWindow::loadXML(QString path)
                     unsigned int scans = any.second.get( "scans", 2 );
                     unsigned int duration = any.second.get( "duration", 300 );
                     std::string sourceGroup = any.second.get( "sources", "__all__" );
-                    ui->spinBox_NCalibrationBlocks->setValue(i);
 
-                    qobject_cast<QDoubleSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i-1,0))->setValue(t);
-                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i-1,1))->setValue(duration);
-                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i-1,2))->setValue(scans);
-                    qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(i-1,3))->setCurrentText(QString::fromStdString(sourceGroup));
+                    qobject_cast<QDoubleSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,0))->setValue(t);
+                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,1))->setValue(duration);
+                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,2))->setValue(scans);
+                    qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,3))->setCurrentText(QString::fromStdString(sourceGroup));
                     ++i;
                 }
             }

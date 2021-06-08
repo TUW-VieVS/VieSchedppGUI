@@ -1570,7 +1570,7 @@ void setupWidget::addSetup(const boost::property_tree::ptree &setup)
 
     for(const auto & any: setup){
         if(any.first == "setup"){
-            addSetup(setup);
+            addSetup(any.second);
         }
     }
 
