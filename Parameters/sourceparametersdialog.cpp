@@ -255,6 +255,20 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->groupBox_jet_angle->setChecked(false);
     }
 
+    if(sp.forceSameObservingDuration.is_initialized()){
+        bool flag = *sp.forceSameObservingDuration;
+        if ( flag ){
+            ui->radioButton_sameObsDur_no->setChecked(false);
+            ui->radioButton_sameObsDur_yes->setChecked(true);
+        } else {
+            ui->radioButton_sameObsDur_no->setChecked(true);
+            ui->radioButton_sameObsDur_yes->setChecked(false);
+        }
+        ui->groupBox_sameObservingDurationForAllStations->setChecked(true);
+    }else{
+        ui->groupBox_sameObservingDurationForAllStations->setChecked(false);
+    }
+
 
     if(sp.minRepeat.is_initialized()){
         ui->spinBox_minRepeatTime->setValue(*sp.minRepeat);
@@ -544,6 +558,14 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersSources> sourceParame
         }
         if(ui->radioButton_jet_angle_factor->isChecked()){
             para.jetAngleFactor = ui->doubleSpinBox_jet_angle_factor->value();
+        }
+    }
+
+    if (ui->groupBox_sameObservingDurationForAllStations->isChecked()){
+        if(ui->radioButton_sameObsDur_yes->isChecked()){
+            para.forceSameObservingDuration = true;
+        }else{
+            para.forceSameObservingDuration = false;
         }
     }
 

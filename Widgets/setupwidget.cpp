@@ -652,6 +652,13 @@ void setupWidget::displaySourceSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("jet angle factor"));
         ++r;
     }
+    if(para.forceSameObservingDuration.is_initialized()){
+        t->insertRow(r);
+        QString boolText = *para.forceSameObservingDuration ? "true" : "false";
+        t->setItem(r,0,new QTableWidgetItem(boolText));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("same obs dur for all stations"));
+        ++r;
+    }
     if(para.tryToFocusIfObservedOnce.is_initialized()){
         t->insertRow(r);
         QString boolText = *para.tryToFocusIfObservedOnce ? "true" : "false";
