@@ -225,7 +225,7 @@ QString MainWindow::writeXML()
 
     bool skd = ui->checkBox_outputSkdFile->isChecked();
     bool srcGrp = ui->checkBox_outputSourceGroupStatFile->isChecked();
-    bool skyCov = ui->checkBox_outputSkyCoverageFile->isChecked();
+    bool slewFile = ui->checkBox_outputSlewFile->isChecked();
     bool operNotes = ui->checkBox_outputOperationsNotes->isChecked();
     std::vector<std::string> srcGroupsForStatistic;
     for(int i=0; i<ui->treeWidget_srcGroupForStatistics->topLevelItemCount(); ++i){
@@ -234,7 +234,7 @@ QString MainWindow::writeXML()
         }
     }
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
-                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, skyCov, contacts);
+                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, contacts);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();

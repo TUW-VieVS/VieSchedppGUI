@@ -100,6 +100,1312 @@
     </widget>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1">
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>329</width>
+          <height>1324</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QGroupBox" name="groupBox_available">
+           <property name="toolTip">
+            <string>availability of this source for scans</string>
+           </property>
+           <property name="statusTip">
+            <string>availability of this source for scans</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;this source &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; during this periode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="title">
+            <string>available</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QRadioButton" name="radioButton_available_yes">
+              <property name="toolTip">
+               <string>source can be observed</string>
+              </property>
+              <property name="statusTip">
+               <string>source can be observed</string>
+              </property>
+              <property name="text">
+               <string>yes</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_available_no">
+              <property name="toolTip">
+               <string>source cannot be observed </string>
+              </property>
+              <property name="statusTip">
+               <string>source cannot be observed </string>
+              </property>
+              <property name="text">
+               <string>no</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_availableForFillinmode">
+           <property name="toolTip">
+            <string>availability of this source for fillinmode scans</string>
+           </property>
+           <property name="statusTip">
+            <string>availability of this source for fillinmode scans</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;this source &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; for fillin mode scans. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;You can use this option to restrict the amount of sources for fillin mode scans. Or you can use this option to make sure that your special sources are not scheduled in an fillin mode scan. This can be useful because fillin mode scans tend to be less impactful and have less stations then normal scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="title">
+            <string>available for fillin mode</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QRadioButton" name="radioButton_availableForFillin_yes">
+              <property name="toolTip">
+               <string>source can be observed in fillin modes</string>
+              </property>
+              <property name="statusTip">
+               <string>source can be observed in fillin modes</string>
+              </property>
+              <property name="text">
+               <string>yes</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_availableForFillin_no">
+              <property name="toolTip">
+               <string>source cannot be observed in fillin modes</string>
+              </property>
+              <property name="statusTip">
+               <string>source cannot be observed in fillin modes</string>
+              </property>
+              <property name="text">
+               <string>no</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="title">
+            <string>general</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_5">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox_weight">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>weight</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="weightDoubleSpinBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>weight of this source for selection of best scan</string>
+              </property>
+              <property name="statusTip">
+               <string>weight of this source for selection of best scan</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a source &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans to this source&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="maximum">
+               <double>999.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.250000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBox_minNumberOfStations">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>min number of stations</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinBox_minNumberOfStations">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>required number of stations for scans to this source</string>
+              </property>
+              <property name="statusTip">
+               <string>required number of stations for scans to this source</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum number of participating stations in a scan to this source. If there are fewer stations in the session this number will be removed to the number of stations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="maximum">
+               <number>9999</number>
+              </property>
+              <property name="value">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBox_minFlux">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>min flux</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_minFlux">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>minimum flux density in Jansky for observations to this source</string>
+              </property>
+              <property name="statusTip">
+               <string>minimum flux density in Jansky for observations to this source</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum flux density in Jansky for observations to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string> [Jy]</string>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>max number of scans</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>maximum number of scans to this source</string>
+              </property>
+              <property name="statusTip">
+               <string>maximum number of scans to this source</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of scans to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="maximum">
+               <number>999</number>
+              </property>
+              <property name="value">
+               <number>999</number>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBox_minElevation">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>min elevation</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>minimum station elevation for observations to this source in degrees</string>
+              </property>
+              <property name="statusTip">
+               <string>minimum station elevation for observations to this source in degrees</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required elevation for scans to this source in degrees. &lt;br/&gt;This value is also set in the station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum of this value and the value from the station parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string> [deg]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QCheckBox" name="checkBox_minSunDistance">
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>min sun distance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_minSunDistance">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>minimum required distance from the sun</string>
+              </property>
+              <property name="statusTip">
+               <string>minimum required distance from the sun</string>
+              </property>
+              <property name="whatsThis">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required angle between source and sun in degrees. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string> [deg]</string>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>4.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_variableScanDuration">
+           <property name="toolTip">
+            <string>set variable scan duration</string>
+           </property>
+           <property name="statusTip">
+            <string>set variable scan duration</string>
+           </property>
+           <property name="title">
+            <string>variable scan duration</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <layout class="QFormLayout" name="formLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>max scan time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="spinBox_maxScanTime">
+                <property name="toolTip">
+                 <string>maximum allowed scan duration to this source in seconds</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum allowed scan duration to this source in seconds</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>60</number>
+                </property>
+                <property name="value">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>min scan time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBox_minScanTime">
+                <property name="toolTip">
+                 <string>minimum required scan duration to this source in seconds</string>
+                </property>
+                <property name="statusTip">
+                 <string>minimum required scan duration to this source in seconds</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; height=&quot;30&quot;/&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; height=&quot;30&quot;/&gt;. The maximum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="suffix">
+                 <string> [s]</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
+                <property name="value">
+                 <number>30</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>target SNR</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QTableWidget" name="tableWidget_minSNR">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>120</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>minimum required signal to noise ration for each band</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>minimum required signal to noise ration for each band</string>
+                 </property>
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum target signal to noise ratio. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;, baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and observing mode &lt;img src=&quot;:/icons/icons/drive-harddisk-3.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <row>
+                  <property name="text">
+                   <string>X</string>
+                  </property>
+                 </row>
+                 <row>
+                  <property name="text">
+                   <string>S</string>
+                  </property>
+                 </row>
+                 <column>
+                  <property name="text">
+                   <string>SNR</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_fixedScanDuration">
+           <property name="toolTip">
+            <string>set fixed scan duration</string>
+           </property>
+           <property name="statusTip">
+            <string>set fixed scan duration</string>
+           </property>
+           <property name="whatsThis">
+            <string>Fixed scan duration in seconds regardless of the observed flux density. </string>
+           </property>
+           <property name="title">
+            <string>fixed scan duration</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_21">
+              <property name="text">
+               <string>duration</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_fixedScanDuration">
+              <property name="toolTip">
+               <string>fixed scan duration in seconds</string>
+              </property>
+              <property name="statusTip">
+               <string>fixed scan duration in seconds</string>
+              </property>
+              <property name="suffix">
+               <string> [s]</string>
+              </property>
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>999</number>
+              </property>
+              <property name="singleStep">
+               <number>30</number>
+              </property>
+              <property name="value">
+               <number>300</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_jet_angle">
+           <property name="title">
+            <string>exclude observations aligned with jet angle</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_6">
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_buffer">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="suffix">
+               <string> [deg]</string>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>5.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="radioButton_jet_angle_buffer">
+              <property name="text">
+               <string>fixed buffer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="radioButton_jet_angle_factor">
+              <property name="text">
+               <string>based on uncertainty</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_factor">
+              <property name="prefix">
+               <string>factor: </string>
+              </property>
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="minimum">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_sameObservingDurationForAllStations">
+           <property name="title">
+            <string>same observing duration for all stations</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
+            <item>
+             <widget class="QRadioButton" name="radioButton_sameObsDur_yes">
+              <property name="text">
+               <string>yes</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_sameObsDur_no">
+              <property name="text">
+               <string>no</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_10">
+           <property name="toolTip">
+            <string>set fixed minimum time between observations to this source</string>
+           </property>
+           <property name="statusTip">
+            <string>set fixed minimum time between observations to this source</string>
+           </property>
+           <property name="whatsThis">
+            <string>Fixed minimum time between two scans to the same source in seconds.</string>
+           </property>
+           <property name="title">
+            <string>fixed minimum time between scans</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>time</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBox_minRepeatTime">
+              <property name="toolTip">
+               <string>minimum required time between observations to this source in seconds</string>
+              </property>
+              <property name="statusTip">
+               <string>minimum required time between observations to this source in seconds</string>
+              </property>
+              <property name="suffix">
+               <string> [s]</string>
+              </property>
+              <property name="maximum">
+               <number>9999</number>
+              </property>
+              <property name="singleStep">
+               <number>600</number>
+              </property>
+              <property name="value">
+               <number>1800</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_9">
+           <property name="toolTip">
+            <string>set variable minimum time between scans to this source</string>
+           </property>
+           <property name="statusTip">
+            <string>set variable minimum time between scans to this source</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Variable minimum required time between two scans to the same source in seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The minimum required time is &lt;span style=&quot; font-weight:600;&quot;&gt;based on the target number of scans&lt;/span&gt;. The software first checks how many seconds the source is observable and then divides this time by the number of target scans and uses this value as the minimum required time between two scans to this source. &lt;/p&gt;&lt;p&gt;In any case there will be at least the amount of time between two scans to this source which is set in the &lt;span style=&quot; font-weight:600;&quot;&gt;minimum time&lt;/span&gt; field. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;target number of scans = 5&lt;/p&gt;&lt;p&gt;minimum time = 1800 seconds&lt;/p&gt;&lt;p&gt;visible time = 10000 seconds&lt;/p&gt;&lt;p&gt;=&amp;gt; minimum time between two scans is 2000 seconds&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;target number of scans = 10&lt;/p&gt;&lt;p&gt;minimum time = 1800 seconds&lt;/p&gt;&lt;p&gt;visible time = 10000 seconds&lt;/p&gt;&lt;p&gt;=&amp;gt; minimum time between two scans is 1800 seconds &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="title">
+            <string>variable minimum time between scans</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>target number of scans</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_evenlyDistScans">
+              <property name="toolTip">
+               <string>aimed number of scans to this source</string>
+              </property>
+              <property name="statusTip">
+               <string>aimed number of scans to this source</string>
+              </property>
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="minimum">
+               <number>2</number>
+              </property>
+              <property name="maximum">
+               <number>999</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>minimum time </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinBox_variableRepeatMinTime">
+              <property name="toolTip">
+               <string>minimum time between scans</string>
+              </property>
+              <property name="statusTip">
+               <string>minimum time between scans</string>
+              </property>
+              <property name="suffix">
+               <string> [s]</string>
+              </property>
+              <property name="prefix">
+               <string/>
+              </property>
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+              <property name="singleStep">
+               <number>600</number>
+              </property>
+              <property name="value">
+               <number>1800</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_increaseWeightIfObservedOnce">
+           <property name="toolTip">
+            <string>increase weight of this source if it is already observed</string>
+           </property>
+           <property name="statusTip">
+            <string>increase weight of this source if it is already observed</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Increase the weight of a scan to this source if the source is already scheduled.&lt;/p&gt;&lt;p&gt;Extra weight (weights &amp;gt;1) mean that scans to this source are preferred. &lt;/p&gt;&lt;p&gt;This option can be used to focus on a small amount of target scans and try to observe them as often as possible. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The weight is increased by the number set in the &lt;span style=&quot; font-weight:600;&quot;&gt;weight factor&lt;/span&gt; field. &lt;/p&gt;&lt;p&gt;There are two possibilities how a weight can be increased, either additive or multiplicative. &lt;/p&gt;&lt;p&gt;The increase can happen every time a scan is observed or only once. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Examples:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;once&lt;/p&gt;&lt;p&gt;additive&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 3&lt;/p&gt;&lt;p&gt;3. scan: weight = 3&lt;/p&gt;&lt;p&gt;4. scan: weight = 3&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;additive&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 3&lt;/p&gt;&lt;p&gt;3. scan: weight = 5&lt;/p&gt;&lt;p&gt;4. scan: weight = 7&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;once&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 2&lt;/p&gt;&lt;p&gt;3. scan: weight = 2&lt;/p&gt;&lt;p&gt;4. scan: weight = 2&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;multiplikative&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 2&lt;/p&gt;&lt;p&gt;3. scan: weight = 4&lt;/p&gt;&lt;p&gt;4. scan: weight = 8&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="title">
+            <string>increase weight if observed once</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_22">
+                <property name="text">
+                 <string>weight factor</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_factor">
+                <property name="toolTip">
+                 <string>factor to use</string>
+                </property>
+                <property name="statusTip">
+                 <string>factor to use</string>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
+               <string>occurrency</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_15">
+               <item>
+                <widget class="QRadioButton" name="radioButton_increaseWeight_once">
+                 <property name="toolTip">
+                  <string>increase weight only once</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>increase weight only once</string>
+                 </property>
+                 <property name="text">
+                  <string>once</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_increaseWeight_perScan">
+                 <property name="toolTip">
+                  <string>increase weight at every scan</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>increase weight at every scan</string>
+                 </property>
+                 <property name="text">
+                  <string>per scan</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="title">
+               <string>type</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <item>
+                <widget class="QRadioButton" name="radioButton_addWeightAdditive">
+                 <property name="toolTip">
+                  <string>add weight factor </string>
+                 </property>
+                 <property name="statusTip">
+                  <string>add weight factor </string>
+                 </property>
+                 <property name="text">
+                  <string>additive</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_addWeightMultiplicative">
+                 <property name="toolTip">
+                  <string>multiply current weight with weight factor</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>multiply current weight with weight factor</string>
+                 </property>
+                 <property name="text">
+                  <string>multiplicative</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QGroupBox" name="groupBox_ignoreStations">
+         <property name="toolTip">
+          <string>ignore stations for scans to this source</string>
+         </property>
+         <property name="statusTip">
+          <string>ignore stations for scans to this source</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select stations which should be ignored for scans to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means this station will &lt;span style=&quot; font-weight:600;&quot;&gt;never&lt;/span&gt; participate in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>ignore stations</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>available</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListView" name="listView_ignoreStations">
+                <property name="toolTip">
+                 <string>list of available stations</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of available stations</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QLabel" name="label_12">
+                  <property name="text">
+                   <string>Filter:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_ignoreStations">
+                  <property name="toolTip">
+                   <string>filter list of available stations</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>filter list of available stations</string>
+                  </property>
+                  <property name="inputMask">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>selected</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListWidget" name="listWidget_selectedIgnoreStations">
+                <property name="toolTip">
+                 <string>list of stations to ignore in a scan</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of stations to ignore in a scan</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_requiredStations">
+         <property name="toolTip">
+          <string>required stations for scans to this source</string>
+         </property>
+         <property name="statusTip">
+          <string>required stations for scans to this source</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select stations which are required for scans to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means this station will &lt;span style=&quot; font-weight:600;&quot;&gt;always&lt;/span&gt; participate in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>required stations</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>available</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListView" name="listView_requiredStations">
+                <property name="toolTip">
+                 <string>list of available stations</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of available stations</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>Filter:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_filterRequiredStations">
+                  <property name="toolTip">
+                   <string>filter list of available stations</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>filter list of available stations</string>
+                  </property>
+                  <property name="inputMask">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>selected</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListWidget" name="listWidget_selectedRequiredStations">
+                <property name="toolTip">
+                 <string>list of stations which are required in a scan</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of stations which are required in a scan</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_ignoreBaselines">
+         <property name="toolTip">
+          <string>ignore baselines for scans to this source</string>
+         </property>
+         <property name="statusTip">
+          <string>ignore baselines for scans to this source</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select baselines which should be ignored observations to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means observations on this baselines are &lt;span style=&quot; font-weight:600;&quot;&gt;never&lt;/span&gt; considered for this scans. They won't effect the scan duration, are not countet for the number of observations and they will not appear in output files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>ignore baselines</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <widget class="QLabel" name="label_17">
+                <property name="text">
+                 <string>available</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListView" name="listView_ignoreBaselines">
+                <property name="toolTip">
+                 <string>list of available baselines</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of available baselines</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_18">
+                  <property name="text">
+                   <string>Filter:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_filter_ignoreBaselines">
+                  <property name="toolTip">
+                   <string>filter list of available baselines</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>filter list of available baselines</string>
+                  </property>
+                  <property name="inputMask">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="label_19">
+                <property name="text">
+                 <string>selected</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListWidget" name="listWidget_selectedIgnoreBaselines">
+                <property name="toolTip">
+                 <string>list of baselines to ignore in a scan</string>
+                </property>
+                <property name="statusTip">
+                 <string>list of baselines to ignore in a scan</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+         <zorder></zorder>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="Line" name="line">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -120,1312 +1426,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1">
-       <item>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAsNeeded</enum>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustIgnored</enum>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>-692</y>
-            <width>329</width>
-            <height>1324</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
-            <widget class="QGroupBox" name="groupBox_available">
-             <property name="toolTip">
-              <string>availability of this source for scans</string>
-             </property>
-             <property name="statusTip">
-              <string>availability of this source for scans</string>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;this source &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; during this periode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="title">
-              <string>available</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QRadioButton" name="radioButton_available_yes">
-                <property name="toolTip">
-                 <string>source can be observed</string>
-                </property>
-                <property name="statusTip">
-                 <string>source can be observed</string>
-                </property>
-                <property name="text">
-                 <string>yes</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="radioButton_available_no">
-                <property name="toolTip">
-                 <string>source cannot be observed </string>
-                </property>
-                <property name="statusTip">
-                 <string>source cannot be observed </string>
-                </property>
-                <property name="text">
-                 <string>no</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_availableForFillinmode">
-             <property name="toolTip">
-              <string>availability of this source for fillinmode scans</string>
-             </property>
-             <property name="statusTip">
-              <string>availability of this source for fillinmode scans</string>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you change this option to &lt;span style=&quot; font-style:italic;&quot;&gt;&amp;quot;no&amp;quot; &lt;/span&gt;this source &lt;span style=&quot; font-weight:600;&quot;&gt;will not be scheduled&lt;/span&gt; for fillin mode scans. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;You can use this option to restrict the amount of sources for fillin mode scans. Or you can use this option to make sure that your special sources are not scheduled in an fillin mode scan. This can be useful because fillin mode scans tend to be less impactful and have less stations then normal scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="title">
-              <string>available for fillin mode</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_12">
-              <item>
-               <widget class="QRadioButton" name="radioButton_availableForFillin_yes">
-                <property name="toolTip">
-                 <string>source can be observed in fillin modes</string>
-                </property>
-                <property name="statusTip">
-                 <string>source can be observed in fillin modes</string>
-                </property>
-                <property name="text">
-                 <string>yes</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="radioButton_availableForFillin_no">
-                <property name="toolTip">
-                 <string>source cannot be observed in fillin modes</string>
-                </property>
-                <property name="statusTip">
-                 <string>source cannot be observed in fillin modes</string>
-                </property>
-                <property name="text">
-                 <string>no</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>general</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QFormLayout" name="formLayout_5">
-              <item row="0" column="0">
-               <widget class="QCheckBox" name="checkBox_weight">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>weight</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QDoubleSpinBox" name="weightDoubleSpinBox">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>weight of this source for selection of best scan</string>
-                </property>
-                <property name="statusTip">
-                 <string>weight of this source for selection of best scan</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you give a source &lt;span style=&quot; font-weight:600;&quot;&gt;extra weight&lt;/span&gt; (weight &amp;gt;1) then the software will &lt;span style=&quot; font-weight:600;&quot;&gt;prefere scans to this source&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="maximum">
-                 <double>999.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.250000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QCheckBox" name="checkBox_minNumberOfStations">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>min number of stations</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_minNumberOfStations">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>required number of stations for scans to this source</string>
-                </property>
-                <property name="statusTip">
-                 <string>required number of stations for scans to this source</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum number of participating stations in a scan to this source. If there are fewer stations in the session this number will be removed to the number of stations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string/>
-                </property>
-                <property name="maximum">
-                 <number>9999</number>
-                </property>
-                <property name="value">
-                 <number>2</number>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QCheckBox" name="checkBox_minFlux">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>min flux</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_minFlux">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>minimum flux density in Jansky for observations to this source</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum flux density in Jansky for observations to this source</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum flux density in Jansky for observations to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [Jy]</string>
-                </property>
-                <property name="singleStep">
-                 <double>0.100000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>max number of scans</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>maximum number of scans to this source</string>
-                </property>
-                <property name="statusTip">
-                 <string>maximum number of scans to this source</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of scans to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string/>
-                </property>
-                <property name="maximum">
-                 <number>999</number>
-                </property>
-                <property name="value">
-                 <number>999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QCheckBox" name="checkBox_minElevation">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>min elevation</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>minimum station elevation for observations to this source in degrees</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum station elevation for observations to this source in degrees</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required elevation for scans to this source in degrees. &lt;br/&gt;This value is also set in the station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum of this value and the value from the station parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QCheckBox" name="checkBox_minSunDistance">
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>min sun distance</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_minSunDistance">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>minimum required distance from the sun</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum required distance from the sun</string>
-                </property>
-                <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required angle between source and sun in degrees. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-                <property name="maximum">
-                 <double>180.000000000000000</double>
-                </property>
-                <property name="value">
-                 <double>4.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_variableScanDuration">
-             <property name="toolTip">
-              <string>set variable scan duration</string>
-             </property>
-             <property name="statusTip">
-              <string>set variable scan duration</string>
-             </property>
-             <property name="title">
-              <string>variable scan duration</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <item>
-               <layout class="QFormLayout" name="formLayout">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_2">
-                  <property name="text">
-                   <string>max scan time</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QSpinBox" name="spinBox_maxScanTime">
-                  <property name="toolTip">
-                   <string>maximum allowed scan duration to this source in seconds</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>maximum allowed scan duration to this source in seconds</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum allowed scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="suffix">
-                   <string> [s]</string>
-                  </property>
-                  <property name="maximum">
-                   <number>9999</number>
-                  </property>
-                  <property name="singleStep">
-                   <number>60</number>
-                  </property>
-                  <property name="value">
-                   <number>600</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="label_3">
-                  <property name="text">
-                   <string>min scan time</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QSpinBox" name="spinBox_minScanTime">
-                  <property name="toolTip">
-                   <string>minimum required scan duration to this source in seconds</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>minimum required scan duration to this source in seconds</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum required scan time in seconds. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; height=&quot;30&quot;/&gt; and baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; height=&quot;30&quot;/&gt;. The maximum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="suffix">
-                   <string> [s]</string>
-                  </property>
-                  <property name="prefix">
-                   <string/>
-                  </property>
-                  <property name="maximum">
-                   <number>9999</number>
-                  </property>
-                  <property name="singleStep">
-                   <number>10</number>
-                  </property>
-                  <property name="value">
-                   <number>30</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QGroupBox" name="groupBox_5">
-                <property name="title">
-                 <string>target SNR</string>
-                </property>
-                <property name="checkable">
-                 <bool>false</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_8">
-                 <item>
-                  <widget class="QTableWidget" name="tableWidget_minSNR">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>120</height>
-                    </size>
-                   </property>
-                   <property name="toolTip">
-                    <string>minimum required signal to noise ration for each band</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>minimum required signal to noise ration for each band</string>
-                   </property>
-                   <property name="whatsThis">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum target signal to noise ratio. &lt;/p&gt;&lt;p&gt;This value is also set in station parameters &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;, baseline parameters &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt; and observing mode &lt;img src=&quot;:/icons/icons/drive-harddisk-3.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. The minimum value of those three parameters will be taken. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                   </property>
-                   <attribute name="horizontalHeaderStretchLastSection">
-                    <bool>true</bool>
-                   </attribute>
-                   <row>
-                    <property name="text">
-                     <string>X</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>S</string>
-                    </property>
-                   </row>
-                   <column>
-                    <property name="text">
-                     <string>SNR</string>
-                    </property>
-                   </column>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_fixedScanDuration">
-             <property name="toolTip">
-              <string>set fixed scan duration</string>
-             </property>
-             <property name="statusTip">
-              <string>set fixed scan duration</string>
-             </property>
-             <property name="whatsThis">
-              <string>Fixed scan duration in seconds regardless of the observed flux density. </string>
-             </property>
-             <property name="title">
-              <string>fixed scan duration</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QFormLayout" name="formLayout_4">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_21">
-                <property name="text">
-                 <string>duration</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_fixedScanDuration">
-                <property name="toolTip">
-                 <string>fixed scan duration in seconds</string>
-                </property>
-                <property name="statusTip">
-                 <string>fixed scan duration in seconds</string>
-                </property>
-                <property name="suffix">
-                 <string> [s]</string>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>999</number>
-                </property>
-                <property name="singleStep">
-                 <number>30</number>
-                </property>
-                <property name="value">
-                 <number>300</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_jet_angle">
-             <property name="title">
-              <string>exclude observations aligned with jet angle</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QFormLayout" name="formLayout_6">
-              <item row="1" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_buffer">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="suffix">
-                 <string> [deg]</string>
-                </property>
-                <property name="maximum">
-                 <double>180.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>5.000000000000000</double>
-                </property>
-                <property name="value">
-                 <double>5.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QRadioButton" name="radioButton_jet_angle_buffer">
-                <property name="text">
-                 <string>fixed buffer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_jet_angle_factor">
-                <property name="text">
-                 <string>based on uncertainty</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_jet_angle_factor">
-                <property name="prefix">
-                 <string>factor: </string>
-                </property>
-                <property name="suffix">
-                 <string/>
-                </property>
-                <property name="minimum">
-                 <double>0.100000000000000</double>
-                </property>
-                <property name="maximum">
-                 <double>5.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.500000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.000000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line_7">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_sameObservingDurationForAllStations">
-             <property name="title">
-              <string>same observing duration for all stations</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_16">
-              <item>
-               <widget class="QRadioButton" name="radioButton_sameObsDur_yes">
-                <property name="text">
-                 <string>yes</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="radioButton_sameObsDur_no">
-                <property name="text">
-                 <string>no</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_10">
-             <property name="toolTip">
-              <string>set fixed minimum time between observations to this source</string>
-             </property>
-             <property name="statusTip">
-              <string>set fixed minimum time between observations to this source</string>
-             </property>
-             <property name="whatsThis">
-              <string>Fixed minimum time between two scans to the same source in seconds.</string>
-             </property>
-             <property name="title">
-              <string>fixed minimum time between scans</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_14">
-              <item>
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>time</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spinBox_minRepeatTime">
-                <property name="toolTip">
-                 <string>minimum required time between observations to this source in seconds</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum required time between observations to this source in seconds</string>
-                </property>
-                <property name="suffix">
-                 <string> [s]</string>
-                </property>
-                <property name="maximum">
-                 <number>9999</number>
-                </property>
-                <property name="singleStep">
-                 <number>600</number>
-                </property>
-                <property name="value">
-                 <number>1800</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_9">
-             <property name="toolTip">
-              <string>set variable minimum time between scans to this source</string>
-             </property>
-             <property name="statusTip">
-              <string>set variable minimum time between scans to this source</string>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Variable minimum required time between two scans to the same source in seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The minimum required time is &lt;span style=&quot; font-weight:600;&quot;&gt;based on the target number of scans&lt;/span&gt;. The software first checks how many seconds the source is observable and then divides this time by the number of target scans and uses this value as the minimum required time between two scans to this source. &lt;/p&gt;&lt;p&gt;In any case there will be at least the amount of time between two scans to this source which is set in the &lt;span style=&quot; font-weight:600;&quot;&gt;minimum time&lt;/span&gt; field. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;target number of scans = 5&lt;/p&gt;&lt;p&gt;minimum time = 1800 seconds&lt;/p&gt;&lt;p&gt;visible time = 10000 seconds&lt;/p&gt;&lt;p&gt;=&amp;gt; minimum time between two scans is 2000 seconds&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;target number of scans = 10&lt;/p&gt;&lt;p&gt;minimum time = 1800 seconds&lt;/p&gt;&lt;p&gt;visible time = 10000 seconds&lt;/p&gt;&lt;p&gt;=&amp;gt; minimum time between two scans is 1800 seconds &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="title">
-              <string>variable minimum time between scans</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QFormLayout" name="formLayout_3">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>target number of scans</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_evenlyDistScans">
-                <property name="toolTip">
-                 <string>aimed number of scans to this source</string>
-                </property>
-                <property name="statusTip">
-                 <string>aimed number of scans to this source</string>
-                </property>
-                <property name="suffix">
-                 <string/>
-                </property>
-                <property name="minimum">
-                 <number>2</number>
-                </property>
-                <property name="maximum">
-                 <number>999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>minimum time </string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_variableRepeatMinTime">
-                <property name="toolTip">
-                 <string>minimum time between scans</string>
-                </property>
-                <property name="statusTip">
-                 <string>minimum time between scans</string>
-                </property>
-                <property name="suffix">
-                 <string> [s]</string>
-                </property>
-                <property name="prefix">
-                 <string/>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-                <property name="singleStep">
-                 <number>600</number>
-                </property>
-                <property name="value">
-                 <number>1800</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_increaseWeightIfObservedOnce">
-             <property name="toolTip">
-              <string>increase weight of this source if it is already observed</string>
-             </property>
-             <property name="statusTip">
-              <string>increase weight of this source if it is already observed</string>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Increase the weight of a scan to this source if the source is already scheduled.&lt;/p&gt;&lt;p&gt;Extra weight (weights &amp;gt;1) mean that scans to this source are preferred. &lt;/p&gt;&lt;p&gt;This option can be used to focus on a small amount of target scans and try to observe them as often as possible. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The weight is increased by the number set in the &lt;span style=&quot; font-weight:600;&quot;&gt;weight factor&lt;/span&gt; field. &lt;/p&gt;&lt;p&gt;There are two possibilities how a weight can be increased, either additive or multiplicative. &lt;/p&gt;&lt;p&gt;The increase can happen every time a scan is observed or only once. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Examples:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;once&lt;/p&gt;&lt;p&gt;additive&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 3&lt;/p&gt;&lt;p&gt;3. scan: weight = 3&lt;/p&gt;&lt;p&gt;4. scan: weight = 3&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;additive&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 3&lt;/p&gt;&lt;p&gt;3. scan: weight = 5&lt;/p&gt;&lt;p&gt;4. scan: weight = 7&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;once&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 2&lt;/p&gt;&lt;p&gt;3. scan: weight = 2&lt;/p&gt;&lt;p&gt;4. scan: weight = 2&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;start Weight: 1&lt;/p&gt;&lt;p&gt;weight factor: 2&lt;/p&gt;&lt;p&gt;per scan&lt;/p&gt;&lt;p&gt;multiplikative&lt;/p&gt;&lt;p&gt;1. scan: weight = 1&lt;/p&gt;&lt;p&gt;2. scan: weight = 2&lt;/p&gt;&lt;p&gt;3. scan: weight = 4&lt;/p&gt;&lt;p&gt;4. scan: weight = 8&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="title">
-              <string>increase weight if observed once</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_8">
-                <item>
-                 <widget class="QLabel" name="label_22">
-                  <property name="text">
-                   <string>weight factor</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_factor">
-                  <property name="toolTip">
-                   <string>factor to use</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>factor to use</string>
-                  </property>
-                  <property name="value">
-                   <double>1.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QGroupBox" name="groupBox">
-                <property name="title">
-                 <string>occurrency</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_15">
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_increaseWeight_once">
-                   <property name="toolTip">
-                    <string>increase weight only once</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>increase weight only once</string>
-                   </property>
-                   <property name="text">
-                    <string>once</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_increaseWeight_perScan">
-                   <property name="toolTip">
-                    <string>increase weight at every scan</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>increase weight at every scan</string>
-                   </property>
-                   <property name="text">
-                    <string>per scan</string>
-                   </property>
-                   <property name="checked">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QGroupBox" name="groupBox_7">
-                <property name="title">
-                 <string>type</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_addWeightAdditive">
-                   <property name="toolTip">
-                    <string>add weight factor </string>
-                   </property>
-                   <property name="statusTip">
-                    <string>add weight factor </string>
-                   </property>
-                   <property name="text">
-                    <string>additive</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_addWeightMultiplicative">
-                   <property name="toolTip">
-                    <string>multiply current weight with weight factor</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>multiply current weight with weight factor</string>
-                   </property>
-                   <property name="text">
-                    <string>multiplicative</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_10">
-         <item>
-          <widget class="QGroupBox" name="groupBox_ignoreStations">
-           <property name="toolTip">
-            <string>ignore stations for scans to this source</string>
-           </property>
-           <property name="statusTip">
-            <string>ignore stations for scans to this source</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select stations which should be ignored for scans to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means this station will &lt;span style=&quot; font-weight:600;&quot;&gt;never&lt;/span&gt; participate in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="title">
-            <string>ignore stations</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_12">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_2">
-                <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string>available</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListView" name="listView_ignoreStations">
-                  <property name="toolTip">
-                   <string>list of available stations</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of available stations</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout">
-                  <item>
-                   <widget class="QLabel" name="label_12">
-                    <property name="text">
-                     <string>Filter:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit_ignoreStations">
-                    <property name="toolTip">
-                     <string>filter list of available stations</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>filter list of available stations</string>
-                    </property>
-                    <property name="inputMask">
-                     <string/>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_3">
-                <item>
-                 <widget class="QLabel" name="label_13">
-                  <property name="text">
-                   <string>selected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="listWidget_selectedIgnoreStations">
-                  <property name="toolTip">
-                   <string>list of stations to ignore in a scan</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of stations to ignore in a scan</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_requiredStations">
-           <property name="toolTip">
-            <string>required stations for scans to this source</string>
-           </property>
-           <property name="statusTip">
-            <string>required stations for scans to this source</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select stations which are required for scans to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means this station will &lt;span style=&quot; font-weight:600;&quot;&gt;always&lt;/span&gt; participate in a scan to this source. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="title">
-            <string>required stations</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_13">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_4">
-                <item>
-                 <widget class="QLabel" name="label_14">
-                  <property name="text">
-                   <string>available</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListView" name="listView_requiredStations">
-                  <property name="toolTip">
-                   <string>list of available stations</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of available stations</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
-                  <item>
-                   <widget class="QLabel" name="label_15">
-                    <property name="text">
-                     <string>Filter:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit_filterRequiredStations">
-                    <property name="toolTip">
-                     <string>filter list of available stations</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>filter list of available stations</string>
-                    </property>
-                    <property name="inputMask">
-                     <string/>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_5">
-                <item>
-                 <widget class="QLabel" name="label_16">
-                  <property name="text">
-                   <string>selected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="listWidget_selectedRequiredStations">
-                  <property name="toolTip">
-                   <string>list of stations which are required in a scan</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of stations which are required in a scan</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_ignoreBaselines">
-           <property name="toolTip">
-            <string>ignore baselines for scans to this source</string>
-           </property>
-           <property name="statusTip">
-            <string>ignore baselines for scans to this source</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select baselines which should be ignored observations to this source. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This means observations on this baselines are &lt;span style=&quot; font-weight:600;&quot;&gt;never&lt;/span&gt; considered for this scans. They won't effect the scan duration, are not countet for the number of observations and they will not appear in output files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="title">
-            <string>ignore baselines</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_14">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
-                <item>
-                 <widget class="QLabel" name="label_17">
-                  <property name="text">
-                   <string>available</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListView" name="listView_ignoreBaselines">
-                  <property name="toolTip">
-                   <string>list of available baselines</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of available baselines</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on item to select member.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_7">
-                  <item>
-                   <widget class="QLabel" name="label_18">
-                    <property name="text">
-                     <string>Filter:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit_filter_ignoreBaselines">
-                    <property name="toolTip">
-                     <string>filter list of available baselines</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>filter list of available baselines</string>
-                    </property>
-                    <property name="inputMask">
-                     <string/>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_7">
-                <item>
-                 <widget class="QLabel" name="label_19">
-                  <property name="text">
-                   <string>selected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="listWidget_selectedIgnoreBaselines">
-                  <property name="toolTip">
-                   <string>list of baselines to ignore in a scan</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>list of baselines to ignore in a scan</string>
-                  </property>
-                  <property name="whatsThis">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click on source to deselect member. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
-           <zorder></zorder>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
      </item>
      <item>
       <widget class="QLabel" name="label_5">
