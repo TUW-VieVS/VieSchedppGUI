@@ -370,7 +370,7 @@ std::vector<VieVS::Scan> SatelliteObs::createScanList( std::vector<std::vector<S
     vector<VieVS::PointingVector> pointingVectorsEnd;
     bool isScan = false;
 
-    unsigned long i = 0;
+    long i = 0;
     while ( i < timePoints.size() ) {
         if ( ignoreNow.at( timePoints.at( i ).stationID ) == 0 ) {
             if ( isDone.at( timePoints.at( i ).stationID ) == 0 ) {
@@ -471,7 +471,7 @@ std::vector<VieVS::Scan> SatelliteObs::createScanList( std::vector<std::vector<S
                                 for ( unsigned long j = 0; j < ignoreNow.size(); j++ ) {
                                     ignoreNow.at( j ) = ignoreNowCOPY.at( j ) + addThis.at( j );
                                 }
-                                i = 0;
+                                i = -1;
                                 isobs.assign( nSta, false );
                                 isDone.assign( nSta, 0 );
                                 ignoreNext.assign( nSta, 0 );
