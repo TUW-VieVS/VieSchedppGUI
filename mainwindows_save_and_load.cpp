@@ -788,6 +788,10 @@ void MainWindow::loadXML(QString path)
         }
 
 
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        priorities->setBlock(true);
+
         std::vector<std::string> sel_stations;
         const auto &stations = xml.get_child_optional("VieSchedpp.general.stations");
         if(stations.is_initialized()){
@@ -871,6 +875,10 @@ void MainWindow::loadXML(QString path)
                 ++it;
             }
         }
+        priorities->setBlock(false);
+        priorities->addStations();
+        priorities->addSources();
+
 
         std::string scanAlignment = xml.get("VieSchedpp.general.scanAlignment","start");
         if(scanAlignment == "start"){

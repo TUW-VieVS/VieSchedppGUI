@@ -132,12 +132,16 @@ void Priorities::fromXML(const boost::property_tree::ptree &tree)
 
 void Priorities::addStations(QStandardItem *)
 {
-    setup();
+    if ( !block ){
+        setup();
+    }
 }
 
 void Priorities::addSources(QStandardItem *)
 {
-    setup();
+    if ( !block ){
+        setup();
+    }
 }
 
 void Priorities::setup()

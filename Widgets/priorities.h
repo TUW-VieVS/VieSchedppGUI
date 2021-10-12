@@ -25,6 +25,9 @@ public:
 public slots:
     void addStations(QStandardItem * = nullptr);
     void addSources(QStandardItem * = nullptr);
+    void setBlock(bool flag){
+        block = flag;
+    }
 
 private:
     Ui::Priorities *ui;
@@ -32,6 +35,7 @@ private:
     QStandardItemModel *sources_;
 
     bool blockPaint = false;
+    bool block = false;
     void addRow(QString name, double val=1);
 
 private slots:
