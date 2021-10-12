@@ -17,17 +17,19 @@ class Priorities : public QWidget
     Q_OBJECT
 
 public:
-    explicit Priorities(QStandardItemModel *model, QWidget *parent = nullptr);
+    explicit Priorities(QStandardItemModel *stations, QStandardItemModel *sources, QWidget *parent = nullptr);
     ~Priorities();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
 
 public slots:
     void addStations(QStandardItem * = nullptr);
+    void addSources(QStandardItem * = nullptr);
 
 private:
     Ui::Priorities *ui;
-    QStandardItemModel *model_;
+    QStandardItemModel *stations_;
+    QStandardItemModel *sources_;
 
     bool blockPaint = false;
     void addRow(QString name, double val=1);
@@ -38,6 +40,7 @@ private slots:
 
     void averageEOP();
     void averageSta();
+    void averageSrc();
 };
 
 #endif // PRIORITIES_H

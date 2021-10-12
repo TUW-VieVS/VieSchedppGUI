@@ -592,11 +592,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedSourceModel, SIGNAL(itemChanged(QStandardItem *)), solver, SLOT(addSources(QStandardItem *)));
     connect(selectedSourceModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), solver, SLOT(addSources()));
 
-    Priorities *priorities = new Priorities(selectedStationModel);
+    Priorities *priorities = new Priorities(selectedStationModel, selectedSourceModel);
     priorities->setObjectName("Priorities_Widged");
     ui->tabWidget_simAna->addTab(priorities, "Priority");
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), priorities, SLOT(addStations(QStandardItem *)));
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addStations()));
+    connect(selectedSourceModel, SIGNAL(itemChanged(QStandardItem *)), priorities, SLOT(addSources(QStandardItem *)));
+    connect(selectedSourceModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), priorities, SLOT(addSources()));
 
     readSources();
     readSatellites();
@@ -3043,6 +3045,10 @@ void MainWindow::on_pushButton_reloadsources_clicked()
     }else{
         QMessageBox::information(this, "reload sources", "sources successfully reloaded");
     }
+
+    auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+    Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+    priorities->addSources();
 
 }
 
