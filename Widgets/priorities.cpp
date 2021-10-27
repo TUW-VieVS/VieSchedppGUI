@@ -64,11 +64,9 @@ boost::property_tree::ptree Priorities::toXML()
         auto *dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,1));
         boost::property_tree::ptree t2;
 
-        if( dsp->value() > 0){
-            t2.add("variable", dsp->value());
-            t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
-            tree.add_child("priorities.variable",t2.get_child("variable"));
-        }
+        t2.add("variable", dsp->value());
+        t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
+        tree.add_child("priorities.variable",t2.get_child("variable"));
     }
 
     QTreeWidgetItem *itm_scale = t->topLevelItem(4);

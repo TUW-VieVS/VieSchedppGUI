@@ -412,7 +412,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_skedObsModes->setModel(allSkedModesModel);
     ui->comboBox_skedObsModes_advanced->setModel(allSkedModesModel);
 
-
+    ui->comboBox_calibrationBlockSources->setModel(allSourcePlusGroupModel);
     ui->comboBox_calibratorBlock_calibratorSources->setModel(allSourcePlusGroupModel);
     ui->comboBox_idleToObserving_stations->setModel(allStationPlusGroupModel);
     connect(ui->pushButton_idleToObserving_addStationGroup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
@@ -6614,13 +6614,16 @@ void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
         d->setSingleStep(60);
         d->setValue(300);
         d->setSuffix(" [s]");
+        connect(ui->spinBox_calibrationBlockDuration,SIGNAL(valueChanged(int)), d,SLOT(setValue(int)));
 
         QSpinBox *s = new QSpinBox();
         s->setMaximum(10);
         s->setValue(2);
+        connect(ui->spinBox_calibrationBlockScans,SIGNAL(valueChanged(int)), s,SLOT(setValue(int)));
 
         QComboBox *c = new QComboBox();
         c->setModel(allSourcePlusGroupModel);
+        connect(ui->comboBox_calibrationBlockSources,SIGNAL(currentIndexChanged(int)), c,SLOT(setCurrentIndex(int)));
 
         tab->setCellWidget(i_row,0,t);
         tab->setCellWidget(i_row,1,d);
