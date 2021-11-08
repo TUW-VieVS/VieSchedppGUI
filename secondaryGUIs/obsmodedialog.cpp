@@ -323,7 +323,7 @@ void ObsModeDialog::setupViewTracks(QTableView *view)
 
 void ObsModeDialog::setupViewFreq(QTableView *view)
 {
-    model_freq_ = new Model_Freq(bandIds_, channelIds_, bbcIds_, this);
+    model_freq_ = new Model_Freq(bandIds_, channelIds_, bbcIds_, phaseCalIds_, this);
     view->setModel(model_freq_);
 
     DoubleSpinBoxDelegate *doubleSpinBoxDelegate_MHz = new DoubleSpinBoxDelegate(" [MHz]",this);

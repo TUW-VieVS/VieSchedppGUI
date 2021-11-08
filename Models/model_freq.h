@@ -14,7 +14,7 @@ class Model_Freq : public QAbstractTableModel
 public:
     explicit Model_Freq(QObject *parent = nullptr);
 
-    Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent = nullptr);
+    Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QStringListModel *phaseCals, QObject *parent = nullptr);
 
 
     // Header:
@@ -64,7 +64,7 @@ private:
     QStringListModel *band_;
     QStringListModel *channels_;
     QStringListModel *bbcs_;
-
+    QStringListModel *phaseCals_;
 };
 
 #endif // MODEL_FREQ_H

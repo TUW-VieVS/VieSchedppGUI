@@ -12,8 +12,8 @@ Model_Freq::Model_Freq(QObject *parent)
 
 }
 
-Model_Freq::Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QObject *parent)
-    : QAbstractTableModel(parent), band_{band}, channels_{channels}, bbcs_{bbcs}
+Model_Freq::Model_Freq(QStringListModel *band, QStringListModel *channels, QStringListModel *bbcs, QStringListModel *phaseCals, QObject *parent)
+    : QAbstractTableModel(parent), band_{band}, channels_{channels}, bbcs_{bbcs}, phaseCals_{phaseCals}
 {
 }
 
@@ -197,11 +197,11 @@ bool Model_Freq::setData(const QModelIndex &index, const QVariant &value, int ro
             break;
         }
         case 6:{
-//            int idx =value.toInt();
-//            if(idx>=0){
-//                QString name = phaseCals_->stringList().at(idx);
-//                d.at(row).phase_cal_id_ = name.toStdString();
-//            }
+            int idx =value.toInt();
+            if(idx>=0){
+                QString name = phaseCals_->stringList().at(idx);
+                d.at(row).phase_cal_id_ = name.toStdString();
+            }
             break;
         }
         }
