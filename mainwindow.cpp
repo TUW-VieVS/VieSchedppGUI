@@ -1964,6 +1964,10 @@ void MainWindow::defaultParameters()
     if(addTimestamps.is_initialized()){
         ui->checkBox_outputAddTimestamp->setChecked(*addTimestamps);
     }
+    boost::optional<bool> timeTable = settings_.get_optional<bool>("settings.output.createTimeTable");
+    if(timeTable.is_initialized()){
+        ui->checkBox_outputTimeTable->setChecked(*timeTable);
+    }
 }
 
 
@@ -2811,6 +2815,16 @@ void MainWindow::on_pushButton_browseMask_clicked()
         ui->lineEdit_pathMask->setText(path);
     }
 }
+
+void MainWindow::on_pushButton_browseStp_clicked()
+{
+    QString path = QFileDialog::getExistingDirectory(this, "Browse to stp folder", ui->lineEdit_pathStp->text());
+    if( !path.isEmpty() ){
+        ui->lineEdit_pathStp->setText(path);
+    }
+
+}
+
 
 void MainWindow::on_pushButton_browseSource_clicked()
 {
@@ -6877,3 +6891,4 @@ void MainWindow::on_pushButton_tle_info_clicked()
     TleFormat *dial = new TleFormat(this);
     dial->show();
 }
+

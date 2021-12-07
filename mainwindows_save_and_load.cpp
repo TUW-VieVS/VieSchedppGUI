@@ -233,8 +233,9 @@ QString MainWindow::writeXML()
             srcGroupsForStatistic.push_back(ui->treeWidget_srcGroupForStatistics->topLevelItem(i)->text(0).toStdString());
         }
     }
+    bool timeTable = ui->checkBox_outputTimeTable->isChecked();
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
-                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, contacts);
+                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, timeTable, contacts);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -250,6 +251,7 @@ QString MainWindow::writeXML()
     std::string source = ui->lineEdit_pathSource->text().toStdString();
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
     std::string satellites = ui->lineEdit_pathSatellite->text().toStdString();
+    std::string stp = ui->lineEdit_pathStp->text().toStdString();
 
     if(ui->checkBox_resolvePathes->isChecked()){
         antenna = QFileInfo(ui->lineEdit_pathAntenna->text()).absoluteFilePath().toStdString();
@@ -266,8 +268,9 @@ QString MainWindow::writeXML()
         source = QFileInfo(ui->lineEdit_pathSource->text()).absoluteFilePath().toStdString();
         satellites = QFileInfo(ui->lineEdit_pathSatellite->text()).absoluteFilePath().toStdString();
         tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
+        stp = QFileInfo(ui->lineEdit_pathStp->text()).absoluteFilePath().toStdString();
     }
-    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites);
+    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites, stp);
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
@@ -596,7 +599,7 @@ QString MainWindow::writeXML()
             }
         }
 
-        para.calibratorBlock(blocks);
+        para.calibratorBlock(blocks, ui->comboBox_calibrationIntent->currentText().toStdString());
     }
 
     if(ui->groupBox_simulator->isChecked()){
@@ -654,6 +657,10 @@ void MainWindow::loadXML(QString path)
         std::string mask = xml.get("VieSchedpp.catalogs.mask","");
         if(!mask.empty()){
             ui->lineEdit_pathMask->setText(QString::fromStdString(mask));
+        }
+        std::string stp = xml.get("VieSchedpp.catalogs.stp_dir","");
+        if(!stp.empty()){
+            ui->lineEdit_pathStp->setText(QString::fromStdString(stp));
         }
         on_pushButton_stations_clicked();
 
@@ -1724,6 +1731,11 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_outputSourceGroupStatFile->setChecked(false);
         }
+        if(xml.get("VieSchedpp.output.createTimeTable",false)){
+            ui->checkBox_outputTimeTable->setChecked(true);
+        }else{
+            ui->checkBox_outputTimeTable->setChecked(false);
+        }
     }
 
     //ruleFocusCorners
@@ -1772,6 +1784,7 @@ void MainWindow::loadXML(QString path)
                 ui->radioButton_calibratorTime->setChecked(true);
                 ui->spinBox_calibratorTime->setValue(xml.get("VieSchedpp.rules.calibratorBlock.cadence_seconds",3600));
             }
+
             std::string members = xml.get("VieSchedpp.rules.calibratorBlock.member","__all__");
             ui->comboBox_calibratorBlock_calibratorSources->setCurrentText(QString::fromStdString(members));
             ui->spinBox_calibrator_maxScanSequence->setValue(xml.get("VieSchedpp.rules.calibratorBlock.nMaxScans",4));
@@ -1817,6 +1830,7 @@ void MainWindow::loadXML(QString path)
         if (ctree.is_initialized()) {
             ui->groupBox_35->setChecked(true);
             ui->radioButton_calibrationBlocksCustom->setChecked(true);
+            ui->comboBox_calibrationIntent->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.intent","NONE")));
 
             int i=0;
             for(const auto &any : *ctree) {
@@ -1953,6 +1967,9 @@ void MainWindow::readSettings()
 
     auto cMask = settings_.get<std::string>("settings.catalog_path.mask","./AUTO_DOWNLOAD_CATALOGS/mask.cat");
     f(ui->lineEdit_pathMask, cMask);
+
+    auto cStp = settings_.get<std::string>("settings.catalog_path.stp_dir","");
+    f(ui->lineEdit_pathStp, cStp);
 
     auto cSource = settings_.get<std::string>("settings.catalog_path.source","./AUTO_DOWNLOAD_CATALOGS/source.cat.geodetic.good");
     f(ui->lineEdit_pathSource, cSource);
@@ -2559,6 +2576,7 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
     settings_.put("settings.catalog_path.equip",ui->lineEdit_pathEquip->text().toStdString());
     settings_.put("settings.catalog_path.position",ui->lineEdit_pathPosition->text().toStdString());
     settings_.put("settings.catalog_path.mask",ui->lineEdit_pathMask->text().toStdString());
+    settings_.put("settings.catalog_path.stp_dir",ui->lineEdit_pathStp->text().toStdString());
     settings_.put("settings.catalog_path.source",ui->lineEdit_pathSource->text().toStdString());
     settings_.put("settings.catalog_path.satellite",ui->lineEdit_pathSatellite->text().toStdString());
     settings_.put("settings.catalog_path.spacecraft",ui->lineEdit_pathSpacecraft->text().toStdString());
@@ -2597,7 +2615,8 @@ void MainWindow::on_pushButton_26_clicked()
          << "settings.output.createSnrTable"
          << "settings.output.createOperationsNotes"
          << "settings.output.createSourceGroupStatistics"
-         << "settings.output.addTimestamps";
+         << "settings.output.addTimestamps"
+         << "settings.output.createTimeTable";
 
     value << ui->lineEdit_outputPath->text();
     ui->checkBox_outputInitializer->isChecked() ? value << "true" : value << "false";
@@ -2612,6 +2631,7 @@ void MainWindow::on_pushButton_26_clicked()
     ui->checkBox_outputOperationsNotes->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputSourceGroupStatFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputAddTimestamp->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputTimeTable->isChecked() ? value << "true" : value << "false";
 
     changeDefaultSettings(path,value,name);
 }

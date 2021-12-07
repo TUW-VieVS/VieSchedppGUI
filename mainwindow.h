@@ -528,6 +528,8 @@ private slots:
 
     void on_pushButton_tle_info_clicked();
 
+    void on_pushButton_browseStp_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

@@ -152,6 +152,7 @@ SOURCES += \
     ../VieSchedpp/Input/LogParser.cpp \
     ../VieSchedpp/Input/SkdCatalogReader.cpp \
     ../VieSchedpp/Input/SkdParser.cpp \
+    ../VieSchedpp/Input/StpParser.cpp \
     ../VieSchedpp/Misc/AstronomicalParameters.cpp \
     ../VieSchedpp/Misc/AstrometricCalibratorBlock.cpp \
     ../VieSchedpp/Misc/Flags.cpp \
@@ -186,6 +187,7 @@ SOURCES += \
     ../VieSchedpp/Source/Flux/AbstractFlux.cpp \
     ../VieSchedpp/Source/Flux/Flux_B.cpp \
     ../VieSchedpp/Source/Flux/Flux_M.cpp \
+    ../VieSchedpp/Source/Flux/Flux_constant.cpp \
     ../VieSchedpp/Source/AbstractSource.cpp \
     ../VieSchedpp/Source/Quasar.cpp \
     ../VieSchedpp/Source/Satellite.cpp \
@@ -193,14 +195,17 @@ SOURCES += \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_GGAO.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.cpp \
+    ../VieSchedpp/Station/Antenna/Antenna_AzEl_acceleration.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_XYew.cpp \
     ../VieSchedpp/Station/CableWrap/AbstractCableWrap.cpp \
     ../VieSchedpp/Station/CableWrap/CableWrap_AzEl.cpp \
     ../VieSchedpp/Station/CableWrap/CableWrap_HaDc.cpp \
     ../VieSchedpp/Station/CableWrap/CableWrap_XYew.cpp \
-    ../VieSchedpp/Station/Equip/Equipment.cpp \
-    ../VieSchedpp/Station/Equip/Equipment_elDependent.cpp \
+    ../VieSchedpp/Station/Equip/AbstractEquipment.cpp \
+    ../VieSchedpp/Station/Equip/Equipment_elModel.cpp \
+    ../VieSchedpp/Station/Equip/Equipment_constant.cpp \
+    ../VieSchedpp/Station/Equip/Equipment_elTable.cpp \
     ../VieSchedpp/Station/HorizonMask/AbstractHorizonMask.cpp \
     ../VieSchedpp/Station/HorizonMask/HorizonMask_line.cpp \
     ../VieSchedpp/Station/HorizonMask/HorizonMask_step.cpp \
@@ -271,6 +276,7 @@ HEADERS += \
     ../VieSchedpp/Input/LogParser.h \
     ../VieSchedpp/Input/SkdCatalogReader.h \
     ../VieSchedpp/Input/SkdParser.h \
+    ../VieSchedpp/Input/StpParser.h \
     ../VieSchedpp/Misc/AstronomicalParameters.h \
     ../VieSchedpp/Misc/AstrometricCalibratorBlock.h \
     ../VieSchedpp/Misc/Constants.h \
@@ -309,6 +315,7 @@ HEADERS += \
     ../VieSchedpp/Source/Flux/AbstractFlux.h \
     ../VieSchedpp/Source/Flux/Flux_B.h \
     ../VieSchedpp/Source/Flux/Flux_M.h \
+    ../VieSchedpp/Source/Flux/Flux_constant.h \
     ../VieSchedpp/Source/AbstractSource.h \
     ../VieSchedpp/Source/Quasar.h \
     ../VieSchedpp/Source/Satellite.h \
@@ -316,14 +323,17 @@ HEADERS += \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.h \
     ../VieSchedpp/Station/Antenna/Antenna_GGAO.h \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.h \
+    ../VieSchedpp/Station/Antenna/Antenna_AzEl_acceleration.h \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.h \
     ../VieSchedpp/Station/Antenna/Antenna_XYew.h \
     ../VieSchedpp/Station/CableWrap/AbstractCableWrap.h \
     ../VieSchedpp/Station/CableWrap/CableWrap_AzEl.h \
     ../VieSchedpp/Station/CableWrap/CableWrap_HaDc.h \
     ../VieSchedpp/Station/CableWrap/CableWrap_XYew.h \
-    ../VieSchedpp/Station/Equip/Equipment.h \
-    ../VieSchedpp/Station/Equip/Equipment_elDependent.h \
+    ../VieSchedpp/Station/Equip/AbstractEquipment.h \
+    ../VieSchedpp/Station/Equip/Equipment_elModel.h \
+    ../VieSchedpp/Station/Equip/Equipment_constant.h \
+    ../VieSchedpp/Station/Equip/Equipment_elTable.h \
     ../VieSchedpp/Station/HorizonMask/AbstractHorizonMask.h \
     ../VieSchedpp/Station/HorizonMask/HorizonMask_line.h \
     ../VieSchedpp/Station/HorizonMask/HorizonMask_step.h \
