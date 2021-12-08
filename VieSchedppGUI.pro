@@ -194,6 +194,7 @@ SOURCES += \
     ../VieSchedpp/Source/SourceList.cpp \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_GGAO.cpp \
+    ../VieSchedpp/Station/Antenna/Antenna_ONSALA_VGOS.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl_acceleration.cpp \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.cpp \
@@ -322,6 +323,7 @@ HEADERS += \
     ../VieSchedpp/Source/SourceList.h \
     ../VieSchedpp/Station/Antenna/AbstractAntenna.h \
     ../VieSchedpp/Station/Antenna/Antenna_GGAO.h \
+    ../VieSchedpp/Station/Antenna/Antenna_ONSALA_VGOS.h \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl.h \
     ../VieSchedpp/Station/Antenna/Antenna_AzEl_acceleration.h \
     ../VieSchedpp/Station/Antenna/Antenna_HaDc.h \
