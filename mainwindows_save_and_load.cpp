@@ -391,7 +391,8 @@ QString MainWindow::writeXML()
 
     if(ui->groupBox_34->isChecked()){
         int cadence = ui->spinBox_intensiveBlockCadence->value();
-        para.ruleFocusCorners(cadence);
+        int scans = ui->spinBox_intensiveBlockScans->value();
+        para.ruleFocusCorners(cadence, scans);
     }
 
     if(ui->groupBox_scanSequence->isChecked()){
@@ -1747,6 +1748,9 @@ void MainWindow::loadXML(QString path)
             for(const auto &any: *ctree){
                 if(any.first == "cadence"){
                     ui->spinBox_intensiveBlockCadence->setValue(xml.get("VieSchedpp.focusCorners.cadence",900));
+                }
+                if(any.first == "nscans"){
+                    ui->spinBox_intensiveBlockScans->setValue(xml.get("VieSchedpp.focusCorners.nscans",1));
                 }
             }
         }
