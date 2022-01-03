@@ -6926,7 +6926,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_calibrationBlock">
                <property name="whatsThis">
@@ -7406,6 +7406,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QSpinBox" name="spinBox_calibrationBlockDuration">
+                       <property name="toolTip">
+                        <string>change all durations</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>change all durations</string>
+                       </property>
                        <property name="suffix">
                         <string> [s]</string>
                        </property>
@@ -7432,6 +7438,12 @@ p, li { white-space: pre-wrap; }
                      </item>
                      <item>
                       <widget class="QSpinBox" name="spinBox_calibrationBlockScans">
+                       <property name="toolTip">
+                        <string>change all #scans </string>
+                       </property>
+                       <property name="statusTip">
+                        <string>change all #scans </string>
+                       </property>
                        <property name="minimum">
                         <number>1</number>
                        </property>
@@ -7448,7 +7460,14 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item>
-                      <widget class="QComboBox" name="comboBox_calibrationBlockSources"/>
+                      <widget class="QComboBox" name="comboBox_calibrationBlockSources">
+                       <property name="toolTip">
+                        <string>change all allowed sources</string>
+                       </property>
+                       <property name="statusTip">
+                        <string>change all allowed sources</string>
+                       </property>
+                      </widget>
                      </item>
                      <item>
                       <spacer name="horizontalSpacer_26">
@@ -7657,6 +7676,9 @@ p, li { white-space: pre-wrap; }
                          <property name="statusTip">
                           <string>corner switch cadence</string>
                          </property>
+                         <property name="whatsThis">
+                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Every &lt;span style=&quot; font-weight:600;&quot;&gt;X&lt;/span&gt;-seconds, observations of sources near the corner of the mutually visible sky are scheduled. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         </property>
                          <property name="suffix">
                           <string> [s]</string>
                          </property>
@@ -7683,6 +7705,15 @@ p, li { white-space: pre-wrap; }
                        </item>
                        <item row="1" column="1">
                         <widget class="QSpinBox" name="spinBox_intensiveBlockScans">
+                         <property name="toolTip">
+                          <string>number of scans scheduled at corners of mutually visible sky</string>
+                         </property>
+                         <property name="statusTip">
+                          <string>number of scans scheduled at corners of mutually visible sky</string>
+                         </property>
+                         <property name="whatsThis">
+                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This value determines the number of scans scheduled at corners of mutually visible sky.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         </property>
                          <property name="minimum">
                           <number>1</number>
                          </property>
