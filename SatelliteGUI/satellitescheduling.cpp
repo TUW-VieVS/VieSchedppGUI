@@ -1,6 +1,8 @@
 #include "satellitescheduling.h"
 #include "ui_satellitescheduling.h"
 #include <limits>
+#include <tuple>
+
 SatelliteScheduling::SatelliteScheduling(const QString &pathAntenna, const QString &pathEquip,
                                          const QString &pathPosition, const QString &pathMask,
                                          const QString &pathSat,
@@ -132,10 +134,16 @@ SatelliteScheduling::~SatelliteScheduling()
 boost::property_tree::ptree SatelliteScheduling::toPropertyTree()
 {
     boost::property_tree::ptree tree;
-
     for(const auto &scan : scheduledScans){
         unsigned long srcid = scan.getSourceId();
-        std::string sourceName = satellites[srcid].getName();
+        unsigned long idx = 0;
+        for (idx=0; idx < satellites.size(); ++idx ) {
+            if(satellites[idx].getId() == srcid)
+            {
+                break;
+            }
+        }
+        std::string sourceName = satellites[idx].getName();
         boost::property_tree::ptree scan_tree = scan.toPropertyTree(satelliteScheduler.refNetwork(), sourceName);
         tree.add_child("a_priori_scans.scan", scan_tree.get_child("scan"));
     }
@@ -683,14 +691,9 @@ void SatelliteScheduling::on_pushButton_checkAndSave_clicked()
         endTimes.push_back(Vend);
         //int fieldSystem = ui->spinBox_fs->value();
         //int preob = ui->spinBox_preob->value();
-
-        for (const auto &sat : satellites) {
-            if (sat.hasName(ui->label_adjustSatName->text().toStdString())){
-                satellite = sat;
-                break;
-            }
-        }
     }
+    int idx = allSatelliteModel->findItems(ui->label_adjustSatName->text()).at(0)->row();
+    satellite = satellites[idx];
     DateTime start = DateTime(sessionStart_.date().year(),sessionStart_.date().month(),sessionStart_.date().day(),sessionStart_.time().hour(),sessionStart_.time().minute(),sessionStart_.time().second());
     std::vector<bool> isobs(selectedStationIds.size(),false);
     std::vector<SatelliteObs::TimePoint> timePoints;
@@ -2217,11 +2220,9 @@ void SatelliteScheduling::on_pushButton_screenshot_worldmap_clicked()
             auto series = worldmap->chart()->series();
             QString satelliteName = allSatelliteModel->item(idx)->data(0).toString();
             worldmap->chart()->setTitle(satelliteName);
-            for(int i=0; i<series.count();++i)
-             {
+            for(int i=0; i<series.count();++i) {
                  QString name = series.at(i)->name();
-                 if((name.left(3)=="sat" || name.left(3)=="mrk") && name.right(name.size()-3) != satelliteName)
-                 {
+                 if((name.left(3)=="sat" || name.left(3)=="mrk") && name.right(name.size()-3) != satelliteName) {
                      series.at(i)->setVisible(false);
                  }
              }

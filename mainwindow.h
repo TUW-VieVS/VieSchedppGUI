@@ -530,6 +530,8 @@ private slots:
 
     void on_pushButton_browseStp_clicked();
 
+    void on_groupBox_a_priori_satellite_scans_toggled(bool arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

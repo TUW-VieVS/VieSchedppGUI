@@ -6892,3 +6892,12 @@ void MainWindow::on_pushButton_tle_info_clicked()
     dial->show();
 }
 
+
+void MainWindow::on_groupBox_a_priori_satellite_scans_toggled(bool arg1)
+{
+    if(!arg1){
+        ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/edit-delete-6.png"));
+    }else{
+        ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/dialog-ok-2.png"));
+    }
+}
