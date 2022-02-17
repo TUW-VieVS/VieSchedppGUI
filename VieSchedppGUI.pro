@@ -230,6 +230,8 @@ SOURCES += \
     Widgets/priorities.cpp \
     Widgets/setupwidget.cpp \
     Widgets/simulatorwidget.cpp \
+    #Widgets/skycoveragewidget.cpp \
+    Widgets/skycovwidget.cpp \
     Widgets/solverwidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -378,6 +380,8 @@ HEADERS += \
     Widgets/priorities.h \
     Widgets/setupwidget.h \
     Widgets/simulatorwidget.h \
+    #Widgets/skycoveragewidget.h \
+    Widgets/skycovwidget.h \
     Widgets/solverwidget.h \
     secondaryGUIs/addbanddialog.h \
     secondaryGUIs/addgroupdialog.h \
@@ -413,6 +417,9 @@ FORMS += \
     Widgets/priorities.ui \
     Widgets/setupwidget.ui \
     Widgets/simulatorwidget.ui \
+    #Widgets/skycoveragewidget.ui \
+    #Widgets/skycoveragewidget_copy.ui \
+    Widgets/skycovwidget.ui \
     Widgets/solverwidget.ui \
     mainwindow.ui \
     Parameters/baselineparametersdialog.ui \

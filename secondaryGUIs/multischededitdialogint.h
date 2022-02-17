@@ -41,6 +41,8 @@ public:
 
     void addMember(QStandardItemModel *model);
 
+    void addSkyCoverageMembers(int n);
+
     QStandardItem* getMember();
 
     void addDefaultValues(const QVector<double> &vals, bool random);

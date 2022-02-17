@@ -139,6 +139,18 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
     auto tall = ui->treeWidget_multiSched;
     auto list = tall->selectedItems();
 
+    int nsta = 0;
+    for (int i = 0; i< allStationPlusGroupModel->rowCount(); ++i){
+        QString name = allStationPlusGroupModel->item(i)->text();
+        if (name == "__all__"){
+            continue;
+        }
+        if (groupSta->find(name.toStdString()) != groupSta->end()){
+            continue;
+        }
+        ++nsta;
+    }
+
     for(const auto&any:list){
 
         if(any->parent()){
@@ -197,7 +209,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["min repeat time"       ] = {1200, 1800};
             defaultValues["idle time interval"    ] = {120, 180, 240, 300};
             defaultValues["max closures"          ] = {300, 400, 500, 600};
-            defaultValues["influence time"        ] = {900, 1200, 1800, 3600};
+            defaultValues["influence time"        ] = {300, 600, 1200, 1800, 3600};
             defaultValues["max number of scans"   ] = {10, 25, 999};
             defaultValues["focus corner switch cadence"] = {600, 750, 900};
 
@@ -245,7 +257,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             QTreeWidgetItem *itm = new QTreeWidgetItem();
 
             if(row2toggle.indexOf(name) != -1){
-                if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
+                if(parameterType == "general" || parameterType == "weight factor"){
                     any->setDisabled(true);
                 }
                 QString valuesString = "True, False";
@@ -271,17 +283,19 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                     dialog->addMember(allSourcePlusGroupModel);
                 }else if(parameterType == "baseline"){
                     dialog->addMember(allBaselinePlusGroupModel);
+                }else if(parameterType == "sky-coverage"){
+                    dialog->addSkyCoverageMembers(nsta);
                 }
                 dialog->addDefaultValues(defaultValues[name], random);
 
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
-                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
+                    if(parameterType == "general" || parameterType == "weight factor"){
                         any->setDisabled(true);
                     }
                     QVector<int> val = dialog->getValues();
                     int n = val.size();
-                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
+                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline" || parameterType == "sky-coverage"){
                         QStandardItem* member = dialog->getMember();
                         itm->setText(1,member->text());
                         itm->setIcon(1,member->icon());
@@ -317,6 +331,8 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                     dialog->addMember(allSourcePlusGroupModel);
                 }else if(parameterType == "baseline"){
                     dialog->addMember(allBaselinePlusGroupModel);
+                }else if(parameterType == "sky-coverage"){
+                    dialog->addSkyCoverageMember(nsta);
                 }else if(parameterType == "weight factor"){
                     itm->setText(1,"global");
                     itm->setIcon(1,QIcon(":/icons/icons/weight.png"));
@@ -325,19 +341,16 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
 
                 int result = dialog->exec();
                 if(result == QDialog::Accepted){
-                    if(parameterType == "general" || parameterType == "weight factor" || parameterType == "sky-coverage"){
+                    if(parameterType == "general" || parameterType == "weight factor"){
                         any->setDisabled(true);
                     }
                     QVector<double> val = dialog->getValues();
                     int n = val.size();
 
-                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline"){
+                    if(parameterType == "station" || parameterType == "source" || parameterType == "baseline" || parameterType == "sky-coverage"){
                         QStandardItem* member = dialog->getMember();
                         itm->setText(1,member->text());
                         itm->setIcon(1,member->icon());
-                    }else if(parameterType == "sky-coverage"){
-                        itm->setText(1,"global");
-                        itm->setIcon(1,QIcon(":/icons/icons/sky_coverage.png"));
                     }else{
                         itm->setText(1,"global");
                         itm->setIcon(1,QIcon(":/icons/icons/applications-internet-2.png"));
@@ -414,12 +427,14 @@ void MulitSchedulingWidget::on_pushButton_25_clicked()
                 ui->treeWidget_multiSched->topLevelItem(1)->child(14)->setDisabled(false);
             }else if(any->text(0) == "low elevation full"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(15)->setDisabled(false);
-
+            }
+            /*
             }else if(any->text(0) == "influence distance"){
                 ui->treeWidget_multiSched->topLevelItem(2)->child(0)->setDisabled(false);
             }else if(any->text(0) == "influence time"){
                 ui->treeWidget_multiSched->topLevelItem(2)->child(1)->setDisabled(false);
             }
+            */
             delete(any);
         }
     }
@@ -755,6 +770,7 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
      QIcon icSta = QIcon(":/icons/icons/station.png");
      QIcon icSrc = QIcon(":/icons/icons/source.png");
      QIcon icBl = QIcon(":/icons/icons/baseline.png");
+     QIcon icSky = QIcon(":/icons/icons/sky_coverage.png");
      QIcon icStaGrp = QIcon(":/icons/icons/station_group.png");
      QIcon icSrcGrp = QIcon(":/icons/icons/source_group.png");
      QIcon icBlGrp = QIcon(":/icons/icons/baseline_group.png");
@@ -878,7 +894,12 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
              }else if(parameter == "min scan time"){
                  ms.addParameters(std::string("baseline_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
              }
-
+         }else if(parameterIcon.pixmap(16,16).toImage() == icSky.pixmap(16,16).toImage()){
+             if(parameter == "influence distance"){
+                 ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+             }else if(parameter == "influence time"){
+                 ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+             }
          }else{
              if(parameter == "session start"){
                  std::vector<boost::posix_time::ptime> times;
@@ -941,11 +962,13 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "low elevation full"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+             /*
              }else if(parameter == "influence distance"){
                  ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "influence time"){
                  ms.addParameters(std::string("sky-coverage_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-             }
+            */
+            }
          }
      }
 
@@ -1039,7 +1062,7 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
                 parameterName = "general";
             }else if(name.left(13) == "sky-coverage_"){
                 name = name.mid(13);
-                hasMember = false;
+                hasMember = true;
                 parameterName = "sky-coverage";
             }
             name.replace("_"," ");
@@ -1078,13 +1101,6 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
                 for(int i=0; i<twms->topLevelItem(1)->childCount(); ++i){
                     if(name == twms->topLevelItem(1)->child(i)->text(0)){
                         twms->topLevelItem(1)->child(i)->setDisabled(true);
-                        break;
-                    }
-                }
-            }else if(parameterName == "sky-coverage"){
-                for(int i=0; i<twms->topLevelItem(2)->childCount(); ++i){
-                    if(name == twms->topLevelItem(2)->child(i)->text(0)){
-                        twms->topLevelItem(2)->child(i)->setDisabled(true);
                         break;
                     }
                 }

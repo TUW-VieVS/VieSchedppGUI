@@ -1979,7 +1979,7 @@ void SatelliteScheduling::on_pushButton_screenshot_BarPlotVisibilitySingle_click
             QDir().mkpath(fpathcopy);
         }
         QString outDir = render.outDir();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size()-1) != '/'){
             outDir.append('/');
         }
         QPair<int, int> res = render.resolution();
@@ -2104,7 +2104,7 @@ void SatelliteScheduling::on_pushButton_screenshot_ElevationPlot_clicked()
             QDir().mkpath(fpathcopy);
         }
         QString outDir = render.outDir();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size()-1) != '/'){
             outDir.append('/');
         }
         QPair<int, int> res = render.resolution();
@@ -2185,7 +2185,7 @@ void SatelliteScheduling::on_pushButton_screenshot_worldmap_clicked()
             QDir().mkpath(fpathcopy);
         }
         QString outDir = render.outDir();
-        if(outDir.back() != '/'){
+        if(outDir.at(outDir.size()-1) != '/'){
             outDir.append('/');
         }
         QPair<int, int> res = render.resolution();

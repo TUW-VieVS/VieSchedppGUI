@@ -324,12 +324,16 @@ QString MainWindow::writeXML()
         para.stationCableWrapBuffer(name,ax1low,ax1up,ax2low,ax2up);
     }
 
+    para.skyCoverage(skyCoverageWidget->toXML());
+
+    /*
     double influenceDistance = ui->influenceDistanceDoubleSpinBox->value();
     double influenceTime = ui->influenceTimeSpinBox->value();
     double maxDistanceTwin = ui->maxDistanceForCombiningAntennasDoubleSpinBox->value();
     std::string interpolationDistance = ui->comboBox_skyCoverageDistanceType->currentText().toStdString();
     std::string interpolationTime = ui->comboBox_skyCoverageTimeType->currentText().toStdString();
     para.skyCoverage(influenceDistance,influenceTime,maxDistanceTwin, interpolationDistance, interpolationTime);
+*/
 
     double weightSkyCoverage = 0;
     if(ui->checkBox_weightCoverage->isChecked()){
@@ -1353,6 +1357,14 @@ void MainWindow::loadXML(QString path)
 
     // sky coverage
     {
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.skyCoverage");
+        if (ctree.is_initialized()) {
+            skyCoverageWidget->fromXML(*ctree);
+        }
+    }
+
+    /*
+    {
         double influenceDistance = xml.get("VieSchedpp.skyCoverage.influenceDistance",30.0);
         ui->influenceDistanceDoubleSpinBox->setValue(influenceDistance);
         int influenceInterval = xml.get("VieSchedpp.skyCoverage.influenceInterval",3600);
@@ -1376,6 +1388,7 @@ void MainWindow::loadXML(QString path)
             ui->comboBox_skyCoverageTimeType->setCurrentIndex(2);
         }
     }
+    */
 
     //weight factors
     {
@@ -2892,6 +2905,7 @@ void MainWindow::on_pushButton_9_clicked()
 
 }
 
+/*
 void MainWindow::on_pushButton_10_clicked()
 {
     QStringList path;
@@ -2912,6 +2926,7 @@ void MainWindow::on_pushButton_10_clicked()
     changeDefaultSettings(path,value,name);
 
 }
+*/
 
 
 void MainWindow::on_pushButton_12_clicked()

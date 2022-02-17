@@ -48,25 +48,70 @@ boost::property_tree::ptree Priorities::toXML()
     }
 
     QTreeWidgetItem *itm_sta = t->topLevelItem(2);
+    double sta_first_val = -1;
+    bool sta_allTheSame = true;
     for( int i = 0; i<itm_sta->childCount(); ++i){
         QTreeWidgetItem *itm = itm_sta->child(i);
         auto *dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,1));
+        double val = dsp->value();
+        if (sta_first_val == -1){
+            sta_first_val = val;
+        }else{
+            if(val != sta_first_val){
+                sta_allTheSame = false;
+                break;
+            }
+        }
+    }
+    if( sta_allTheSame){
         boost::property_tree::ptree t2;
-
-        t2.add("variable", dsp->value());
-        t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
+        t2.add("variable", sta_first_val);
+        t2.add("variable.<xmlattr>.name", "stations");
         tree.add_child("priorities.variable",t2.get_child("variable"));
+    }else{
+        for( int i = 0; i<itm_sta->childCount(); ++i){
+            QTreeWidgetItem *itm = itm_sta->child(i);
+            auto *dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,1));
+            boost::property_tree::ptree t2;
+
+            t2.add("variable", dsp->value());
+            t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
+            tree.add_child("priorities.variable",t2.get_child("variable"));
+        }
     }
 
+
     QTreeWidgetItem *itm_src = t->topLevelItem(3);
+    double src_first_val = -1;
+    bool src_allTheSame = true;
     for( int i = 0; i<itm_src->childCount(); ++i){
         QTreeWidgetItem *itm = itm_src->child(i);
         auto *dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,1));
+        double val = dsp->value();
+        if (src_first_val == -1){
+            src_first_val = val;
+        }else{
+            if(val != src_first_val){
+                src_allTheSame = false;
+                break;
+            }
+        }
+    }
+    if( src_allTheSame){
         boost::property_tree::ptree t2;
-
-        t2.add("variable", dsp->value());
-        t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
+        t2.add("variable", src_first_val);
+        t2.add("variable.<xmlattr>.name", "sources");
         tree.add_child("priorities.variable",t2.get_child("variable"));
+    }else{
+        for( int i = 0; i<itm_src->childCount(); ++i){
+            QTreeWidgetItem *itm = itm_src->child(i);
+            auto *dsp = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm,1));
+            boost::property_tree::ptree t2;
+
+            t2.add("variable", dsp->value());
+            t2.add("variable.<xmlattr>.name", itm->text(0).toStdString());
+            tree.add_child("priorities.variable",t2.get_child("variable"));
+        }
     }
 
     QTreeWidgetItem *itm_scale = t->topLevelItem(4);
@@ -109,6 +154,11 @@ void Priorities::fromXML(const boost::property_tree::ptree &tree)
             QTreeWidgetItem *itm_tl = t->topLevelItem(tli);
             QDoubleSpinBox *dsp_tl = qobject_cast<QDoubleSpinBox *>(t->itemWidget(itm_tl, 1));
             if(itm_tl->text(0) == name){
+
+                if ( name == "stations" || name == "sources"){
+                    val *= itm_tl->childCount();
+                }
+
                 dsp_tl->setValue(val);
                 break;
             }else{

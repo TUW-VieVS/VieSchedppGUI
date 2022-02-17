@@ -40,6 +40,8 @@ public:
 
     void addMember(QStandardItemModel *model);
 
+    void addSkyCoverageMember(int n);
+
     QStandardItem* getMember();
 
     void addDefaultValues(const QVector<double> &vals, bool random, bool weightFactors=false);

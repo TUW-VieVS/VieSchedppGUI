@@ -23,6 +23,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
+
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
@@ -83,6 +85,9 @@
 #include "Widgets/priorities.h"
 #include "Widgets/mulitschedulingwidget.h"
 #include "Widgets/setupwidget.h"
+// #include "Widgets/skycoveragewidget.h"
+#include "Widgets/skycovwidget.h"
+
 
 #include "Utility/downloadmanager.h"
 QT_CHARTS_USE_NAMESPACE
@@ -314,13 +319,6 @@ private slots:
 
     void on_actionsummary_triggered();
 
-    void setupSkyCoverageTemplatePlot();
-
-    void skyCoverageTemplate();
-
-    void on_pushButton_skyCoverageTemplateRandom_clicked();
-
-    void on_influenceTimeSpinBox_valueChanged(int arg1);
 
     void on_actionConditions_triggered();
 
@@ -362,7 +360,7 @@ private slots:
 
     void on_pushButton_9_clicked();
 
-    void on_pushButton_10_clicked();
+    // void on_pushButton_10_clicked();
 
     void on_pushButton_12_clicked();
 
@@ -570,8 +568,6 @@ private:
 
     ChartView *worldmap;
     ChartView *skymap;
-    QChartView *skyCoverageTemplateView;
-    bool plotSkyCoverageTemplate;
 
     QScatterSeries *availableStations;
     QScatterSeries *selectedStations;
@@ -580,10 +576,6 @@ private:
 
     Callout *worldMapCallout;
     Callout *skyMapCallout;
-
-    QVector<double> obsAz;
-    QVector<double> obsEl;
-    QVector<int> obsTime;
 
     QSignalMapper *deleteModeMapper;
 
@@ -598,6 +590,8 @@ private:
     setupWidget *baselineSetupWidget;
     setupWidget *satelliteSetupWidget;
     setupWidget *spacecraftSetupWidget;
+
+    SkyCovWidget *skyCoverageWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;
@@ -641,7 +635,6 @@ private:
 
     int plotParameter(QChart* targetChart, QTreeWidgetItem *item, int level, int plot, QString target, const std::map<std::string, std::vector<std::string> > &map);
 
-    double interpolate( QVector<double> &xData, QVector<double> &yData, double x, bool extrapolate=false );
 
     void updateAdvancedObservingMode();
 

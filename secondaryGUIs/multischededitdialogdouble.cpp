@@ -63,6 +63,24 @@ void multiSchedEditDialogDouble::addMember(QStandardItemModel *model)
     }
 }
 
+void multiSchedEditDialogDouble::addSkyCoverageMember(int n)
+{
+    ui->groupBox_member->show();
+    all->appendRow(new QStandardItem(QIcon(":/icons/icons/sky_coverage.png"),"__all__"));
+
+    for(int i=0; i<n; ++i){
+        QString txt;
+        if(i<26){
+            txt = QString('A'+i);
+        }else if(i < 2*26){
+            txt = QString('a'+(i-26));
+        }else{
+            txt = QString::number(i);
+        }
+        all->appendRow(new QStandardItem(QIcon(":/icons/icons/sky_coverage.png"),txt));
+    }
+}
+
 QStandardItem *multiSchedEditDialogDouble::getMember()
 {
     return all->item(ui->listView_member->selectionModel()->selectedIndexes().at(0).row());
