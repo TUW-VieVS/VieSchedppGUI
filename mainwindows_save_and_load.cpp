@@ -63,7 +63,7 @@ QString MainWindow::writeXML()
     ename.simplified();
     ename.replace(" ","_");
     if(ui->checkBox_outputAddTimestamp->isChecked()){
-        QString dateTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+        QString dateTime = QDateTime::currentDateTime().toString("yyyyMMdd-hhmmss");
         path.append(dateTime).append("_").append(ename).append("/");
         if(NGS){
             NGSpath.append(dateTime).append("_").append(ename).append("/");

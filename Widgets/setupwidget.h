@@ -113,6 +113,10 @@ public:
         return setupTree;
     }
 
+    void setBlock(bool flag){
+        block = flag;
+    }
+
 private slots:
     void on_pushButton_editParameter_clicked();
 
@@ -144,6 +148,7 @@ private slots:
 private:
     Type type;
     Ui::setupWidget *ui;
+    bool block = false;
 
     QIcon icon_single;
     QIcon icon_group;

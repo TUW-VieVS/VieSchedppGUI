@@ -1485,9 +1485,11 @@ void setupWidget::on_DateTimeEdit_end_dateTimeChanged(const QDateTime &dateTime)
 
 void setupWidget::on_comboBox_setup_currentTextChanged(const QString &arg1)
 {
-    drawSetupPlot();
-    if(!arg1.isEmpty()){
-        displaySetupMember(arg1);
+    if (!block){
+        drawSetupPlot();
+        if(!arg1.isEmpty()){
+            displaySetupMember(arg1);
+        }
     }
 }
 

@@ -3700,10 +3700,19 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
     QString name = allStationProxyModel->index(row,0).data().toString();
 
     if(selectedStationModel->findItems(name).isEmpty()){
+        stationSetupWidget->setBlock(true);
+        auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
+        Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        priorities->setBlock(true);
+
         selectedStationModel->insertRow(0);
 
         int nrow = allStationModel->findItems(name).at(0)->row();
         for(int i=0; i<allStationModel->columnCount(); ++i){
+            if ( i == allStationModel->columnCount() - 1){
+                stationSetupWidget->setBlock(false);
+                priorities->setBlock(false);
+            }
             selectedStationModel->setItem(0, i, allStationModel->item(nrow,i)->clone() );
         }
 
