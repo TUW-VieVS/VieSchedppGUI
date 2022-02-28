@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>19</number>
+       <number>10</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -6053,7 +6053,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Generally speaking, the software is using a &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;brute force approach&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;It is creating the schedule &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;scan after scan&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;To select a scan, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;all possible next scans&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; are &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;created&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;investigated&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;To select a scan, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;all possible (and reasonable) next scans&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; are &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;created&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;investigated&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;This means if you have 200 sources, the software tries to create 200 next scans. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;If you use subnetting this number is substantially larger. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;The tricky thing is how to &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;decide which of all those possible next scans is the best next scan&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
@@ -11649,7 +11649,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
      <string>Analysis</string>
     </property>
     <addaction name="actionsummary"/>
-    <addaction name="actionLog_parser"/>
     <addaction name="actionSkd_Parser"/>
    </widget>
    <addaction name="menufile"/>
@@ -11669,7 +11668,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <bool>false</bool>
    </attribute>
    <addaction name="actionsummary"/>
-   <addaction name="actionLog_parser"/>
    <addaction name="actionSkd_Parser"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -11917,15 +11915,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>Source List</string>
-   </property>
-  </action>
-  <action name="actionLog_parser">
-   <property name="icon">
-    <iconset resource="myresources.qrc">
-     <normaloff>:/icons/icons/edit-undo-7.png</normaloff>:/icons/icons/edit-undo-7.png</iconset>
-   </property>
-   <property name="text">
-    <string>Log Parser</string>
    </property>
   </action>
   <action name="actionSkd_Parser">
