@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>10</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7038,7 +7038,7 @@ p, li { white-space: pre-wrap; }
                            <number>1200</number>
                           </property>
                           <property name="singleStep">
-                           <number>60</number>
+                           <number>30</number>
                           </property>
                           <property name="value">
                            <number>300</number>
@@ -7150,7 +7150,7 @@ p, li { white-space: pre-wrap; }
                            <number>1200</number>
                           </property>
                           <property name="singleStep">
-                           <number>60</number>
+                           <number>30</number>
                           </property>
                           <property name="value">
                            <number>300</number>
@@ -7264,7 +7264,7 @@ p, li { white-space: pre-wrap; }
                            <number>1200</number>
                           </property>
                           <property name="singleStep">
-                           <number>60</number>
+                           <number>30</number>
                           </property>
                           <property name="value">
                            <number>300</number>
@@ -7689,7 +7689,7 @@ p, li { white-space: pre-wrap; }
                           <number>3600</number>
                          </property>
                          <property name="singleStep">
-                          <number>300</number>
+                          <number>50</number>
                          </property>
                          <property name="value">
                           <number>900</number>

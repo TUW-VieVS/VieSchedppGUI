@@ -9,10 +9,10 @@ SkyCovWidget::SkyCovWidget(QStandardItemModel *stations, QWidget *parent) :
     ui->setupUi(this);
     setupSkyCoverageTemplatePlot();
     ui->tableWidget_sky_cov->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->tableWidget_sky_cov->setVisible(false);
+    //ui->tableWidget_sky_cov->setVisible(false);
     ui->tableWidget_stations->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->tableWidget_stations->setVisible(false);
-    ui->groupBox_example->setVisible(false);
+    //ui->tableWidget_stations->setVisible(false);
+    //ui->groupBox_example->setVisible(false);
 }
 
 SkyCovWidget::~SkyCovWidget()
@@ -409,10 +409,16 @@ double SkyCovWidget::interpolate( QVector<double> &xData, QVector<double> &yData
 void SkyCovWidget::updateCounter()
 {
     int n = stations_->rowCount();
+    QMap<int, QString> id2station;
+    for (int i =0; i< 0; ++i) {
+        id2station[i] = "";
+    }
+
     QVector<int>counter(n, 0);
     for( int i = 0; i<n; ++i){
         QSpinBox *sp = qobject_cast<QSpinBox *>(ui->tableWidget_stations->cellWidget(i,1));
         int id = sp->value();
+        id2station[id].append(ui->tableWidget_stations->item(i,0)->text()).append(" ");
         ++counter[id];
     }
     for( int i = 0; i<n; ++i){
@@ -446,6 +452,8 @@ void SkyCovWidget::updateCounter()
             pal.setColor(id->backgroundRole(), Qt::red);
         }
         id->setPalette(pal);
+
+        ui->tableWidget_sky_cov->item(i,6)->setText(id2station[i]);
     }
 }
 
@@ -540,6 +548,8 @@ void SkyCovWidget::setup()
         }
         ctime->setCurrentText(ui->comboBox_skyCoverageTimeType->currentText());
         ui->tableWidget_sky_cov->setCellWidget(i,5,ctime);
+
+        ui->tableWidget_sky_cov->setItem(i,6,new QTableWidgetItem(""));
     }
 }
 

@@ -17,13 +17,19 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0,1">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,1">
        <item>
         <widget class="QGroupBox" name="groupBox_2">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="title">
           <string>Assign sky-coverages</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <property name="topMargin">
@@ -107,7 +113,7 @@
           <item>
            <widget class="QTableWidget" name="tableWidget_stations">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
@@ -123,19 +129,6 @@
              </property>
             </column>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -197,7 +190,7 @@
                <number>7200</number>
               </property>
               <property name="singleStep">
-               <number>300</number>
+               <number>100</number>
               </property>
               <property name="value">
                <number>3600</number>
@@ -282,6 +275,9 @@
        </item>
        <item>
         <widget class="QTableWidget" name="tableWidget_sky_cov">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
@@ -313,6 +309,11 @@
          <column>
           <property name="text">
            <string>time function</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>stations</string>
           </property>
          </column>
         </widget>
@@ -578,66 +579,66 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_distance</sender>
+   <sender>radioButton_manually</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_txt</receiver>
-   <slot>setVisible(bool)</slot>
+   <receiver>tableWidget_stations</receiver>
+   <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>55</y>
+     <x>71</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>169</x>
-     <y>82</y>
+     <x>67</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_distance</sender>
+   <sender>radioButton_manually</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBox_distance</receiver>
-   <slot>setVisible(bool)</slot>
+   <receiver>tableWidget_sky_cov</receiver>
+   <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>192</x>
+     <x>91</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>67</x>
+     <y>458</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_manually</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_txt</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_manually</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_distance</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>41</x>
      <y>51</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>83</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_distance</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tableWidget_stations</receiver>
-   <slot>setHidden(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>118</x>
-     <y>55</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>124</x>
-     <y>160</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_distance</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tableWidget_sky_cov</receiver>
-   <slot>setHidden(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>138</x>
-     <y>56</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>162</x>
-     <y>447</y>
+     <x>245</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>

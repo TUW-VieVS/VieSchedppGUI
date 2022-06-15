@@ -6147,13 +6147,13 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
-    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
-//    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
+    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
+    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
+//    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
 
     if (now.date().month() >=11){
-        files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-        files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
+        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
+        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
@@ -6162,14 +6162,14 @@ void MainWindow::download(){
     for (int i = 79; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
             files << z;
         }
     }
     for (int i = 00; i<=year-1-2000; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
@@ -6178,14 +6178,14 @@ void MainWindow::download(){
     for (int i = 92; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
             files << z;
         }
     }
     for (int i = 00; i<=year-1-2000; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
@@ -6193,13 +6193,13 @@ void MainWindow::download(){
     // vgos
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
