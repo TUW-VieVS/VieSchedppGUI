@@ -556,55 +556,7 @@ QString MainWindow::writeXML()
     }
 
     if(ui->groupBox_35->isChecked()){
-        std::vector<VieVS::CalibratorBlock> blocks;
-
-        if(ui->radioButton_calibrationBlocks_predefined->isChecked()){
-            bool bstart = ui->checkBox_calibration_sessionStart->isChecked();
-            if(bstart){
-                unsigned int start_time = ui->spinBox_calibration_delay->value();
-                unsigned int start_scans = ui->spinBox_calibration_scansPerBlock->value();
-                unsigned int start_dur = ui->spinBox_calibration_scanDuration->value();
-                std::string start_sourceGroup = ui->comboBox_calibration_sources->currentText().toStdString();
-                VieVS::CalibratorBlock start(start_time, start_scans, start_dur, start_sourceGroup);
-                blocks.push_back(start);
-            }
-
-            bool bmid = ui->checkBox_calibration_sessionMid->isChecked();
-            if(bmid){
-                unsigned int mid_offset = ui->spinBox_calibration_offset->value();
-                unsigned int mid_time = ui->doubleSpinBox_sessionDuration->value() * 1800 - mid_offset;
-                unsigned int mid_scans = ui->spinBox_calibration_scansPerBlock3->value();
-                unsigned int mid_dur = ui->spinBox_calibration_scanDuration3->value();
-                std::string mid_sourceGroup = ui->comboBox_calibration_sources3->currentText().toStdString();
-                VieVS::CalibratorBlock mid(mid_time, mid_scans, mid_dur, mid_sourceGroup);
-                blocks.push_back(mid);
-            }
-
-            bool bend = ui->checkBox_calibration_sessionEnd->isChecked();
-            if(bend){
-                unsigned int end_offset = ui->spinBox_calibration_advance->value();
-                unsigned int end_time = ui->doubleSpinBox_sessionDuration->value() * 3600 - end_offset;
-                unsigned int end_scans = ui->spinBox_calibration_scansPerBlock2->value();
-                unsigned int end_dur = ui->spinBox_calibration_scanDuration2->value();
-                std::string end_sourceGroup = ui->comboBox_calibration_sources2->currentText().toStdString();
-                VieVS::CalibratorBlock end(end_time, end_scans, end_dur, end_sourceGroup);
-                blocks.push_back(end);
-            }
-        }else if(ui->radioButton_calibrationBlocksCustom->isChecked()){
-            auto *t = ui->tableWidget_calibrationBlock;
-            for(int r = 0; r<t->rowCount(); ++r){
-                double hour = qobject_cast<QDoubleSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,0))->value();
-                unsigned int t = hour * 3600;
-                unsigned int dur = qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,1))->value();
-                unsigned int scans = qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,2))->value();
-                std::string srcGroup = qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,3))->currentText().toStdString();
-
-                VieVS::CalibratorBlock tmp(t, scans, dur, srcGroup);
-                blocks.push_back(tmp);
-            }
-        }
-
-        para.calibratorBlock(blocks, ui->comboBox_calibrationIntent->currentText().toStdString());
+        para.calibratorBlock(calibratorWidget->toXML());
     }
 
     if(ui->groupBox_simulator->isChecked()){
@@ -1846,54 +1798,7 @@ void MainWindow::loadXML(QString path)
 
         if (ctree.is_initialized()) {
             ui->groupBox_35->setChecked(true);
-            ui->radioButton_calibrationBlocksCustom->setChecked(true);
-            ui->comboBox_calibrationIntent->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.intent","NONE")));
-
-            int i=0;
-            for(const auto &any : *ctree) {
-                if(any.first == "block"){
-                    ++i;
-                }
-            }
-            ui->spinBox_NCalibrationBlocks->setValue(i);
-
-            i = 0;
-            for(const auto &any : *ctree) {
-                if(any.first == "block"){
-                    unsigned int time = any.second.get( "startTime", 0 );
-                    double t = static_cast<double>(time)/3600.0;
-                    unsigned int scans = any.second.get( "scans", 2 );
-                    unsigned int duration = any.second.get( "duration", 300 );
-                    std::string sourceGroup = any.second.get( "sources", "__all__" );
-
-                    qobject_cast<QDoubleSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,0))->setValue(t);
-                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,1))->setValue(duration);
-                    qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,2))->setValue(scans);
-                    qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,3))->setCurrentText(QString::fromStdString(sourceGroup));
-                    ++i;
-                }
-            }
-
-
-            ui->checkBox_calibration_sessionStart->setChecked(xml.get_child_optional("VieSchedpp.rules.calibration.start").is_initialized());
-            ui->spinBox_calibration_delay->setValue(xml.get("VieSchedpp.rules.calibration.start.offset",600));
-            ui->spinBox_calibration_scansPerBlock->setValue(xml.get("VieSchedpp.rules.calibration.start.scans",2));
-            ui->spinBox_calibration_scanDuration->setValue(xml.get("VieSchedpp.rules.calibration.start.duration",300));
-            ui->comboBox_calibration_sources->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.start.sources","__all__")));
-
-            ui->checkBox_calibration_sessionMid->setChecked(xml.get_child_optional("VieSchedpp.rules.calibration.mid").is_initialized());
-            ui->spinBox_calibration_offset->setValue(xml.get("VieSchedpp.rules.calibration.mid.offset",0));
-            ui->spinBox_calibration_scansPerBlock3->setValue(xml.get("VieSchedpp.rules.calibration.mid.scans",2));
-            ui->spinBox_calibration_scanDuration3->setValue(xml.get("VieSchedpp.rules.calibration.mid.duration",300));
-            ui->comboBox_calibration_sources3->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.mid.sources","__all__")));
-
-            ui->checkBox_calibration_sessionEnd->setChecked(xml.get_child_optional("VieSchedpp.rules.calibration.end").is_initialized());
-            ui->spinBox_calibration_advance->setValue(xml.get("VieSchedpp.rules.calibration.end.offset",0));
-            ui->spinBox_calibration_scansPerBlock2->setValue(xml.get("VieSchedpp.rules.calibration.end.scans",2));
-            ui->spinBox_calibration_scanDuration2->setValue(xml.get("VieSchedpp.rules.calibration.end.duration",300));
-            ui->comboBox_calibration_sources2->setCurrentText(QString::fromStdString(xml.get("VieSchedpp.rules.calibration.end.sources","__all__")));
-
-
+            calibratorWidget->fromXML(*ctree);
         }
     }
 
@@ -3056,6 +2961,7 @@ void MainWindow::on_pushButton_simulator_save_clicked()
     }
 }
 
+
 void MainWindow::on_pushButton_simulator_load_clicked()
 {
     QStringList items;
@@ -3113,8 +3019,4 @@ void MainWindow::saveMultiCoreSetup()
     QString name = "Default multi core settings changed!";
     changeDefaultSettings(p.first,p.second,name);
 }
-
-
-
-
 

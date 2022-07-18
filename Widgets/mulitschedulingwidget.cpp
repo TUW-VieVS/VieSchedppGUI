@@ -72,6 +72,7 @@ MulitSchedulingWidget::MulitSchedulingWidget(QStandardItemModel *allSourcePlusGr
     connect(ui->spinBox_multiSched_maxNumber, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
     connect(ui->spinBox_ms_gen_popsize, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
     connect(ui->spinBox_ms_gen_iterations, qOverload<int>(&QSpinBox::valueChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
+    connect(ui->comboBox_multiSched_maxNumber, qOverload<int>(&QComboBox::currentIndexChanged), this, &MulitSchedulingWidget::multi_sched_count_nsched);
 
     createMultiSchedTable();
     ui->tabWidget_3->setCurrentIndex(0);
@@ -716,21 +717,22 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
         nsched = ui->spinBox_multiSched_maxNumber->value();
     }
 
+    int total_nsched = nsched;
     if(ui->groupBox_ms_gen->isChecked()){
-        nsched += ui->spinBox_ms_gen_popsize->value() * (ui->spinBox_ms_gen_iterations->value() - 1);
+        total_nsched += ui->spinBox_ms_gen_popsize->value() * (ui->spinBox_ms_gen_iterations->value() - 1);
     }
 
-    if(nsched > 300){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(nsched));
+    if(total_nsched > 300){
+        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(total_nsched));
         ui->label_multiSchedulingNsched->setStyleSheet("color : red; font-weight : bold");
-    }else if(nsched > 100){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(nsched));
+    }else if(total_nsched > 100){
+        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1 (this might take some time - consider setting a maximum number of schedules)").arg(total_nsched));
         ui->label_multiSchedulingNsched->setStyleSheet("color : orange; font-weight : bold");
-    }else if(nsched > 50){
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(nsched));
+    }else if(total_nsched > 50){
+        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(total_nsched));
         ui->label_multiSchedulingNsched->setStyleSheet("font-weight : bold");
     }else{
-        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(nsched));
+        ui->label_multiSchedulingNsched->setText(QString("total number of schedules: %1").arg(total_nsched));
         ui->label_multiSchedulingNsched->setStyleSheet("");
     }
 

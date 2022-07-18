@@ -59,6 +59,7 @@
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QAreaSeries>
 
+#include "Widgets/calibratorblock.h"
 #include "Utility/chartview.h"
 #include "Utility/callout.h"
 #include "secondaryGUIs/addgroupdialog.h"
@@ -182,14 +183,6 @@ private slots:
     void on_doubleSpinBox_weightLowElEnd_valueChanged(double arg1);
 
     void on_spinBox_scanSequenceCadence_valueChanged(int arg1);
-
-    void on_doubleSpinBox_calibratorLowElStart_valueChanged(double arg1);
-
-    void on_doubleSpinBox_calibratorLowElEnd_valueChanged(double arg1);
-
-    void on_doubleSpinBox_calibratorHighElStart_valueChanged(double arg1);
-
-    void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
 
     void createModesPolicyTable();
 
@@ -480,14 +473,6 @@ private slots:
 
     void on_groupBox_highImpactAzEl_toggled(bool arg1);
 
-    void on_checkBox_calibration_sessionStart_toggled(bool checked);
-
-    void on_checkBox_calibration_sessionEnd_toggled(bool checked);
-
-    void on_checkBox_calibration_sessionMid_toggled(bool checked);
-
-    void on_spinBox_NCalibrationBlocks_valueChanged(int arg1);
-
     void on_pushButton_11_clicked();
 
     void on_actionadvanced_triggered();
@@ -529,6 +514,15 @@ private slots:
     void on_pushButton_browseStp_clicked();
 
     void on_groupBox_a_priori_satellite_scans_toggled(bool arg1);
+
+    void on_doubleSpinBox_calibratorLowElStart_valueChanged(double arg1);
+
+    void on_doubleSpinBox_calibratorLowElEnd_valueChanged(double arg1);
+
+    void on_doubleSpinBox_calibratorHighElStart_valueChanged(double arg1);
+
+    void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
+
 
 private:
     Ui::MainWindow *ui;
@@ -592,6 +586,7 @@ private:
     setupWidget *spacecraftSetupWidget;
 
     SkyCovWidget *skyCoverageWidget;
+    CalibratorBlock *calibratorWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;
@@ -641,6 +636,7 @@ private:
     DownloadManager *downloadManager = new DownloadManager();
 
     void download();
+
 
 //    void searchSessionCodeInMasterFile(QString code);
 

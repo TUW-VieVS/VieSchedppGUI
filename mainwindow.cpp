@@ -410,7 +410,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_skedObsModes->setModel(allSkedModesModel);
     ui->comboBox_skedObsModes_advanced->setModel(allSkedModesModel);
 
-    ui->comboBox_calibrationBlockSources->setModel(allSourcePlusGroupModel);
     ui->comboBox_calibratorBlock_calibratorSources->setModel(allSourcePlusGroupModel);
     ui->comboBox_idleToObserving_stations->setModel(allStationPlusGroupModel);
     connect(ui->pushButton_idleToObserving_addStationGroup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
@@ -568,7 +567,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_addSourceGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addSatelliteGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
     connect(ui->pushButton_addSpacecraftGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSpacecraft()));
-    connect(ui->pushButton_calibration_addSrcGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+
+    calibratorWidget = new CalibratorBlock(allSourcePlusGroupModel, ui->doubleSpinBox_sessionDuration);
+    ui->verticalLayout_calib_setup->addWidget(calibratorWidget,1);
+    connect(calibratorWidget->newSourceGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(ui->doubleSpinBox_sessionDuration, SIGNAL(valueChanged(double)), calibratorWidget, SLOT(update()));
+    connect(calibratorWidget, SIGNAL(update_settings(QStringList, QStringList, QString)),
+            this, SLOT(changeDefaultSettings(QStringList, QStringList, QString)));
 
 
     readAllSkedObsModes();
@@ -629,8 +634,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto hv7 = ui->treeWidget_setupStationAxis->header();
     hv7->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->tableWidget_calibrationBlock->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->spinBox_NCalibrationBlocks->setValue(7);
 
     connect(ui->pushButton_setupAxisAdd,SIGNAL(clicked(bool)),this,SLOT(setupStationAxisBufferAddRow()));
 
@@ -663,9 +666,6 @@ MainWindow::MainWindow(QWidget *parent) :
     statistics->setupStatisticView();
 
 
-    ui->comboBox_calibration_sources->setModel(allSourcePlusGroupModel);
-    ui->comboBox_calibration_sources2->setModel(allSourcePlusGroupModel);
-    ui->comboBox_calibration_sources3->setModel(allSourcePlusGroupModel);
     ui->comboBox_conditions_members->setModel(allSourcePlusGroupModel_combined);
     connect(ui->pushButton_addSourceGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addSatGroup_conditions,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
@@ -1979,6 +1979,12 @@ void MainWindow::defaultParameters()
     if(timeTable.is_initialized()){
         ui->checkBox_outputTimeTable->setChecked(*timeTable);
     }
+
+    auto calib = settings_.get_child_optional("settings.rules.calibration");
+    if (calib.is_initialized()){
+        calibratorWidget->fromXML(*calib);
+    }
+
 }
 
 
@@ -3055,6 +3061,8 @@ void MainWindow::on_pushButton_reloadsources_clicked()
         warnings.append("scan sequence cleared\n");
     }
 
+    warnings.append(calibratorWidget->reloadSources());
+
     if(ui->comboBox_calibratorBlock_calibratorSources->currentText() != "__all__"){
         ui->comboBox_calibratorBlock_calibratorSources->setCurrentIndex(0);
         warnings.append("calibrator sources selection cleared\n");
@@ -3090,6 +3098,38 @@ void MainWindow::on_pushButton_howAreSkedCatalogsLinked_clicked()
     dial.setFonts();
     dial.exec();
 }
+
+// CALIBRATOR
+
+void MainWindow::on_doubleSpinBox_calibratorLowElStart_valueChanged(double arg1)
+{
+    if(ui->doubleSpinBox_calibratorLowElEnd->value() > arg1){
+        ui->doubleSpinBox_calibratorLowElEnd->setValue(arg1);
+    }
+}
+
+void MainWindow::on_doubleSpinBox_calibratorLowElEnd_valueChanged(double arg1)
+{
+    if(ui->doubleSpinBox_calibratorLowElStart->value() < arg1){
+        ui->doubleSpinBox_calibratorLowElStart->setValue(arg1);
+    }
+}
+
+void MainWindow::on_doubleSpinBox_calibratorHighElStart_valueChanged(double arg1)
+{
+    if(ui->doubleSpinBox_calibratorHighElEnd->value() < arg1){
+        ui->doubleSpinBox_calibratorHighElEnd->setValue(arg1);
+    }
+}
+
+void MainWindow::on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1)
+{
+    if(ui->doubleSpinBox_calibratorHighElStart->value() > arg1){
+        ui->doubleSpinBox_calibratorHighElStart->setValue(arg1);
+    }
+}
+
+
 
 // ########################################### GENERAL ###########################################
 
@@ -5426,33 +5466,6 @@ void MainWindow::on_spinBox_scanSequenceCadence_valueChanged(int arg1)
     }
 }
 
-void MainWindow::on_doubleSpinBox_calibratorLowElStart_valueChanged(double arg1)
-{
-    if(ui->doubleSpinBox_calibratorLowElEnd->value() > arg1){
-        ui->doubleSpinBox_calibratorLowElEnd->setValue(arg1);
-    }
-}
-
-void MainWindow::on_doubleSpinBox_calibratorLowElEnd_valueChanged(double arg1)
-{
-    if(ui->doubleSpinBox_calibratorLowElStart->value() < arg1){
-        ui->doubleSpinBox_calibratorLowElStart->setValue(arg1);
-    }
-}
-
-void MainWindow::on_doubleSpinBox_calibratorHighElStart_valueChanged(double arg1)
-{
-    if(ui->doubleSpinBox_calibratorHighElEnd->value() < arg1){
-        ui->doubleSpinBox_calibratorHighElEnd->setValue(arg1);
-    }
-}
-
-void MainWindow::on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1)
-{
-    if(ui->doubleSpinBox_calibratorHighElStart->value() > arg1){
-        ui->doubleSpinBox_calibratorHighElStart->setValue(arg1);
-    }
-}
 
 
 // ########################################### GUI UTILITY ###########################################
@@ -6339,77 +6352,6 @@ void MainWindow::on_pushButton_viewNext_clicked()
 }
 
 
-void MainWindow::on_checkBox_calibration_sessionStart_toggled(bool checked)
-{
-    auto *l = ui->gridLayout_10;
-    for( int i =1; i<=8; ++i){
-        l->itemAtPosition(0,i)->widget()->setEnabled(checked);
-    }
-}
-
-void MainWindow::on_checkBox_calibration_sessionMid_toggled(bool checked)
-{
-    auto *l = ui->gridLayout_10;
-    for( int i =1; i<=8; ++i){
-        l->itemAtPosition(1,i)->widget()->setEnabled(checked);
-    }
-}
-
-void MainWindow::on_checkBox_calibration_sessionEnd_toggled(bool checked)
-{
-    auto *l = ui->gridLayout_10;
-    for( int i =1; i<=8; ++i){
-        l->itemAtPosition(2,i)->widget()->setEnabled(checked);
-    }
-}
-
-
-
-void MainWindow::on_spinBox_NCalibrationBlocks_valueChanged(int row)
-{
-    double session_dur = ui->doubleSpinBox_sessionDuration->value();
-    double delta = session_dur/(row-1);
-    auto *tab = ui->tableWidget_calibrationBlock;
-    tab->setRowCount(row);
-    for(int i_row = 0; i_row<row; ++i_row){
-        QDoubleSpinBox *t = new QDoubleSpinBox();
-        t->setMaximum(session_dur);
-        t->setSingleStep(.5);
-        double v = i_row * delta;
-        if(v==0){
-            v=.5;
-        }else if(abs(v-session_dur)<.5){
-            v = session_dur-.5;
-        }
-        t->setValue(v);
-        t->setSuffix(" [hours]");
-
-        QSpinBox *d = new QSpinBox();
-        d->setMinimum(30);
-        d->setMaximum(1200);
-        d->setSingleStep(30);
-        d->setValue(ui->spinBox_calibrationBlockDuration->value());
-        d->setSuffix(" [s]");
-        connect(ui->spinBox_calibrationBlockDuration,SIGNAL(valueChanged(int)), d,SLOT(setValue(int)));
-
-        QSpinBox *s = new QSpinBox();
-        s->setMinimum(1);
-        s->setMaximum(10);
-        s->setValue(ui->spinBox_calibrationBlockScans->value());
-        connect(ui->spinBox_calibrationBlockScans,SIGNAL(valueChanged(int)), s,SLOT(setValue(int)));
-
-        QComboBox *c = new QComboBox();
-        c->setModel(allSourcePlusGroupModel);
-        c->setCurrentText(ui->comboBox_calibrationBlockSources->currentText());
-        connect(ui->comboBox_calibrationBlockSources,SIGNAL(currentIndexChanged(int)), c,SLOT(setCurrentIndex(int)));
-
-        tab->setCellWidget(i_row,0,t);
-        tab->setCellWidget(i_row,1,d);
-        tab->setCellWidget(i_row,2,s);
-        tab->setCellWidget(i_row,3,c);
-
-    }
-}
 
 
 void MainWindow::updateWeightFactorSliders()

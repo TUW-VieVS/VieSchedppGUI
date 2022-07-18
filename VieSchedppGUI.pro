@@ -226,6 +226,7 @@ SOURCES += \
     ../VieSchedpp/Simulator/Solver.cpp \
     ../VieSchedpp/Simulator/Unknown.cpp \
     Utility/downloadmanager.cpp \
+    Widgets/calibratorblock.cpp \
     Widgets/mulitschedulingwidget.cpp \
     Widgets/priorities.cpp \
     Widgets/setupwidget.cpp \
@@ -376,6 +377,7 @@ HEADERS += \
     Parameters/sourceparametersdialog.h \
     Parameters/stationparametersdialog.h \
     Utility/downloadmanager.h \
+    Widgets/calibratorblock.h \
     Widgets/mulitschedulingwidget.h \
     Widgets/priorities.h \
     Widgets/setupwidget.h \
@@ -413,6 +415,7 @@ HEADERS += \
     secondaryGUIs/rendersetup.h
 
 FORMS += \
+    Widgets/calibratorblock.ui \
     Widgets/mulitschedulingwidget.ui \
     Widgets/priorities.ui \
     Widgets/setupwidget.ui \

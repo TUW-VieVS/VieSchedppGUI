@@ -47,28 +47,6 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_save">
-       <property name="text">
-        <string> save</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../myresources.qrc">
-         <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_load">
-       <property name="text">
-        <string> load</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../myresources.qrc">
-         <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>

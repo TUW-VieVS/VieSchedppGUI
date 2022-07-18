@@ -49,7 +49,7 @@ boost::property_tree::ptree SkyCovWidget::toXML()
     bool allSame = ui->radioButton_distance->isChecked();
 
     boost::property_tree::ptree tree;
-    if ( allSame ){
+    if ( t->rowCount() > 0 && allSame ){
         tree.add("influenceDistance", qobject_cast<QDoubleSpinBox *>(t->cellWidget(0,2))->value());
         tree.add("influenceInterval", qobject_cast<QSpinBox *>(t->cellWidget(0,3))->value());
         tree.add("maxTwinTelecopeDistance", ui->spinBox_distance->value());
