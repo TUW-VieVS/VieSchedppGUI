@@ -1,20 +1,39 @@
 #include "calibratorblock.h"
 #include "ui_calibratorblock.h"
 
-CalibratorBlock::CalibratorBlock(QStandardItemModel *source_model, QDoubleSpinBox *session_duration, QWidget *parent) :
+CalibratorBlock::CalibratorBlock(QStandardItemModel *source_model,
+                                 QStandardItemModel *station_model,
+                                 QStandardItemModel *baseline_model,
+                                 QDoubleSpinBox *session_duration,
+                                 QWidget *parent) :
     QWidget(parent),
     source_model_{source_model},
+    station_model_{station_model},
+    baseline_model_{baseline_model},
     session_duration{session_duration},
     ui(new Ui::CalibratorBlock)
 {
     ui->setupUi(this);
+    ui->tabWidget->setCurrentIndex(0);
 
     newSourceGroup = ui->pushButton_calibration_addSrcGroup;
+    newSourceGroup2 = ui->pushButton_addSrcGroup_2;
+    newSourceGroup3 = ui->pushButton_addSrcGroup_3;
+    newBaselineGroup = ui->pushButton_addBaselineGroup;
+    newStationGroup = ui->pushButton_add_station_group;
+
     default_blocks = ui->pushButton_save_blocks;
     default_general_setup = ui->pushButton_save_general;
     default_advanced_setup = ui->pushButton_save_advanced;
+    save_para = ui->pushButton_save_para;
+    save_dpara = ui->pushButton_save_dpara;
 
-    ui->comboBox_calibrationBlockSources->setModel(source_model);
+
+    ui->comboBox_calibrationBlockSources->setModel(source_model_);
+    ui->comboBox_dpara_sources->setModel(source_model_);
+    ui->comboBox_para_sources->setModel(source_model_);
+    ui->comboBox_dpara_baseline->setModel(baseline_model_);
+    ui->comboBox_para_station->setModel(station_model_);
 
     ui->tableWidget_calibrationBlock->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     on_spinBox_NCalibrationBlocks_valueChanged(ui->spinBox_NCalibrationBlocks->value());
@@ -88,6 +107,25 @@ boost::property_tree::ptree CalibratorBlock::toXML()
     rules.add( "calibration.duration_factor", ui->doubleSpinBox_dur_f->value());
     rules.add( "calibration.duration_offset", ui->doubleSpinBox_dur_o->value());
 
+    if ( ui->spinBox_dpara_scans->value() > 0){
+        rules.add( "calibration.diffParallacticAngle.nscans", ui->spinBox_dpara_scans->value());
+        rules.add( "calibration.diffParallacticAngle.duration", ui->spinBox_dpara_duration->value());
+        rules.add( "calibration.diffParallacticAngle.distanceScaling", ui->doubleSpinBox_dpara_distanceScaling->value());
+        rules.add( "calibration.diffParallacticAngle.sources", ui->comboBox_dpara_sources->currentText().toStdString());
+        rules.add( "calibration.diffParallacticAngle.baselines", ui->comboBox_dpara_baseline->currentText().toStdString());
+        rules.add( "calibration.diffParallacticAngle.investigationCadence", ui->spinBox_dpara_cadence->value());
+        rules.add( "calibration.diffParallacticAngle.intent", ui->comboBox_dpara_intent->currentText().toStdString());
+    }
+    if ( ui->spinBox_para_nscans->value() > 0){
+        rules.add( "calibration.parallacticAngleChange.nscans", ui->spinBox_para_nscans->value());
+        rules.add( "calibration.parallacticAngleChange.duration", ui->spinBox_para_duration->value());
+        rules.add( "calibration.parallacticAngleChange.distanceScaling", ui->doubleSpinBox_para_distanceScaling->value());
+        rules.add( "calibration.parallacticAngleChange.sources", ui->comboBox_para_sources->currentText().toStdString());
+        rules.add( "calibration.parallacticAngleChange.stations", ui->comboBox_para_station->currentText().toStdString());
+        rules.add( "calibration.parallacticAngleChange.investigationCadence", ui->spinBox_para_cadence->value());
+        rules.add( "calibration.parallacticAngleChange.intent", ui->comboBox_para_intent->currentText().toStdString());
+    }
+
     return rules;
 }
 
@@ -151,6 +189,25 @@ void CalibratorBlock::fromXML(const boost::property_tree::ptree &ctree)
             ++i;
         }
     }
+
+    if ( ctree.get_child_optional("diffParallacticAngle").is_initialized()){
+        ui->spinBox_dpara_scans->setValue(ctree.get("diffParallacticAngle.nscans",0));
+        ui->spinBox_dpara_duration->setValue(ctree.get("diffParallacticAngle.duration",300));
+        ui->doubleSpinBox_dpara_distanceScaling->setValue(ctree.get("diffParallacticAngle.distanceScaling",2.0));
+        ui->comboBox_dpara_sources->setCurrentText(QString::fromStdString(ctree.get("diffParallacticAngle.sources","__all__")));
+        ui->comboBox_dpara_baseline->setCurrentText(QString::fromStdString(ctree.get("diffParallacticAngle.baselines","__all__")));
+        ui->spinBox_dpara_cadence->setValue(ctree.get("diffParallacticAngle.investigationCadence",300));
+        ui->comboBox_dpara_intent->setCurrentText(QString::fromStdString(ctree.get("diffParallacticAngle.intent","CALIBRATE_BANDPASS")));
+    }
+    if ( ctree.get_child_optional("parallacticAngleChange").is_initialized()){
+        ui->spinBox_para_nscans->setValue(ctree.get("parallacticAngleChange.nscans",0));
+        ui->spinBox_para_duration->setValue(ctree.get("parallacticAngleChange.duration",300));
+        ui->doubleSpinBox_para_distanceScaling->setValue(ctree.get("parallacticAngleChange.distanceScaling",10.0));
+        ui->comboBox_para_sources->setCurrentText(QString::fromStdString(ctree.get("parallacticAngleChange.sources","__all__")));
+        ui->comboBox_para_station->setCurrentText(QString::fromStdString(ctree.get("parallacticAngleChange.stations","__all__")));
+        ui->spinBox_para_cadence->setValue(ctree.get("parallacticAngleChange.investigationCadence",300));
+        ui->comboBox_para_intent->setCurrentText(QString::fromStdString(ctree.get("parallacticAngleChange.intent","CALIBRATE_BANDPASS")));
+    }
 }
 
 void CalibratorBlock::on_spinBox_NCalibrationBlocks_valueChanged(int row)
@@ -177,13 +234,12 @@ void CalibratorBlock::on_spinBox_NCalibrationBlocks_valueChanged(int row)
                 v = session_dur-.5;
             }
         }
-        t->setValue(v);
-        t->setSuffix(" [hours]");
+        t->setValue(v);        t->setSuffix(" [hours]");
 
         QSpinBox *d = new QSpinBox();
-        d->setMinimum(30);
+        d->setMinimum(10);
         d->setMaximum(1200);
-        d->setSingleStep(30);
+        d->setSingleStep(10);
         d->setValue(ui->spinBox_calibrationBlockDuration->value());
         d->setSuffix(" [s]");
         connect(ui->spinBox_calibrationBlockDuration,SIGNAL(valueChanged(int)), d,SLOT(setValue(int)));
@@ -203,7 +259,6 @@ void CalibratorBlock::on_spinBox_NCalibrationBlocks_valueChanged(int row)
         tab->setCellWidget(i_row,1,d);
         tab->setCellWidget(i_row,2,s);
         tab->setCellWidget(i_row,3,c);
-
     }
 }
 
@@ -292,6 +347,61 @@ void CalibratorBlock::on_pushButton_save_blocks_clicked()
 }
 
 
+
+void CalibratorBlock::on_pushButton_save_dpara_clicked()
+{
+    QStringList path;
+    QStringList value;
+
+    path << "settings.rules.calibration.diffParallacticAngle.nscans"
+         << "settings.rules.calibration.diffParallacticAngle.duration"
+         << "settings.rules.calibration.diffParallacticAngle.distanceScaling"
+         << "settings.rules.calibration.diffParallacticAngle.sources"
+         << "settings.rules.calibration.diffParallacticAngle.baselines"
+         << "settings.rules.calibration.diffParallacticAngle.investigationCadence"
+         << "settings.rules.calibration.diffParallacticAngle.intent"
+            ;
+
+    value << QString::number(ui->spinBox_dpara_scans->value())
+          << QString::number(ui->spinBox_dpara_duration->value())
+          << QString::number(ui->doubleSpinBox_dpara_distanceScaling->value())
+          <<  ui->comboBox_dpara_sources->currentText()
+          <<  ui->comboBox_dpara_baseline->currentText()
+          <<  QString::number(ui->spinBox_dpara_cadence->value())
+          <<  ui->comboBox_dpara_intent->currentText();
+
+    QString name = "differential parallactic angle calibration settings changed";
+    emit update_settings(path, value, name);
+}
+
+
+void CalibratorBlock::on_pushButton_save_para_clicked()
+{
+    QStringList path;
+    QStringList value;
+
+    path << "settings.rules.calibration.parallacticAngleChange.nscans"
+         << "settings.rules.calibration.parallacticAngleChange.duration"
+         << "settings.rules.calibration.parallacticAngleChange.distanceScaling"
+         << "settings.rules.calibration.parallacticAngleChange.sources"
+         << "settings.rules.calibration.parallacticAngleChange.stations"
+         << "settings.rules.calibration.parallacticAngleChange.investigationCadence"
+         << "settings.rules.calibration.parallacticAngleChange.intent"
+            ;
+
+    value << QString::number(ui->spinBox_para_nscans->value())
+          << QString::number(ui->spinBox_para_duration->value())
+          << QString::number(ui->doubleSpinBox_para_distanceScaling->value())
+          <<  ui->comboBox_para_sources->currentText()
+          <<  ui->comboBox_para_station->currentText()
+          <<  QString::number(ui->spinBox_para_cadence->value())
+          <<  ui->comboBox_para_intent->currentText();
+
+    QString name = "parallactic angle calibration settings changed";
+    emit update_settings(path, value, name);
+}
+
+
 void CalibratorBlock::on_checkBox_tryToIncludeAllStations_toggled(bool checked)
 {
     QString txt;
@@ -304,4 +414,5 @@ void CalibratorBlock::on_checkBox_tryToIncludeAllStations_toggled(bool checked)
     ui->tableWidget_calibrationBlock->horizontalHeaderItem(2)->setText(txt);
     ui->label_127->setText(txt + " per block");
 }
+
 

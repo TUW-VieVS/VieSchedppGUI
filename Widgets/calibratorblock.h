@@ -30,21 +30,36 @@ private slots:
 
     void on_checkBox_tryToIncludeAllStations_toggled(bool checked);
 
+    void on_pushButton_save_dpara_clicked();
+
+    void on_pushButton_save_para_clicked();
+
 public slots:
 
     void update();
 
 public:
-    explicit CalibratorBlock(QStandardItemModel *source_model, QDoubleSpinBox *session_duration, QWidget *parent = nullptr);
+    explicit CalibratorBlock(QStandardItemModel *source_model,
+                             QStandardItemModel *station_model,
+                             QStandardItemModel *baseline_model,
+                             QDoubleSpinBox *session_duration,
+                             QWidget *parent = nullptr);
 
     QString reloadSources();
 
     ~CalibratorBlock();
 
     QPushButton *newSourceGroup;
+    QPushButton *newSourceGroup2;
+    QPushButton *newSourceGroup3;
+    QPushButton *newStationGroup;
+    QPushButton *newBaselineGroup;
+
     QPushButton *default_blocks;
     QPushButton *default_general_setup;
     QPushButton *default_advanced_setup;
+    QPushButton *save_para;
+    QPushButton *save_dpara;
 
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &rules);
@@ -56,6 +71,8 @@ signals:
 private:
     Ui::CalibratorBlock *ui;
     QStandardItemModel *source_model_;
+    QStandardItemModel *station_model_;
+    QStandardItemModel *baseline_model_;
     QDoubleSpinBox *session_duration;
 };
 

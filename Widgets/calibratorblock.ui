@@ -6,722 +6,1348 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>788</width>
+    <width>938</width>
     <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Calibrator blocks</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_6">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_18">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_2">
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Fringe finder</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>number of blocks</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_NCalibrationBlocks">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="statusTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="value">
+            <number>3</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_130">
+           <property name="text">
+            <string>vex intent:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_calibrationIntent">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>NONE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FRINGE_FINDER</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AMPLI</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AUTOPHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_BANDPASS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_DELAY</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_PHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POINTING</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_ANGLE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATOR_CODE	</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_21">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_save_blocks">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_32">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_125">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>default values:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_126">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>duration</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_calibrationBlockDuration">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all durations</string>
+           </property>
+           <property name="statusTip">
+            <string>change all durations</string>
+           </property>
+           <property name="suffix">
+            <string> [s]</string>
+           </property>
+           <property name="minimum">
+            <number>10</number>
+           </property>
+           <property name="maximum">
+            <number>3600</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>300</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_127">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>scans per block</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_calibrationBlockScans">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all #scans </string>
+           </property>
+           <property name="statusTip">
+            <string>change all #scans </string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>2</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_128">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_calibrationBlockSources">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all allowed sources</string>
+           </property>
+           <property name="statusTip">
+            <string>change all allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_calibration_addSrcGroup">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_26">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget_calibrationBlock">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="toolTip">
+          <string>schedule calibration blocks </string>
+         </property>
+         <property name="statusTip">
+          <string>schedule calibration blocks </string>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
           <property name="text">
-           <string>number of blocks</string>
+           <string>offset from session start</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBox_NCalibrationBlocks">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="toolTip">
-           <string>select number of (equally spaced) calibration blocks</string>
-          </property>
-          <property name="statusTip">
-           <string>select number of (equally spaced) calibration blocks</string>
-          </property>
-          <property name="minimum">
-           <number>2</number>
-          </property>
-          <property name="value">
-           <number>3</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_21">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_save_blocks">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../myresources.qrc">
-            <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_32">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_125">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>default values:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_126">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
+         </column>
+         <column>
           <property name="text">
            <string>duration</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBox_calibrationBlockDuration">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="toolTip">
-           <string>change all durations</string>
-          </property>
-          <property name="statusTip">
-           <string>change all durations</string>
-          </property>
-          <property name="suffix">
-           <string> [s]</string>
-          </property>
-          <property name="minimum">
-           <number>30</number>
-          </property>
-          <property name="maximum">
-           <number>3600</number>
-          </property>
-          <property name="singleStep">
-           <number>30</number>
-          </property>
-          <property name="value">
-           <number>300</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_127">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
+         </column>
+         <column>
           <property name="text">
-           <string>scans per block</string>
+           <string>scans</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBox_calibrationBlockScans">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="toolTip">
-           <string>change all #scans </string>
-          </property>
-          <property name="statusTip">
-           <string>change all #scans </string>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="value">
-           <number>2</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_128">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
+         </column>
+         <column>
           <property name="text">
-           <string>allowed sources</string>
+           <string>sources</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox_calibrationBlockSources">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="toolTip">
-           <string>change all allowed sources</string>
-          </property>
-          <property name="statusTip">
-           <string>change all allowed sources</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_calibration_addSrcGroup">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../myresources.qrc">
-            <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_26">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QTableWidget" name="tableWidget_calibrationBlock">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="toolTip">
-         <string>schedule calibration blocks </string>
-        </property>
-        <property name="statusTip">
-         <string>schedule calibration blocks </string>
-        </property>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <column>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>offset from session start</string>
+          <string>useful for all types of sessions (high SNR scans)</string>
          </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>duration</string>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_37">
+         <property name="toolTip">
+          <string>schedule predifined calibration blocks (session start, mid, and end)</string>
          </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>scans</string>
+         <property name="statusTip">
+          <string>schedule predifined calibration blocks (session start, mid, and end)</string>
          </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>sources</string>
+         <property name="title">
+          <string>Settings</string>
          </property>
-        </column>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_37">
-     <property name="toolTip">
-      <string>schedule predifined calibration blocks (session start, mid, and end)</string>
-     </property>
-     <property name="statusTip">
-      <string>schedule predifined calibration blocks (session start, mid, and end)</string>
-     </property>
-     <property name="title">
-      <string>Settings</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QTabWidget" name="tabWidget">
-        <property name="whatsThis">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Setup for calibrator scans &lt;/p&gt;&lt;p&gt;Click on an item to get improved help&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="tab">
-         <attribute name="title">
-          <string>General</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <property name="topMargin">
+           <widget class="QTabWidget" name="tabWidget_2">
+            <property name="currentIndex">
              <number>0</number>
             </property>
-            <item>
-             <widget class="QCheckBox" name="checkBox_subnetting">
-              <property name="toolTip">
-               <string>prevent subnetting for calibrator scans</string>
-              </property>
-              <property name="statusTip">
-               <string>prevent subnetting for calibrator scans</string>
-              </property>
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toggle to prevent subnetting for calibrator scans&lt;/p&gt;&lt;p&gt;Subnetting is only used in case it is enabled in the general settings &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="text">
-               <string>prevent subnetting</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_save_general">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../myresources.qrc">
-                <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QCheckBox" name="checkBox_tryToIncludeAllStations">
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Try to include every station in each calibration block. &lt;/p&gt;&lt;p&gt;Therefore, a maximum number of allowed scans is defined (instead of a fixed number of scans). &lt;/p&gt;&lt;p&gt;If all stations are already scheduled, no more calibration scans are added in this block. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Behind the scenes, the scan score is scaled based on the number of missing stations within this scan divided by the total number of missing stations in this block. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="text">
-               <string>try to include all stations in each block</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>importance:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_stationFactor">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the importance factor for including all stations within the calibration scan(s). &lt;/p&gt;&lt;p&gt;The importance factor &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;factor&amp;quot;&lt;/span&gt; has the following influence on the scoring:&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = score * ratio^factor&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;where ratio = (#stations included in this scan or subnetting scans that have not yet been scheduled in the calibrator block) / (#stations not yet in scheduled in calibrator block)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="minimum">
-               <double>1.000000000000000</double>
-              </property>
-              <property name="maximum">
-               <double>10.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>3.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_35">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="label_130">
-              <property name="text">
-               <string>vex intent:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBox_calibrationIntent">
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>General</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <property name="text">
-                <string>NONE</string>
-               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QCheckBox" name="checkBox_subnetting">
+                  <property name="toolTip">
+                   <string>prevent subnetting for calibrator scans</string>
+                  </property>
+                  <property name="statusTip">
+                   <string>prevent subnetting for calibrator scans</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toggle to prevent subnetting for calibrator scans&lt;/p&gt;&lt;p&gt;Subnetting is only used in case it is enabled in the general settings &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>prevent subnetting</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_save_general">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../myresources.qrc">
+                    <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <property name="text">
-                <string>FRINGE_FINDER</string>
-               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QCheckBox" name="checkBox_tryToIncludeAllStations">
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Try to include every station in each calibration block. &lt;/p&gt;&lt;p&gt;Therefore, a maximum number of allowed scans is defined (instead of a fixed number of scans). &lt;/p&gt;&lt;p&gt;If all stations are already scheduled, no more calibration scans are added in this block. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Behind the scenes, the scan score is scaled based on the number of missing stations within this scan divided by the total number of missing stations in this block. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>try to include all stations in each block</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>importance:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_stationFactor">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the importance factor for including all stations within the calibration scan(s). &lt;/p&gt;&lt;p&gt;The importance factor &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;factor&amp;quot;&lt;/span&gt; has the following influence on the scoring:&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = score * ratio^factor&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;where ratio = (#stations included in this scan or subnetting scans that have not yet been scheduled in the calibrator block) / (#stations not yet in scheduled in calibrator block)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="minimum">
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>10.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>3.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
               <item>
-               <property name="text">
-                <string>CALIBRATE_AMPLI</string>
-               </property>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>96</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_5">
+             <attribute name="title">
+              <string>Weighting</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <layout class="QGridLayout" name="gridLayout">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="3">
+                 <spacer name="horizontalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>average stations</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="4">
+                 <widget class="QPushButton" name="pushButton_save_advanced">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../myresources.qrc">
+                    <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_dur_o">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximum">
+                   <double>1000.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>duration</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>weighting criterion</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="label_8">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>offset</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_nobs_f">
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="stepType">
+                   <enum>QAbstractSpinBox::DefaultStepType</enum>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_nobs_o">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximum">
+                   <double>1000.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>factor</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_asta_f">
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="stepType">
+                   <enum>QAbstractSpinBox::DefaultStepType</enum>
+                  </property>
+                  <property name="value">
+                   <double>2.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="3">
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_asta_o">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximum">
+                   <double>1000.000000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_dur_f">
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="stepType">
+                   <enum>QAbstractSpinBox::DefaultStepType</enum>
+                  </property>
+                  <property name="value">
+                   <double>0.500000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>number of observations</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_3">
+                  <property name="text">
+                   <string>average baselines</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_abl_f">
+                  <property name="whatsThis">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="stepType">
+                   <enum>QAbstractSpinBox::DefaultStepType</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="2">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_abl_o">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximum">
+                   <double>1000.000000000000000</double>
+                  </property>
+                  <property name="stepType">
+                   <enum>QAbstractSpinBox::DefaultStepType</enum>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <property name="text">
-                <string>CALIBRATE_AUTOPHASE</string>
-               </property>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_BANDPASS</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_DELAY</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_PHASE</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_POINTING</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_POLARIZATION_ANGLE</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CALIBRATOR_CODE	</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_27">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
+             </layout>
+            </widget>
+           </widget>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
-         <attribute name="title">
-          <string>Advanced</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <layout class="QGridLayout" name="gridLayout">
-            <property name="topMargin">
-             <number>0</number>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Parallactic angle difference</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="spinBox_dpara_scans">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="statusTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QComboBox" name="comboBox_dpara_intent">
+           <property name="currentIndex">
+            <number>4</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>NONE</string>
             </property>
-            <item row="0" column="3">
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>average stations</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="4">
-             <widget class="QPushButton" name="pushButton_save_advanced">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../myresources.qrc">
-                <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_dur_o">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximum">
-               <double>1000.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>duration</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>weighting criterion</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="label_8">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>offset</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_nobs_f">
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="maximum">
-               <double>10000.000000000000000</double>
-              </property>
-              <property name="singleStep">
-               <double>0.100000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::DefaultStepType</enum>
-              </property>
-              <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_nobs_o">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximum">
-               <double>1000.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>factor</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_asta_f">
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="maximum">
-               <double>10000.000000000000000</double>
-              </property>
-              <property name="singleStep">
-               <double>0.100000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::DefaultStepType</enum>
-              </property>
-              <property name="value">
-               <double>2.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="2" column="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_asta_o">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximum">
-               <double>1000.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_dur_f">
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="maximum">
-               <double>10000.000000000000000</double>
-              </property>
-              <property name="singleStep">
-               <double>0.100000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::DefaultStepType</enum>
-              </property>
-              <property name="value">
-               <double>0.500000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>number of observations</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>average baselines</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_abl_f">
-              <property name="whatsThis">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weight factor &lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;20&quot;/&gt; for calibrator scans. &lt;/p&gt;&lt;p&gt;The calculation of the score is based on the following formula&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;score = average_snr * (w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; + ... + w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; * s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;) * x&lt;/span&gt;&lt;/p&gt;&lt;p&gt;where &lt;span style=&quot; font-style:italic;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; are the weight factors of the corresponding optimization scores &lt;span style=&quot; font-style:italic;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-style:italic; vertical-align:sub;&quot;&gt;i&lt;/span&gt; and &lt;span style=&quot; font-style:italic;&quot;&gt;x&lt;/span&gt; is a factor based on the station-, baseline-, source-weight (see &lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;20&quot;/&gt;, &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;20&quot;/&gt;, and &lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;20&quot;/&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="maximum">
-               <double>10000.000000000000000</double>
-              </property>
-              <property name="singleStep">
-               <double>0.100000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::DefaultStepType</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_abl_o">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximum">
-               <double>1000.000000000000000</double>
-              </property>
-              <property name="stepType">
-               <enum>QAbstractSpinBox::DefaultStepType</enum>
-              </property>
-              <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+           </item>
+           <item>
+            <property name="text">
+             <string>FRINGE_FINDER</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AMPLI</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AUTOPHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_BANDPASS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_DELAY</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_PHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POINTING</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_ANGLE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATOR_CODE	</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>number of scans</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QPushButton" name="pushButton_addBaselineGroup">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/baseline_group_plus.png</normaloff>:/icons/icons/baseline_group_plus.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>allowed baseline</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_134">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="comboBox_dpara_sources">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all allowed sources</string>
+           </property>
+           <property name="statusTip">
+            <string>change all allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="comboBox_dpara_baseline">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define a baseline that is selected for evaluating the difference in parallactic angle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_22">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="4">
+          <widget class="QPushButton" name="pushButton_save_dpara">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_131">
+           <property name="text">
+            <string>vex intent:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="spinBox_dpara_duration">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all durations</string>
+           </property>
+           <property name="statusTip">
+            <string>change all durations</string>
+           </property>
+           <property name="suffix">
+            <string> [s]</string>
+           </property>
+           <property name="minimum">
+            <number>10</number>
+           </property>
+           <property name="maximum">
+            <number>3600</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>300</number>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>scan investigation cadence</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_132">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>duration</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="pushButton_addSrcGroup_2">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="5">
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QSpinBox" name="spinBox_dpara_cadence">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To find the best calibrator scan, all potential scans are investigated before selecting one. &lt;/p&gt;&lt;p&gt;With this parameter, you define the interval when all potential scans are generated. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g.:&lt;br/&gt;When the session starts at 00:00 and cadence is set to 300 seconds, every five minute, all possible scans are generated and evaluated. After all are evaluated, the best n-scans are selected as calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="suffix">
+            <string> [s]</string>
+           </property>
+           <property name="minimum">
+            <number>60</number>
+           </property>
+           <property name="maximum">
+            <number>86400</number>
+           </property>
+           <property name="singleStep">
+            <number>60</number>
+           </property>
+           <property name="value">
+            <number>300</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>distance scaling</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_dpara_distanceScaling">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Used to calculate the score of each scan. &lt;/p&gt;&lt;p&gt;The general equation is:&lt;/p&gt;&lt;p&gt;score = SNR_obs * factor &lt;/p&gt;&lt;p&gt;with&lt;/p&gt;&lt;p&gt;dpar = parallactic_angle_1 - parallactic_angle_2&lt;/p&gt;&lt;p&gt;and&lt;/p&gt;&lt;p&gt;factor = (0.5 + 0.5 * sin( -pi/2 + 4 * dpar ) ) ^distance_scaling&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/dpara.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>2.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>useful for (Intensive) sessions fringe-fitted by Fourfit (dPar close to 45° +/- n * 90°)</string>
+         </property>
         </widget>
-       </widget>
-      </item>
-     </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Parallactic angle change</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="4" column="1">
+          <widget class="QComboBox" name="comboBox_para_station">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define a station that is selected for evaluating the difference in parallactic angle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_135">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>duration</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>scan investigation cadence</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="7" column="1">
+          <widget class="QSpinBox" name="spinBox_para_cadence">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To find the best calibrator scan, all potential scans are investigated before selecting one. &lt;/p&gt;&lt;p&gt;With this parameter, you define the interval when all potential scans are generated. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g.:&lt;br/&gt;When the session starts at 00:00 and cadence is set to 300 seconds, every five minute, all possible scans are generated and evaluated. After all are evaluated, the best n-scans are selected as calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="suffix">
+            <string> [s]</string>
+           </property>
+           <property name="minimum">
+            <number>60</number>
+           </property>
+           <property name="maximum">
+            <number>86400</number>
+           </property>
+           <property name="singleStep">
+            <number>60</number>
+           </property>
+           <property name="value">
+            <number>300</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QPushButton" name="pushButton_save_para">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_137">
+           <property name="text">
+            <string>vex intent:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QComboBox" name="comboBox_para_intent">
+           <property name="currentIndex">
+            <number>4</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>NONE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FRINGE_FINDER</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AMPLI</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_AUTOPHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_BANDPASS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_DELAY</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_PHASE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POINTING</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_ANGLE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CALIBRATOR_CODE	</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="comboBox_para_sources">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all allowed sources</string>
+           </property>
+           <property name="statusTip">
+            <string>change all allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>number of scans</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="spinBox_para_duration">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>change all durations</string>
+           </property>
+           <property name="statusTip">
+            <string>change all durations</string>
+           </property>
+           <property name="suffix">
+            <string> [s]</string>
+           </property>
+           <property name="minimum">
+            <number>10</number>
+           </property>
+           <property name="maximum">
+            <number>3600</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>300</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="spinBox_para_nscans">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="statusTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>allowed station</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="5">
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QPushButton" name="pushButton_addSrcGroup_3">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_136">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>allowed sources</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QPushButton" name="pushButton_add_station_group">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../myresources.qrc">
+             <normaloff>:/icons/icons/station_group_plus.png</normaloff>:/icons/icons/station_group_plus.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>distance scaling</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_para_distanceScaling">
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Used to calculate the score of each scan. &lt;/p&gt;&lt;p&gt;The general equation is:&lt;/p&gt;&lt;p&gt;score = SNR * factor &lt;/p&gt;&lt;p&gt;with&lt;/p&gt;&lt;p&gt;factor = (0.5 + 0.5 * cos( pi + 2 * elevation ) ) ^ distance_scaling&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/para.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="minimum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>10.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>useful for sessions fringe-fitted by polconvert (one station with source at high elevation)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -729,38 +1355,5 @@
  <resources>
   <include location="../myresources.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>checkBox_tryToIncludeAllStations</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>325</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>368</x>
-     <y>117</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_tryToIncludeAllStations</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>doubleSpinBox_stationFactor</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>302</x>
-     <y>123</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>483</x>
-     <y>117</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

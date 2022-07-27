@@ -95,5 +95,7 @@
         <file>images/cat_eye.png</file>
         <file>images/eth_logo.png</file>
         <file>images/ES_scheduling_flowchart.png</file>
+        <file>images/para.png</file>
+        <file>images/dpara.png</file>
     </qresource>
 </RCC>

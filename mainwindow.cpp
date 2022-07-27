@@ -568,9 +568,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_addSatelliteGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
     connect(ui->pushButton_addSpacecraftGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSpacecraft()));
 
-    calibratorWidget = new CalibratorBlock(allSourcePlusGroupModel, ui->doubleSpinBox_sessionDuration);
+    calibratorWidget = new CalibratorBlock(allSourcePlusGroupModel,
+                                           allStationPlusGroupModel,
+                                           allBaselinePlusGroupModel,
+                                           ui->doubleSpinBox_sessionDuration);
+
     ui->verticalLayout_calib_setup->addWidget(calibratorWidget,1);
     connect(calibratorWidget->newSourceGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(calibratorWidget->newSourceGroup2,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(calibratorWidget->newSourceGroup3,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
+    connect(calibratorWidget->newStationGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
+    connect(calibratorWidget->newBaselineGroup,SIGNAL(clicked(bool)), this, SLOT(addGroupBaseline()));
+
     connect(ui->doubleSpinBox_sessionDuration, SIGNAL(valueChanged(double)), calibratorWidget, SLOT(update()));
     connect(calibratorWidget, SIGNAL(update_settings(QStringList, QStringList, QString)),
             this, SLOT(changeDefaultSettings(QStringList, QStringList, QString)));
