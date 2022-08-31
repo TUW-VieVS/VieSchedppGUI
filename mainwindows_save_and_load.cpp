@@ -251,6 +251,7 @@ QString MainWindow::writeXML()
     std::string source = ui->lineEdit_pathSource->text().toStdString();
     std::string tracks = ui->lineEdit_pathTracks->text().toStdString();
     std::string satellites = ui->lineEdit_pathSatellite->text().toStdString();
+    std::string satellites_avoid = ui->lineEdit_pathSatellite_avoid->text().toStdString();
     std::string stp = ui->lineEdit_pathStp->text().toStdString();
 
     if(ui->checkBox_resolvePathes->isChecked()){
@@ -267,10 +268,11 @@ QString MainWindow::writeXML()
         rx = QFileInfo(ui->lineEdit_pathRx->text()).absoluteFilePath().toStdString();
         source = QFileInfo(ui->lineEdit_pathSource->text()).absoluteFilePath().toStdString();
         satellites = QFileInfo(ui->lineEdit_pathSatellite->text()).absoluteFilePath().toStdString();
+        satellites_avoid = QFileInfo(ui->lineEdit_pathSatellite_avoid->text()).absoluteFilePath().toStdString();
         tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
         stp = QFileInfo(ui->lineEdit_pathStp->text()).absoluteFilePath().toStdString();
     }
-    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites, stp);
+    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites, stp, satellites_avoid);
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
@@ -628,6 +630,10 @@ void MainWindow::loadXML(QString path)
         std::string tle = xml.get("VieSchedpp.catalogs.satellite","");
         if(!tle.empty()){
             ui->lineEdit_pathSatellite->setText(QString::fromStdString(tle));
+        }
+        std::string tle_avoid = xml.get("VieSchedpp.catalogs.satellite_avoid","");
+        if(!tle_avoid.empty()){
+            ui->lineEdit_pathSatellite_avoid->setText(QString::fromStdString(tle_avoid));
         }
         std::string spacecraft = xml.get("VieSchedpp.catalogs.spacecraft","");
         if(!spacecraft.empty()){
@@ -1899,6 +1905,9 @@ void MainWindow::readSettings()
     auto cSatellite = settings_.get<std::string>("settings.catalog_path.satellite","");
     f(ui->lineEdit_pathSatellite, cSatellite);
 
+    auto cSatellite_avoid = settings_.get<std::string>("settings.catalog_path.satellite_avoid","");
+    f(ui->lineEdit_pathSatellite_avoid, cSatellite_avoid);
+
     auto cSpacecraft = settings_.get<std::string>("settings.catalog_path.spacecraft","");
     f(ui->lineEdit_pathSpacecraft, cSpacecraft);
 
@@ -2501,6 +2510,7 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
     settings_.put("settings.catalog_path.stp_dir",ui->lineEdit_pathStp->text().toStdString());
     settings_.put("settings.catalog_path.source",ui->lineEdit_pathSource->text().toStdString());
     settings_.put("settings.catalog_path.satellite",ui->lineEdit_pathSatellite->text().toStdString());
+    settings_.put("settings.catalog_path.satellite_avoid",ui->lineEdit_pathSatellite_avoid->text().toStdString());
     settings_.put("settings.catalog_path.spacecraft",ui->lineEdit_pathSpacecraft->text().toStdString());
     settings_.put("settings.catalog_path.flux",ui->lineEdit_pathFlux->text().toStdString());
     settings_.put("settings.catalog_path.modes",ui->lineEdit_pathModes->text().toStdString());

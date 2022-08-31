@@ -2862,11 +2862,20 @@ void MainWindow::on_pushButton_browseSource_clicked()
 
 void MainWindow::on_pushButton_browseSatellite_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSource->text());
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSatellite->text());
     if( !path.isEmpty() ){
         ui->lineEdit_pathSatellite->setText(path);
     }
 }
+
+void MainWindow::on_pushButton_browseSatellite_2_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSatellite_avoid->text());
+    if( !path.isEmpty() ){
+        ui->lineEdit_pathSatellite_avoid->setText(path);
+    }
+}
+
 
 void MainWindow::on_pushButton_browseSpacecraft_clicked()
 {
@@ -6607,6 +6616,11 @@ void MainWindow::on_pushButton_tle_info_clicked()
     dial->show();
 }
 
+void MainWindow::on_pushButton_tle_info_2_clicked()
+{
+    TleFormat *dial = new TleFormat(this);
+    dial->show();
+}
 
 void MainWindow::on_groupBox_a_priori_satellite_scans_toggled(bool arg1)
 {
@@ -6616,3 +6630,7 @@ void MainWindow::on_groupBox_a_priori_satellite_scans_toggled(bool arg1)
         ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/dialog-ok-2.png"));
     }
 }
+
+
+
+

@@ -524,6 +524,10 @@ private slots:
     void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
 
 
+    void on_pushButton_browseSatellite_2_clicked();
+
+    void on_pushButton_tle_info_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
