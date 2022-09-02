@@ -524,6 +524,14 @@ private slots:
     void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
 
 
+    void on_groupBox_5_toggled(bool arg1);
+
+    void on_groupBox_9_toggled(bool arg1);
+
+    void on_pushButton_setupSEFD_add_clicked();
+
+    void on_pushButton_setupSEFD_remove_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -593,6 +601,8 @@ private:
     std::map<std::string, std::vector<double>> parsedFreq;
 
     boost::property_tree::ptree a_priori_satellite_scans;
+
+    void updateBands();
 
     void readSkedCatalogs();
 

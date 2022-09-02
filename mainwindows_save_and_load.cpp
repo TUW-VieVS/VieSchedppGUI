@@ -324,6 +324,28 @@ QString MainWindow::writeXML()
         para.stationCableWrapBuffer(name,ax1low,ax1up,ax2low,ax2up);
     }
 
+    if ( ui->tableWidget_setupSEFD_defined->rowCount() > 0 ){
+        QTableWidget *t = ui->tableWidget_setupSEFD_defined;
+        std::vector<std::string> members;
+        std::vector<std::string> types;
+        std::vector<std::map<std::string, double>> values;
+        for(int i=0; i<t->rowCount(); ++i){
+            members.push_back( t->item(i,0)->text().toStdString() );
+            if ( qobject_cast<QDoubleSpinBox *>(t->cellWidget(i,1))->suffix() == " [Jy]" ){
+                types.push_back("fixed");
+            }else{
+                types.push_back("factor");
+            }
+
+            std::map<std::string, double> vs;
+            for(int j=1; j<t->columnCount(); ++j){
+                vs[t->horizontalHeaderItem(j)->text().toStdString()] = qobject_cast<QDoubleSpinBox *>(t->cellWidget(i,j))->value();
+            }
+            values.push_back(vs);
+        }
+        para.addSefdAdjustment(members, types, values);
+    }
+
     para.skyCoverage(skyCoverageWidget->toXML());
 
     /*
@@ -1598,6 +1620,73 @@ void MainWindow::loadXML(QString path)
         }
 
     }
+    {
+        boost::optional<boost::property_tree::ptree &> sefdAdjustment_tree = xml.get_child_optional("VieSchedpp.station.sefdAdjustment");
+        ui->tableWidget_setupSEFD_defined->setRowCount(0);
+        if (sefdAdjustment_tree.is_initialized()) {
+            QTableWidget *t = ui->tableWidget_setupSEFD_defined;
+            bool first = true;
+            for( const auto &any : *sefdAdjustment_tree){
+                QString suffix;
+                int decimals = 2;
+                if ( any.first == "fixed"){
+                    suffix = " [Jy]";
+                }
+                QString name = QString::fromStdString(any.second.get<std::string>("<xmlattr>.member"));
+
+                QStringList bands;
+                QVector<double> values;
+                for ( const auto &any2 : any.second ){
+                    if ( any2.first != "band"){
+                        continue;
+                    }
+                    QString band = QString::fromStdString(any2.second.get<std::string>("<xmlattr>.name"));
+                    double val = any2.second.get_value<double>();
+                    bands << band;
+                    values << val;
+                }
+                if (first) {
+                    t->setColumnCount(bands.count() + 1);
+                    ui->tableWidget_setupSEFD_defined->setHorizontalHeaderItem(0, new QTableWidgetItem("member"));
+                    for(int i = 0; i<bands.count(); ++i){
+                        QString band = bands[i];
+                        ui->tableWidget_setupSEFD_defined->setHorizontalHeaderItem(i+1, new QTableWidgetItem(band));
+                    }
+                    first = false;
+                }
+
+
+                int row = t->rowCount();
+                t->setRowCount(row+1);
+
+                QIcon ic = QIcon(":/icons/icons/station.png");
+                t->setItem(row,0, new QTableWidgetItem(ic, name));
+                for ( int i = 0; i < bands.count(); ++i){
+                    if ( suffix == " [Jy]"){
+                        QDoubleSpinBox *dsp = new QDoubleSpinBox(this);
+                        dsp->setMinimum(1);
+                        dsp->setMaximum(100000);
+                        dsp->setValue(values[i]);
+                        dsp->setDecimals(0);
+                        dsp->setSuffix(" [Jy]");
+                        dsp->setReadOnly(true);
+                        dsp->setButtonSymbols(QAbstractSpinBox::ButtonSymbols::NoButtons);
+                        t->setCellWidget(row,i+1,dsp);
+                    } else {
+                        QDoubleSpinBox *dsp = new QDoubleSpinBox(this);
+                        dsp->setMinimum(0.1);
+                        dsp->setMaximum(100);
+                        dsp->setValue(values[i]);
+                        dsp->setDecimals(2);
+                        dsp->setReadOnly(true);
+                        dsp->setButtonSymbols(QAbstractSpinBox::ButtonSymbols::NoButtons);
+                        t->setCellWidget(row,i+1,dsp);
+                    }
+                }
+            }
+        }
+    }
+
 
     //multisched
     {

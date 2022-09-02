@@ -418,6 +418,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect (deleteModeMapper, SIGNAL(mapped(QString)), this, SLOT(deleteModesCustomLine(QString))) ;
 
 
+    ui->comboBox_setupSEFD_member->setModel(selectedStationModel);
+    ui->tableWidget_setupSEFD_defined->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
     ui->comboBox_stationSettingMember_axis->setModel(allStationPlusGroupModel);
     stationSetupWidget = new setupWidget(setupWidget::Type::station,
                                          settings_,
@@ -562,6 +565,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     connect(ui->pushButton_addGroupStationCable, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
+    connect(ui->pushButton_setupSEFD_addGroup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
 
     connect(ui->pushButton_addSourceGroup_Calibrator,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
     connect(ui->pushButton_addSourceGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSource()));
@@ -1999,7 +2003,8 @@ void MainWindow::defaultParameters()
 
 // ########################################### MODE ###########################################
 
-void MainWindow::createModesPolicyTable()
+void MainWindow::
+createModesPolicyTable()
 {
     QHeaderView *hv = ui->tableWidget_ModesPolicy->horizontalHeader();
     hv->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -2108,6 +2113,8 @@ void MainWindow::addModesPolicyTable(QString name){
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,4,psrc);
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,5,bsrc);
     ui->tableWidget_ModesPolicy->setCellWidget(ui->tableWidget_ModesPolicy->rowCount()-1,6,vsrc);
+
+    updateBands();
 }
 
 void MainWindow::createModesCustonBandTable()
@@ -6616,3 +6623,117 @@ void MainWindow::on_groupBox_a_priori_satellite_scans_toggled(bool arg1)
         ui->tabWidget_4->setTabIcon(3,QIcon(":/icons/icons/dialog-ok-2.png"));
     }
 }
+
+void MainWindow::on_groupBox_5_toggled(bool arg1)
+{
+    const QSignalBlocker blocker(ui->groupBox_9);
+    ui->groupBox_9->setChecked(!arg1);
+    ui->tableWidget_setupSEFD_fixed->setEnabled(arg1);
+    ui->tableWidget_setupSEFD_factor->setDisabled(arg1);
+}
+
+
+void MainWindow::on_groupBox_9_toggled(bool arg1)
+{
+    const QSignalBlocker blocker(ui->groupBox_5);
+    ui->groupBox_5->setChecked(!arg1);
+    ui->tableWidget_setupSEFD_fixed->setDisabled(arg1);
+    ui->tableWidget_setupSEFD_factor->setEnabled(arg1);
+}
+
+void MainWindow::updateBands()
+{
+    ui->tableWidget_setupSEFD_fixed->setRowCount(0);
+    ui->tableWidget_setupSEFD_factor->setRowCount(0);
+    QStringList bands;
+    for(int i = 0; i<ui->tableWidget_ModesPolicy->rowCount(); ++i){
+        bands << ui->tableWidget_ModesPolicy->verticalHeaderItem(i)->text();
+    }
+    ui->tableWidget_setupSEFD_fixed->setRowCount(bands.count());
+    ui->tableWidget_setupSEFD_factor->setRowCount(bands.count());
+
+    ui->tableWidget_setupSEFD_defined->setColumnCount(0);
+    ui->tableWidget_setupSEFD_defined->setColumnCount(bands.count() +1);
+    ui->tableWidget_setupSEFD_defined->setHorizontalHeaderItem(0, new QTableWidgetItem("member"));
+    for(int i = 0; i<bands.count(); ++i){
+        QString band = bands[i];
+        ui->tableWidget_setupSEFD_defined->setHorizontalHeaderItem(i+1, new QTableWidgetItem(band));
+
+        QDoubleSpinBox *dsp = new QDoubleSpinBox(this);
+        dsp->setMinimum(1);
+        dsp->setMaximum(100000);
+        dsp->setValue(3000);
+        dsp->setSingleStep(100);
+        dsp->setDecimals(0);
+        dsp->setSuffix(" [Jy]");
+        ui->tableWidget_setupSEFD_fixed->setCellWidget(i,1,dsp);
+        ui->tableWidget_setupSEFD_fixed->setItem(i,0, new QTableWidgetItem(band));
+
+        QDoubleSpinBox *dsp2 = new QDoubleSpinBox(this);
+        dsp2->setValue(1);
+        dsp2->setMinimum(0.1);
+        dsp2->setMaximum(100);
+        dsp2->setSingleStep(0.1);
+        dsp2->setDecimals(2);
+        ui->tableWidget_setupSEFD_factor->setCellWidget(i,1,dsp2);
+        ui->tableWidget_setupSEFD_factor->setItem(i,0, new QTableWidgetItem(band));
+    }
+}
+
+
+void MainWindow::on_pushButton_setupSEFD_add_clicked()
+{
+    QString name = ui->comboBox_setupSEFD_member->currentText();
+    if (name.isEmpty()){
+        return;
+    }
+    for ( int i = 0; i< ui->tableWidget_setupSEFD_defined->rowCount(); ++i){
+        if (ui->tableWidget_setupSEFD_defined->item(i,0)->text() == name){
+            QMessageBox::information(this,"duplicate","You already defined a SEFD adjustment for this station");
+            return;
+        }
+    }
+
+    QTableWidget *t;
+    if ( ui->groupBox_5->isChecked() ){
+        t = ui->tableWidget_setupSEFD_fixed;
+    }else if ( ui->groupBox_9->isChecked() ){
+        t = ui->tableWidget_setupSEFD_factor;
+    }
+
+    int row = ui->tableWidget_setupSEFD_defined->rowCount();
+    ui->tableWidget_setupSEFD_defined->setRowCount(row+1);
+
+
+    QIcon ic;
+    bool inGroup = groupSta->find(name.toStdString()) != groupSta->end();
+    if( inGroup || name == "__all__"){
+        ic = QIcon(":/icons/icons/station_group.png");
+    }else{
+        ic = QIcon(":/icons/icons/station.png");
+    }
+    ui->tableWidget_setupSEFD_defined->setItem(row,0, new QTableWidgetItem(ic, name));
+    for ( int i = 0; i < t->rowCount(); ++i){
+        QDoubleSpinBox *n = new QDoubleSpinBox(this);
+        QDoubleSpinBox *o = qobject_cast<QDoubleSpinBox *>(t->cellWidget(i,1));
+        n->setMinimum(o->minimum());
+        n->setMaximum(o->maximum());
+        n->setValue(o->value());
+        n->setSuffix(o->suffix());
+        n->setReadOnly(true);
+        n->setButtonSymbols(QAbstractSpinBox::ButtonSymbols::NoButtons);
+        ui->tableWidget_setupSEFD_defined->setCellWidget(row,i+1,n);
+    }
+}
+
+
+void MainWindow::on_pushButton_setupSEFD_remove_clicked()
+{
+    auto t = ui->tableWidget_setupSEFD_defined;
+    auto sel = t->selectedItems();
+    for(int i=0; i<sel.count(); ++i){
+        int row = sel.at(i)->row();
+        t->removeRow(row);
+    }
+}
+
