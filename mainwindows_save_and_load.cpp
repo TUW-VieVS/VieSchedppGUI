@@ -216,6 +216,8 @@ QString MainWindow::writeXML()
     bool iteration = ui->checkBox_outputIteration->isChecked();
     bool statistics = ui->checkBox_outputStatisticsFile->isChecked();
     bool vex = ui->checkBox_outputVex->isChecked();
+    bool vex_satStep = ui->checkBox_outputVex_stepSat->isChecked();
+    int vex_satStep_interval = ui->spinBox_outputVex_stepSat_interval->value();
     bool snrTabel = ui->checkBox_outputSnrTable->isChecked();
     bool ngs = ui->checkBox_outputNGSFile->isChecked();
     std::string NGS_directory = "";
@@ -235,7 +237,8 @@ QString MainWindow::writeXML()
     }
     bool timeTable = ui->checkBox_outputTimeTable->isChecked();
     para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
-                skd, vex, snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, timeTable, contacts);
+                skd, vex, vex_satStep, vex_satStep_interval,
+                snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, timeTable, contacts);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
@@ -1775,6 +1778,12 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_outputVex->setChecked(false);
         }
+        if(xml.get("VieSchedpp.output.createVEX_satelliteTracking",false)){
+            ui->checkBox_outputVex_stepSat->setChecked(true);
+        }else{
+            ui->checkBox_outputVex_stepSat->setChecked(false);
+        }
+        ui->spinBox_outputVex_stepSat_interval->setValue(xml.get("VieSchedpp.output.createVEX_satelliteTracking_deltaT",10));
         if(xml.get("VieSchedpp.output.createSnrTable",false)){
             ui->checkBox_outputSnrTable->setChecked(true);
         }else{
@@ -2623,6 +2632,8 @@ void MainWindow::on_pushButton_26_clicked()
          << "settings.output.NGS_directory"
          << "settings.output.createSKD"
          << "settings.output.createVEX"
+         << "settings.output.createVEX_satelliteTracking"
+         << "settings.output.createVEX_satelliteTracking_deltaT"
          << "settings.output.createSnrTable"
          << "settings.output.createOperationsNotes"
          << "settings.output.createSourceGroupStatistics"
@@ -2638,6 +2649,8 @@ void MainWindow::on_pushButton_26_clicked()
     value << ui->lineEdit_outputNGS->text();
     ui->checkBox_outputSkdFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputVex->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputVex_stepSat->isChecked() ? value << "true" : value << "false";
+    value << QString::number(ui->spinBox_outputVex_stepSat_interval->value());
     ui->checkBox_outputSnrTable->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputOperationsNotes->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputSourceGroupStatFile->isChecked() ? value << "true" : value << "false";

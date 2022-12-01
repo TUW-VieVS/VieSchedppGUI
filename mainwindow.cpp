@@ -1972,6 +1972,13 @@ void MainWindow::defaultParameters()
     if(createVEX.is_initialized()){
         ui->checkBox_outputVex->setChecked(*createVEX);
     }
+    boost::optional<bool> createVEX_stepSat = settings_.get_optional<bool>("settings.output.createVEX_satelliteTracking");
+    if(createVEX.is_initialized()){
+        ui->checkBox_outputVex_stepSat->setChecked(*createVEX_stepSat);
+    }
+    int createVEX_int = settings_.get("settings.output.createVEX_satelliteTracking_deltaT",10);
+    ui->spinBox_outputVex_stepSat_interval->setValue(createVEX_int);
+
     boost::optional<bool> createSnrTable = settings_.get_optional<bool>("settings.output.createSnrTable");
     if(createSnrTable.is_initialized()){
         ui->checkBox_outputSnrTable->setChecked(*createSnrTable);
