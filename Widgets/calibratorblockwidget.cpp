@@ -1,7 +1,7 @@
-#include "calibratorblock.h"
+#include "calibratorblockwidget.h"
 #include "ui_calibratorblock.h"
 
-CalibratorBlock::CalibratorBlock(QStandardItemModel *source_model,
+CalibratorBlockWidget::CalibratorBlockWidget(QStandardItemModel *source_model,
                                  QStandardItemModel *station_model,
                                  QStandardItemModel *baseline_model,
                                  QDoubleSpinBox *session_duration,
@@ -11,7 +11,7 @@ CalibratorBlock::CalibratorBlock(QStandardItemModel *source_model,
     station_model_{station_model},
     baseline_model_{baseline_model},
     session_duration{session_duration},
-    ui(new Ui::CalibratorBlock)
+    ui(new Ui::CalibratorBlockWidget)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
@@ -40,7 +40,7 @@ CalibratorBlock::CalibratorBlock(QStandardItemModel *source_model,
 
 }
 
-QString CalibratorBlock::reloadSources()
+QString CalibratorBlockWidget::reloadSources()
 {
     QString warnings;
     auto *t = ui->tableWidget_calibrationBlock;
@@ -55,12 +55,12 @@ QString CalibratorBlock::reloadSources()
     return warnings;
 }
 
-CalibratorBlock::~CalibratorBlock()
+CalibratorBlockWidget::~CalibratorBlockWidget()
 {
     delete ui;
 }
 
-boost::property_tree::ptree CalibratorBlock::toXML()
+boost::property_tree::ptree CalibratorBlockWidget::toXML()
 {
     std::vector<VieVS::CalibratorBlock> blocks;
 
@@ -129,7 +129,7 @@ boost::property_tree::ptree CalibratorBlock::toXML()
     return rules;
 }
 
-void CalibratorBlock::fromXML(const boost::property_tree::ptree &ctree)
+void CalibratorBlockWidget::fromXML(const boost::property_tree::ptree &ctree)
 {
 
     ui->comboBox_calibrationIntent->setCurrentText(QString::fromStdString(ctree.get("intent","NONE")));
@@ -210,7 +210,7 @@ void CalibratorBlock::fromXML(const boost::property_tree::ptree &ctree)
     }
 }
 
-void CalibratorBlock::on_spinBox_NCalibrationBlocks_valueChanged(int row)
+void CalibratorBlockWidget::on_spinBox_NCalibrationBlocks_valueChanged(int row)
 {
     double session_dur = session_duration->value();
     double delta = session_dur/(row-1);
@@ -264,7 +264,7 @@ void CalibratorBlock::on_spinBox_NCalibrationBlocks_valueChanged(int row)
 
 
 
-void CalibratorBlock::on_pushButton_tryToIncludeAllStations_toggled(bool checked)
+void CalibratorBlockWidget::on_pushButton_tryToIncludeAllStations_toggled(bool checked)
 {
     QString txt;
     if (checked){
@@ -275,12 +275,12 @@ void CalibratorBlock::on_pushButton_tryToIncludeAllStations_toggled(bool checked
     ui->tableWidget_calibrationBlock->setHorizontalHeaderItem(2, new QTableWidgetItem(txt));
 }
 
-void CalibratorBlock::update()
+void CalibratorBlockWidget::update()
 {
     on_spinBox_NCalibrationBlocks_valueChanged(ui->spinBox_NCalibrationBlocks->value());
 }
 
-void CalibratorBlock::on_pushButton_save_advanced_clicked()
+void CalibratorBlockWidget::on_pushButton_save_advanced_clicked()
 {
     QStringList path;
     QStringList value;
@@ -308,7 +308,7 @@ void CalibratorBlock::on_pushButton_save_advanced_clicked()
 }
 
 
-void CalibratorBlock::on_pushButton_save_general_clicked()
+void CalibratorBlockWidget::on_pushButton_save_general_clicked()
 {
     QStringList path;
     QStringList value;
@@ -329,7 +329,7 @@ void CalibratorBlock::on_pushButton_save_general_clicked()
 }
 
 
-void CalibratorBlock::on_pushButton_save_blocks_clicked()
+void CalibratorBlockWidget::on_pushButton_save_blocks_clicked()
 {
     QStringList path;
     QStringList value;
@@ -348,7 +348,7 @@ void CalibratorBlock::on_pushButton_save_blocks_clicked()
 
 
 
-void CalibratorBlock::on_pushButton_save_dpara_clicked()
+void CalibratorBlockWidget::on_pushButton_save_dpara_clicked()
 {
     QStringList path;
     QStringList value;
@@ -375,7 +375,7 @@ void CalibratorBlock::on_pushButton_save_dpara_clicked()
 }
 
 
-void CalibratorBlock::on_pushButton_save_para_clicked()
+void CalibratorBlockWidget::on_pushButton_save_para_clicked()
 {
     QStringList path;
     QStringList value;
@@ -402,7 +402,7 @@ void CalibratorBlock::on_pushButton_save_para_clicked()
 }
 
 
-void CalibratorBlock::on_checkBox_tryToIncludeAllStations_toggled(bool checked)
+void CalibratorBlockWidget::on_checkBox_tryToIncludeAllStations_toggled(bool checked)
 {
     QString txt;
     if ( checked ){
