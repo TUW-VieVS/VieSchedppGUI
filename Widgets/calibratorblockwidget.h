@@ -1,5 +1,5 @@
-#ifndef CALIBRATORBLOCK_H
-#define CALIBRATORBLOCK_H
+#ifndef CALIBRATORBLOCKWIDGET_H
+#define CALIBRATORBLOCKWIDGET_H
 
 #include <QWidget>
 #include <QStandardItemModel>
@@ -9,10 +9,10 @@
 #include "../VieSchedpp/Misc/CalibratorBlock.h"
 
 namespace Ui {
-class CalibratorBlock;
+class CalibratorBlockWidget;
 }
 
-class CalibratorBlock : public QWidget
+class CalibratorBlockWidget : public QWidget
 {
     Q_OBJECT
 
@@ -39,7 +39,7 @@ public slots:
     void update();
 
 public:
-    explicit CalibratorBlock(QStandardItemModel *source_model,
+    explicit CalibratorBlockWidget(QStandardItemModel *source_model,
                              QStandardItemModel *station_model,
                              QStandardItemModel *baseline_model,
                              QDoubleSpinBox *session_duration,
@@ -47,7 +47,7 @@ public:
 
     QString reloadSources();
 
-    ~CalibratorBlock();
+    ~CalibratorBlockWidget();
 
     QPushButton *newSourceGroup;
     QPushButton *newSourceGroup2;
@@ -69,11 +69,11 @@ signals:
 
 
 private:
-    Ui::CalibratorBlock *ui;
+    Ui::CalibratorBlockWidget *ui;
     QStandardItemModel *source_model_;
     QStandardItemModel *station_model_;
     QStandardItemModel *baseline_model_;
     QDoubleSpinBox *session_duration;
 };
 
-#endif // CALIBRATORBLOCK_H
+#endif // CALIBRATORBLOCKWIDGET_H

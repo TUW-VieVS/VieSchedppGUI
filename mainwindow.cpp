@@ -572,7 +572,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_addSatelliteGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSatellite()));
     connect(ui->pushButton_addSpacecraftGroup_Sequence,SIGNAL(clicked(bool)), this, SLOT(addGroupSpacecraft()));
 
-    calibratorWidget = new CalibratorBlock(allSourcePlusGroupModel,
+    calibratorWidget = new CalibratorBlockWidget(allSourcePlusGroupModel,
                                            allStationPlusGroupModel,
                                            allBaselinePlusGroupModel,
                                            ui->doubleSpinBox_sessionDuration);

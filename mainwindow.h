@@ -59,7 +59,7 @@
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QAreaSeries>
 
-#include "Widgets/calibratorblock.h"
+#include "Widgets/calibratorblockwidget.h"
 #include "Utility/chartview.h"
 #include "Utility/callout.h"
 #include "secondaryGUIs/addgroupdialog.h"
@@ -597,7 +597,7 @@ private:
     setupWidget *spacecraftSetupWidget;
 
     SkyCovWidget *skyCoverageWidget;
-    CalibratorBlock *calibratorWidget;
+    CalibratorBlockWidget *calibratorWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;
