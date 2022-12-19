@@ -1495,68 +1495,11 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
-                <layout class="QGridLayout" name="gridLayout_11">
+                <layout class="QGridLayout" name="gridLayout">
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_25">
                    <property name="text">
-                    <string>source</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_11">
-                   <property name="text">
-                    <string>satellite</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_pathFlux">
-                   <property name="toolTip">
-                    <string>path to skd flux catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>path to skd flux catalog</string>
-                   </property>
-                   <property name="text">
-                    <string>./AUTO_DOWNLOAD_CATALOGS/flux.cat</string>
-                   </property>
-                   <property name="placeholderText">
-                    <string>path to flux.cat file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="2">
-                  <widget class="QPushButton" name="pushButton_reloadsources">
-                   <property name="toolTip">
-                    <string>read source catalogs</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>read source catalogs</string>
-                   </property>
-                   <property name="text">
-                    <string> reload</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/view-refresh-7.png</normaloff>:/icons/icons/view-refresh-7.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_browseFlux">
-                   <property name="toolTip">
-                    <string>browse for skd flux catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>browse for skd flux catalog</string>
-                   </property>
-                   <property name="text">
-                    <string>browse</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                    <string>sources</string>
                    </property>
                   </widget>
                  </item>
@@ -1593,45 +1536,10 @@ p, li { white-space: pre-wrap; }
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_55">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_11">
                    <property name="text">
-                    <string>flux</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_13">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>spacecraft</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_browseSatellite">
-                   <property name="text">
-                    <string>browse</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_browseSpacecraft">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>browse</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                    <string>satellites</string>
                    </property>
                   </widget>
                  </item>
@@ -1663,6 +1571,27 @@ p, li { white-space: pre-wrap; }
                    </item>
                   </layout>
                  </item>
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSatellite">
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_13">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>spacecrafts</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="2" column="1">
                   <layout class="QHBoxLayout" name="horizontalLayout_25">
                    <item>
@@ -1690,6 +1619,126 @@ p, li { white-space: pre-wrap; }
                     </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSpacecraft">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_27">
+                   <property name="text">
+                    <string>satellites to avoid</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_29">
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_pathSatellite_avoid">
+                     <property name="toolTip">
+                      <string>path to file containing TLE information</string>
+                     </property>
+                     <property name="statusTip">
+                      <string>path to file containing TLE information</string>
+                     </property>
+                     <property name="whatsThis">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Observations aligned with satellites defined within the TLE file will be ignored. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>path to file containing TLE information</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_tle_info_2">
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="myresources.qrc">
+                       <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QPushButton" name="pushButton_browseSatellite_2">
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_55">
+                   <property name="text">
+                    <string>flux</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathFlux">
+                   <property name="toolTip">
+                    <string>path to skd flux catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to skd flux catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>./AUTO_DOWNLOAD_CATALOGS/flux.cat</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>path to flux.cat file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QPushButton" name="pushButton_browseFlux">
+                   <property name="toolTip">
+                    <string>browse for skd flux catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>browse for skd flux catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QPushButton" name="pushButton_reloadsources">
+                   <property name="toolTip">
+                    <string>read source catalogs</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>read source catalogs</string>
+                   </property>
+                   <property name="text">
+                    <string> reload</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/view-refresh-7.png</normaloff>:/icons/icons/view-refresh-7.png</iconset>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -11739,12 +11788,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>356</y>
+     <x>20</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>358</y>
+     <x>26</x>
+     <y>88</y>
     </hint>
    </hints>
   </connection>
@@ -11755,12 +11804,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>532</y>
+     <x>26</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -11771,12 +11820,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>631</y>
+     <x>26</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>
@@ -11803,12 +11852,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>173</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>175</y>
+     <x>26</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -11867,12 +11916,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>206</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>208</y>
+     <x>26</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -11899,12 +11948,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>631</y>
+     <x>20</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>
@@ -11915,12 +11964,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>140</y>
+     <x>20</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>141</y>
+     <x>31</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -11931,12 +11980,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>564</y>
+     <x>31</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -11947,12 +11996,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>565</y>
+     <x>26</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
@@ -11979,12 +12028,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>173</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>174</y>
+     <x>31</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12027,12 +12076,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>107</y>
+     <x>20</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>108</y>
+     <x>31</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -12043,12 +12092,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>219</x>
-     <y>112</y>
+     <x>353</x>
+     <y>138</y>
     </hint>
     <hint type="destinationlabel">
-     <x>247</x>
-     <y>122</y>
+     <x>679</x>
+     <y>216</y>
     </hint>
    </hints>
   </connection>
@@ -12059,12 +12108,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>532</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -12123,12 +12172,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>499</y>
+     <x>26</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -12139,12 +12188,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>598</y>
+     <x>20</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>
@@ -12155,12 +12204,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>356</y>
+     <x>20</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>357</y>
+     <x>31</x>
+     <y>88</y>
     </hint>
    </hints>
   </connection>
@@ -12203,12 +12252,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>389</y>
+     <x>20</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>391</y>
+     <x>26</x>
+     <y>88</y>
     </hint>
    </hints>
   </connection>
@@ -12235,12 +12284,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>107</y>
+     <x>20</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>109</y>
+     <x>26</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -12251,12 +12300,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>563</y>
+     <x>20</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>598</y>
+     <x>26</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>
@@ -12267,12 +12316,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>389</y>
+     <x>20</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>390</y>
+     <x>31</x>
+     <y>88</y>
     </hint>
    </hints>
   </connection>
@@ -12283,12 +12332,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>465</y>
+     <x>31</x>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
@@ -12299,12 +12348,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>206</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>241</y>
+     <x>20</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>
@@ -12315,12 +12364,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>140</y>
+     <x>20</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>142</y>
+     <x>26</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -12331,12 +12380,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>422</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>423</y>
+     <x>31</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12347,12 +12396,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>206</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>207</y>
+     <x>31</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
@@ -12363,12 +12412,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>206</y>
+     <x>20</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>241</y>
+     <x>26</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>
@@ -12379,12 +12428,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>422</y>
+     <x>20</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>424</y>
+     <x>26</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -12395,12 +12444,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>499</y>
+     <x>20</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>
@@ -12411,12 +12460,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>464</y>
+     <x>20</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>466</y>
+     <x>26</x>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
@@ -12491,12 +12540,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>281</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>41</x>
-     <y>316</y>
+     <x>20</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -12507,12 +12556,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>281</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>283</y>
+     <x>26</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -12523,12 +12572,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>281</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>282</y>
+     <x>31</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -12539,12 +12588,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>281</y>
+     <x>20</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>316</y>
+     <x>26</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>

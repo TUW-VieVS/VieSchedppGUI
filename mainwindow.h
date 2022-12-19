@@ -523,7 +523,6 @@ private slots:
 
     void on_doubleSpinBox_calibratorHighElEnd_valueChanged(double arg1);
 
-
     void on_groupBox_5_toggled(bool arg1);
 
     void on_groupBox_9_toggled(bool arg1);
@@ -531,6 +530,10 @@ private slots:
     void on_pushButton_setupSEFD_add_clicked();
 
     void on_pushButton_setupSEFD_remove_clicked();
+
+    void on_pushButton_browseSatellite_2_clicked();
+
+    void on_pushButton_tle_info_2_clicked();
 
 private:
     Ui::MainWindow *ui;
