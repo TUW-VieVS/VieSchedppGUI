@@ -1,5 +1,5 @@
 #include "calibratorblockwidget.h"
-#include "ui_calibratorblock.h"
+#include "ui_calibratorblockwidget.h"
 
 CalibratorBlockWidget::CalibratorBlockWidget(QStandardItemModel *source_model,
                                  QStandardItemModel *station_model,
