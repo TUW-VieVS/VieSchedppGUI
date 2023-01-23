@@ -109,7 +109,7 @@ void masterSessionViewer::updateTable()
             font.setBold(true);
         }
 
-        QTableWidgetItem *twi = new QTableWidgetItem( content[1] );
+        QTableWidgetItem *twi = new QTableWidgetItem( content[2] );
         auto font = twi->font();
         font.setBold(true);
         twi->setFont(font);
@@ -117,10 +117,10 @@ void masterSessionViewer::updateTable()
         t->setItem(r, 2, createTableWidgetItem( content[7].simplified(), Qt::AlignRight ));
         t->setItem(r, 3, new QTableWidgetItem( tStart.toString("dd.MM.yyyy HH:mm") ));
         t->setItem(r, 4, createTableWidgetItem( content[3] , Qt::AlignCenter ));
-        t->setItem(r, 5, createTableWidgetItem( content[4].trimmed(), Qt::AlignCenter ));
+        t->setItem(r, 5, createTableWidgetItem( content[5].trimmed(), Qt::AlignCenter ));
         t->setItem(r, 6, new QTableWidgetItem( tStationsOut ));
         t->setItem(r, 7, createTableWidgetItem( content[8], Qt::AlignRight ));
-        t->setItem(r, 8, createTableWidgetItem( content[11], Qt::AlignRight ));
+        t->setItem(r, 8, createTableWidgetItem( content[10], Qt::AlignRight ));
 
     }
 }

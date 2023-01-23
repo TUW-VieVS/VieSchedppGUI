@@ -1256,8 +1256,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>287</width>
-             <height>771</height>
+             <width>958</width>
+             <height>805</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_102">
@@ -5224,7 +5224,7 @@ If you only want to run simulations you can deselect this to avoid error message
                     <item>
                      <widget class="QPushButton" name="pushButton_setupSEFD_addGroup">
                       <property name="enabled">
-                       <bool>false</bool>
+                       <bool>true</bool>
                       </property>
                       <property name="text">
                        <string/>
@@ -9390,6 +9390,177 @@ p, li { white-space: pre-wrap; }
                  </layout>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_10">
+                 <property name="title">
+                  <string>observations per scan</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_50">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_5">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>scan is forced to have all possible observations</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>scan is forced to have all possible observations</string>
+                    </property>
+                    <property name="text">
+                     <string>always schedule all observations</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_4">
+                    <property name="toolTip">
+                     <string>scan is allowed to drop single observation if considered advantageous</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>scan is allowed to drop single observation if considered advantageous</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It is possible to &lt;span style=&quot; font-weight:600;&quot;&gt;ignore single baselines&lt;/span&gt; during a scan. &lt;/p&gt;&lt;p&gt;This means that if a scan contains &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; stations the number of observations must not always be &lt;span style=&quot; font-style:italic;&quot;&gt;(n*(n-1))/2&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The scheduler is &lt;span style=&quot; font-weight:600;&quot;&gt;only removing&lt;/span&gt; single baselines from a scan if they &lt;span style=&quot; font-weight:600;&quot;&gt;do not meet the required parameters&lt;/span&gt;, for example if the required observing time would be too long. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Those removements &lt;span style=&quot; font-weight:600;&quot;&gt;are taken properly into account for the scan selection&lt;/span&gt;. The removed observations are also &lt;span style=&quot; font-weight:600;&quot;&gt;not listed&lt;/span&gt; in the &lt;span style=&quot; font-style:italic;&quot;&gt;ngs&lt;/span&gt; file. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>allow to drop single observations</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_36">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="title">
+                  <string>align observing time</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_77">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignStart">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>use this if every scan should start at same time</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan should start at same time</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is the &lt;span style=&quot; font-weight:600;&quot;&gt;default option&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;should not be changed&lt;/span&gt;, unless you have good reasons. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, every station which is part of a scan &lt;span style=&quot; font-weight:600;&quot;&gt;starts its observation at the same time&lt;/span&gt;..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>scan start</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignEnd">
+                    <property name="toolTip">
+                     <string>use this if every scan should end at same time</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan should end at same time</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;experimental&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; option where the software is aligning the scans to have the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;same end time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This means &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;all scans will end at the same time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is experimental because this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, only with .vex.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might also not work with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;drudge&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>scan end (experimental)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_alignIndividual">
+                    <property name="toolTip">
+                     <string>use this if every scan is allowed to start/end at individual times</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>use this if every scan is allowed to start/end at individual times</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; option where the software is &lt;span style=&quot; font-weight:600;&quot;&gt;not aligning&lt;/span&gt; the scans to have the &lt;span style=&quot; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This means &lt;span style=&quot; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;It is experimental because this is &lt;span style=&quot; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;, only with .vex.&lt;/p&gt;&lt;p&gt;It might also not work with &lt;span style=&quot; font-style:italic;&quot;&gt;drudge&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>individual (experimental)</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QGroupBox" name="groupBox_6">
+                 <property name="title">
+                  <string>successive scans to same source</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_87">
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_successive_scans_same_src">
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, VieSched++ will not observe two successive scans to the same source for any station. This is the intended behaviour. &lt;/p&gt;&lt;p&gt;For some non-standard schedules, you might want to overwrite this behaviour. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>not allowed</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_29">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QGroupBox" name="groupBox_39">
+                 <property name="title">
+                  <string>scans to sources within &quot;min repeat&quot; time</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_65">
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_doNotObserve">
+                    <property name="text">
+                     <string>do not observe</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_reduceWeight">
+                    <property name="text">
+                     <string>reduce weight</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item row="0" column="1">
                 <widget class="QGroupBox" name="groupBox_11">
                  <property name="enabled">
@@ -9532,189 +9703,152 @@ p, li { white-space: pre-wrap; }
                  </layout>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QGroupBox" name="groupBox_39">
+               <item row="3" column="1">
+                <widget class="QGroupBox" name="groupBox_19">
                  <property name="title">
-                  <string>scans to sources within &quot;min repeat&quot; time</string>
+                  <string>Satellite avoidance</string>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_65">
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_doNotObserve">
-                    <property name="text">
-                     <string>do not observe</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_sourcesMinRepeat_reduceWeight">
-                    <property name="text">
-                     <string>reduce weight</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox_36">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="title">
-                  <string>align observing time</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_77">
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_alignStart">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
+                 <layout class="QGridLayout" name="gridLayout_4">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_46">
                     <property name="toolTip">
-                     <string>use this if every scan should start at same time</string>
+                     <string>angular distance around satellite that should be avaoided</string>
                     </property>
                     <property name="statusTip">
-                     <string>use this if every scan should start at same time</string>
+                     <string>angular distance around satellite that should be avaoided</string>
                     </property>
                     <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is the &lt;span style=&quot; font-weight:600;&quot;&gt;default option&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;should not be changed&lt;/span&gt;, unless you have good reasons. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, every station which is part of a scan &lt;span style=&quot; font-weight:600;&quot;&gt;starts its observation at the same time&lt;/span&gt;..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;angular distance around satellite that should be avaoided.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g. angle = 1 deg&lt;/p&gt;&lt;p&gt;satellite is at elevation 90° &lt;/p&gt;&lt;p&gt;only scans with elevation &amp;lt; 89° will be scheduled &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
-                     <string>scan start</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
+                     <string>avoidance angle</string>
                     </property>
                    </widget>
                   </item>
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_alignEnd">
-                    <property name="toolTip">
-                     <string>use this if every scan should end at same time</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>use this if every scan should end at same time</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This is an &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;experimental&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; option where the software is aligning the scans to have the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;same end time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;This means &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;all scans will end at the same time&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It is experimental because this is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, only with .vex.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;It might also not work with &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;drudge&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>scan end (experimental)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_alignIndividual">
-                    <property name="toolTip">
-                     <string>use this if every scan is allowed to start/end at individual times</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>use this if every scan is allowed to start/end at individual times</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an &lt;span style=&quot; font-weight:600;&quot;&gt;experimental&lt;/span&gt; option where the software is &lt;span style=&quot; font-weight:600;&quot;&gt;not aligning&lt;/span&gt; the scans to have the &lt;span style=&quot; font-weight:600;&quot;&gt;same start or end time&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;This means &lt;span style=&quot; font-weight:600;&quot;&gt;all scans can start and end at different times&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;It is experimental because this is &lt;span style=&quot; font-weight:600;&quot;&gt;not supported by the .skd file format&lt;/span&gt;, only with .vex.&lt;/p&gt;&lt;p&gt;It might also not work with &lt;span style=&quot; font-style:italic;&quot;&gt;drudge&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>individual (experimental)</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QGroupBox" name="groupBox_10">
-                 <property name="title">
-                  <string>observations per scan</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_50">
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_5">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="toolTip">
-                     <string>scan is forced to have all possible observations</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>scan is forced to have all possible observations</string>
-                    </property>
-                    <property name="text">
-                     <string>always schedule all observations</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="radioButton_4">
-                    <property name="toolTip">
-                     <string>scan is allowed to drop single observation if considered advantageous</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>scan is allowed to drop single observation if considered advantageous</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It is possible to &lt;span style=&quot; font-weight:600;&quot;&gt;ignore single baselines&lt;/span&gt; during a scan. &lt;/p&gt;&lt;p&gt;This means that if a scan contains &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; stations the number of observations must not always be &lt;span style=&quot; font-style:italic;&quot;&gt;(n*(n-1))/2&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The scheduler is &lt;span style=&quot; font-weight:600;&quot;&gt;only removing&lt;/span&gt; single baselines from a scan if they &lt;span style=&quot; font-weight:600;&quot;&gt;do not meet the required parameters&lt;/span&gt;, for example if the required observing time would be too long. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Those removements &lt;span style=&quot; font-weight:600;&quot;&gt;are taken properly into account for the scan selection&lt;/span&gt;. The removed observations are also &lt;span style=&quot; font-weight:600;&quot;&gt;not listed&lt;/span&gt; in the &lt;span style=&quot; font-style:italic;&quot;&gt;ngs&lt;/span&gt; file. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>allow to drop single observations</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QGroupBox" name="groupBox_6">
-                 <property name="title">
-                  <string>successive scans to same source</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_87">
-                  <item>
-                   <widget class="QCheckBox" name="checkBox_successive_scans_same_src">
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, VieSched++ will not observe two successive scans to the same source for any station. This is the intended behaviour. &lt;/p&gt;&lt;p&gt;For some non-standard schedules, you might want to overwrite this behaviour. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>not allowed</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_29">
+                  <item row="1" column="2">
+                   <spacer name="horizontalSpacer_13">
                     <property name="orientation">
-                     <enum>Qt::Vertical</enum>
+                     <enum>Qt::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>20</width>
-                      <height>30</height>
+                      <width>75</width>
+                      <height>20</height>
                      </size>
                     </property>
                    </spacer>
                   </item>
+                  <item row="0" column="2">
+                   <layout class="QHBoxLayout" name="horizontalLayout_35">
+                    <item>
+                     <spacer name="horizontalSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_4">
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="myresources.qrc">
+                        <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinBox_satavoid_frequency">
+                    <property name="toolTip">
+                     <string>satellite position check frequency in seconds</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>satellite position check frequency in seconds</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>The satellite position will be compared to the source position at the beginning of the scan, at the end of the scan and in between every few seconds. 
+
+The frequency for which the satellite will be checked during the scan is determined by this value. 
+
+e.g.
+frequency = 10 sec
+scan start = 00:00:00
+scan end = 00:00:35
+satellite postion will be checked at times
+00:00:00, 00:00:10, 00:00:20, 00:00:30, and 00:00:35</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [s]</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>60</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>5</number>
+                    </property>
+                    <property name="value">
+                     <number>30</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_satavoid_angel">
+                    <property name="toolTip">
+                     <string>angular distance around satellite that should be avaoided</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>angular distance around satellite that should be avaoided</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;angular distance around satellite that should be avaoided.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g. angle = 1 deg&lt;/p&gt;&lt;p&gt;satellite is at elevation 90° &lt;/p&gt;&lt;p&gt;only scans with elevation &amp;lt; 89° will be scheduled &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [deg]</string>
+                    </property>
+                    <property name="minimum">
+                     <double>0.010000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>5.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>0.500000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_47">
+                    <property name="toolTip">
+                     <string>satellite position check frequency in seconds</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>satellite position check frequency in seconds</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The satellite position will be compared to the source position at the beginning of the scan, at the end of the scan and in between every few seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The frequency for which the satellite will be checked during the scan is determined by this value. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g.&lt;/p&gt;&lt;p&gt;frequency = 10 sec&lt;/p&gt;&lt;p&gt;scan start = 00:00:00&lt;/p&gt;&lt;p&gt;scan end = 00:00:35&lt;/p&gt;&lt;p&gt;satellite postion will be checked at times&lt;/p&gt;&lt;p&gt;00:00:00, 00:00:10, 00:00:20, 00:00:30, and 00:00:35&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>check frequency</string>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
-               </item>
-               <item row="3" column="1">
-                <spacer name="verticalSpacer_36">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </item>

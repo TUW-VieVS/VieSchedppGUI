@@ -535,6 +535,8 @@ private slots:
 
     void on_pushButton_tle_info_2_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

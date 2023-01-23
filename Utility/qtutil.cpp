@@ -228,6 +228,7 @@ QList<QLineSeries *> qtUtil::baselineSeries(double lat1, double lon1, QString na
 }
 
 boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,QString>>  qtUtil::searchSessionCodeInMasterFile(QString code){
+/*
     QRegularExpression re_digit("\\d");
     QRegularExpressionMatchIterator i = re_digit.globalMatch(code);
 
@@ -405,12 +406,80 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
         files.append(files_int);
         files.append(files_vgos);
     }
+*/
+    QStringList files;
+    QDirIterator it("./AUTO_DOWNLOAD_MASTER", QStringList() << "*.txt", QDir::Files, QDirIterator::NoIteratorFlags);
+    while (it.hasNext()) {
+        QString fileName = it.next();
+        files.append(fileName);
+    }
+
+    auto comp = [ ]( const QString& lhs, const QString& rhs ){
+        bool leftFormatOld, rightFormatOld;
+        int length_old_left, length_old_right;
+        if ( lhs.contains("-int") ){
+            length_old_left = 35+4;
+        } else if ( lhs.contains("-vgos") ){
+            length_old_left = 35+5;
+        } else{
+            length_old_left = 35;
+        }
+        if ( rhs.contains("-int") ){
+            length_old_right = 35+4;
+        } else if ( rhs.contains("-vgos") ){
+            length_old_right = 35+5;
+        } else{
+            length_old_right = 35;
+        }
+
+        int leftYear, rightYear;
+        if ( lhs.length() == length_old_left){
+            int tmp = lhs.mid(29,2).toInt();
+            if (tmp < 50){
+                leftYear = 2000+tmp;
+            } else {
+                leftYear = 1900+tmp;
+            }
+
+        } else {
+            QString tmp = lhs.mid(29,4);
+            leftYear = tmp.toInt();
+        }
+        if ( rhs.length() == length_old_right){
+            int tmp = rhs.mid(29,2).toInt();
+            if (tmp < 50){
+                rightYear = 2000+tmp;
+            } else {
+                rightYear = 1900+tmp;
+            }
+        } else {
+            QString tmp = rhs.mid(29,4);
+            rightYear = tmp.toInt();
+        }
+        return leftYear > rightYear;
+    };
+    std::sort(files.begin(), files.end(), comp);
 
     QStringList found;
     int year = -1;
     bool checkNext = true;
+    bool newFormat;
     for( const auto & file: files){
         QFile inputFile(file);
+
+        int length_old;
+        if ( file.contains("-int") ){
+            length_old = 35+4;
+        } else if ( file.contains("-vgos") ){
+            length_old = 35+5;
+        } else{
+            length_old = 35;
+        }
+        newFormat = length_old != file.length();
+        int codeid = 2;
+        if ( newFormat ) {
+            codeid = 3;
+        }
 
         if (inputFile.open(QIODevice::ReadOnly)){
             QTextStream in(&inputFile);
@@ -420,10 +489,19 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
                    continue;
                }
                QStringList content = line.split('|');
-               if( QString::compare(content[2].simplified(), code, Qt::CaseInsensitive) == 0){
-                   QString yearStr = file.mid(29,2);
-                   year = yearStr.toInt();
-
+               if( QString::compare(content[codeid].simplified(), code, Qt::CaseInsensitive) == 0){
+                   if (newFormat ){
+                       QString yearStr = file.mid(29,4);
+                       year = yearStr.toInt();
+                   }else{
+                       QString yearStr = file.mid(29,2);
+                       year = yearStr.toInt();
+                       if (year > 50){
+                           year += 1900;
+                       }else{
+                           year +=2000;
+                       }
+                   }
                    found = content;
                    checkNext = false;
                    break;
@@ -439,15 +517,14 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
     if(checkNext){
         return boost::none;
     }
-    if (year > 70){
-        year += 1900;
-    }else{
-        year +=2000;
+
+    int codeid = 2;
+    if ( newFormat ) {
+        codeid = 3;
     }
 
-
     QString description = found[1].simplified();
-    QString sessionCode = found[2].simplified();
+    QString sessionCode = found[codeid].simplified();
 
     int doy = found[4].simplified().toInt();
     int h = found[5].simplified().left(2).toInt();
@@ -457,8 +534,14 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
     QTime time(h,m);
     QDateTime sessionStart(date,time);
 
-
-    double dur = found[6].simplified().toDouble();
+    double dur;
+    if ( newFormat ){
+        double dur_h = found[6].simplified().left(2).toDouble();
+        double dur_m = found[6].simplified().right(2).toDouble();
+        dur = dur_h + dur_m/60.;
+    } else {
+        dur = found[6].simplified().toDouble();
+    }
     QString stations = found[7].simplified().split("-").at(0).simplified();
     QStringList tlc;
     for (int i = 0; i<stations.length(); i+=2){
@@ -478,8 +561,13 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
     QVector<std::pair<QString, std::pair<int,int>>> downTimes;
 
     int year = sessionStart.date().year();
-
-    QFile inputFile(QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year%100));
+    QString filename;
+    if (year < 2023){
+        filename = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year%100);
+    }else{
+        filename = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year);
+    }
+    QFile inputFile(filename);
 
     if (inputFile.open(QIODevice::ReadOnly)){
         QTextStream in(&inputFile);
@@ -501,8 +589,17 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
 
            QDateTime tStart(tDate,tTime);
 
+           int int_dur;
+           if (year < 2023){
+               int_dur = content[5].toDouble()*3600;
+           }else{
+               auto dur_hm = content[5].split(':');
+               int dur_hour = dur_hm.at(0).toInt();
+               int dur_min = dur_hm.at(1).toInt();
+               int_dur = dur_hour*3600 + dur_min*60;
+           }
 
-           QDateTime tEnd = tStart.addSecs(content[5].toDouble()*3600);
+           QDateTime tEnd = tStart.addSecs(int_dur);
 
 
            if( (tStart > sessionStart && tStart < sessionEnd ) || (tEnd > sessionStart && tEnd < sessionEnd) ){
@@ -534,8 +631,8 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
     int doy = start.date().dayOfYear();
 
     QStringList files;
-    files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year-2000);
-    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year-2000);
+    files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year);
+    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year);
 //    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year-2000);
 
     bool overYear = false;
@@ -544,8 +641,8 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
     QString yearStr2 = QString::number(year2);
     int doy2 = end.date().dayOfYear();
     if(year2 > year){
-        files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year2-2000);
-        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year2-2000);
+        files << QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(year2);
+        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(year2);
 //        files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year2-2000);
         overYear = true;
     }
@@ -554,8 +651,8 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
     for( const auto & file: files){
         QFile inputFile(file);
 
-        QString yearStr = file.mid(29,2);
-        int tyear = yearStr.toInt()+2000;
+        QString yearStr = file.mid(29,4);
+        int tyear = yearStr.toInt();
 
         if (inputFile.open(QIODevice::ReadOnly)){
             QTextStream in(&inputFile);

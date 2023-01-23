@@ -49,12 +49,12 @@ void DownloadManager::checkDownloads()
     {
         int year = now.date().year();
         QStringList files;
-        files << QString("master%1.txt").arg(year-2000);
-        files << QString("master%1-int.txt").arg(year-2000);
+        files << QString("master%1.txt").arg(year);
+        files << QString("master%1-int.txt").arg(year);
 
         if (now.date().month() >=11){
-            files << QString("master%1.txt").arg(year+1-2000);
-            files << QString("master%1-int.txt").arg(year+1-2000);
+            files << QString("master%1.txt").arg(year+1);
+            files << QString("master%1-int.txt").arg(year+1);
         }
 
         QDirIterator it("AUTO_DOWNLOAD_MASTER", files);

@@ -3231,7 +3231,7 @@ void MainWindow::on_pushButton_clicked()
 
     bool found = false;
 
-    if(txt.length() <= 6){
+//    if(txt.length() <= 6){
         auto c = qtUtil::searchSessionCodeInMasterFile(txt);
         if(c.is_initialized()){
             std::tie(description, sessionName, start, dur, stas, sked, corr) = *c;
@@ -3241,7 +3241,7 @@ void MainWindow::on_pushButton_clicked()
             QMessageBox::warning(this,"session code not found","The session was not found in the master files located in AUTO_DOWNLOAD_MASTER!");
         }
 
-
+    /*
     } else {
 
         QRegularExpression reg("([\\w\\&-]+)\\s(\\w+)\\s(\\d{4}-\\d{2}-\\d{2}\\s\\d{1,2}:\\d{2})\\s\\w+\\s(\\d{1,2}:\\d{2})\\s(.*?)(XA|XE|XH|XN|XU|XK|VG)\\s(\\w*)\\s(\\w*)");
@@ -3264,7 +3264,7 @@ void MainWindow::on_pushButton_clicked()
             QMessageBox::warning(this,"errors while reading from session master","Not possible to parse input!");
         }
     }
-
+    */
 
     QMap<QString,QString> tlc2station;
     if (found){
@@ -6192,13 +6192,13 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year-2000);
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year-2000);
+    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year);
+    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year);
 //    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
 
     if (now.date().month() >=11){
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1-2000);
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1-2000);
+        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1);
+        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
@@ -6211,7 +6211,7 @@ void MainWindow::download(){
             files << z;
         }
     }
-    for (int i = 00; i<=year-1-2000; ++i){
+    for (int i = 00; i<=22; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
             QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
@@ -6757,3 +6757,4 @@ void MainWindow::on_pushButton_setupSEFD_remove_clicked()
         t->removeRow(row);
     }
 }
+
