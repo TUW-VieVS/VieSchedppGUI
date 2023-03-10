@@ -536,8 +536,8 @@ boost::optional<std::tuple<QString,QString,QDateTime,double,QStringList,QString,
 
     double dur;
     if ( newFormat ){
-        double dur_h = found[6].simplified().left(2).toDouble();
-        double dur_m = found[6].simplified().right(2).toDouble();
+        double dur_h = found[6].left(2).simplified().toDouble();
+        double dur_m = found[6].right(2).simplified().toDouble();
         dur = dur_h + dur_m/60.;
     } else {
         dur = found[6].simplified().toDouble();
