@@ -150,6 +150,12 @@ MainWindow::MainWindow(QWidget *parent) :
     vbox_ms->addWidget(ms_widget,1);
     ui->groupBox_multiScheduling->setLayout(vbox_ms);
 
+    satelliteAvoidanceWidget = new SatelliteAvoidanceWidget();
+    ui->verticalLayout_satelliteAvoidance->addWidget(satelliteAvoidanceWidget,0);
+    connect(satelliteAvoidanceWidget, SIGNAL(update_settings(QStringList, QStringList, QString)),
+            this, SLOT(changeDefaultSettings(QStringList, QStringList, QString)));
+
+
     readSettings();
 
     if(ui->pathToSchedulerLineEdit->text().isEmpty()){
@@ -901,6 +907,12 @@ void MainWindow::on_actionAbout_Qt_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
     ui->main_stacked->setCurrentIndex(23);
+}
+
+
+void MainWindow::on_actionSatellite_Avoidance_triggered()
+{
+    ui->main_stacked->setCurrentIndex(24);
 }
 
 
@@ -6757,4 +6769,5 @@ void MainWindow::on_pushButton_setupSEFD_remove_clicked()
         t->removeRow(row);
     }
 }
+
 

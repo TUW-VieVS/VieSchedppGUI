@@ -507,9 +507,7 @@ QString MainWindow::writeXML()
         para.highImpactAzEl(members,azs,els,margins,interval,repeat);
     }
     if(!ui->lineEdit_pathSatellite_avoid->text().isEmpty()){
-        double angle = ui->doubleSpinBox_satavoid_angel->value();
-        int freq = ui->spinBox_satavoid_frequency->value();
-        para.satelliteAvoidance(angle, freq);
+        para.satelliteAvoidance(satelliteAvoidanceWidget->toXML());
     }
 
     if(ui->groupBox_modeSked->isChecked()){
@@ -1902,12 +1900,6 @@ void MainWindow::loadXML(QString path)
         }
     }
 
-    {
-        double angle = xml.get("VieSchedpp.satelliteAvoidance.angularDistance",0.5);
-        ui->doubleSpinBox_satavoid_angel->setValue(angle);
-        int freq = xml.get("VieSchedpp.satelliteAvoidance.checkFrequency",30);
-        ui->spinBox_satavoid_frequency->setValue(freq);
-    }
 
 
     // rule calibrator
@@ -1918,6 +1910,14 @@ void MainWindow::loadXML(QString path)
         if (ctree.is_initialized()) {
             ui->groupBox_35->setChecked(true);
             calibratorWidget->fromXML(*ctree);
+        }
+    }
+    // rule satellite avoidance
+    {
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.satelliteAvoidance");
+
+        if (ctree.is_initialized()) {
+            satelliteAvoidanceWidget->fromXML(*ctree);
         }
     }
 
@@ -2076,10 +2076,10 @@ void MainWindow::readSettings()
     MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
     ms->setMultiprocessing(threads, nThreadsManual, jobScheduler, chunkSize);
 
-    double angle = settings_.get("settings.satelliteAvoidance.angularDistance",0.5);
-    ui->doubleSpinBox_satavoid_angel->setValue(angle);
-    int freq = settings_.get("settings.satelliteAvoidance.checkFrequency",30);
-    ui->spinBox_satavoid_frequency->setValue(freq);
+    auto satelliteAvoidance = settings_.get_child_optional("settings.satelliteAvoidance");
+    if ( satelliteAvoidance.is_initialized() ){
+        satelliteAvoidanceWidget->fromXML(*satelliteAvoidance);
+    }
 
 }
 
@@ -2989,21 +2989,6 @@ void MainWindow::on_pushButton_41_clicked()
     QStringList path {"settings.output.notes"};
     QStringList value {ui->plainTextEdit_notes->toPlainText().replace("\n","\\n")};
     QString name = "Default notes changed!";
-    changeDefaultSettings(path,value,name);
-}
-
-
-void MainWindow::on_pushButton_4_clicked()
-{
-    QStringList path;
-    QStringList value;
-
-    path << "settings.satelliteAvoidance.angularDistance";
-    value << QString("%1").arg(ui->doubleSpinBox_satavoid_angel->value());
-    path << "settings.satelliteAvoidance.checkFrequency";
-    value << QString("%1").arg(ui->spinBox_satavoid_frequency->value());
-
-    QString name = "Default satellite avoidance parameters changed!";
     changeDefaultSettings(path,value,name);
 }
 

@@ -88,6 +88,7 @@
 #include "Widgets/setupwidget.h"
 // #include "Widgets/skycoveragewidget.h"
 #include "Widgets/skycovwidget.h"
+#include "Widgets/satelliteavoidancewidget.h"
 
 
 #include "Utility/downloadmanager.h"
@@ -535,7 +536,7 @@ private slots:
 
     void on_pushButton_tle_info_2_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_actionSatellite_Avoidance_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -600,6 +601,7 @@ private:
 
     SkyCovWidget *skyCoverageWidget;
     CalibratorBlockWidget *calibratorWidget;
+    SatelliteAvoidanceWidget *satelliteAvoidanceWidget;
 
     Statistics *statistics;
     boost::optional<VieVS::Scheduler> parsedSchedule;

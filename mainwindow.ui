@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>17</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -7260,8 +7260,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>746</width>
-             <height>670</height>
+             <width>972</width>
+             <height>677</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -9703,153 +9703,6 @@ p, li { white-space: pre-wrap; }
                  </layout>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QGroupBox" name="groupBox_19">
-                 <property name="title">
-                  <string>Satellite avoidance</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_4">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_46">
-                    <property name="toolTip">
-                     <string>angular distance around satellite that should be avaoided</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>angular distance around satellite that should be avaoided</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;angular distance around satellite that should be avaoided.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g. angle = 1 deg&lt;/p&gt;&lt;p&gt;satellite is at elevation 90° &lt;/p&gt;&lt;p&gt;only scans with elevation &amp;lt; 89° will be scheduled &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>avoidance angle</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <spacer name="horizontalSpacer_13">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>75</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="0" column="2">
-                   <layout class="QHBoxLayout" name="horizontalLayout_35">
-                    <item>
-                     <spacer name="horizontalSpacer">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_4">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="myresources.qrc">
-                        <normaloff>:/icons/icons/document-export.png</normaloff>:/icons/icons/document-export.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="spinBox_satavoid_frequency">
-                    <property name="toolTip">
-                     <string>satellite position check frequency in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>satellite position check frequency in seconds</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>The satellite position will be compared to the source position at the beginning of the scan, at the end of the scan and in between every few seconds. 
-
-The frequency for which the satellite will be checked during the scan is determined by this value. 
-
-e.g.
-frequency = 10 sec
-scan start = 00:00:00
-scan end = 00:00:35
-satellite postion will be checked at times
-00:00:00, 00:00:10, 00:00:20, 00:00:30, and 00:00:35</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [s]</string>
-                    </property>
-                    <property name="minimum">
-                     <number>1</number>
-                    </property>
-                    <property name="maximum">
-                     <number>60</number>
-                    </property>
-                    <property name="singleStep">
-                     <number>5</number>
-                    </property>
-                    <property name="value">
-                     <number>30</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_satavoid_angel">
-                    <property name="toolTip">
-                     <string>angular distance around satellite that should be avaoided</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>angular distance around satellite that should be avaoided</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;angular distance around satellite that should be avaoided.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g. angle = 1 deg&lt;/p&gt;&lt;p&gt;satellite is at elevation 90° &lt;/p&gt;&lt;p&gt;only scans with elevation &amp;lt; 89° will be scheduled &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="suffix">
-                     <string> [deg]</string>
-                    </property>
-                    <property name="minimum">
-                     <double>0.010000000000000</double>
-                    </property>
-                    <property name="maximum">
-                     <double>5.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                    <property name="value">
-                     <double>0.500000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_47">
-                    <property name="toolTip">
-                     <string>satellite position check frequency in seconds</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>satellite position check frequency in seconds</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The satellite position will be compared to the source position at the beginning of the scan, at the end of the scan and in between every few seconds. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The frequency for which the satellite will be checked during the scan is determined by this value. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g.&lt;/p&gt;&lt;p&gt;frequency = 10 sec&lt;/p&gt;&lt;p&gt;scan start = 00:00:00&lt;/p&gt;&lt;p&gt;scan end = 00:00:35&lt;/p&gt;&lt;p&gt;satellite postion will be checked at times&lt;/p&gt;&lt;p&gt;00:00:00, 00:00:10, 00:00:20, 00:00:30, and 00:00:35&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>check frequency</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
               </layout>
              </item>
              <item>
@@ -11320,6 +11173,13 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="satelliteAvoidance">
+       <layout class="QVBoxLayout" name="verticalLayout_90">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_satelliteAvoidance"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -11380,6 +11240,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <addaction name="actionMulti_Scheduling"/>
    <addaction name="actionSky_Coverage"/>
    <addaction name="actionConditions"/>
+   <addaction name="actionSatellite_Avoidance"/>
    <addaction name="actionadvanced"/>
   </widget>
   <widget class="QToolBar" name="helpToolBar">
@@ -11440,6 +11301,7 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <addaction name="actionSky_Coverage"/>
     <addaction name="actionConditions"/>
     <addaction name="actionadvanced"/>
+    <addaction name="actionSatellite_Avoidance"/>
    </widget>
    <widget class="QMenu" name="menufile">
     <property name="title">
@@ -11776,6 +11638,15 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </property>
    <property name="text">
     <string>Simulator</string>
+   </property>
+  </action>
+  <action name="actionSatellite_Avoidance">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/icons/satellite_avoid.png</normaloff>:/icons/icons/satellite_avoid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Satellite Avoidance</string>
    </property>
   </action>
  </widget>

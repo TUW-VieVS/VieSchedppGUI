@@ -232,6 +232,7 @@ SOURCES += \
     Widgets/calibratorblockwidget.cpp \
     Widgets/mulitschedulingwidget.cpp \
     Widgets/priorities.cpp \
+    Widgets/satelliteavoidancewidget.cpp \
     Widgets/setupwidget.cpp \
     Widgets/simulatorwidget.cpp \
     #Widgets/skycoveragewidget.cpp \
@@ -386,6 +387,7 @@ HEADERS += \
     Widgets/calibratorblockwidget.h \
     Widgets/mulitschedulingwidget.h \
     Widgets/priorities.h \
+    Widgets/satelliteavoidancewidget.h \
     Widgets/setupwidget.h \
     Widgets/simulatorwidget.h \
     #Widgets/skycoveragewidget.h \
@@ -424,6 +426,7 @@ FORMS += \
     Widgets/calibratorblockwidget.ui \
     Widgets/mulitschedulingwidget.ui \
     Widgets/priorities.ui \
+    Widgets/satelliteavoidancewidget.ui \
     Widgets/setupwidget.ui \
     Widgets/simulatorwidget.ui \
     #Widgets/skycoveragewidget.ui \

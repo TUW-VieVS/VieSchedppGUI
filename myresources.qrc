@@ -86,6 +86,7 @@
         <file>icons/satellite_group_plus.png</file>
         <file>icons/satellite_p.png</file>
         <file>icons/all_source_types.png</file>
+        <file>icons/satellite_avoid.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/vievs_sched_subtitle_transparent.png</file>
