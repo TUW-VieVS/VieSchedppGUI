@@ -34,6 +34,10 @@ private slots:
 
     void on_pushButton_save_para_clicked();
 
+    void on_spinBox_dpara_scans_valueChanged(int arg1);
+
+    void on_spinBox_para_nscans_valueChanged(int arg1);
+
 public slots:
 
     void update();

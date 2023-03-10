@@ -17,9 +17,13 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
+      <attribute name="icon">
+       <iconset resource="../myresources.qrc">
+        <normaloff>:/icons/icons/dialog-ok-2.png</normaloff>:/icons/icons/dialog-ok-2.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Fringe finder</string>
       </attribute>
@@ -728,6 +732,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
+      <attribute name="icon">
+       <iconset resource="../myresources.qrc">
+        <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Parallactic angle difference</string>
       </attribute>
@@ -1040,6 +1048,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_3">
+      <attribute name="icon">
+       <iconset resource="../myresources.qrc">
+        <normaloff>:/icons/icons/edit-delete-6.png</normaloff>:/icons/icons/edit-delete-6.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Parallactic angle change</string>
       </attribute>

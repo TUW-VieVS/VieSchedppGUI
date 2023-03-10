@@ -55,6 +55,15 @@
        </item>
        <item row="0" column="1">
         <widget class="QSpinBox" name="spinBox_orbitError">
+         <property name="toolTip">
+          <string>orbital error perpenticular to observation direction</string>
+         </property>
+         <property name="statusTip">
+          <string>orbital error perpenticular to observation direction</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;orbital error perpenticular to observation direction. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Used to calculate the avoidance area around satellites. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="suffix">
           <string> [m]</string>
          </property>
@@ -71,6 +80,15 @@
        </item>
        <item row="1" column="1">
         <widget class="QSpinBox" name="spinBox_orbitErrorPerDay">
+         <property name="toolTip">
+          <string>increase in orbital error perpenticular to observation direction per day</string>
+         </property>
+         <property name="statusTip">
+          <string>increase in orbital error perpenticular to observation direction per day</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;increase in orbital error perpenticular to observation direction per day.&lt;/p&gt;&lt;p&gt;Used to calculate the avoidance area around satellites&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g. &lt;/p&gt;&lt;p&gt;orbital error = 2 km&lt;/p&gt;&lt;p&gt;orbital error per day = 1 km &lt;/p&gt;&lt;p&gt;observation start is in 4.5 days&lt;/p&gt;&lt;p&gt;--&amp;gt; orbital error = 6.5 km &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="suffix">
           <string> [m/day]</string>
          </property>
@@ -87,6 +105,15 @@
        </item>
        <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="doubleSpinBox_errorMargin">
+         <property name="toolTip">
+          <string>additional angular distance around satellites that is avoided</string>
+         </property>
+         <property name="statusTip">
+          <string>additional angular distance around satellites that is avoided</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;additional error margin that is added on top of orbital error.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g. &lt;/p&gt;&lt;p&gt;avoidance because of orbital error = 2.4 degrees &lt;/p&gt;&lt;p&gt;error margin = 0.2 degrees&lt;/p&gt;&lt;p&gt;total area around satellite that will be avoided during observations = 2.6 degrees &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="suffix">
           <string> [deg]</string>
          </property>
@@ -103,6 +130,15 @@
        </item>
        <item row="3" column="1">
         <widget class="QDoubleSpinBox" name="doubleSpinBox_minElevation">
+         <property name="toolTip">
+          <string>minimum elevation of satellites to be avoided</string>
+         </property>
+         <property name="statusTip">
+          <string>minimum elevation of satellites to be avoided</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;minimum elevation of satellites to be avoided. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g. &lt;/p&gt;&lt;p&gt;Satellites with lower elevation are not avoided because it is assumed that they will not propagate signal in the direction of the receiver &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="suffix">
           <string> [deg]</string>
          </property>
@@ -119,6 +155,15 @@
        </item>
        <item row="4" column="1">
         <widget class="QSpinBox" name="spinBox_checkFrequency">
+         <property name="toolTip">
+          <string>frequence in which satellite positions are compared with observation angles</string>
+         </property>
+         <property name="statusTip">
+          <string>frequence in which satellite positions are compared with observation angles</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;frequence in which satellite positions are compared with observation angles.&lt;/p&gt;&lt;p&gt;Satellite position will always be checked at the start end end of the observation. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g. &lt;/p&gt;&lt;p&gt;check frequency = 10 sec&lt;/p&gt;&lt;p&gt;observation start = 00:00:30 &lt;/p&gt;&lt;p&gt;observation end = 00:01:05&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Satellite position is evaluated at &lt;/p&gt;&lt;p&gt;- 00:00:30&lt;/p&gt;&lt;p&gt;- 00:00:40&lt;/p&gt;&lt;p&gt;- 00:00:50&lt;/p&gt;&lt;p&gt;- 00:01:00&lt;/p&gt;&lt;p&gt;- 00:01:05&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="suffix">
           <string> [s]</string>
          </property>

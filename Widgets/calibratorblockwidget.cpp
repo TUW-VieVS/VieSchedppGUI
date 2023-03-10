@@ -212,6 +212,11 @@ void CalibratorBlockWidget::fromXML(const boost::property_tree::ptree &ctree)
 
 void CalibratorBlockWidget::on_spinBox_NCalibrationBlocks_valueChanged(int row)
 {
+    if (row > 0){
+        ui->tabWidget->setTabIcon(0, QIcon(":/icons/icons/dialog-ok-2.png"));
+    }else{
+        ui->tabWidget->setTabIcon(0, QIcon(":/icons/icons/edit-delete-6.png"));
+    }
     double session_dur = session_duration->value();
     double delta = session_dur/(row-1);
     auto *tab = ui->tableWidget_calibrationBlock;
@@ -415,4 +420,26 @@ void CalibratorBlockWidget::on_checkBox_tryToIncludeAllStations_toggled(bool che
     ui->label_127->setText(txt + " per block");
 }
 
+
+
+void CalibratorBlockWidget::on_spinBox_dpara_scans_valueChanged(int arg1)
+{
+    if (arg1 > 0){
+        ui->tabWidget->setTabIcon(1, QIcon(":/icons/icons/dialog-ok-2.png"));
+    }else{
+        ui->tabWidget->setTabIcon(1, QIcon(":/icons/icons/edit-delete-6.png"));
+    }
+
+}
+
+
+void CalibratorBlockWidget::on_spinBox_para_nscans_valueChanged(int arg1)
+{
+    if (arg1 > 0){
+        ui->tabWidget->setTabIcon(2, QIcon(":/icons/icons/dialog-ok-2.png"));
+    }else{
+        ui->tabWidget->setTabIcon(2, QIcon(":/icons/icons/edit-delete-6.png"));
+    }
+
+}
 
