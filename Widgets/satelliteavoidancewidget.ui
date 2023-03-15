@@ -46,7 +46,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>check frequency</string>
@@ -62,7 +62,7 @@
           <string>orbital error perpenticular to observation direction</string>
          </property>
          <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;orbital error perpenticular to observation direction. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Used to calculate the avoidance area around satellites. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;orbital error at TLE epoch perpenticular to observation direction. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Used to calculate the avoidance area around satellites. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="suffix">
           <string> [m]</string>
@@ -153,7 +153,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="5" column="1">
         <widget class="QSpinBox" name="spinBox_checkFrequency">
          <property name="toolTip">
           <string>frequence in which satellite positions are compared with observation angles</string>
@@ -175,6 +175,60 @@
          </property>
          <property name="value">
           <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_out">
+         <property name="toolTip">
+          <string>output progress report for preprocessing to log file</string>
+         </property>
+         <property name="statusTip">
+          <string>output progress report for preprocessing to log file</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;At the start of the scheuduling, VieSched++ will actively search for time periods were satellites are visible by the station. &lt;/p&gt;&lt;p&gt;This is necessary to significantly speed up the actual scheduling. &lt;/p&gt;&lt;p&gt;However, these pre-processings can take a time (VieSched++ will check visibility for every station + satellite pair every 60 seconds which can easily accumulate to several thousand tests)&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, you can output the progress in these calculations to the .log file. &lt;/p&gt;&lt;p&gt;They will be outputted as [info] messages. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="prefix">
+          <string>every </string>
+         </property>
+         <property name="suffix">
+          <string> %</string>
+         </property>
+         <property name="minimum">
+          <double>1.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>5.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="checkBox_out">
+         <property name="toolTip">
+          <string>output progress report for preprocessing to log file</string>
+         </property>
+         <property name="statusTip">
+          <string>output progress report for preprocessing to log file</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;At the start of the scheuduling, VieSched++ will actively search for time periods were satellites are visible by the station. &lt;/p&gt;&lt;p&gt;This is necessary to significantly speed up the actual scheduling. &lt;/p&gt;&lt;p&gt;However, these pre-processings can take a time (VieSched++ will check visibility for every station + satellite pair every 60 seconds which can easily accumulate to several thousand tests)&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;With this option, you can output the progress in these calculations to the .log file. &lt;/p&gt;&lt;p&gt;They will be outputted as [info] messages. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>output to log</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -227,25 +281,42 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>397</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>397</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
  <resources>
   <include location="../myresources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBox_out</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_out</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
+     <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>17</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1256,7 +1256,7 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>958</width>
+             <width>341</width>
              <height>805</height>
             </rect>
            </property>
@@ -3164,7 +3164,7 @@ If you only want to run simulations you can deselect this to avoid error message
           <property name="flat">
            <bool>false</bool>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,5,1">
+          <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,3,1">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_15">
              <item>
@@ -3216,7 +3216,7 @@ If you only want to run simulations you can deselect this to avoid error message
                 <widget class="QDateTimeEdit" name="dateTimeEdit_sessionStart">
                  <property name="minimumSize">
                   <size>
-                   <width>150</width>
+                   <width>180</width>
                    <height>0</height>
                   </size>
                  </property>
