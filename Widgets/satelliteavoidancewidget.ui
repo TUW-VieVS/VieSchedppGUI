@@ -168,13 +168,13 @@
           <string> [s]</string>
          </property>
          <property name="maximum">
-          <number>600</number>
+          <number>9999</number>
          </property>
          <property name="singleStep">
-          <number>5</number>
+          <number>1</number>
          </property>
          <property name="value">
-          <number>10</number>
+          <number>5</number>
          </property>
         </widget>
        </item>

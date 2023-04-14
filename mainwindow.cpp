@@ -3566,7 +3566,7 @@ void MainWindow::readStations()
         QTextStream in(&antennaFile);
         while (!in.atEnd()){
             QString line = in.readLine();
-            if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
+            if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
             QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
@@ -3581,7 +3581,7 @@ void MainWindow::readStations()
         QTextStream in(&equipFile);
         while (!in.atEnd()){
             QString line = in.readLine();
-            if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
+            if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
             QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
@@ -3597,7 +3597,7 @@ void MainWindow::readStations()
         QTextStream in(&positionFile);
         while (!in.atEnd()){
             QString line = in.readLine();
-            if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
+            if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
             QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
@@ -4435,7 +4435,7 @@ void MainWindow::readSources()
         QTextStream in(&sourceFile);
         while (!in.atEnd()){
             QString line = in.readLine();
-            if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
+            if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
             QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
