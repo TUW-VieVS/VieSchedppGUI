@@ -109,6 +109,15 @@ boost::property_tree::ptree CalibratorBlockWidget::toXML()
 
     if ( ui->spinBox_dpara_scans->value() > 0){
         rules.add( "calibration.diffParallacticAngle.nscans", ui->spinBox_dpara_scans->value());
+        boost::property_tree::ptree angles;
+        for (int i = 0; i<ui->tableWidget_dParList->rowCount(); ++i ) {
+            boost::property_tree::ptree tmp;
+            double v =  qobject_cast<QDoubleSpinBox *>(ui->tableWidget_dParList->cellWidget(i,0))->value();
+            tmp.add("angle",v);
+            angles.add_child("angles.angle", tmp.get_child( "angle" ));
+        }
+        rules.add_child("calibration.diffParallacticAngle.angles", angles.get_child( "angles" ));
+
         rules.add( "calibration.diffParallacticAngle.duration", ui->spinBox_dpara_duration->value());
         rules.add( "calibration.diffParallacticAngle.distanceScaling", ui->doubleSpinBox_dpara_distanceScaling->value());
         rules.add( "calibration.diffParallacticAngle.sources", ui->comboBox_dpara_sources->currentText().toStdString());
@@ -192,6 +201,18 @@ void CalibratorBlockWidget::fromXML(const boost::property_tree::ptree &ctree)
 
     if ( ctree.get_child_optional("diffParallacticAngle").is_initialized()){
         ui->spinBox_dpara_scans->setValue(ctree.get("diffParallacticAngle.nscans",0));
+        int counter = 0;
+        auto ptree = ctree.get_child_optional("diffParallacticAngle.angles");
+        if ( ptree.is_initialized()){
+            for(const auto &any : *ptree) {
+                if(any.first == "angle"){
+                    double v = any.second.get_value<double>();
+                    QDoubleSpinBox *dsp =  qobject_cast<QDoubleSpinBox *>(ui->tableWidget_dParList->cellWidget(counter,0));
+                    dsp->setValue(v);
+                    ++counter;
+                }
+            }
+        }
         ui->spinBox_dpara_duration->setValue(ctree.get("diffParallacticAngle.duration",300));
         ui->doubleSpinBox_dpara_distanceScaling->setValue(ctree.get("diffParallacticAngle.distanceScaling",2.0));
         ui->comboBox_dpara_sources->setCurrentText(QString::fromStdString(ctree.get("diffParallacticAngle.sources","__all__")));
@@ -367,7 +388,7 @@ void CalibratorBlockWidget::on_pushButton_save_dpara_clicked()
          << "settings.rules.calibration.diffParallacticAngle.intent"
             ;
 
-    value << QString::number(ui->spinBox_dpara_scans->value())
+    value << 0 //QString::number(ui->spinBox_dpara_scans->value())
           << QString::number(ui->spinBox_dpara_duration->value())
           << QString::number(ui->doubleSpinBox_dpara_distanceScaling->value())
           <<  ui->comboBox_dpara_sources->currentText()
@@ -394,7 +415,7 @@ void CalibratorBlockWidget::on_pushButton_save_para_clicked()
          << "settings.rules.calibration.parallacticAngleChange.intent"
             ;
 
-    value << QString::number(ui->spinBox_para_nscans->value())
+    value << 0 // QString::number(ui->spinBox_para_nscans->value())
           << QString::number(ui->spinBox_para_duration->value())
           << QString::number(ui->doubleSpinBox_para_distanceScaling->value())
           <<  ui->comboBox_para_sources->currentText()
@@ -430,6 +451,28 @@ void CalibratorBlockWidget::on_spinBox_dpara_scans_valueChanged(int arg1)
         ui->tabWidget->setTabIcon(1, QIcon(":/icons/icons/edit-delete-6.png"));
     }
 
+    auto *tab = ui->tableWidget_dParList;
+    tab->setRowCount(arg1);
+    int left = (arg1-1)/2;
+    int right = arg1 - left - 1;
+    for(int i_row = 0; i_row<arg1; ++i_row){
+        QDoubleSpinBox *t = new QDoubleSpinBox();
+        t->setMaximum(90);
+        t->setDecimals(2);
+        t->setSingleStep(5);
+        if ( i_row < left){
+            double delta = 45.0/(left+1);
+            t->setValue((i_row+1) * delta);
+        } else if (i_row == left){
+            t->setValue(45);
+        } else if (i_row > left){
+            double delta = 45.0/(right+1);
+            t->setValue(45+(i_row-left) * delta);
+        }
+
+        t->setSuffix(" [deg]");
+        tab->setCellWidget(i_row,0,t);
+    }
 }
 
 

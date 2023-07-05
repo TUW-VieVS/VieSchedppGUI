@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>828</width>
+    <width>923</width>
     <height>625</height>
    </rect>
   </property>
@@ -30,7 +30,7 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Estimate source coordinates. &lt;/p&gt;&lt;p&gt;Be careful when using this option. It is often not advisable to estimate sources from single sessions. Be especially carful with how to define the datum. Do not add sources into the datum if they have too few observations! &lt;/p&gt;&lt;p&gt;It might be that VieSched++ does remove some sources from the datum. For example: this is the case if you a source is only observed by single-baseline scans. &lt;/p&gt;&lt;p&gt;Simillarly, observations to sources might be removed completely from the estimation process in case there are to few scans or observations. &lt;/p&gt;&lt;p&gt;If you want to estimate sources it is recommended to define a minimum of three stations per scan in the source parameters &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="EOP">
           <property name="toolTip">
@@ -348,278 +348,283 @@
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,2">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
+            <widget class="QSplitter" name="splitter_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <widget class="QWidget" name="">
+              <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,2">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout">
+                <layout class="QVBoxLayout" name="verticalLayout_2">
                  <item>
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="enabled">
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>datum: ITRF2014</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_warning">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTreeWidget" name="treeWidget_sta_coord">
+                   <attribute name="headerStretchLastSection">
                     <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>datum: ITRF2014</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_warning">
-                   <property name="text">
-                    <string/>
-                   </property>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>name</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>coord</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>datum</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </column>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <widget class="QTreeWidget" name="treeWidget_sta_coord">
-                 <attribute name="headerStretchLastSection">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string>name</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>coord</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>datum</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <layout class="QVBoxLayout" name="verticalLayout_5">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_obs_based_ref_clock">
-                   <property name="text">
-                    <string>ref clock based on #obs</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_obs_based_ref_clock">
+                     <property name="text">
+                      <string>ref clock based on #obs</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_force_ref_clock">
+                     <property name="text">
+                      <string>force ref clock:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="comboBox_ref_clock">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_force_ref_clock">
-                   <property name="text">
-                    <string>force ref clock:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboBox_ref_clock">
-                   <property name="enabled">
+                  <widget class="QTreeWidget" name="treeWidget_sta_clock">
+                   <attribute name="headerStretchLastSection">
                     <bool>false</bool>
-                   </property>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>name</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>linear clock</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>quadratic clock</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>PWL clock</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>interval</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>constraint</string>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </column>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                 </layout>
                </item>
-               <item>
-                <widget class="QTreeWidget" name="treeWidget_sta_clock">
-                 <attribute name="headerStretchLastSection">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string>name</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>linear clock</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>quadratic clock</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>PWL clock</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>interval</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>constraint</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </column>
-                </widget>
-               </item>
               </layout>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QTreeWidget" name="treeWidget_sta_tropo">
-             <attribute name="headerStretchLastSection">
-              <bool>false</bool>
-             </attribute>
-             <column>
-              <property name="text">
-               <string>name</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>PWL ZWD</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>interval</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>constraint</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>NGR</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>interval</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>constraint</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>EGR</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>interval</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>constraint</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string/>
-              </property>
-             </column>
+             </widget>
+             <widget class="QTreeWidget" name="treeWidget_sta_tropo">
+              <attribute name="headerStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>name</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>PWL ZWD</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>interval</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>constraint</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>NGR</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>interval</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>constraint</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>EGR</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>interval</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>constraint</string>
+               </property>
+               <property name="textAlignment">
+                <set>AlignCenter</set>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string/>
+               </property>
+              </column>
+             </widget>
             </widget>
            </item>
           </layout>

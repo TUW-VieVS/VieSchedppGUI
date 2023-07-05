@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -27,7 +27,7 @@
       <attribute name="title">
        <string>Fringe finder</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1,0,0">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_18">
          <property name="topMargin">
@@ -709,19 +709,6 @@
                 </item>
                </layout>
               </item>
-              <item>
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
              </layout>
             </widget>
            </widget>
@@ -739,165 +726,17 @@
       <attribute name="title">
        <string>Parallactic angle difference</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0">
        <item>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <property name="bottomMargin">
-          <number>0</number>
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option is especially useful for &lt;span style=&quot; font-weight:600;&quot;&gt;Intensive VGOS&lt;/span&gt; sessions! &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="spinBox_dpara_scans">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="toolTip">
-            <string>select number of (equally spaced) calibration blocks</string>
-           </property>
-           <property name="statusTip">
-            <string>select number of (equally spaced) calibration blocks</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QComboBox" name="comboBox_dpara_intent">
-           <property name="currentIndex">
-            <number>4</number>
-           </property>
-           <item>
-            <property name="text">
-             <string>NONE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>FRINGE_FINDER</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_AMPLI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_AUTOPHASE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_BANDPASS</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_DELAY</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_PHASE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_POINTING</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_POLARIZATION_ANGLE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CALIBRATOR_CODE	</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>number of scans</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="pushButton_addBaselineGroup">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../myresources.qrc">
-             <normaloff>:/icons/icons/baseline_group_plus.png</normaloff>:/icons/icons/baseline_group_plus.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>allowed baseline</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_134">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>allowed sources</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="comboBox_dpara_sources">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="toolTip">
-            <string>change all allowed sources</string>
-           </property>
-           <property name="statusTip">
-            <string>change all allowed sources</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="comboBox_dpara_baseline">
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define a baseline that is selected for evaluating the difference in parallactic angle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <spacer name="horizontalSpacer_22">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="4">
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="2" column="5">
           <widget class="QPushButton" name="pushButton_save_dpara">
            <property name="text">
             <string/>
@@ -908,14 +747,74 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_131">
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>vex intent:</string>
+            <string>number of scans</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_132">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>duration</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QComboBox" name="comboBox_dpara_sources">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="toolTip">
+              <string>change all allowed sources</string>
+             </property>
+             <property name="statusTip">
+              <string>change all allowed sources</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_addSrcGroup_2">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../myresources.qrc">
+               <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="3" column="3">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QComboBox" name="comboBox_dpara_baseline">
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define a baseline that is selected for evaluating the difference in parallactic angle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_addBaselineGroup">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../myresources.qrc">
+               <normaloff>:/icons/icons/baseline_group_plus.png</normaloff>:/icons/icons/baseline_group_plus.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="3">
           <widget class="QSpinBox" name="spinBox_dpara_duration">
            <property name="enabled">
             <bool>true</bool>
@@ -943,74 +842,20 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_17">
-           <property name="text">
-            <string>scan investigation cadence</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_132">
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_134">
            <property name="enabled">
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>duration</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QPushButton" name="pushButton_addSrcGroup_2">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../myresources.qrc">
-             <normaloff>:/icons/icons/source_group_plus.png</normaloff>:/icons/icons/source_group_plus.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" colspan="5">
-          <widget class="Line" name="line_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QSpinBox" name="spinBox_dpara_cadence">
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To find the best calibrator scan, all potential scans are investigated before selecting one. &lt;/p&gt;&lt;p&gt;With this parameter, you define the interval when all potential scans are generated. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g.:&lt;br/&gt;When the session starts at 00:00 and cadence is set to 300 seconds, every five minute, all possible scans are generated and evaluated. After all are evaluated, the best n-scans are selected as calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="suffix">
-            <string> [s]</string>
-           </property>
-           <property name="minimum">
-            <number>60</number>
-           </property>
-           <property name="maximum">
-            <number>86400</number>
-           </property>
-           <property name="singleStep">
-            <number>60</number>
-           </property>
-           <property name="value">
-            <number>300</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_19">
-           <property name="text">
-            <string>distance scaling</string>
+            <string>allowed sources</string>
            </property>
           </widget>
          </item>
          <item row="4" column="1">
           <widget class="QDoubleSpinBox" name="doubleSpinBox_dpara_distanceScaling">
            <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Used to calculate the score of each scan. &lt;/p&gt;&lt;p&gt;The general equation is:&lt;/p&gt;&lt;p&gt;score = SNR_obs * factor &lt;/p&gt;&lt;p&gt;with&lt;/p&gt;&lt;p&gt;dpar = parallactic_angle_1 - parallactic_angle_2&lt;/p&gt;&lt;p&gt;and&lt;/p&gt;&lt;p&gt;factor = (0.5 + 0.5 * sin( -pi/2 + 4 * dpar ) ) ^distance_scaling&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/dpara.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Used to calculate the score of each scan. &lt;/p&gt;&lt;p&gt;The general equation is:&lt;/p&gt;&lt;p&gt;score = SNR_obs * factor &lt;/p&gt;&lt;p&gt;with&lt;/p&gt;&lt;p&gt;dpar = parallactic_angle_1 - parallactic_angle_2&lt;/p&gt;&lt;p&gt;and&lt;/p&gt;&lt;p&gt;factor = (0.5 + 0.5 * cos( 4 * ( dpar - target_angle ) ) ^distance_scaling&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;e.g. for target_angle = 45 degrees:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/dpara.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="minimum">
             <double>1.000000000000000</double>
@@ -1023,27 +868,232 @@
            </property>
           </widget>
          </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="spinBox_dpara_scans">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="statusTip">
+            <string>select number of (equally spaced) calibration blocks</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>distance scaling</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>allowed baseline</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <spacer name="horizontalSpacer_22">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </item>
        <item>
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>useful for (Intensive) sessions fringe-fitted by Fourfit (dPar close to 45° +/- n * 90°)</string>
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_4">
+        <widget class="QSplitter" name="splitter">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QTableWidget" name="tableWidget_dParList">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>target dPar angle (+/- n*90°)</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>e.g. 45° corresponds to a dPar angle of 45°, 135°, -45°, -135°...</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>scan investigation cadence</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QSpinBox" name="spinBox_dpara_cadence">
+                 <property name="whatsThis">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To find the best calibrator scan, all potential scans are investigated before selecting one. &lt;/p&gt;&lt;p&gt;With this parameter, you define the interval when all potential scans are generated. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;E.g.:&lt;br/&gt;When the session starts at 00:00 and cadence is set to 300 seconds, every five minute, all possible scans are generated and evaluated. After all are evaluated, the best n-scans are selected as calibrator scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string> [s]</string>
+                 </property>
+                 <property name="minimum">
+                  <number>60</number>
+                 </property>
+                 <property name="maximum">
+                  <number>86400</number>
+                 </property>
+                 <property name="singleStep">
+                  <number>60</number>
+                 </property>
+                 <property name="value">
+                  <number>300</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_131">
+               <property name="text">
+                <string>vex intent:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBox_dpara_intent">
+               <property name="currentIndex">
+                <number>4</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>NONE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>FRINGE_FINDER</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_AMPLI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_AUTOPHASE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_BANDPASS</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_DELAY</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_PHASE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_POINTING</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_POLARIZATION_ANGLE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATE_POLARIZATION_LEAKAGE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CALIBRATOR_CODE	</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
        </item>
       </layout>
      </widget>
