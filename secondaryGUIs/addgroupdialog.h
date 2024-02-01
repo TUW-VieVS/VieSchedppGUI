@@ -82,12 +82,21 @@ private slots:
 
     void updateList();
 
+    void on_pushButton_intersection_toggled(bool checked);
+
+    void on_pushButton_difference_toggled(bool checked);
+
+    void on_listView_operation_clicked(const QModelIndex &index);
+
+    void on_pushButton_clicked();
+
 private:
     QStandardItemModel *all;
     std::map<std::string, std::vector<std::string>> groupList;
     QStandardItemModel *groups;
     QSortFilterProxyModel *proxy;
     QSortFilterProxyModel *proxy_group;
+    QSortFilterProxyModel *proxy_operation;
     boost::property_tree::ptree &settings;
 
     Type type;

@@ -3439,7 +3439,7 @@ void VieSchedpp_Analyser::updateUVCoverage(int idx, QString source, QString band
 
     double maxval;
     if(band == "-"){
-        maxval = ceil(max);
+        maxval = 13.0;
     }else{
         maxval = ceil(max/10)*10.0;
     }

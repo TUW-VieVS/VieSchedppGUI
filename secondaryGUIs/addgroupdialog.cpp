@@ -35,12 +35,16 @@ AddGroupDialog::AddGroupDialog(boost::property_tree::ptree &settings_, Type type
     proxy->setSourceModel(all);
     proxy_group = new QSortFilterProxyModel();
     proxy_group->setSourceModel(groups);
+    proxy_operation = new QSortFilterProxyModel();
+    proxy_operation->setSourceModel(groups);
 
     ui->listView_all->setModel(proxy);
     ui->listView_groups->setModel(proxy_group);
+    ui->listView_operation->setModel(proxy_operation);
 
     proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxy_group->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxy_operation->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     QItemSelectionModel *selection_all = ui->listView_all->selectionModel();
     connect(selection_all,SIGNAL(selectionChanged(QItemSelection ,QItemSelection )), this,SLOT(addItems(QItemSelection ,QItemSelection )));
@@ -400,8 +404,56 @@ void AddGroupDialog::on_listView_groups_clicked(const QModelIndex &index)
     if(message){
         QMessageBox::information(this, "targets not found/already selected", notFoundString+alreadySelectedString);
     }
+}
+
+void AddGroupDialog::on_listView_operation_clicked(const QModelIndex &index)
+{
+    ui->lineEdit_operation->setText("");
+
+    std::string itm = index.data().toString().toStdString();
+    QStringList group;
+    for(const auto &any: groupList){
+        if(any.first == itm){
+            for(const auto &any2 : any.second){
+                group.push_back(QString::fromStdString(any2));
+            }
+        }
+    }
+
+    QStringList selected;
+    for (int i = 0; i<ui->listWidget_selected->count(); ++i){
+        selected.push_back(ui->listWidget_selected->item(i)->text());
+    }
+
+    QStringList final;
+    if ( ui->pushButton_difference->isChecked()){
+        for( const auto &itm : selected){
+            if ( !group.contains(itm) ){
+                final.push_back(itm);
+            }
+        }
+    } else if ( ui->pushButton_intersection->isChecked()){
+        for( const auto &itm : selected){
+            if ( group.contains(itm) ){
+                final.push_back(itm);
+            }
+        }
+    } else {
+        ui->listView_operation->clearSelection();
+        QMessageBox::information(this, "Undefined operation", "First select the operation you want to execute");
+        return;
+    }
+    ui->listWidget_selected->clear();
+    for( const auto & itm : final){
+        ui->listWidget_selected->addItem(itm);
+    }
+    ui->listView_operation->clearSelection();
+    this->ui->pushButton_intersection->setChecked(false);
+    this->ui->pushButton_difference->setChecked(false);
 
 }
+
+
 
 void AddGroupDialog::updateList()
 {
@@ -410,11 +462,31 @@ void AddGroupDialog::updateList()
 }
 
 
+void AddGroupDialog::on_pushButton_intersection_toggled(bool checked)
+{
+    if( checked ){
+        this->ui->pushButton_difference->setChecked(false);
+    }
+}
+
+
+void AddGroupDialog::on_pushButton_difference_toggled(bool checked)
+{
+    if( checked ){
+        this->ui->pushButton_intersection->setChecked(false);
+    }
+}
 
 
 
 
-
-
-
+void AddGroupDialog::on_pushButton_clicked()
+{
+    QMessageBox::information(this, "Help", "You can use this operations to filter your selections.\n"
+                                           "First, select one set of members to put them into the 'selected' list (rightmost list).\n"
+                                           "Next, select the operation you want to execute.\n"
+                                           "Finally, select the 'group' you want to apply the operation to.\n"
+                                           "E.g. by selecting 'intersection' only sourcer remain that are both in your 'selected' list and also in the 'group' you have selected.\n"
+                                           "By selecting 'difference' only sources remain that are in 'selected' but not in 'group'.");
+}
 

@@ -6206,7 +6206,6 @@ void MainWindow::download(){
     QStringList files;
     files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year);
     files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year);
-//    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year-2000);
 
     if (now.date().month() >=11){
         files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1);
@@ -6215,7 +6214,22 @@ void MainWindow::download(){
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
-    // legacy SX
+    // new format (two digit year)
+    for (int i = 2023; i<year; ++i){
+        QString x1 = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
+        if( !QFile::exists(x1)){
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            files << z;
+        }
+        QString x2 = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
+        if( !QFile::exists(x2)){
+            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
+            files << z;
+        }
+    }
+
+
+    // legacy SX - old format (two digit year)
     for (int i = 79; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x)){
@@ -6231,7 +6245,7 @@ void MainWindow::download(){
         }
     }
 
-    // intensives
+    // intensives - old format (two digit year)
     for (int i = 92; i<=99; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x)){
@@ -6239,7 +6253,7 @@ void MainWindow::download(){
             files << z;
         }
     }
-    for (int i = 00; i<=year-1-2000; ++i){
+    for (int i = 00; i<=22; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
             QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
@@ -6247,7 +6261,7 @@ void MainWindow::download(){
         }
     }
 
-    // vgos
+    // vgos - old format (two digit year)
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
         QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
