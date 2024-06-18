@@ -123,7 +123,7 @@ void SimulatorWidget::addStations(QStandardItem *dummy)
         t->setItemWidget(item,c++,tropo_dHseg);
 
         QDoubleSpinBox *tropo_ve = new QDoubleSpinBox();
-        tropo_ve->setRange(0,100);
+        tropo_ve->setRange(-100,100);
         tropo_ve->setSingleStep(1);
         tropo_ve->setDecimals(1);
         tropo_ve->setValue(8);
@@ -132,7 +132,7 @@ void SimulatorWidget::addStations(QStandardItem *dummy)
         t->setItemWidget(item,c++,tropo_ve);
 
         QDoubleSpinBox *tropo_vn = new QDoubleSpinBox();
-        tropo_vn->setRange(0,100);
+        tropo_vn->setRange(-100,100);
         tropo_vn->setSingleStep(1);
         tropo_vn->setDecimals(1);
         tropo_vn->setValue(0);

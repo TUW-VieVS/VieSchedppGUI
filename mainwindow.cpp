@@ -449,7 +449,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                          groupSrc,
                                          groupBl,
                                          groupSat,
-                                         groupSpace);
+                                         groupSpace,
+                                         ui->spinBox_int_downtime);
     ui->verticalLayout_stationSetupWidget->addWidget(stationSetupWidget);
 
     sourceSetupWidget = new setupWidget(setupWidget::Type::source,
@@ -473,7 +474,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                         groupSrc,
                                         groupBl,
                                         groupSat,
-                                        groupSpace);
+                                        groupSpace,
+                                        ui->spinBox_int_downtime);
     ui->verticalLayout_sourceSetupWidget->addWidget(sourceSetupWidget);
 
     baselineSetupWidget = new setupWidget(setupWidget::Type::baseline,
@@ -497,7 +499,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                           groupSrc,
                                           groupBl,
                                           groupSat,
-                                          groupSpace);
+                                          groupSpace,
+                                          ui->spinBox_int_downtime);
     ui->verticalLayout_baselineSetupWidget->addWidget(baselineSetupWidget);
 
     satelliteSetupWidget = new setupWidget(setupWidget::Type::satellite,
@@ -521,7 +524,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                           groupSrc,
                                           groupBl,
                                           groupSat,
-                                          groupSpace);
+                                          groupSpace,
+                                          ui->spinBox_int_downtime);
     ui->verticalLayout_satelliteSetupWidget->addWidget(satelliteSetupWidget);
 
     spacecraftSetupWidget = new setupWidget(setupWidget::Type::spacecraft,
@@ -545,7 +549,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                           groupSrc,
                                           groupBl,
                                           groupSat,
-                                          groupSpace);
+                                          groupSpace,
+                                          ui->spinBox_int_downtime);
     ui->verticalLayout_spacecraftSetupWidget->addWidget(spacecraftSetupWidget);
 
     ui->dateTimeEdit_sessionStart->setDate(QDate::currentDate());
@@ -3322,7 +3327,7 @@ void MainWindow::on_pushButton_clicked()
                     errorText.append(QString("unknown station %1\n").arg(sta));
                 }
             }
-        }else{
+        } else {
             errorText.append("error while reading stations\n");
         }
         createBaselines = true;
@@ -3348,8 +3353,8 @@ void MainWindow::on_pushButton_clicked()
         if(errorText.size() != 0){
             QMessageBox::warning(this,"errors while reading session master line",errorText);
         }
-
-        auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600), stas);
+        int buffer = ui->spinBox_int_downtime->value();
+        auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600+buffer), stas, buffer);
         if(!downtimes.isEmpty()){
 
             for(const auto any : downtimes){
@@ -6784,4 +6789,15 @@ void MainWindow::on_pushButton_setupSEFD_remove_clicked()
     }
 }
 
+
+
+void MainWindow::on_spinBox_int_downtime_valueChanged(int arg1)
+{
+    bool flag = clearSetup(true,false,false);
+    if(flag){
+        QMessageBox::warning(this,"Station setup deleted!","Station setup was deleted -> please check!");
+    }
+
+    stationSetupWidget->on_pushButton_IvsDownTime_clicked();
+}
 

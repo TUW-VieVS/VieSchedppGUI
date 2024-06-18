@@ -1970,7 +1970,6 @@ void MainWindow::readSettings()
     std::string pathToScheduler = settings_.get<std::string>("settings.general.pathToScheduler","");
     ui->pathToSchedulerLineEdit->setText(QString::fromStdString(pathToScheduler));
 
-
     int fontSize = settings_.get<int>("settings.font.size",0);
     if(fontSize != 0){
         ui->spinBox_fontSize->setValue(fontSize);
@@ -1996,6 +1995,10 @@ void MainWindow::readSettings()
             edit->setText(n);
         }
     };
+    int intDowntime = settings_.get<int>("settings.general.int_downtime",600);
+    ui->spinBox_int_downtime->blockSignals(true);
+    ui->spinBox_int_downtime->setValue(intDowntime);
+    ui->spinBox_int_downtime->blockSignals(false);
 
     auto cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
     f(ui->lineEdit_pathAntenna, cAntenna);
@@ -3149,5 +3152,14 @@ void MainWindow::saveMultiCoreSetup()
     std::pair<QStringList, QStringList> p = ms->getMultiCoreSupport();
     QString name = "Default multi core settings changed!";
     changeDefaultSettings(p.first,p.second,name);
+}
+
+
+void MainWindow::on_pushButton_save_int_downtime_clicked()
+{
+    QStringList path {"settings.general.int_downtime"};
+    QStringList value {QString("%1").arg(ui->spinBox_int_downtime->value())};
+    QString name = "Default Intensive downtime buffer changed!";
+    changeDefaultSettings(path,value,name);
 }
 

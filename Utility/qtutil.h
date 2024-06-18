@@ -60,7 +60,7 @@ namespace qtUtil {
 
     QVector<std::pair<int, QString>> getUpcomingSessions();
 
-    QVector<std::pair<QString, std::pair<int,int>>> getDownTimes(QDateTime sessionStart, QDateTime sessionEnd, QStringList stations);
+    QVector<std::pair<QString, std::pair<int,int>>> getDownTimes(QDateTime sessionStart, QDateTime sessionEnd, QStringList stations, int buffer);
 
     QVector<std::pair<QString, std::pair<int,int>>> getStationIdleTimes(QStringList stations, QDateTime sessionsStart, QDateTime sessionEnd);
 }

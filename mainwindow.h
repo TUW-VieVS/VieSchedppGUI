@@ -538,6 +538,10 @@ private slots:
 
     void on_actionSatellite_Avoidance_triggered();
 
+    void on_pushButton_save_int_downtime_clicked();
+
+    void on_spinBox_int_downtime_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

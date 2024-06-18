@@ -23,6 +23,7 @@ setupWidget::setupWidget(Type type,
                          std::map<std::string, std::vector<std::string>> *groupBl,
                          std::map<std::string, std::vector<std::string>> *groupSat,
                          std::map<std::string, std::vector<std::string>> *groupSpace,
+                         QSpinBox *int_downtime,
                          QWidget *parent) :
     QWidget(parent),
     type{type},
@@ -47,6 +48,7 @@ setupWidget::setupWidget(Type type,
     groupBl{groupBl},
     groupSat{groupSat},
     groupSpace{groupSpace},
+    int_downtime{int_downtime},
     ui(new Ui::setupWidget)
 {
     ui->setupUi(this);
@@ -1397,7 +1399,8 @@ void setupWidget::on_pushButton_IvsDownTime_clicked()
         tlc2station[tlc] = name;
     }
 
-    auto downtimes = qtUtil::getDownTimes(minDateTime, maxDateTime, stas);
+    int buffer = int_downtime->value();
+    auto downtimes = qtUtil::getDownTimes(minDateTime, maxDateTime, stas, buffer);
     if(!downtimes.isEmpty()){
 
         for(const auto any : downtimes){

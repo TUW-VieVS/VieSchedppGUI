@@ -54,6 +54,7 @@ public:
                          std::map<std::string, std::vector<std::string>> *groupBl,
                          std::map<std::string, std::vector<std::string>> *groupSat,
                          std::map<std::string, std::vector<std::string>> *groupSpace,
+                         QSpinBox *int_downtime,
                          QWidget *parent = nullptr);
     ~setupWidget();
 
@@ -117,6 +118,9 @@ public:
         block = flag;
     }
 
+public slots:
+    void on_pushButton_IvsDownTime_clicked();
+
 private slots:
     void on_pushButton_editParameter_clicked();
 
@@ -130,8 +134,6 @@ private slots:
     void on_pushButton_removeSetup_clicked();
 
     void on_pushButton_parseDownTime_clicked();
-
-    void on_pushButton_IvsDownTime_clicked();
 
     void on_treeWidget_setup_itemEntered(QTreeWidgetItem *item, int column);
 
@@ -171,7 +173,7 @@ private:
     std::map<std::string, VieVS::ParameterSettings::ParametersSources> paraSrc;
     std::map<std::string, VieVS::ParameterSettings::ParametersBaselines> paraBl;
 
-
+    QSpinBox *int_downtime;
 
     // pointers to MainWindow content
 
