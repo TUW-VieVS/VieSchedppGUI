@@ -168,24 +168,26 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                                        "max wait time",
                                        "max scan time",
                                        "min scan time",
-                                       "min number of stations",
+                                       "min #stations",
                                        "min repeat time",
                                        "idle time interval",
                                        "max closures",
                                        "influence time",
-                                       "max number of scans",
+                                       "max #scans",
+                                       "max #scans (up front)",
+                                       "max #scans (distributed)",
                                        "focus corner switch cadence"};
 
             QStringList row2doubleDialog {"subnetting min source angle",
                                           "subnetting min participating stations",
                                           "sky-coverage",
-                                          "number of observations",
+                                          "#observations/scan(s)",
                                           "duration",
                                           "average stations",
                                           "average sources",
                                           "average baselines",
                                           "idle time",
-                                          "closures",
+                                          "#closures",
                                           "low declination",
                                           "low declination begin",
                                           "low declination full",
@@ -206,24 +208,26 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["max wait time"         ] = {150, 300, 450};
             defaultValues["max scan time"         ] = {900, 600, 300};
             defaultValues["min scan time"         ] = {20, 30, 40};
-            defaultValues["min number of stations"] = {2, 3, 4};
+            defaultValues["min #stations"         ] = {2, 3, 4};
             defaultValues["min repeat time"       ] = {1200, 1800};
             defaultValues["idle time interval"    ] = {120, 180, 240, 300};
             defaultValues["max closures"          ] = {300, 400, 500, 600};
             defaultValues["influence time"        ] = {300, 600, 1200, 1800, 3600};
-            defaultValues["max number of scans"   ] = {10, 25, 999};
+            defaultValues["max #scans"            ] = {10, 25, 999};
+            defaultValues["max #scans (up front)" ] = {200, 350, 500};
+            defaultValues["max #scans (distributed)" ] = {200, 350, 500};
             defaultValues["focus corner switch cadence"] = {600, 750, 900};
 
             defaultValues["subnetting min source angle"          ] = {120, 150};
             defaultValues["subnetting min participating stations"] = {60, 80, 100};
             defaultValues["sky-coverage"                         ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["number of observations"               ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["#observations/scan(s)"                ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["duration"                             ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["average stations"                     ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["average sources"                      ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["average baselines"                    ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["idle time"                            ] = {0.00, 0.33, 0.67, 1.00};
-            defaultValues["closures"                             ] = {0.00, 0.33, 0.67, 1.00};
+            defaultValues["#closures"                            ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["low declination"                      ] = {0.00, 0.33, 0.67, 1.00};
             defaultValues["low declination begin"                ] = {0, -22.5, -45};
             defaultValues["low declination full"                 ] = {-75, -90};
@@ -398,7 +402,7 @@ void MulitSchedulingWidget::on_pushButton_25_clicked()
 
             }else if(any->text(0) == "sky-coverage"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(0)->setDisabled(false);
-            }else if(any->text(0) == "number of observations"){
+            }else if(any->text(0) == "#observations/scan(s)"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(1)->setDisabled(false);
             }else if(any->text(0) == "duration"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(2)->setDisabled(false);
@@ -412,7 +416,7 @@ void MulitSchedulingWidget::on_pushButton_25_clicked()
                 ui->treeWidget_multiSched->topLevelItem(1)->child(6)->setDisabled(false);
             }else if(any->text(0) == "idle time interval"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(7)->setDisabled(false);
-            }else if(any->text(0) == "closures"){
+            }else if(any->text(0) == "#closures"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(8)->setDisabled(false);
             }else if(any->text(0) == "max closures"){
                 ui->treeWidget_multiSched->topLevelItem(1)->child(9)->setDisabled(false);
@@ -560,7 +564,7 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                 }
                 weightFactors["weight_factor_sky_coverage"] = values;
                 weigthFactorFound = true;
-            }else if(t->topLevelItem(i)->text(0) == "number of observations"){
+            }else if(t->topLevelItem(i)->text(0) == "#observations/scan(s)"){
                 QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
                 std::vector<double> values;
                 for(int ilist = 0; ilist<list->count(); ++ilist){
@@ -608,7 +612,7 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
                 }
                 weightFactors["weight_factor_idle_time"] = values;
                 weigthFactorFound = true;
-            }else if(t->topLevelItem(i)->text(0) == "closures"){
+            }else if(t->topLevelItem(i)->text(0) == "#closures"){
                 QComboBox *list = qobject_cast<QComboBox*>(t->itemWidget(t->topLevelItem(i),3));
                 std::vector<double> values;
                 for(int ilist = 0; ilist<list->count(); ++ilist){
@@ -697,13 +701,13 @@ void MulitSchedulingWidget::multi_sched_count_nsched()
         }
 
         QStringList weightFactorsStr {"sky-coverage",
-                                      "number of observations",
+                                      "#observations/scan(s)",
                                       "duration",
                                       "average stations",
                                       "average sources",
                                       "average baselines",
                                       "idle time",
-                                      "closures",
+                                      "#closures",
                                       "low declination",
                                       "low elevation"};
 
@@ -799,21 +803,23 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                                        "max wait time",
                                        "max scan time",
                                        "min scan time",
-                                       "min number of stations",
+                                       "min #stations",
                                        "min repeat time",
                                        "idle time interval",
-                                       "max number of scans",
+                                       "max #scans",
+                                       "max #scans (up front)",
+                                       "max #scans (distributed)",
                                        "subnetting min source angle",
                                        "subnetting min participating stations",
                                        "sky-coverage",
-                                       "number of observations",
+                                       "#observations/scan(s)",
                                        "duration",
                                        "average stations",
                                        "average baselines",
                                        "average sources",
                                        "idle time",
                                        "idle time interval",
-                                       "closures",
+                                       "#closures",
                                        "max closures",
                                        "low declination",
                                        "low declination begin",
@@ -859,8 +865,10 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                  ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
              }else if(parameter == "min elevation"){
                  ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-             }else if(parameter == "max number of scans"){
-                 ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+             }else if(parameter == "max #scans (up front)"){
+                 ms.addParameters(std::string("station_").append("max_number_of_scans"), member, vecDouble);
+             }else if(parameter == "max #scans (distributed)"){
+                 ms.addParameters(std::string("station_").append("max_number_of_scans_dist"), member, vecDouble);
              }else if(parameter == "max scan time"){
                  ms.addParameters(std::string("station_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
              }else if(parameter == "min scan time"){
@@ -870,12 +878,12 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
          }else if(parameterIcon.pixmap(16,16).toImage() == icSrc.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icSrcGrp.pixmap(16,16).toImage()){
              if(parameter == "weight"){
                  ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-             }else if(parameter == "min number of stations"){
-                 ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+             }else if(parameter == "min #stations"){
+                 ms.addParameters(std::string("source_").append("min_number_of_stations"), member, vecDouble);
              }else if(parameter == "min flux"){
                  ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-             }else if(parameter == "max number of scans"){
-                 ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
+             }else if(parameter == "max #scans"){
+                 ms.addParameters(std::string("source_").append("max_number_of_scans"), member, vecDouble);
              }else if(parameter == "min elevation"){
                  ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
              }else if(parameter == "min sun distance"){
@@ -934,8 +942,8 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                  ms.addParameters(std::string("general_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "sky-coverage"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-             }else if(parameter == "number of observations"){
-                 ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+             }else if(parameter == "#observations/scan(s)"){
+                 ms.addParameters(std::string("weight_factor_").append("number_of_observations"), vecDouble);
              }else if(parameter == "duration"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "average stations"){
@@ -948,8 +956,8 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "idle time interval"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
-             }else if(parameter == "closures"){
-                 ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
+             }else if(parameter == "#closures"){
+                 ms.addParameters(std::string("weight_factor_").append("closures"), vecDouble);
              }else if(parameter == "max closures"){
                  ms.addParameters(std::string("weight_factor_").append(parameter.replace(' ','_').toStdString()), vecDouble);
              }else if(parameter == "low declination"){
@@ -1068,6 +1076,26 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
                 parameterName = "sky-coverage";
             }
             name.replace("_"," ");
+
+            if (name == "number of observations"){
+                name = "#observations/scan(s)";
+            }
+            if (name == "closures"){
+                name = "#closures";
+            }
+            if ((parameterName == "station") && (name == "max number of scans")){
+                name = "max #scans (up front)";
+            }
+            if (name == "max number of scans dist"){
+                name = "max #scans (distributed)";
+            }
+            if (name == "min number of stations"){
+                name = "min #stations";
+            }
+            if ((parameterName == "source") && (name == "max number of scans")){
+                name = "max #scans";
+            }
+
             for(int i=0; i<3; ++i){
                 for(int j=0; j<twms->topLevelItem(i)->childCount(); ++j){
                     if(twms->topLevelItem(i)->child(j)->text(0) == name){

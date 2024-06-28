@@ -1564,6 +1564,7 @@ void MainWindow::defaultParameters()
     sta.maxWait = 600;
     sta.maxTotalObsTime = 999999;
     sta.maxNumberOfScans = 9999;
+    sta.maxNumberOfScansDist = 9999;
     sta.weight = 1;
     sta.minElevation = 5;
     sta.preob = 10;
@@ -1601,6 +1602,8 @@ void MainWindow::defaultParameters()
                         sta.minElevation = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxNumberOfScans") {
                         sta.maxNumberOfScans = it2.second.get_value < unsigned int > ();
+                    } else if (paraName == "maxNumberOfScansDist") {
+                        sta.maxNumberOfScansDist = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "maxTotalObsTime") {
                         sta.maxTotalObsTime = it2.second.get_value < unsigned int > ();
                     } else if (paraName == "preob") {

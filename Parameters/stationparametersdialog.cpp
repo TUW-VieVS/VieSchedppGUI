@@ -91,6 +91,9 @@ void stationParametersDialog::addDefaultParameters(VieVS::ParameterSettings::Par
     if(d.maxNumberOfScans.is_initialized()){
         ui->spinBox_maxNumberOfScans->setValue(*d.maxNumberOfScans);
     }
+    if(d.maxNumberOfScansDist.is_initialized()){
+        ui->spinBox_maxNumberOfScansDist->setValue(*d.maxNumberOfScansDist);
+    }
     if(d.maxTotalObsTime.is_initialized()){
         ui->spinBox_maxTotalObsTime->setValue(*d.maxTotalObsTime);
     }
@@ -132,6 +135,8 @@ void stationParametersDialog::addSelectedParameters(VieVS::ParameterSettings::Pa
         connect(ui->checkBox_minSlewDistance, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         ui->checkBox_maxNumberOfScans->setChecked(true);
         connect(ui->checkBox_maxNumberOfScans, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
+        ui->checkBox_maxNumberOfScansDist->setChecked(true);
+        connect(ui->checkBox_maxNumberOfScansDist, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
         // ui->checkBox_dataWriteSpeed->setEnabled(false);
         ui->checkBox_maxTotalObsTime->setChecked(true);
         connect(ui->checkBox_maxTotalObsTime, &QCheckBox::toggled, this, &stationParametersDialog::force_checked);
@@ -231,6 +236,13 @@ void stationParametersDialog::changeParameters(VieVS::ParameterSettings::Paramet
     }else{
         ui->spinBox_maxNumberOfScans->setValue(*dp.maxNumberOfScans);
         ui->checkBox_maxNumberOfScans->setChecked(false);
+    }
+    if(sp.maxNumberOfScansDist.is_initialized()){
+        ui->spinBox_maxNumberOfScansDist->setValue(*sp.maxNumberOfScansDist);
+        ui->checkBox_maxNumberOfScansDist->setChecked(true);
+    }else{
+        ui->spinBox_maxNumberOfScansDist->setValue(*dp.maxNumberOfScansDist);
+        ui->checkBox_maxNumberOfScansDist->setChecked(false);
     }
     if(sp.maxTotalObsTime.is_initialized()){
         ui->spinBox_maxTotalObsTime->setValue(*sp.maxTotalObsTime);
@@ -441,6 +453,9 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersStations> stationPara
     }
     if(ui->spinBox_maxNumberOfScans->isEnabled() ){
         para.maxNumberOfScans = ui->spinBox_maxNumberOfScans->value();
+    }
+    if(ui->spinBox_maxNumberOfScansDist->isEnabled() ){
+        para.maxNumberOfScansDist = ui->spinBox_maxNumberOfScansDist->value();
     }
     if(ui->doubleSpinBox_minElevation->isEnabled()){
         para.minElevation = ui->doubleSpinBox_minElevation->value();

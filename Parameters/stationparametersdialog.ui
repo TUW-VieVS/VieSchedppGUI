@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>792</width>
+    <width>824</width>
     <height>656</height>
    </rect>
   </property>
@@ -115,9 +115,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>365</width>
-            <height>699</height>
+            <y>-120</y>
+            <width>390</width>
+            <height>795</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -493,7 +493,7 @@
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item row="8" column="0">
                <widget class="QCheckBox" name="checkBox_maxNumberOfScans">
                 <property name="minimumSize">
                  <size>
@@ -505,23 +505,23 @@
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select parameter. &lt;/p&gt;&lt;p&gt;Parameters which are selected will &lt;span style=&quot; font-weight:600;&quot;&gt;override&lt;/span&gt; parameters from its &lt;span style=&quot; font-weight:600;&quot;&gt;parents&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>max number of scans</string>
+                 <string>max #scans (up front)</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
+              <item row="8" column="1">
                <widget class="QSpinBox" name="spinBox_maxNumberOfScans">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
                 <property name="toolTip">
-                 <string>maximum number of scans for this station</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;maximum number of scans (scheduled with maximum scans per hour until number is reached)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="statusTip">
-                 <string>maximum number of scans for this station</string>
+                 <string>maximum number of scans (scheduled with maximum scans per hour until number is reached)</string>
                 </property>
                 <property name="whatsThis">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this number is reached, the station is no longer available for additional scans. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;After this number is reached, the station is no longer scheduled. Thus, using this mode, the station is scheduled as much as possible until it reaches the number of scans. Afterward, it is no longer scheduled.&lt;/p&gt;&lt;p&gt;Thus, the station will be scheduled with the maximum number of scans per hour but will potentially stop observing prior to the session end in contrast to the &lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;&amp;quot;max #scans (distributed)&amp;quot;&lt;/span&gt; option, where the station will observe the full session duration but with potentially fewer scan per hour. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="maximum">
                  <number>9999</number>
@@ -563,14 +563,14 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="9" column="0">
                <widget class="QCheckBox" name="checkBox_maxTotalObsTime">
                 <property name="text">
                  <string>max total scan duration</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="9" column="1">
                <widget class="QSpinBox" name="spinBox_maxTotalObsTime">
                 <property name="enabled">
                  <bool>false</bool>
@@ -586,6 +586,35 @@
                 </property>
                 <property name="value">
                  <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QCheckBox" name="checkBox_maxNumberOfScansDist">
+                <property name="text">
+                 <string>max #scans (distributed)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QSpinBox" name="spinBox_maxNumberOfScansDist">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;maximum number of scans (evenly distributed over session duration)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="statusTip">
+                 <string>maximum number of scans (evenly distributed over session duration)</string>
+                </property>
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum number of allowed scans for this station. &lt;/p&gt;&lt;p&gt;The station is scheduled normally. At the end, the number of scheduled scans is compared with the maximum number of allowed scans defined by this option. &lt;/p&gt;&lt;p&gt;If the number of scheduled scans is greater than the maximum number of allowed scans, then scheduled scans will be removed. Scans are removed based on the number of observations they contain, starting with the lowest ones. If multiple scans have the same (minimal) number of observations, scans are removed equally over time.&lt;/p&gt;&lt;p&gt;E.g. if there are 20 scans with 2 observations, 80 scans with 3 observations and 10 scans with 6 observations and you need to remove 40 scans in total, than first, all (20) scans with 2 observations are removed. Next every 4th scan with 3 observations is removed (a total of 20). &lt;br/&gt;&lt;/p&gt;&lt;p&gt;Thus, the station will observe for the full session duration with potentially fewer scans per hour in contrast to the &lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;&amp;quot;max #scans (up front)&amp;quot;&lt;/span&gt; option, where the station is scheduled with the maximum number of scans per hour but will potentially stop observing prior to the session end.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;Keep in mind that removing one station can lead to the full scan becoming invalid (and thus being removed) based on the minimum number of stations defined in the source parameters. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+                <property name="value">
+                 <number>9999</number>
                 </property>
                </widget>
               </item>
@@ -998,12 +1027,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>90</y>
+     <x>108</x>
+     <y>144</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>90</y>
+     <x>380</x>
+     <y>144</y>
     </hint>
    </hints>
   </connection>
@@ -1014,12 +1043,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>155</x>
-     <y>154</y>
+     <x>167</x>
+     <y>210</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>154</y>
+     <x>380</x>
+     <y>210</y>
     </hint>
    </hints>
   </connection>
@@ -1030,12 +1059,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>153</x>
-     <y>250</y>
+     <x>165</x>
+     <y>324</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>250</y>
+     <x>380</x>
+     <y>324</y>
     </hint>
    </hints>
   </connection>
@@ -1046,12 +1075,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>150</x>
-     <y>282</y>
+     <x>160</x>
+     <y>365</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>282</y>
+     <x>380</x>
+     <y>368</y>
     </hint>
    </hints>
   </connection>
@@ -1062,12 +1091,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>186</y>
+     <x>192</x>
+     <y>243</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>186</y>
+     <x>380</x>
+     <y>243</y>
     </hint>
    </hints>
   </connection>
@@ -1078,12 +1107,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>181</x>
-     <y>218</y>
+     <x>197</x>
+     <y>276</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>218</y>
+     <x>380</x>
+     <y>276</y>
     </hint>
    </hints>
   </connection>
@@ -1094,12 +1123,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>202</x>
-     <y>314</y>
+     <x>225</x>
+     <y>431</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>314</y>
+     <x>380</x>
+     <y>434</y>
     </hint>
    </hints>
   </connection>
@@ -1110,12 +1139,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>152</x>
-     <y>122</y>
+     <x>163</x>
+     <y>177</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>122</y>
+     <x>380</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -1126,12 +1155,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>187</x>
-     <y>428</y>
+     <x>202</x>
+     <y>525</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>428</y>
+     <x>380</x>
+     <y>525</y>
     </hint>
    </hints>
   </connection>
@@ -1142,12 +1171,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>146</x>
-     <y>460</y>
+     <x>157</x>
+     <y>558</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>460</y>
+     <x>380</x>
+     <y>558</y>
     </hint>
    </hints>
   </connection>
@@ -1158,12 +1187,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
-     <y>492</y>
+     <x>101</x>
+     <y>591</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>492</y>
+     <x>380</x>
+     <y>591</y>
     </hint>
    </hints>
   </connection>
@@ -1174,12 +1203,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>140</x>
-     <y>524</y>
+     <x>148</x>
+     <y>624</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>524</y>
+     <x>380</x>
+     <y>624</y>
     </hint>
    </hints>
   </connection>
@@ -1190,12 +1219,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>186</x>
-     <y>362</y>
+     <x>209</x>
+     <y>464</y>
     </hint>
     <hint type="destinationlabel">
-     <x>269</x>
-     <y>361</y>
+     <x>380</x>
+     <y>467</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_maxNumberOfScansDist</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_maxNumberOfScansDist</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>387</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>386</y>
     </hint>
    </hints>
   </connection>

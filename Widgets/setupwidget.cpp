@@ -477,7 +477,13 @@ void setupWidget::displayStationSetupParameter(QString name)
     if(para.maxNumberOfScans.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxNumberOfScans)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("max number of scans"));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("max #scans (up front)"));
+        ++r;
+    }
+    if(para.maxNumberOfScansDist.is_initialized()){
+        t->insertRow(r);
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxNumberOfScansDist)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("max #scans (distributed)"));
         ++r;
     }
     if(para.minElevation.is_initialized()){
@@ -603,7 +609,7 @@ void setupWidget::displaySourceSetupParameter(QString name)
     if(para.maxNumberOfScans.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxNumberOfScans)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("max number of scans"));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("max #scans"));
         ++r;
     }
     if(para.minFlux.is_initialized()){
@@ -688,7 +694,7 @@ void setupWidget::displaySourceSetupParameter(QString name)
     if(para.tryToObserveXTimesEvenlyDistributed.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.tryToObserveXTimesEvenlyDistributed)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("eavenly distributed scans over time"));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("target #scans"));
         ++r;
 
         t->insertRow(r);

@@ -273,7 +273,7 @@
               </item>
               <item>
                <property name="text">
-                <string>number of observations</string>
+                <string>#observations/scan(s)</string>
                </property>
               </item>
               <item>
@@ -308,7 +308,7 @@
               </item>
               <item>
                <property name="text">
-                <string>closures</string>
+                <string>#closures</string>
                </property>
               </item>
               <item>
@@ -411,7 +411,12 @@
               </item>
               <item>
                <property name="text">
-                <string>max number of scans</string>
+                <string>max #scans (up front)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>max #scans (distributed)</string>
                </property>
               </item>
               <item>
@@ -440,7 +445,7 @@
               </item>
               <item>
                <property name="text">
-                <string>min number of stations</string>
+                <string>min #stations</string>
                </property>
               </item>
               <item>
@@ -450,7 +455,7 @@
               </item>
               <item>
                <property name="text">
-                <string>max number of scans</string>
+                <string>max #scans</string>
                </property>
               </item>
               <item>
