@@ -477,7 +477,7 @@ void setupWidget::displayStationSetupParameter(QString name)
     if(para.maxNumberOfScans.is_initialized()){
         t->insertRow(r);
         t->setItem(r,0,new QTableWidgetItem(QString::number(*para.maxNumberOfScans)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("max #scans (up front)"));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("max #scans (upfront)"));
         ++r;
     }
     if(para.maxNumberOfScansDist.is_initialized()){

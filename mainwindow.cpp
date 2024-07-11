@@ -6377,9 +6377,9 @@ void MainWindow::downloadFinished(){
 void MainWindow::on_sampleBitsSpinBox_valueChanged(int arg1)
 {
     if (arg1 == 1){
-        ui->doubleSpinBox_efficiencyFactor->setValue(0.6366 * 0.97);
+        ui->doubleSpinBox_efficiencyFactor->setValue(0.637 * 0.97);
     }else{
-        ui->doubleSpinBox_efficiencyFactor->setValue(0.625 * 0.97);
+        ui->doubleSpinBox_efficiencyFactor->setValue(0.860 * 0.97);
     }
 }
 
