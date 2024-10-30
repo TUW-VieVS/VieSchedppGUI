@@ -333,6 +333,9 @@
            </spacer>
           </item>
           <item>
+           <widget class="QComboBox" name="comboBox_uv_change_all"/>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_uv_screenshot">
             <property name="text">
              <string/>
@@ -1486,7 +1489,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>19</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menusky_coverage">

@@ -311,6 +311,12 @@ void VieSchedpp_Analyser::setup()
         setSkyCoverageLayout(2,4);
     }
 
+    auto *uvcombo = ui->comboBox_uv_change_all;
+    uvcombo->addItem("-");
+    for(const auto &any: freqs_.keys()){
+        uvcombo->addItem(any);
+    }
+
     int srcs = srcModel->rowCount();
     if(srcs >= 2){
         setUVCoverageLayout(1,2);
@@ -3245,6 +3251,8 @@ void VieSchedpp_Analyser::setUVCoverageLayout(int rows, int columns)
         }
     }
 
+    auto *uvcombo = ui->comboBox_uv_change_all;
+
     int counter = 0;
     for(int i=0; i<rows; ++i){
         for(int j=0; j<columns; ++j){
@@ -3253,10 +3261,13 @@ void VieSchedpp_Analyser::setUVCoverageLayout(int rows, int columns)
             QComboBox *c1 = new QComboBox();
             c1->setModel(srcModel);
             QComboBox *c2 = new QComboBox();
+            c2->addItem("-");
             for(const auto &any: freqs_.keys()){
                 c2->addItem(any);
             }
-            c2->addItem("-");
+            connect(uvcombo, SIGNAL(currentIndexChanged(int)), c2, SLOT(setCurrentIndex(int)));
+            c2->setCurrentText(uvcombo->currentText());
+
             l2->addWidget(c1,2);
             l2->addWidget(c2,1);
 
