@@ -21,6 +21,9 @@ public:
     ~Priorities();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
+    bool getBlock(){
+        return block;
+    }
 
 public slots:
     void addStations(QStandardItem * = nullptr);

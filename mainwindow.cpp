@@ -636,6 +636,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), skyCoverageWidget, SLOT(addStations()));
 
 
+    siteWidget = new SiteWidget(selectedStationModel);
+    ui->horizontalLayout_site->addWidget(siteWidget,1);
+    connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), siteWidget, SLOT(addStations()));
+    connect(selectedStationModel, SIGNAL(rowsRemoved(const QModelIndex &, int, int)), siteWidget, SLOT(addStations()));
+
+
     readSources();
     readSatellites();
     readStations();
@@ -944,6 +950,7 @@ void MainWindow::on_actionOpen_triggered()
     if( !path.isEmpty() ){
         try{
             loadXML(path);
+            QMessageBox::information(this, "Success", "Successfully loaded "+path);
         }catch(...){
             QMessageBox::warning(this, "Error", "Error while loading "+path);
         }
@@ -1633,7 +1640,7 @@ void MainWindow::defaultParameters()
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
-    src.minNumberOfStations = 3;
+    src.minNumberOfSites = 3;
     src.minElevation = 0;
     src.minSunDistance = 4;
 
@@ -1662,8 +1669,8 @@ void MainWindow::defaultParameters()
                         src.minSunDistance = it2.second.get_value<double>();
                     } else if (paraName == "maxNumberOfScans"){
                         src.maxNumberOfScans = it2.second.get_value<double>();
-                    } else if (paraName == "minNumberOfStations"){
-                        src.minNumberOfStations = it2.second.get_value<double>();
+                    } else if ((paraName == "minNumberOfSites") || (paraName == "minNumberOfStations")){
+                        src.minNumberOfSites = it2.second.get_value<double>();
                     } else {
                         QString txt = "Ignoring parameter: ";
                         txt.append(QString::fromStdString(paraName)).append(" in source default parameters!\nCheck settings.xml file!");
@@ -2010,6 +2017,7 @@ void MainWindow::defaultParameters()
     boost::optional<bool> createSourceGroupStatistics = settings_.get_optional<bool>("settings.output.createSourceGroupStatistics");
     if(createSourceGroupStatistics.is_initialized()){
         ui->checkBox_outputSourceGroupStatFile->setChecked(*createSourceGroupStatistics);
+
     }
     boost::optional<bool> addTimestamps = settings_.get_optional<bool>("settings.output.addTimestamps");
     if(addTimestamps.is_initialized()){
@@ -3049,12 +3057,13 @@ void MainWindow::on_pushButton_stations_clicked()
         warnings.append("baseline multi scheduling parameters cleared\n");
     }
 
-    if(!warnings.isEmpty()){
-        QMessageBox::warning(this,"reload stations",warnings);
-    }else{
-        QMessageBox::information(this, "reload stations", "stations successfully reloaded");
+    if ( !noMessageBoxes ){
+        if(!warnings.isEmpty()){
+            QMessageBox::warning(this,"reload stations",warnings);
+        }else{
+            QMessageBox::information(this, "reload stations", "stations successfully reloaded");
+        }
     }
-
 }
 
 void MainWindow::on_pushButton_reloadsources_clicked()
@@ -3125,10 +3134,12 @@ void MainWindow::on_pushButton_reloadsources_clicked()
         warnings.append("optimisation conditions cleared\n");
     }
 
-    if(!warnings.isEmpty()){
-        QMessageBox::warning(this,"reload sources",warnings);
-    }else{
-        QMessageBox::information(this, "reload sources", "sources successfully reloaded");
+    if ( !noMessageBoxes ){
+        if(!warnings.isEmpty()){
+            QMessageBox::warning(this,"reload sources",warnings);
+        }else{
+            QMessageBox::information(this, "reload sources", "sources successfully reloaded");
+        }
     }
 
     auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
@@ -3140,7 +3151,9 @@ void MainWindow::on_pushButton_reloadsources_clicked()
 void MainWindow::on_pushButton_reloadcatalogs_clicked()
 {
     readAllSkedObsModes();
-    QMessageBox::information(this, "reload modes", "modes successfully reloaded\ncheck current selection");
+    if (!noMessageBoxes) {
+        QMessageBox::information(this, "reload modes", "modes successfully reloaded\ncheck current selection");
+    }
 }
 
 
@@ -3196,8 +3209,10 @@ void MainWindow::on_dateTimeEdit_sessionStart_dateTimeChanged(const QDateTime &d
     spacecraftSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
 
     bool flag = clearSetup(true,true,true);
-    if(flag){
-        QMessageBox::warning(this,"Setup deleted!","Setup was deleted due to session time change!");
+    if (!noMessageBoxes ){
+        if(flag){
+            QMessageBox::warning(this,"Setup deleted!","Setup was deleted due to session time change!");
+        }
     }
     highlightSatelliteEpoch();
 }
@@ -3214,8 +3229,10 @@ void MainWindow::on_doubleSpinBox_sessionDuration_valueChanged(double arg1)
     spacecraftSetupWidget->setDateTimeLimits(dateTime,dateTimeEnd);
 
     bool flag = clearSetup(true,true,true);
-    if(flag){
-        QMessageBox::warning(this,"Setup deleted!","Setup was deleted due to session time change!");
+    if (!noMessageBoxes ){
+        if(flag){
+            QMessageBox::warning(this,"Setup deleted!","Setup was deleted due to session time change!");
+        }
     }
 }
 
@@ -3792,18 +3809,30 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
     QString name = allStationProxyModel->index(row,0).data().toString();
 
     if(selectedStationModel->findItems(name).isEmpty()){
-        stationSetupWidget->setBlock(true);
         auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
         Priorities *priorities = qobject_cast<Priorities *>(tmp3);
+        auto *tmp4 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp4);
+        auto *tmp5 = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        SimulatorWidget *simulator = qobject_cast<SimulatorWidget *>(tmp5);
+
+
+        bool prev_block_flag = priorities->getBlock();
+        stationSetupWidget->setBlock(true);
         priorities->setBlock(true);
+        solver->setBlock(true);
+        simulator->setBlock(true);
+        createBaselines = false;
 
         selectedStationModel->insertRow(0);
 
         int nrow = allStationModel->findItems(name).at(0)->row();
         for(int i=0; i<allStationModel->columnCount(); ++i){
             if ( i == allStationModel->columnCount() - 1){
-                stationSetupWidget->setBlock(false);
-                priorities->setBlock(false);
+                stationSetupWidget->setBlock(prev_block_flag);
+                priorities->setBlock(prev_block_flag);
+                solver->setBlock(prev_block_flag);
+                simulator->setBlock(prev_block_flag);
             }
             selectedStationModel->setItem(0, i, allStationModel->item(nrow,i)->clone() );
         }
@@ -3830,6 +3859,10 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
         if(createBaselines){
             createBaselineModel();
         }
+        priorities->setBlock(prev_block_flag);
+        solver->setBlock(prev_block_flag);
+        simulator->setBlock(prev_block_flag);
+        createBaselines = prev_block_flag;
     }
     ui->lineEdit_allStationsFilter->setFocus();
     ui->lineEdit_allStationsFilter->selectAll();
@@ -4091,7 +4124,7 @@ void MainWindow::createBaselineModel()
         worldmap->chart()->removeSeries(series.at(i));
         delete(series.at(i));
     }
-
+    bool checked = ui->checkBox_showBaselines->checkState();
     for(int i=0; i<selectedBaselineModel->rowCount(); ++i){
         QString txt = selectedBaselineModel->item(i,0)->text();
         QStringList stas = txt.split("-");
@@ -4143,6 +4176,12 @@ void MainWindow::createBaselineModel()
             bl->append(lon2,lat2);
             bl->setName(txt.append(QString("\n%1 [km]").arg(dist)));
             connect(bl,SIGNAL(hovered(QPointF,bool)),this,SLOT(baselineHovered(QPointF,bool)));
+            if(checked){
+                bl->setVisible(true);
+            }else{
+                bl->setVisible(false);
+            }
+
             worldmap->chart()->addSeries(bl);
         }else{
 
@@ -4157,6 +4196,11 @@ void MainWindow::createBaselineModel()
             bl1->append(-180,lat1+fracy);
             bl1->setName(txt.append(QString("\n%1 [km]").arg(dist)));
             connect(bl1,SIGNAL(hovered(QPointF,bool)),this,SLOT(baselineHovered(QPointF,bool)));
+            if(checked){
+                bl1->setVisible(true);
+            }else{
+                bl1->setVisible(false);
+            }
 
             QLineSeries *bl2 = new QLineSeries(worldmap->chart());
             bl2->setPen(QPen(QBrush(Qt::darkGreen),1.5,Qt::DashLine));
@@ -4164,6 +4208,11 @@ void MainWindow::createBaselineModel()
             bl2->append(180,lat2-(dy-fracy));
             bl2->setName(txt.append(QString("\n%1 [km]").arg(dist)));
             connect(bl2,SIGNAL(hovered(QPointF,bool)),this,SLOT(baselineHovered(QPointF,bool)));
+            if(checked){
+                bl2->setVisible(true);
+            }else{
+                bl2->setVisible(false);
+            }
 
             if(qAbs(lon1)>qAbs(lon2)){
                 worldmap->chart()->addSeries(bl2);
@@ -6102,7 +6151,7 @@ void MainWindow::on_pushButton_autoSetupIntensive_weightFactor_clicked()
 
 void MainWindow::on_pushButton_autoSetupIntensive_minStations_clicked()
 {
-    sourceSetupWidget->refSourceParameter("default").minNumberOfStations = std::max({selectedStationModel->rowCount(),2});
+    sourceSetupWidget->refSourceParameter("default").minNumberOfSites = std::max({selectedStationModel->rowCount(),2});
 }
 
 void MainWindow::on_pushButton_autoSetupIntensive_maxScan120_clicked()

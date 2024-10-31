@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>1</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -3427,7 +3427,7 @@ If you only want to run simulations you can deselect this to avoid error message
                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the source parameter &amp;quot;min number of stations&amp;quot; &lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Defines how many stations have to participate in a scan. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                        <property name="text">
-                        <string>min stations</string>
+                        <string>min #sites</string>
                        </property>
                        <property name="icon">
                         <iconset resource="myresources.qrc">
@@ -4843,6 +4843,16 @@ If you only want to run simulations you can deselect this to avoid error message
            <layout class="QVBoxLayout" name="verticalLayout_31">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_stationSetupWidget"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_18">
+           <attribute name="title">
+            <string>sites</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_42">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_site"/>
             </item>
            </layout>
           </widget>

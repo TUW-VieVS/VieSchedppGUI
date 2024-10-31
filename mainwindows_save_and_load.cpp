@@ -352,6 +352,7 @@ QString MainWindow::writeXML()
     }
 
     para.skyCoverage(skyCoverageWidget->toXML());
+    para.sites(siteWidget->toXML());
 
     /*
     double influenceDistance = ui->influenceDistanceDoubleSpinBox->value();
@@ -621,6 +622,8 @@ QString MainWindow::writeXML()
 
 void MainWindow::loadXML(QString path)
 {
+    noMessageBoxes = true;
+
     std::ifstream fid(path.toStdString());
     boost::property_tree::ptree xml;
     boost::property_tree::read_xml(fid,xml,boost::property_tree::xml_parser::trim_whitespace);
@@ -788,9 +791,20 @@ void MainWindow::loadXML(QString path)
         }
 
 
+        auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
+        SimulatorWidget *simulator = qobject_cast<SimulatorWidget *>(tmp);
+        simulator->setBlock(true);
+
+        auto *tmp2 = ui->tabWidget_simAna->findChild<QWidget *>("Solver_Widged");
+        SolverWidget *solver = qobject_cast<SolverWidget *>(tmp2);
+        solver->setBlock(true);
+
         auto *tmp3 = ui->tabWidget_simAna->findChild<QWidget *>("Priorities_Widged");
         Priorities *priorities = qobject_cast<Priorities *>(tmp3);
         priorities->setBlock(true);
+        skyCoverageWidget->setBlock(true);
+        siteWidget->setBlock(true);
+
 
         std::vector<std::string> sel_stations;
         const auto &stations = xml.get_child_optional("VieSchedpp.general.stations");
@@ -878,7 +892,16 @@ void MainWindow::loadXML(QString path)
         priorities->setBlock(false);
         priorities->addStations();
         priorities->addSources();
-
+        solver->setBlock(false);
+        solver->addStations();
+        solver->addSources();
+        simulator->setBlock(false);
+        simulator->addStations();
+        skyCoverageWidget->setBlock(false);
+        skyCoverageWidget->addStations();
+        siteWidget->setBlock(false);
+        siteWidget->addStations();
+        createBaselineModel();
 
         std::string scanAlignment = xml.get("VieSchedpp.general.scanAlignment","start");
         if(scanAlignment == "start"){
@@ -1350,6 +1373,13 @@ void MainWindow::loadXML(QString path)
             skyCoverageWidget->fromXML(*ctree);
         }
     }
+    // sites
+    {
+        boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.sites");
+        if (ctree.is_initialized()) {
+            siteWidget->fromXML(*ctree);
+        }
+    }
 
     /*
     {
@@ -1802,6 +1832,29 @@ void MainWindow::loadXML(QString path)
         }
         if(xml.get("VieSchedpp.output.createSourceGroupStatistics",false)){
             ui->checkBox_outputSourceGroupStatFile->setChecked(true);
+
+            QStringList srcGroupsForStatistic;
+            const auto &grps = xml.get_child_optional("VieSchedpp.output.sourceGroupsForStatistic");
+            if(grps.is_initialized()){
+                auto it = grps->begin();
+                while (it != grps->end()) {
+                    auto item = it->second.data();
+                    srcGroupsForStatistic.push_back(QString::fromStdString(item));
+                    ++it;
+                }
+            }
+
+
+            for(int i=0; i<ui->treeWidget_srcGroupForStatistics->topLevelItemCount(); ++i){
+                QString grp = ui->treeWidget_srcGroupForStatistics->topLevelItem(i)->text(0);
+                if(srcGroupsForStatistic.contains(grp)){
+
+                    ui->treeWidget_srcGroupForStatistics->topLevelItem(i)->setCheckState(0, Qt::Checked);
+                }
+            }
+
+
+
             // TODO check statistics
         }else{
             ui->checkBox_outputSourceGroupStatFile->setChecked(false);
@@ -1957,6 +2010,7 @@ void MainWindow::loadXML(QString path)
             w->fromXML(*ctree);
         }
     }
+    noMessageBoxes = false;
 }
 
 // ################################################ default settings ##############################################################
@@ -2083,7 +2137,6 @@ void MainWindow::readSettings()
     if ( satelliteAvoidance.is_initialized() ){
         satelliteAvoidanceWidget->fromXML(*satelliteAvoidance);
     }
-
 }
 
 void MainWindow::createDefaultParameterSettings()
@@ -2108,7 +2161,7 @@ void MainWindow::createDefaultParameterSettings()
     src.weight = 1;
     src.minFlux = 0.05;
     src.maxNumberOfScans = 999;
-    src.minNumberOfStations = 3;
+    src.minNumberOfSites = 3;
     src.minElevation = 0;
     src.minSunDistance = 4;
     settings_.add_child("settings.source.parameters.parameter",VieVS::ParameterSettings::parameterSource2ptree("default",src).get_child("parameters"));

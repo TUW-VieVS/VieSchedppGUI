@@ -22,6 +22,9 @@ public:
     ~SimulatorWidget();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
+    void setBlock(bool flag){
+        block = flag;
+    }
 
 public slots:
     void addStations(QStandardItem * = nullptr);
@@ -32,6 +35,7 @@ private slots:
     void on_pushButton_wnTable_clicked();
 
 private:
+    bool block = false;
     Ui::SimulatorWidget *ui;
     QStandardItemModel *model_;
 };

@@ -41,6 +41,9 @@ public:
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
 
+    void setBlock(bool flag){
+        block = flag;
+    }
 
 public slots:
     void addStations(QStandardItem * = nullptr);
@@ -69,6 +72,7 @@ private slots:
     void on_groupBox_3_toggled(bool arg1);
 
 private:
+    bool block = false;
     QChartView *skyCoverageTemplateView;
     bool plotSkyCoverageTemplate = true;
     QStandardItemModel *stations_;
@@ -92,7 +96,7 @@ public:
         if (c.isUpper()){
             return c.unicode() - QChar('A').unicode();
         }else if (c.isLower()){
-            return c.unicode() - QChar('a').unicode();
+            return 26+c.unicode() - QChar('a').unicode();
         }else{
             return text.toInt();
         }

@@ -88,6 +88,7 @@
 #include "Widgets/setupwidget.h"
 // #include "Widgets/skycoveragewidget.h"
 #include "Widgets/skycovwidget.h"
+#include "Widgets/sitewidget.h"
 #include "Widgets/satelliteavoidancewidget.h"
 
 
@@ -546,6 +547,7 @@ private:
     Ui::MainWindow *ui;
     QString mainPath;
     boost::property_tree::ptree settings_;
+    bool noMessageBoxes = false;
 
     boost::optional<VieVS::ObservingMode> advancedObservingMode_;
 
@@ -604,6 +606,7 @@ private:
     setupWidget *spacecraftSetupWidget;
 
     SkyCovWidget *skyCoverageWidget;
+    SiteWidget *siteWidget;
     CalibratorBlockWidget *calibratorWidget;
     SatelliteAvoidanceWidget *satelliteAvoidanceWidget;
 

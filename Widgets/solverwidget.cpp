@@ -566,6 +566,9 @@ void SolverWidget::fromXML(const boost::property_tree::ptree &tree)
 
 void SolverWidget::addStations(QStandardItem *dummy)
 {
+    if ( block ){
+        return;
+    }
     if(dummy != nullptr && dummy->column() != 0){
         return;
     }
@@ -1033,7 +1036,6 @@ void SolverWidget::addStations(QStandardItem *dummy)
         }
         ++r;
     }
-
     ui->comboBox_ref_clock->setCurrentIndex(0);
 }
 
@@ -1071,6 +1073,9 @@ void SolverWidget::toggleAll_sta_coord(QTreeWidgetItem *item, int column)
 
 void SolverWidget::addSources(QStandardItem *dummy)
 {
+    if ( block ){
+        return;
+    }
     if(dummy != nullptr && dummy->column() != 0){
         return;
     }

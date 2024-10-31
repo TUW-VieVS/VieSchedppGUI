@@ -168,7 +168,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
                                        "max wait time",
                                        "max scan time",
                                        "min scan time",
-                                       "min #stations",
+                                       "min #sites",
                                        "min repeat time",
                                        "idle time interval",
                                        "max closures",
@@ -208,7 +208,7 @@ void MulitSchedulingWidget::on_pushButton_multiSchedAddSelected_clicked()
             defaultValues["max wait time"         ] = {150, 300, 450};
             defaultValues["max scan time"         ] = {900, 600, 300};
             defaultValues["min scan time"         ] = {20, 30, 40};
-            defaultValues["min #stations"         ] = {2, 3, 4};
+            defaultValues["min #sites"            ] = {2, 3, 4};
             defaultValues["min repeat time"       ] = {1200, 1800};
             defaultValues["idle time interval"    ] = {120, 180, 240, 300};
             defaultValues["max closures"          ] = {300, 400, 500, 600};
@@ -803,7 +803,7 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
                                        "max wait time",
                                        "max scan time",
                                        "min scan time",
-                                       "min #stations",
+                                       "min #sites",
                                        "min repeat time",
                                        "idle time interval",
                                        "max #scans",
@@ -878,8 +878,8 @@ void MulitSchedulingWidget::toXML(VieVS::ParameterSettings &para){
          }else if(parameterIcon.pixmap(16,16).toImage() == icSrc.pixmap(16,16).toImage() || parameterIcon.pixmap(16,16).toImage() == icSrcGrp.pixmap(16,16).toImage()){
              if(parameter == "weight"){
                  ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
-             }else if(parameter == "min #stations"){
-                 ms.addParameters(std::string("source_").append("min_number_of_stations"), member, vecDouble);
+             }else if(parameter == "min #sites"){
+                 ms.addParameters(std::string("source_").append("min_number_of_sites"), member, vecDouble);
              }else if(parameter == "min flux"){
                  ms.addParameters(std::string("source_").append(parameter.replace(' ','_').toStdString()), member, vecDouble);
              }else if(parameter == "max #scans"){
@@ -1089,8 +1089,8 @@ void MulitSchedulingWidget::fromXML(const boost::property_tree::ptree &xml){
             if (name == "max number of scans dist"){
                 name = "max #scans (distributed)";
             }
-            if (name == "min number of stations"){
-                name = "min #stations";
+            if (name == "min number of sites"){
+                name = "min #sites";
             }
             if ((parameterName == "source") && (name == "max number of scans")){
                 name = "max #scans";

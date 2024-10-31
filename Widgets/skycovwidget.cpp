@@ -135,7 +135,9 @@ void SkyCovWidget::fromXML(const boost::property_tree::ptree &tree)
 
 void SkyCovWidget::addStations(QStandardItem *)
 {
-    setup();
+    if (!block){
+        setup();
+    }
 }
 
 // ########################################### SKY COVERAGE ###########################################
@@ -408,6 +410,19 @@ double SkyCovWidget::interpolate( QVector<double> &xData, QVector<double> &yData
 
 void SkyCovWidget::updateCounter()
 {
+    QList<QColor> colorPalette = {
+        QColor("#E57373"), // Red
+        QColor("#64B5F6"), // Blue
+        QColor("#81C784"), // Green
+        QColor("#FFD54F"), // Yellow
+        QColor("#BA68C8"), // Purple
+        QColor("#4DB6AC"), // Teal
+        QColor("#FF8A65"), // Orange
+        QColor("#A1887F"), // Brown
+        QColor("#90A4AE"), // Gray-Blue
+        QColor("#DCE775")  // Lime
+    };
+
     int n = stations_->rowCount();
     QMap<int, QString> id2station;
     for (int i =0; i< 0; ++i) {
@@ -421,6 +436,8 @@ void SkyCovWidget::updateCounter()
         id2station[id].append(ui->tableWidget_stations->item(i,0)->text()).append(" ");
         ++counter[id];
     }
+    QMap<int, int> id2color;
+    int icolor = 0;
     for( int i = 0; i<n; ++i){
         QSpinBox *sp = qobject_cast<QSpinBox *>(ui->tableWidget_stations->cellWidget(i,1));
         int id = sp->value();
@@ -428,7 +445,16 @@ void SkyCovWidget::updateCounter()
 
         QPalette pal = sp->palette();
         if( val > 1 ){
-            pal.setColor(sp->backgroundRole(), Qt::green);
+            int color;
+            if ( id2color.find(id) != id2color.end()){
+                color = id2color[id];
+            }else{
+                color = icolor;
+                id2color[id] = color;
+                icolor += 1;
+                icolor = (icolor + 1) % 10;
+            }
+            pal.setColor(sp->backgroundRole(), colorPalette[color]);
         }else{
             pal.setColor(sp->backgroundRole(), Qt::white);
         }
@@ -445,11 +471,12 @@ void SkyCovWidget::updateCounter()
         QPalette pal = id->palette();
 
         if ( val > 1){
-           pal.setColor(id->backgroundRole(), Qt::green);
+            int color_id = id2color[id->value()];
+            pal.setColor(id->backgroundRole(), colorPalette[color_id]);
         } else if (val == 1) {
             pal.setColor(id->backgroundRole(), Qt::white);
         } else{
-            pal.setColor(id->backgroundRole(), Qt::red);
+            pal.setColor(id->backgroundRole(), Qt::white);
         }
         id->setPalette(pal);
 
@@ -495,8 +522,15 @@ void SkyCovWidget::setup()
     ui->tableWidget_stations->setRowCount(n);
     ui->tableWidget_sky_cov->setRowCount(n);
 
+    QStringList stations;
     for( int i = 0; i<n; ++i){
         QString name = stations_->item(i,0)->text();
+        stations << name;
+    }
+    stations.sort();
+
+    for( int i = 0; i<n; ++i){
+        QString name = stations[i];
         QTableWidgetItem *itm = new QTableWidgetItem(QIcon(":/icons/icons/station.png"), name);
         ui->tableWidget_stations->setItem(i,0,itm);
 

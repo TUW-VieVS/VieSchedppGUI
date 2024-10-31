@@ -236,6 +236,7 @@ SOURCES += \
     Widgets/setupwidget.cpp \
     Widgets/simulatorwidget.cpp \
     #Widgets/skycoveragewidget.cpp \
+    Widgets/sitewidget.cpp \
     Widgets/skycovwidget.cpp \
     Widgets/solverwidget.cpp \
     main.cpp \
@@ -391,6 +392,7 @@ HEADERS += \
     Widgets/setupwidget.h \
     Widgets/simulatorwidget.h \
     #Widgets/skycoveragewidget.h \
+    Widgets/sitewidget.h \
     Widgets/skycovwidget.h \
     Widgets/solverwidget.h \
     secondaryGUIs/addbanddialog.h \
@@ -431,6 +433,7 @@ FORMS += \
     Widgets/simulatorwidget.ui \
     #Widgets/skycoveragewidget.ui \
     #Widgets/skycoveragewidget_copy.ui \
+    Widgets/sitewidget.ui \
     Widgets/skycovwidget.ui \
     Widgets/solverwidget.ui \
     mainwindow.ui \

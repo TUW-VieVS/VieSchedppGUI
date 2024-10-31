@@ -588,10 +588,10 @@ void setupWidget::displaySourceSetupParameter(QString name)
         t->setVerticalHeaderItem(r,new QTableWidgetItem("available for fillin mode"));
         ++r;
     }
-    if(para.minNumberOfStations.is_initialized()){
+    if(para.minNumberOfSites.is_initialized()){
         t->insertRow(r);
-        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.minNumberOfStations)));
-        t->setVerticalHeaderItem(r,new QTableWidgetItem("min number of stations"));
+        t->setItem(r,0,new QTableWidgetItem(QString::number(*para.minNumberOfSites)));
+        t->setVerticalHeaderItem(r,new QTableWidgetItem("min #sites"));
         ++r;
     }
     if(para.maxScan.is_initialized()){

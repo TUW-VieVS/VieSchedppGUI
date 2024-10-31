@@ -29,6 +29,9 @@ SimulatorWidget::~SimulatorWidget()
 
 void SimulatorWidget::addStations(QStandardItem *dummy)
 {
+    if (block ){
+        return;
+    }
     if(dummy != nullptr && dummy->column() != 0){
         return;
     }

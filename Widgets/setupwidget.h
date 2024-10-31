@@ -117,6 +117,9 @@ public:
     void setBlock(bool flag){
         block = flag;
     }
+    bool getBlock(){
+        return block;
+    }
 
 public slots:
     void on_pushButton_IvsDownTime_clicked();

@@ -23,6 +23,9 @@ public:
     ~SolverWidget();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
+    void setBlock(bool flag){
+        block = flag;
+    }
 
 public slots:
     void addStations(QStandardItem * = nullptr);
@@ -40,6 +43,7 @@ private slots:
     void checkDatum();
 
 private:
+    bool block = false;
     Ui::SolverWidget *ui;
     QStandardItemModel *station_model_;
     QStandardItemModel *source_model_;

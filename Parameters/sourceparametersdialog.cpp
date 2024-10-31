@@ -111,8 +111,8 @@ void sourceParametersDialog::addDefaultParameters(VieVS::ParameterSettings::Para
     if(d.minSunDistance.is_initialized()){
         ui->doubleSpinBox_minSunDistance->setValue(*d.minSunDistance);
     }
-    if(d.minNumberOfStations.is_initialized()){
-        ui->spinBox_minNumberOfStations->setValue(*d.minNumberOfStations);
+    if(d.minNumberOfSites.is_initialized()){
+        ui->spinBox_minNumberOfStations->setValue(*d.minNumberOfSites);
     }
 }
 
@@ -180,12 +180,12 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
         ui->groupBox_availableForFillinmode->setChecked(false);
     }
 
-    if(sp.minNumberOfStations.is_initialized()){
-        ui->spinBox_minNumberOfStations->setValue(*sp.minNumberOfStations);
+    if(sp.minNumberOfSites.is_initialized()){
+        ui->spinBox_minNumberOfStations->setValue(*sp.minNumberOfSites);
         ui->checkBox_minNumberOfStations->setChecked(true);
     }else{
-        if(dp.minNumberOfStations.is_initialized()){
-            ui->spinBox_minNumberOfStations->setValue(*dp.minNumberOfStations);
+        if(dp.minNumberOfSites.is_initialized()){
+            ui->spinBox_minNumberOfStations->setValue(*dp.minNumberOfSites);
         }
         ui->checkBox_minNumberOfStations->setChecked(false);
     }
@@ -526,7 +526,7 @@ std::pair<std::string, VieVS::ParameterSettings::ParametersSources> sourceParame
     }
 
     if(ui->spinBox_minNumberOfStations->isEnabled()){
-        para.minNumberOfStations = ui->spinBox_minNumberOfStations->value();
+        para.minNumberOfSites = ui->spinBox_minNumberOfStations->value();
     }
     if(ui->doubleSpinBox_minFlux->isEnabled()){
         para.minFlux = ui->doubleSpinBox_minFlux->value();
