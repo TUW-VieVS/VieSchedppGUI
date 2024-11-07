@@ -3822,7 +3822,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
         priorities->setBlock(true);
         solver->setBlock(true);
         simulator->setBlock(true);
-        createBaselines = false;
+        createBaselines = !prev_block_flag;
 
         selectedStationModel->insertRow(0);
 
