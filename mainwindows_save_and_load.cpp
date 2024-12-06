@@ -478,9 +478,12 @@ QString MainWindow::writeXML()
         }
         int minNumberOfReducedSources = ui->spinBox_minNumberOfReducedSources->value();
         int maxNumberOfIterations = ui->spinBox_maxNumberOfIterations->value();
-        int numberOfGentleSourceReductions = ui->spinBox_gentleSourceReduction->value();
-        double percentage = ui->doubleSpinBox_gentleSourceReductionPercentage->value();
-        para.conditions(members, minScans, minBaselines, andForCombination, maxNumberOfIterations, numberOfGentleSourceReductions, minNumberOfReducedSources, percentage);
+        int numberOfGentleSourceReductions_1 = ui->spinBox_gentle_iteration_1->value();
+        double percentage_1 = ui->doubleSpinBox_gentleSourceReductionPercentage_2->value();
+        int numberOfGentleSourceReductions_2 = ui->spinBox_gentle_iteration_2->value();
+        double percentage_2 = ui->doubleSpinBox_gentleSourceReductionPercentage_3->value();
+        para.conditions(members, minScans, minBaselines, andForCombination, minNumberOfReducedSources, maxNumberOfIterations,
+                        numberOfGentleSourceReductions_1, percentage_1, numberOfGentleSourceReductions_2, percentage_2);
     }
 
     if (ui->groupBox_multiScheduling->isChecked()){
@@ -1510,13 +1513,24 @@ void MainWindow::loadXML(QString path)
                 }
             }else if(any.first == "maxNumberOfIterations"){
                 ui->spinBox_maxNumberOfIterations->setValue(any.second.get_value<int>());
-            }else if(any.first == "numberOfGentleSourceReductions"){
-                ui->spinBox_gentleSourceReduction->setValue(any.second.get_value<unsigned int>());
-                ui->checkBox_gentleSourceReduction->setChecked(true);
             }else if(any.first == "minNumberOfSourcesToReduce"){
                 ui->spinBox_minNumberOfReducedSources->setValue(any.second.get_value<unsigned int>());
+            }else if(any.first == "numberOfGentleSourceReductions"){
+                ui->checkBox_gentleSourceReduction->setChecked(true);
+                ui->spinBox_gentle_iteration_1->setValue(any.second.get_value<unsigned int>()-1);
+                ui->spinBox_gentle_iteration_2->setValue(any.second.get_value<unsigned int>());
+            }else if(any.first == "numberOfGentleSourceReductions_1"){
+                ui->checkBox_gentleSourceReduction->setChecked(true);
+                ui->spinBox_gentle_iteration_1->setValue(any.second.get_value<unsigned int>());
+            }else if(any.first == "numberOfGentleSourceReductions_2"){
+                ui->spinBox_gentle_iteration_2->setValue(any.second.get_value<unsigned int>());
             }else if(any.first == "percentageGentleSourceReduction"){
-                ui->doubleSpinBox_gentleSourceReductionPercentage->setValue(any.second.get_value<double>());
+                ui->doubleSpinBox_gentleSourceReductionPercentage_2->setValue(any.second.get_value<double>());
+                ui->doubleSpinBox_gentleSourceReductionPercentage_3->setValue(any.second.get_value<double>());
+            }else if(any.first == "percentageGentleSourceReduction_1"){
+                ui->doubleSpinBox_gentleSourceReductionPercentage_2->setValue(any.second.get_value<double>());
+            }else if(any.first == "percentageGentleSourceReduction_2"){
+                ui->doubleSpinBox_gentleSourceReductionPercentage_3->setValue(any.second.get_value<double>());
             }else if(any.first == "condition"){
                 std::string member = any.second.get<std::string>("members");
                 auto scans = any.second.get<unsigned int>("minScans");

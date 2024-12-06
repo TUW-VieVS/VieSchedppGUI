@@ -3794,9 +3794,10 @@ void MainWindow::on_treeView_allSelectedStations_clicked(const QModelIndex &inde
     }
 
 
-    if(createBaselines){
-        createBaselineModel();
-    }
+//    if(createBaselines){
+//        createBaselineModel();
+//    }
+    createBaselineModel();
 
     auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
     MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
@@ -5754,7 +5755,8 @@ void MainWindow::on_pushButton_removeCondition_clicked()
 
 void MainWindow::on_spinBox_maxNumberOfIterations_valueChanged(int arg1)
 {
-    ui->spinBox_gentleSourceReduction->setMaximum(arg1);
+    ui->spinBox_gentle_iteration_1->setMaximum(arg1-1);
+    ui->spinBox_gentle_iteration_2->setMaximum(arg1);
 }
 
 // ########################################### HIGH IMPACT ###########################################
@@ -6851,5 +6853,11 @@ void MainWindow::on_spinBox_int_downtime_valueChanged(int arg1)
     }
 
     stationSetupWidget->on_pushButton_IvsDownTime_clicked();
+}
+
+
+void MainWindow::on_spinBox_gentle_iteration_1_valueChanged(int arg1)
+{
+    ui->spinBox_gentle_iteration_2->setMinimum(arg1+1);
 }
 

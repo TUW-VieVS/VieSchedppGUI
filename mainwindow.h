@@ -543,6 +543,8 @@ private slots:
 
     void on_spinBox_int_downtime_valueChanged(int arg1);
 
+    void on_spinBox_gentle_iteration_1_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
