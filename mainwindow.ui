@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>16</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1249,6 +1249,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_autoDownload">
+            <property name="text">
+             <string>download on restart</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </item>
         <item>
@@ -1264,8 +1287,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>310</width>
-             <height>782</height>
+             <width>958</width>
+             <height>813</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_102">
@@ -1280,6 +1303,79 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
                 <layout class="QGridLayout" name="gridLayout_5">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_51">
+                   <property name="text">
+                    <string>equip</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="2">
+                  <widget class="QPushButton" name="pushButton_stations">
+                   <property name="toolTip">
+                    <string>read station catalogs</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>read station catalogs</string>
+                   </property>
+                   <property name="text">
+                    <string> reload</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/view-refresh-7.png</normaloff>:/icons/icons/view-refresh-7.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathEquip">
+                   <property name="toolTip">
+                    <string>path to skd equip catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to skd equip catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>./AUTO_DOWNLOAD_CATALOGS/equip.cat</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>path to equip.cat file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QPushButton" name="pushButton_browsePosition">
+                   <property name="toolTip">
+                    <string>browse for skd position catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>browse for skd position catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathStp">
+                   <property name="toolTip">
+                    <string>path to folder including .stp files</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to folder including .stp files</string>
+                   </property>
+                   <property name="inputMask">
+                    <string/>
+                   </property>
+                   <property name="placeholderText">
+                    <string>(OPTIONAL) path to folder including .stp files</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="1" column="2">
                   <widget class="QPushButton" name="pushButton_browseEquip">
                    <property name="toolTip">
@@ -1297,30 +1393,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="2">
-                  <widget class="QPushButton" name="pushButton_stations">
-                   <property name="toolTip">
-                    <string>read station catalogs</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>read station catalogs</string>
-                   </property>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_54">
                    <property name="text">
-                    <string> reload</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/view-refresh-7.png</normaloff>:/icons/icons/view-refresh-7.png</iconset>
+                    <string>mask</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_browseAntenna">
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_53">
+                   <property name="text">
+                    <string>position</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QPushButton" name="pushButton_browseMask">
                    <property name="toolTip">
-                    <string>browse for skd antenna catalog</string>
+                    <string>browse for skd mask catalog</string>
                    </property>
                    <property name="statusTip">
-                    <string>browse for skd antenna catalog</string>
+                    <string>browse for skd mask catalog</string>
                    </property>
                    <property name="text">
                     <string>browse</string>
@@ -1328,6 +1421,43 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="icon">
                     <iconset resource="myresources.qrc">
                      <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_129">
+                   <property name="text">
+                    <string>stp directory</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="lineEdit_pathMask">
+                   <property name="toolTip">
+                    <string>path to skd mask catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to skd mask catalog</string>
+                   </property>
+                   <property name="text">
+                    <string>./AUTO_DOWNLOAD_CATALOGS/mask.cat</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>path to mask.cat file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_102">
+                   <property name="text">
+                    <string>procs</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_50">
+                   <property name="text">
+                    <string>antenna</string>
                    </property>
                   </widget>
                  </item>
@@ -1350,84 +1480,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="2">
-                  <widget class="QPushButton" name="pushButton_browseMask">
-                   <property name="toolTip">
-                    <string>browse for skd mask catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>browse for skd mask catalog</string>
-                   </property>
-                   <property name="text">
-                    <string>browse</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pushButton_browsePosition">
-                   <property name="toolTip">
-                    <string>browse for skd position catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>browse for skd position catalog</string>
-                   </property>
-                   <property name="text">
-                    <string>browse</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="myresources.qrc">
-                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_51">
-                   <property name="text">
-                    <string>equip</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_54">
-                   <property name="text">
-                    <string>mask</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_53">
-                   <property name="text">
-                    <string>position</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_pathMask">
-                   <property name="toolTip">
-                    <string>path to skd mask catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>path to skd mask catalog</string>
-                   </property>
-                   <property name="text">
-                    <string>./AUTO_DOWNLOAD_CATALOGS/mask.cat</string>
-                   </property>
-                   <property name="placeholderText">
-                    <string>path to mask.cat file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_50">
-                   <property name="text">
-                    <string>antenna</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="1">
                   <widget class="QLineEdit" name="lineEdit_pathPosition">
                    <property name="toolTip">
@@ -1444,41 +1496,49 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEdit_pathEquip">
-                   <property name="toolTip">
-                    <string>path to skd equip catalog</string>
-                   </property>
-                   <property name="statusTip">
-                    <string>path to skd equip catalog</string>
-                   </property>
+                 <item row="5" column="2">
+                  <widget class="QPushButton" name="pushButton_browseStp">
                    <property name="text">
-                    <string>./AUTO_DOWNLOAD_CATALOGS/equip.cat</string>
+                    <string>browse</string>
                    </property>
-                   <property name="placeholderText">
-                    <string>path to equip.cat file</string>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="label_129">
+                 <item row="0" column="2">
+                  <widget class="QPushButton" name="pushButton_browseAntenna">
+                   <property name="toolTip">
+                    <string>browse for skd antenna catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>browse for skd antenna catalog</string>
+                   </property>
                    <property name="text">
-                    <string>stp directory</string>
+                    <string>browse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="myresources.qrc">
+                     <normaloff>:/icons/icons/folder-saved-search.png</normaloff>:/icons/icons/folder-saved-search.png</iconset>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="1">
-                  <widget class="QLineEdit" name="lineEdit_pathStp">
-                   <property name="inputMask">
-                    <string/>
+                  <widget class="QLineEdit" name="lineEdit_pathProcs">
+                   <property name="toolTip">
+                    <string>path to procs catalog</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>path to procs catalog</string>
                    </property>
                    <property name="placeholderText">
-                    <string>Path to folder including .stp files</string>
+                    <string>(OPTIONAL) path to procs catalog (for VGOS .skd files only)</string>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="2">
-                  <widget class="QPushButton" name="pushButton_browseStp">
+                  <widget class="QPushButton" name="pushButton_browseProcs">
                    <property name="text">
                     <string>browse</string>
                    </property>
@@ -1562,7 +1622,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string>path to file containing TLE information</string>
                      </property>
                      <property name="placeholderText">
-                      <string>path to file containing TLE information</string>
+                      <string>(OPTIONAL) path to file containing TLE information</string>
                      </property>
                     </widget>
                    </item>
@@ -1608,7 +1668,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>path to file from HORIZONS ephemerides web interface</string>
+                      <string>(PLACEHOLDER) path to file from HORIZONS ephemerides web interface - UNSUPPORTED RIGHT NOW</string>
                      </property>
                     </widget>
                    </item>
@@ -1663,7 +1723,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Observations aligned with satellites defined within the TLE file will be ignored. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="placeholderText">
-                      <string>path to file containing TLE information</string>
+                      <string>(OPTIONAL) path to file containing TLE information</string>
                      </property>
                     </widget>
                    </item>
@@ -6477,6 +6537,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <property name="text">
                 <string>create SNR table</string>
                </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="4" column="4">
@@ -7287,8 +7350,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>570</width>
-             <height>659</height>
+             <width>972</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -12319,12 +12382,12 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>47</x>
-     <y>80</y>
+     <x>114</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>81</x>
-     <y>80</y>
+     <x>956</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>
@@ -12777,54 +12840,6 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_outputVex</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBox_outputVex_stepSat</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>35</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>45</x>
-     <y>117</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_outputVex</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_45</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>35</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>52</x>
-     <y>118</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_outputVex</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBox_outputVex_stepSat_interval</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>35</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>57</x>
-     <y>118</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>checkBox_gentleSourceReduction</sender>
    <signal>toggled(bool)</signal>
    <receiver>doubleSpinBox_gentleSourceReductionPercentage_2</receiver>
@@ -12949,6 +12964,38 @@ https://git.geo.tuwien.ac.at/vievs/VieSchedpp/VieSchedppGUI.git&quot;&gt;&lt;spa
     <hint type="destinationlabel">
      <x>249</x>
      <y>424</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_outputVex_stepSat</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_45</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>45</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>52</x>
+     <y>118</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_outputVex_stepSat</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox_outputVex_stepSat_interval</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>45</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>57</x>
+     <y>118</y>
     </hint>
    </hints>
   </connection>

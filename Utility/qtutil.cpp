@@ -602,7 +602,8 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
            QDateTime tEnd = tStart.addSecs(int_dur);
 
 
-           if( (tStart > sessionStart && tStart < sessionEnd ) || (tEnd > sessionStart && tEnd < sessionEnd) ){
+           if( (tStart >= sessionStart.addSecs(-buffer) && tStart <= sessionEnd.addSecs(buffer) )
+                   || (tEnd >= sessionStart.addSecs(-buffer) && tEnd <= sessionEnd.addSecs(buffer)) ){
                QString tStations = content[6].split(' ').at(0);
 
                for (int c = 0; c < tStations.length(); c+=2) {

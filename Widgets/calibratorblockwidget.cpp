@@ -71,8 +71,9 @@ boost::property_tree::ptree CalibratorBlockWidget::toXML()
         unsigned int dur = qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,1))->value();
         unsigned int scans = qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,2))->value();
         std::string srcGroup = qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,3))->currentText().toStdString();
-
-        VieVS::CalibratorBlock tmp(t, scans, dur, srcGroup);
+        unsigned int overlap = qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(r,4))->value();
+        bool rigorosOverlap = qobject_cast<QPushButton *>(ui->tableWidget_calibrationBlock->cellWidget(r,5))->isChecked();
+        VieVS::CalibratorBlock tmp(t, scans, dur, srcGroup, overlap, rigorosOverlap);
         blocks.push_back(tmp);
     }
 
@@ -83,6 +84,8 @@ boost::property_tree::ptree CalibratorBlockWidget::toXML()
         tmp.add( "block.scans", any.getNScans() );
         tmp.add( "block.duration", any.getDuration() );
         tmp.add( "block.sources", any.getAllowedSourceGroup() );
+        tmp.add( "block.overlap", any.getOverlap() );
+        tmp.add( "block.rigorosOverlap", any.hasRigorosOverlap() );
         rules.add_child( "calibration.block", tmp.get_child( "block" ) );
     }
     if ( ui->comboBox_calibrationIntent->currentText() != "NONE" ) {
@@ -190,11 +193,15 @@ void CalibratorBlockWidget::fromXML(const boost::property_tree::ptree &ctree)
             unsigned int scans = any.second.get( "scans", 2 );
             unsigned int duration = any.second.get( "duration", 300 );
             std::string sourceGroup = any.second.get( "sources", "__all__" );
+            int overlap = any.second.get( "overlap", 0 );
+            bool rigorosOverlap = any.second.get( "rigorosOverlap", false );
 
             qobject_cast<QDoubleSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,0))->setValue(t);
             qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,1))->setValue(duration);
             qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,2))->setValue(scans);
             qobject_cast<QComboBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,3))->setCurrentText(QString::fromStdString(sourceGroup));
+            qobject_cast<QSpinBox *>(ui->tableWidget_calibrationBlock->cellWidget(i,4))->setValue(overlap);
+            qobject_cast<QPushButton *>(ui->tableWidget_calibrationBlock->cellWidget(i,5))->setChecked(rigorosOverlap);
             ++i;
         }
     }
@@ -281,14 +288,36 @@ void CalibratorBlockWidget::on_spinBox_NCalibrationBlocks_valueChanged(int row)
         c->setCurrentText(ui->comboBox_calibrationBlockSources->currentText());
         connect(ui->comboBox_calibrationBlockSources,SIGNAL(currentIndexChanged(int)), c,SLOT(setCurrentIndex(int)));
 
+        QSpinBox *o = new QSpinBox();
+        o->setMinimum(0);
+        o->setMaximum(10);
+        o->setValue(ui->spinBox_calibrationBlockOverlap->value());
+        connect(ui->spinBox_calibrationBlockOverlap,SIGNAL(valueChanged(int)), o,SLOT(setValue(int)));
+
+        QPushButton *p = new QPushButton();
+        p->setCheckable(true);
+        QObject::connect(p, &QPushButton::toggled, [p](bool checked) {
+            if (checked) {
+                p->setText("yes");
+                p->setStyleSheet("background-color: lightblue;");  // Or "blue" for stronger color
+            } else {
+                p->setText("no");
+                p->setStyleSheet("");  // Reset to default
+            }
+        });
+        p->setChecked(true);
+        p->setChecked(false);
+        p->setChecked(ui->checkBox_applyRigorosOverlap->isChecked());
+        connect(ui->checkBox_applyRigorosOverlap, SIGNAL(toggled(bool)), p, SLOT(setChecked(bool)));
+
         tab->setCellWidget(i_row,0,t);
         tab->setCellWidget(i_row,1,d);
         tab->setCellWidget(i_row,2,s);
         tab->setCellWidget(i_row,3,c);
+        tab->setCellWidget(i_row,4,o);
+        tab->setCellWidget(i_row,5,p);
     }
 }
-
-
 
 void CalibratorBlockWidget::on_pushButton_tryToIncludeAllStations_toggled(bool checked)
 {
@@ -342,7 +371,8 @@ void CalibratorBlockWidget::on_pushButton_save_general_clicked()
     path << "settings.rules.calibration.intent"
          << "settings.rules.calibration.subnetting"
          << "settings.rules.calibration.tryToIncludeAllStations"
-         << "settings.rules.calibration.tryToIncludeAllStations_factor";
+         << "settings.rules.calibration.tryToIncludeAllStations_factor"
+            ;
 
     value << ui->comboBox_calibrationIntent->currentText();
     ui->checkBox_subnetting->isChecked() ? value << "false" : value << "true"; // WARNING: REVERSED!
@@ -440,7 +470,6 @@ void CalibratorBlockWidget::on_checkBox_tryToIncludeAllStations_toggled(bool che
     ui->tableWidget_calibrationBlock->horizontalHeaderItem(2)->setText(txt);
     ui->label_127->setText(txt + " per block");
 }
-
 
 
 void CalibratorBlockWidget::on_spinBox_dpara_scans_valueChanged(int arg1)

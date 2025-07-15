@@ -191,6 +191,7 @@ SOURCES += \
     ../VieSchedpp/Source/Flux/Flux_B.cpp \
     ../VieSchedpp/Source/Flux/Flux_M.cpp \
     ../VieSchedpp/Source/Flux/Flux_constant.cpp \
+    ../VieSchedpp/Source/Flux/Flux_satellite.cpp \
     ../VieSchedpp/Source/AbstractSource.cpp \
     ../VieSchedpp/Source/Quasar.cpp \
     ../VieSchedpp/Source/Satellite.cpp \
@@ -328,6 +329,7 @@ HEADERS += \
     ../VieSchedpp/Source/Flux/Flux_B.h \
     ../VieSchedpp/Source/Flux/Flux_M.h \
     ../VieSchedpp/Source/Flux/Flux_constant.h \
+    ../VieSchedpp/Source/Flux/Flux_satellite.h \
     ../VieSchedpp/Source/AbstractSource.h \
     ../VieSchedpp/Source/Quasar.h \
     ../VieSchedpp/Source/Satellite.h \
@@ -470,14 +472,14 @@ DEFINES += BOOST_ALL_NO_LIB
 message(looking for VieSched++ GUI commit hash)
 #exists( $$PWD/.git) {
 exists( .git) {
-    GIT_COMMIT_HASH = $$system(git log -1 --format=%H)
+    GIT_COMMIT_HASH = $$system(git log -1 --date=format:%Y-%m-%d --format=v.%cd)
 }else{
     GIT_COMMIT_HASH = "unknown"
 }
 
 message(looking for VieSched++ commit hash)
 exists( ../VieSchedpp/.git){
-    GIT_SCHEDULER_COMMIT_HASH = $$system(cd ../VieSchedpp; git log -1 --format=%H)
+    GIT_SCHEDULER_COMMIT_HASH = $$system(cd ../VieSchedpp; git log -1 --date=format:%Y-%m-%d --format=v.%cd)
 }else{
     GIT_SCHEDULER_COMMIT_HASH = "unknown"
 }

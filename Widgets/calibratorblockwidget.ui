@@ -213,7 +213,7 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>scans per block</string>
+            <string>#scans</string>
            </property>
           </widget>
          </item>
@@ -271,6 +271,27 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>#overlapping stations</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_calibrationBlockOverlap">
+           <property name="value">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_applyRigorosOverlap">
+           <property name="text">
+            <string>rigoros overlap</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_26">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -319,6 +340,16 @@
            <string>sources</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>overlap</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>rigoros</string>
+          </property>
+         </column>
         </widget>
        </item>
        <item>
@@ -343,7 +374,7 @@
           <item>
            <widget class="QTabWidget" name="tabWidget_2">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab_4">
              <attribute name="title">
@@ -1402,5 +1433,38 @@
  <resources>
   <include location="../myresources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBox_tryToIncludeAllStations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>642</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>328</x>
+     <y>638</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_tryToIncludeAllStations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>doubleSpinBox_stationFactor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>636</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>638</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

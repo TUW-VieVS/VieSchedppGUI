@@ -545,6 +545,10 @@ private slots:
 
     void on_spinBox_gentle_iteration_1_valueChanged(int arg1);
 
+    void on_pushButton_browseProcs_clicked();
+
+    void on_checkBox_autoDownload_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -663,6 +667,9 @@ private:
 
     void download();
 
+    QPair<QMap<QString, QStringList>, QString> readFluxCat(const QString &filePath);
+
+    void mergeFluxCatVgosSx();
 
 //    void searchSessionCodeInMasterFile(QString code);
 

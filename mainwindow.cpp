@@ -64,13 +64,8 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings.value("myWidget/geometry").toByteArray());
     restoreState(settings.value("myWidget/windowState").toByteArray());
 
-    QString schedVersion = GIT_SCHEDULER_COMMIT_HASH;
-    if(QCoreApplication::applicationVersion().length() == 40){
-        ui->lineEdit_gui_version->setText(QCoreApplication::applicationVersion().left(8));
-    }
-    if(schedVersion.length() == 40){
-        ui->lineEdit_scheduler_version->setText(schedVersion.left(8));
-    }
+    ui->lineEdit_gui_version->setText(GIT_COMMIT_HASH);
+    ui->lineEdit_scheduler_version->setText(GIT_SCHEDULER_COMMIT_HASH);
 
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setOrganizationDomain("http://hg.geo.tuwien.ac.at/");
@@ -2291,7 +2286,8 @@ void MainWindow::on_pushButton_startAdvancedMode_clicked()
                              ui->lineEdit_pathRec->text().toStdString(),
                              ui->lineEdit_pathRx->text().toStdString(),
                              "",
-                             ui->lineEdit_pathTracks->text().toStdString());
+                             ui->lineEdit_pathTracks->text().toStdString(),
+                             "");
 
     skd.initializeStationCatalogs();
 
@@ -2750,9 +2746,10 @@ void MainWindow::readSkedCatalogs()
                                           ui->lineEdit_pathMask->text().toStdString(), ui->lineEdit_pathModes->text().toStdString(),
                                           ui->lineEdit_pathPosition->text().toStdString(), ui->lineEdit_pathRec->text().toStdString(),
                                           ui->lineEdit_pathRx->text().toStdString(), ui->lineEdit_pathSource->text().toStdString(),
-                                          ui->lineEdit_pathTracks->text().toStdString());
+                                          ui->lineEdit_pathTracks->text().toStdString(),ui->lineEdit_pathProcs->text().toStdString());
 
     QFileInfo bant(ui->lineEdit_pathAntenna->text());
+    QFileInfo bprocs(ui->lineEdit_pathProcs->text());
     QFileInfo bequ(ui->lineEdit_pathEquip->text());
     QFileInfo bflu(ui->lineEdit_pathFlux->text());
     QFileInfo bfre(ui->lineEdit_pathFreq->text());
@@ -2834,6 +2831,9 @@ void MainWindow::readSkedCatalogs()
         if(!btra.exists()){
             f(ui->lineEdit_pathTracks,"tracks.cat");
         }
+        if(!bprocs.exists()){
+            f(ui->lineEdit_pathTracks,"");
+        }
 
         txt.append("</ul>Either:<ul><li>copy the catalogs to the required position</li><li>wait for the automatic download to finish and restart VieSched++ or reload the catalogs</li><li>change the path in the catalogs menu</li></ul>");
 
@@ -2859,6 +2859,15 @@ void MainWindow::on_pushButton_browseAntenna_clicked()
         ui->lineEdit_pathAntenna->setText(path);
     }
 }
+
+void MainWindow::on_pushButton_browseProcs_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathProcs->text());
+    if( !path.isEmpty() ){
+        ui->lineEdit_pathProcs->setText(path);
+    }
+}
+
 
 void MainWindow::on_pushButton_browseEquip_clicked()
 {
@@ -3374,7 +3383,7 @@ void MainWindow::on_pushButton_clicked()
             QMessageBox::warning(this,"errors while reading session master line",errorText);
         }
         int buffer = ui->spinBox_int_downtime->value();
-        auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600+buffer), stas, buffer);
+        auto downtimes = qtUtil::getDownTimes(start, start.addSecs(dur*3600), stas, buffer);
         if(!downtimes.isEmpty()){
 
             for(const auto any : downtimes){
@@ -6243,6 +6252,21 @@ void MainWindow::on_groupBox_highImpactAzEl_toggled(bool arg1)
 
 // ############################### DOWNLOAD ###############################
 void MainWindow::download(){
+    boost::optional<bool> download_ = settings_.get_optional<bool>("settings.general.download");
+    if(download_.is_initialized()){
+        if (*download_ == false){
+            QLabel *statusBarLabel;
+            for(auto &any: ui->statusBar->children()){
+                QLabel *l = qobject_cast<QLabel *>(any);
+                if(l){
+                    statusBarLabel = l;
+                }
+            }
+            statusBarLabel->setText("no automatic download!");
+
+            return;
+        }
+    }
 
     QLabel *statusBarLabel;
     for(auto &any: ui->statusBar->children()){
@@ -6376,10 +6400,88 @@ void MainWindow::masterDownloadFinished(){
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rx.cat";
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/source.cat.geodetic.good";
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/tracks.cat";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/antenna.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/equip.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/flux.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/procs.cat.vgos";
     files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
 }
+
+QPair<QMap<QString, QStringList>, QString> MainWindow::readFluxCat(const QString &filePath) {
+    QMap<QString, QStringList> data;
+    QString version = "unknown";
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Cannot open file:" << filePath;
+        return qMakePair(data, version);
+    }
+
+    QTextStream in(&file);
+    bool checkVersion = true;
+    while (!in.atEnd()) {
+        QString line = in.readLine().trimmed();
+        if (line.isEmpty()) continue;
+
+        if (checkVersion && line.contains("VERSION")) {
+            QStringList parts = line.split(QRegularExpression("\\s+"));
+            version = parts.last();
+            checkVersion = false;
+        }
+
+        if (line.startsWith("*")) {
+            continue;
+        }
+
+        checkVersion = false;
+        QString name = line.split(QRegularExpression("\\s+")).first();
+        data[name].append(line);
+    }
+
+    return qMakePair(data, version);
+}
+
+void MainWindow::mergeFluxCatVgosSx() {
+    auto sxResult = readFluxCat("AUTO_DOWNLOAD_CATALOGS/flux.cat");
+    auto vgosResult = readFluxCat("AUTO_DOWNLOAD_CATALOGS/flux.cat.vgos");
+
+    const QMap<QString, QStringList> &fluxSx = sxResult.first;
+    const QString &sxVersion = sxResult.second;
+
+    const QMap<QString, QStringList> &fluxVgos = vgosResult.first;
+    const QString &vgosVersion = vgosResult.second;
+
+    QSet<QString> vgosFound;
+
+    QFile outFile("AUTO_DOWNLOAD_CATALOGS/flux.cat.merged");
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Cannot write to output file";
+        return;
+    }
+
+    QTextStream out(&outFile);
+    out << "* MERGED CATALOG\n";
+    out << "* VERSION VGOS_" << vgosVersion << "+SX_" << sxVersion << "\n";
+    out << "* ========== VGOS (" << vgosVersion << ") ==========\n";
+
+    for (auto it = fluxVgos.begin(); it != fluxVgos.end(); ++it) {
+        for (const QString &line : it.value()) {
+            out << line << "\n";
+        }
+        vgosFound.insert(it.key());
+    }
+
+    out << "* ========== SX (" << sxVersion << ") ==========\n";
+    for (auto it = fluxSx.begin(); it != fluxSx.end(); ++it) {
+        if (vgosFound.contains(it.key())) continue;
+
+        for (const QString &line : it.value()) {
+            out << line << "\n";
+        }
+    }
+}
+
 
 void MainWindow::downloadFinished(){
     QLabel *statusBarLabel;
@@ -6422,6 +6524,12 @@ void MainWindow::downloadFinished(){
     if(!errorMsg.isEmpty()){
         errorMsg.append("Did you install OpenSSL?");
         QMessageBox::warning(this,"Error while downloading files", errorMsg);
+    }
+    try {
+        mergeFluxCatVgosSx();
+        statusBarLabel->setText("all downloads finished - flux catalog merged sucessfully");
+    } catch (...) {
+        statusBarLabel->setText("all downloads finished - error while merging flux catalog");
     }
 }
 
@@ -6860,4 +6968,8 @@ void MainWindow::on_spinBox_gentle_iteration_1_valueChanged(int arg1)
 {
     ui->spinBox_gentle_iteration_2->setMinimum(arg1+1);
 }
+
+
+
+
 

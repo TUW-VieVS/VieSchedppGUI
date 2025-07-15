@@ -1577,6 +1577,12 @@ void setupWidget::addSetup(const boost::property_tree::ptree &setup)
             transition = QString::fromStdString(any.second.get_value<std::string>());
         }
     }
+    if(groups->find(member.toStdString()) != groups->end()){
+        auto members = groups->at(member.toStdString());
+        if (members.empty()){
+            return;
+        }
+    }
 
     ui->comboBox_members->setCurrentText(member);
     ui->ComboBox_parameters->setCurrentText(parameter);

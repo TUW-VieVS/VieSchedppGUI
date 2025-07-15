@@ -241,6 +241,7 @@ QString MainWindow::writeXML()
                 snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, timeTable, contacts);
 
     std::string antenna = ui->lineEdit_pathAntenna->text().toStdString();
+    std::string procs = ui->lineEdit_pathProcs->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
     std::string flux = ui->lineEdit_pathFlux->text().toStdString();
     std::string freq = ui->lineEdit_pathFreq->text().toStdString();
@@ -259,6 +260,7 @@ QString MainWindow::writeXML()
 
     if(ui->checkBox_resolvePathes->isChecked()){
         antenna = QFileInfo(ui->lineEdit_pathAntenna->text()).absoluteFilePath().toStdString();
+        procs = QFileInfo(ui->lineEdit_pathProcs->text()).absoluteFilePath().toStdString();
         equip = QFileInfo(ui->lineEdit_pathEquip->text()).absoluteFilePath().toStdString();
         flux = QFileInfo(ui->lineEdit_pathFlux->text()).absoluteFilePath().toStdString();
         freq = QFileInfo(ui->lineEdit_pathFreq->text()).absoluteFilePath().toStdString();
@@ -275,7 +277,7 @@ QString MainWindow::writeXML()
         tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
         stp = QFileInfo(ui->lineEdit_pathStp->text()).absoluteFilePath().toStdString();
     }
-    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, satellites, stp, satellites_avoid);
+    para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, procs, satellites, stp, satellites_avoid);
 
     para.setup(VieVS::ParameterSettings::Type::station, stationSetupWidget->getSetup());
     para.setup(VieVS::ParameterSettings::Type::source, sourceSetupWidget->getSetup());
@@ -429,15 +431,13 @@ QString MainWindow::writeXML()
 
     if(ui->groupBox_scanSequence->isChecked()){
         int cadence = ui->spinBox_scanSequenceCadence->value();
-        std::vector<unsigned int> modulo;
         std::vector<std::string> member;
         for(int i = 0; i<cadence; ++i){
             QWidget * w = ui->tableWidget_scanSequence->cellWidget(i,0);
             QComboBox* cb = qobject_cast<QComboBox*>(w);
-            modulo.push_back(i);
             member.push_back(cb->currentText().toStdString());
         }
-        para.ruleScanSequence(cadence,modulo,member);
+        para.ruleScanSequence(member);
     }
 
     // TODO: change elevationAngles in NScanSelections and change their names
@@ -626,6 +626,7 @@ QString MainWindow::writeXML()
 void MainWindow::loadXML(QString path)
 {
     noMessageBoxes = true;
+    ui->lineEdit_allStationsFilter->setText("");
 
     std::ifstream fid(path.toStdString());
     boost::property_tree::ptree xml;
@@ -640,6 +641,10 @@ void MainWindow::loadXML(QString path)
         std::string antenna = xml.get("VieSchedpp.catalogs.antenna","");
         if(!antenna.empty()){
             ui->lineEdit_pathAntenna->setText(QString::fromStdString(antenna));
+        }
+        std::string procs = xml.get("VieSchedpp.catalogs.procs","");
+        if(!procs.empty()){
+            ui->lineEdit_pathProcs->setText(QString::fromStdString(procs));
         }
         std::string equip = xml.get("VieSchedpp.catalogs.equip","");
         if(!equip.empty()){
@@ -1903,13 +1908,20 @@ void MainWindow::loadXML(QString path)
         boost::optional<boost::property_tree::ptree &> ctree = xml.get_child_optional("VieSchedpp.rules.sourceSequence");
         if (ctree.is_initialized()) {
             ui->groupBox_scanSequence->setChecked(true);
-            ui->spinBox_scanSequenceCadence->setValue(xml.get<int>("VieSchedpp.rules.sourceSequence.cadence"));
+            int cadence = 0;
             for(const auto &any: *ctree){
                 if(any.first == "sequence"){
-                    int modulo = any.second.get<int>("modulo");
-                    QString member = QString::fromStdString(any.second.get<std::string>("member"));
+                    ++cadence;
+                }
+            }
+            ui->spinBox_scanSequenceCadence->setValue(cadence);
+            int modulo = 0;
+            for(const auto &any: *ctree){
+                if(any.first == "sequence"){
+                    QString member = QString::fromStdString(any.second.get_value<std::string>());
                     QComboBox* cb = qobject_cast<QComboBox*>(ui->tableWidget_scanSequence->cellWidget(modulo,0));
                     cb->setCurrentText(member);
+                    ++modulo;
                 }
             }
         }
@@ -2071,6 +2083,9 @@ void MainWindow::readSettings()
     auto cAntenna = settings_.get<std::string>("settings.catalog_path.antenna","./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
     f(ui->lineEdit_pathAntenna, cAntenna);
 
+    auto cProcs = settings_.get<std::string>("settings.catalog_path.procs","");
+    f(ui->lineEdit_pathProcs, cProcs);
+
     auto cEquip = settings_.get<std::string>("settings.catalog_path.equip","./AUTO_DOWNLOAD_CATALOGS/equip.cat");
     f(ui->lineEdit_pathEquip, cEquip);
 
@@ -2119,6 +2134,15 @@ void MainWindow::readSettings()
     auto cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
     f(ui->lineEdit_pathHdpos, cHdpos);
 
+
+    bool download_ = settings_.get<bool>("settings.general.download", true);
+    ui->checkBox_autoDownload->blockSignals(true);
+    if (download_){
+        ui->checkBox_autoDownload->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_autoDownload->setCheckState(Qt::Unchecked);
+    }
+    ui->checkBox_autoDownload->blockSignals(false);
 
 
     std::string outputDirectory = settings_.get<std::string>("settings.output.directory","../out/");
@@ -2691,6 +2715,7 @@ void MainWindow::on_pushButton_17_clicked()
 void MainWindow::on_pushButton_saveCatalogPathes_clicked()
 {
     settings_.put("settings.catalog_path.antenna",ui->lineEdit_pathAntenna->text().toStdString());
+    settings_.put("settings.catalog_path.procs",ui->lineEdit_pathProcs->text().toStdString());
     settings_.put("settings.catalog_path.equip",ui->lineEdit_pathEquip->text().toStdString());
     settings_.put("settings.catalog_path.position",ui->lineEdit_pathPosition->text().toStdString());
     settings_.put("settings.catalog_path.mask",ui->lineEdit_pathMask->text().toStdString());
@@ -2715,6 +2740,27 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
     QString txt = "Your default catalog pathes have been changed!";
     QMessageBox::information(this,"Default settings changed",txt);
 }
+
+void MainWindow::on_checkBox_autoDownload_toggled(bool checked)
+{
+    std::string flag = "true";
+    if ( checked){
+        flag = "true";
+    } else {
+        flag = "false";
+    }
+    settings_.put("settings.general.download",flag);
+
+    std::ofstream os;
+    os.open("settings.xml");
+    boost::property_tree::xml_parser::write_xml(os, settings_,
+                                                boost::property_tree::xml_writer_make_settings<std::string>('\t', 1));
+    os.close();
+    QString txt = "Your default download settings have been changed!";
+    QMessageBox::information(this,"Default settings changed",txt);
+
+}
+
 
 void MainWindow::on_pushButton_26_clicked()
 {

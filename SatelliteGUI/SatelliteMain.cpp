@@ -112,7 +112,7 @@ void SatelliteMain::initialize( const std::string &pathAntenna, const std::strin
     // initialize Network
     VieVS::SkdCatalogReader skdCatalogs;
     skdCatalogs.setStationNames(stations);
-    skdCatalogs.setCatalogFilePathes(pathAntenna, pathEquip, "", "", "", "", pathMask, "", pathPosition, "", "", "", "");
+    skdCatalogs.setCatalogFilePathes(pathAntenna, pathEquip, "", "", "", "", pathMask, "", pathPosition, "", "", "", "", "");
     skdCatalogs.initializeStationCatalogs();
 
     string outPath = "satelliteSchedulingLog.txt";
