@@ -53,6 +53,10 @@
        <property name="text">
         <string>Cn and v from Schartner (2025)</string>
        </property>
+       <property name="icon">
+        <iconset resource="../myresources.qrc">
+         <normaloff>:/icons/icons/document-import-2.png</normaloff>:/icons/icons/document-import-2.png</iconset>
+       </property>
        <property name="checkable">
         <bool>false</bool>
        </property>
@@ -64,7 +68,11 @@
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Import &lt;span style=&quot; font-weight:700;&quot;&gt;zwd&lt;/span&gt; based on the model from:&lt;br/&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; color:#333333; background-color:#fcfcfc;&quot;&gt;Crocetti, L., Schartner, M., Wareyka-Glaner, M.F.&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; font-style:italic; color:#333333;&quot;&gt;et al.&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; color:#333333;&quot;&gt; ZWDX: a global zenith wet delay forecasting model using XGBoost. &lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; font-style:italic; color:#333333;&quot;&gt;Earth Planets Space&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; font-weight:700; color:#333333;&quot;&gt;76&lt;/span&gt;&lt;span style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue','sans-serif'; color:#333333;&quot;&gt;, 163 (2024). &lt;/span&gt;&lt;a href=&quot;https://doi.org/10.1186/s40623-024-02104-6&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://doi.org/10.1186/s40623-024-02104-6&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;&lt;br/&gt;If a station is not listed, use 150 for zwd0. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
-        <string>zwd from Crocetti (2024)</string>
+        <string>zwd from Crocetti et al. (2024)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../myresources.qrc">
+         <normaloff>:/icons/icons/document-import-2.png</normaloff>:/icons/icons/document-import-2.png</iconset>
        </property>
       </widget>
      </item>
@@ -212,7 +220,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../myresources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>checkBox_seed</sender>
