@@ -929,7 +929,7 @@ void MainWindow::on_actionWhat_is_this_triggered()
 
 QString MainWindow::on_actionSave_triggered()
 {
-    QString txt = "Do you want to save xml file?";
+    QString txt = "Do you want to save XML file?";
 
     QString result;
     if (QMessageBox::Yes == QMessageBox::question(this, "Save?", txt, QMessageBox::Yes | QMessageBox::No)){
@@ -941,7 +941,7 @@ QString MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionOpen_triggered()
 {
     QString startPath = ui->lineEdit_sessionPath->text();
-    QString path = QFileDialog::getOpenFileName(this, "Browse to xml file", startPath, tr("xml files (*.xml)"));
+    QString path = QFileDialog::getOpenFileName(this, "Browse to XML file", startPath, tr("XML files (*.xml)"));
     if( !path.isEmpty() ){
         try{
             loadXML(path);

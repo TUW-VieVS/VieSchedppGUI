@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>9</number>
+       <number>13</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -5631,18 +5631,24 @@ If you only want to run simulations you can deselect this to avoid error message
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_41" stretch="0">
         <item>
-         <widget class="QGroupBox" name="groupBox_21">
+         <widget class="QTabWidget" name="tabWidget_21">
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Have a look at the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Station setup page&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;/&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and use the&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt; &amp;quot;what is this?&amp;quot; &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;mode there!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
-          <property name="title">
-           <string>baseline setup</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_88">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_baselineSetupWidget"/>
-           </item>
-          </layout>
+          <widget class="QWidget" name="tabWidget_21Page1" native="true">
+           <attribute name="icon">
+            <iconset resource="myresources.qrc">
+             <normaloff>:/icons/icons/baseline_p.png</normaloff>:/icons/icons/baseline_p.png</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>baseline setup</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_88">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_baselineSetupWidget"/>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>

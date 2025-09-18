@@ -600,7 +600,9 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
            }
 
            QDateTime tEnd = tStart.addSecs(int_dur);
-
+           if( tStart == sessionStart && tEnd == sessionEnd){
+               continue;
+           }
 
            if( (tStart >= sessionStart.addSecs(-buffer) && tStart <= sessionEnd.addSecs(buffer) )
                    || (tEnd >= sessionStart.addSecs(-buffer) && tEnd <= sessionEnd.addSecs(buffer)) ){
@@ -637,7 +639,7 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
 //    files << QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(year-2000);
 
     bool overYear = false;
-    QDateTime end = start.addMonths(1);
+    QDateTime end = start.addMonths(2);
     int year2 = end.date().year();
     QString yearStr2 = QString::number(year2);
     int doy2 = end.date().dayOfYear();
