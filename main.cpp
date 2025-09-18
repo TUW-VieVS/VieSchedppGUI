@@ -18,7 +18,7 @@
 
 #include "mainwindow.h"
 #include <QApplication>
-
+#include <QString>
 int main(int argc, char *argv[])
 {
     int result = 0;

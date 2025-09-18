@@ -6400,10 +6400,15 @@ void MainWindow::masterDownloadFinished(){
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/rx.cat";
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/source.cat.geodetic.good";
     files << "https://raw.githubusercontent.com/nvi-inc/sked_catalogs/main/tracks.cat";
-    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/antenna.cat.vgos";
-    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/equip.cat.vgos";
-    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/flux.cat.vgos";
-    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/VGOS_CATALOGS/procs.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/antenna.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/equip.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/flux.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/procs.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/source.cat.vgos";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/source.cat.icrf3def";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/VLBI_Cn.cat";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/VLBI_v.cat";
+    files << "https://raw.githubusercontent.com/TUW-VieVS/VieSchedpp_AUTO/refs/heads/master/CATALOGS_VieSchedpp/VLBI_zwd0.cat";
     files << "https://datacenter.iers.org/data/latestVersion/9_FINALS.ALL_IAU2000_V2013_019.txt";
 
     downloadManager->execute(files,"AUTO_DOWNLOAD_CATALOGS", statusBarLabel);
@@ -6972,4 +6977,93 @@ void MainWindow::on_spinBox_gentle_iteration_1_valueChanged(int arg1)
 
 
 
+
+
+void MainWindow::on_pushButton_sx_catalogs_clicked()
+{
+    ui->lineEdit_pathAntenna->setText("./AUTO_DOWNLOAD_CATALOGS/antenna.cat");
+    ui->lineEdit_pathEquip->setText("./AUTO_DOWNLOAD_CATALOGS/equip.cat");
+    ui->lineEdit_pathProcs->setText("");
+    ui->lineEdit_pathFlux->setText("./AUTO_DOWNLOAD_CATALOGS/flux.cat");
+    ui->lineEdit_pathSource->setText("./AUTO_DOWNLOAD_CATALOGS/source.cat");
+    ui->pushButton_stations->click();
+    ui->pushButton_reloadsources->click();
+}
+
+
+void MainWindow::on_pushButton_vgos_catalogs_clicked()
+{
+    ui->lineEdit_pathAntenna->setText("./AUTO_DOWNLOAD_CATALOGS/antenna.cat.vgos");
+    ui->lineEdit_pathEquip->setText("./AUTO_DOWNLOAD_CATALOGS/equip.cat.vgos");
+    ui->lineEdit_pathProcs->setText("./AUTO_DOWNLOAD_CATALOGS/procs.cat.vgos");
+    ui->lineEdit_pathFlux->setText("./AUTO_DOWNLOAD_CATALOGS/flux.cat.merged");
+    ui->lineEdit_pathSource->setText("./AUTO_DOWNLOAD_CATALOGS/source.cat.vgos");
+    ui->pushButton_stations->click();
+    ui->pushButton_reloadsources->click();
+}
+
+
+void MainWindow::on_pushButton_vgos_mode_clicked()
+{
+    ui->groupBox_modeCustom->setChecked(true);
+    int rows = ui->tableWidget_ModesPolicy->rowCount();
+
+    for (int row = 0; row < rows; ++row) {
+        QWidget *widget = ui->tableWidget_ModesPolicy->cellWidget(row, 4);
+        if (widget) {
+            QComboBox *combo = qobject_cast<QComboBox*>(widget);
+            if (combo) {
+                combo->setCurrentIndex(1);
+            }
+        }
+    }
+    for (int row = 0; row < rows; ++row) {
+        QWidget *widget = ui->tableWidget_ModesPolicy->cellWidget(row, 0); // first column = index 0
+        if (widget) {
+            QDoubleSpinBox *spin = qobject_cast<QDoubleSpinBox*>(widget);
+            if (spin) {
+                spin->setValue(15.0);
+            }
+        }
+    }
+
+    ui->radioButton_idleToObservingTime_no->click();
+
+
+    VieVS::ParameterSettings::ParametersStations sta;
+    sta.available = true;
+    sta.availableForFillinmode = true;
+    sta.maxScan = 30;
+    sta.minScan = 10;
+    sta.minSlewtime = 0;
+    sta.maxSlewtime = 600;
+    sta.maxSlewDistance = 175;
+    sta.minSlewDistance = 0;
+    sta.maxWait = 600;
+    sta.maxTotalObsTime = 999999;
+    sta.maxNumberOfScans = 9999;
+    sta.maxNumberOfScansDist = 9999;
+    sta.weight = 1;
+    sta.minElevation = 5;
+    sta.preob = 2;
+    sta.midob = 0;
+    sta.systemDelay = 2;
+    stationSetupWidget->addParameter("default", sta);
+
+
+    VieVS::ParameterSettings::ParametersSources src;
+    src.available = true;
+    src.availableForFillinmode = true;
+    src.minRepeat = 120;
+    src.minScan = 0;
+    src.maxScan = 9999;
+    src.weight = 1;
+    src.minFlux = 0.05;
+    src.maxNumberOfScans = 999;
+    src.minNumberOfSites = 3;
+    src.minElevation = 0;
+    src.minSunDistance = 4;
+    sourceSetupWidget->addParameter("default", src);
+
+}
 

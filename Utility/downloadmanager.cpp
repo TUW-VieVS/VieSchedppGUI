@@ -78,6 +78,10 @@ void DownloadManager::checkDownloads()
             if(f.isDir()){
                 continue;
             }
+            if(f.fileName() == "flux.cat.merged"){
+                continue;
+            }
+            QString name = f.fileName();
             QDateTime lastMod = f.lastModified();
             int sec = lastMod.secsTo(now);
             if( abs(sec) >3600){

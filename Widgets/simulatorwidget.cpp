@@ -529,3 +529,206 @@ void SimulatorWidget::on_pushButton_wnTable_clicked()
 
     d->show();
 }
+
+void SimulatorWidget::on_pushButton_Cn_clicked()
+{
+    int month = 5;
+
+    // 1. Uncheck first-level item at (0,0)
+    QTreeWidgetItem *firstItem = ui->treeWidget_simpara->topLevelItem(0);
+    if (firstItem) {
+        firstItem->setCheckState(0, Qt::Unchecked);
+    }
+
+    // 2. Collect station names from column 1 starting row 2
+    QStringList stationList;
+    int rowCount = ui->treeWidget_simpara->topLevelItemCount();
+    for (int i = 1; i < rowCount; ++i) {  // start from row 2
+        QTreeWidgetItem *item = ui->treeWidget_simpara->topLevelItem(i);
+        if (item) {
+            QString station = item->text(0);  // column 1
+            if (!station.isEmpty())
+                stationList << station;
+        }
+    }
+    QString warnings;
+    // 3. Parse catalog file
+    QFile file_Cn("./AUTO_DOWNLOAD_CATALOGS/VLBI_Cn.cat");
+    QMap<QString, QVector<double>> stationData_Cn;
+    if (!file_Cn.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        warnings += "Could not open VLBI_Cn.cat file!\n";
+    } else {
+        QTextStream in_Cn(&file_Cn);
+        while (!in_Cn.atEnd()) {
+            QString line = in_Cn.readLine().trimmed();
+            if (line.startsWith("*") || line.isEmpty())
+                continue;
+
+            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            if (parts.size() < 14)  // Name + ID + 12 months
+                continue;
+
+            QString stationName = parts[0];
+            QVector<double> values;
+            for (int m = 2; m < parts.size(); ++m) { // skip Name + ID
+                values.append(parts[m].toDouble());
+            }
+            stationData_Cn[stationName] = values;
+        }
+        file_Cn.close();
+    }
+
+
+
+    // 3. Parse catalog file
+    QFile file_v("./AUTO_DOWNLOAD_CATALOGS/VLBI_v.cat");
+    QMap<QString, QVector<double>> stationData_v;
+    if (!file_v.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        warnings += "Could not open VLBI_v.cat file!\n";
+    }else{
+        QTextStream in_v(&file_v);
+
+        while (!in_v.atEnd()) {
+            QString line = in_v.readLine().trimmed();
+            if (line.startsWith("*") || line.isEmpty())
+                continue;
+
+            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            if (parts.size() < 14)  // Name + ID + 12 months
+                continue;
+
+            QString stationName = parts[0];
+            QVector<double> values;
+            for (int m = 2; m < parts.size(); ++m) { // skip Name + ID
+                values.append(parts[m].toDouble());
+            }
+            stationData_v[stationName] = values;
+        }
+        file_v.close();
+    }
+
+    int monthIndex = month - 1;
+    // 4. Assign values into column 5 (index 4)
+    for (int i = 1; i < rowCount; ++i) {
+        QTreeWidgetItem *item = ui->treeWidget_simpara->topLevelItem(i);
+        if (!item) continue;
+
+        QString station = item->text(0);
+        double value_Cn = 1.8;  // default
+
+        if (stationData_Cn.contains(station)) {
+            QVector<double> values = stationData_Cn[station];
+            if (monthIndex >= 0 && monthIndex < values.size())
+                value_Cn = values[monthIndex];
+        }else{
+            warnings += "Missing Cn information for station " + station + "\n";
+        }
+
+        QWidget *widget_Cn = ui->treeWidget_simpara->itemWidget(item, 4); // column index 4
+        if (QDoubleSpinBox *spin_Cn = qobject_cast<QDoubleSpinBox*>(widget_Cn)) {
+            spin_Cn->setValue(value_Cn);
+        }
+
+        double value_v = 8;  // default
+        if (stationData_v.contains(station)) {
+            QVector<double> values = stationData_v[station];
+            if (monthIndex >= 0 && monthIndex < values.size())
+                value_v = values[monthIndex];
+        }else{
+            warnings += "Missing v information for station " + station + "\n";
+        }
+
+        QWidget *widget_v = ui->treeWidget_simpara->itemWidget(item, 8); // column index 4
+        if (QDoubleSpinBox *spin_v = qobject_cast<QDoubleSpinBox*>(widget_v)) {
+            spin_v->setValue(value_v);
+        }
+    }
+    if (!warnings.isEmpty()){
+        QMessageBox::warning(
+            this,
+            "Missing data",
+            warnings
+        );
+    }
+}
+
+
+void SimulatorWidget::on_pushButton_zwd_clicked()
+{
+    int month = 5;
+
+    // 1. Uncheck first-level item at (0,0)
+    QTreeWidgetItem *firstItem = ui->treeWidget_simpara->topLevelItem(0);
+    if (firstItem) {
+        firstItem->setCheckState(0, Qt::Unchecked);
+    }
+
+    // 2. Collect station names from column 1 starting row 2
+    QStringList stationList;
+    int rowCount = ui->treeWidget_simpara->topLevelItemCount();
+    for (int i = 1; i < rowCount; ++i) {  // start from row 2
+        QTreeWidgetItem *item = ui->treeWidget_simpara->topLevelItem(i);
+        if (item) {
+            QString station = item->text(0);  // column 1
+            if (!station.isEmpty())
+                stationList << station;
+        }
+    }
+    QString warnings;
+    // 3. Parse catalog file
+    QFile file_zwd("./AUTO_DOWNLOAD_CATALOGS/VLBI_zwd0.cat");
+    QMap<QString, QVector<double>> stationData_zwd;
+    if (!file_zwd.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        warnings += "Could not open VLBI_zwd0.cat file!\n";
+    } else {
+        QTextStream in_zwd(&file_zwd);
+        while (!in_zwd.atEnd()) {
+            QString line = in_zwd.readLine().trimmed();
+            if (line.startsWith("*") || line.isEmpty())
+                continue;
+
+            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            if (parts.size() < 14)  // Name + ID + 12 months
+                continue;
+
+            QString stationName = parts[0];
+            QVector<double> values;
+            for (int m = 2; m < parts.size(); ++m) { // skip Name + ID
+                values.append(parts[m].toDouble());
+            }
+            stationData_zwd[stationName] = values;
+        }
+        file_zwd.close();
+    }
+
+    int monthIndex = month - 1;
+    // 4. Assign values into column 5 (index 4)
+    for (int i = 1; i < rowCount; ++i) {
+        QTreeWidgetItem *item = ui->treeWidget_simpara->topLevelItem(i);
+        if (!item) continue;
+
+        QString station = item->text(0);
+        double value_zwd = 1.8;  // default
+
+        if (stationData_zwd.contains(station)) {
+            QVector<double> values = stationData_zwd[station];
+            if (monthIndex >= 0 && monthIndex < values.size())
+                value_zwd = values[monthIndex];
+        }else{
+            warnings += "Missing zwd information for station " + station + "\n";
+        }
+
+        QWidget *widget_zwd = ui->treeWidget_simpara->itemWidget(item, 10); // column index 4
+        if (QDoubleSpinBox *spin_zwd = qobject_cast<QDoubleSpinBox*>(widget_zwd)) {
+            spin_zwd->setValue(value_zwd);
+        }
+    }
+    if (!warnings.isEmpty()){
+        QMessageBox::warning(
+            this,
+            "Missing data",
+            warnings
+        );
+    }
+}
+

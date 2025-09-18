@@ -7,6 +7,9 @@
 #include <QStandardItemModel>
 #include <QTreeWidgetItem>
 #include <QDialog>
+#include <QFile>
+#include <QMessageBox>
+#include <QTextStream>
 #include <cmath>
 
 namespace Ui {
@@ -33,6 +36,10 @@ private slots:
     void toggleAll(QTreeWidgetItem *, int column);
 
     void on_pushButton_wnTable_clicked();
+
+    void on_pushButton_Cn_clicked();
+
+    void on_pushButton_zwd_clicked();
 
 private:
     bool block = false;

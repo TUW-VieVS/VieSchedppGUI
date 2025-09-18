@@ -549,6 +549,12 @@ private slots:
 
     void on_checkBox_autoDownload_toggled(bool checked);
 
+    void on_pushButton_sx_catalogs_clicked();
+
+    void on_pushButton_vgos_catalogs_clicked();
+
+    void on_pushButton_vgos_mode_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

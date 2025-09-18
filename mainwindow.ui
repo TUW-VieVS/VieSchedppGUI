@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>13</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -31,7 +31,7 @@
        <property name="statusTip">
         <string>welcome page</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,7,0">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,7,0">
         <property name="spacing">
          <number>10</number>
         </property>
@@ -170,6 +170,86 @@
          </layout>
         </item>
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_44">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_103">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Quick settings:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_sx_catalogs">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>S/X Catalogs</string>
+            </property>
+            <property name="icon">
+             <iconset resource="myresources.qrc">
+              <normaloff>:/icons/icons/document-import-2.png</normaloff>:/icons/icons/document-import-2.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_vgos_catalogs">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>VGOS Catalogs</string>
+            </property>
+            <property name="icon">
+             <iconset resource="myresources.qrc">
+              <normaloff>:/icons/icons/document-import-2.png</normaloff>:/icons/icons/document-import-2.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_vgos_mode">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>VGOS mode</string>
+            </property>
+            <property name="icon">
+             <iconset resource="myresources.qrc">
+              <normaloff>:/icons/icons/VieSchedppGUI_logo.png</normaloff>:/icons/icons/VieSchedppGUI_logo.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QTextBrowser" name="textBrowser">
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Congratulation!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You have successfully used the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;what is this?&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mode!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can access this mode by pressing the &lt;/span&gt;&lt;img src=&quot;:/icons/icons/help.png&quot; width=&quot;30&quot; height=&quot;30&quot;/&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; button or hitting the &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; key. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Some items of the GUI have additional information when clicking on them during &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;&amp;quot;what is this?&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; mode. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;In case one GUI element which is &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;unclear&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; has no information or is still unclear &lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;contact me&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and I'll add more information. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -189,8 +269,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;Please read the following &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;quick guideline&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;: &lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Reference:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;If you use our software and write a paper, it would be nice if you would cite us. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;Current reference: &lt;/span&gt;&lt;a href=&quot;https://iopscience.iop.org/article/10.1088/1538-3873/ab1820&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://iopscience.iop.org/article/10.1088/1538-3873/ab1820&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;If you use our software, please cite: &lt;/span&gt;&lt;a href=&quot;https://iopscience.iop.org/article/10.1088/1538-3873/ab1820&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;10.1088/1538-3873/ab1820.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;For more information look at our &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;reference page &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-sign-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Getting started: &lt;/span&gt;&lt;/p&gt;
@@ -203,7 +282,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;3. Choose your session &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;time&lt;/span&gt;&lt;img src=&quot;:/icons/icons/view-pim-calendar.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;station network&lt;/span&gt;&lt;img src=&quot;:/icons/icons/applications-internet-2.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;source list &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_list.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;4. Define your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;parameter&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; setup &lt;/span&gt;&lt;img src=&quot;:/icons/icons/station_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;img src=&quot;:/icons/icons/source_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;img src=&quot;:/icons/icons/baseline_p.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; (look at &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;FAQ&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; page &lt;/span&gt;&lt;img src=&quot;:/icons/icons/documentation.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; for further explanation)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;5. Define your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;weight factors &lt;/span&gt;&lt;img src=&quot;:/icons/icons/weight.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;output files&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, and select other desired features.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;6. Try out some of the advanced tools like applying some special &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;rules&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/system-run-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, the very useful &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi-scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, optimize your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; representation &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, add some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;optimization conditions&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/conditions.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; or try to fix some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;high impact&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; scans &lt;/span&gt;&lt;img src=&quot;:/icons/icons/emblem-important-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;6. Try out some of the advanced tools like applying some special &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;rules&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/system-run-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, the very useful &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;multi-scheduling&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/multi_sched.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, optimize your &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;sky-coverage&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; representation &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sky_coverage.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;, add some &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;optimization conditions&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/conditions.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;7. &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;simulate&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; your schedule using the simulation tool &lt;/span&gt;&lt;img src=&quot;:/icons/icons/sim.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and look at the expected &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;man formal errors&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;repeatabilities&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;8. click &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;run&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/arrow-right-3.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;The GUI will now create a &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;parameters.xml&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; file in the directory specified in &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt; font-weight:600;&quot;&gt;output files&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/icons/icons/document-export-4.png&quot; width=&quot;30&quot; height=&quot;30&quot; /&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:11pt;&quot;&gt;. All output files will be stored in this directory. You should also see a log file appearing. &lt;/span&gt;&lt;/p&gt;
@@ -7350,8 +7429,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>972</width>
-             <height>679</height>
+             <width>570</width>
+             <height>659</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
