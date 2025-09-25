@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <cmath>
+#include <QDateTimeEdit>
 
 namespace Ui {
 class SimulatorWidget;
@@ -21,7 +22,7 @@ class SimulatorWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SimulatorWidget(QStandardItemModel *model, QWidget *parent = nullptr);
+    explicit SimulatorWidget(QStandardItemModel *model, QDateTimeEdit *start, QWidget *parent = nullptr);
     ~SimulatorWidget();
     boost::property_tree::ptree toXML();
     void fromXML(const boost::property_tree::ptree &tree);
@@ -43,6 +44,7 @@ private slots:
 
 private:
     bool block = false;
+    QDateTimeEdit *start;
     Ui::SimulatorWidget *ui;
     QStandardItemModel *model_;
 };

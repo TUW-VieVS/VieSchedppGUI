@@ -1,8 +1,9 @@
 #include "simulatorwidget.h"
 #include "ui_simulatorwidget.h"
 
-SimulatorWidget::SimulatorWidget(QStandardItemModel *model, QWidget *parent) :
+SimulatorWidget::SimulatorWidget(QStandardItemModel *model, QDateTimeEdit *start, QWidget *parent) :
     QWidget(parent),
+    start{start},
     ui(new Ui::SimulatorWidget),
     model_{model}
 {
@@ -32,9 +33,11 @@ void SimulatorWidget::addStations(QStandardItem *dummy)
     if (block ){
         return;
     }
-    if(dummy != nullptr && dummy->column() != 0){
-        return;
-    }
+    //if(dummy != nullptr){
+    //    if(dummy->column() != 0){
+    //        return;
+    //    }
+    //}
     QStringList stations;
     stations << "__all__";
     for( int i = 0; i<model_->rowCount(); ++i){
@@ -532,7 +535,7 @@ void SimulatorWidget::on_pushButton_wnTable_clicked()
 
 void SimulatorWidget::on_pushButton_Cn_clicked()
 {
-    int month = 5;
+    int month = start->date().month();
 
     // 1. Uncheck first-level item at (0,0)
     QTreeWidgetItem *firstItem = ui->treeWidget_simpara->topLevelItem(0);
@@ -655,7 +658,7 @@ void SimulatorWidget::on_pushButton_Cn_clicked()
 
 void SimulatorWidget::on_pushButton_zwd_clicked()
 {
-    int month = 5;
+    int month = start->date().month();
 
     // 1. Uncheck first-level item at (0,0)
     QTreeWidgetItem *firstItem = ui->treeWidget_simpara->topLevelItem(0);

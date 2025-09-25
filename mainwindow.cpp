@@ -599,7 +599,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     readSkedCatalogs();
 
-    SimulatorWidget *simulator = new SimulatorWidget(selectedStationModel);
+    SimulatorWidget *simulator = new SimulatorWidget(selectedStationModel, ui->dateTimeEdit_sessionStart);
     simulator->setObjectName("Simulation_Widged");
     ui->tabWidget_simAna->addTab(simulator, "Simulation");
     connect(selectedStationModel, SIGNAL(itemChanged(QStandardItem *)), simulator, SLOT(addStations(QStandardItem *)));
@@ -2067,19 +2067,27 @@ void MainWindow::addModesPolicyTable(QString name){
     vsta->setSingleStep(.1);
     vsta->setValue(0);
     vsta->setEnabled(false);
-    connect(psta, QOverload<int>::of(&QComboBox::currentIndexChanged), [psta, bsta, vsta](){
+    connect(psta, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, psta, bsta, vsta](){
         if( psta->currentText() == "required" ){
             bsta->setEnabled(false);
             vsta->setEnabled(false);
+            ui->label_policy_text->setText("");
         }else{
             bsta->setEnabled(true);
             emit bsta->currentIndexChanged(bsta->currentIndex());
         }
     });
-    connect(bsta, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsta, vsta](){
+    connect(bsta, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, bsta, vsta](){
         if( bsta->currentText() == "internal model" || bsta->currentText() == "none" ){
             vsta->setEnabled(false);
             vsta->setValue(0.0);
+            ui->label_policy_text->setText(
+                        "Check <a href=\"https://doi.org/10.1186/s40623-025-02158-0\">"
+                        "Schartner et al., (2025)</a> for more information on \"internal\" model"
+            );
+            ui->label_policy_text->setTextFormat(Qt::RichText);
+            ui->label_policy_text->setTextInteractionFlags(Qt::TextBrowserInteraction);
+            ui->label_policy_text->setOpenExternalLinks(true);
         }else{
             vsta->setEnabled(true);
             if ( bsta->currentText() == "value" ){
@@ -2087,13 +2095,9 @@ void MainWindow::addModesPolicyTable(QString name){
             }else{
                 vsta->setValue(1.0);
             }
+            ui->label_policy_text->setText("");
         }
-
     });
-
-
-
-
 
 
     QComboBox *psrc = new QComboBox(this);
@@ -2112,19 +2116,27 @@ void MainWindow::addModesPolicyTable(QString name){
     vsrc->setSingleStep(.1);
     vsrc->setValue(0);
     vsrc->setEnabled(false);
-    connect(psrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [psrc, bsrc, vsrc](){
+    connect(psrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, psrc, bsrc, vsrc](){
         if( psrc->currentText() == "required" ){
             bsrc->setEnabled(false);
             vsrc->setEnabled(false);
+            ui->label_policy_text->setText("");
         }else{
             bsrc->setEnabled(true);
             emit bsrc->currentIndexChanged(bsrc->currentIndex());
         }
     });
-    connect(bsrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [bsrc, vsrc](){
+    connect(bsrc, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, bsrc, vsrc](){
         if( bsrc->currentText() == "internal model" || bsrc->currentText() == "none" ){
             vsrc->setEnabled(false);
             vsrc->setValue(0.0);
+            ui->label_policy_text->setText(
+                "Check <a href=\"https://doi.org/10.1186/s40623-025-02158-0\">"
+                "Schartner et al., (2025)</a> for more information on \"internal\" model"
+            );
+            ui->label_policy_text->setTextFormat(Qt::RichText);
+            ui->label_policy_text->setTextInteractionFlags(Qt::TextBrowserInteraction);
+            ui->label_policy_text->setOpenExternalLinks(true);
         }else{
             vsrc->setEnabled(true);
             if ( bsrc->currentText() == "value" ){
@@ -2132,6 +2144,7 @@ void MainWindow::addModesPolicyTable(QString name){
             }else{
                 vsrc->setValue(1.0);
             }
+            ui->label_policy_text->setText("");
         }
     });
 

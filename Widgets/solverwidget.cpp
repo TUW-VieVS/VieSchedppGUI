@@ -569,9 +569,9 @@ void SolverWidget::addStations(QStandardItem *dummy)
     if ( block ){
         return;
     }
-    if(dummy != nullptr && dummy->column() != 0){
-        return;
-    }
+    //if(dummy != nullptr && dummy->column() != 0){
+    //    return;
+    //}
     QStringList stations;
     stations << "__all__";
     for( int i = 0; i<station_model_->rowCount(); ++i){
