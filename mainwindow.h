@@ -555,6 +555,8 @@ private slots:
 
     void on_pushButton_vgos_mode_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;

@@ -7080,3 +7080,10 @@ void MainWindow::on_pushButton_vgos_mode_clicked()
 
 }
 
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString path = QDir("./AUTO_DOWNLOAD_CATALOGS/").absolutePath();
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+}
+
