@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1269,6 +1269,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>open location</string>
+            </property>
+            <property name="icon">
+             <iconset resource="myresources.qrc">
+              <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_howAreSkedCatalogsLinked">
             <property name="toolTip">
              <string> How are sked catalogs linked?</string>
@@ -1277,7 +1288,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <string> How are sked catalogs linked?</string>
             </property>
             <property name="text">
-             <string>catalogs?</string>
+             <string>catalog link info</string>
             </property>
             <property name="icon">
              <iconset resource="myresources.qrc">
@@ -1353,17 +1364,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </size>
             </property>
            </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="text">
-             <string>open location</string>
-            </property>
-            <property name="icon">
-             <iconset resource="myresources.qrc">
-              <normaloff>:/icons/icons/folder-open-5.png</normaloff>:/icons/icons/folder-open-5.png</iconset>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>
@@ -7484,8 +7484,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>570</width>
-             <height>659</height>
+             <width>972</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
