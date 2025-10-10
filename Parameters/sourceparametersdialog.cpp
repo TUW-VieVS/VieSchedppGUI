@@ -402,17 +402,17 @@ void sourceParametersDialog::changeParameters(VieVS::ParameterSettings::Paramete
 
 void sourceParametersDialog::on_lineEdit_ignoreStations_textChanged(const QString &arg1)
 {
-    stations_proxyIgnore->setFilterRegExp(arg1);
+    stations_proxyIgnore->setFilterRegularExpression(arg1);
 }
 
 void sourceParametersDialog::on_lineEdit_filterRequiredStations_textChanged(const QString &arg1)
 {
-    stations_proxyRequired->setFilterRegExp(arg1);
+    stations_proxyRequired->setFilterRegularExpression(arg1);
 }
 
 void sourceParametersDialog::on_lineEdit_filter_ignoreBaselines_textChanged(const QString &arg1)
 {
-    baseline_proxy->setFilterRegExp(arg1);
+    baseline_proxy->setFilterRegularExpression(arg1);
 }
 
 void sourceParametersDialog::on_listWidget_selectedIgnoreStations_clicked(const QModelIndex &index)

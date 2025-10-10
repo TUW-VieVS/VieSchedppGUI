@@ -34,8 +34,7 @@
 #include <QtWidgets/QRubberBand>
 #include <QValueAxis>
 #include <QApplication>
-
-QT_CHARTS_USE_NAMESPACE
+#include <QtCharts>
 
 //![1]
 class ChartView : public QChartView

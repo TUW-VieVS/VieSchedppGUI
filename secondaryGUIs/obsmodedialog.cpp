@@ -363,7 +363,7 @@ void ObsModeDialog::ereaseModelEntries(QTableView *view)
         QMessageBox::information(this,"no selection","Please select items which should be deleted in the list below first.");
     }else{
         for(int k = 0; k < (selected.size()/2); k++){
-            selected.swap(k,selected.size()-(1+k));
+            qSwap(selected[k], selected[selected.size() - (1 + k)]);
         }
 
         for(const auto &any : selected){

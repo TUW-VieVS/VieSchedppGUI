@@ -50,6 +50,8 @@ QList<qtUtil::ObsData> qtUtil::getObsData(unsigned long staid, const std::vector
     return list;
 }
 
+
+
 void qtUtil::worldMap(ChartView *worldmap)
 {
     QChart *worldChart = new QChart();
@@ -58,7 +60,12 @@ void qtUtil::worldMap(ChartView *worldmap)
     worldChart->setAcceptHoverEvents(true);
 
     QFile coastF(":/plotting/coast.txt");
-    if (coastF.open(QIODevice::ReadOnly)){
+    if (!coastF.exists()) {
+        qDebug() << "Resource coast.txt not found!";
+    }
+    if (!coastF.open(QIODevice::ReadOnly)) {
+        qDebug() << "Failed to open coast.txt resource!";
+    } else {
         QTextStream in(&coastF);
 
         int c = 0;
@@ -76,7 +83,7 @@ void qtUtil::worldMap(ChartView *worldmap)
                     worldChart->addSeries(coast);
                     break;
                 }
-                QStringList split = line.split(",",QString::SplitBehavior::SkipEmptyParts);
+                QStringList split = line.split(",",Qt::SkipEmptyParts);
                 QString lat = split[0];
                 QString lon = split[1];
                 coast->append(lon.toDouble(),lat.toDouble());
@@ -98,7 +105,6 @@ void qtUtil::worldMap(ChartView *worldmap)
     worldmap->setFrameStyle(QFrame::Raised | QFrame::StyledPanel);
     worldmap->setBackgroundBrush(QBrush(Qt::white));
     worldmap->setMouseTracking(true);
-
 }
 
 std::pair<double, double> qtUtil::radec2xy(double ra, double de)
@@ -576,7 +582,7 @@ QVector<std::pair<QString, std::pair<int,int>>> qtUtil::getDownTimes(QDateTime s
            if(line.isEmpty() || line.at(0) != '|'){
                continue;
            }
-           QStringList content = line.split('|', QString::SplitBehavior::SkipEmptyParts);
+           QStringList content = line.split('|', Qt::SkipEmptyParts);
 
            int tDoy = content[3].toInt();
            QDate tDate(year,1,1);
@@ -674,7 +680,7 @@ QVector<std::pair<int, QString> > qtUtil::getUpcomingSessions()
                if(line.isEmpty() || line.at(0) != '|'){
                    continue;
                }
-               QStringList content = line.split('|', QString::SplitBehavior::SkipEmptyParts);
+               QStringList content = line.split('|', Qt::SkipEmptyParts);
 
                int tdoy = content[3].toInt();
 

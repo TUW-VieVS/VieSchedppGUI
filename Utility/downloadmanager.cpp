@@ -13,7 +13,7 @@ void DownloadManager::execute(const QStringList &files, QString outputFolder, QL
 }
 
 
-DownloadManager::DownloadManager()
+DownloadManager::DownloadManager(QObject* parent): QObject(parent)
 {
 //#if VieSchedppOnline
     connect(&manager, SIGNAL(finished(QNetworkReply*)),
@@ -93,13 +93,31 @@ void DownloadManager::checkDownloads()
 
 void DownloadManager::doDownload(const QUrl &url)
 {
-//#if VieSchedppOnline
     QNetworkRequest request(url);
-    QNetworkReply *reply = manager.get(request);
+    request.setAttribute(static_cast<QNetworkRequest::Attribute>(7), true);
 
-    QString txt(reply->errorString());
+    QNetworkReply *reply = manager.get(request);
     currentDownloads.append(reply);
-//#endif
+
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        currentDownloads.removeOne(reply);
+
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            qDebug() << "Success:" << reply->url();
+        } else {
+            qDebug() << "Download failed:" << reply->url()
+            << "Error:" << reply->error()
+            << reply->errorString();
+        }
+
+        reply->deleteLater();
+    });
+
+    connect(reply, &QNetworkReply::sslErrors, this, [](const QList<QSslError> &errors){
+        for(const auto &e : errors)
+            qDebug() << "SSL error:" << e.errorString();
+    });
 }
 
 bool DownloadManager::saveToDisk(const QString &filename, QIODevice *data)

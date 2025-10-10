@@ -312,8 +312,8 @@ void SatelliteScheduling::worldmap_hovered(QPointF point, bool state)
                 }
             }
         }
-        QString lon = QString().sprintf("lon: %.2f [deg]\n", point.x());
-        QString lat = QString().sprintf("lat: %.2f [deg]", point.y());
+        QString lon = QString().asprintf("lon: %.2f [deg]\n", point.x());
+        QString lat = QString().asprintf("lat: %.2f [deg]", point.y());
 
         QString txt;
         txt.append(sta +"\n").append(lon).append(lat);
@@ -336,8 +336,8 @@ void SatelliteScheduling::sattrack_hovered(QPointF point,bool state)
         //QChart *chart = qobject_cast<QChart *>(obj->parent()->parent());
         QString name = series->name();
         name = name.remove(0, 3);
-        QString lon = QString().sprintf("lon: %.2f [deg]\n", point.x());
-        QString lat = QString().sprintf("lat: %.2f [deg]", point.y());
+        QString lon = QString().asprintf("lon: %.2f [deg]\n", point.x());
+        QString lat = QString().asprintf("lat: %.2f [deg]", point.y());
         QString txt;
         txt.append(name + "\n").append(lon).append(lat);
         worldMapCallout->setText(txt);
@@ -1588,7 +1588,7 @@ void SatelliteScheduling::createBarPlotStackedTableVisibility()
         BarSets.append(timesPerNSta);
 
         for(int j = 0; j<=nSta; j++) {
-           QString s = QString().sprintf("%.2f %", timesPerNSta.at(j)*100/totalObsTime);
+           QString s = QString().asprintf("%.2f %", timesPerNSta.at(j)*100/totalObsTime);
            QStandardItem * item = new QStandardItem(s);
            item->setTextAlignment(Qt::AlignLeft);
            list.append(item);

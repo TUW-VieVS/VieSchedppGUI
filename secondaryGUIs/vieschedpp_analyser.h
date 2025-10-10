@@ -28,6 +28,7 @@
 #include <QStandardItemModel>
 #include <QtMath>
 #include <QGraphicsLayout>
+#include <QtCharts>
 #include <QtCharts/QChartView>
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QValueAxis>
@@ -64,8 +65,6 @@
 #include "../VieSchedpp/Scheduler.h"
 #include "Utility/qtutil.h"
 #include "Utility/callout.h"
-
-QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
 class VieSchedpp_Analyser;

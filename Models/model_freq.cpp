@@ -108,7 +108,7 @@ QVariant Model_Freq::data(const QModelIndex &index, int role) const
     }
     if(role == Qt::TextAlignmentRole){
         if (col == 1 || col == 3){
-            return Qt::AlignRight + Qt::AlignVCenter;
+            return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
         if (col == 0 || col == 3){
             return Qt::AlignCenter;

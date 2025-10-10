@@ -71,9 +71,9 @@ void multiSchedEditDialogDouble::addSkyCoverageMember(int n)
     for(int i=0; i<n; ++i){
         QString txt;
         if(i<26){
-            txt = QString('A'+i);
+            txt = QString(QChar('A'+i));
         }else if(i < 2*26){
-            txt = QString('a'+(i-26));
+            txt = QString(QChar('a'+(i-26)));
         }else{
             txt = QString::number(i);
         }
@@ -201,7 +201,7 @@ void multiSchedEditDialogDouble::on_pushButton_delete_clicked()
 
 void multiSchedEditDialogDouble::on_lineEdit_filter_textChanged(const QString &arg1)
 {
-    proxy->setFilterRegExp(arg1);
+    proxy->setFilterRegularExpression(arg1);
 }
 
 void multiSchedEditDialogDouble::on_buttonBox_accepted()

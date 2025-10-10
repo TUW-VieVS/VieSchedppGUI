@@ -2608,7 +2608,7 @@ void MainWindow::readAllSkedObsModes()
             if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString obsModeName = split[0];
 
             modes << obsModeName;
@@ -3616,7 +3616,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString antennaName = split[1];
             antennaMap.insert(antennaName,split);
         }
@@ -3631,7 +3631,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString equipName = split[1] + "|" + split[0];
             equipName = equipName.toUpper();
             equipMap.insert(equipName,split);
@@ -3647,7 +3647,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString positionName = split[0];
             positionName = positionName;
             positionMap.insert(positionName,split);
@@ -4518,7 +4518,7 @@ void MainWindow::readSources()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString sourceName = split.at(0);
             QString rah = split.at(2);
             QString ram = split.at(3);
@@ -4648,7 +4648,7 @@ void MainWindow::readSatellites()
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), number);
                 double year = 2000+tmp[3].left(2).toDouble();
                 double doy = tmp[3].mid(2).toDouble();
-                QDateTime epoch(QDate(year,1,1));
+                QDateTime epoch(QDate(year, 1, 1), QTime(0, 0, 0));
                 double sec = doy*86400-86400;
                 epoch = epoch.addSecs(sec);
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), epoch.toString("yyyy.MM.dd HH:mm:ss"));
@@ -6300,59 +6300,28 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year);
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year);
+    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year);
+    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year);
 
     if (now.date().month() >=11){
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1);
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1);
+        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year+1);
+        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year+1);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
-    // new format (two digit year)
-    for (int i = 2023; i<year; ++i){
+    // new format (four digit year)
+    for (int i = 1979; i<year; ++i){
         QString x1 = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x1)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(i);
             files << z;
         }
+    }
+    for (int i = 1993; i<year; ++i){
         QString x2 = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x2)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
-            files << z;
-        }
-    }
-
-
-    // legacy SX - old format (two digit year)
-    for (int i = 79; i<=99; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
-            files << z;
-        }
-    }
-    for (int i = 00; i<=22; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
-            files << z;
-        }
-    }
-
-    // intensives - old format (two digit year)
-    for (int i = 92; i<=99; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
-            files << z;
-        }
-    }
-    for (int i = 00; i<=22; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(i);
             files << z;
         }
     }
@@ -6360,26 +6329,22 @@ void MainWindow::download(){
     // vgos - old format (two digit year)
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
 
 #if VieSchedppOnline
-
     downloadManager->execute(files,"AUTO_DOWNLOAD_MASTER", statusBarLabel);
-
     connect(downloadManager,SIGNAL(masterDownloadsFinished()),this,SLOT(masterDownloadFinished()));
     connect(downloadManager,SIGNAL(allDownloadsFinished()),this,SLOT(downloadFinished()));
 #endif
-
-
 }
 
 void MainWindow::masterDownloadFinished(){

@@ -331,7 +331,7 @@ void SkyCovWidget::skyCoverageTemplate()
 void SkyCovWidget::on_pushButton_skyCoverageTemplateRandom_clicked()
 {
     QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
+    // QRandomGenerator::global()->seed(time.msec());
     obsAz.clear();
     obsEl.clear();
     obsTime.clear();
@@ -339,16 +339,15 @@ void SkyCovWidget::on_pushButton_skyCoverageTemplateRandom_clicked()
     int nobs = ui->spinBox_skyCoverageTemplateRandomObservations->value() * (double)ui->influenceTimeSpinBox->value()/3600.;
 
     for(int i=0; i<nobs; ++i){
-        obsAz.append(qrand() % ((360 + 1) - 0) + 0);
+        obsAz.append(QRandomGenerator::global()->bounded(0, 361));
 
         double thisEl;
-        double rn = (double)(qrand() % ((100 + 1) - 0) + 0);
+        double rn = static_cast<double>(QRandomGenerator::global()->bounded(101.0f));
 
         if(rn<58){
-            thisEl = qrand() % ((40 + 1) - (int)minElevation) + (int)minElevation;
+            thisEl = QRandomGenerator::global()->bounded((int)minElevation, 41);
         }else{
-            double u = (double)(qrand() % ((1000 + 1) - 0) + 0);
-            u = u/1000;
+            double u = static_cast<double>(QRandomGenerator::global()->bounded(1.001f));  // [0,1)
             thisEl = 90-qSqrt((1-u)*(90-40)*(90-40));
         }
         obsEl.append(thisEl);
@@ -360,15 +359,15 @@ void SkyCovWidget::on_pushButton_skyCoverageTemplateRandom_clicked()
 void SkyCovWidget::on_influenceTimeSpinBox_valueChanged(int arg1)
 {
     QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
+    // QRandomGenerator::global()->seed(time.msec());
     obsTime.clear();
     double minElevation = 5;
     int nobs = ui->spinBox_skyCoverageTemplateRandomObservations->value() * (double)ui->influenceTimeSpinBox->value()/3600.;
 
     if(nobs>obsAz.count()){
         for(int i=obsAz.count(); i<nobs; ++i){
-            obsAz.append(qrand() % ((360 + 1) - 0) + 0);
-            obsEl.append(qrand() % ((90 + 1) - (int)minElevation) + (int)minElevation);
+            obsAz.append(QRandomGenerator::global()->bounded(0, 361));
+            obsEl.append(QRandomGenerator::global()->bounded((int)minElevation, 91));
         }
     }else{
         for(int i=nobs; i<obsAz.count(); ++i){

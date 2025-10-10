@@ -1233,10 +1233,10 @@ void VieSchedpp_Analyser::skyCoverageHovered(QPointF point, bool flag)
                 QString startTimeStr = qStartTime.toString("hh:mm:ss");
                 QString endTimeStr   = qEndTime.toString("hh:mm:ss");
                 QString timeStr = startTimeStr.append("-").append(endTimeStr).append("\n");
-                QString duration = QString().sprintf("duration: %d [sec]\n", endTime-startTime);
-                QString az = QString().sprintf("az: %.2f\n", point.x());
-                QString el = QString().sprintf("el: %.2f\n", 90-point.y());
-                QString nsta = QString().sprintf("#sta: %d", series->getNSta(idx));
+                QString duration = QString().asprintf("duration: %d [sec]\n", endTime-startTime);
+                QString az = QString().asprintf("az: %.2f\n", point.x());
+                QString el = QString().asprintf("el: %.2f\n", 90-point.y());
+                QString nsta = QString().asprintf("#sta: %d", series->getNSta(idx));
 
                 QString txt = source;
                 txt.append(timeStr).append(duration).append(az).append(el).append(nsta);
@@ -2179,7 +2179,7 @@ void VieSchedpp_Analyser::updateGeneralStatistics()
             }
         }
     }
-    qSort(values.begin(),values.end());
+    std::sort(values.begin(),values.end());
 
     if(values.empty()){
         return;
@@ -2731,8 +2731,8 @@ void VieSchedpp_Analyser::statisticsSourceHovered(QPointF point, bool state)
                     QString startTimeStr = qStartTime.toString("hh:mm:ss");
                     QString endTimeStr   = qEndTime.toString("hh:mm:ss");
                     QString timeStr = startTimeStr.append("-").append(endTimeStr).append("\n");
-                    QString el = QString().sprintf("elevation: %.2f [deg]\n", point.y());
-                    QString nsta = QString().sprintf("#sta: %d\n#obs: %d", series->getNSta(), series->getNObs());
+                    QString el = QString().asprintf("elevation: %.2f [deg]\n", point.y());
+                    QString nsta = QString().asprintf("#sta: %d\n#obs: %d", series->getNSta(), series->getNObs());
 
                     txt.append(as->name().mid(4)+"\n").append(timeStr).append(el).append(nsta);
 
@@ -2875,7 +2875,7 @@ void VieSchedpp_Analyser::stationsTimeBarHovered(bool state, int idx, QBarSet *s
             t->addTopLevelItem(new QTreeWidgetItem(QStringList() << "hours" << QString("%2").arg(hours,0,'f',2)));
         }
         QString duration;
-        duration.sprintf("%02d:%02d:%02d", n/3600, n/60%60, n%60);
+        duration.asprintf("%02d:%02d:%02d", n/3600, n/60%60, n%60);
         t->addTopLevelItem(new QTreeWidgetItem(QStringList() << "duration" << duration));
     }else{
         t->clear();
@@ -3519,7 +3519,7 @@ void VieSchedpp_Analyser::uvHovered(QPointF point, bool flag)
                 QString endTimeStr   = qEndTime.toString("hh:mm:ss");
                 QString timeStr = startTimeStr.append("-").append(endTimeStr).append("\n");
 
-                QString freq = QString().sprintf("freq: %.2f [MHz]\n", series->getFreq(idx)/1e6);
+                QString freq = QString().asprintf("freq: %.2f [MHz]\n", series->getFreq(idx)/1e6);
 
 
                 QString txt = bl;

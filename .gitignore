@@ -1,6 +1,7 @@
 #VieSchedppGUI specific
 *.pro.*
 *autosave*
+CMakeLists.txt.user*
 
 # Prerequisites
 *.d

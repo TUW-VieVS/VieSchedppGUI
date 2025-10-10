@@ -111,10 +111,10 @@ QVariant Model_If::data(const QModelIndex &index, int role) const
     }
     if(role == Qt::TextAlignmentRole){
         if (col == 3 || col == 5 || col == 6){
-            return Qt::AlignRight + Qt::AlignVCenter;
+            return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
         if (col == 2 || col == 4){
-            return Qt::AlignCenter;
+            return QVariant(Qt::AlignCenter);
         }
     }
 
