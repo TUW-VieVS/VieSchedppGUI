@@ -6,6 +6,7 @@
 #include <QDateTime>
 #include <QDoubleSpinBox>
 #include <QGroupBox>
+#include <qstandarditemmodel.h>
 
 #include "secondaryGUIs/multischededitdialogint.h"
 #include "secondaryGUIs/multischededitdialogdouble.h"

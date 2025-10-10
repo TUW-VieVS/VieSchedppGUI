@@ -103,12 +103,12 @@ std::string AddGroupDialog::getGroupName()
 
 void AddGroupDialog::on_lineEdit_allStationsFilter_textChanged(const QString &arg1)
 {
-    proxy->setFilterRegExp(arg1);
+    proxy->setFilterRegularExpression(arg1);
 }
 
 void AddGroupDialog::on_lineEdit_allStationsFilter_group_textChanged(const QString &arg1)
 {
-    proxy_group->setFilterRegExp(arg1);
+    proxy_group->setFilterRegularExpression(arg1);
 }
 
 
@@ -304,7 +304,7 @@ void AddGroupDialog::on_pushButton_parse_clicked()
     ui->lineEdit_allStationsFilter->setText("");
 
     QString text = ui->plainTextEdit_list->toPlainText();
-    QStringList list = text.split(QRegExp("[\\r\\n,;\\s]"),QString::SkipEmptyParts);
+    QStringList list = text.split(QRegularExpression("[\\r\\n,;\\s]"),Qt::SkipEmptyParts);
 
     QStringList notFound;
     QStringList alreadySelected;
@@ -458,7 +458,7 @@ void AddGroupDialog::on_listView_operation_clicked(const QModelIndex &index)
 void AddGroupDialog::updateList()
 {
     int n = ui->listWidget_selected->count();
-    ui->groupBox_3->setTitle(QString().sprintf("selected (%d)",n));
+    ui->groupBox_3->setTitle(QString("selected (%1)").arg(n));
 }
 
 

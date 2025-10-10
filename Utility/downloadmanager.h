@@ -8,6 +8,7 @@
 #include <cstdio>
 
 #include <QLabel>
+#include <QNetworkRequest>
 
 //#if VieSchedppOnline
 #include <QtNetwork>
@@ -24,7 +25,7 @@ class DownloadManager: public QObject
 //#endif // VieSchedppOnline
 
 public:
-    DownloadManager();
+    DownloadManager(QObject* parent = nullptr);
 
     void doDownload(const QUrl &url);
     bool saveToDisk(const QString &filename, QIODevice *data);

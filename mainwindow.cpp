@@ -2608,7 +2608,7 @@ void MainWindow::readAllSkedObsModes()
             if(line.isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString obsModeName = split[0];
 
             modes << obsModeName;
@@ -3616,7 +3616,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString antennaName = split[1];
             antennaMap.insert(antennaName,split);
         }
@@ -3631,7 +3631,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString equipName = split[1] + "|" + split[0];
             equipName = equipName.toUpper();
             equipMap.insert(equipName,split);
@@ -3647,7 +3647,7 @@ void MainWindow::readStations()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString positionName = split[0];
             positionName = positionName;
             positionMap.insert(positionName,split);
@@ -4518,7 +4518,7 @@ void MainWindow::readSources()
             if(line.trimmed().isEmpty() || line[0] == "*" || line[0] == "!" || line[0] == "&"){
                 continue;
             }
-            QStringList split = line.split(" ",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString sourceName = split.at(0);
             QString rah = split.at(2);
             QString ram = split.at(3);
@@ -4648,7 +4648,7 @@ void MainWindow::readSatellites()
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), number);
                 double year = 2000+tmp[3].left(2).toDouble();
                 double doy = tmp[3].mid(2).toDouble();
-                QDateTime epoch(QDate(year,1,1));
+                QDateTime epoch(QDate(year, 1, 1), QTime(0, 0, 0));
                 double sec = doy*86400-86400;
                 epoch = epoch.addSecs(sec);
                 allSatelliteModel->setData(allSatelliteModel->index(allSatelliteModel->rowCount()-1, c++), epoch.toString("yyyy.MM.dd HH:mm:ss"));

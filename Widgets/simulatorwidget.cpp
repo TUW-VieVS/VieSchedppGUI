@@ -567,7 +567,7 @@ void SimulatorWidget::on_pushButton_Cn_clicked()
             if (line.startsWith("*") || line.isEmpty())
                 continue;
 
-            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            QStringList parts = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
             if (parts.size() < 14)  // Name + ID + 12 months
                 continue;
 
@@ -596,7 +596,7 @@ void SimulatorWidget::on_pushButton_Cn_clicked()
             if (line.startsWith("*") || line.isEmpty())
                 continue;
 
-            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            QStringList parts = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
             if (parts.size() < 14)  // Name + ID + 12 months
                 continue;
 
@@ -690,7 +690,7 @@ void SimulatorWidget::on_pushButton_zwd_clicked()
             if (line.startsWith("*") || line.isEmpty())
                 continue;
 
-            QStringList parts = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+            QStringList parts = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
             if (parts.size() < 14)  // Name + ID + 12 months
                 continue;
 

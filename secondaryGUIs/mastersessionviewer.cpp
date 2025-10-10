@@ -56,7 +56,7 @@ void masterSessionViewer::updateTable()
 
     for(const auto &any : sessions_){
         int code = any.first;
-        QStringList content = any.second.split('|',QString::SplitBehavior::SkipEmptyParts);
+        QStringList content = any.second.split('|', Qt::SkipEmptyParts);
 
         QTableWidget *t;
         if(code == 0){

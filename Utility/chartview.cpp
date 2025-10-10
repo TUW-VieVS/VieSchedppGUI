@@ -162,9 +162,9 @@ void ChartView::mouseDoubleClickEvent(QMouseEvent *event)
 
 void ChartView::wheelEvent(QWheelEvent *event)
 {
-    if(event->delta()>0){
+    if (event->angleDelta().y() > 0) {
         chart()->zoomIn();
-    }else{
+    } else if (event->angleDelta().y() < 0) {
         chart()->zoomOut();
         checkZoom();
     }

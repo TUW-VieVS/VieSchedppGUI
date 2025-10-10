@@ -383,7 +383,7 @@ void stationParametersDialog::on_listView_ignoreSources_clicked(const QModelInde
 
 void stationParametersDialog::on_lineEdit_filter_textChanged(const QString &arg1)
 {
-    sources_proxy->setFilterRegExp(arg1);
+    sources_proxy->setFilterRegularExpression(arg1);
 }
 
 void stationParametersDialog::on_listWidget_selectedIgnoreSources_clicked(const QModelIndex &index)

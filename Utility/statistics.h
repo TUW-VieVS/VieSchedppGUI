@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QLineEdit>
 #include <QTextStream>
+#include <QtCharts>
 
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
@@ -21,8 +22,6 @@
 #include <QtCharts/QBarSet>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
-
-QT_CHARTS_USE_NAMESPACE
 
 class Statistics : public QWidget
 {

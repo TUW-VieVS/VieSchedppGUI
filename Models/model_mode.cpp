@@ -131,7 +131,7 @@ QVariant Model_Mode::data(const QModelIndex &index, int role) const
     }
     if(role == Qt::TextAlignmentRole){
         if (col > 0){
-            return Qt::AlignRight + Qt::AlignVCenter;
+            return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
     }
 

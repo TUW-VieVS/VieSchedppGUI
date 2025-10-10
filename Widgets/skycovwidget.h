@@ -103,9 +103,9 @@ public:
     }
     static QString int2qstr(int val){
         if(val<26){
-            return QString('A'+val);
+            return QString(QChar('A'+val));
         }else if(val < 2*26){
-            return QString('a'+(val-26));
+            return QString(QChar('a'+(val-26)));
         }else{
             return QString::number(val);
         }

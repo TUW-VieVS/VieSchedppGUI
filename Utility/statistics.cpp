@@ -123,7 +123,7 @@ void Statistics::reload()
 
         QTextStream in(&file);
         QString line = in.readLine();
-        QStringList names = line.split(",",QString::SplitBehavior::SkipEmptyParts);
+        QStringList names = line.split(",",Qt::SkipEmptyParts);
         bool lookForMultiSchedulingParameteres = false;
         for(const auto &name : names){
             lookupTable.append(name);
@@ -176,11 +176,11 @@ void Statistics::reload()
 
         QTextStream in(&file);
         QString line = in.readLine();
-        QStringList header = line.split(",",QString::SplitBehavior::SkipEmptyParts);
+        QStringList header = line.split(",",Qt::SkipEmptyParts);
 
         while (!in.atEnd()){
             QString line = in.readLine();
-            QStringList split = line.split(",",QString::SplitBehavior::SkipEmptyParts);
+            QStringList split = line.split(",",Qt::SkipEmptyParts);
 
             int version = split.at(0).toInt();
             statistics[folder][version] = QVector<double>(lookupTable.size(), 0.0);

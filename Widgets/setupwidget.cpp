@@ -1215,7 +1215,7 @@ int setupWidget::plotParameter(QChart* chart, QTreeWidgetItem *root, int level, 
     case 9: c = QColor(153,153,153); break;
     default:c = QColor(153,153,153);break;
     }
-    root->setBackgroundColor(5,c);
+    root->setBackground(5, QBrush(c));
     series->setPen(QPen(QBrush(c),10,Qt::SolidLine,Qt::RoundCap));
 
     QDateTime i = start;
@@ -1247,7 +1247,7 @@ int setupWidget::plotParameter(QChart* chart, QTreeWidgetItem *root, int level, 
         if(member == "__all__" || inMap || member == target){
             plot = plotParameter(chart,itm,level+1, plot+1,target);
         }else{
-            itm->setBackgroundColor(5,Qt::white);
+            itm->setBackground(5, QBrush(Qt::white));
             setBackgroundColorOfChildrenWhite(itm);
         }
     }
@@ -1300,7 +1300,7 @@ void setupWidget::setBackgroundColorOfChildrenWhite(QTreeWidgetItem *item)
 {
     for(int i=0; i<item->childCount(); ++i){
         auto itm = item->child(i);
-        itm->setBackgroundColor(5,Qt::white);
+        itm->setBackground(5, QBrush(Qt::white));
         setBackgroundColorOfChildrenWhite(itm);
     }
 }
