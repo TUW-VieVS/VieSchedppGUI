@@ -50,6 +50,8 @@ QList<qtUtil::ObsData> qtUtil::getObsData(unsigned long staid, const std::vector
     return list;
 }
 
+
+
 void qtUtil::worldMap(ChartView *worldmap)
 {
     QChart *worldChart = new QChart();

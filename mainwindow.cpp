@@ -6300,59 +6300,28 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year);
-    files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year);
+    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year);
+    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year);
 
     if (now.date().month() >=11){
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(year+1);
-        files << QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(year+1);
+        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year+1);
+        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year+1);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
 
-    // new format (two digit year)
-    for (int i = 2023; i<year; ++i){
+    // new format (four digit year)
+    for (int i = 1979; i<year; ++i){
         QString x1 = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x1)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(i);
             files << z;
         }
+    }
+    for (int i = 1993; i<year; ++i){
         QString x2 = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x2)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
-            files << z;
-        }
-    }
-
-
-    // legacy SX - old format (two digit year)
-    for (int i = 79; i<=99; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i);
-            files << z;
-        }
-    }
-    for (int i = 00; i<=22; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i,2,10,QChar('0'));
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1.txt").arg(i,2,10,QChar('0'));
-            files << z;
-        }
-    }
-
-    // intensives - old format (two digit year)
-    for (int i = 92; i<=99; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i);
-            files << z;
-        }
-    }
-    for (int i = 00; i<=22; ++i){
-        QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i,2,10,QChar('0'));
-        if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-int.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(i);
             files << z;
         }
     }
@@ -6360,26 +6329,22 @@ void MainWindow::download(){
     // vgos - old format (two digit year)
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("ftp://ivsopar.obspm.fr/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
 
 #if VieSchedppOnline
-
     downloadManager->execute(files,"AUTO_DOWNLOAD_MASTER", statusBarLabel);
-
     connect(downloadManager,SIGNAL(masterDownloadsFinished()),this,SLOT(masterDownloadFinished()));
     connect(downloadManager,SIGNAL(allDownloadsFinished()),this,SLOT(downloadFinished()));
 #endif
-
-
 }
 
 void MainWindow::masterDownloadFinished(){

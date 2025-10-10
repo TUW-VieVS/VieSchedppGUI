@@ -104,7 +104,7 @@ void DownloadManager::doDownload(const QUrl &url)
 
         if (reply->error() == QNetworkReply::NoError) {
             QByteArray data = reply->readAll();
-            qDebug() << "Success:" << reply->url() << "bytes:" << data.size();
+            qDebug() << "Success:" << reply->url();
         } else {
             qDebug() << "Download failed:" << reply->url()
             << "Error:" << reply->error()
