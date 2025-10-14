@@ -259,10 +259,10 @@ add_custom_command(
 )
 
 # Target to generate header
-add_custom_target(generate_git_version ALL
+add_custom_target(generate_version ALL
     DEPENDS "${GIT_VERSION_HEADER}"
 )
 
 # Make the main project depend on the generated file
-add_dependencies(${PROJECT_NAME} generate_git_version)
+add_dependencies(${PROJECT_NAME} generate_version)
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}/generated")
