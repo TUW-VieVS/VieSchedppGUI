@@ -254,7 +254,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_GUI_VERSION \"${VIESCHEDPP_GUI_VERSION}\"" >> "${GIT_VERSION_HEADER}"
     COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_VERSION \"${VIESCHEDPP_VERSION}\"" >> "${GIT_VERSION_HEADER}"
     DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/.git/HEAD" "../VieSchedpp/.git/HEAD"
-    COMMENT "Generating Git version header: GUI=${VIESCHEDPP_GUI_VERSION}, Scheduler=${VIESCHEDPP_VERSION}"
+    COMMENT "Generating VieSched++ GUI version header: GUI=${VIESCHEDPP_GUI_VERSION}, Scheduler=${VIESCHEDPP_VERSION}"
     VERBATIM
 )
 
