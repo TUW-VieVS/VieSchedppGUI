@@ -15,6 +15,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "version.h"
+#ifndef VIESCHEDPP_VERSION
+#define VIESCHEDPP_VERSION "unknown"
+#endif
+#ifndef VIESCHEDPP_GUI_VERSION
+#define VIESCHEDPP_GUI_VERSION "unknown"
+#endif
 
 #include "mainwindow.h"
 #include <QApplication>
@@ -200,7 +207,7 @@ int main(int argc, char *argv[])
 
     do{
         QApplication app(argc, argv);
-        QApplication::setStyle(new UnifiedCheckStyle("Fusion"));
+        QApplication::setStyle(new UnifiedCheckStyle("Basic"));
         setAlwaysLightPalette(app);
 
         MainWindow w;

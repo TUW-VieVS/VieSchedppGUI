@@ -162,7 +162,6 @@ if(LINK_BOOST)
     endif ()
     find_package(Boost CONFIG REQUIRED COMPONENTS log log_setup system)
     target_link_libraries(${PROJECT_NAME} PRIVATE Boost::log Boost::log_setup Boost::system)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE VIESCHEDPP_LOG)
 else()
     message(STATUS "Using Boost header-only mode")
     find_package(Boost CONFIG REQUIRED)
@@ -212,33 +211,58 @@ else()
     message(WARNING "SGP4 library not found! Please set PATH_SGP4.")
 endif()
 
-# ------------------------------------------------
-# Git commit hashes
-# ------------------------------------------------
+# ------------------------------------------------------------------------------
+# Generate Git version header for both GUI and Scheduler
+# ------------------------------------------------------------------------------
+
+set(GIT_VERSION_HEADER "${CMAKE_BINARY_DIR}/generated/version.h")
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/generated")
+
+# Get GUI version
 execute_process(
-    COMMAND git log -1 --date=format:%Y-%m-%d --format=v.%cd
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}" log -1 --date=format:%Y-%m-%d --format=v.%cd
+    OUTPUT_VARIABLE VIESCHEDPP_GUI_VERSION
     OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
 )
-if(GIT_COMMIT_HASH)
-    message(STATUS "VieSched++ GUI Git commit: ${GIT_COMMIT_HASH}")
+if(NOT VIESCHEDPP_GUI_VERSION)
+    set(VIESCHEDPP_GUI_VERSION "v.unknown")
+    message(WARNING "GIT not found -> no version could be extracted: GUI ${VIESCHEDPP_GUI_VERSION}")
 else()
-    message(WARNING "VieSched++ GUI Git commit not found")
+    message(STATUS "VieSched++ GUI version: ${VIESCHEDPP_GUI_VERSION}")
 endif()
 
+# Get Scheduler version (relative path to the scheduler project)
 execute_process(
-    COMMAND git -C ../VieSchedpp log -1 --date=format:%Y-%m-%d --format=v.%cd
-    OUTPUT_VARIABLE GIT_SCHEDULER_COMMIT_HASH
+    COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}/../VieSchedpp" log -1 --date=format:%Y-%m-%d --format=v.%cd
+    OUTPUT_VARIABLE VIESCHEDPP_VERSION
     OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
 )
-if(GIT_SCHEDULER_COMMIT_HASH)
-    message(STATUS "VieSched++ Scheduler Git commit: ${GIT_SCHEDULER_COMMIT_HASH}")
+if(NOT VIESCHEDPP_VERSION)
+    set(VIESCHEDPP_VERSION "v.unknown")
+    message(WARNING "GIT not found -> no version could be extracted: Scheduler ${VIESCHEDPP_VERSION}")
 else()
-    message(WARNING "VieSched++ Scheduler Git commit not found")
+    message(STATUS "VieSched++ Scheduler version: ${VIESCHEDPP_VERSION}")
 endif()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE
-    GIT_COMMIT_HASH="${GIT_COMMIT_HASH}"
-    GIT_SCHEDULER_COMMIT_HASH="${GIT_SCHEDULER_COMMIT_HASH}"
+# Create a custom command to write the header
+add_custom_command(
+    OUTPUT "${GIT_VERSION_HEADER}"
+    COMMAND ${CMAKE_COMMAND} -E echo "/* Auto-generated Git version header */" > "${GIT_VERSION_HEADER}"
+    COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" >> "${GIT_VERSION_HEADER}"
+    COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_GUI_VERSION \"${VIESCHEDPP_GUI_VERSION}\"" >> "${GIT_VERSION_HEADER}"
+    COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_VERSION \"${VIESCHEDPP_VERSION}\"" >> "${GIT_VERSION_HEADER}"
+    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/.git/HEAD" "../VieSchedpp/.git/HEAD"
+    COMMENT "Generating Git version header: GUI=${VIESCHEDPP_GUI_VERSION}, Scheduler=${VIESCHEDPP_VERSION}"
+    VERBATIM
 )
+
+# Target to generate header
+add_custom_target(generate_git_version ALL
+    DEPENDS "${GIT_VERSION_HEADER}"
+)
+
+# Make the main project depend on the generated file
+add_dependencies(${PROJECT_NAME} generate_git_version)
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}/generated")

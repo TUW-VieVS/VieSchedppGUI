@@ -58,14 +58,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setApplicationName("VieSched++ GUI");
-    QCoreApplication::setApplicationVersion(GIT_COMMIT_HASH);
+    QCoreApplication::setApplicationVersion(VIESCHEDPP_GUI_VERSION);
 
     QSettings settings("TU Wien","VieSched++ GUI");
     restoreGeometry(settings.value("myWidget/geometry").toByteArray());
     restoreState(settings.value("myWidget/windowState").toByteArray());
 
-    ui->lineEdit_gui_version->setText(GIT_COMMIT_HASH);
-    ui->lineEdit_scheduler_version->setText(GIT_SCHEDULER_COMMIT_HASH);
+    ui->lineEdit_gui_version->setText(VIESCHEDPP_VERSION);
+    ui->lineEdit_scheduler_version->setText(VIESCHEDPP_GUI_VERSION);
 
     QCoreApplication::setOrganizationName("TU Wien");
     QCoreApplication::setOrganizationDomain("http://hg.geo.tuwien.ac.at/");
