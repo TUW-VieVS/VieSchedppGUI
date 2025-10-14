@@ -149,23 +149,34 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 # ------------------------------------------------
 # BOOST
 # ------------------------------------------------
-message(STATUS "Using Boost header-only mode")
+option(LINK_BOOST "Link against Boost libraries" ON)
 set(PATH_BOOST_ROOT "" CACHE PATH "Optional path to Boost installation")
-if(PATH_BOOST_ROOT)
-    set(Boost_ROOT "${PATH_BOOST_ROOT}")
-    set(BOOST_INCLUDEDIR "${PATH_BOOST_ROOT}/include")
-    message(STATUS "Using Boost from custom path: ${PATH_BOOST_ROOT}")
+if(LINK_BOOST)
+    message(STATUS "Linking against Boost libraries")
+    # If user provided a custom Boost path, set the relevant variables
+    if (PATH_BOOST_ROOT)
+        set(Boost_ROOT "${PATH_BOOST_ROOT}")
+        set(BOOST_INCLUDEDIR "${PATH_BOOST_ROOT}/include")
+        set(BOOST_LIBRARYDIR "${PATH_BOOST_ROOT}/lib")
+        message(STATUS "Using Boost from custom path: ${PATH_BOOST_ROOT}")
+    endif ()
+    find_package(Boost CONFIG REQUIRED COMPONENTS log log_setup system)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Boost::log Boost::log_setup Boost::system)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE VIESCHEDPP_LOG)
+else()
+    message(STATUS "Using Boost header-only mode")
+    find_package(Boost CONFIG REQUIRED)
 endif()
-find_package(Boost CONFIG REQUIRED)
+
 if (Boost_FOUND)
     message(STATUS "Found Boost: ${Boost_VERSION}")
     message(STATUS "Boost include dirs: ${Boost_INCLUDE_DIRS}")
-    if(Boost_LIBRARIES)
+    if (Boost_LIBRARIES)
         message(STATUS "Boost libraries: ${Boost_LIBRARIES}")
-    endif()
-else()
+    endif ()
+else ()
     message(FATAL_ERROR "Boost not found!")
-endif()
+endif ()
 
 # ------------------------------------------------------------------------------
 # SOFA
