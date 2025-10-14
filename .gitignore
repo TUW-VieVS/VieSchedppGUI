@@ -2,6 +2,11 @@
 *.pro.*
 *autosave*
 CMakeLists.txt.user*
+*.cpp_
+*.h_
+*.ui_
+build/
+.qtc_clangd/
 
 # Prerequisites
 *.d
