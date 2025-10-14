@@ -495,7 +495,10 @@ void VieSchedpp_Analyser::setSkyCoverageLayout(int rows, int columns)
             layout->addWidget(chartView);
 
             c1->setCurrentIndex(counter);
-            connect(c1,SIGNAL(currentIndexChanged(QString)), this, SLOT(updateSkyCoverage(QString)));
+            connect(c1, &QComboBox::currentIndexChanged, this, [this, c1, counter](int idx){
+                QString name = c1->currentText();  // Get the currently selected text
+                updateSkyCoverage(counter, name);      // Call your function
+            });
 
             groupBox->setLayout(layout);
 
@@ -3294,8 +3297,17 @@ void VieSchedpp_Analyser::setUVCoverageLayout(int rows, int columns)
             layout->addWidget(chartView);
 
             c1->setCurrentIndex(counter);
-            connect(c1,SIGNAL(currentIndexChanged(QString)), this, SLOT(updateUVCoverage(QString)));
-            connect(c2,SIGNAL(currentIndexChanged(QString)), this, SLOT(updateUVCoverage_band(QString)));
+
+            auto updateFunc = [this, c1, c2, counter]() {
+                int idx = counter;           // or some other index logic
+                QString source = c1->currentText();
+                QString band = c2->currentText();
+                updateUVCoverage(idx, source, band);
+            };
+
+            // Connect both comboboxes to the same lambda
+            connect(c1, QOverload<int>::of(&QComboBox::currentIndexChanged), this, updateFunc);
+            connect(c2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, updateFunc);
 
             groupBox->setLayout(layout);
 

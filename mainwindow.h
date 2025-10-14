@@ -372,7 +372,7 @@ private slots:
 
     void on_pushButton_readSkdFile_read_clicked();
 
-    void on_actionLog_parser_triggered();
+    // void on_actionLog_parser_triggered();
 
     void on_actionSkd_Parser_triggered();
 
@@ -382,9 +382,9 @@ private slots:
 
     void on_pushButton_sessionAnalyser_clicked();
 
-    void on_comboBox_log_file_currentIndexChanged(const QString &arg1);
+    // void on_comboBox_log_file_currentIndexChanged(const QString &arg1);
 
-    void on_comboBox_log_console_currentIndexChanged(const QString &arg1);
+    // void on_comboBox_log_console_currentIndexChanged(const QString &arg1);
 
     void on_pushButton_stations_clicked();
 
@@ -604,7 +604,7 @@ private:
     Callout *worldMapCallout;
     Callout *skyMapCallout;
 
-    QSignalMapper *deleteModeMapper;
+    //QSignalMapper *deleteModeMapper;
 
     std::map<std::string, std::vector<std::string>> *groupSta = new std::map<std::string, std::vector<std::string>>();
     std::map<std::string, std::vector<std::string>> *groupSrc = new std::map<std::string, std::vector<std::string>>();

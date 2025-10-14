@@ -289,7 +289,7 @@ void Statistics::reload()
     for(const auto &any : general){
 
         gen->addChild(new QTreeWidgetItem(QStringList() << any));
-        if(any == "#scans" || any == "#observations"){
+        if(any == "#scans" || any == "#observations" || any == "#sources"){
             gen->child(gen->childCount()-1)->setCheckState(0,Qt::Checked);
         }else{
             gen->child(gen->childCount()-1)->setCheckState(0,Qt::Unchecked);
@@ -1830,21 +1830,21 @@ QBarSet *Statistics::statisticsBarSet(int idx, QString name)
             }
         }
     }
+    if (!v.empty()){
+        if(removeMinimum->isChecked()){
+            double min = *std::min_element(v.begin(), v.end());
+            for(int i=0; i<v.count(); ++i){
+                v[i] -= min;
+            }
+        }
 
-    if(removeMinimum->isChecked()){
-        double min = *std::min_element(v.begin(), v.end());
-        for(int i=0; i<v.count(); ++i){
-            v[i] -= min;
+        if(relative->isChecked()){
+            double max = *std::max_element(v.begin(), v.end());
+            for(int i=0; i<v.count(); ++i){
+                v[i] /= max;
+            }
         }
     }
-
-    if(relative->isChecked()){
-        double max = *std::max_element(v.begin(), v.end());
-        for(int i=0; i<v.count(); ++i){
-            v[i] /= max;
-        }
-    }
-
     QBarSet *set = new QBarSet(name);
     for(int i=0; i<v.count(); ++i){
         *set << v.at(i);

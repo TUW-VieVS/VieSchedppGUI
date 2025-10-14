@@ -319,17 +319,6 @@ void CalibratorBlockWidget::on_spinBox_NCalibrationBlocks_valueChanged(int row)
     }
 }
 
-void CalibratorBlockWidget::on_pushButton_tryToIncludeAllStations_toggled(bool checked)
-{
-    QString txt;
-    if (checked){
-        txt = "max scans";
-    }else{
-        txt = "scans";
-    }
-    ui->tableWidget_calibrationBlock->setHorizontalHeaderItem(2, new QTableWidgetItem(txt));
-}
-
 void CalibratorBlockWidget::update()
 {
     on_spinBox_NCalibrationBlocks_valueChanged(ui->spinBox_NCalibrationBlocks->value());
@@ -468,7 +457,7 @@ void CalibratorBlockWidget::on_checkBox_tryToIncludeAllStations_toggled(bool che
     }
 
     ui->tableWidget_calibrationBlock->horizontalHeaderItem(2)->setText(txt);
-    ui->label_127->setText(txt + " per block");
+    ui->label_127->setText(txt + " per block");    
 }
 
 

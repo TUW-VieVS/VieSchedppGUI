@@ -470,7 +470,7 @@ void MulitSchedulingWidget::on_comboBox_jobSchedule_currentTextChanged(const QSt
     }
 }
 
-void MulitSchedulingWidget::on_comboBox_multiSched_maxNumber_currentIndexChanged(const QString &arg1)
+void MulitSchedulingWidget::on_comboBox_multiSched_maxNumber_currentTextChanged(const QString &arg1)
 {
     if(arg1 == "all"){
         ui->spinBox_multiSched_maxNumber->setEnabled(false);
@@ -481,11 +481,11 @@ void MulitSchedulingWidget::on_comboBox_multiSched_maxNumber_currentIndexChanged
         ui->spinBox_multiSched_maxNumber->setEnabled(true);
         ui->comboBox_multiSched_seed->setEnabled(true);
         ui->label_multiSched_seed->setEnabled(true);
-        on_comboBox_multiSched_seed_currentIndexChanged(ui->comboBox_multiSched_seed->currentText());
+        on_comboBox_multiSched_seed_currentTextChanged(ui->comboBox_multiSched_seed->currentText());
     }
 }
 
-void MulitSchedulingWidget::on_comboBox_multiSched_seed_currentIndexChanged(const QString &arg1)
+void MulitSchedulingWidget::on_comboBox_multiSched_seed_currentTextChanged(const QString &arg1)
 {
     if(arg1 == "random"){
         ui->spinBox_multiSched_seed->setEnabled(false);
@@ -1331,3 +1331,5 @@ void MulitSchedulingWidget::on_groupBox_ms_gen_clicked(bool checked)
         }
     }
 }
+
+

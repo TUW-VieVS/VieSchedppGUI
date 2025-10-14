@@ -415,8 +415,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_idleToObserving_stations->setModel(allStationPlusGroupModel);
     connect(ui->pushButton_idleToObserving_addStationGroup, SIGNAL(clicked(bool)), this, SLOT(addGroupStation()));
 
-    deleteModeMapper = new QSignalMapper(this);
-    connect (deleteModeMapper, SIGNAL(mapped(QString)), this, SLOT(deleteModesCustomLine(QString))) ;
+    // deleteModeMapper = new QSignalMapper(this);
+    // connect (deleteModeMapper, SIGNAL(mapped(QString)), this, SLOT(deleteModesCustomLine(QString))) ;
 
 
     ui->comboBox_setupSEFD_member->setModel(selectedStationModel);
@@ -890,10 +890,12 @@ void MainWindow::on_actionSkd_Parser_triggered()
     ui->main_stacked->setCurrentIndex(19);
 }
 
+/*
 void MainWindow::on_actionLog_parser_triggered()
 {
     ui->main_stacked->setCurrentIndex(20);
 }
+*/
 
 void MainWindow::on_actionFAQ_triggered()
 {
@@ -2227,8 +2229,12 @@ void MainWindow::addModesCustomTable(QString name, double freq, int nChannel){
 
     QPushButton *d = new QPushButton("delete",this);
     d->setIcon(QIcon(":/icons/icons/edit-delete-6.png"));
-    connect(d,SIGNAL(clicked(bool)),deleteModeMapper,SLOT(map()));
-    deleteModeMapper->setMapping(d,name);
+    connect(d, &QPushButton::clicked, this, [this, name]() {
+        deleteModesCustomLine(name);  // or whatever identifier
+    });
+
+    // connect(d,SIGNAL(clicked(bool)),deleteModeMapper,SLOT(map()));
+    // deleteModeMapper->setMapping(d,name);
 
     ui->tableWidget_modeCustonBand->setCellWidget(ui->tableWidget_modeCustonBand->rowCount()-1,0,freqSB);
     ui->tableWidget_modeCustonBand->setCellWidget(ui->tableWidget_modeCustonBand->rowCount()-1,1,nChannelSB);
@@ -3424,6 +3430,7 @@ void MainWindow::on_experimentNameLineEdit_textChanged(const QString &arg1)
     }
 }
 
+/*
 void MainWindow::on_comboBox_log_file_currentIndexChanged(const QString &arg1)
 {
     if(arg1 == "trace" || arg1 == "debug"){
@@ -3449,6 +3456,7 @@ void MainWindow::on_comboBox_log_console_currentIndexChanged(const QString &arg1
         }
     }
 }
+*/
 
 // ########################################### SETUP ###########################################
 

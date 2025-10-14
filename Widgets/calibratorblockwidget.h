@@ -20,8 +20,6 @@ private slots:
 
     void on_spinBox_NCalibrationBlocks_valueChanged(int arg1);
 
-    void on_pushButton_tryToIncludeAllStations_toggled(bool checked);
-
     void on_pushButton_save_advanced_clicked();
 
     void on_pushButton_save_general_clicked();
