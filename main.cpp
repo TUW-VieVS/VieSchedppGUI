@@ -38,6 +38,7 @@
 #include <QPainter>
 #include <QStyleOption>
 
+
 class UnifiedCheckStyle : public QProxyStyle {
 public:
     using QProxyStyle::QProxyStyle;
@@ -79,6 +80,11 @@ private:
     void drawCheckBox(const QStyleOption *option, QPainter *painter) const
     {
         QRect r = option->rect.adjusted(2, 2, -2, -2);
+
+        // Force square
+        int size = qMax(r.width(), r.height());
+        r.setWidth(size);
+        r.setHeight(size);
 
         // Determine base colors and pen width
         bool enabled = option->state & State_Enabled;
@@ -132,6 +138,11 @@ private:
     void drawRadioButton(const QStyleOption *option, QPainter *painter) const
     {
         QRect r = option->rect.adjusted(2, 2, -2, -2);
+
+        // Force square
+        int size = qMax(r.width(), r.height());
+        r.setWidth(size);
+        r.setHeight(size);
 
         bool enabled = option->state & State_Enabled;
         QColor borderColor = enabled ? Qt::black : QColor(160, 160, 160);
@@ -198,6 +209,41 @@ void setAlwaysLightPalette(QApplication &app)
 #endif
 
     app.setPalette(lightPalette);
+
+    app.setStyleSheet(R"(
+        QWidget {
+            background-color: #f8f8f8;
+            color: #000000;
+            selection-background-color: #0078d7;
+            selection-color: #ffffff;
+        }
+
+        QFrame:not(QLabel),
+        QAbstractScrollArea,
+        QTableView,
+        QTreeView,
+        QListView {
+            background-color: #ffffff;
+            border: 1px solid #d0d0d0;
+            alternate-background-color: #f2f2f2;
+        }
+
+        QGroupBox {
+            border: 1px solid #c0c0c0;
+            border-radius: 6px;
+            margin-top: 22px;
+            background-color: #fafafa;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            left: -4px;
+            padding: 0 4px;
+            background-color: transparent;
+            color: #000000;
+            font-weight: 500;
+        }
+        )");
 }
 
 
@@ -207,11 +253,12 @@ int main(int argc, char *argv[])
 
     do{
         QApplication app(argc, argv);
-        QApplication::setStyle(new UnifiedCheckStyle("Basic"));
+        QApplication::setStyle(new UnifiedCheckStyle("Fusion"));
         setAlwaysLightPalette(app);
 
         MainWindow w;
         w.show();
+
         result = app.exec();
     }while(result == 1000);
 
