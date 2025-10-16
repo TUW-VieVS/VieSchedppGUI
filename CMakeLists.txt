@@ -11,6 +11,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "CMake version: ${CMAKE_VERSION}")
+message(STATUS "CMake generator: ${CMAKE_GENERATOR}")
+message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 # ------------------------------------------------
 # OpenMP
@@ -216,49 +219,88 @@ else()
     message(WARNING "SGP4 library not found! Please set PATH_SGP4.")
 endif()
 
-# ------------------------------------------------------------------------------
-# Generate Git version header for both GUI and Scheduler
-# ------------------------------------------------------------------------------
+# ===============================
+# Generate version.h for VieSched++ GUI
+# ===============================
 
 set(GIT_VERSION_HEADER "${CMAKE_BINARY_DIR}/generated/version.h")
 file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/generated")
 
-# Get GUI version
-execute_process(
-    COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}" log -1 --date=format:%Y-%m-%d --format=v.%cd
-    OUTPUT_VARIABLE VIESCHEDPP_GUI_VERSION
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    ERROR_QUIET
-)
-if(NOT VIESCHEDPP_GUI_VERSION)
-    set(VIESCHEDPP_GUI_VERSION "v.unknown")
+# ---------------------------------------------
+# Function to safely get the latest commit date
+# ---------------------------------------------
+function(get_git_version repo_path output_var)
+    find_program(GIT_EXECUTABLE git)
+    if(GIT_EXECUTABLE AND EXISTS "${repo_path}/.git")
+        execute_process(
+            COMMAND "${GIT_EXECUTABLE}" -C "${repo_path}" log -1 --date=format:%Y-%m-%d --format=v.%cd
+            OUTPUT_VARIABLE _git_version
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET
+        )
+        if(NOT _git_version)
+            set(_git_version "v.unknown")
+        endif()
+    else()
+        set(_git_version "v.unknown")
+    endif()
+    set(${output_var} "${_git_version}" PARENT_SCOPE)
+endfunction()
+
+# ---------------------------------------------
+# Get versions for GUI and Scheduler
+# ---------------------------------------------
+get_git_version("${CMAKE_CURRENT_SOURCE_DIR}" VIESCHEDPP_GUI_VERSION)
+get_git_version("${CMAKE_CURRENT_SOURCE_DIR}/../VieSchedpp" VIESCHEDPP_VERSION)
+
+if(VIESCHEDPP_GUI_VERSION STREQUAL "v.unknown")
     message(WARNING "GIT not found -> no version could be extracted: GUI ${VIESCHEDPP_GUI_VERSION}")
 else()
     message(STATUS "VieSched++ GUI version: ${VIESCHEDPP_GUI_VERSION}")
 endif()
 
-# Get Scheduler version (relative path to the scheduler project)
-execute_process(
-    COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}/../VieSchedpp" log -1 --date=format:%Y-%m-%d --format=v.%cd
-    OUTPUT_VARIABLE VIESCHEDPP_VERSION
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    ERROR_QUIET
-)
-if(NOT VIESCHEDPP_VERSION)
-    set(VIESCHEDPP_VERSION "v.unknown")
+if(VIESCHEDPP_VERSION STREQUAL "v.unknown")
     message(WARNING "GIT not found -> no version could be extracted: Scheduler ${VIESCHEDPP_VERSION}")
 else()
     message(STATUS "VieSched++ Scheduler version: ${VIESCHEDPP_VERSION}")
 endif()
 
+# ---------------------------------------------
+# Determine Git dependency files for both repos
+# ---------------------------------------------
+function(get_git_dependency repo_path output_var)
+    find_program(GIT_EXECUTABLE git)
+    if(GIT_EXECUTABLE AND EXISTS "${repo_path}/.git")
+        execute_process(
+            COMMAND "${GIT_EXECUTABLE}" -C "${repo_path}" rev-parse --symbolic-full-name HEAD
+            OUTPUT_VARIABLE _git_ref
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET
+        )
+        set(_git_dep "${repo_path}/.git/HEAD")
+        if(EXISTS "${repo_path}/.git/${_git_ref}")
+            set(_git_dep "${repo_path}/.git/${_git_ref}")
+        endif()
+    else()
+        # No Git present
+        set(_git_dep "")
+    endif()
+    set(${output_var} "${_git_dep}" PARENT_SCOPE)
+endfunction()
+
+get_git_dependency("${CMAKE_CURRENT_SOURCE_DIR}" GIT_DEP_GUI)
+get_git_dependency("${CMAKE_CURRENT_SOURCE_DIR}/../VieSchedpp" GIT_DEP_SCHEDULER)
+
+# ---------------------------------------------
 # Create a custom command to write the header
+# ---------------------------------------------
 add_custom_command(
     OUTPUT "${GIT_VERSION_HEADER}"
     COMMAND ${CMAKE_COMMAND} -E echo "/* Auto-generated Git version header */" > "${GIT_VERSION_HEADER}"
     COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" >> "${GIT_VERSION_HEADER}"
     COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_GUI_VERSION \"${VIESCHEDPP_GUI_VERSION}\"" >> "${GIT_VERSION_HEADER}"
     COMMAND ${CMAKE_COMMAND} -E echo "#define VIESCHEDPP_VERSION \"${VIESCHEDPP_VERSION}\"" >> "${GIT_VERSION_HEADER}"
-    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/.git/HEAD" "../VieSchedpp/.git/HEAD"
+    DEPENDS ${GIT_DEP_GUI} ${GIT_DEP_SCHEDULER}
     COMMENT "Generating VieSched++ GUI version header: GUI=${VIESCHEDPP_GUI_VERSION}, Scheduler=${VIESCHEDPP_VERSION}"
     VERBATIM
 )
