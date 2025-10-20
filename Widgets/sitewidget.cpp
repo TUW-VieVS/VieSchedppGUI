@@ -8,6 +8,7 @@ SiteWidget::SiteWidget(QStandardItemModel *stations, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableWidget_sites->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    updateCounter();
 }
 
 SiteWidget::~SiteWidget()
@@ -70,7 +71,6 @@ void SiteWidget::updateCounter()
         int id = sp->value();
         int val = counter[id];
 
-        QPalette pal = sp->palette();
         if( val > 1 ){
             int color;
             if ( id2color.find(id) != id2color.end()){
@@ -79,13 +79,15 @@ void SiteWidget::updateCounter()
                 color = icolor;
                 id2color[id] = color;
                 icolor += 1;
-                icolor = (icolor + 1) % 10;
+                icolor %= 10;
             }
-            pal.setColor(sp->backgroundRole(), colorPalette[color]);
+            sp->setProperty("highlightIndex", color);
         }else{
-            pal.setColor(sp->backgroundRole(), Qt::white);
+            sp->setProperty("highlightIndex", -1);
         }
-        sp->setPalette(pal);
+        sp->style()->unpolish(sp);
+        sp->style()->polish(sp);
+        sp->update();
     }
 }
 

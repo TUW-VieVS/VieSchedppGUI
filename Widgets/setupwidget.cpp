@@ -1538,7 +1538,10 @@ void setupWidget::clearParameters()
 void setupWidget::addParameter(const std::string &name, const VieVS::ParameterSettings::ParametersStations &para)
 {
     paraSta[name] = para;
-    ui->ComboBox_parameters->addItem(QString::fromStdString(name));
+    QString qName = QString::fromStdString(name);
+    if (ui->ComboBox_parameters->findText(qName) == -1) {
+        ui->ComboBox_parameters->addItem(qName);
+    }
 }
 
 void setupWidget::addParameter(const std::string &name, const VieVS::ParameterSettings::ParametersSources &para)
@@ -1553,7 +1556,10 @@ void setupWidget::addParameter(const std::string &name, const VieVS::ParameterSe
 void setupWidget::addParameter(const std::string &name, const VieVS::ParameterSettings::ParametersBaselines &para)
 {
     paraBl[name] = para;
-    ui->ComboBox_parameters->addItem(QString::fromStdString(name));
+    QString qName = QString::fromStdString(name);
+    if (ui->ComboBox_parameters->findText(qName) == -1) {
+        ui->ComboBox_parameters->addItem(qName);
+    }
 }
 
 void setupWidget::addSetup(const boost::property_tree::ptree &setup)

@@ -7040,7 +7040,7 @@ void MainWindow::on_pushButton_vgos_mode_clicked()
     VieVS::ParameterSettings::ParametersSources src;
     src.available = true;
     src.availableForFillinmode = true;
-    src.minRepeat = 120;
+    src.minRepeat = 1200;
     src.minScan = 0;
     src.maxScan = 9999;
     src.weight = 1;

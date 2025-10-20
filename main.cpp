@@ -243,6 +243,22 @@ void setAlwaysLightPalette(QApplication &app)
             color: #000000;
             font-weight: 500;
         }
+
+        QSpinBox[highlightIndex="0"] { background-color: #E57373; border: 2px solid #E57373; }
+        QSpinBox[highlightIndex="1"] { background-color: #64B5F6; border: 2px solid #64B5F6; }
+        QSpinBox[highlightIndex="2"] { background-color: #81C784; border: 2px solid #81C784; }
+        QSpinBox[highlightIndex="3"] { background-color: #FFD54F; border: 2px solid #FFD54F; }
+        QSpinBox[highlightIndex="4"] { background-color: #BA68C8; border: 2px solid #BA68C8; }
+        QSpinBox[highlightIndex="5"] { background-color: #4DB6AC; border: 2px solid #4DB6AC; }
+        QSpinBox[highlightIndex="6"] { background-color: #FF8A65; border: 2px solid #FF8A65; }
+        QSpinBox[highlightIndex="7"] { background-color: #A1887F; border: 2px solid #A1887F; }
+        QSpinBox[highlightIndex="8"] { background-color: #90A4AE; border: 2px solid #90A4AE; }
+        QSpinBox[highlightIndex="9"] { background-color: #DCE775; border: 2px solid #DCE775; }
+        QSpinBox[highlightIndex="-1"] {
+            background-color: #f8f8f8;
+            border: 1px solid #d0d0d0;
+        }
+
         )");
 }
 

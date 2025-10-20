@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1380,7 +1380,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>958</width>
+             <width>339</width>
              <height>837</height>
             </rect>
            </property>

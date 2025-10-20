@@ -13,6 +13,7 @@ SkyCovWidget::SkyCovWidget(QStandardItemModel *stations, QWidget *parent) :
     ui->tableWidget_stations->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     //ui->tableWidget_stations->setVisible(false);
     //ui->groupBox_example->setVisible(false);
+    updateCounter();
 }
 
 SkyCovWidget::~SkyCovWidget()
@@ -442,7 +443,6 @@ void SkyCovWidget::updateCounter()
         int id = sp->value();
         int val = counter[id];
 
-        QPalette pal = sp->palette();
         if( val > 1 ){
             int color;
             if ( id2color.find(id) != id2color.end()){
@@ -451,13 +451,15 @@ void SkyCovWidget::updateCounter()
                 color = icolor;
                 id2color[id] = color;
                 icolor += 1;
-                icolor = (icolor + 1) % 10;
+                icolor %= 10;
             }
-            pal.setColor(sp->backgroundRole(), colorPalette[color]);
+            sp->setProperty("highlightIndex", color);
         }else{
-            pal.setColor(sp->backgroundRole(), Qt::white);
+            sp->setProperty("highlightIndex", -1);
         }
-        sp->setPalette(pal);
+        sp->style()->unpolish(sp);
+        sp->style()->polish(sp);
+        sp->update();
     }
 
 
@@ -467,17 +469,17 @@ void SkyCovWidget::updateCounter()
         sp->setValue(val);
 
         QSpinBox *id = qobject_cast<QSpinBox *>(ui->tableWidget_sky_cov->cellWidget(i,0));
-        QPalette pal = id->palette();
-
         if ( val > 1){
             int color_id = id2color[id->value()];
-            pal.setColor(id->backgroundRole(), colorPalette[color_id]);
+            id->setProperty("highlightIndex", color_id);
         } else if (val == 1) {
-            pal.setColor(id->backgroundRole(), Qt::white);
+            id->setProperty("highlightIndex", -1);
         } else{
-            pal.setColor(id->backgroundRole(), Qt::white);
+            id->setProperty("highlightIndex", -1);
         }
-        id->setPalette(pal);
+        id->style()->unpolish(id);
+        id->style()->polish(id);
+        id->update();
 
         ui->tableWidget_sky_cov->item(i,6)->setText(id2station[i]);
     }
