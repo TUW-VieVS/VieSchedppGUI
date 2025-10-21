@@ -259,6 +259,21 @@ void setAlwaysLightPalette(QApplication &app)
             border: 1px solid #d0d0d0;
         }
 
+        QWidget:disabled {
+            color: #808080; /* medium gray text when disabled */
+        }
+
+
+        QPushButton:disabled,
+        QLabel:disabled,
+        QCheckBox:disabled,
+        QRadioButton:disabled,
+        QSpinBox:disabled,
+        QLineEdit:disabled,
+        QComboBox:disabled {
+            color: #808080;
+        }
+
         )");
 }
 

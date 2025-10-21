@@ -3379,6 +3379,7 @@ void MainWindow::on_pushButton_clicked()
             errorText.append("error while reading stations\n");
         }
         createBaselines = true;
+        selectedStationModel->blockSignals(false);
         networkSizeChanged();
         auto *tmp = ui->tabWidget_simAna->findChild<QWidget *>("Simulation_Widged");
         SimulatorWidget *sim = qobject_cast<SimulatorWidget *>(tmp);
@@ -3849,7 +3850,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
 
 
         bool prev_block_flag = priorities->getBlock();
-        stationSetupWidget->setBlock(true);
+        //stationSetupWidget->setBlock(true);
         priorities->setBlock(true);
         solver->setBlock(true);
         simulator->setBlock(true);
@@ -3860,7 +3861,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
         int nrow = allStationModel->findItems(name).at(0)->row();
         for(int i=0; i<allStationModel->columnCount(); ++i){
             if ( i == allStationModel->columnCount() - 1){
-                stationSetupWidget->setBlock(prev_block_flag);
+                //stationSetupWidget->setBlock(prev_block_flag);
                 priorities->setBlock(prev_block_flag);
                 solver->setBlock(prev_block_flag);
                 simulator->setBlock(prev_block_flag);
@@ -3890,6 +3891,7 @@ void MainWindow::on_treeView_allAvailabeStations_clicked(const QModelIndex &inde
         if(createBaselines){
             createBaselineModel();
         }
+        //stationSetupWidget->setBlock(prev_block_flag);
         priorities->setBlock(prev_block_flag);
         solver->setBlock(prev_block_flag);
         simulator->setBlock(prev_block_flag);
