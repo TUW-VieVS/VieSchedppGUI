@@ -214,6 +214,7 @@ QString MainWindow::writeXML()
     std::string notes = ui->plainTextEdit_notes->toPlainText().replace("\n","\\n").toStdString();
     bool initializer = ui->checkBox_outputInitializer->isChecked();
     bool iteration = ui->checkBox_outputIteration->isChecked();
+    bool compress = ui->checkBox_outputCompress->isChecked();
     bool statistics = ui->checkBox_outputStatisticsFile->isChecked();
     bool vex = ui->checkBox_outputVex->isChecked();
     bool vex_satStep = ui->checkBox_outputVex_stepSat->isChecked();
@@ -236,7 +237,7 @@ QString MainWindow::writeXML()
         }
     }
     bool timeTable = ui->checkBox_outputTimeTable->isChecked();
-    para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, statistics, ngs, NGS_directory,
+    para.output(experimentDescription, scheduler, correlator, notes, initializer, iteration, compress, statistics, ngs, NGS_directory,
                 skd, vex, vex_satStep, vex_satStep_interval,
                 snrTabel, operNotes, srcGrp, srcGroupsForStatistic, slewFile, timeTable, contacts);
 
@@ -1805,6 +1806,11 @@ void MainWindow::loadXML(QString path)
         }else{
             ui->checkBox_outputIteration->setChecked(false);
         }
+        if(xml.get("VieSchedpp.output.compress",false)){
+            ui->checkBox_outputCompress->setChecked(true);
+        }else{
+            ui->checkBox_outputCompress->setChecked(false);
+        }
         if(xml.get("VieSchedpp.output.createSummary",false)){
             ui->checkBox_outputStatisticsFile->setChecked(true);
         }else{
@@ -2771,6 +2777,7 @@ void MainWindow::on_pushButton_26_clicked()
     path << "settings.output.directory"
          << "settings.output.initializer_log"
          << "settings.output.iteration_log"
+         << "settings.output.compress"
          << "settings.output.createSummary"
          << "settings.output.createNGS"
          << "settings.output.redirectNGS"
@@ -2788,6 +2795,7 @@ void MainWindow::on_pushButton_26_clicked()
     value << ui->lineEdit_outputPath->text();
     ui->checkBox_outputInitializer->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputIteration->isChecked() ? value << "true" : value << "false";
+    ui->checkBox_outputCompress->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputStatisticsFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_outputNGSFile->isChecked() ? value << "true" : value << "false";
     ui->checkBox_redirectNGS->isChecked() ? value << "true" : value << "false";

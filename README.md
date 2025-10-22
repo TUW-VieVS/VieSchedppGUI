@@ -33,9 +33,16 @@ Read the text on the welcome page for more information.
 > You should have received a copy of the GNU General Public License
 > along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Please also respect the licenses of the used third party libraries:
+* Boost: https://www.boost.org/doc/user-guide/bsl.html
+* IAU SOFA: https://www.iausofa.org/
+* SGP4: https://github.com/dnwrnr/sgp4/blob/master/LICENSE
+* Miniz: https://github.com/richgel999/miniz/blob/master/LICENSE
+* QT6 (for GUI): https://www.qt.io/download-open-source
+
 # Installation
 
-__Installers for Windows 10 and Ubuntu 18.04 are provided through the release page on GitHub!__
+__Installers for Windows and Linux are provided through the release page on GitHub!__
 
 Visit https://github.com/TUW-VieVS/VieSchedpp/releases.
 

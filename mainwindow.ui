@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>7</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -6824,6 +6824,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </item>
               </layout>
              </item>
+             <item row="0" column="2">
+              <widget class="QCheckBox" name="checkBox_outputCompress">
+               <property name="text">
+                <string>compress output</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
@@ -7484,8 +7491,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>659</width>
-             <height>669</height>
+             <width>972</width>
+             <height>677</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_89">
@@ -11466,11 +11473,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Additional to the &lt;/span&gt;&lt;a href=&quot;http://www.cplusplus.com/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;C++ STL libraries&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;, some &lt;/span&gt;&lt;a href=&quot;https://www.boost.org/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost C++ libraries&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; are used as well as the &lt;/span&gt;&lt;a href=&quot;http://www.iausofa.org/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;SOFA&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; libraries. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;For the satellite scheduling part, the &lt;/span&gt;&lt;a href=&quot;https://www.danrw.com/sgp4/&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;SGP4&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; library was used. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;To compress outputs, I use &lt;/span&gt;&lt;a href=&quot;https://github.com/richgel999/miniz&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;miniz&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;For developing the graphical user interface the &lt;/span&gt;&lt;a href=&quot;https://www.qt.io/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt libraries&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt; are used. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Most of the icons are designed by myself, some are taken from the &lt;/span&gt;&lt;a href=&quot;https://sourceforge.net/projects/openiconlibrary/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;Open Icon Library&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;Please respect the individual licenses. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;If you want to &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt;extend this software&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;, consider pushing your changes into the official &lt;/span&gt;&lt;a href=&quot;https://git-scm.com/&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; text-decoration: underline; color:#0000ff;&quot;&gt;GIT&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;repository to make them available for public. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;There are two public repositories on GitHub:&lt;/span&gt;&lt;/p&gt;

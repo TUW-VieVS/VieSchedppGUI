@@ -1972,6 +1972,10 @@ void MainWindow::defaultParameters()
     if(iteration_log.is_initialized()){
         ui->checkBox_outputIteration->setChecked(*iteration_log);
     }
+    boost::optional<bool> iteration_compressed = settings_.get_optional<bool>("settings.output.compress");
+    if(iteration_log.is_initialized()){
+        ui->checkBox_outputCompress->setChecked(*iteration_compressed);
+    }
     boost::optional<bool> createSummary = settings_.get_optional<bool>("settings.output.createSummary");
     if(createSummary.is_initialized()){
         ui->checkBox_outputStatisticsFile->setChecked(*createSummary);
