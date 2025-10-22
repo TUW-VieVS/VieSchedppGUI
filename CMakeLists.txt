@@ -51,7 +51,6 @@ file(GLOB_RECURSE VIESCHEDPP_OBS_MODE_SRC     "../VieSchedpp/ObservingMode/*.cpp
 file(GLOB_RECURSE VIESCHEDPP_SIM_SRC          "../VieSchedpp/Simulator/*.cpp"    "../VieSchedpp/Simulator/*.h")
 file(GLOB_RECURSE VIESCHEDPP_XML_SRC          "../VieSchedpp/XML/*.cpp"          "../VieSchedpp/XML/*.h")
 file(GLOB_RECURSE VIESCHEDPP_SGP4_SRC         "../VieSchedpp/SGP4/*.h")  # SGP4 is header-only
-file(GLOB_RECURSE VIESCHEDPP_MINIZ_SRC        "../VieSchedpp/miniz/*.c"          "../VieSchedpp/miniz/*.h")
 
 # GUI sources
 file(GLOB GUI_SRC *.cpp *.h)
@@ -78,7 +77,6 @@ set(ALL_SOURCES
     ${VIESCHEDPP_SIM_SRC}
     ${VIESCHEDPP_XML_SRC}
     ${VIESCHEDPP_SGP4_SRC}
-    ${VIESCHEDPP_MINIZ_SRC}
     ${GUI_SRC}
     ${WIDGETS_SRC}
     ${DELEGATES_SRC}
