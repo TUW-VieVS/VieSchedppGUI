@@ -870,6 +870,10 @@ VieVS::ObservingMode ObsModeDialog::getObservingMode()
     for(const auto &any : stations_){
         staNames.emplace_back(any.toStdString());
     }
+    for (const QString &band : bandIds_->stringList()) {
+        om.bands.insert(band.toStdString());
+    }
+
     om.setStationNames(staNames);
     return om;
 }

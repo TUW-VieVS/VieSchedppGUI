@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="main_stacked">
       <property name="currentIndex">
-       <number>11</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="welcome">
        <property name="toolTip">
@@ -1379,8 +1379,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>339</width>
+             <y>-145</y>
+             <width>958</width>
              <height>837</height>
             </rect>
            </property>
@@ -1746,7 +1746,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_13">
                    <property name="enabled">
-                    <bool>false</bool>
+                    <bool>true</bool>
                    </property>
                    <property name="text">
                     <string>spacecrafts</string>
@@ -1758,17 +1758,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <item>
                     <widget class="QLineEdit" name="lineEdit_pathSpacecraft">
                      <property name="enabled">
-                      <bool>false</bool>
+                      <bool>true</bool>
                      </property>
                      <property name="text">
-                      <string>(PLACEHOLDER) path to file from HORIZONS ephemerides web interface - UNSUPPORTED RIGHT NOW</string>
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>(OPTIONAL) path to csv files from HORIZONS ephemerides web interface or similar tools</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_spacecraft_file_info">
                      <property name="enabled">
-                      <bool>false</bool>
+                      <bool>true</bool>
                      </property>
                      <property name="text">
                       <string/>
@@ -1784,7 +1787,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item row="2" column="2">
                   <widget class="QPushButton" name="pushButton_browseSpacecraft">
                    <property name="enabled">
-                    <bool>false</bool>
+                    <bool>true</bool>
                    </property>
                    <property name="text">
                     <string>browse</string>
@@ -4279,6 +4282,9 @@ If you only want to run simulations you can deselect this to avoid error message
        <layout class="QVBoxLayout" name="verticalLayout_58" stretch="0">
         <item>
          <widget class="QTabWidget" name="tabWidget">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -4822,7 +4828,7 @@ If you only want to run simulations you can deselect this to avoid error message
             <item>
              <widget class="QSplitter" name="splitter_10">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
@@ -4831,6 +4837,9 @@ If you only want to run simulations you can deselect this to avoid error message
                <layout class="QVBoxLayout" name="verticalLayout_49">
                 <item>
                  <widget class="QLabel" name="label_121">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
                   <property name="text">
                    <string>available (click to add source)</string>
                   </property>
@@ -4855,6 +4864,9 @@ If you only want to run simulations you can deselect this to avoid error message
                  <layout class="QHBoxLayout" name="horizontalLayout_98">
                   <item>
                    <widget class="QLabel" name="label_122">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
                     <property name="text">
                      <string>Filter:</string>
                     </property>
@@ -4862,6 +4874,9 @@ If you only want to run simulations you can deselect this to avoid error message
                   </item>
                   <item>
                    <widget class="QLineEdit" name="lineEdit_allSpacecraftFilter">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
                     <property name="toolTip">
                      <string>filter sources by name</string>
                     </property>
@@ -4875,6 +4890,9 @@ If you only want to run simulations you can deselect this to avoid error message
                </layout>
               </widget>
               <widget class="QSplitter" name="splitter_b_3">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -4882,6 +4900,9 @@ If you only want to run simulations you can deselect this to avoid error message
                 <layout class="QVBoxLayout" name="verticalLayout_72">
                  <item>
                   <widget class="QLabel" name="label_spacecraftList_selected">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
                    <property name="text">
                     <string>selected (click to deselect source)</string>
                    </property>
@@ -4923,6 +4944,9 @@ If you only want to run simulations you can deselect this to avoid error message
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_saveSpacecraftList">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
                      <property name="toolTip">
                       <string>save source list</string>
                      </property>
@@ -4940,6 +4964,9 @@ If you only want to run simulations you can deselect this to avoid error message
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_loadSpacecraftList">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
                      <property name="toolTip">
                       <string>load source list</string>
                      </property>
@@ -5627,7 +5654,7 @@ If you only want to run simulations you can deselect this to avoid error message
           </widget>
           <widget class="QWidget" name="tab_15">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <attribute name="icon">
             <iconset resource="myresources.qrc">

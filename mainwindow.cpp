@@ -2227,7 +2227,7 @@ void MainWindow::addModesCustomTable(QString name, double freq, int nChannel){
 
     QSpinBox *nChannelSB = new QSpinBox(this);
     nChannelSB->setMinimum(1);
-    nChannelSB->setMaximum(100);
+    nChannelSB->setMaximum(9999);
     nChannelSB->setValue(nChannel);
     connect(nChannelSB,SIGNAL(valueChanged(int)),this,SLOT(gbps()));
 
@@ -2953,8 +2953,14 @@ void MainWindow::on_pushButton_browseSatellite_2_clicked()
 
 void MainWindow::on_pushButton_browseSpacecraft_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(this, "Browse to catalog", ui->lineEdit_pathSource->text());
-    if( !path.isEmpty() ){
+    QString path = QFileDialog::getExistingDirectory(
+        this,
+        tr("Select Spacecraft Directory"),
+        ui->lineEdit_pathSource->text(),  // starting directory
+        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+    );
+
+    if (!path.isEmpty()) {
         ui->lineEdit_pathSpacecraft->setText(path);
     }
 }
@@ -4740,6 +4746,36 @@ void MainWindow::highlightSatelliteEpoch(){
 void MainWindow::readSpacecraft()
 {
     spacecraftSetupWidget->blockSignal(true);
+    QString spacecraft_dir = ui->lineEdit_pathSpacecraft->text();
+
+    QDir dir(spacecraft_dir);
+    if (!dir.exists()) {
+        QMessageBox::warning(
+            this,
+            tr("Invalid Directory"),
+            tr("The directory \"%1\" does not exist.").arg(spacecraft_dir)
+        );
+        spacecraftSetupWidget->blockSignals(false);
+        return;
+    }
+
+    // Clear any existing entries
+    allSpacecraftModel->removeRows(0, allSpacecraftModel->rowCount());
+
+    QSet<QString> uniqueNames;
+
+    QFileInfoList files = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
+    for (const QFileInfo &fileInfo : files) {
+        QString baseName = fileInfo.completeBaseName();
+        QString prefix = baseName.section('_', 0, 0);
+
+        if (!prefix.isEmpty() && !uniqueNames.contains(prefix)) {
+            uniqueNames.insert(prefix);
+            QList<QStandardItem*> rowItems;
+            rowItems << new QStandardItem(QIcon(":/icons/icons/spacecraft.png"), prefix);
+            allSpacecraftModel->appendRow(rowItems);
+        }
+    }
 
     spacecraftSetupWidget->blockSignal(false);
 }
