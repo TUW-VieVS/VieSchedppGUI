@@ -1153,22 +1153,28 @@ void MainWindow::on_actionNew_triggered()
 
 
 
-void MainWindow::on_spinBox_fontSize_valueChanged(int arg1)
+void MainWindow::on_spinBox_fontSize_valueChanged(int size)
 {
-    QFont myFont = ui->fontComboBox_font->currentFont();
-    myFont.setPointSize(arg1);
-    worldMapCallout->setFont(myFont);
-    skyMapCallout->setFont(myFont);
-    QApplication::setFont(myFont);
+    QFont font = ui->fontComboBox_font->currentFont();
+    font.setPointSize(size);
+    QList<QWidget*> widgets = findChildren<QWidget*>();
+    for (QWidget* w : widgets)
+        w->setFont(font);
+
+    worldMapCallout->setFont(font);
+    skyMapCallout->setFont(font);
 }
 
 void MainWindow::on_fontComboBox_font_currentFontChanged(const QFont &f)
 {
     QFont myFont = f;
     myFont.setPointSize(ui->spinBox_fontSize->value());
+    QList<QWidget*> widgets = findChildren<QWidget*>();
+    for (QWidget* w : widgets)
+        w->setFont(myFont);
+
     worldMapCallout->setFont(myFont);
     skyMapCallout->setFont(myFont);
-    QApplication::setFont(myFont);
 }
 
 void MainWindow::on_iconSizeSpinBox_valueChanged(int arg1)
@@ -1178,6 +1184,13 @@ void MainWindow::on_iconSizeSpinBox_valueChanged(int arg1)
     ui->advancedToolBar->setIconSize(QSize(arg1,arg1));
     ui->helpToolBar->setIconSize(QSize(arg1,arg1));
     ui->analysisToolBar->setIconSize(QSize(arg1,arg1));
+
+    // Apply to icon-only buttons
+    QList<QPushButton*> buttons = findChildren<QPushButton*>();
+    for (QPushButton* btn : buttons)
+    {
+        btn->setIconSize(QSize(arg1,arg1));
+    }
 }
 
 void MainWindow::on_treeWidget_2_itemChanged(QTreeWidgetItem *item, int column)
@@ -6314,12 +6327,12 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year);
-    files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year);
+    files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(year);
+    files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(year);
 
     if (now.date().month() >=11){
-        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(year+1);
-        files << QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(year+1);
+        files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(year+1);
+        files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(year+1);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
@@ -6328,14 +6341,14 @@ void MainWindow::download(){
     for (int i = 1979; i<year; ++i){
         QString x1 = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x1)){
-            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1.txt").arg(i);
+            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(i);
             files << z;
         }
     }
     for (int i = 1993; i<year; ++i){
         QString x2 = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x2)){
-            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-int.txt").arg(i);
+            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(i);
             files << z;
         }
     }
@@ -6343,13 +6356,13 @@ void MainWindow::download(){
     // vgos - old format (two digit year)
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("https://gitlab.ethz.ch/spacegeodesy_public/ivs_schedule_master/-/raw/main/MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
