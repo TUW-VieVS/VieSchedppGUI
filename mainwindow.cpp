@@ -3129,11 +3129,25 @@ void MainWindow::on_pushButton_reloadsources_clicked()
     availableSources->clear();
     selectedSources->clear();
 
+    QString warnings;
+    if(!groupSrc->empty()){
+        groupSrc->clear();
+        if (ui->checkBox_sourceGroup->isChecked()){
+            warnings.append("source groups updated\n");
+        }else{
+            warnings.append("source groups cleared\n");
+        }
+    }
+    ui->treeWidget_srcGroupForStatistics->clear();
+    QTreeWidgetItem *itm = new QTreeWidgetItem();
+    itm->setText(0,"__all__");
+    itm->setCheckState(0,Qt::Unchecked);
+    ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+
     readSources();
     readSatellites();
     readSpacecraft();
 
-    QString warnings;
 //    if(ui->treeWidget_setupSource->topLevelItem(0)->child(0)->childCount() != 0){
 //        warnings.append("source setup cleared\n");
 //        clearSetup(false,true,false);
@@ -3143,11 +3157,6 @@ void MainWindow::on_pushButton_reloadsources_clicked()
         warnings.append("parameter setup cleared");
     }
 
-    if(!groupSrc->empty()){
-        groupSrc->clear();
-        warnings.append("source groups cleared\n");
-    }
-
     bool mssrc = false;
     auto *tmp_ms = ui->groupBox_multiScheduling->findChild<QWidget *>("MultiScheduling_Widged");
     MulitSchedulingWidget *ms = qobject_cast<MulitSchedulingWidget *>(tmp_ms);
@@ -3155,12 +3164,6 @@ void MainWindow::on_pushButton_reloadsources_clicked()
     if(mssrc){
         warnings.append("source multi scheduling parameters cleared\n");
     }
-
-    ui->treeWidget_srcGroupForStatistics->clear();
-    QTreeWidgetItem *itm = new QTreeWidgetItem();
-    itm->setText(0,"__all__");
-    itm->setCheckState(0,Qt::Unchecked);
-    ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
 
     if(ui->spinBox_scanSequenceCadence->value() != 1){
         ui->spinBox_scanSequenceCadence->setValue(0);
@@ -4534,6 +4537,8 @@ void MainWindow::readSources()
 {
     sourceSetupWidget->blockSignal(true);
     selectedSourceModel->blockSignals(true);
+    QMap<QString, QStringList> source_groups;
+    const QMap<QString, QStringList> &fluxData = readFluxCat(ui->lineEdit_pathFlux->text()).first;
 
     QString sourcePath = ui->lineEdit_pathSource->text();
 
@@ -4547,6 +4552,7 @@ void MainWindow::readSources()
             }
             QStringList split = line.split(" ",Qt::SkipEmptyParts);
             QString sourceName = split.at(0);
+            QString alternativeName = split.at(1);
             QString rah = split.at(2);
             QString ram = split.at(3);
             QString ras = split.at(4);
@@ -4555,6 +4561,19 @@ void MainWindow::readSources()
             QString dem = split.at(6);
             QString des = split.at(7);
             double de = ded.toDouble() + dem.toDouble()/60 + des.toDouble()/3600;
+
+            QString groups_comb = split.last();
+            QStringList group_split = groups_comb.split("_", Qt::SkipEmptyParts);
+            if (ui->checkBox_sourceGroup->isChecked()){
+                for (const QString& group : group_split){
+                    source_groups[group].append(sourceName);
+                }
+            }
+            if (ui->checkBox_missingFlux->isChecked()){
+                if (!fluxData.contains(sourceName) && !fluxData.contains(alternativeName)){
+                    source_groups["noFlux"].append(sourceName);
+                }
+            }
 
             sourceSetupWidget->blockSignal(true);
             allSourceModel->insertRow(allSourceModel->rowCount());
@@ -4612,6 +4631,23 @@ void MainWindow::readSources()
         }
         sourceFile.close();
     }
+
+    if (ui->checkBox_sourceGroup->isChecked()){
+        for (auto it = source_groups.begin(); it != source_groups.end(); ++it)
+        {
+            QString groupName = it.key();
+            QStringList members = it.value();
+
+            std::vector<std::string> stdMembers;
+
+            for (const QString& s : members)
+                stdMembers.push_back(s.toStdString());
+
+            addSourceGroup(groupName.simplified().toStdString(),
+                           stdMembers);
+        }
+    }
+
     selectedSourceModel->blockSignals(false);
     sourceSetupWidget->blockSignal(false);
     sourceSetupWidget->setupComboBox()->setCurrentIndex(0);
@@ -5178,72 +5214,118 @@ void MainWindow::skymap_hovered(QPointF point, bool state){
     } else {
         skyMapCallout->hide();
     }
-
 }
+
+void MainWindow::addSourceGroup(const std::string& groupName,
+                                const std::vector<std::string>& members)
+{
+    VieVS::ParameterGroup newGroup(groupName, members);
+
+    // store internally
+    (*groupSrc)[groupName] = members;
+
+    // -----------------------------
+    // model: allSourcePlusGroupModel
+    // -----------------------------
+    {
+        int r = 0;
+
+        for (int i = 0; i < allSourcePlusGroupModel->rowCount(); ++i)
+        {
+            QString txt = allSourcePlusGroupModel->item(i)->text();
+
+            if (txt == "__all__")
+            {
+                ++r;
+                continue;
+            }
+
+            if (groupSrc->find(txt.toStdString()) == groupSrc->end())
+                break;
+
+            if (txt > QString::fromStdString(groupName))
+                break;
+
+            ++r;
+        }
+
+        allSourcePlusGroupModel->insertRow(
+            r,
+            new QStandardItem(
+                QIcon(":/icons/icons/source_group.png"),
+                QString::fromStdString(groupName)));
+    }
+
+    // --------------------------------------
+    // model: allSourcePlusGroupModel_combined
+    // --------------------------------------
+    {
+        int r = 0;
+        for (int i = 0; i < allSourcePlusGroupModel_combined->rowCount(); ++i)
+        {
+            QString txt = allSourcePlusGroupModel_combined->item(i)->text();
+
+            if (txt == "__all__" ||
+                txt == "__AGNs__" ||
+                txt == "__satellites__" ||
+                txt == "__spacecrafts__")
+            {
+                ++r;
+                continue;
+            }
+
+            if (groupSrc->find(txt.toStdString()) == groupSrc->end() &&
+                groupSat->find(txt.toStdString()) == groupSat->end() &&
+                groupSpace->find(txt.toStdString()) == groupSpace->end())
+            {
+                break;
+            }
+
+            if (txt > QString::fromStdString(groupName))
+                break;
+
+            ++r;
+        }
+
+        allSourcePlusGroupModel_combined->insertRow(
+            r,
+            new QStandardItem(
+                QIcon(":/icons/icons/source_group.png"),
+                QString::fromStdString(groupName)));
+    }
+
+    // -----------------------------
+    // statistics tree widget
+    // -----------------------------
+    {
+        QTreeWidgetItem* itm = new QTreeWidgetItem();
+
+        itm->setText(0, QString::fromStdString(groupName));
+        itm->setCheckState(0, Qt::Unchecked);
+
+        ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+    }
+}
+
 
 void MainWindow::addGroupSource()
 {
-    AddGroupDialog *dial = new AddGroupDialog(settings_,AddGroupDialog::Type::source,this);
+    AddGroupDialog* dial =
+        new AddGroupDialog(settings_,
+                           AddGroupDialog::Type::source,
+                           this);
+
     dial->addModel(selectedSourceModel, *groupSrc);
+
     int result = dial->exec();
-    if(result == QDialog::Accepted){
-        std::vector<std::string> stdlist = dial->getSelection();
-        std::string stdname = dial->getGroupName();
-        VieVS::ParameterGroup newGroup(stdname, stdlist);
 
-        {
-            int r = 0;
-            for(int i = 0; i<allSourcePlusGroupModel->rowCount(); ++i){
-                QString txt = allSourcePlusGroupModel->item(i)->text();
-                if(txt == "__all__"){
-                    ++r;
-                    continue;
-                }
-                if(groupSrc->find(txt.toStdString()) == groupSrc->end()){
-                    break;
-                }
-                if(txt>QString::fromStdString(stdname)){
-                    break;
-                }else{
-                    ++r;
-                }
-            }
-            (*groupSrc)[stdname] = stdlist;
-
-            allSourcePlusGroupModel->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname) ));
-            if(sender() == sourceSetupWidget->addGroupButton()){
-                sourceSetupWidget->memberComboBox()->setCurrentIndex(r);
-            }
-            if(sender() == ui->pushButton_addSourceGroup_Calibrator){
-                ui->comboBox_calibratorBlock_calibratorSources->setCurrentIndex(r);
-            }
-        }
-        {
-            int r = 0;
-            for(int i = 0; i<allSourcePlusGroupModel_combined->rowCount(); ++i){
-                QString txt = allSourcePlusGroupModel_combined->item(i)->text();
-                if(txt == "__all__" || txt == "__AGNs__" || txt == "__satellites__" || txt == "__spacecrafts__" ){
-                    ++r;
-                    continue;
-                }
-                if(groupSrc->find(txt.toStdString()) == groupSrc->end() && groupSat->find(txt.toStdString()) == groupSat->end() && groupSpace->find(txt.toStdString()) == groupSpace->end() ){
-                    break;
-                }
-                if(txt>QString::fromStdString(stdname)){
-                    break;
-                }else{
-                    ++r;
-                }
-            }
-            allSourcePlusGroupModel_combined->insertRow(r,new QStandardItem(QIcon(":/icons/icons/source_group.png"),QString::fromStdString(stdname)));
-        }
-
-        QTreeWidgetItem *itm = new QTreeWidgetItem();
-        itm->setText(0,QString::fromStdString(stdname));
-        itm->setCheckState(0,Qt::Unchecked);
-        ui->treeWidget_srcGroupForStatistics->addTopLevelItem(itm);
+    if (result == QDialog::Accepted)
+    {
+        addSourceGroup(dial->getGroupName(),
+                       dial->getSelection());
     }
-    delete(dial);
+
+    delete dial;
 }
 
 void MainWindow::addGroupSatellite()
@@ -6493,6 +6575,52 @@ void MainWindow::mergeFluxCatVgosSx() {
 }
 
 
+void MainWindow::dummyFluxModel(QString flux_in, QString flux_out){
+    auto flux = readFluxCat(flux_in);
+    const QMap<QString, QStringList> &flux_data = flux.first;
+    const QString &version = flux.second;
+    QStringList bands;
+    for(int i = 0; i<ui->tableWidget_ModesPolicy->rowCount(); ++i){
+        bands << ui->tableWidget_ModesPolicy->verticalHeaderItem(i)->text();
+    }
+
+    QFile outFile(flux_out);
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Cannot write to output file";
+        return;
+    }
+
+    QTextStream out(&outFile);
+    out << "* MERGED CATALOG\n";
+    out << "* VERSION " << version << "\n";
+    out << "* ========== DUMMY VALUES ==========\n";
+
+    auto noFluxIt = groupSrc->find("noFlux");
+
+    if (noFluxIt != groupSrc->end()){
+        const std::vector<std::string>& noFluxSources = noFluxIt->second;
+
+        for (const std::string& src : noFluxSources){
+            QString sourceName = QString::fromStdString(src);
+
+            for (const QString& band : bands){
+                out << sourceName
+                    << " "
+                    << band
+                    << "   B  0.0    0.1  13000.0    * DUMMY ENTRY\n";
+            }
+        }
+    }
+    out << "* ========== CATALOG VALUES (" << version << ") ==========\n";
+    for (auto it = flux_data.begin(); it != flux_data.end(); ++it) {
+        for (const QString &line : it.value()) {
+            out << line << "\n";
+        }
+    }
+}
+
+
+
 void MainWindow::downloadFinished(){
     QLabel *statusBarLabel;
     for(auto &any: ui->statusBar->children()){
@@ -7077,5 +7205,75 @@ void MainWindow::on_pushButton_4_clicked()
 {
     QString path = QDir("./AUTO_DOWNLOAD_CATALOGS/").absolutePath();
     QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+}
+
+
+void MainWindow::on_pushButton_groupDec_clicked()
+{
+    DeclinationGroupDialog dialog(this);
+
+    QList<double> thresholds;
+    if (dialog.exec() == QDialog::Accepted){
+        thresholds = dialog.thresholds();
+    } else {
+        return;
+    }
+
+    // create all intervals
+    for (int i = 0; i < thresholds.size() - 1; ++i)
+    {
+        double minDec = thresholds[i];
+        double maxDec = thresholds[i + 1];
+        auto formatDec = [](double v)
+        {
+            QString s = QString::number(std::abs(v), 'f', 2);
+
+            while (s.length() < 5)
+                s.prepend('0');
+
+            if (v >= 0)
+                s.prepend('+');
+            else
+                s.prepend('-');
+
+            return s;
+        };
+
+        QString groupName =
+            QString("DEC_%1_%2")
+                .arg(formatDec(minDec))
+                .arg(formatDec(maxDec));
+
+        std::vector<std::string> members;
+
+        // iterate over all sources
+        for (int row = 0; row < allSourceModel->rowCount(); ++row)
+        {
+            QString sourceName =
+                allSourceModel->data(
+                    allSourceModel->index(row, 0)).toString();
+
+            double dec =
+                allSourceModel->data(
+                    allSourceModel->index(row, 2)).toDouble();
+
+            bool inGroup = false;
+
+            // avoid overlap at boundaries
+            if (i == thresholds.size() - 2){
+                // last bin includes +90
+                inGroup = (dec >= minDec && dec <= maxDec);
+            }
+            else{
+                inGroup = (dec >= minDec && dec < maxDec);
+            }
+
+            if (inGroup){
+                members.push_back(sourceName.toStdString());
+            }
+        }
+
+        addSourceGroup(groupName.toStdString(),members);
+    }
 }
 

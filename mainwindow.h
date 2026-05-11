@@ -59,6 +59,7 @@
 #include "Utility/chartview.h"
 #include "Utility/callout.h"
 #include "secondaryGUIs/addgroupdialog.h"
+#include "secondaryGUIs/declinationgroupdialog.h"
 #include "Parameters/baselineparametersdialog.h"
 #include "Parameters/stationparametersdialog.h"
 #include "Parameters/sourceparametersdialog.h"
@@ -552,6 +553,8 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_groupDec_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString mainPath;
@@ -673,6 +676,11 @@ private:
     QPair<QMap<QString, QStringList>, QString> readFluxCat(const QString &filePath);
 
     void mergeFluxCatVgosSx();
+
+    void dummyFluxModel(QString flux_in, QString flux_out);
+
+    void addSourceGroup(const std::string& groupName,
+                        const std::vector<std::string>& members);
 
 //    void searchSessionCodeInMasterFile(QString code);
 

@@ -245,6 +245,16 @@ QString MainWindow::writeXML()
     std::string procs = ui->lineEdit_pathProcs->text().toStdString();
     std::string equip = ui->lineEdit_pathEquip->text().toStdString();
     std::string flux = ui->lineEdit_pathFlux->text().toStdString();
+    if (ui->checkBox_dummyFlux->isChecked() && (groupSrc->find("noFlux") != groupSrc->end())){
+        QString outflux;
+        if (ename.isEmpty()){
+            outflux = path + "flux.cat";
+        } else {
+            outflux = path + "flux.cat." + ename;
+        }
+        dummyFluxModel(QString::fromStdString(flux), outflux);
+        flux = outflux.toStdString();
+    }
     std::string freq = ui->lineEdit_pathFreq->text().toStdString();
     std::string hdpos = ui->lineEdit_pathHdpos->text().toStdString();
     std::string loif = ui->lineEdit_pathLoif->text().toStdString();
@@ -260,23 +270,23 @@ QString MainWindow::writeXML()
     std::string stp = ui->lineEdit_pathStp->text().toStdString();
 
     if(ui->checkBox_resolvePathes->isChecked()){
-        antenna = QFileInfo(ui->lineEdit_pathAntenna->text()).absoluteFilePath().toStdString();
-        procs = QFileInfo(ui->lineEdit_pathProcs->text()).absoluteFilePath().toStdString();
-        equip = QFileInfo(ui->lineEdit_pathEquip->text()).absoluteFilePath().toStdString();
-        flux = QFileInfo(ui->lineEdit_pathFlux->text()).absoluteFilePath().toStdString();
-        freq = QFileInfo(ui->lineEdit_pathFreq->text()).absoluteFilePath().toStdString();
-        hdpos = QFileInfo(ui->lineEdit_pathHdpos->text()).absoluteFilePath().toStdString();
-        loif = QFileInfo(ui->lineEdit_pathLoif->text()).absoluteFilePath().toStdString();
-        mask = QFileInfo(ui->lineEdit_pathMask->text()).absoluteFilePath().toStdString();
-        modes = QFileInfo(ui->lineEdit_pathModes->text()).absoluteFilePath().toStdString();
-        position = QFileInfo(ui->lineEdit_pathPosition->text()).absoluteFilePath().toStdString();
-        rec = QFileInfo(ui->lineEdit_pathRec->text()).absoluteFilePath().toStdString();
-        rx = QFileInfo(ui->lineEdit_pathRx->text()).absoluteFilePath().toStdString();
-        source = QFileInfo(ui->lineEdit_pathSource->text()).absoluteFilePath().toStdString();
-        satellites = QFileInfo(ui->lineEdit_pathSatellite->text()).absoluteFilePath().toStdString();
-        satellites_avoid = QFileInfo(ui->lineEdit_pathSatellite_avoid->text()).absoluteFilePath().toStdString();
-        tracks = QFileInfo(ui->lineEdit_pathTracks->text()).absoluteFilePath().toStdString();
-        stp = QFileInfo(ui->lineEdit_pathStp->text()).absoluteFilePath().toStdString();
+        antenna = QFileInfo(QString::fromStdString(antenna)).absoluteFilePath().toStdString();
+        procs = QFileInfo(QString::fromStdString(procs)).absoluteFilePath().toStdString();
+        equip = QFileInfo(QString::fromStdString(equip)).absoluteFilePath().toStdString();
+        flux = QFileInfo(QString::fromStdString(flux)).absoluteFilePath().toStdString();
+        freq = QFileInfo(QString::fromStdString(freq)).absoluteFilePath().toStdString();
+        hdpos = QFileInfo(QString::fromStdString(hdpos)).absoluteFilePath().toStdString();
+        loif = QFileInfo(QString::fromStdString(loif)).absoluteFilePath().toStdString();
+        mask = QFileInfo(QString::fromStdString(mask)).absoluteFilePath().toStdString();
+        modes = QFileInfo(QString::fromStdString(modes)).absoluteFilePath().toStdString();
+        position = QFileInfo(QString::fromStdString(position)).absoluteFilePath().toStdString();
+        rec = QFileInfo(QString::fromStdString(rec)).absoluteFilePath().toStdString();
+        rx = QFileInfo(QString::fromStdString(rx)).absoluteFilePath().toStdString();
+        source = QFileInfo(QString::fromStdString(source)).absoluteFilePath().toStdString();
+        satellites = QFileInfo(QString::fromStdString(satellites)).absoluteFilePath().toStdString();
+        satellites_avoid = QFileInfo(QString::fromStdString(satellites_avoid)).absoluteFilePath().toStdString();
+        tracks = QFileInfo(QString::fromStdString(tracks)).absoluteFilePath().toStdString();
+        stp = QFileInfo(QString::fromStdString(stp)).absoluteFilePath().toStdString();
     }
     para.catalogs(antenna, equip, flux, freq, hdpos, loif, mask, modes, position, rec, rx, source, tracks, procs, satellites, stp, satellites_avoid);
 
@@ -2140,6 +2150,12 @@ void MainWindow::readSettings()
     auto cHdpos = settings_.get<std::string>("settings.catalog_path.hdpos","./AUTO_DOWNLOAD_CATALOGS/hdpos.cat");
     f(ui->lineEdit_pathHdpos, cHdpos);
 
+    bool sourceGroupsFlag = settings_.get<bool>("settings.catalog_path.sourceGroups",false);
+    ui->checkBox_sourceGroup->setChecked(sourceGroupsFlag);
+    bool noFluxGroupFlag = settings_.get<bool>("settings.catalog_path.noFluxGroup",false);
+    ui->checkBox_missingFlux->setChecked(noFluxGroupFlag);
+    bool dummyFluxFlag = settings_.get<bool>("settings.catalog_path.dummyFlux",false);
+    ui->checkBox_dummyFlux->setChecked(dummyFluxFlag);
 
     bool download_ = settings_.get<bool>("settings.general.download", true);
     ui->checkBox_autoDownload->blockSignals(true);
@@ -2738,6 +2754,9 @@ void MainWindow::on_pushButton_saveCatalogPathes_clicked()
     settings_.put("settings.catalog_path.rec",ui->lineEdit_pathRec->text().toStdString());
     settings_.put("settings.catalog_path.rx",ui->lineEdit_pathRx->text().toStdString());
     settings_.put("settings.catalog_path.hdpos",ui->lineEdit_pathHdpos->text().toStdString());
+    settings_.put("settings.catalog_path.sourceGroups",ui->checkBox_sourceGroup->isChecked());
+    settings_.put("settings.catalog_path.noFluxGroup",ui->checkBox_missingFlux->isChecked());
+    settings_.put("settings.catalog_path.dummyFlux",ui->checkBox_dummyFlux->isChecked());
     std::ofstream os;
     os.open("settings.xml");
     boost::property_tree::xml_parser::write_xml(os, settings_,
