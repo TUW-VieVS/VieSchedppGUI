@@ -40,3 +40,14 @@ build/
 *.exe
 *.out
 *.app
+
+.cmake/
+.qt/
+.qtcreator/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+Testing/
+cmake_install.cmake
+myresources.qrc.depends
+qtcsettings.cmake

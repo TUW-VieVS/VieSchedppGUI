@@ -6409,12 +6409,12 @@ void MainWindow::download(){
     int year = now.date().year();
 
     QStringList files;
-    files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(year);
-    files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(year);
+    files << QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1.txt").arg(year);
+    files << QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1-int.txt").arg(year);
 
     if (now.date().month() >=11){
-        files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(year+1);
-        files << QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(year+1);
+        files << QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1.txt").arg(year+1);
+        files << QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1-int.txt").arg(year+1);
     }
 //    files << QString("ftp://ivs.bkg.bund.de/pub/vlbi/ivscontrol/master%1-vgos.txt").arg(year+1-2000);
 
@@ -6423,14 +6423,14 @@ void MainWindow::download(){
     for (int i = 1979; i<year; ++i){
         QString x1 = QString("./AUTO_DOWNLOAD_MASTER/master%1.txt").arg(i);
         if( !QFile::exists(x1)){
-            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1.txt").arg(i);
+            QString z = QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1.txt").arg(i);
             files << z;
         }
     }
     for (int i = 1993; i<year; ++i){
         QString x2 = QString("./AUTO_DOWNLOAD_MASTER/master%1-int.txt").arg(i);
         if( !QFile::exists(x2)){
-            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-int.txt").arg(i);
+            QString z = QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1-int.txt").arg(i);
             files << z;
         }
     }
@@ -6438,13 +6438,13 @@ void MainWindow::download(){
     // vgos - old format (two digit year)
     QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
     if( !QFile::exists(x)){
-        QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-vgos.txt").arg(13,2,10,QChar('0'));
+        QString z = QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1-vgos.txt").arg(13,2,10,QChar('0'));
         files << z;
     }
     for (int i = 15; i<=19; ++i){
         QString x = QString("./AUTO_DOWNLOAD_MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
         if( !QFile::exists(x)){
-            QString z = QString("https://raw.githubusercontent.com/Matthias-Schartner/IVS_session_master_mirror/refs/heads/main/MASTER/master%1-vgos.txt").arg(i,2,10,QChar('0'));
+            QString z = QString("https://vlbisysmon.lrg.tum.de/monitoring_archive/master/master%1-vgos.txt").arg(i,2,10,QChar('0'));
             files << z;
         }
     }
